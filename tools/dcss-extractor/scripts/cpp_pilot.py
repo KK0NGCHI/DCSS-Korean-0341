@@ -36,7 +36,8 @@ def classify(call):
 def extract_file(path, parser):
     data = path.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
-    root = parser.parse(data).root_node
+    tree = parser.parse(data)
+    root = tree.root_node
     stack = [root]
     rows = []
     errors = []
