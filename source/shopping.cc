@@ -1064,8 +1064,7 @@ ShopMenu::ShopMenu(shop_struct& _shop, const level_pos& _pos, bool _can_purchase
     bought_indices = {};
     update_help();
 
-    set_title("Welcome to " + shop_name(shop) + "! What would you "
-              "like to do?");
+    set_title("[KO TEST] 상점: " + shop_name(shop) + " - 물품 선택");
 }
 
 void ShopMenu::init_entries()
