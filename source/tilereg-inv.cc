@@ -227,8 +227,8 @@ bool InventoryRegion::update_tab_tip_text(string &tip, bool active)
     const char *prefix2 = active ? "" : "          ";
 
     tip = make_stringf("%s%s\n%s%s",
-                       prefix1, "Display inventory",
-                       prefix2, "Use items");
+                       prefix1, "[KO TEST] 소지품 보기",
+                       prefix2, "아이템 사용");
 
     return true;
 }
