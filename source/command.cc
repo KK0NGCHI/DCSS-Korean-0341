@@ -1323,7 +1323,7 @@ static int _get_help_section(int section, formatted_string &header_out, formatte
     static map<int, formatted_string> page_text;
     static map<int, string> headers = {
         {'*', "Manual"}, {'%', "Aptitudes"}, {'^', "Quickstart"},
-        {'~', "Macros"}, {'&', "Options"}, {'t', "Tiles"},
+        {'~', "Macros"}, {'&', "[KO TEST] 설정 안내"}, {'t', "Tiles"},
         {'?', "Key help"}
     };
 
