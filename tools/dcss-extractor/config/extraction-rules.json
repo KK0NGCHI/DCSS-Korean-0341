@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source_extensions": [
+    ".cc",
+    ".cpp",
+    ".c",
+    ".h",
+    ".hpp",
+    ".lua",
+    ".txt",
+    ".des"
+  ],
+  "pilot_cpp_files": [
+    "message.cc",
+    "invent.cc",
+    "describe.cc",
+    "newgame.cc"
+  ],
+  "categories": [
+    "log",
+    "ui",
+    "name",
+    "description",
+    "dialogue",
+    "help",
+    "internal",
+    "unknown"
+  ],
+  "structures": [
+    "literal",
+    "format",
+    "concatenated",
+    "dynamic",
+    "unknown"
+  ],
+  "visibility": [
+    "confirmed_visible",
+    "candidate_visible",
+    "internal",
+    "unknown"
+  ],
+  "priority": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "translation_states": [
+    "untranslated",
+    "draft",
+    "reviewed",
+    "verified"
+  ],
+  "exclude_from_translation": [
+    "[KO TEST]"
+  ],
+  "rules": [
+    "Do not discard excluded literals from accounting; record exclusion reasons.",
+    "Retain source byte spans, file path, line number and parent call context.",
+    "Do not classify as visible solely from string contents.",
+    "Report parse errors and unreadable files."
+  ]
+}
