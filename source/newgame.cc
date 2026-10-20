@@ -1834,7 +1834,7 @@ static bool _prompt_weapon(const newgame_def& ng, newgame_def& ng_choice,
     auto vbox = make_shared<Box>(Box::VERT);
     vbox->set_cross_alignment(Widget::Align::STRETCH);
     vbox->add_child(title_hbox);
-    auto prompt = make_shared<Text>(formatted_string("You have a choice of weapons.", CYAN));
+    auto prompt = make_shared<Text>(formatted_string("[KO TEST] 시작 무기를 선택하세요.", CYAN));
     vbox->add_child(prompt);
 
     auto main_items = make_shared<OuterMenu>(true, 1, weapons.size());
