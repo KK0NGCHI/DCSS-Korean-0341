@@ -1,0 +1,1 @@
+x86_64-w64-mingw32-gcc -O2 -pipe   -Iinclude -DFT2_BUILD_LIBRARY

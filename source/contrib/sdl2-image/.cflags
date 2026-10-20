@@ -1,0 +1,1 @@
+x86_64-w64-mingw32-gcc -O2 -pipe   -I../install/x86_64-w64-mingw32/include -I../install/x86_64-w64-mingw32/include/SDL2 -DLOAD_PNG -DLOAD_BMP

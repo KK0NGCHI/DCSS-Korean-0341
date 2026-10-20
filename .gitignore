@@ -1,0 +1,38 @@
+# Compiled binaries
+*.exe
+*.dll
+*.o
+*.obj
+*.a
+*.lib
+*.pdb
+*.d
+
+# Build output
+source/build/
+source/rltiles/*.o
+source/rltiles/*.d
+
+# Local game data
+source/saves/
+source/morgue/
+source/screenshot/
+source/screenshots/
+source/settings/
+source/crawl.rc
+source/init.txt
+
+# Local logs and backups
+*.log
+*.smoke-backup
+*.pre-ko-phase2
+*.bak
+*.tmp
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Editor files
+.vscode/
+.idea/
