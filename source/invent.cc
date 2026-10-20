@@ -63,8 +63,10 @@ InvTitle::InvTitle(Menu *mn, const string &title, invtitle_annotator tfn)
 
 string InvTitle::get_text() const
 {
-    return titlefn ? titlefn(m, MenuEntry::get_text())
-                   : MenuEntry::get_text();
+    // Temporary Korean UI test at the final inventory title text accessor.
+    const string rendered = titlefn ? titlefn(m, MenuEntry::get_text())
+                                    : MenuEntry::get_text();
+    return "[KO TEST] 목록 제목: " + rendered;
 }
 
 InvEntry::InvEntry(const item_def &i)
