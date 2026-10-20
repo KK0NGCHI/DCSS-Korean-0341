@@ -422,7 +422,7 @@ void SkillMenuEntry::set_targets()
 void SkillMenuEntry::set_title()
 {
     m_name->allow_highlight(false);
-    m_name->set_text("     Skill");
+    m_name->set_text("[KO TEST] 기술");
     m_level->set_text("Level");
 
     m_name->set_fg_colour(BLUE);
