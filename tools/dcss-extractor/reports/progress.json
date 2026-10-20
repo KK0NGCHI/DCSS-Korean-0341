@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "project": "DCSS-0.34.1-KO",
+  "reference_source": "C:/DCSS-Dev/stone_soup-0.34.1/source",
+  "integration_source": "C:/DCSS-Dev/stone_soup-0.34.1-ko/source",
+  "baseline": {
+    "status": "awaiting_local_manifest",
+    "source_commit": null,
+    "file_count": null,
+    "manifest_sha256": null
+  },
+  "phases": {
+    "00": {
+      "status": "in_progress",
+      "completed_batches": 0
+    },
+    "01": {
+      "status": "pending",
+      "completed_batches": 0
+    },
+    "02": {
+      "status": "pending",
+      "completed_batches": 0
+    },
+    "03": {
+      "status": "pending",
+      "completed_batches": 0
+    },
+    "04": {
+      "status": "pending",
+      "completed_batches": 0
+    },
+    "05": {
+      "status": "pending",
+      "completed_batches": 0
+    },
+    "06": {
+      "status": "pending",
+      "completed_batches": 0
+    },
+    "07": {
+      "status": "pending",
+      "completed_batches": 0
+    }
+  },
+  "batches": [],
+  "updated_at": null
+}
