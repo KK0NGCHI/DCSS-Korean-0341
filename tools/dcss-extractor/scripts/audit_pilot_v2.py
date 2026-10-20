@@ -60,7 +60,8 @@ def main():
         starts=line_starts(data)
         tree=parser.parse(data)
         # Keep the Tree object alive while traversing its nodes.
-        stack=[tree.root_node]
+        root = tree.root_node
+        stack=[root]
         file_errors=0; file_literals=0
         while stack:
             node=stack.pop()
