@@ -335,10 +335,10 @@ void InvMenu::set_title(const string &s)
         string str;
         switch (cur_osel)
         {
-            case 0: str = "Gear: " + slot_description(); break;
-            case 1: str = "Potions: "; break;
-            case 2: str = "Scrolls: "; break;
-            case 3: str = "Evocable Items: "; break;
+            case 0: str = "[KO TEST] 장비: " + slot_description(); break;
+            case 1: str = "[KO TEST] 물약: "; break;
+            case 2: str = "[KO TEST] 두루마리: "; break;
+            case 3: str = "[KO TEST] 발동 아이템: "; break;
         }
         str += "    (Left/Right to switch category)";
         set_title(new InvTitle(this, str, title_annotate));
