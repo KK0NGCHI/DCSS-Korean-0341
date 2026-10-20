@@ -158,7 +158,8 @@ int show_description(const describe_info &inf, const tile_def *tile)
     more_sw->current() = 0;
 
     const string descs[2] =  {
-        trimmed_string(process_description(inf, false)),
+        trimmed_string(process_description(inf, false))
+            + "\n\n[KO TEST] 설명창 한글 출력 확인. 가나다라마바사. 긴 문장의 줄바꿈과 글자 간격을 검사합니다.",
         trimmed_string(inf.quote),
     };
 
