@@ -735,7 +735,7 @@ protected:
 
 void display_overview()
 {
-    string disp = overview_description_string(true);
+    string disp = "[KO TEST] 던전 현황\n\n" + overview_description_string(true);
     linebreak_string(disp, 80);
     dgn_overview overview(disp);
     _process_command(overview.show());
