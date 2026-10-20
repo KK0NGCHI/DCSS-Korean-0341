@@ -969,7 +969,7 @@ static void _print_stats_hp(int x, int y)
     // Health: xxx/yyy (zzz)
     CGOTOXY(x, y, GOTO_STAT);
     textcolour(HUD_CAPTION_COLOUR);
-    CPRINTF(player_drained() ? "HP: " : "Health: ");
+    CPRINTF(player_drained() ? "HP: " : "체력: ");
     textcolour(hp_colour);
     CPRINTF("%d", you.hp);
     if (!boosted)
