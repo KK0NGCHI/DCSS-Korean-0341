@@ -55,9 +55,11 @@ def main():
     for r in old_rows:old_by_file[r["file"]].append(r)
     errors=[]; enriched=[]; files=[]; call_counts=collections.Counter()
     for name in FILES:
+        print(f"Processing {name}...", flush=True)
         data=(args.source/name).read_bytes()
         starts=line_starts(data)
         tree=parser.parse(data)
+        # Keep the Tree object alive while traversing its nodes.
         stack=[tree.root_node]
         file_errors=0; file_literals=0
         while stack:
