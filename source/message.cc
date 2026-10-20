@@ -38,10 +38,7 @@ static void _mpr(string text, msg_channel_type channel=MSGCH_PLAIN, int param=0,
 
 void mpr(const string &text)
 {
-    if (text.find("You kill ") == 0)
-        _mpr("[KO TEST] 홉고블린을 처치했다!");
-    else
-        _mpr(text);
+    _mpr(text);
 }
 
 void mpr_nojoin(msg_channel_type channel, string text)
@@ -1513,6 +1510,10 @@ static int _last_msg_turn = -1; // Turn of last message.
 static void _mpr(string text, msg_channel_type channel, int param, bool nojoin,
                  bool cap)
 {
+    // Temporary Korean Tiles rendering test. Remove after verification.
+    if (text.compare(0, 9, "You kill ") == 0)
+        text = "[KO TEST] 몬스터를 처치했다!";
+
     static bool _doing_c_message_hook = false;
 
     rng::generator rng(rng::UI);
