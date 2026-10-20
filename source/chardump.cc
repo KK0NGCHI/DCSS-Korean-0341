@@ -775,7 +775,7 @@ static void _sdump_messages(dump_params &par)
     // A little message history:
     if (Options.dump_message_count > 0)
     {
-        par.text += "Message History\n\n";
+        par.text += "[KO TEST] 메시지 기록\n\n";
         par.text += get_last_messages(Options.dump_message_count);
     }
 }
