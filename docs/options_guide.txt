@@ -1,4 +1,4 @@
-Guide to Crawl's options
+[KO TEST] 게임 설정 안내
 ========================
 
 This document explains all of the options in the latest version of Dungeon
