@@ -798,7 +798,7 @@ static void _add_formatted_help_menu(column_composer &cols)
 {
     cols.add_formatted(
         0,
-        "<h>Dungeon Crawl Help\n"
+        "<h>[KO TEST] 도움말 목록\n"
         "\n"
         "Press one of the following keys to\n"
         "obtain more information on a certain\n"
@@ -848,7 +848,7 @@ static void _add_formatted_help_menu(column_composer &cols)
     // TODO: generate this from the manual somehow
     cols.add_formatted(
         1,
-        "<h>Manual Contents\n\n"
+        "<h>[KO TEST] 설명서 목차\n\n"
         "<w>*</w>       Table of contents\n"
         "<w>A</w>.      Overview\n"
         "<w>B</w>.      Starting Screen\n"
