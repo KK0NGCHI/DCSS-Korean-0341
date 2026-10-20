@@ -1491,7 +1491,7 @@ void display_inventory()
 
 static string _drop_menu_titlefn(const Menu*, const string &)
 {
-    return "Drop what? (Left/Right to switch category) " + slot_description() + " (_ for help)";
+    return "[KO TEST] 버릴 아이템 선택 (좌/우: 분류 전환) " + slot_description() + " (_ for help)";
 }
 
 /**
