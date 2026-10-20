@@ -345,7 +345,7 @@ void InvMenu::set_title(const string &s)
         return;
     }
 
-    set_title(new InvTitle(this, s.empty() ? "Inventory: " + slot_description()
+    set_title(new InvTitle(this, s.empty() ? "[KO TEST] 소지품: " + slot_description()
                                            : s,
                            title_annotate));
 }
