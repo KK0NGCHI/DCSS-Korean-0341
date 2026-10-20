@@ -281,7 +281,8 @@ void TabbedRegion::draw_tag()
 
     GridRegion *tab = m_tabs[m_mouse_tab].reg;
 
-    draw_desc(tab->name().c_str());
+    const string ko_tab_test = "[KO TEST] 탭: " + tab->name();
+    draw_desc(ko_tab_test.c_str());
 }
 
 int TabbedRegion::min_height_for_items() const
