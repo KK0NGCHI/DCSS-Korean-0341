@@ -4,15 +4,19 @@
   "reference_source": "C:/DCSS-Dev/stone_soup-0.34.1/source",
   "integration_source": "C:/DCSS-Dev/stone_soup-0.34.1-ko/source",
   "baseline": {
-    "status": "awaiting_local_manifest",
+    "status": "manifest_generated_locally_reported",
     "source_commit": null,
-    "file_count": null,
-    "manifest_sha256": null
+    "file_count": 26187,
+    "manifest_sha256": null,
+    "manifest_size_bytes": 4884428,
+    "pilot_files_missing": 0,
+    "read_errors": 0,
+    "validation": "User-provided command output; full manifest not uploaded or independently checked"
   },
   "phases": {
     "00": {
-      "status": "in_progress",
-      "completed_batches": 0
+      "status": "completed",
+      "completed_batches": 1
     },
     "01": {
       "status": "pending",
@@ -44,5 +48,5 @@
     }
   },
   "batches": [],
-  "updated_at": null
+  "updated_at": "2026-10-21"
 }
