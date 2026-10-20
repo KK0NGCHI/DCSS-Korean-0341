@@ -4008,6 +4008,8 @@ command_type describe_item_popup(const item_def &item,
     if (fixup_desc)
         fixup_desc(desc);
 
+    // Temporary Korean UI rendering test: item description popup.
+    desc = "[KO TEST] 아이템 설명창 출력 확인. 가나다라마바사.\n\n" + desc;
     formatted_string fs_desc = formatted_string::parse_string(desc);
 
     spellset spells = item_spellset(item);
@@ -7010,6 +7012,7 @@ int describe_monster(const monster_info &mi, const string& /*footer*/)
     title_hbox->set_margin_for_sdl(0, 0, 20, 0);
     vbox->add_child(std::move(title_hbox));
 
+    desc += "[KO TEST] 몬스터 설명창 출력 확인. 가나다라마바사.\n\n";
     desc += inf.body.str();
     if (crawl_state.game_is_hints())
         desc += formatted_string(hints_describe_monster(mi, has_stat_desc));
