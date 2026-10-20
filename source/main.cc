@@ -2460,7 +2460,7 @@ void process_command(command_type cmd, command_type prev_cmd)
     {
         // TODO: msg whether this will start a new game? not very important
         if (crawl_state.disables[DIS_CONFIRMATIONS]
-            || confirm_prompt("quit", "Are you sure you want to abandon this character%s?",
+            || confirm_prompt("quit", "[KO TEST] 이 캐릭터를 포기하시겠습니까%s?",
                 Options.newgame_after_quit ? "" : // hard to predict this case
                 (crawl_should_restart(game_exit::quit)
                                             ? " and return to the main menu"
