@@ -1360,7 +1360,7 @@ static int _get_help_section(int section, formatted_string &header_out, formatte
 
     string header = headers.count(page) ? ": "+headers[page] : "";
     header_out = formatted_string::parse_string(
-                    "<yellow>Dungeon Crawl Help"+header+"</yellow>");
+                    "<yellow>[KO TEST] 도움말"+header+"</yellow>");
     scroll_out = 0;
     switch (section)
     {
