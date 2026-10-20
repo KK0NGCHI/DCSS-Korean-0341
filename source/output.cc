@@ -2310,7 +2310,7 @@ static vector<formatted_string> _get_overview_stats()
     if (player_drained())
         entry.cprintf("HP:   ");
     else
-        entry.cprintf("Health: ");
+        entry.cprintf("[KO TEST] 체력: ");
 
     if (_boosted_hp())
         entry.textcolour(LIGHTBLUE);
