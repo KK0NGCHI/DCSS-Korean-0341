@@ -368,7 +368,7 @@ NORETURN void end_game(scorefile_entry &se)
 
     goodbye_msg += hiscore;
 
-    goodbye_msg += make_stringf("\nBest Crawlers - %s\n",
+    goodbye_msg += make_stringf("\n[KO TEST] 최고 기록 - %s\n",
             crawl_state.game_type_name().c_str());
 
 #ifdef USE_TILE_LOCAL
