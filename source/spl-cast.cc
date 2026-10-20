@@ -274,7 +274,7 @@ int list_spells(bool toggle_with_I, bool transient, bool viewing,
 
     SpellMenu spell_menu;
     const string titlestring = make_stringf("%-25.25s",
-            make_stringf("Your spells (%s)", real_action.c_str()).c_str());
+            make_stringf("[KO TEST] 마법 (%s)", real_action.c_str()).c_str());
 
     {
         ToggleableMenuEntry* me =
