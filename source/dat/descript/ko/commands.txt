@@ -330,7 +330,6 @@ CMD_ZOOM_OUT verbose
 
 던전 구역 줌 아웃
 %%%%
-%%%%
 CMD_CHARACTER_DUMP
 
 캐릭터 진행 상황을 파일로 저장
