@@ -1,0 +1,290 @@
+%%%%
+ablaze with memories monstatus
+
+이 생명체는 일시적으로 특정 주문을 시전할 능력을 얻었다. 충분히 다치면 다시 그 주문들을 사용할 수 없게 된다.
+%%%%
+about to teleport monstatus
+
+잠시 뒤 현재 층의 다른 장소로 순간이동한다.
+%%%%
+ally target monstatus
+
+아군 한 명 이상이 이 생명체를 공격 대상으로 삼고 있다.
+%%%%
+anguished monstatus
+
+이 생명체는 피해를 입힐 때 자신도 입힌 피해량만큼 피해를 받는다.
+%%%%
+asleep monstatus
+
+이 생명체는 움직이거나 행동하거나 공격을 막거나 회피할 수 없다. 적대적인 행동을 받으면 깨어나지만, 잠든 동안 근접 공격을 받으면 다른 몬스터의 공격이라도 피해가 증가한다.
+
+[[high-tier stab monstatus]]
+%%%%
+berserk monstatus
+
+이 생명체는 체력이 50% 증가하고 근접 공격 피해량이 50% 늘어나며 이동과 행동이 50% 빨라진다. 이동하거나 공격하는 것 외에는 행동할 수 없다.
+
+광폭화가 끝나면 잠시 둔화되고 다시 광폭화할 수 없다.
+%%%%
+blind monstatus
+
+이 생명체는 앞을 제대로 보지 못한다. 명중률이 크게 감소하고 기회 공격을 할 수 없으며 주문을 엉뚱한 위치에 사용할 때도 있다.
+
+또한 비틀거리다가 목표를 놓칠 수 있으며, 지능이 낮을수록 그러기 쉽다.
+
+[[low-tier stab monstatus]]
+%%%%
+bound in place monstatus
+
+스스로 움직일 수 없지만 전이술을 사용하거나 다른 존재에게 강제로 밀려나는 것은 가능하다.
+%%%%
+catching its breath monstatus
+
+최근 숨결 능력을 사용하여 잠시 다시 사용할 수 없다.
+%%%%
+catching his breath monstatus
+
+[[catching its breath monstatus]]
+%%%%
+catching her breath monstatus
+
+[[catching its breath monstatus]]
+%%%%
+catching their breath monstatus
+
+[[catching its breath monstatus]]
+%%%%
+charmed monstatus
+
+매혹되어 잠시 당신 편에서 싸운다. 어떤 방식으로든 해치려 하면 효과가 즉시 사라진다.
+%%%%
+confused monstatus
+
+공격을 막거나 주문 및 능력을 사용할 수 없고, 무작위 방향으로 비틀거리며 부딪힌 대상을 공격한다. 대상은 아군이나 적, 심지어 자기 자신일 수도 있다.
+
+[[low-tier stab monstatus]]
+%%%%
+contaminated monstatus
+
+변형 마력에 오염되어 있으며, 같은 마력의 영향을 3번째 받을 때마다 상당한 피해를 입는다.
+%%%%
+control wrested from you monstatus
+
+원래 당신의 편이었지만 다른 생명체에게 매혹되어 그쪽 편이 되었다. 매혹을 일으킨 생명체를 처치하면 제정신으로 돌아온다.
+%%%%
+corroded monstatus
+
+이 생명체의 방어력이 8 감소했다.
+%%%%
+covered in liquid flames monstatus
+
+끈적한 불꽃에 휩싸여 매 턴 방어력을 무시하는 화염 피해를 입는다. 이동하면 불꽃이 빠르게 떨어져 나가며, 물에 들어가면 완전히 꺼진다.
+%%%%
+covered in terrible wounds monstatus
+
+가죽 벗기는 유령에게 환영의 상처를 입었다. 시간이 지나거나 유령을 파괴하면 상처가 사라진다.
+%%%%
+covering ground quickly monstatus
+
+이 생명체는 이동 속도가 조금 빠르다.
+%%%%
+covering ground slowly monstatus
+
+액체처럼 변한 땅에 발이 묶여 이동 속도가 느려지고 근접 공격의 25%가 빗나간다.
+%%%%
+crumbling away monstatus
+
+몇 턴 뒤 자동으로 파괴된다.
+%%%%
+damage-immune at range monstatus
+
+현재 인접하지 않은 모든 피해 원천으로부터 피해를 입지 않는다. 구름을 만든 생명체가 인접하지 않았다면 그 구름도 여기에 포함된다.
+%%%%
+dazed monstatus
+
+일시적으로 행동할 수 없지만 적대적인 행동을 받으면 즉시 정신을 차린다.
+%%%%
+diminished spells monstatus
+
+주문의 위력이 감소했다. 피해량이 줄고 목표의 의지력을 돌파하기 어려워지며 그 밖의 효과도 약해질 수 있다.
+%%%%
+dormant monstatus
+
+[[asleep monstatus]]
+%%%%
+doubled in vigour monstatus
+
+현재 체력과 최대 체력이 일시적으로 2배가 되었다.
+%%%%
+encased in ice monstatus
+
+갑자기 얼어붙어 잠시 이동 속도가 크게 감소한다.
+%%%%
+extremely poisoned monstatus
+
+매 턴 독 피해를 입으며 더 이상 독이 쌓이지 않는다.
+%%%%
+fast monstatus
+
+이동과 행동 속도가 50% 빨라진다.
+%%%%
+fleeing monstatus
+
+두려움에 사로잡혀 매 턴 공포를 일으킨 존재에게서 멀어지려고 한다. 이동 외에는 점멸처럼 도주에 도움이 될 것으로 생각하는 주문만 시전할 수 있다.
+
+직접 피해를 받거나 지형에 막혀 궁지에 몰리면 다시 맞서 싸운다.
+%%%%
+fragile as glass monstatus
+
+모든 원천으로부터 받는 피해가 50% 증가한다.
+%%%%
+frenzied and wild monstatus
+
+근접 공격 피해량이 50% 증가하고 이동과 공격이 50% 빨라진다. 주문을 시전할 수 없고 매 턴 아군이든 적이든 가장 가까운 다른 생명체를 우선 공격한다.
+%%%%
+fully charged monstatus
+
+주문을 시전하는 데 필요한 힘을 모두 모았다.
+%%%%
+heavily contaminated monstatus
+
+[[contaminated monstatus]]
+%%%%
+indifferent monstatus
+
+적대적이지도 아군도 아니며, 마주치는 생명체는 어느 편이든 공격할 수 있다.
+%%%%
+infested monstatus
+
+몸속에 죽음의 풍뎅이가 기생하고 있으며, 죽으면 몸에서 튀어나온다.
+%%%%
+lightly drained monstatus
+
+생명력이 조금 흡수되어 근접 공격 명중률, 주문과 특수 공격의 위력이 다소 감소했으며 여러 상태 효과에 조금 더 취약하다.
+%%%%
+lost in madness monstatus
+
+진의 권능으로 광기에 빠졌다. 다시는 주문이나 능력을 사용할 수 없고 무작위로 비틀거리며 부딪힌 존재를 공격한다. 아군, 적, 자기 자신도 예외가 아니다.
+%%%%
+magic disrupted monstatus
+
+주문과 마법 능력이 방해받아 사용할 때 실패할 수 있다. 실패 확률은 남은 효과 지속 시간에 따라 달라진다.
+%%%%
+magic-sapped monstatus
+
+마법 사용 능력이 오염되었다. 주문을 시전하면 마력이 심각하게 방해받아 이후 시전하는 주문들이 실패할 가능성이 높아진다.
+%%%%
+mesmerising monstatus
+
+당신을 매혹하여 스스로 이 생명체에게서 멀어질 수 없게 만들었다.
+
+이 생명체가 시야에서 사라지면 효과가 풀린다.
+%%%%
+minion monstatus
+
+마법으로 만들어진 존재이며, 창조자가 죽으면 함께 사라진다.
+%%%%
+more vulnerable to fire monstatus
+
+화염 저항이 1단계 감소했다.
+%%%%
+more vulnerable to poison monstatus
+
+독 저항이 1단계 감소했다.
+%%%%
+not watching you monstatus
+
+잠시 다른 일에 주의를 빼앗겼다.
+
+[[low-tier stab monstatus]]
+%%%%
+paralysed monstatus
+
+움직이거나 행동하거나 공격을 막거나 회피할 수 없다.
+
+[[high-tier stab monstatus]]
+%%%%
+paralysed with fear monstatus
+
+[[paralysed monstatus]]
+%%%%
+partially charged monstatus
+
+주문이나 능력을 사용하는 데 필요한 힘을 일부 모았다.
+%%%%
+peaceful monstatus
+
+당신을 공격하지 않으며 당신에게 적대적인 다른 존재를 공격할 수 있지만, 따라오거나 직접 내리는 지시를 따르지는 않는다.
+%%%%
+poisoned monstatus
+
+매 턴 독 피해를 입는다.
+%%%%
+reflecting blocked projectiles monstatus
+
+막아 낸 투사체를 원래 발사한 대상에게 반사한다.
+%%%%
+reflecting injuries monstatus
+
+피해를 받을 때마다 피해를 입힌 대상에게 받은 피해의 2/3만큼 되돌려 준다.
+%%%%
+regenerating monstatus
+
+최대 체력에 비례하여 체력이 훨씬 빠르게 재생된다.
+%%%%
+repelling missiles monstatus
+
+물리적이든 마법적이든 투사체를 피할 때 회피력이 15 증가한다.
+%%%%
+rolling monstatus
+
+몸을 공처럼 웅크렸다. 다음에 공격하거나 움직일 수 없게 될 때까지 이동 속도와 근접 공격 피해량이 100% 증가한다.
+%%%%
+sharing his pain monstatus
+
+[[sharing its pain monstatus]]
+%%%%
+sharing her pain monstatus
+
+[[sharing its pain monstatus]]
+%%%%
+sharing their pain monstatus
+
+[[sharing its pain monstatus]]
+%%%%
+sick monstatus
+
+병에 걸려 체력이 자연적으로 재생되지 않는다.
+%%%%
+silenced monstatus
+
+부자연스러운 침묵의 영역에 휩싸여 어떤 소리도 낼 수 없다. 여기에는 많은 생명체가 주문을 시전하는 데 필요한 발성도 포함된다.
+%%%%
+skewered by barbs monstatus
+
+움직일 때마다 약간의 피해를 입는다.
+%%%%
+slow monstatus
+
+이동 및 행동 속도가 정상의 66%로 감소했다.
+%%%%
+softly glowing monstatus
+
+빛의 후광에 둘러싸여 공격에 더 쉽게 맞고, 투명 상태였다면 모습이 드러난다.
+%%%%
+spells diminished monstatus
+
+주문의 위력이 크게 약해졌다.
+%%%%
+spells empowered monstatus
+
+주문이 강화되어 더욱 자주 시전한다.
+%%%%
+stilling the winds monstatus
+
+현재 층에 어떤 구름도 새로 생성되지 못하게 한다.
+%%%%
+strong monstatus
+
+근접 공격으로 주는 피해가 50% 증가한다.
