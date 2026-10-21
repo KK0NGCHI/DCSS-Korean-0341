@@ -330,3 +330,63 @@ CMD_ZOOM_OUT verbose
 
 던전 구역 줌 아웃
 %%%%
+%%%%
+CMD_CHARACTER_DUMP
+
+캐릭터 진행 상황을 파일로 저장
+%%%%
+CMD_CHARACTER_DUMP verbose
+
+캐릭터의 주요 능력치, 장비, 주문, 기술, 기록 등의 상세 정보를 morgue 폴더의 ‘playername.txt’ 파일로 저장한다. 나중에 파일을 열어 확인할 수 있다.
+%%%%
+CMD_GAME_MENU
+
+게임 메뉴 표시
+%%%%
+CMD_GAME_MENU verbose
+
+게임 메뉴를 표시한다.
+%%%%
+CMD_LOOKUP_HELP
+
+도움말 검색
+%%%%
+CMD_LOOKUP_HELP verbose
+
+몬스터, 주문, 능력, 아이템 등의 설명을 검색한다.
+%%%%
+CMD_MAP_EXIT_MAP
+
+지도 모드 종료
+%%%%
+CMD_MAP_EXPLORE
+
+다음 자동 탐색 목표 찾기
+%%%%
+CMD_MAP_EXPLORE verbose
+
+커서를 자동 탐색이 다음에 이동할 위치로 옮긴다.
+%%%%
+CMD_SAFE_WAIT
+
+안전할 때 1턴 대기
+%%%%
+CMD_SAFE_WAIT verbose
+
+시야에 적대적인 몬스터가 없을 때에만 1턴 동안 대기하며 휴식한다.
+%%%%
+CMD_SHOW_CHARACTER_DUMP
+
+캐릭터 진행 상황 저장 및 표시
+%%%%
+CMD_SHOW_CHARACTER_DUMP verbose
+
+캐릭터의 주요 능력치, 장비, 주문, 기술, 기록 등의 상세 정보를 morgue 폴더의 ‘playername.txt’ 파일로 저장한 뒤 게임 안에서 표시한다.
+%%%%
+CMD_TOGGLE_KEYBOARD
+
+화상 키보드 표시 전환
+%%%%
+CMD_TOGGLE_KEYBOARD verbose
+
+화면에 표시되는 키보드를 켜거나 끈다.
