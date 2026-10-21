@@ -671,7 +671,6 @@ tutorial5 exit
 
                                  <cyan><input>아무 버튼</input>이나 누르세요...</cyan>
 %%%%
-%%%%
 tutorial death
 
 당신은 죽었습니다...
