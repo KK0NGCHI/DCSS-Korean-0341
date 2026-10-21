@@ -1,0 +1,80 @@
+%%%%
+no teleportation passive
+
+순간이동하거나 짧은 거리로 공간 이동할 수 없다.
+%%%%
+no spellcasting passive
+
+주문을 시전할 수 없다.
+%%%%
+random rage passive
+
+근접 공격을 할 때 일정 확률로 광폭화한다.
+%%%%
+corrode self passive
+
+피해를 받으면 일정 확률로 부식된다.
+%%%%
+slow self passive
+
+피해를 받으면 일정 확률로 둔화된다.
+%%%%
+harm passive
+
+입히는 피해와 받는 피해가 모두 증가한다.
+%%%%
+mayhem passive
+
+적을 처치할 때 일정 확률로 시야에 있는 몬스터들이 광란에 빠진다.
+%%%%
+repel missiles passive
+
+날아오는 투사체를 밀어내 회피할 확률이 증가한다.
+%%%%
+reflection passive
+
+원거리 공격을 막는 데 성공하면 공격자에게 반사한다.
+%%%%
+acrobat passive
+
+이동하거나 대기하는 동안 회피력이 증가한다.
+%%%%
+clarity passive
+
+의도치 않은 혼란, 광폭화, 공포, 매혹으로부터 보호받는다.
+%%%%
+resist mutation passive
+
+돌연변이에 대해 부분적으로 보호받는다.
+%%%%
+guardian spirit passive
+
+받는 피해가 체력과 마력 사이에 분산된다.
+%%%%
+rampage passive
+
+적을 향해 이동할 때 추가로 1칸을 무료로 이동한다.
+%%%%
+roll passive
+
+<rollpage mutation>
+%%%%
+faith passive
+
+신의 호의를 더 빠르게 얻지만, 종교적 금기를 어기면 더 큰 주목을 받는다.
+%%%%
+wizardry passive
+
+주문 성공률이 증가한다.
+%%%%
+archmagi passive
+
+주문 위력이 증가한다.
+%%%%
+channel magic passive
+
+주문을 성공적으로 시전하면 소모한 마력을 일정 확률로 돌려받는다. 주문 시전에 실패하면 소모한 마력을 항상 돌려받는다.
+%%%%
+infuse magic passive
+
+근접 공격할 때마다 마력을 소모해 공격을 강화한다.
