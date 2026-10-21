@@ -288,3 +288,15 @@ stilling the winds monstatus
 strong monstatus
 
 근접 공격으로 주는 피해가 50% 증가한다.
+%%%%
+sharing its pain monstatus
+
+이 생명체가 입는 피해 일부가 가까운 아군에게 전달된다. 가까운 아군일수록 더 큰 피해를 입는다.
+%%%%
+low-tier stab monstatus
+
+<blue>이 생명체에게 근접 공격을 하면 은신과 무기 숙련도에 따라 허점을 찔러 추가 피해를 줄 수 있다. 단검류를 사용하면 특히 효과적이다.</blue>
+%%%%
+high-tier stab monstatus
+
+<blue>이 생명체에게 가하는 근접 공격은 큰 추가 피해를 입히며 단검류를 사용하면 특히 효과적이다.</blue>
