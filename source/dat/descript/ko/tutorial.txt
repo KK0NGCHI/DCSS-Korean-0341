@@ -671,3 +671,35 @@ tutorial5 exit
 
                                  <cyan><input>아무 버튼</input>이나 누르세요...</cyan>
 %%%%
+%%%%
+tutorial death
+
+당신은 죽었습니다...
+
+Crawl에서 죽음은 안타깝지만 흔히 일어나는 일입니다. 아이템을 사용하거나, 달아나거나, 전투 사이에 휴식하거나, 아예 싸움을 피하는 등 살아남을 방법이 있었던 경우가 많습니다. 계속 도전하다 보면 결국 승리할 수 있을 것입니다.
+%%%%
+tutorial2 boomerangs
+
+이제 원거리 전투를 배워봅시다! <input>$cmd[CMD_PICKUP]</input> 또는 <input>g</input> 키<localtiles>, 혹은 <input>마우스 클릭</input></localtiles>으로 이 부메랑들을 주운 뒤 계속 진행하십시오.
+%%%%
+tutorial3 battle
+
+몬스터에게 독을 걸었다면, 물러나서 독이 효과를 발휘하도록 기다리는 편이 좋을 때도 있습니다. 필요하다면 후퇴하여 체력을 회복하는 것도 잊지 마십시오.
+%%%%
+tutorial3 trap
+
+함정은 몬스터의 주의를 끌거나 위험한 장소로 순간이동시키는 등 여러 가지 불쾌한 효과를 일으킬 수 있습니다. 일부 함정은 영구적이며 지도에 항상 표시되지만, 다른 함정은 아직 탐색하지 않은 칸을 지나갈 때 발동하고 이후 사라집니다. 우회할 길이 없다면 함정을 발동시킨 뒤 그 결과에 대처해야 합니다.
+%%%%
+tutorial3 wand_digging
+
+굴착의 마법봉은 바위 벽을 파괴할 수 있습니다. <input>$cmd[CMD_LOOK_AROUND]][$cmd[CMD_TARGET_DESCRIBE]</input> 명령<localtiles> 또는 <input>마우스를 올린 후</input>/<input>마우스 오른쪽 클릭</input></localtiles>으로 벽의 종류를 확인하십시오.
+%%%%
+tutorial4 spellbook
+
+<input>$cmd[CMD_MEMORISE_SPELL]</input> 명령<localtiles> 또는 암기 탭을 <input>클릭</input>하고 주문 타일을 선택하여</localtiles> 주문 목록에 있는 주문을 암기할 수 있습니다. 경험치 레벨 1에서는 1레벨 주문만 암기할 수 있지만, 경험을 쌓으면 더 높은 레벨의 주문도 사용할 수 있게 됩니다. 새로운 주문을 얻으려면 마법서를 찾아 주우십시오. 그러면 해당 주문들이 주문 목록에 추가됩니다.
+%%%%
+tutorial4 spellquivering
+
+주문도 탄약처럼 발사 준비 칸에 표시됩니다. <input>$cmd[CMD_QUIVER_ITEM]</input> 명령으로 발사할 주문을 준비하십시오. 현재 준비된 주문은 <input>$cmd[CMD_FIRE]</input> 또는 <input>shift-tab</input>으로 시전할 수 있습니다.
+
+마력이 소진되었다면 물러나서 <input>$cmd[CMD_REST]</input> 명령<localtiles> 또는 명령 패널의 휴식 아이콘을 <input>클릭</input></localtiles>으로 휴식하며 마력을 회복하십시오.
