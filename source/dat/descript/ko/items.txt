@@ -1675,3 +1675,7 @@ wellspring talisman
 young poisoner's handbook
 
 독 마법 입문서다. 아주 두껍고 액체를 흡수하지 않는 장갑을 끼고 읽는 편이 좋다.
+%%%%
+baked corpse
+
+갓 구운 시체다. 따뜻하고, 쓸모없고, 죽어 있다.
