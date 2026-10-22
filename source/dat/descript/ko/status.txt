@@ -945,3 +945,77 @@ Blade status
 Spore status
 
 팔이 알록달록한 균류 덩어리로 변했다.
+%%%%
+Contam status
+
+변이성 방사선으로 몸이 빛나고 있다. 시간이 지나면 돌연변이(대개 해로운 돌연변이)가 생길 수 있고 불안정한 마법이 폭발하면서 피해를 입을 수도 있다. 또한 빛 때문에 투명화할 수 없고 은신 능력도 감소한다.
+{{
+    local dmg = you.contam_max_damage();
+    if dmg > 0 then
+        return "\n현재 오염 수준에서 폭발하면 최대 " .. dmg .. "의 피해를 입을 수 있다."
+    end
+}}
+%%%%
+Dragon status
+
+{{
+    local desc = "강력한"
+
+    if you.race():find("Draconian") then
+        desc = desc .. " 용으로 변신했다"
+        if you.race() ~= "Grey Draconian" then
+            desc = desc .. ". 선천적인 숨결 공격의 위력이 증가한다"
+        end
+        if you.race() == "Red Draconian" then
+            desc = desc .. ". 화염에 매우 강하고 독에 저항하지만 냉기에는 취약하다"
+        elseif you.race() == "White Draconian" then
+            desc = desc .. ". 냉기에 매우 강하고 독에 저항하지만 화염에는 취약하다"
+        elseif you.race() == "Green Draconian" then
+            desc = desc .. ". 원래의 몸 색깔을 유지한다"
+        else
+            desc = desc .. ". 원래의 몸 색깔을 유지하며 독에도 저항한다"
+        end
+    else
+        desc = desc .. " 불을 뿜는 용으로 변신했다. 화염에 매우 강하고 독에 저항하지만 냉기에는 취약하다"
+    end
+
+    desc = desc .. "."
+
+    return desc
+}} 근접 공격으로 엄청난 피해를 주고 몸이 훨씬 튼튼해지지만 회피력은 감소한다.
+%%%%
+App status
+
+{{
+    if you.race() == "Octopode" then
+        return "촉수 하나에서 사나운 가시가 자라 추가 촉수 공격의 피해량이 증가한다."
+    else
+        return "몸에 거대한 뿔이나 갈고리발톱이 자라 근접 전투에서 추가 공격을 할 수 있다."
+    end
+}}
+%%%%
+Water status
+
+{{
+    local verb = you.flying() and "위를 날고 있다" or
+                 you.race() == "Merfolk" and "에서 헤엄치고 있다" or "에 서 있다"
+    local feat = view.feature_at(0, 0):gsub("_", " ")
+
+    if feat ~= "deep water" and feat ~= "shallow water" then
+        feat = "water"
+        verb = "위에 있다"
+    end
+
+    local where = feat == "deep water" and "깊은 물" or
+                  feat == "shallow water" and "얕은 물" or "물"
+    return "현재 " .. where .. verb .. "."
+}}
+%%%%
+Pact status
+
+마크레브가 당신이 맺은 약속을 받아내러 왔다.
+{{ if you.religion == "Makhleb" then
+        return "여기에 모인 공포에 질린 필멸자들을 죽여 파괴의 도구로서 맹세를 지켜라. 그러면 다시 자유를 얻을지도 모른다."
+   else
+        return "싸우고 피를 흘려라. 그러면 다시 자유를 얻을지도 모른다."
+    end}}
