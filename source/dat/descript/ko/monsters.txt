@@ -3547,3 +3547,193 @@ wyrmhole
 yaktaur
 
 튼튼한 인간의 상반신과 야크의 몸을 지닌 혼합 생명체다. 원거리 전투에 뛰어나며 근접전에서도 만만치 않은 적이다.
+%%%%
+yellow draconian
+
+파충류의 꼬리와 작은 날개를 지닌 근육질의 노란 비늘 인간형 생명체다.
+%%%%
+ynoxinul
+
+반짝이는 금속 비늘에 뒤덮인 날개 달린 악마다. 하급 악마 군단을 지휘한다.
+%%%%
+zykzyl
+
+필멸자의 질투에서 태어난 악마다. 움직일 때마다 살갗이 역겹고 축축하게 꿈틀거린다. 모든 아름다움을 자신만큼 흉측한 모습으로 떨어뜨리려는 단 하나의 욕망에 사로잡혀 있다.
+%%%%
+ghost
+
+이전 버전에 존재했지만 지금은 제거된 몬스터의 잔재다.
+%%%%
+sensed monster
+
+존재가 감지된 적대적인 몬스터다.
+%%%%
+trivial sensed monster
+
+아셴자리의 힘으로 존재가 드러난, 하찮을 만큼 약한 몬스터다.
+%%%%
+easy sensed monster
+
+아셴자리의 힘으로 존재가 드러난 약한 몬스터다.
+%%%%
+tough sensed monster
+
+아셴자리의 힘으로 존재가 드러난 다소 위험한 몬스터다.
+%%%%
+nasty sensed monster
+
+아셴자리의 힘으로 존재가 드러난 매우 위험한 몬스터다.
+%%%%
+friendly sensed monster
+
+아군 몬스터로, 존재가 {{
+    if you.god() == "Ashenzari" then
+        return "아셴자리의 힘으로 드러났다"
+    else
+        return "감지되었다"
+    end
+}}.
+%%%%
+Head Instructor
+
+육체적 전투와 마법 전투, 대마법 전투를 배우는 학생들을 지도하는 강력한 전사 마법사다.
+%%%%
+moon troll
+
+이 세계 밖의 신비로운 힘으로 빛나는 기묘한 지성적 트롤이다. 그 힘은 가까운 거리의 공격이 아니면 피해를 막아 준다.
+%%%%
+lunar statue
+
+<zot statue>
+%%%%
+antique champion
+
+상상하기 어려울 만큼 값비싼 해골이다. 뼈마다 셀 수 없는 문양이 새겨져 있으며 유령 같은 기운으로 맥동한다.
+%%%%
+archer statue
+
+최고급 대리석으로 조각한 아름다운 엘프 궁수의 석상이다. 활을 높이 들고 있으며 마법으로 움직여 침입자들에게 화살을 퍼부을 수 있다.
+%%%%
+bog mummy
+
+습지의 짠물에 보존된 언데드다. 부패가 심하게 진행되어 연약해 보인다.
+%%%%
+captured wizard
+
+혀가 잘린 채 눈을 부릅뜬 마법사다. 미친 듯이 중얼거리고 팔을 휘젓지만 주문 하나도 시전하지 못한다.
+%%%%
+Cigotuvi's Monster
+
+상상할 수 있는 모든 괴물의 신체 부위를 이어 붙여 만든 듯한 끔찍한 창조물이다. 몸 여기저기에서 꿈틀거리는 촉수가 솟아난다.
+%%%%
+conjurer statue
+
+이스켄데룬이 고안한 가장 강력한 순수 파괴술을 사용할 수 있는 석상이다.
+%%%%
+demonic plant
+
+정체 모를 돌기와 꿈틀거리는 촉수로 뒤덮인, 식물을 흉내 낸 악마적 존재다. 해롭지는 않아 보인다.
+%%%%
+dimme
+
+악마의 혈통을 지닌 끔찍한 생명체다. 그 존재는 공포를 일으키면서도 초자연적으로 마음을 사로잡는다.
+%%%%
+flesh golem
+
+철제 골격 위에 기형적인 살덩어리를 빚어 움직이게 만든 골렘이다.
+%%%%
+goblin sharper
+
+최근 네멜렉스 조베의 신도가 된 고블린이다. 아직 카드 사용법을 배우는 중이며, 다행히 당신에게 카드를 쓸 생각은 없는 모양이다.
+%%%%
+greater air elemental
+
+대기의 원소 차원에서 불러낸 강력한 정령으로 치명적인 서리 소용돌이에 둘러싸여 있다.
+%%%%
+malarious merfolk avatar
+
+몹시 아파 보이지만 여전히 청중에게 마법을 걸 수 있는 어린 인어족이다.
+%%%%
+spectator
+
+오카와루의 신도로, 목숨을 건 결투를 관람하는 영예를 얻었다.
+%%%%
+oklob plant conjurer
+
+<oklob plant annihilator>
+%%%%
+oklob plant demonologist
+
+<oklob plant annihilator>
+%%%%
+oklob plant meteorologist
+
+<oklob plant annihilator>
+%%%%
+oklob plant shifter
+
+<oklob plant annihilator>
+%%%%
+oklob plant summoner
+
+<oklob plant annihilator>
+%%%%
+oklob sapling wizard
+
+<oklob plant annihilator>
+%%%%
+orb golem
+
+마법 에너지가 지직거리는 금속 골렘이다. 매우 교활한 마법사가 만들었거나, 조트의 영역에 어떤 몬스터가 있는지 잘못 들은 사람이 만든 모양이다.
+%%%%
+rotten bat
+
+유통기한이 한참 지난 박쥐다.
+%%%%
+sickly merfolk siren
+
+꽤 아파 보이지만 여전히 희생자를 매혹할 수 있는 어린 인어족이다.
+%%%%
+still boulder
+
+움직이지 않는 거대한 바윗덩어리다.
+%%%%
+water elementalist statue
+
+분수에서 목욕하는 아름다운 인어족을 매끄럽게 조각한 석상이다. 희미한 분홍빛을 띠는 크림색 석회화암으로 만들어져 빛을 받으면 은은하게 반짝인다.
+%%%%
+witch
+
+습지 점액, 가마솥 그을음, 약재로 보이는 얼룩이 묻은 로브를 입은 늙고 부자연스럽게 추한 인간이다.
+%%%%
+dire wolf spider
+
+<wolf spider>
+%%%%
+giant anaconda
+
+<anaconda>
+%%%%
+greater orb of eyes
+
+<great orb of eyes>
+%%%%
+naga warlord
+
+<naga warrior>
+%%%%
+sulphuric acid blob
+
+<acid blob>
+%%%%
+vault guard captain
+
+<vault guard>
+%%%%
+grandmaster elementalist
+
+<master elementalist>
+%%%%
+wretched soul
+
+필멸의 세계에 갇혀 벗어나려 애쓰는 망령이다. 닿는 모든 존재에게서 생명력과 언데드의 힘을 빼앗는다.
