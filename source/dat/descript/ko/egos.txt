@@ -1,0 +1,180 @@
+%%%%
+acid (acid) weapon ego
+
+맞은 대상에게 산을 튀겨 피해(2d4)를 주고 부식시킨다.
+%%%%
+antimagic (antimagic) weapon ego
+
+사용자의 마력을 줄이며 맞은 대상의 주문과 마법 능력을 방해한다. 선천적인 능력과 신성 능력에는 영향을 주지 않는다.
+%%%%
+chaos (chaos) weapon ego
+
+적중할 때마다 무작위로 서로 다른 효과가 발생한다.
+%%%%
+concussion (concuss) weapon ego
+
+맞은 대상을 뒤로 밀쳐 내면서 잠시 기절시킨다. 단단한 지형에 부딪히면 밀려나는 대신 방어력을 뚫고 들어간 피해의 1/3만큼 추가 피해를 받는다.
+%%%%
+distortion (distort) weapon ego
+
+주변 공간을 뒤틀고 왜곡해 맞은 대상을 점멸시키거나 심연으로 추방하거나 추가 피해를 줄 수 있다. 무기를 해제하면 적들 곁으로 순간이동하거나 심연으로 추방당할 수 있다.
+%%%%
+devious (devious) weapon ego
+
+취약한 대상을 기습할 확률이 높아지며 기습에 성공할 때마다 잠시 사용자의 회피력(EV)과 명중·피해 보너스가 증가한다.
+%%%%
+draining (drain) weapon ego
+
+살아 있는 대상을 일정 확률(1/2)로 생명력 흡수 상태에 빠뜨린다. 방어력을 관통한 피해의 1/4에 2~4의 고정 피해를 더해 추가로 입히며 대상을 약간 약화한다.
+%%%%
+electrocution (elec) weapon ego
+
+일정 확률(1/4)로 대상을 감전시켜 8~20의 추가 피해를 준다.
+%%%%
+entangling (entangle) weapon ego
+
+공격한 대상을 덩굴로 휘감아 조일 수 있다(확률 1/2, 피해 2~4).
+%%%%
+flaming (flame) weapon ego
+
+대상을 불태워 방어력을 관통한 피해의 1/4만큼 추가 피해를 준다.
+%%%%
+flaming (flame) weapon ego blade
+
+대상을 불태워 방어력을 관통한 피해의 1/4만큼 추가 피해를 준다. 거대한 불타는 날붙이는 히드라 사냥꾼의 대표적인 무장이기도 하다.
+%%%%
+freezing (freeze) weapon ego
+
+대상을 얼려 방어력을 관통한 피해의 1/4만큼 추가 피해를 준다. 냉혈 생명체의 움직임을 느리게 할 수도 있다.
+%%%%
+foul flame (foul flame) weapon ego
+
+불경한 불꽃이 깃들어 방어력을 뚫었을 때 신성한 존재에게 3/4, 언데드와 악마에게 1/4, 그 밖의 대상에게 1/2만큼 추가 피해를 준다. 신성한 존재와 선한 신의 신도는 사용할 수 없다.
+%%%%
+heavy (heavy) weapon ego
+
+피해량이 크게 증가하지만 공격 속도가 훨씬 느려진다.
+%%%%
+heavy (heavy) weapon ego ranged
+
+발사하는 탄환의 피해량이 크게 증가하지만 공격 속도가 훨씬 느려진다.
+%%%%
+holy wrath (holy) weapon ego
+
+빛나는 자의 축복을 받아 언데드와 악마의 방어력을 관통한 피해의 3/4만큼 추가 피해를 준다. 언데드와 악마는 사용할 수 없다.
+%%%%
+pain (pain) weapon ego
+
+살아 있는 생명체에게 사용자의 강령술 숙련에 비례하는 추가 피해를 준다.{{
+    if you.god() == "Trog" then
+        return " 트로그가 이 효과의 발동을 막는다.";
+    end
+}}{{
+    if you.is_useless_skill("necromancy") then
+        return " 강령술을 배울 수 없어 이 무기의 힘을 온전히 끌어낼 수 없다.";
+    end
+}}
+%%%%
+penetration (penet) weapon ego
+
+발사한 탄환이 대상을 맞힌 뒤에도 계속 날아가 시야 밖으로 벗어날 때까지 경로상의 모든 대상을 맞힐 수 있다.
+%%%%
+protection (protect) weapon ego
+
+대상을 맞히면 사용자에게 일시적인 보호 효과를 부여한다(AC +7).
+%%%%
+reaping (reap) weapon ego
+
+피해를 입은 살아 있는 존재, 신성한 존재 또는 악마가 죽으면 잠시 아군 망령으로 되살아날 수 있다. 입힌 피해가 많을수록 확률이 높아진다.
+%%%%
+rebuke (rebuke) weapon ego
+
+직전 행동이 근접 공격이었다면 사용자에게 보호막(SH +10)을 부여하고 막아 낸 근접 공격을 근처의 다른 적에게 돌린다.
+%%%%
+spectralising (spect) weapon ego
+
+이 무기로 공격하면 무기의 영혼이 튀어나와 약간 약한 두 번째 공격을 가한다. 영혼이 받는 피해 일부는 사용자에게 전달된다.
+%%%%
+speed (speed) weapon ego
+
+공격 속도가 상당히 빨라진다.
+%%%%
+sundering (sunder) weapon ego
+
+여러 차례 연속으로 공격하면 다음 공격의 피해가 크게 증가하고 한 칸 더 먼 대상까지 베어 낸다.
+%%%%
+valour (valour) weapon ego
+
+사용자의 현재 체력이 최대 체력의 80% 이상일 때 적을 맞히면 에너지 광선을 발사한다. 무기를 해제하면 사용자가 잠시 약화된다.
+%%%%
+vampirism (vamp) weapon ego
+
+살아 있는 생명체에게 피해를 입힐 때 가끔 피해량 일부만큼 사용자의 체력을 회복한다.
+%%%%
+venom (venom) weapon ego
+
+맞은 대상을 중독시킨다.
+%%%%
+air (Air) armour ego
+
+대기 마법을 강화한다.
+%%%%
+archery (Archery) armour ego
+
+원거리 전투에서 방해 수치가 일반적인 값의 절반으로 취급된다.
+%%%%
+attunement (Attunement) armour ego
+
+마법 지팡이와 함께 착용하면 그 지팡이의 주된 주문 강화 효과가 2배가 되고, 지팡이로 근접 공격할 때 소량의 마력이 회복된다.
+%%%%
+cold resistance (rC+) armour ego
+
+냉기에서 보호한다.
+%%%%
+command (Command) armour ego
+
+방어구 숙련에 비례하여 소환 주문의 위력과 성공률을 높인다.
+%%%%
+corrosion resistance (rCorr) armour ego
+
+산과 부식의 효과에서 보호한다.
+%%%%
+death (Death) armour ego
+
+강령술 주문의 위력과 성공률을 높이지만 다른 마법을 시전할 때 체력을 소모한다.
+%%%%
+dexterity (Dex+3) armour ego
+
+민첩성을 증가시킨다(Dex +3).
+%%%%
+earth (Earth) armour ego
+
+대지 마법을 강화한다.
+%%%%
+energy (Energy) armour ego
+
+주문에 사용한 마력을 되돌려 줄 수 있지만 주문 성공률이 낮아진다. 주문 시전에 실패하면 사용한 마력을 반드시 돌려받는다. 발동술 숙련이 높을수록 마력 환급 확률이 높아진다.
+%%%%
+fire (Fire) armour ego
+
+화염 마법을 강화한다.
+%%%%
+fire resistance (rF+) armour ego
+
+화염에서 보호한다.
+%%%%
+flying (Fly) armour ego
+
+비행 능력을 부여한다.
+%%%%
+glass (Glass) armour ego
+
+적에게 피해를 주면 유리화시켜 이후 받는 피해를 증가시킬 수 있다. 발동술 숙련이 높을수록 유리화 확률과 지속 시간이 증가한다.
+%%%%
+guile (Guile) armour ego
+
+사용자 자신의 의지력과 주술을 걸어 영향을 준 대상 모두의 의지력을 낮춘다. 대상의 의지력 감소량은 사용자의 발동술 숙련에 따라 증가한다.
+%%%%
+harm (Harm) armour ego
+
+주는 피해와 받는 피해를 모두 증가시킨다.
