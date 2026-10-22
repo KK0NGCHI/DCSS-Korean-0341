@@ -386,3 +386,7 @@ CMD_TOGGLE_KEYBOARD
 CMD_TOGGLE_KEYBOARD verbose
 
 화면에 표시되는 키보드를 켜거나 끈다.
+%%%%
+CMD_EXPLORE_NO_REST
+
+현재 층을 자동으로 탐색하면서 이동 경로의 아이템을 줍는다. 적대적인 몬스터가 시야에 들어오거나 새로운 아이템 또는 지형을 발견하면 탐색을 중단한다. 일반 자동 탐색과 달리 `explore_auto_rest`는 `false`, `explore_auto_rest_status`는 빈 값으로 취급해 자동 휴식을 하지 않는다.
