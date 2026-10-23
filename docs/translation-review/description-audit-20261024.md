@@ -72,3 +72,12 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - `printf` 검사에서 `80% of`, `20% chance` 같은 일반 영문 백분율 뒤의 문자 `o/c`를 잘못 서식 지정자로 판정한 사례 확인. 정규식의 공백 플래그 허용을 제거한 뒤 전체 재검사.
 - 재검사: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39986332516 (성공). `review_printf_count` **29→0건**, `review_reference_count` 20건, `review_lua_delimiter` 4건, 중복 키 3건, 추가 한국어 키 260건.
 - 29건 감소는 서식 지정자 오탐 수정 결과이며, 실제 게임 출력 검증은 아직 하지 않음. 남은 20건의 참조 태그 차이는 원문과 한국어의 정확한 토큰 위치/유형 및 게임 내 해석을 조사해야 함.
+
+## 2026-10-24 튜토리얼 원문 충실도 교정
+- `tutorial2 resting`: 오래된 100턴·비밀문 탐색 설명을 제거하고, 체력 회복까지 휴식·중요 이벤트 중단 및 타일 휴식 버튼을 반영.
+- `tutorial4 spell_success`: 원문은 반지의 착용 전후 주문 실패율 비교인데 기존 번역은 지팡이로 잘못 안내하여 수정.
+- `tutorial4 memorise2`: 원문은 기존 주문을 잊고 새 주문을 배운 후 악마 아군 소환인데 기존 번역은 해골 군단을 안내하여 수정.
+- `tutorial5 exit`: 오래된 `CMD_PRAY`를 원문의 `CMD_GO_DOWNSTAIRS`로 바꾸고 전체 요약을 0.34.1 기준으로 갱신.
+- CI: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39987043048 — 성공.
+- 참조 태그 개수 차이 20→17건. 잔여는 단순 개수 불일치와 실제 의미/태그 파손을 분리하여 검토할 것.
+- 모든 수정은 정적 원문 대조이며 게임 내 튜토리얼 흐름 실행 검증은 별도.
