@@ -3,347 +3,433 @@
 # Displayed when they first come into view and on their description screen.
 #########
 %%%%
+
 Agnes title
 
-Agnes the Wanderer
+방랑자 아그네스
 %%%%
+
 Aizul title
 
-Aizul the Neglectful Guardian
+소홀한 수호자 아이줄
 %%%%
+
 Amaemon title
 
-Amaemon the Diabolical Poisoner
+악마의 독살자 아마에몬
 %%%%
+
 Antaeus title
 
-Antaeus, Guardian of Cocytus
+코퀴토스의 수호자 안타이오스
 %%%%
+
 Arachne title
 
-Arachne the Outcast
+추방자 아라크네
 %%%%
+
 Asmodeus title
 
-Asmodeus, Prince of Gehenna
+게헨나의 왕자 아스모데우스
 %%%%
+
 Asterion title
 
-Asterion the Fallen King
+몰락한 왕 아스테리온
 %%%%
+
 Azrael title
 
-Azrael the Boundless Flame
+끝없는 불꽃 아즈라엘
 %%%%
+
 Bai Suzhen title
 
-Bai Suzhen, Madame White Snake
+백사부인 백소정
 %%%%
+
 Boris title
 
-Boris, Master of Life and Death
+생사의 지배자 보리스
 %%%%
+
 Cassandra title
 
-Cassandra the Doomed Oracle
+파멸을 예언하는 카산드라
 %%%%
+
 Cerebov title
 
-Cerebov, Demon Lord of Fire and Steel
+불과 강철의 마왕 세레보브
 %%%%
+
 Chuck title
 
-Chuck the Collector
+수집가 척
 %%%%
+
 Crazy Yiuf title
 
-Crazy Yiuf the Enlightened
+깨달음을 얻은 미치광이 이유프
 %%%%
+
 Dispater title
 
-Dispater, Lord of the Iron City
+철의 도시의 군주 디스파테르
 %%%%
+
 Dissolution title
 
-Dissolution, High Priest of Jiyva
+지이바의 대사제 디솔루션
 %%%%
+
 Donald title
 
-Donald the Adventurer
+모험가 도널드
 %%%%
+
 Dowan title
 
-Dowan, Brother of Duvessa
+듀베사의 남동생 도완
 %%%%
+
 Duvessa title
 
-Duvessa, Sister of Dowan
+도완의 누나 듀베사
 %%%%
+
 Edmund title
 
-Edmund the Younger
+젊은 에드먼드
 %%%%
+
 Ereshkigal title
 
-Ereshkigal, Queen of Tartarus
+타르타로스의 여왕 에레슈키갈
 %%%%
+
 Erica title
 
-Erica the Fiery-Tempered
+성미 급한 에리카
 %%%%
+
 Erolcha title
 
-Erolcha the Cunning
+교활한 에롤차
 %%%%
+
 Eustachio title
 
-Eustachio the Magnificent
+위대한 유스타키오
 %%%%
+
 Fannar title
 
-Fannar the Cold-Hearted
+냉혹한 파나르
 %%%%
+
 Frances title
 
-Frances, Duchess of Pandemonium
+판데모니엄의 공작부인 프랜시스
 %%%%
+
 Frederick title
 
-Frederick the Flawless
+완벽한 프레더릭
 %%%%
+
 Gastronok title
 
-Gastronok the Ponderous
+육중한 가스트로노크
 %%%%
+
 Geryon title
 
-Geryon, Gatekeeper of Hell
+지옥의 문지기 게리온
 %%%%
+
 Gloorx Vloq title
 
-Gloorx Vloq, Demon Lord of Darkness
+어둠의 마왕 글루륵스 블록
 %%%%
+
 Grum title
 
-Grum the Hunter
+사냥꾼 그룸
 %%%%
+
 Grunn title
 
-Grunn the Punished
+벌받은 그룬
 %%%%
+
 Harold title
 
-Harold the Weathered
+산전수전 다 겪은 해럴드
 %%%%
+
 Ignacio title
 
-Ignacio, Master of Excruciating Pain
+극심한 고통의 지배자 이그나시오
 %%%%
+
 Ilsuiw title
 
-Ilsuiw, Witch of the Tides
+조수의 마녀 일수이우
 %%%%
+
 Ijyb title
 
-Ijyb the Inquisitive
+호기심 많은 이집
 %%%%
+
 Jessica title
 
-Jessica the Apprentice Sorceress
+견습 마법사 제시카
 %%%%
+
 Jeremiah title
 
-Jeremiah, Barachi Dreamer
+바라치의 몽상가 예레미야
 %%%%
+
 Jorgrun title
 
-Jorgrun Earthshaker
+대지를 뒤흔드는 요르그룬
 %%%%
+
 Jory title
 
-Jory the Bloodstained Count
+피 묻은 백작 조리
 %%%%
+
 Joseph title
 
-Joseph, a Mercenary
+용병 조지프
 %%%%
+
 Josephina title
 
-Josephina the Ice-Lich
+얼음 리치 조세피나
 %%%%
+
 Josephine title
 
-Josephine the Decaying Necromancer
+부패의 강령술사 조세핀
 %%%%
+
 Khufu title
 
-Khufu the Undying Pharaoh
+불사의 파라오 쿠푸
 %%%%
+
 Kirke title
 
-Kirke, Weaver of Myths
+신화를 엮는 키르케
 %%%%
+
 Lodul title
 
-Lodul the Thunderous
+천둥 같은 로둘
 %%%%
+
 Lom Lobon title
 
-Lom Lobon, Demon Lord of Forbidden Knowledge
+금단 지식의 마왕 롬 로본
 %%%%
+
 Louise title
 
-Louise the Corrupted
+타락한 루이즈
 %%%%
+
 Maggie title
 
-Maggie the Vainglorious
+허영심 많은 매기
 %%%%
+
 Mara title
 
-Mara, Lord of Illusions
+환영의 군주 마라
 %%%%
+
 Margery title
 
-Margery the Dragonslayer
+용 학살자 마저리
 %%%%
+
 Maurice title
 
-Maurice the Thief
+도둑 모리스
 %%%%
+
 Menkaure title
 
-Menkaure, Prince of Dust
+먼지의 왕자 멘카우레
 %%%%
+
 Mennas title
 
-Mennas, the Voice of Zin
+진의 목소리 멘나스
 %%%%
+
 Mlioglotl title
 
-Mlioglotl, the Unformed Horror
+형체 없는 공포 믈리오글로틀
 %%%%
+
 Mnoleg title
 
-Mnoleg, Demon Lord of Chaos
+혼돈의 마왕 므놀레그
 %%%%
+
 Murray title
 
-Murray the Demonic Talking Skull
+말하는 악마 해골 머레이
 %%%%
+
 Natasha title
 
-Natasha, Servant of Life and Death
+생과 사의 하인 나타샤
 %%%%
+
 Nellie title
 
-Nellie, Star of the Show
+공연의 스타 넬리
 %%%%
+
 Nergalle title
 
-Nergalle, Lorekeeper of the Fallen
+망자들의 지식을 지키는 네르갈레
 %%%%
+
 Nessos title
 
-Nessos the Markscentaur
+명사수 켄타우로스 네소스
 %%%%
+
 Nikola title
 
-Nikola the Mad Inventor
+미친 발명가 니콜라
 %%%%
+
 Nobody title
 
-Nobody, Grudge of the Unmourned
+잊힌 자들의 원한 노바디
 %%%%
+
 Norris title
 
-Norris the Philosopher
+철학자 노리스
 %%%%
+
 Parghit title
 
-Parghit the Mighty
+강력한 파르기트
 %%%%
+
 Pargi title
 
-Pargi the Meek
+온순한 파르기
 %%%%
+
 Pikel title
 
-Pikel, Merchant of Souls
+영혼 상인 피켈
 %%%%
+
 Polyphemus title
 
-Polyphemus the Watchful Shepherd
+경계하는 목동 폴리페모스
 %%%%
+
 Robin title
 
-Robin of the Strong Arm
+강력한 팔의 로빈
 %%%%
+
 Roxanne title
 
-Roxanne, Geomancer Emeritus
+은퇴한 대지술사 록산
 %%%%
+
 Rupert title
 
-Rupert the Wild
+야생의 루퍼트
 %%%%
+
 Saint Roka title
 
-Saint Roka the Messiah
+구세주 성 로카
 %%%%
+
 Sigmund title
 
-Sigmund the Dreaded
+공포의 지그문트
 %%%%
+
 Snorg title
 
-Snorg the Insatiable
+끝없이 탐하는 스노르그
 %%%%
+
 Sojobo title
 
-Sojobo, Queen of Tengu
+텐구의 여왕 소조보
 %%%%
+
 Sonja title
 
-Sonja, the Graceful Assassin
+우아한 암살자 소냐
 %%%%
+
 Sprozz title
 
-Sprozz, Inventive Apiarist
+독창적인 양봉가 스프로즈
 %%%%
+
 Terence title
 
-Terence the Veteran
+노련한 테렌스
 %%%%
+
 Tiamat title
 
-Tiamat, Avatar of the Dragonlord
+용군주의 화신 티아마트
 %%%%
+
 Urug title
 
-Urug the Orcish Ballista
+오크의 쇠뇌 우루그
 %%%%
+
 Wiglaf title
 
-Wiglaf the Gunnerdwarf
+총잡이 드워프 위글라프
 %%%%
+
 Vashnia title
 
-Vashnia the Elite Marksnaga
+정예 나가 사수 바쉬니아
 %%%%
+
 Vv title
 
-Vv the Exile
+추방자 브이브이
 %%%%
+
 Xak'krixis title
 
-Xak'krixis, Royal Expeditionary Alchemist
+왕실 원정 연금술사 자크크릭시스
 %%%%
+
 Xtahua title
 
-Xtahua the Ancient
+고대의 크타후아
 %%%%
+
 Zenata title
 
-Zenata, Seeker of Sheza
+셰자의 추구자 제나타
 %%%%
