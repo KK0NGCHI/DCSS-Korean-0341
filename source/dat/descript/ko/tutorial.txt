@@ -57,9 +57,7 @@ pointing by pressing <input>.</input> or <input>Enter</input>. Press
 %%%%
 tutorial1 autoexplore
 
-게임 내내 이렇게 직접 이동하는 것은 따분한 일입니다.
-<input>$cmd[CMD_EXPLORE]</input> 키를 눌러, 시선을 끌만한 일이 일어나기 전까지
-자동으로 여행하는 ‘자동이동 기능’을 써보세요!
+매번 직접 탐험하기 번거롭다면 자동 탐험을 이용하세요. <input>$cmd[CMD_EXPLORE]</input> 명령으로 시작할 수 있습니다.<localtiles> 미니맵 아래 명령 패널의 첫 번째 버튼인 '자동 탐험'을 클릭해도 됩니다.</localtiles>
 %%%%
 tutorial1 exclusion
 
@@ -176,10 +174,7 @@ tutorial2 resting
 %%%%
 tutorial2 wait
 
-적진 한가운데로 무모하게 돌진하는 것은 자살행위입니다! 여기서는 뒤로 물러나서
-적들이 올 때까지 기다리세요. (<input>$cmd[CMD_WAIT]</input> 키로
-제자리에서 대기할 수 있습니다.) 1:1 상황을 만드는 것은 근접전에서 가장 중요한
-생존전략입니다.
+방으로 곧장 뛰어들어 몬스터들에게 포위당하기보다는 뒤로 물러나 적들이 다가오기를 기다릴 수도 있습니다. <input>$cmd[CMD_WAIT]</input> 명령으로 대기하세요.<localtiles> 자신의 캐릭터를 <input>클릭</input>해도 됩니다.</localtiles>
 %%%%
 tutorial2 resting_reminder
 
@@ -209,10 +204,7 @@ tutorial2 darts
 %%%%
 tutorial2 throwing
 
-<input>$cmd[CMD_FIRE]</input> 키<localtiles>혹은 소지품 창에 들어있는 다트에
-<input>마우스 왼쪽버튼</input>를 클릭하는 방법</localtiles>을(를) 이용해서
-적에게 다트를 조준할 수 있습니다. 자동적으로 조준된 적에게 다트를 발사하려면
-<input>$cmd[CMD_TARGET_SELECT]</input> 키나 <input>엔터</input> 키를 누르세요.
+<input>$cmd[CMD_FIRE]</input> 명령으로 몬스터에게 부메랑을 던질 수 있습니다.<localtiles> 소지품 패널에서 부메랑을 <input>클릭</input>해도 됩니다.</localtiles> 자동으로 지정된 대상을 공격하려면 <input>$cmd[CMD_TARGET_SELECT]</input> 또는 <input>Enter</input>를 누르세요. <input>Shift+Tab</input>이나 <input>p</input>를 누르면 가장 가까운 몬스터를 바로 공격할 수 있습니다.
 %%%%
 tutorial2 wield_bow
 
@@ -300,11 +292,7 @@ tutorial3 scroll_noautopickup
 %%%%
 tutorial3 ego_weapon
 
-<lightblue>룬</lightblue>이나 <lightblue>빛나는</lightblue> 이라고 이름이
-붙어있는 아이템들은 인챈트되어 있거나, 특수한 성질을 가지고 있거나 혹은 둘 다일
-수도 있습니다. 이 아이템이 어떤 것인지 알기 위해서는 이 시미터를
-(<input>$cmd[CMD_WIELD_WEAPON]</input><localtiles>키를 누르거나 인벤토리
-패널의 시미터를 <input>클릭</input>함으로써) 휘둘러 봐야 합니다.
+아이템의 이름에 <lightblue>룬이 새겨진</lightblue> 또는 <lightblue>빛나는</lightblue>이라는 수식어가 있으면 마법 강화나 특수 속성, 혹은 둘 다를 지니고 있습니다. 그러한 아이템이 놓인 칸에 들어서면 속성이 드러납니다.
 %%%%
 tutorial3 inventory
 
@@ -396,12 +384,7 @@ tutorial3 autoexplore_reminder
 %%%%
 tutorial3 go_shopping
 
-이제, 본격적으로 아이템을 구입할 수 있을 정도의 충분한 돈이 모였습니다!
-상점으로 되돌아가는 가장 빠른 방법은 Type
-<input>$cmd[CMD_SEARCH_STASHES]</input> 키를 누른 후, “<w>shop</w>”을
-입력하여 상점의 위치를 검색하는 것입니다. 또한, 명령어 패널에 있는
-‘찾기’버튼을 <input>click</input>하는 것으로도 가능합니다. 물론 미니맵에,
-상점이 있었던 지역을 클릭하는 것으로도 이동이 가능합니다.
+이제 본격적으로 쇼핑할 만큼 금화가 모였습니다! 상점으로 빠르게 돌아가려면 검색 기능을 이용하세요. <input>$cmd[CMD_SEARCH_STASHES]</input> 명령을 입력한 다음 “<w>shop</w>”을 검색하고, 결과를 선택해 이동하세요.<localtiles> 명령 패널의 검색 버튼을 <input>클릭</input>하거나 미니맵을 이용해 상점으로 돌아갈 수도 있습니다.</localtiles>
 %%%%
 tutorial3 optional_battle
 
@@ -467,11 +450,7 @@ tutorial4 ring_power
 %%%%
 tutorial4 undead
 
-대부분의 몬스터들과는 다르게, 언데드들은 자연적으로 그들이 입은 상처를
-치유하지는 못하지만, 언데드들이 얼마나 큰 피해를 입고 있는지, 얼마나 더 피해를
-줘야 처치할 수 있는지는 분간할 수 없습니다. 추가적으로, 몬스터에 마우스 커서를
-위치한 후, <input>Ctrl+마우스 왼쪽 클릭</input>하셔도 그 몬스터를 타겟으로
-주문을 외우는 것이 가능하죠.
+대부분의 몬스터와 달리 좀비와 해골은 체력을 자연 회복하지 않습니다.<localtiles> 몬스터를 <input>Ctrl+마우스 왼쪽 버튼</input>으로 클릭하면 마지막으로 사용한 주문을 다시 시전할 수도 있습니다.</localtiles>
 %%%%
 tutorial4 spell_success
 
@@ -538,10 +517,9 @@ tutorial4 heavy_armour
 %%%%
 tutorial4 resting_reminder
 
-새로운 구역에 들어가기 전에는, 항상 체력(HP)과 마나(MP)를 완전히 회복한 후
-이동하도록 합시다. 필요에 따라, 휴식(<input>$cmd[CMD_REST]</input>키)를 눌러
-휴식을 취할 필요가 있겠죠. 언데드들은 숨을 쉬지 않습니다. 즉, 당신의 해골
-군단들은 당신의 악취 구름에 영향을 받지 않는다는 이야기죠.
+새로운 구역에 들어가기 전에는 체력과 마력을 모두 회복하세요. 필요하다면 <input>$cmd[CMD_REST]</input> 명령으로 휴식하세요.<localtiles> 명령 패널의 휴식 버튼을 <input>클릭</input>해도 됩니다.</localtiles>
+
+하나의 주문으로 동시에 소환할 수 있는 아군의 수에는 제한이 있으므로 다양한 주문을 활용하세요. 예를 들어 소환한 임프는 독에 저항하므로, 아군에게 해를 끼치지 않고도 메피틱 구름을 사용해 함께 싸울 수 있습니다.
 %%%%
 tutorial4 tutorial_end
 
