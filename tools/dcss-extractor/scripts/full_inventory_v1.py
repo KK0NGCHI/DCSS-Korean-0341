@@ -80,6 +80,10 @@ def main():
                 continue
             digest = hashlib.sha256(raw).hexdigest()
             is_desc = rel.startswith("dat/descript/") and file.suffix == ".txt"
+            # Only top-level English/Korean files use the description-key format.
+            # Other nested files must not inflate coverage statistics.
+            if is_desc and rel.count("/") > 3:
+                continue
             if is_desc:
                 # English key coverage and translation body are separate properties.
                 is_ko = rel.startswith("dat/descript/ko/")
