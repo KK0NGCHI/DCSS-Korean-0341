@@ -688,3 +688,318 @@ zombie
 동작이 굼떠지면 둔한 짐승을 다루듯 때린다. ”
     -윌리엄 시브룩, _마술의 섬_. 1929년.
 %%%%
+A crumbling gateway
+
+<Desolation>
+%%%%
+A gateway leading deeper into the Abyss.
+
+<Abyss>
+%%%%
+A gateway to the decaying netherworld of Tartarus
+
+<Tartarus>
+%%%%
+A staircase to the Ecumenical Temple
+
+<Temple>
+%%%%
+A staircase to the Elven Halls
+
+<Elven Halls>
+%%%%
+A staircase to the Orcish Mines
+
+<Orcish Mines>
+%%%%
+A staircase to the Shoals
+
+<Shoals>
+%%%%
+Agony spell
+
+<Curse of Agony spell>
+%%%%
+Spellspark Servitor spell
+
+<spellspark servitor>
+%%%%
+acid dragon scales
+
+<steam dragon scales>
+%%%%
+amulet of faith
+
+<amulet>
+%%%%
+amulet of guardian spirit
+
+<amulet>
+%%%%
+amulet of magic regeneration
+
+<amulet>
+%%%%
+amulet of reflection
+
+<amulet>
+%%%%
+amulet of regeneration
+
+<amulet>
+%%%%
+amulet of the acrobat
+
+<amulet>
+%%%%
+amulet of nothing
+
+<amulet>
+%%%%
+chain mail
+
+<leather armour>
+%%%%
+dreamdust necklace
+
+<dreamshard necklace>
+%%%%
+eudemon blade
+
+<demon blade>
+%%%%
+fire dragon scales
+
+<steam dragon scales>
+%%%%
+golden dragon scales
+
+<steam dragon scales>
+%%%%
+great sword
+
+<demon blade>
+%%%%
+ice dragon scales
+
+<steam dragon scales>
+%%%%
+tower shield
+
+<buckler>
+%%%%
+pearl dragon scales
+
+<steam dragon scales>
+%%%%
+ring mail
+
+<leather armour>
+%%%%
+ring of dexterity
+
+<ring>
+%%%%
+ring of evasion
+
+<ring>
+%%%%
+ring of magical power
+
+<ring>
+%%%%
+ring of positive energy
+
+<ring>
+%%%%
+ring of protection
+
+<ring>
+%%%%
+ring of protection from cold
+
+<ring>
+%%%%
+ring of resist corrosion
+
+<ring>
+%%%%
+ring of wizardry
+
+<ring>
+%%%%
+scale mail
+
+<leather armour>
+%%%%
+scroll of blinking
+
+<scroll>
+%%%%
+scroll of brand weapon
+
+<scroll>
+%%%%
+scroll of enchant armour
+
+<scroll>
+%%%%
+scroll of enchant weapon
+
+<scroll>
+%%%%
+scroll of immolation
+
+<scroll>
+%%%%
+scroll of torment
+
+<scroll>
+%%%%
+scroll of vulnerability
+
+<scroll>
+%%%%
+staff of air
+
+<staff>
+%%%%
+staff of alchemy
+
+<staff>
+%%%%
+staff of cold
+
+<staff>
+%%%%
+staff of conjuration
+
+<staff>
+%%%%
+staff of earth
+
+<staff>
+%%%%
+storm dragon scales
+
+<steam dragon scales>
+%%%%
+swamp dragon scales
+
+<steam dragon scales>
+%%%%
+triple sword
+
+<demon blade>
+%%%%
+wand of acid
+
+<wand>
+%%%%
+wand of flame
+
+<wand>
+%%%%
+wand of iceblast
+
+<wand>
+%%%%
+wand of light
+
+<wand>
+%%%%
+wand of mindburst
+
+<wand>
+%%%%
+wand of paralysis
+
+<wand>
+%%%%
+wand of quicksilver
+
+<wand>
+%%%%
+wand of roots
+
+<wand>
+%%%%
+wand of warping
+
+<wand>
+%%%%
+ghost-faced bat
+
+<bat>
+%%%%
+giga bat
+
+<bat>
+%%%%
+ice bat
+
+<bat>
+%%%%
+microbat
+
+<bat>
+%%%%
+phase bat
+
+<bat>
+%%%%
+rotten bat
+
+<bat>
+%%%%
+skeletal bat
+
+<bat>
+%%%%
+__q_suffix
+
+<__d_suffix>
+%%%%
+arcanist
+
+<occultist>
+%%%%
+large abomination
+
+<small abomination>
+%%%%
+merfolk javelineer
+
+<merfolk>
+%%%%
+molten gargoyle
+
+<war gargoyle>
+%%%%
+naga mage
+
+<naga>
+%%%%
+naga warrior
+
+<naga>
+%%%%
+ogre mage
+
+<ogre>
+%%%%
+oklob sapling
+
+<oklob plant>
+%%%%
+royal mummy
+
+<mummy>
+%%%%
+two-headed ogre
+
+<ogre>
+%%%%
+worm
+
+<ribbon worm>
