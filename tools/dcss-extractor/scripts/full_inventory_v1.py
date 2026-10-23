@@ -29,8 +29,7 @@ def entries(text):
         if first is None:
             continue
         key = lines[first].strip()
-        yield key, "
-".join(lines[first + 1:]).strip(), first + 1
+        yield key, "\n".join(lines[first + 1:]).strip(), first + 1
 
 def chunks(source):
     for file in sorted(source.rglob("*")):
@@ -106,8 +105,7 @@ def main():
                         status, reason = "review_translation_present", "key_present_not_quality_verified"
                     line = text.find(key)
                     emit(writer, counts, id=f"{rel}:{key}", path=rel,
-                         line=text.count("
-", 0, max(0, line)) + 1, column=1,
+                         line=text.count("\n", 0, max(0, line)) + 1, column=1,
                          family="description", key=key, literal=body[:4000],
                          status=status, reason=reason, source_sha256=digest)
                 continue
@@ -119,10 +117,8 @@ def main():
                 literal = match.group()
                 if len(literal) < 5 or not re.search(r"[A-Za-z]{3}", literal):
                     continue
-                line = text.count("
-", 0, match.start()) + 1
-                start = text.rfind("
-", 0, match.start()) + 1
+                line = text.count("\n", 0, match.start()) + 1
+                start = text.rfind("\n", 0, match.start()) + 1
                 prefix = text[start:match.start()]
                 if re.match(r"\s*#\s*include\s*$", prefix):
                     status, reason = "internal_candidate", "include_path"
@@ -155,8 +151,7 @@ def main():
         ],
     }
     (args.output / "summary.json").write_text(
-        json.dumps(summary, ensure_ascii=False, indent=2) + "
-", encoding="utf-8")
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: summary[k] for k in ("files_scanned", "rows", "status_counts", "read_errors")}, ensure_ascii=False, indent=2))
     if errors:
         raise SystemExit(2)
