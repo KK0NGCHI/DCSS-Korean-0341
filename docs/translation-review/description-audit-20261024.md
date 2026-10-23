@@ -94,3 +94,12 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - `tutorial.txt/tutorial4 meph_reminder`: 현재 주문 암기 탭에 맞춰 구버전 마법서/소지품 창 조작법 제거.
 - 검사 실행 https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39988582819 성공. 참조 구문 경고 11→7건. 고유 영어 키 대응 3,778/3,778 유지. 미해결: 참조 경고 7, Lua 차이 4, 중복 원문 키 3, 추가 한국어 키 260.
 - 검사는 키·표시 태그의 정적 검사이며 실제 게임 실행 확인이 아님.
+
+## 2026-10-24 일괄 처리: 설명 감사에서 전체 문자열 조사로 확대
+- 힌트 3개 항목 직접 수정: `HINT_SEEN_FIRST_OBJECT` (중첩 태그 오류·구버전 줍기 조작 안내), `HINT_SEEN_BRANCH` (마우스/키보드별 설명 정리), `finished random 3` (구버전 커뮤니티 주소 목록 제거).
+- 설명 감사 CI 성공: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39989209855. 키 대응 3,778/3,778(100%), 참조 경고 7→5, Lua 차이 4, 원문 중복 3, 한국어 추가 키 260.
+- 기존 `full_inventory_v1.py`를 재사용하는 전체 인벤토리 CI를 추가. 첫 실행에서 설명 파일 하위 폴더를 정상 원문과 혼합하여 140개 누락이라는 오탐이 발생해, 실제 23개 원문 가족만 설명 키로 취급하도록 수정.
+- 교정한 전체 조사 CI 성공: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39989209866.
+- 전체 조사 결과: 읽은 파일 **1,341**, 추출 레코드 **55,619**, 파일 읽기 오류 **0**. 분류: C++/Lua/DES 등 `visible_candidate` 3,033, `review_dynamic` 1,591, `review_unknown` 35,439, `internal_candidate` 8,126, `comment_candidate` 3,626, `test_marker` 23, 설명 원문 레코드 `review_translation_present` 3,781. `translation_missing_key` 0.
+- 모든 분류는 **문자열의 어휘적 후보**이며 실제 화면 출력, 정확한 번역 단위 수, 누락 번역 0건을 입증하는 검사는 아님. 특히 `review_unknown`은 미번역 확정이 아니다.
+- 다음 우선순위: `visible_candidate`와 `review_dynamic`의 실제 C++/Lua 출력 근거 확인, `[KO TEST]` 스모크 잔재 조사, 원문과 한국어 런타임 연결 확인.
