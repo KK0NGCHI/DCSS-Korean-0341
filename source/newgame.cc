@@ -428,7 +428,7 @@ static void _choose_char(newgame_def& ng, newgame_def& choice,
     // Apologies to non-public servers.
     if (ng.type == GAME_TYPE_NORMAL || ng.type == GAME_TYPE_DESCENT)
     {
-        if (!yesno(""개발 버전은 대회 기록에 포함되지 않아. "
+        if (!yesno("개발 버전은 대회 기록에 포함되지 않아. "
                    TOURNEY ". 그래도 개발 버전으로 진행할까? (Y/N)", false, 'n'))
         {
             game_ended(game_exit::abort);
@@ -2205,8 +2205,8 @@ static void _prompt_gamemode_map(newgame_def& ng, newgame_def& ng_choice,
         welcome.cprintf("사용자 지정 시드: %" PRIu64 "\n", Options.seed_from_rc);
 
     welcome.textcolour(CYAN);
-    welcome.cprintf("\nYou have a choice of %s:",
-            ng_choice.type == GAME_TYPE_TUTORIAL ? "lessons" : "maps");
+    welcome.cprintf("\n%s을 선택할 수 있어:",
+            ng_choice.type == GAME_TYPE_TUTORIAL ? "학습 과정" : "지도");
 
     auto vbox = make_shared<Box>(Box::VERT);
     vbox->set_cross_alignment(Widget::Align::STRETCH);
