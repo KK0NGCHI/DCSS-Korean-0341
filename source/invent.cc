@@ -1947,9 +1947,9 @@ int prompt_invent_item(const char *prompt,
                 ret = letter_to_index(keyin);
 
             if (must_exist && !you.inv[ret].defined())
-                mpr("You don't have any such object.");
+                mpr("그런 물건은 가지고 있지 않아.");
             else if (must_exist && !item_is_selected(you.inv[ret], type_expect))
-                mpr("That's the wrong kind of item!");
+                mpr("그건 필요한 종류의 아이템이 아니야!");
             else if (!do_warning || check_warning_inscriptions(you.inv[ret], oper))
                 break;
         }
