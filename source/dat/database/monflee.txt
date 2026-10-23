@@ -8,13 +8,13 @@
 dream sheep flee
 
 w:30
-@The_monster@ bleats in terror.
+@The_monster@ 공포에 질려 메에 하고 울어.
 
-VISUAL:@The_monster@ is struck with panic!
+VISUAL:@The_monster@ 공황 상태에 빠져!
 
-VISUAL:@The_monster@ panics and turns to flee.
+VISUAL:@The_monster@ 겁에 질려 달아나기 시작해.
 
-VISUAL:A frightened @monster@ leaps away.
+VISUAL:겁에 질린 @monster@ 뛰어서 달아나.
 
-VISUAL:@The_monster@ stampedes away.
+VISUAL:@The_monster@ 허겁지겁 달아나.
 %%%%
