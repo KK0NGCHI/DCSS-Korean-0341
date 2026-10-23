@@ -49,3 +49,10 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 검토 후보: 한글 미포함 69개, 서식 지정자 개수 차이 29개, 참조 구문 개수 차이 20개, Lua 구분자 차이 6개. 이들 숫자는 문제의 확정 건수가 아니라 규칙 기반 후보 수임.
 - 설명 키 대응률과 번역 품질·실제 게임 출력 검증률은 다름.
 - 후속: 보고서 `issues.csv`의 항목별 근거를 읽고 원문 중복 키와 서식 경고를 검증. 이후 C++·Lua 문자열 감사로 전환.
+
+## 2026-10-24 경고 오탐 표본 검증
+- 영어/한국어 `egos.txt` 직접 비교: 각각 고유 키 80개, 누락 키 0개, 추가 키 0개, 영어 잔존 후보 0개.
+- `quotes.txt` 직접 비교: 원문 고유 키 465개, 한국어 475개, 누락 0개, 추가 10개. 추가 키는 `Terence`, `apple`, `big fish`, `bow`, `giant frog`, `ooze`, `phoenix`, `strawberry`, `sultana`, `wizard`.
+- `quotes.txt`의 `Agony spell`, `chain mail`, `large abomination`, `dreamdust necklace`은 한글 없는 문장이 아니라 각각 `<Curse of Agony spell>`, `<leather armour>`, `<small abomination>`, `<dreamshard necklace>` 참조 별칭. 원문 대응 참조이므로 미번역으로 오분류하지 않아야 함.
+- 감사 스크립트에 순수 참조문 예외 및 고유 키 대응 통계 추가. 수정 이후 전체 경고 수는 재실행 후 산정하며 이전 69개 한글 미포함 후보를 그대로 확정 수치로 사용하지 않음.
+- 별칭의 실제 대상 키 존재·순환 여부와 번역 품질은 추가 검증 과제.
