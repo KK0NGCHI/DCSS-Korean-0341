@@ -65,3 +65,10 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 검사 결과: 원문 고유 키 **3,778/3,778 (100%)**, `review_no_hangul` **0**, Lua 구분자 차이 **6→4**, `review_printf_count` 29, `review_reference_count` 20, 원문 중복 키 3, 추가 한국어 키 260.
 - GitHub Actions: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39984680062
 - 잔여 Lua 경고 4개는 한국어 번역에서 조건문을 추가한 경우로, 삭제보다 원문 충실도·게임 로더 지원 여부를 검토해야 함.
+
+## 2026-10-24 중복 원문 및 서식 검사 보정
+- 중복 영어 키 3개 실물 확인: `commands.txt/CMD_EXPLORE_NO_REST`, `monstatus.txt/damage-immune at range monstatus`, `mutations.txt/+LOS mutation`. 각각 짧은/상세 설명이 중복됨. 자동 파서의 최종 항목 선택은 실제 게임 로더 의미와 별도로 검증 필요.
+- 한국어 `damage-immune at range monstatus`가 더 짧은 설명에만 대응하므로 상세 원문의 비피해 부가효과·피해 발생원 정의를 반영하여 보정.
+- `printf` 검사에서 `80% of`, `20% chance` 같은 일반 영문 백분율 뒤의 문자 `o/c`를 잘못 서식 지정자로 판정한 사례 확인. 정규식의 공백 플래그 허용을 제거한 뒤 전체 재검사.
+- 재검사: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39986332516 (성공). `review_printf_count` **29→0건**, `review_reference_count` 20건, `review_lua_delimiter` 4건, 중복 키 3건, 추가 한국어 키 260건.
+- 29건 감소는 서식 지정자 오탐 수정 결과이며, 실제 게임 출력 검증은 아직 하지 않음. 남은 20건의 참조 태그 차이는 원문과 한국어의 정확한 토큰 위치/유형 및 게임 내 해석을 조사해야 함.
