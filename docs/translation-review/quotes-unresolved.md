@@ -38,3 +38,12 @@
 3. 번역이 어렵다는 이유로 원문의 의미를 바꾸거나 임의의 다른 인용으로 대체하지 않는다.
 4. 같은 작품을 여러 번 인용하면 이름과 문체를 통일한다.
 5. 게임 내 실제 표시는 별도 빌드·플레이 테스트가 필요하다.
+
+## 2026-10-23 작업 상태 갱신
+
+- 이번 세션의 28·29차 작업에서 일부 검토 대상에도 **임시 번역안**을 추가했다. 파일에 존재한다는 이유로 사용자 검토가 끝난 확정 번역으로 간주하지 않는다.
+- 잠정 반영: `A shimmering altar of Xom`, `calcifying dust cloud`, `cloak of the Thief`, `ring of the Octopus King`, `Bat Form ability`, `Bend Time ability`, `Slouch ability`, `Step From Time ability`, `Temporal Distortion ability`, `Cause Fear spell`, `Frozen Ramparts spell`, `Irradiate spell`, `Orcish Mines`, `ring of stealth`.
+- 남은 협의 사항: 인터넷 밈의 욕설·오탈자 재현, 시와 노랫말의 운율 및 어투, 고유명사의 정착 표기. 이들 항목은 별도의 품질 승인 전까지 **잠정 번역** 상태다.
+- 특히 `A shimmering altar of Xom`: 현재 번역은 노골적 욕설을 일부 완화했으며, 원문의 거친 어감과 정확히 같지 않다. 사용자 결정에 따라 수정한다.
+- `ring of the Octopus King`: 의미를 우선한 번역으로 원문의 각운을 보존하지 못했다.
+- 이번 단계는 설명 키 대응 작업이며 빌드·게임 출력은 미검증이다.
