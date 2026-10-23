@@ -106,3 +106,105 @@
 2. **번역안까지 같이 기록:** 검토 대기 행에는 `파일:줄 / 원문 / 문맥 / AI 권장 번역 / 대안 / 보류 이유 / 상태`를 채운다. 제안 없는 '결정 필요'만 쌓지 않는다.
 3. **대량 초벌 번역 후 일괄 검수:** 사용자는 제안안에 대해 추후 모아서 의견을 주면 된다. 그 전에는 검수 요청을 작업 정지 조건으로 두지 않는다.
 4. **게임 검증은 별개:** 슬롯/색상 태그, `printf` 자리표시자, Lua 삽입식과 조건문, 참조 키, UTF-8/줄폭을 검사하고 타일 빌드에서 확인한다.
+
+
+## 2026-10-23 — P0 C++ 실소스 기반 번역 대상 목록 v1
+
+### 확정 방식 및 범위
+
+이 목록은 GitHub `main`의 실파일 `source/newgame.cc`, `source/invent.cc`, `source/message.cc`, `source/describe.cc`를 직접 읽고 얻은 **검증 가능한 일부 호출 지점**이다. GitHub 저장소에서는 예전 로컬 작업의 `CPP-PILOT-005/strings.csv`를 확인하지 못했다. 따라서 *4개 파일 전체 문자열 완전 추출*이나 게임 전체 번역 대상 총수로 오해하지 않는다.
+
+- **A/확정 후보**: 플레이어용 UI 출력/메시지 함수에 연결되거나 사용자 화면 문자열로 쓰임이 코드 문맥상 뚜렷하다. 번역안은 여전히 **초벌**.
+- **B/동적 검토**: 실제 문구이지만 변수·영어식 어순·수치·태그에 의존하여 완성 문장 및 포맷 보존을 설계해야 한다.
+- **C/제외 후보**: `sync_id`, `menu_id`, JSON 필드, 데이터베이스 키, 색상/태그, 소스 `#include`, 테스트 트리거 등 내부 식별자. 번역하지 않고 기록·검사한다.
+- **T/테스트 표식**: `[KO TEST]`은 일시적 출력 확인용이므로 일반 번역 대상으로 집계하지 않는다. 성공한 패치는 나중에 정식 문자열로 교체한다.
+
+### A. 첫 번째 확정 후보 묶음 — 직접 표시되는 원문과 AI 초벌안
+
+| 파일:행 | 원문 | **AI 권장 번역안** | 분류/비고 |
+| --- | --- | --- | --- |
+| `newgame.cc:150` | `Recommended character` | **추천 캐릭터** | A |
+| `newgame.cc:152` | `Random character` | **무작위 캐릭터** | A |
+| `newgame.cc:382` | `Do you want to play this combination? [Y/n/q]` | **이 조합으로 시작할까? [Y/n/q]** | A, 키 지정은 보존 |
+| `newgame.cc:612` | `Esc - Quit` | **Esc - 종료** | A |
+| `newgame.cc:614` | `* - Random name` | **\* - 무작위 이름** | A |
+| `newgame.cc:620` | `Enter - Begin!` | **Enter - 시작!** | A |
+| `newgame.cc:647` | `That's a silly name!` | **이 이름은 사용할 수 없어!** | A, 원문 장난스러운 뉘앙스의 보존 여부 검수 |
+| `newgame.cc:707` | `What is your name today?` | **이름을 입력해 줘.** | A |
+| `newgame.cc:712` | `You have an existing game under this name; really overwrite? [Y/n]` | **같은 이름의 게임이 있어. 정말 덮어쓸까? [Y/n]** | A |
+| `newgame.cc:779` | `[Enter] Begin!` | **[Enter] 시작!** | A |
+| `newgame.cc:853` | `Seed:` | **시드:** | A |
+| `newgame.cc:867` | `[-] Clear` | **[-] 지우기** | A |
+| `newgame.cc:884` | `[d] Today's daily seed` | **[d] 오늘의 일일 시드** | A |
+| `newgame.cc:928` | `Fully pregenerate the dungeon` | **던전 전체 미리 생성** | A |
+| `newgame.cc:1048` | `No player name specified.` | **캐릭터 이름이 지정되지 않았어.** | A |
+| `newgame.cc:1387` | `# - Recommended character` | **# - 추천 캐릭터** | A |
+| `newgame.cc:1392` | `% - List aptitudes` | **% - 적성 목록** | A, 단축키 보존 |
+| `newgame.cc:1396` | `? - Help` | **? - 도움말** | A |
+| `newgame.cc:1404` | `! - Random character` | **! - 무작위 캐릭터** | A |
+| `newgame.cc:1790` | `* - Random weapon` | **\* - 무작위 무기** | A |
+| `newgame.cc:1792` | `Bksp - Return to character menu` | **Bksp - 캐릭터 선택으로 돌아가기** | A |
+| `invent.cc:330` | `%d/%d gear slots` | **장비 슬롯 %d/%d** | B, 자리표시자 수·순서 보존 |
+| `invent.cc:345` | `(Left/Right to switch category)` | **(좌/우 방향키로 분류 전환)** | A |
+| `invent.cc:506` | `%d item%s` | **아이템 %d개** | B, 영어 복수형의 `%s` 제거 여부는 호출부 인자 검사 전 미확정 |
+| `invent.cc:570` | `You aren't carrying anything.` | **아무것도 가지고 있지 않아.** | A |
+| `invent.cc:573` | `You aren't carrying any weapons.` | **가지고 있는 무기가 없어.** | A |
+| `invent.cc:584` | `You don't currently have any unidentified items.` | **지금 미감정 아이템이 없어.** | A |
+| `invent.cc:590` | `You aren't carrying any potions.` | **가지고 있는 물약이 없어.** | A |
+| `invent.cc:592` | `You aren't carrying any scrolls.` | **가지고 있는 두루마리가 없어.** | A |
+| `invent.cc:596` | `You aren't carrying any wands.` | **가지고 있는 마법봉이 없어.** | A |
+| `invent.cc:607` | `You cannot evoke magical items.` | **마법 아이템을 발동할 수 없어.** | A |
+| `invent.cc:610` | `None of your equipped items are cursed.` | **장착한 아이템 중 저주받은 것은 없어.** | A |
+| `invent.cc:996` | `go to first` | **첫 항목으로 이동** | A |
+| `invent.cc:998` | `select all` | **모두 선택** | A |
+| `invent.cc:1000` | `select first` | **첫 항목 선택** | A |
+| `message.cc:723` | `--more-- Press Space` | **--계속-- Space를 눌러** | B, 뒤에 이어지는 안내 문장과 통합 필요 |
+| `message.cc:1964` | `Nothing appears to happen.` | **아무 일도 일어나지 않았어.** | A |
+| `message.cc:1967` | `You are unaffected.` | **아무런 영향도 받지 않았어.** | A |
+| `message.cc:1970` | `You resist.` | **저항했어.** | A |
+| `message.cc:1974` | `You partially resist.` | **일부만 저항했어.** | A |
+| `message.cc:1977` | `You are too berserk!` | **광폭화 상태라 할 수 없어!** | A |
+| `message.cc:1981` | `You are too confused!` | **너무 혼란스러워!** | A |
+| `message.cc:1984` | `You can't do that in your present form.` | **현재 모습으로는 그렇게 할 수 없어.** | A |
+| `message.cc:1992` | `You can't do that yet.` | **아직 그렇게 할 수 없어.** | A |
+| `message.cc:2034` | `You blink.` | **순간이동했어.** | A, 점멸/순간이동 용어집 확정 필요 |
+| `message.cc:2040` | `You don't know any spells.` | **알고 있는 주문이 없어.** | A |
+| `message.cc:2052` | `You detect nothing.` | **아무것도 감지하지 못했어.** | A |
+| `message.cc:2055` | `You cannot move.` | **움직일 수 없어.** | A |
+| `message.cc:2058` | `You die...` | **죽었어……** | A, 점 세 개의 정확한 표기 검토 |
+| `message.cc:2064` | `Your health is already full.` | **이미 체력이 가득 차 있어.** | A |
+| `message.cc:2067` | `Your reserves of magic are already full.` | **이미 마력이 가득 차 있어.** | A |
+| `message.cc:2070` | `You feel better.` | **기분이 나아졌어.** | A |
+| `message.cc:2090` | `Your god isn't willing to do this for you now.` | **네 신은 지금 그 일을 해 줄 생각이 없어.** | A |
+| `describe.cc:168~169` | `Description|Quote` | **설명|인용문** | A, `<w>` 강조 태그와 단축키 보존 |
+| `describe.cc:1327` | `Your %sskill: %s%d.%d%s` | **현재 %s스킬: %s%d.%d%s** | B, `%s` 인자의 역할·순서 검증 전 미반영 |
+| `describe.cc:1585` | `This weapon's minimum attack delay (%.1f) is reached at skill level %d.` | **이 무기의 최소 공격 지연(%.1f)은 스킬 레벨 %d에서 달성돼.** | B, `%.1f`와 `%d` 유지 |
+| `describe.cc:1667` | `You are unable to wield it.` | **이 무기를 들 수 없어.** | A |
+| `describe.cc:2651` | `You can't evoke this right now` | **지금은 발동할 수 없어** | A |
+| `describe.cc:2755` | `This item has been removed.` | **이 아이템은 게임에서 제거되었어.** | A |
+| `describe.cc:3428` | `You are here.` | **현재 위치야.** | A |
+| `describe.cc:4528` | `This inflicts up to 40% magical contamination when cast by you.` | **이 주문을 직접 시전하면 최대 40%의 마법 오염이 쌓여.** | A, `40%` 수치 유지 |
+
+**주의:** 표는 번역 후보 목록이지 소스에 이미 반영한 내역이 아니다. 원문과 번역안을 혼동하지 않는다. 우선 P0 후보 60여 항목에 대한 기초 검토이며, 줄 번호는 이번 GitHub 조회 시점의 소스 기준이다. 이어지는 문장과 복합 조건·메뉴 상세 설명 등은 아직 별도 목록화 대상이다.
+
+### B. 제외/검토 우선 사례
+
+| 위치 | 실제 문자열 | 판정 |
+| --- | --- | --- |
+| `newgame.cc:394,396` | JSON 필드 `prompt`, UI 레이아웃 ID `newgame-random-combo` | **C 제외** — 번역 시 화면 연결이 깨질 수 있음 |
+| `newgame.cc:856,872,890` | `seed`, `btn-clear`, `btn-daily` | **C 제외** — 동기화 식별자 |
+| `newgame.cc:1362~1363` | 내부 선택 구분 `background`, `species` | **B/C 경계** — 문장 생성에 활용되므로 사용 위치를 따라가야 함 |
+| `invent.cc:883~896` | `basename`, `qualname`, `equipped`, `identified`, `qty` 등 | **C 제외** — 아이템 정렬/비교 키 |
+| `message.cc:1514` | `You kill ` | **C/T 조사** — 기존 `[KO TEST]` 스모크 테스트 분기용 문자열; 번역 대상 원문으로 집계하지 않음 |
+| `describe.cc:4723` | `<영어 주문명> spell` 형식의 `getQuoteString` 키 | **C 제외** — 인용문 조회용 원문 키, 한국어로 바꾸면 조회 실패 위험 |
+| `newgame.cc:1179`, `invent.cc:69,340~343,350`, `describe.cc` 내 `[KO TEST]` | 한국어 테스트 문구 | **T** — 테스트 종료 시 정리/정식 번역으로 교체 |
+| `source/dat/dlua/tutorial.lua`의 `tutorial`, `tutorial intro` | 튜토리얼 메시지 채널/이벤트 키 | **C 제외**. 실제 번역할 문구는 전달 인자 `msg`, `data.text`의 출처에서 찾음 |
+
+### C. 다음 추출 작업의 확정 순서
+
+1. **P0-CPP-NEWGAME**: 파일 전체에서 메뉴 라벨/설명/오류/안내/시드/스프린트 명칭을 추출해 A/B/C/T와 초벌 번역으로 분리한다.
+2. **P0-CPP-INVENT**: 분기형 아이템 부재 메시지 전체, 슬롯·선택 개수·정렬·상태 메시지 등 원문별 번역과 호출 조건 정리.
+3. **P0-CPP-MESSAGE**: `mpr` 등 메시지 함수의 실제 호출부·정형 메시지 종류·화면 폭과 반복 합치기 확인.
+4. **P0-CPP-DESCRIBE**: 탭 UI, 스킬·공격 지연·주문 강화·능력치 비교 등 완성 문장과 형식 지정자 검사.
+5. 누적 검사에서 **원본 문자열 / 소스 위치 / 화면 증거 / 치환 포맷 / AI 번역안 / QA 위험 / 상태** 열을 사용하고, `CPP-PILOT-005`의 로컬 파일이 GitHub에 등록되면 이 목록과 재대조한다.
+
