@@ -13,7 +13,7 @@ from pathlib import Path
 DELIMITER = re.compile(r"^%%%%[ \t]*$", re.M)
 KOREAN = re.compile(r"[가-힣]")
 REFERENCE = re.compile(r"<([A-Za-z_][^<>\n]*)>")
-PRINTF = re.compile(r"%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]")
+PURE_REFERENCE = re.compile(r"^\\s*<(?!/?(?:w|c|color|light|dark|green|red|blue|yellow)\\b)[^<>\\n]+>\\s*$", re.I)\nPRINTF = re.compile(r"%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]")
 
 def parse(path):
     text = path.read_text(encoding="utf-8-sig")
@@ -52,10 +52,10 @@ def check_file(english, korean, writer):
             continue
         e, k = ed[key]["body"], kd[key]["body"]
         if not k.strip(): issue("empty_korean_body", key)
-        elif not KOREAN.search(k) and len(k) > 15 and "{{" not in k:
+        elif not KOREAN.search(k) and len(k) > 15 and "{{" not in k and not PURE_REFERENCE.fullmatch(k):
             issue("review_no_hangul", key, k[:100].replace("\n", " "))
         # Counts only: translated literal references may be legitimate.
-        if len(count_ref(e)) != len(count_ref(k)):
+        if not (PURE_REFERENCE.fullmatch(e) and PURE_REFERENCE.fullmatch(k)) and len(count_ref(e)) != len(count_ref(k)):
             issue("review_reference_count", key, f"EN={sum(count_ref(e).values())} KO={sum(count_ref(k).values())}")
         if len(PRINTF.findall(e)) != len(PRINTF.findall(k)):
             issue("review_printf_count", key, f"EN={len(PRINTF.findall(e))} KO={len(PRINTF.findall(k))}")
@@ -93,7 +93,7 @@ def main():
         "korean_entries": sum(x["korean_entries"] for x in summary["files"])}
     issues = Counter()
     for row in summary["files"]: issues.update(row["issues"])
-    summary["issue_totals"] = dict(sorted(issues.items()))
+    summary["issue_totals"] = dict(sorted(issues.items()))\n    summary["translation_coverage"] = {\n        "english_unique_keys": sum(x["english_unique_keys"] for x in summary["files"]),\n        "matched_unique_keys": sum(x["matched_keys"] for x in summary["files"]),\n        "note": "Key presence only; not translation quality or runtime coverage."\n    }
     (args.output / "summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({k:v for k,v in summary.items() if k!="files"},ensure_ascii=False,indent=2))
     if summary["missing_korean_files"]: raise SystemExit(2)
