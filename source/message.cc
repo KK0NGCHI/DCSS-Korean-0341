@@ -1510,10 +1510,6 @@ static int _last_msg_turn = -1; // Turn of last message.
 static void _mpr(string text, msg_channel_type channel, int param, bool nojoin,
                  bool cap)
 {
-    // Temporary Korean Tiles rendering test. Remove after verification.
-    if (text.compare(0, 9, "You kill ") == 0)
-        text = "[KO TEST] 몬스터를 처치했다!";
-
     static bool _doing_c_message_hook = false;
 
     rng::generator rng(rng::UI);
