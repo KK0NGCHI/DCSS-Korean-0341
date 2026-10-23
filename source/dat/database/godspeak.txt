@@ -240,194 +240,194 @@ Xom feature lava
 
 Xom feature shallow water
 
-@The_feature@ briefly bubbles.
+@The_feature@ 잠시 보글거려.
 
-@The_feature@ briefly swirls.
+@The_feature@ 잠시 소용돌이쳐.
 
-@The_feature@ briefly glows.
+@The_feature@ 잠깐 빛나.
 
-@The_feature@ briefly glows @any_glowing_colour@.
+@The_feature@ 잠시 @any_glowing_colour@ 빛으로 빛나.
 
-@The_feature@ briefly flashes @any_colour@.
+@The_feature@ 잠시 @any_colour@ 섬광을 내.
 
-@The_feature@ briefly boils.
+@The_feature@ 잠깐 끓어올라.
 
-@The_feature@ briefly freezes.
+@The_feature@ 잠깐 얼어붙어.
 %%%%
 
 Xom feature deep water
 
 @Xom feature shallow water@
 
-Off to the side, you spot something lurking in @the_feature@.
+옆쪽에서 @the_feature@ 안에 숨어 있는 무언가가 보여.
 %%%%
 
 Xom feature blood
 
 @Xom feature shallow water@
 
-@The_feature@ briefly coagulates.
+@The_feature@ 잠시 응고돼.
 %%%%
 
 Xom feature eyes
 
-@The_feature@ looks at you curiously.
+@The_feature@ 호기심 어린 눈으로 너를 바라봐.
 
-@The_feature@ looks right through you.
+@The_feature@ 너를 꿰뚫어 보듯 응시해.
 %%%%
 
 Xom feature dry
 
-Water briefly sprays from @the_feature@.
+@the_feature@에서 잠깐 물이 뿜어져 나와.
 
-Sparkling water briefly sprays from @the_feature@.
+@the_feature@에서 잠깐 반짝이는 물이 뿜어져 나와.
 
-Blood briefly sprays from @the_feature@.
+@the_feature@에서 잠깐 피가 뿜어져 나와.
 
-Dust puffs up from @the_feature@.
+@the_feature@에서 먼지가 훅 피어올라.
 %%%%
 
 Xom feature statuelike
 
-@The_feature@ turns to glare at you.
+@The_feature@ 너를 노려보려고 몸을 돌려.
 
-@The_feature@ turns to stare at you.
+@The_feature@ 너를 빤히 보려고 몸을 돌려.
 
-@The_feature@ turns away from you.
+@The_feature@ 너에게서 등을 돌려.
 
-@The_feature@ spins in place.
+@The_feature@ 제자리에서 빙글 돌아.
 %%%%
 
 Xom feature tree
 
-@The_feature@ bends towards you.
+@The_feature@ 너를 향해 휘어져.
 
-@The_feature@ bends away from you.
+@The_feature@ 너에게서 멀어지도록 휘어져.
 
-@The_feature@ sways in place.
+@The_feature@ 제자리에서 흔들려.
 %%%%
 
 Xom feature translucent wall
 
-Dim shapes swim through @the_feature@.
+희미한 형체들이 @the_feature@ 속을 헤엄쳐 다녀.
 
-Faint @any_colour@ flames crawl over @the_feature@.
+희미한 @any_colour@ 불꽃이 @the_feature@ 위로 기어가.
 
-@The_feature@ is briefly covered in @any_colour_pattern@.
+@The_feature@ 잠시 @any_colour_pattern@ 무늬로 덮여.
 
-@The_feature@ is briefly covered in @any_glowing_colour_pattern@.
+@The_feature@ 잠시 @any_glowing_colour_pattern@ 무늬로 덮여.
 
-@The_feature@ is briefly covered in @any_graffiti@.
+@The_feature@ 잠시 @any_graffiti@ 낙서로 덮여.
 %%%%
 
 Xom feature metal wall
 
-Tendrils of electricity crawl over @the_feature@.
+전기의 촉수가 @the_feature@ 위로 기어가.
 
-@The_feature@ briefly appears tarnished.
+@The_feature@ 잠시 녹슨 듯 탁해 보여.
 %%%%
 
 Xom feature stone arch
 
-@The_feature@ briefly shows a sunny meadow on the other side.
+@The_feature@ 너머로 잠깐 햇살 비치는 초원이 보여.
 
-@The_feature@ briefly shows a lifeless wasteland on the other side.
+@The_feature@ 너머로 잠깐 생명 없는 황무지가 보여.
 
-@The_feature@ briefly shows strange @glowing_adj@ figures on the other side.
+@The_feature@ 너머로 잠깐 기묘한 @glowing_adj@ 형체가 보여.
 
-@The_feature@ briefly shows bizarre @glowing_adj@ buildings on the other side.
+@The_feature@ 너머로 잠깐 기괴한 @glowing_adj@ 건물이 보여.
 
-@The_feature@ briefly shows a translucent wall covered in @any_colour_pattern@ on the other side.
+@The_feature@ 너머로 잠깐 @any_colour_pattern@ 무늬로 뒤덮인 반투명 벽이 보여.
 
-@The_feature@ briefly shows a translucent wall covered in @any_glowing_colour_pattern@ on the other side.
+@The_feature@ 너머로 잠깐 @any_glowing_colour_pattern@ 무늬로 뒤덮인 반투명 벽이 보여.
 
-@The_feature@ briefly shows a translucent wall covered in @any_graffiti@ on the other side.
+@The_feature@ 너머로 잠깐 @any_graffiti@ 낙서로 뒤덮인 반투명 벽이 보여.
 %%%%
 
 Xom underfoot general
 
-@The_feature@ briefly shifts under you.
+@The_feature@ 발밑에서 잠깐 움직여.
 
-An imperceptible spirit brushes against @the_feature@ beside you.
+보이지 않는 정령이 네 옆의 @the_feature@에 스쳐 지나가.
 %%%%
 
 Xom underfoot water
 
-@The_feature@ briefly recedes away from you.
+@The_feature@ 잠깐 네게서 물러나.
 
-An imperceptible spirit sends ripples through @the_feature@ beside you.
+보이지 않는 정령이 네 옆의 @the_feature@에 잔물결을 일으켜.
 %%%%
 
 Xom underfoot airborne general
 
-@The_feature@ seems to fall away from under you!
+@The_feature@ 발밑에서 멀리 떨어지는 것 같아!
 
-@The_feature@ seems to rush up at you!
+@The_feature@ 갑자기 네게로 솟구치는 것 같아!
 %%%%
 
 Xom underfoot airborne water
 
 @Xom underfoot airborne general@
 
-An imperceptible spirit flows into @the_feature@ beneath you.
+보이지 않는 정령이 네 아래의 @the_feature@ 안으로 흘러들어.
 %%%%
 
 Xom inventory singular
 
-@Your_item@ briefly glows.
+@Your_item@ 잠깐 빛나.
 
-@Your_item@ briefly glows @any_glowing_colour@.
+@Your_item@ 잠시 @any_glowing_colour@ 빛으로 빛나.
 
-@Your_item@ briefly vibrates.
+@Your_item@ 잠깐 진동해.
 
-@Your_item@ briefly flashes @any_colour@.
+@Your_item@ 잠시 @any_colour@ 섬광을 내.
 %%%%
 
 Xom inventory plural
 
-One of @your_item@ briefly glows.
+@your_item@ 중 하나가 잠깐 빛나.
 
-One of @your_item@ briefly glows @any_glowing_colour@.
+@your_item@ 중 하나가 잠시 @any_glowing_colour@ 빛으로 빛나.
 
-One of @your_item@ briefly vibrates.
+@your_item@ 중 하나가 잠깐 진동해.
 
-One of @your_item@ briefly flashes @any_colour@.
+@your_item@ 중 하나가 잠시 @any_colour@ 섬광을 내.
 
-@Your_item@ briefly glow.
+@Your_item@ 잠깐 빛나.
 
-@Your_item@ briefly glow @any_glowing_colour@.
+@Your_item@ 잠시 @any_glowing_colour@ 빛으로 빛나.
 
-@Your_item@ briefly vibrate.
+@Your_item@ 잠깐 진동해.
 
-@Your_item@ briefly flash @any_colour@.
+@Your_item@ 잠시 @any_colour@ 섬광을 내.
 %%%%
 
 Xom floor inventory singular
 
 @Xom inventory singular@
 
-@Your_item@ falls out of your pack, then immediately jumps back in!
+@Your_item@ 가방 밖으로 떨어졌다가 곧장 다시 안으로 뛰어들어!
 %%%%
 
 Xom floor inventory plural
 
 @Xom inventory plural@
 
-One of @your_item@ falls out of your pack, then immediately jumps back in!
+@your_item@ 중 하나가 가방 밖으로 떨어졌다가 곧장 다시 안으로 뛰어들어!
 
-@Your_item@ fall out of your pack, then immediately jump back in!
+@Your_item@ 가방 밖으로 떨어졌다가 곧장 다시 안으로 뛰어들어!
 %%%%
 
 Xom bandages
 
-You briefly get tangled in your bandages.
+순간 붕대에 몸이 엉켜 버려.
 %%%%
 
 Xom floor bandages
 
 @Xom bandages@
 
-You trip over your bandages.
+붕대에 발이 걸려 넘어져.
 %%%%
 
 Xom one eye
