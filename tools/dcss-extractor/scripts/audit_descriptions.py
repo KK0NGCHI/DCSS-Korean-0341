@@ -107,7 +107,8 @@ def main():
     with report.open(encoding="utf-8-sig", newline="") as src:
         candidates = [row for row in csv.DictReader(src)
                       if row["category"] in ("review_no_hangul", "duplicate_english_key",
-                                              "review_lua_delimiter")]
+                                              "review_lua_delimiter", "review_printf_count",
+                                              "review_reference_count")]
     print("PRIORITY REVIEW CANDIDATES:")
     print(json.dumps(candidates, ensure_ascii=False, indent=2))
     if summary["missing_korean_files"]: raise SystemExit(2)
