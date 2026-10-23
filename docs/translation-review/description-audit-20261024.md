@@ -38,3 +38,14 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 3. 참조·서식·Lua 항목 수동 검토.
 4. 기존 `quotes.txt` 기록과 자동 결과 교차 검증.
 5. 확인된 수치를 `reports/progress.json`에 통합; 추출 coverage와 실제 번역/출력 coverage를 분리.
+
+## GitHub Actions 실측 결과 (2026-10-24)
+
+- Workflow run: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39977428592 — 성공.
+- 영어 파일 23개 / 한국어 파일 23개.
+- 영어 원문 항목 3,781개, 영어 중복 키 3건 ⇒ **고유 영어 키 3,778개**.
+- 한국어 대응 고유 키 3,778개 ⇒ **원문 고유 키 대응 100%(3,778/3,778), 누락 0개**.
+- 한국어 항목 4,038개; 원문에 없는 한국어 키 260개. 기존 번역 자산 가능성이 있어 삭제하지 않음.
+- 검토 후보: 한글 미포함 69개, 서식 지정자 개수 차이 29개, 참조 구문 개수 차이 20개, Lua 구분자 차이 6개. 이들 숫자는 문제의 확정 건수가 아니라 규칙 기반 후보 수임.
+- 설명 키 대응률과 번역 품질·실제 게임 출력 검증률은 다름.
+- 후속: 보고서 `issues.csv`의 항목별 근거를 읽고 원문 중복 키와 서식 경고를 검증. 이후 C++·Lua 문자열 감사로 전환.
