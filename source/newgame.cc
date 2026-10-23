@@ -580,8 +580,7 @@ static void _choose_name(newgame_def& ng, newgame_def& choice)
     string specs = chop_string(species::name(ng.species), 79, false);
 
     formatted_string title;
-    title.cprintf("종족: %2$s / 직업: %3$s",
-            (is_vowel(specs[0])) ? "n" : "", specs.c_str(),
+    title.cprintf("종족: %s / 직업: %s", specs.c_str(),
             get_job_name(ng.job));
 
     auto title_hbox = make_shared<Box>(Widget::HORZ);
@@ -838,12 +837,12 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
     auto popup = make_shared<ui::Popup>(box);
 
     const string title_text = make_stringf(
-        "Play a game with a custom seed for version %s.\n",
+        "버전 %s의 사용자 지정 시드로 게임을 시작해.\n",
         Version::Long);
     box->add_child(make_shared<ui::Text>(formatted_string(title_text, CYAN)));
 
     const string body_text = "무작위 시드를 원하면 0을 입력해. "
-            "[Tab]/[Shift-Tab] to cycle input focus.\n";
+            "[Tab]/[Shift-Tab]으로 입력 항목을 전환해.\n";
     box->add_child(make_shared<ui::Text>(body_text));
 
     auto seed_hbox = make_shared<ui::Box>(ui::Box::HORZ);
@@ -905,16 +904,16 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
     const string footer_text =
 #ifdef USE_TILE_LOCAL
         "\n"
-        "Press [p] or [ctrl-v] to paste a seed from the clipboard\n"
-        "(overwriting the current value).\n"
+        "시드를 붙여넣으려면 [p] 또는 [ctrl-v]를 눌러.\n"
+        "(현재 값을 덮어써.)\n"
 #endif
         "\n"
-        "The seed will determine the dungeon layout, monsters, and items\n"
-        "that you discover, relative to this version of crawl. Upgrading\n"
-        "mid-game may affect seeding. (See the manual for more details.)\n"
+        "시드는 던전 구조와 등장하는 몬스터 및 아이템을\n"
+        "결정해. 게임 도중 버전을 업그레이드하면\n"
+        "시드 결과가 달라질 수 있어. (자세한 내용은 설명서를 참조해.)\n"
 #ifdef SEEDING_UNRELIABLE
-        "Warning: your build of crawl does not support stable seeding!\n"
-        "Levels may differ from 'official' seeded games.\n"
+        "경고: 이 빌드는 안정적인 시드 생성을 지원하지 않아!\n"
+        "던전 층이 공식 시드 게임과 다를 수 있어.\n"
 #endif
         ;
     box->add_child(make_shared<ui::Text>(footer_text));
@@ -1377,7 +1376,9 @@ protected:
         }
         else
             id = M_RANDOM;
-        desc = "Picks a random recommended " + other_choice_name + " based on your current " + choice_name + " choice.";
+        desc = "현재 " + (choice_type == C_JOB ? string("직업") : string("종족"))
+            + " 선택을 바탕으로 추천 " + (choice_type == C_JOB ? string("종족") : string("직업"))
+            + "을 무작위로 골라.";
 
         _add_choice_menu_option(0, 0,
                 text, '+', id, desc);
@@ -1396,8 +1397,8 @@ protected:
                 "도움말 화면을 열어.");
 
         _add_choice_menu_option(1, 0,
-                "    * - Random " + choice_name, '*', M_RANDOM,
-                "Picks a random " + choice_name + ".");
+                "    * - 무작위 " + string(choice_type == C_JOB ? "직업" : "종족"), '*', M_RANDOM,
+                string(choice_type == C_JOB ? "직업" : "종족") + "을 무작위로 골라.");
 
         _add_choice_menu_option(1, 1,
                 "    ! - 무작위 캐릭터", '!', M_RANDOM_CHAR,
@@ -1407,13 +1408,13 @@ protected:
         if ((choice_type == C_JOB && ng.species != SP_UNKNOWN)
             || (choice_type == C_SPECIES && ng.job != JOB_UNKNOWN))
         {
-            text = "Space - Change " + other_choice_name;
-            desc = "Lets you change your " + other_choice_name + " choice.";
+            text = "Space - " + string(choice_type == C_JOB ? "종족" : "직업") + " 변경";
+            desc = "선택한 " + string(choice_type == C_JOB ? "종족" : "직업") + "을 변경해.";
         }
         else
         {
-            text = "Space - Pick " + other_choice_name + " first";
-            desc = "Lets you pick your " + other_choice_name + " first.";
+            text = "Space - " + string(choice_type == C_JOB ? "종족" : "직업") + " 먼저 선택";
+            desc = string(choice_type == C_JOB ? "종족" : "직업") + "을 먼저 선택해.";
         }
         _add_choice_menu_option(1, 2,
                 text, ' ', M_ABORT, desc);
