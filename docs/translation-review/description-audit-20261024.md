@@ -86,3 +86,11 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 원문과 대조하여 `tutorial2 throwing`(다트→부메랑), `tutorial3 ego_weapon`(무기 휘둘러 식별→바닥에 올라가면 식별), `tutorial4 resting_reminder`(해골→독 저항 임프), `tutorial4 undead`(불필요한 정보 교정), `tutorial1 autoexplore`(타일 버튼 안내), `tutorial2 wait`(타일 대기 조작), `tutorial3 go_shopping`(영어 잔존·검색 절차)의 7개 항목을 수정했다.
 - Actions: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39988155421 성공. 참조 구문 개수 차이 **17→11건**. 설명 고유 키 대응 3,778/3,778 유지.
 - 본문 내용은 정적 원문 대조만 완료했으며 튜토리얼 런타임 실행 여부는 아직 검증하지 않았다.
+
+## 2026-10-24 안내·튜토리얼 4건 보정
+- `hints.txt/welcome`: 최신 원문의 3개 참고 문서(quickstart, crawl_manual, options_guide) 링크 표기를 복구하고 명령 안내를 정돈.
+- `tutorial.txt/tutorial intro`: 타일 모드에서 클릭으로 다음 메시지 진행 안내 복구.
+- `tutorial.txt/tutorial2 downstairs`: 타일 모드 캐릭터 클릭 동작 복구.
+- `tutorial.txt/tutorial4 meph_reminder`: 현재 주문 암기 탭에 맞춰 구버전 마법서/소지품 창 조작법 제거.
+- 검사 실행 https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39988582819 성공. 참조 구문 경고 11→7건. 고유 영어 키 대응 3,778/3,778 유지. 미해결: 참조 경고 7, Lua 차이 4, 중복 원문 키 3, 추가 한국어 키 260.
+- 검사는 키·표시 태그의 정적 검사이며 실제 게임 실행 확인이 아님.
