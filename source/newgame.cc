@@ -147,18 +147,18 @@ static char_choice_restriction _job_allowed(species_type sp, job_type job) {
 string newgame_char_description(const newgame_def& ng)
 {
     if (_is_random_viable_choice(ng))
-        return "Recommended character";
+        return "추천 캐릭터";
     else if (_is_random_choice(ng))
-        return "Random character";
+        return "무작위 캐릭터";
     else if (_is_random_job(ng.job))
     {
-        const string j = (ng.job == JOB_RANDOM ? "Random " : "Recommended ");
-        return j + species::name(ng.species);
+        const string j = (ng.job == JOB_RANDOM ? "무작위 직업" : "추천 직업");
+        return species::name(ng.species) + " / " + j;
     }
     else if (_is_random_species(ng.species))
     {
-        const string s = (ng.species == SP_RANDOM ? "Random " : "Recommended ");
-        return s + get_job_name(ng.job);
+        const string s = (ng.species == SP_RANDOM ? "무작위 종족" : "추천 종족");
+        return get_job_name(ng.job) + " / " + s;
     }
     else
         return species::name(ng.species) + " " + get_job_name(ng.job);
@@ -178,14 +178,14 @@ static string _welcome(const newgame_def& ng)
     if (!ng.name.empty())
     {
         if (!text.empty())
-            text = " the " + text;
+            text = " (" + text + ")";
         text = ng.name + text;
     }
     else if (!text.empty())
-        text = "unnamed " + text;
+        text = "이름 없는 " + text;
     if (!text.empty())
-        text = ", " + text;
-    text = "Welcome" + text + ".";
+        text = " " + text;
+    text = "환영해," + text + "!";
     return text;
 }
 
@@ -346,7 +346,7 @@ static void _choose_species_job(newgame_def& ng, newgame_def& ng_choice,
     {
         // Either an invalid combination was passed in through options,
         // or we messed up.
-        end(1, false, "Incompatible species and background (%s) selected.",
+        end(1, false, "호환되지 않는 종족과 직업 조합(%s)을 선택했어.",
                                 newgame_char_description(ng).c_str());
     }
 }
@@ -358,8 +358,7 @@ static bool _reroll_random(newgame_def& ng)
     string specs = chop_string(species::name(ng.species), 79, false);
 
     formatted_string prompt;
-    prompt.cprintf("You are a%s %s %s.",
-            (is_vowel(specs[0])) ? "n" : "", specs.c_str(),
+    prompt.cprintf("종족: %s / 직업: %s", specs.c_str(),
             get_job_name(ng.job));
 
     auto title_hbox = make_shared<Box>(Widget::HORZ);
@@ -379,7 +378,7 @@ static bool _reroll_random(newgame_def& ng)
 
     auto vbox = make_shared<Box>(Box::VERT);
     vbox->add_child(std::move(title_hbox));
-    vbox->add_child(make_shared<Text>("Do you want to play this combination? [Y/n/q]"));
+    vbox->add_child(make_shared<Text>("이 조합으로 시작할까? [Y/n/q]"));
     auto popup = make_shared<ui::Popup>(std::move(vbox));
 
     bool done = false;
@@ -581,7 +580,7 @@ static void _choose_name(newgame_def& ng, newgame_def& choice)
     string specs = chop_string(species::name(ng.species), 79, false);
 
     formatted_string title;
-    title.cprintf("You are a%s %s %s.",
+    title.cprintf("종족: %2$s / 직업: %3$s",
             (is_vowel(specs[0])) ? "n" : "", specs.c_str(),
             get_job_name(ng.job));
 
@@ -609,15 +608,15 @@ static void _choose_name(newgame_def& ng, newgame_def& choice)
     vbox->add_child(sub_items);
 
     _add_menu_sub_item(sub_items, 0, 0,
-            "Esc - Quit", "", CK_ESCAPE, CK_ESCAPE);
+            "Esc - 종료", "", CK_ESCAPE, CK_ESCAPE);
     _add_menu_sub_item(sub_items, 1, 0,
-            "* - Random name", "", '*', '*');
+            "* - 무작위 이름", "", '*', '*');
 
     auto ok_switcher = make_shared<Switcher>();
     ok_switcher->align_y = Widget::STRETCH;
     {
         auto tmp = make_shared<Text>();
-        tmp->set_text(formatted_string("Enter - Begin!", BROWN));
+        tmp->set_text(formatted_string("Enter - 시작!", BROWN));
 
         auto btn = make_shared<MenuButton>();
         btn->on_activate_event([&](const ActivateEvent&) {
@@ -644,7 +643,7 @@ static void _choose_name(newgame_def& ng, newgame_def& choice)
         btn->highlight_colour = STARTUP_HIGHLIGHT_CONTROL;
 
         auto err = make_shared<Text>(
-                formatted_string("That's a silly name!", LIGHTRED));
+                formatted_string("이 이름은 사용할 수 없어!", LIGHTRED));
         err->set_margin_for_sdl(0, 0, 0, 10);
         auto box = make_shared<Box>(Box::HORZ);
         box->set_cross_alignment(Widget::CENTER);
@@ -704,12 +703,12 @@ static void _choose_name(newgame_def& ng, newgame_def& choice)
     {
         formatted_string prompt;
         prompt.textcolour(CYAN);
-        prompt.cprintf("What is your name today? ");
+        prompt.cprintf("캐릭터 이름을 입력해 줘: ");
         prompt.textcolour(LIGHTGREY);
         prompt.cprintf("%s\n", buf);
         prompt.textcolour(LIGHTRED);
         if (overwrite_prompt)
-            prompt.cprintf("You have an existing game under this name; really overwrite? [Y/n]");
+            prompt.cprintf("같은 이름의 저장 파일이 있어. 정말 덮어쓸까? [Y/n]");
         prompt_ui->set_text(prompt);
 
         ui::pump_events();
@@ -776,9 +775,9 @@ public:
     void update_buttons()
     {
         if (valid_seed())
-            begin_button->set_text(formatted_string("[Enter] Begin!", BROWN));
+            begin_button->set_text(formatted_string("[Enter] 시작!", BROWN));
         else
-            begin_button->set_text(formatted_string("[Enter] Begin!", DARKGRAY));
+            begin_button->set_text(formatted_string("[Enter] 시작!", DARKGRAY));
     }
 
     void set_text(const string &s) // why is it `string s` in TextEntry?
@@ -829,7 +828,7 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
     bool cancel = false;
 
     auto begin_label = make_shared<ui::Text>();
-    begin_label->set_text(formatted_string("[Enter] Begin!", BROWN));
+    begin_label->set_text(formatted_string("[Enter] 시작!", BROWN));
     begin_label->set_margin_for_sdl(4,8);
     begin_label->set_margin_for_crt(0, 2, 0, 0);
 
@@ -843,14 +842,14 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
         Version::Long);
     box->add_child(make_shared<ui::Text>(formatted_string(title_text, CYAN)));
 
-    const string body_text = "Choose 0 for a random seed. "
+    const string body_text = "무작위 시드를 원하면 0을 입력해. "
             "[Tab]/[Shift-Tab] to cycle input focus.\n";
     box->add_child(make_shared<ui::Text>(body_text));
 
     auto seed_hbox = make_shared<ui::Box>(ui::Box::HORZ);
     box->add_child(seed_hbox);
 
-    const string prompt_text = "Seed: ";
+    const string prompt_text = "시드: ";
     seed_hbox->add_child(make_shared<ui::Text>(prompt_text));
     auto seed_input = make_shared<SeedTextEntry>(begin_label.get());
     seed_input->set_sync_id("seed");
@@ -864,7 +863,7 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
     seed_hbox->set_cross_alignment(Widget::CENTER);
 
     auto clear_btn_label = make_shared<ui::Text>();
-    clear_btn_label->set_text(formatted_string("[-] Clear", BROWN));
+    clear_btn_label->set_text(formatted_string("[-] 지우기", BROWN));
     clear_btn_label->set_margin_for_sdl(4, 4);
     clear_btn_label->set_margin_for_crt(0, 1, 0, 1);
     auto clear_btn = make_shared<MenuButton>();
@@ -881,7 +880,7 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
     seed_hbox->add_child(std::move(clear_btn));
 
     auto d_btn_label = make_shared<ui::Text>();
-    d_btn_label->set_text(formatted_string("[d] Today's daily seed", BROWN));
+    d_btn_label->set_text(formatted_string("[d] 오늘의 일일 시드", BROWN));
     d_btn_label->set_margin_for_sdl(4,8);
     d_btn_label->set_margin_for_crt(0, 2, 0, 0);
 
@@ -925,7 +924,7 @@ static void _choose_seed(newgame_def& ng, newgame_def& choice,
     choice.pregenerate = Options.pregen_dungeon == level_gen_type::full;
     pregen_check->set_checked(choice.pregenerate);
     pregen_check->set_visible(show_pregen_toggle);
-    pregen_check->set_child(make_shared<ui::Text>("Fully pregenerate the dungeon"));
+    pregen_check->set_child(make_shared<ui::Text>("던전 전체 미리 생성"));
     box->add_child(pregen_check);
 
     auto button_hbox = make_shared<ui::Box>(ui::Box::HORZ);
@@ -1045,7 +1044,7 @@ bool choose_game(newgame_def& ng, newgame_def& choice,
 #endif
 
     if (ng.name.empty())
-        end(1, false, "No player name specified.");
+        end(1, false, "캐릭터 이름이 지정되지 않았어.");
 
     ASSERT(is_good_name(ng.name, false)
            && _job_allowed(ng.species, ng.job)
@@ -1365,9 +1364,9 @@ protected:
         string text, desc;
 
         if (choice_type == C_SPECIES)
-            text = "+ - Recommended species";
+            text = "+ - 추천 종족";
         else
-            text = "+ - Recommended background";
+            text = "+ - 추천 직업";
 
         int id;
         // If the player has species chosen, use VIABLE, otherwise use RANDOM
@@ -1384,26 +1383,26 @@ protected:
                 text, '+', id, desc);
 
         _add_choice_menu_option(0, 1,
-                "# - Recommended character", '#', M_VIABLE_CHAR,
-                "Shuffles through random recommended character combinations "
-                "until you accept one.");
+                "# - 추천 캐릭터", '#', M_VIABLE_CHAR,
+                "추천 캐릭터 조합을 무작위로 바꿔 보며 "
+                "원하는 조합이 나올 때까지 반복해.");
 
         _add_choice_menu_option(0, 2,
-                "% - List aptitudes", '%', M_APTITUDES,
-                "Lists the numerical skill train aptitudes for all races.");
+                "% - 적성 목록", '%', M_APTITUDES,
+                "모든 종족의 스킬 적성 수치를 보여 줘.");
 
         _add_choice_menu_option(0, 3,
-                "? - Help", '?', M_HELP,
-                "Opens the help screen.");
+                "? - 도움말", '?', M_HELP,
+                "도움말 화면을 열어.");
 
         _add_choice_menu_option(1, 0,
                 "    * - Random " + choice_name, '*', M_RANDOM,
                 "Picks a random " + choice_name + ".");
 
         _add_choice_menu_option(1, 1,
-                "    ! - Random character", '!', M_RANDOM_CHAR,
-                "Shuffles through random character combinations "
-                "until you accept one.");
+                "    ! - 무작위 캐릭터", '!', M_RANDOM_CHAR,
+                "캐릭터 조합을 무작위로 바꿔 보며 "
+                "원하는 조합이 나올 때까지 반복해.");
 
         if ((choice_type == C_JOB && ng.species != SP_UNKNOWN)
             || (choice_type == C_SPECIES && ng.job != JOB_UNKNOWN))
@@ -1424,7 +1423,7 @@ protected:
             _add_choice_menu_option(1, 3,
                     "  Tab - " + newgame_char_description(defaults), '\t',
                     M_DEFAULT_CHOICE,
-                    "Play a new game with your previous choice.");
+                    "이전에 선택한 조합으로 새 게임을 시작해.");
         }
     }
 
@@ -1699,7 +1698,7 @@ static void _construct_weapon_menu(const newgame_def& ng,
         if (wpn_type == WPN_UNARMED)
         {
             choices.emplace_back(SK_UNARMED_COMBAT,
-                        species::has_claws(ng.species) ? "claws" : "unarmed");
+                        species::has_claws(ng.species) ? "claws" : "맨손");
         } else {
             string text = weapon_base_name(wpn_type);
             item_def dummy;
@@ -1763,7 +1762,7 @@ static void _construct_weapon_menu(const newgame_def& ng,
         label->set_text(formatted_string(text, fg));
 
         hbox->set_main_alignment(Widget::Align::STRETCH);
-        string apt_text = make_stringf("(%+d apt)",
+        string apt_text = make_stringf("(적성 %+d)",
                 species_apt(choice.skill, ng.species));
         auto suffix = make_shared<Text>(formatted_string(apt_text, fg));
         hbox->add_child(suffix);
@@ -1780,29 +1779,29 @@ static void _construct_weapon_menu(const newgame_def& ng,
         main_items->add_button(std::move(btn), 0, i);
     }
 
-    _add_menu_sub_item(sub_items, 0, 0, "+ - Recommended random choice",
-            "Picks a random recommended weapon", '+', M_VIABLE);
-    _add_menu_sub_item(sub_items, 0, 1, "% - List aptitudes",
-            "Lists the numerical skill train aptitudes for all races", '%',
+    _add_menu_sub_item(sub_items, 0, 0, "+ - 추천 무작위 선택",
+            "추천 무기 중 하나를 무작위로 선택해", '+', M_VIABLE);
+    _add_menu_sub_item(sub_items, 0, 1, "% - 적성 목록",
+            "모든 종족의 스킬 적성 수치를 보여 줘", '%',
             M_APTITUDES);
-    _add_menu_sub_item(sub_items, 0, 2, "? - Help",
-            "Opens the help screen", '?', M_HELP);
-    _add_menu_sub_item(sub_items, 1, 0, "* - Random weapon",
-            "Picks a random weapon", '*', WPN_RANDOM);
-    _add_menu_sub_item(sub_items, 1, 1, "Bksp - Return to character menu",
-            "Lets you return back to Character choice menu", CK_BKSP, M_ABORT);
+    _add_menu_sub_item(sub_items, 0, 2, "? - 도움말",
+            "도움말 화면을 열어", '?', M_HELP);
+    _add_menu_sub_item(sub_items, 1, 0, "* - 무작위 무기",
+            "무기를 무작위로 선택해", '*', WPN_RANDOM);
+    _add_menu_sub_item(sub_items, 1, 1, "Bksp - 캐릭터 선택으로 돌아가기",
+            "캐릭터 선택 화면으로 돌아가", CK_BKSP, M_ABORT);
 
     if (defweapon != WPN_UNKNOWN)
     {
         string text = "Tab - ";
 
-        text += defweapon == WPN_RANDOM  ? "Random" :
-                defweapon == WPN_VIABLE  ? "Recommended" :
-                defweapon == WPN_UNARMED ? "unarmed" :
+        text += defweapon == WPN_RANDOM  ? "무작위" :
+                defweapon == WPN_VIABLE  ? "추천" :
+                defweapon == WPN_UNARMED ? "맨손" :
                 weapon_base_name(defweapon);
 
         _add_menu_sub_item(sub_items, 1, 2, text,
-                "Select your old weapon", '\t', M_DEFAULT_CHOICE);
+                "이전에 선택한 무기를 골라", '\t', M_DEFAULT_CHOICE);
     }
 }
 
@@ -2154,20 +2153,20 @@ static void _construct_gamemode_map_menu(const mapref_vector& maps,
     // Don't overwhelm new players with aptitudes or the full list of commands!
     if (!crawl_state.game_is_tutorial())
     {
-        _add_menu_sub_item(sub_items, 0, 0, "% - List aptitudes",
-                "Lists the numerical skill train aptitudes for all races",
+        _add_menu_sub_item(sub_items, 0, 0, "% - 적성 목록",
+                "모든 종족의 스킬 적성 수치를 보여 줘",
                 '%', M_APTITUDES);
-        _add_menu_sub_item(sub_items, 0, 1, "? - Help",
-                "Opens the help screen", '?', M_HELP);
-        _add_menu_sub_item(sub_items, 1, 0, "* - Random map",
-                "Picks a random sprint map", '*', M_RANDOM);
+        _add_menu_sub_item(sub_items, 0, 1, "? - 도움말",
+                "도움말 화면을 열어", '?', M_HELP);
+        _add_menu_sub_item(sub_items, 1, 0, "* - 무작위 지도",
+                "스프린트 지도를 무작위로 선택해", '*', M_RANDOM);
     }
 
     // TODO: let players escape back to first screen menu
     // Adjust the end marker to align the - because Bksp text is longer by 3
     //tmp = new TextItem();
-    //tmp->set_text("Bksp - Return to character menu");
-    //tmp->set_description_text("Lets you return back to Character choice menu");
+    //tmp->set_text("Bksp - 캐릭터 선택으로 돌아가기");
+    //tmp->set_description_text("캐릭터 선택 화면으로 돌아가");
     //tmp->set_fg_colour(BROWN);
     //tmp->add_hotkey(CK_BKSP);
     //tmp->set_id(M_ABORT);
@@ -2182,7 +2181,7 @@ static void _construct_gamemode_map_menu(const mapref_vector& maps,
         text += "Tab - ";
         text += defaults.map;
         _add_menu_sub_item(sub_items, 1, 1, text,
-                "Select your previous sprint map and character", '\t',
+                "이전 스프린트 지도와 캐릭터를 선택해", '\t',
                 M_DEFAULT_CHOICE);
     }
 }
