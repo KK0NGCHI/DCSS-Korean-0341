@@ -94,7 +94,12 @@ def main():
         "korean_entries": sum(x["korean_entries"] for x in summary["files"])}
     issues = Counter()
     for row in summary["files"]: issues.update(row["issues"])
-    summary["issue_totals"] = dict(sorted(issues.items()))\n    summary["translation_coverage"] = {\n        "english_unique_keys": sum(x["english_unique_keys"] for x in summary["files"]),\n        "matched_unique_keys": sum(x["matched_keys"] for x in summary["files"]),\n        "note": "Key presence only; not translation quality or runtime coverage."\n    }
+    summary["issue_totals"] = dict(sorted(issues.items()))
+    summary["translation_coverage"] = {
+        "english_unique_keys": sum(x["english_unique_keys"] for x in summary["files"]),
+        "matched_unique_keys": sum(x["matched_keys"] for x in summary["files"]),
+        "note": "Key presence only; not translation quality or runtime coverage."
+    }
     (args.output / "summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({k:v for k,v in summary.items() if k!="files"},ensure_ascii=False,indent=2))
     if summary["missing_korean_files"]: raise SystemExit(2)
