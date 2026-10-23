@@ -13,7 +13,7 @@ from pathlib import Path
 DELIMITER = re.compile(r"^%%%%[ \t]*$", re.M)
 KOREAN = re.compile(r"[가-힣]")
 REFERENCE = re.compile(r"<([A-Za-z_][^<>\n]*)>")
-PURE_REFERENCE = re.compile(r"^\s*<[^<>\n]+>\s*$")
+PURE_REFERENCE = re.compile(r"^\s*(?:<[^<>\n]+>|\[\[[^\[\]\n]+\]\])\s*$")
 PRINTF = re.compile(r"%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]")
 
 def parse(path):
