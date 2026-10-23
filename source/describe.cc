@@ -158,15 +158,14 @@ int show_description(const describe_info &inf, const tile_def *tile)
     more_sw->current() = 0;
 
     const string descs[2] =  {
-        string("[KO TEST] 설명창 한글 출력 확인. 가나다라마바사. 긴 문장의 줄바꿈과 글자 간격을 검사합니다.\n\n")
-            + trimmed_string(process_description(inf, false)),
+        trimmed_string(process_description(inf, false)),
         trimmed_string(inf.quote),
     };
 
     // TODO: maybe use CMD_MENU_CYCLE_MODE
     const char* mores[2] = {
-        "[<w>!</w>]: <w>Description</w>|Quote",
-        "[<w>!</w>]: Description|<w>Quote</w>",
+        "[<w>!</w>]: <w>설명</w>|인용문",
+        "[<w>!</w>]: 설명|<w>인용문</w>",
     };
 
     for (int i = 0; i < (inf.quote.empty() ? 1 : 2); i++)
@@ -4008,8 +4007,6 @@ command_type describe_item_popup(const item_def &item,
     if (fixup_desc)
         fixup_desc(desc);
 
-    // Temporary Korean UI rendering test: item description popup.
-    desc = "[KO TEST] 아이템 설명창 출력 확인. 가나다라마바사.\n\n" + desc;
     formatted_string fs_desc = formatted_string::parse_string(desc);
 
     spellset spells = item_spellset(item);
@@ -7012,7 +7009,6 @@ int describe_monster(const monster_info &mi, const string& /*footer*/)
     title_hbox->set_margin_for_sdl(0, 0, 20, 0);
     vbox->add_child(std::move(title_hbox));
 
-    desc += "[KO TEST] 몬스터 설명창 출력 확인. 가나다라마바사.\n\n";
     desc += inf.body.str();
     if (crawl_state.game_is_hints())
         desc += formatted_string(hints_describe_monster(mi, has_stat_desc));
