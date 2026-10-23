@@ -56,3 +56,12 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - `quotes.txt`의 `Agony spell`, `chain mail`, `large abomination`, `dreamdust necklace`은 한글 없는 문장이 아니라 각각 `<Curse of Agony spell>`, `<leather armour>`, `<small abomination>`, `<dreamshard necklace>` 참조 별칭. 원문 대응 참조이므로 미번역으로 오분류하지 않아야 함.
 - 감사 스크립트에 순수 참조문 예외 및 고유 키 대응 통계 추가. 수정 이후 전체 경고 수는 재실행 후 산정하며 이전 69개 한글 미포함 후보를 그대로 확정 수치로 사용하지 않음.
 - 별칭의 실제 대상 키 존재·순환 여부와 번역 품질은 추가 검증 과제.
+
+## 2026-10-24 후속 검수 — #10 성공
+- 검사기에서 `<key>`뿐 아니라 `[[key]]` 참조 별칭을 인식하도록 보정.
+- 순수 참조문을 영어 잔존 오탐으로 잡던 69건이 **0건**으로 감소. 이는 한글 미포함 후보의 규칙상 감소이지 전체 문장 품질 보증이 아님.
+- `hints.txt / HINT_CONVERT`: 원문과 달리 파문·징벌을 단정하고, 부정확한 안내 및 불필요한 `()`가 존재해 원문 의미에 맞춰 다시 번역. 게임 화면 출력은 별도 확인 필요.
+- `unrand.txt / skin of Zhor`: 원문에 있는 `you.can_smell()` 조건부 분기를 복원하고 후각 관련 설명 및 원문 의미를 보정.
+- 검사 결과: 원문 고유 키 **3,778/3,778 (100%)**, `review_no_hangul` **0**, Lua 구분자 차이 **6→4**, `review_printf_count` 29, `review_reference_count` 20, 원문 중복 키 3, 추가 한국어 키 260.
+- GitHub Actions: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39984680062
+- 잔여 Lua 경고 4개는 한국어 번역에서 조건문을 추가한 경우로, 삭제보다 원문 충실도·게임 로더 지원 여부를 검토해야 함.
