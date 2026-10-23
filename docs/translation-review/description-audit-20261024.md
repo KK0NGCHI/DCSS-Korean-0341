@@ -117,3 +117,10 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 신규 CI 실행: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39995348343
 - Windows 타일 빌드, 설명창 렌더링, 아이템 분류 전환, 캐릭터 처치 로그는 **아직 직접 실행 검증하지 않음**. 검사 통과는 컴파일/런타임 통과와 별도.
 - `full_inventory_v1.py`의 55,619개는 어휘적 문자열 레코드로, 인게임 미번역 항목 개수가 아님. `visible_candidate` 3,033과 `review_dynamic` 1,591부터 문맥/콜사이트 검증 후 번역.
+
+## 출력 가능 문자열 파일 우선순위 — 정적 스캐너 기준
+- `full_inventory_v1.py`에 `priority_files.csv` 및 `priority_files.json` 생성 기능 추가. 레코드를 실제 게임 출력으로 확정하지 않고, 파일별 `visible_candidate`, `review_dynamic`, `test_marker` 빈도로 정렬.
+- CI https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39995470835 성공.
+- 상위 파일 표본: `player.cc` (visible 160/dynamic 11), `god-abil.cc` (140/22), `spl-summoning.cc` (119/1), `player-equip.cc` (85/12), `beam.cc` (77/10), `ability.cc` (75/7). *이 수치는 번역 누락 수가 아니다.*
+- 표본에서 C++의 작은따옴표(축약형의 apostrophe 포함)가 비정상적으로 긴 문자열로 포획되는 **정규식 오탐 사례 발견**. 예를 들어 문자열 샘플에 코드를 길게 끌고 들어온 항목이 있으므로 파서·문맥 판정을 추가 개선한 뒤 실제 번역 분모로 사용할 것.
+- 새 CI와 기존 설명 감사 및 smoke guard가 성공했으며, C++ 컴파일/게임 실행 검증은 아직 시행되지 않았다.
