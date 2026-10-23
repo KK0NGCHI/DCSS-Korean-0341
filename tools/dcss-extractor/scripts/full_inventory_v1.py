@@ -82,7 +82,7 @@ def main():
             is_desc = rel.startswith("dat/descript/") and file.suffix == ".txt"
             # Only top-level English/Korean files use the description-key format.
             # Other nested files must not inflate coverage statistics.
-            if is_desc and rel.count("/") > 3:
+            if is_desc and file.parent not in {args.source / "dat/descript", args.source / "dat/descript/ko"}:
                 continue
             if is_desc:
                 # English key coverage and translation body are separate properties.
