@@ -206,3 +206,173 @@ HINT_SEEN_FIRST_OBJECT
 아이템의 정보창(<input>$cmd[CMD_DISPLAY_INVENTORY]</input>키)을 띄운 후, 여기서
 <input>$cmd[CMD_DROP]</input>키를 눌러 버릴 수 있습니다.<console></console>
 %%%%
+death random 4
+
+특정 전투가 버겁게 느껴진다면 비상용 아이템을 일찍 사용하는 것을 잊지 마세요. 순간이동 두루마리나 가속 물약이 목숨을 구해 줄 수 있습니다.
+%%%%
+HINT_CONVERT Ashenzari
+
+<w>아셴자리</w>를 숭배하기 시작했습니다. 다른 신과 달리 아셴자리는 저주에만 관심이 있습니다. 던전을 탐험하면 아셴자리가 장비를 벗을 수 없게 만드는 저주를 제안합니다. 저주받은 장비를 많이 착용할수록 기술을 강화하고 다양한 도움을 제공합니다.
+%%%%
+HINT_CONVERT Gozag
+
+<w>고자그</w>를 숭배하기 시작했습니다. 다른 신과 달리 고자그는 오직 금에만 관심이 있습니다. 신성 능력을 사용할 때마다 금이 들며, 죽은 적은 금으로 변합니다.
+%%%%
+HINT_CONVERT Ru
+
+<w>루</w>를 숭배하기 시작했습니다. 루는 특정 기술을 훈련하지 못하게 되거나 손을 영구적으로 잃는 등 되돌릴 수 없는 희생을 바치는 대가로 신앙도를 줍니다. 신앙도가 높을수록 더 강력하고 다양한 능력을 얻습니다. 던전을 탐험하면 새로운 희생을 제안합니다.
+%%%%
+HINT_CONVERT Uskayaw
+
+<w>우스카요</w>를 숭배하기 시작했습니다. 우스카요의 신앙도는 탐험이나 단순한 살육으로 천천히 얻는 것이 아닙니다. 전투 중 적에게 피해를 입히면 빠르게 증가하며, 오래 싸우고 많은 피해를 줄수록 강력한 능력을 얻습니다. 전투가 끝나면 신앙도가 빠르게 사라지므로 다음 전투에서 다시 쌓아야 합니다.
+%%%%
+HINT_CONVERT Yredelemnul
+
+<w>이레데렘눌</w>을 숭배하기 시작했습니다. 다른 신과 달리 이레데렘눌은 영혼에만 관심이 있습니다. 죽은 적들이 당신의 하수인으로 되살아날 수 있고, 이들을 소모해 신의 도움을 요청할 수 있습니다.
+%%%%
+HINT_SEEN_POTION
+
+첫 물약<console>(<w>$item[potion]</w>)</console>을 주웠습니다. <localtiles>물약을 <w>왼쪽 클릭</w>하거나</localtiles><nomouse><w>$cmd[CMD_QUAFF]</w>을 눌러</nomouse><localtiles> <w>$cmd[CMD_QUAFF]</w>을 눌러</localtiles> 마실 수 있습니다.
+
+감정 두루마리를 쓰거나 직접 마셔 물약의 종류를 알아내면 이후 같은 종류의 물약은 모두 구별할 수 있습니다. 그래서 정체를 알아내기 위해 물약을 마시는 것도 때로는 유용합니다.
+%%%%
+HINT_SEEN_SCROLL
+
+첫 두루마리<console>(<w>$item[scroll]</w>)</console>를 주웠습니다. <localtiles>두루마리를 <w>왼쪽 클릭</w>하거나</localtiles><nomouse><w>$cmd[CMD_READ]</w>을 눌러</nomouse><localtiles> <w>$cmd[CMD_READ]</w>을 눌러</localtiles> 읽을 수 있습니다.
+
+감정 두루마리를 사용하거나 직접 읽어 종류를 알아내면 이후 같은 종류의 두루마리는 모두 구별할 수 있습니다. 정체를 알아내려고 직접 읽는 것도 때로는 유용합니다.
+%%%%
+HINT_SEEN_WAND
+
+첫 마법봉<console>(<w>$item[wand]</w>)</console>을 주웠습니다. <localtiles><w>왼쪽 클릭</w>하거나 <w>$cmd[CMD_EVOKE]</w>을 눌러</localtiles><nomouse><w>$cmd[CMD_EVOKE]</w>을 눌러</nomouse> 발동할 수 있습니다.
+
+같은 종류의 마법봉을 더 발견하면 기존 마법봉에 합쳐져 충전 횟수가 늘어납니다.
+%%%%
+HINT_SEEN_SPBOOK
+
+책<console>(<w>$item[book]</w>)</console>을 주웠습니다. 책을 줍는 즉시 그 안의 주문이 주문 도서관에 추가됩니다. <w>$cmd[CMD_MEMORISE_SPELL]</w>로 주문을 암기하고 <w>$cmd[CMD_CAST_SPELL]</w>로 시전할 수 있습니다.
+{{
+    if you.god() == "Trog" then
+        return "하지만 트로그는 마법을 암기하거나 배우는 것을 싫어합니다!"
+    end
+}}
+%%%%
+HINT_SEEN_WEAPON
+
+첫 무기<console>(<w>$item[weapon]</w>)</console>를 주웠습니다. <w>$cmd[CMD_WIELD_WEAPON]</w><localtiles>이나 <w>왼쪽 클릭</w></localtiles>으로 장비할 수 있습니다. 다만 이 무기는 현재 훈련 중인 기술과 다른 무기 기술을 사용할 수도 있습니다. <w>$cmd[CMD_DISPLAY_INVENTORY]</w> 소지품 화면<localtiles>이나 무기를 <w>오른쪽 클릭</w>하여</localtiles> 특성을 확인하세요.
+
+{{
+    if crawl.hints_type() == "berserk" then
+        return "도끼를 계속 사용하는 편이 좋겠지만, 다른 도끼의 강화 수치는 비교해 볼 가치가 있습니다!"
+    end
+}}
+%%%%
+HINT_SEEN_MISSILES
+
+첫 투척 무기 묶음<console>(<w>$item[missile]</w>)</console>을 주웠습니다. 부메랑이나 투척 그물은 손으로 던질 수 있으며 투척 기술이 높을수록 더 효과적입니다. 소지품(<w>$cmd[CMD_DISPLAY_INVENTORY]</w>)에서 <localtiles>물건을 <w>오른쪽 클릭</w>하면</localtiles><nomouse>물건을 선택하면</nomouse> 자세한 정보를 볼 수 있습니다.
+
+{{
+    if crawl.hints_type() == "ranger" then
+        return "이미 원거리 무기 기술을 훈련했으니 굳이 다른 원거리 공격 수단이 필요하지는 않습니다."
+    elseif crawl.hints_type() == "magic" then
+        return "마법을 주력으로 사용한다면 다른 원거리 공격 수단이 꼭 필요하지는 않습니다."
+    else
+        return ""
+    end
+}}
+%%%%
+HINT_SEEN_ARMOUR
+
+첫 방어구<console>(<w>$item[armour]</w>)</console>를 주웠습니다. <localtiles>클릭하여 착용하고 다시 클릭하면 벗습니다. <w>오른쪽 클릭</w>으로 자세한 정보를 볼 수 있습니다.</localtiles><nomouse><w>$cmd[CMD_WEAR_ARMOUR]</w>로 착용하고 <w>$cmd[CMD_REMOVE_ARMOUR]</w>로 벗습니다. <w>$cmd[CMD_DISPLAY_INVENTORY]</w> 소지품에서 특성을 확인할 수 있습니다.</nomouse>
+
+{{
+    if you.get_base_mutation_level("horns") > 0 then
+        return "뿔이 있어서 투구를 쓸 수 없다는 점에 주의하세요. <w>$cmd[CMD_DISPLAY_MUTATIONS]</w>로 변이와 선천적 능력을 확인할 수 있습니다."
+    end
+}}
+%%%%
+HINT_SEEN_JEWELLERY
+
+반지<console>(<w>$item[jewellery]</w>)</console>나 목걸이<console>(<w>$item[amulet]</w>)</console> 같은 장신구를 주웠습니다. <nomouse><w>$cmd[CMD_WEAR_JEWELLERY]</w>로 착용하고 <w>$cmd[CMD_REMOVE_JEWELLERY]</w>로 해제합니다. <w>$cmd[CMD_DISPLAY_INVENTORY]</w> 소지품에서 특성을 확인할 수 있습니다.</nomouse><localtiles>클릭해서 착용하고 다시 클릭해서 벗을 수 있습니다. <w>오른쪽 클릭</w>하면 특성을 확인할 수 있습니다.</localtiles>
+%%%%
+HINT_SEEN_MISC
+
+신기한 물건입니다. <localtiles>클릭하거나 <w>$cmd[CMD_EVOKE]</w> 명령으로</localtiles><nomouse><w>$cmd[CMD_EVOKE]</w> 명령으로</nomouse> 발동해 보면 용도를 알 수 있습니다. <w>$cmd[CMD_DISPLAY_INVENTORY]</w> 소지품 화면에서 선택하면 자세한 정보를 볼 수도 있습니다.
+%%%%
+HINT_SEEN_STAFF
+
+마법 지팡이<console>(<w>$item[magical staff]</w>)</console>를 주웠습니다. 사용하려면 <w>$cmd[CMD_WIELD_WEAPON]</w>으로 손에 들어야 합니다. 마법사는 특정 학파의 주문 위력을 높이기 위해 사용하며 무기로도 쓸 수 있습니다.<localtiles> <w>왼쪽 클릭</w>으로 장비할 수도 있습니다.</localtiles>
+%%%%
+HINT_SEEN_GOLD
+
+처음으로 금화<console>(<yellow>$item[gold]</yellow>)</console>를 주웠습니다. <w>$cmd[CMD_LIST_GOLD]</w>을 누르면 보유한 금의 양을 볼 수 있습니다. 금화는 탐험 도중 발견하는 상점에서 사용합니다.
+%%%%
+HINT_SEEN_STAIRS
+
+이것<console>('$1')</console>은 아래층으로 내려가는 계단입니다. <w>$cmd[CMD_GO_DOWNSTAIRS]</w>로 더 깊은 층에 내려갈 수 있습니다. 돌아올 때는 위층 계단에서 <w>$cmd[CMD_GO_UPSTAIRS]</w>을 누르세요. 계단을 이용한 직후에는 이전에 본 적이 없는 몬스터보다 먼저 행동할 기회가 반드시 주어지며, 이후에는 몬스터가 먼저 움직입니다.
+
+<localtiles>서 있는 계단을 <w>왼쪽 클릭</w>하여 이용할 수도 있습니다.</localtiles>
+%%%%
+HINT_SEEN_ESCAPE_HATCH
+
+이것<console>('$1')</console>은 탈출구입니다. 계단처럼 <w>$cmd[CMD_GO_UPSTAIRS]</w> 또는 <w>$cmd[CMD_GO_DOWNSTAIRS]</w><localtiles>이나 <w>왼쪽 클릭</w></localtiles>으로 이용합니다. 하지만 계단과 달리 일방통행이므로 내려가기 전에 주의하세요.
+%%%%
+HINT_SEEN_BRANCH
+
+이것<console>('$1')</console>은 다른 던전 분기로 통하는 입구입니다. 분기마다 지형과 몬스터가 다르고 다른 분기로 가는 입구가 있을 수도 있습니다. <localtiles>해당 칸에 마우스를 올리거나</localtiles><nomouse><w>$cmd[CMD_LOOK_AROUND]</w>으로 커서를 옮겨</nomouse> 입구를 자세히 살펴보세요.
+
+어떤 분기는 현재보다 안전하고 보상이 풍부하지만, 더 강해진 다음에 방문해야 할 만큼 위험한 곳도 있습니다.
+%%%%
+HINT_SEEN_PORTAL
+
+이것<console>('$1')</console>은 추가 위험을 감수하는 대신 보물을 얻을 수 있는 선택형 지역의 차원문입니다. 들어가지 않아도 불이익은 없지만 시간이 지나면 사라지므로 지금 도전할지 결정해야 합니다.
+%%%%
+HINT_SEEN_BAZAAR_PORTAL
+
+이것<console>('$1')</console>은 상점들이 모인 차원 시장으로 이어지는 차원문입니다. 곧 사라지니 들어가려면 서두르세요.
+%%%%
+HINT_SEEN_PORTAL_2
+
+계단을 이용하듯 차원문 위에서 <localtiles><w>클릭</w>하거나 </localtiles><w>$cmd[CMD_GO_DOWNSTAIRS]</w>을 눌러 들어갈 수 있습니다. 돌아오려면 <tiles>비슷하게 생긴 차원문을 찾으세요.</tiles><console>다른 $1을 찾으세요. 처음 서 있던 오래된 석조 아치는 출구가 아닙니다!</console>
+%%%%
+HINT_STAIR_BRAND
+
+<tiles>계단 칸의 작은 표시는 그 자리에 확인할 만한 물건이 있다는 뜻입니다.</tiles><console>계단이나 탈출구 위에 물건이 있다면 물건 기호로 계단을 가리는 대신 <w><<</w> 또는 <w>></w> 기호를 강조 표시합니다.</console>
+%%%%
+HINT_HEAP_BRAND
+
+<tiles>물건 칸의 작은 표시는 같은 자리에 확인할 만한 물건이 하나 이상 더 있다는 뜻입니다.</tiles><console>한 칸에 물건이 2개 이상 있으면 칸이 강조되고 맨 위 물건의 기호가 표시됩니다.</console>
+%%%%
+HINT_TRAP_BRAND
+
+<console>함정 위에 물건이 있다면 물건 기호로 함정을 가리는 대신 <w>^</w> 기호를 강조 표시합니다.</console>
+%%%%
+HINT_SEEN_TRAP
+
+방금 함정을 발견했습니다. 던전을 돌아다니다 보면 이런 위험한 장치가 종종 나타납니다.
+%%%%
+HINT_SEEN_ALTAR
+
+이것<console>($1)</console>은 제단입니다. <localtiles>마우스로 <w>오른쪽 클릭</w>하거나</localtiles><nomouse><w>$cmd[CMD_LOOK_AROUND]</w>으로 제단을 선택한 다음 <w>$cmd[CMD_TARGET_DESCRIBE]</w>을 누르면</nomouse> 간단한 설명을 볼 수 있습니다.
+
+제단 위에서 <w>$cmd[CMD_GO_UPSTAIRS]</w> 또는 <w>$cmd[CMD_GO_DOWNSTAIRS]</w>을 누르면 해당 신의 정보를 읽거나 신앙을 받아들일 수 있습니다. 개종하기 전에는 확인을 요청합니다.
+
+{{
+    if you.god() == "No God" and crawl.hints_type() == "magic" then
+        return "초보 파괴술사에게는 베후멧이 가장 간단한 선택일 수 있지만 시프 무나를 비롯한 다른 신들도 좋은 선택입니다."
+    end
+}}
+%%%%
+HINT_SEEN_SHOP
+
+이것<console>($1)</console>은 상점입니다. 상점 칸에서 <w>$cmd[CMD_GO_UPSTAIRS]</w>이나 <w>$cmd[CMD_GO_DOWNSTAIRS]</w><tiles> 또는 <w>왼쪽 클릭</w></tiles>으로 입장합니다.
+
+갖고 싶지만 돈이 부족한 물건은 <w>Shift</w>와 해당 문자를 눌러 구매 목록에 등록하세요. 구매할 만큼 금화를 모으면 게임이 알려 줍니다.
+%%%%
+HINT_SEEN_DOOR
+
+이것<console>($1)</console>은 닫힌 문입니다. 문 쪽으로 이동하면 열 수 있습니다. 문을 다시 닫는 것도 때로는 유용합니다. <nomouse>인접한 자리에서 <w>$cmd[CMD_CLOSE_DOOR]</w>을 누르세요. 문이 여러 개라면 방향을 지정해야 합니다.</nomouse><localtiles>문 옆에서 문을 클릭하세요.</localtiles>
+%%%%
+HINT_SEEN_RUNED_DOOR
+
+이것<console>($1)</console>은 룬이 새겨진 문으로, 뒤에 특별히 위험한 무언가가 있을 가능성이 큽니다. 몬스터는 절대로 이 문을 열지 않습니다. 당신이 열면 룬이 깨지고 평범한 문이 됩니다.
