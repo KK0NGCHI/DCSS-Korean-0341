@@ -102,6 +102,14 @@ def main():
     }
     (args.output / "summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({k:v for k,v in summary.items() if k!="files"},ensure_ascii=False,indent=2))
+    # Stable, text-only list of actionable review candidates in CI logs.
+    report = args.output / "issues.csv"
+    with report.open(encoding="utf-8-sig", newline="") as src:
+        candidates = [row for row in csv.DictReader(src)
+                      if row["category"] in ("review_no_hangul", "duplicate_english_key",
+                                              "review_lua_delimiter")]
+    print("PRIORITY REVIEW CANDIDATES:")
+    print(json.dumps(candidates, ensure_ascii=False, indent=2))
     if summary["missing_korean_files"]: raise SystemExit(2)
 
 if __name__ == "__main__": main()
