@@ -18,6 +18,7 @@ EXT = {".cc", ".cpp", ".c", ".h", ".hpp", ".lua", ".des"}
 EXCLUDE_PARTS = {"contrib", "android-project", "rltiles", "build", ".git",
                  "node_modules", "__pycache__", "obj", "deps"}
 STRINGS = re.compile(r'(?:"(?:\\.|[^"\\])*"|\x27(?:\\.|[^\x27\\])*\x27)', re.S)
+DOUBLE_STRINGS = re.compile(r'"(?:\\\\.|[^"\\\\])*"', re.S)
 SINKS = re.compile(r'\b(?:mprf?|cprintf|yesnoquit|yesno|crawl\.mpr|crawl\.tutorial_msg|print|text|add_child|set_text)\s*\(')
 FMT = re.compile(r'%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]')
 
@@ -113,7 +114,8 @@ def main():
                 continue
             # This scanner is intentionally lexical: comments/char literals may
             # be false positives, and raw C++ strings may be missed.
-            for match in STRINGS.finditer(text):
+            pattern = STRINGS if file.suffix.lower() in {".lua", ".des"} else DOUBLE_STRINGS
+            for match in pattern.finditer(text):
                 literal = match.group()
                 if len(literal) < 5 or not re.search(r"[A-Za-z]{3}", literal):
                     continue
