@@ -428,8 +428,8 @@ static void _choose_char(newgame_def& ng, newgame_def& choice,
     // Apologies to non-public servers.
     if (ng.type == GAME_TYPE_NORMAL || ng.type == GAME_TYPE_DESCENT)
     {
-        if (!yesno("Trunk doesn't count for the tournament, you want "
-                   TOURNEY ". Play trunk anyway? (Y/N)", false, 'n'))
+        if (!yesno(""개발 버전은 대회 기록에 포함되지 않아. "
+                   TOURNEY ". 그래도 개발 버전으로 진행할까? (Y/N)", false, 'n'))
         {
             game_ended(game_exit::abort);
         }
@@ -1113,27 +1113,27 @@ static void _construct_species_menu(const newgame_def& ng,
 static job_group jobs_order[] =
 {
     {
-        "Warrior",
+        "전사",
         coord_def(0, 0), 20,
         { JOB_FIGHTER, JOB_GLADIATOR, JOB_MONK, JOB_HUNTER, JOB_BRIGAND }
     },
     {
-        "Zealot",
+        "광신도",
         coord_def(0, 6), 25,
         { JOB_BERSERKER, JOB_CINDER_ACOLYTE, JOB_CHAOS_KNIGHT }
     },
     {
-        "Adventurer",
+        "모험가",
         coord_def(1, 0), 20,
         { JOB_ARTIFICER, JOB_SHAPESHIFTER, JOB_WANDERER, JOB_DELVER, }
     },
     {
-        "Warrior-mage",
+        "마법 전사",
         coord_def(1, 5), 26,
         { JOB_WARPER, JOB_HEXSLINGER, JOB_ENCHANTER, JOB_REAVER }
     },
     {
-        "Mage",
+        "마법사",
         coord_def(2, 0), 22,
         { JOB_HEDGE_WIZARD, JOB_CONJURER, JOB_SUMMONER, JOB_NECROMANCER,
           JOB_FORGEWRIGHT, JOB_FIRE_ELEMENTALIST, JOB_ICE_ELEMENTALIST,
@@ -1699,7 +1699,7 @@ static void _construct_weapon_menu(const newgame_def& ng,
         if (wpn_type == WPN_UNARMED)
         {
             choices.emplace_back(SK_UNARMED_COMBAT,
-                        species::has_claws(ng.species) ? "claws" : "맨손");
+                        species::has_claws(ng.species) ? "claws" : "unarmed");
         } else {
             string text = weapon_base_name(wpn_type);
             item_def dummy;
@@ -2202,7 +2202,7 @@ static void _prompt_gamemode_map(newgame_def& ng, newgame_def& ng_choice,
     welcome.textcolour(BROWN);
     welcome.cprintf("%s\n", _welcome(ng).c_str());
     if (Options.seed_from_rc)
-        welcome.cprintf("Custom seed: %" PRIu64 "\n", Options.seed_from_rc);
+        welcome.cprintf("사용자 지정 시드: %" PRIu64 "\n", Options.seed_from_rc);
 
     welcome.textcolour(CYAN);
     welcome.cprintf("\nYou have a choice of %s:",
@@ -2316,7 +2316,7 @@ static void _choose_gamemode_map(newgame_def& ng, newgame_def& ng_choice,
     const mapref_vector maps = find_maps_for_tag(type_name);
 
     if (maps.empty())
-        end(1, true, "No %s maps found.", type_name.c_str());
+        end(1, true, "%s 지도를 찾을 수 없어.", type_name.c_str());
 
     if (ng_choice.map.empty())
     {
