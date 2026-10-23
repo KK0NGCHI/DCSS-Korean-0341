@@ -211,7 +211,11 @@ Lear's hauberk
 %%%%
 skin of Zhor
 
-어떤 희귀한 동물의 가죽이다. 이상한 냄새가 나는 것 같다.
+{{ 
+    if you.can_smell() then
+        return "냄새가 나는 "
+    end
+}}낯선 동물의 가죽이다. 춥고 먼 땅에 사는 동물로, 고향의 냉기를 뿜어낸다.
 %%%%
 salamander hide armour
 
