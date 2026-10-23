@@ -1,0 +1,26 @@
+name: Korean C++ smoke-marker guard
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/message.cc'
+      - 'source/invent.cc'
+      - 'source/describe.cc'
+      - '.github/workflows/korean-smoke-guard.yml'
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject old smoke overrides
+        run: |
+          if grep -nF '[KO TEST]' source/message.cc source/invent.cc source/describe.cc; then
+            echo 'Old KO smoke text found: do not alter user-facing text to test Korean rendering.'
+            exit 1
+          fi
+          echo 'No KO TEST overrides in core message, inventory, description paths.'
+      - name: Verify intentional Korean menu labels
+        run: |
+          grep -qF '장비 칸 %d/%d' source/invent.cc
+          grep -qF '버릴 아이템 선택' source/invent.cc
+          grep -qF '<w>설명</w>|인용문' source/describe.cc
