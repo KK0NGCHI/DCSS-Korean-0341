@@ -138,6 +138,35 @@ def main():
                      literal=literal[:4000], status=status, reason=reason,
                      source_sha256=digest)
                 units += 1
+    # Per-file candidate density and representative output strings for triage.
+    ranked = {}
+    with output.open(encoding="utf-8-sig", newline="") as inp:
+        for row in csv.DictReader(inp):
+            if row["status"] not in ("visible_candidate", "review_dynamic", "test_marker"):
+                continue
+            path = row["path"]
+            if path not in ranked:
+                ranked[path] = {"path": path, "visible_candidate": 0,
+                                "review_dynamic": 0, "test_marker": 0,
+                                "samples": []}
+            item = ranked[path]
+            item[row["status"]] += 1
+            if len(item["samples"]) < 4 and row["status"] in ("visible_candidate", "test_marker"):
+                item["samples"].append({"line": row["line"],
+                                        "status": row["status"],
+                                        "literal": row["literal"][:160]})
+    ranked_files = sorted(ranked.values(),
+                          key=lambda row: (-row["visible_candidate"], -row["review_dynamic"], row["path"]))
+    (args.output / "priority_files.json").write_text(
+        json.dumps(ranked_files, ensure_ascii=False, indent=2) + "\\n",
+        encoding="utf-8")
+    with (args.output / "priority_files.csv").open("w", newline="", encoding="utf-8-sig") as priority:
+        w = csv.DictWriter(priority, ["path", "visible_candidate", "review_dynamic", "test_marker"])
+        w.writeheader()
+        w.writerows({k: row[k] for k in w.fieldnames} for row in ranked_files)
+    print("TOP 25 CANDIDATE FILES:")
+    print(json.dumps(ranked_files[:25], ensure_ascii=False, indent=2))
+
     summary = {
         "batch": "FULL-INVENTORY-001", "source": str(args.source),
         "files_scanned": files, "rows": units, "status_counts": dict(counts),
