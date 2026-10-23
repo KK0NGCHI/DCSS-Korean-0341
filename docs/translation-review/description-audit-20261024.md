@@ -103,3 +103,17 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 전체 조사 결과: 읽은 파일 **1,341**, 추출 레코드 **55,619**, 파일 읽기 오류 **0**. 분류: C++/Lua/DES 등 `visible_candidate` 3,033, `review_dynamic` 1,591, `review_unknown` 35,439, `internal_candidate` 8,126, `comment_candidate` 3,626, `test_marker` 23, 설명 원문 레코드 `review_translation_present` 3,781. `translation_missing_key` 0.
 - 모든 분류는 **문자열의 어휘적 후보**이며 실제 화면 출력, 정확한 번역 단위 수, 누락 번역 0건을 입증하는 검사는 아님. 특히 `review_unknown`은 미번역 확정이 아니다.
 - 다음 우선순위: `visible_candidate`와 `review_dynamic`의 실제 C++/Lua 출력 근거 확인, `[KO TEST]` 스모크 잔재 조사, 원문과 한국어 런타임 연결 확인.
+
+## 2026-10-24 C++ 출력부 초기 정리 (다음 단계 착수)
+
+### 실제 소스 변경
+- `source/invent.cc`: 표시 문자열을 강제 접두하는 `[KO TEST]` 코드를 삭제하고, 장비 칸(`%d/%d`), 소지품 카테고리 제목, 카테고리 전환 및 버리기 목록 제목을 한국어 문구로 교체. 기존 포맷 인자는 유지.
+- `source/message.cc`: `_mpr()`에서 모든 `You kill ...` 메시지를 하나의 `[KO TEST]` 문구로 덮어쓰는 조건문을 제거. 이 조치는 올바른 몬스터별 메시지를 복구하지만 **영어 원문을 자동으로 번역하지는 않음**.
+- `source/describe.cc`: 아이템·몬스터 설명창에 강제로 표시하던 `[KO TEST]` 문구 3개 제거, 설명/인용문 탭 제목을 한국어로 변경.
+- `.github/workflows/korean-smoke-guard.yml`: 위 세 파일에 시험 마커가 다시 나타나지 않도록 CI에서 확인.
+
+### 검증 수준과 남은 작업
+- 연결을 통해 실제 코드의 변경 내용·시험 마커 제거 여부를 재확인.
+- 신규 CI 실행: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39995348343
+- Windows 타일 빌드, 설명창 렌더링, 아이템 분류 전환, 캐릭터 처치 로그는 **아직 직접 실행 검증하지 않음**. 검사 통과는 컴파일/런타임 통과와 별도.
+- `full_inventory_v1.py`의 55,619개는 어휘적 문자열 레코드로, 인게임 미번역 항목 개수가 아님. `visible_candidate` 3,033과 `review_dynamic` 1,591부터 문맥/콜사이트 검증 후 번역.
