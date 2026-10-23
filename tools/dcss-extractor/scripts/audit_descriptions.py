@@ -13,7 +13,8 @@ from pathlib import Path
 DELIMITER = re.compile(r"^%%%%[ \t]*$", re.M)
 KOREAN = re.compile(r"[가-힣]")
 REFERENCE = re.compile(r"<([A-Za-z_][^<>\n]*)>")
-PURE_REFERENCE = re.compile(r"^\\s*<(?!/?(?:w|c|color|light|dark|green|red|blue|yellow)\\b)[^<>\\n]+>\\s*$", re.I)\nPRINTF = re.compile(r"%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]")
+PURE_REFERENCE = re.compile(r"^\\s*<(?!/?(?:w|c|color|light|dark|green|red|blue|yellow)\\b)[^<>\\n]+>\\s*$", re.I)
+PRINTF = re.compile(r"%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]")
 
 def parse(path):
     text = path.read_text(encoding="utf-8-sig")
