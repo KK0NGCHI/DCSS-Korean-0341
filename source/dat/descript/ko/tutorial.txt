@@ -172,11 +172,7 @@ tutorial2 melee
 %%%%
 tutorial2 resting
 
-잘하셨습니다! 전투 중에 잃어버린 체력을 보충하려면
-<input>$cmd[CMD_REST]</input> 키를 이용해서 휴식을 취하면 됩니다. 이 기능은
-100턴동안 휴식을 취하면서 주변에 숨겨진 함정이나 비밀문이 있나 탐색을
-시행합니다. 휴식을 멈춰야 할 정도의 일이 발생하면 100턴이 지나지 않았더라도
-도중에 휴식을 멈춥니다.
+좋습니다! <input>$cmd[CMD_REST]</input> 명령으로 휴식하면 체력을 회복할 수 있습니다.<localtiles> 미니맵 아래 명령 패널의 '휴식' 버튼을 클릭해도 됩니다.</localtiles> 체력이 모두 회복될 때까지 휴식하며, 중요한 일이 발생하면 중단됩니다.
 %%%%
 tutorial2 wait
 
@@ -479,12 +475,7 @@ tutorial4 undead
 %%%%
 tutorial4 spell_success
 
-당신이 익힌 주문들의 세부사항을 확인하고 싶으시다면,
-<input>$cmd[CMD_DISPLAY_SPELLS]</input>키를 누르시거나, 혹은 우측 마법 아이콘에
-<input>마우스 커서를 올리는 것</input>으로, 해당 주문의 대략적인 소개와 만복도
-소모, 마법의 효율, 실패 확률 등을 알 수 있습니다. 이 ‘마법사의 지팡이’는 주문
-실패 확률을 감소시켜주는 기능을 가지고 있습니다. 지팡이를 착용해보시고, 실패
-확률이 낮아진 것을 확인해보세요.
+주문 숙련도와 실패 확률을 확인하려면 <input>$cmd[CMD_DISPLAY_SPELLS]</input> 명령을 사용하세요.<localtiles> 외운 주문 위에 마우스 커서를 올려 확인할 수도 있습니다.</localtiles> 이 반지를 착용하기 전과 후의 주문 실패 확률을 비교해 보세요.
 %%%%
 tutorial4 mephitic_cloud
 
@@ -519,10 +510,7 @@ tutorial4 forget_spell
 %%%%
 tutorial4 memorise2
 
-새로운 주문을 익히는 방법을 아직도 모르지는
-않으시겠죠?<input>$cmd[CMD_MEMORISE_SPELL]</input>키나 마법서 아이콘을 클릭한
-후, 새로 얻은 마법서에 들어 있는 주문을 익혀봅시다. 그리고 당신의 해골 군단을
-일으켜 보도록 합시다!
+새 주문을 외울 공간을 확보하려면 기존 주문 하나를 잊어야 합니다. 그런 다음 <input>$cmd[CMD_MEMORISE_SPELL]</input> 명령으로 새 주문을 외우세요.<localtiles> 주문 암기 탭에서 해당 주문을 클릭해도 됩니다.</localtiles> 새 주문을 사용해 악마 아군을 소환해 보세요!
 %%%%
 tutorial4 displace_allies
 
@@ -655,21 +643,21 @@ tutorial5 tutorial_end
 tutorial5 exit
 
 :nowrap
-<yellow>신앙 관련 명령어</yellow>
-  <input>$cmd[CMD_PRAY]</input>  제단에서 사용하여 신을 믿거나, 시체를 바칠 때 사용합니다.
-  <input>$cmd[CMD_USE_ABILITY]</input>  권능을 사용할 때 사용합니다.
-  <input>$cmd[CMD_DISPLAY_RELIGION]</input>  현재 신앙도 등을 볼 때 사용합니다.<localtiles>
-  캐릭터에 <input>오른쪽 마우스버튼</input>을 클릭해서 볼 수도 있습니다.</localtiles>
+<white>튜토리얼 5 요약: 신앙</white>
+
+<yellow>신앙 관련 명령</yellow>
+  <input>$cmd[CMD_GO_DOWNSTAIRS]</input>  제단에서 신을 믿기 시작하기
+  <input>$cmd[CMD_USE_ABILITY]</input>  신성 능력 사용
+  <input>$cmd[CMD_DISPLAY_RELIGION]</input>  신앙 상태 확인<localtiles>
+  플레이어 칸을 <input>마우스 오른쪽 버튼으로 클릭</input>해도 신앙 화면을 열 수 있습니다.</localtiles>
 
 <yellow>휴식</yellow>
-  <input>$cmd[CMD_WAIT]</input>  1턴동안 휴식하면서 주변을 살핍니다.
-  <input>$cmd[CMD_REST]</input>  100턴동안 휴식하면서 주변을 살핍니다.
+  <input>$cmd[CMD_WAIT]</input>  1턴 대기하고 휴식
+  <input>$cmd[CMD_REST]</input>  최대 100턴 대기하고 휴식
 
-<yellow>기타 명령어</yellow>
-  <input>$cmd[CMD_DISPLAY_OVERMAP]</input>  던전의 전체적인 구성을 표시합니다.
-  <input>$cmd[CMD_DISPLAY_COMMANDS]/</input>  게임 내의 모든 요소에 대한 설명을 볼 수 있습니다.
-
-                                 <cyan><input>아무 버튼</input>이나 누르세요...</cyan>
+<yellow>기타 명령</yellow>
+  <input>$cmd[CMD_DISPLAY_OVERMAP]</input>  던전 전체 지도 보기
+  <input>$cmd[CMD_DISPLAY_COMMANDS]/</input>  설명 데이터베이스 검색
 %%%%
 tutorial death
 
