@@ -81,3 +81,8 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - CI: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39987043048 — 성공.
 - 참조 태그 개수 차이 20→17건. 잔여는 단순 개수 불일치와 실제 의미/태그 파손을 분리하여 검토할 것.
 - 모든 수정은 정적 원문 대조이며 게임 내 튜토리얼 흐름 실행 검증은 별도.
+
+## 2026-10-24 튜토리얼 번역 교정 추가
+- 원문과 대조하여 `tutorial2 throwing`(다트→부메랑), `tutorial3 ego_weapon`(무기 휘둘러 식별→바닥에 올라가면 식별), `tutorial4 resting_reminder`(해골→독 저항 임프), `tutorial4 undead`(불필요한 정보 교정), `tutorial1 autoexplore`(타일 버튼 안내), `tutorial2 wait`(타일 대기 조작), `tutorial3 go_shopping`(영어 잔존·검색 절차)의 7개 항목을 수정했다.
+- Actions: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39988155421 성공. 참조 구문 개수 차이 **17→11건**. 설명 고유 키 대응 3,778/3,778 유지.
+- 본문 내용은 정적 원문 대조만 완료했으며 튜토리얼 런타임 실행 여부는 아직 검증하지 않았다.
