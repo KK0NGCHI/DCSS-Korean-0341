@@ -5582,3 +5582,83 @@ VISUAL:@The_monster@이(가) @at_foe/around@ 불안한 눈길을 보내.
 @The_monster@이(가) 말해. "나도 오크, 너도 오크. 뭐 어때."
 @The_monster@이(가) @subjective@은(는) 너에게 무언가 말하려다 그만둬.
 @The_monster@이(가) @_mutters_@. "이 일이 끝나면 버섯 농장을 차릴 거야."
+%%%%
+_hell_lord_taunt_
+
+@The_monster@이(가) @to_foe@ @says@. "@demon_taunt@"
+%%%%
+_demon_taunt_
+
+@The_monster@이(가) @to_foe@ @says@. "@demon_taunt@"
+%%%%
+_says_imp_taunt_
+
+@The_monster@이(가) @to_foe@ @says@. "@imp_taunt@"
+%%%%
+Xom Crazy Yiuf
+
+@The_monster@이(가) 말해. "성찰하지 않는 삶은 살 가치가 없어."
+@The_monster@이(가) 말해. "내 목표는 간단해. 우주가 왜 지금과 같은 모습이고, 왜 존재하는지를 완전히 이해하는 것이지."
+@The_monster@이(가) 말해. "세상의 영원한 수수께끼는 우리가 세상을 이해할 수 있다는 사실인지도 몰라."
+@The_monster@이(가) 말해. "잠든 이를 깨우는 것과, 깨어 있다는 꿈을 꾸는 이를 깨우는 것 중 무엇이 더 어려울까?"
+@The_monster@이(가) 말해. "모두가 같은 신을 섬기지만 사람은 저마다 달라."
+@The_monster@이(가) 말해. "권태 앞에서는 신들조차 헛되이 발버둥 치지."
+@The_monster@이(가) 말해. "내게 신성하거나 불경한 사실이란 없어. 난 과거에 얽매이지 않고 끝없이 실험하는 탐구자일 뿐이야."
+@The_monster@이(가) 말해. "현재는 모든 과거가 낳은 필연적인 자식이자 모든 미래의 어머니야."
+@The_monster@이(가) 말해. "이성이란 영혼 안에 있는 놀랍고 불가해한 본능에 불과해."
+@The_monster@이(가) 말해. "이성으로 깨우침을 바라면서, 이성이 어느 쪽으로 기울어야 하는지 미리 정해 놓다니 지극히 터무니없는 일이야."
+@The_monster@이(가) 말해. "진정한 현실은 그곳에 있지만, 그 현실에 관해 네가 '안다'고 하는 모든 것은 네 마음속에 있어. 그걸 어떻게 다룰지는 네 마음이지."
+VISUAL:@The_monster@이(가) 변증법적 유물론을 고찰해.
+VISUAL:@The_monster@이(가) 실존적 딜레마를 곰곰이 생각해.
+VISUAL:@The_monster@이(가) @possessive@ 망토 아래에 메모를 뒤적여.
+VISUAL:@The_monster@이(가) 생각에 잠겨 깊이 한숨 쉬어.
+%%%%
+confused Crazy Yiuf
+
+@The_monster@이(가) 말해. "수염이 미치도록 가렵군!"
+@The_monster@이(가) 말해. "창문을 열어 놓고 왔던가?"
+VISUAL:@The_monster@이(가) @possessive@ 머리를 생각에 잠겨 긁적여.
+@The_monster@이(가) 말해. "내 안경 못 봤어?"
+@The_monster@이(가) 말해. "저녁엔 양고기를 먹어 볼까."
+@The_monster@이(가) 말해. "오, 이거 꽤 좋군."
+@The_monster@이(가) 말해. "내 망토 못 봤어?"
+@The_monster@이(가) 웃어.
+VISUAL:@The_monster@이(가) @possessive@ 손가락으로 무언가를 세어.
+@The_monster@이(가) 말해. "어이쿠, 머리가 빙글빙글 도는군!"
+@The_monster@이(가) 말해. "기분이 참 이상해."
+%%%%
+_crazy_yiuf_speech_
+
+w:300
+@The_monster@이(가) @_crazy_yiuf_speech_verbs_@. "@_crazy_yiuf_sentence_@"
+VISUAL:@The_monster@이(가) 너를 향해 @possessive@ 육척봉을 흔들어. @player_only@
+@The_monster@이(가) 외쳐. "너 다리 아래 부서진 노래, 맞아?"
+VISUAL:@The_monster@이(가) 사납게 노려봐.
+VISUAL:@The_monster@이(가) 제자리에서 빙글빙글 돌아.
+VISUAL:@The_monster@이(가) @possessive@ 망토를 펄럭여.
+@The_monster@이(가) 말해. "미쳤다고? 미쳤어!? 호저!"
+@The_monster@이(가) 노래해. "나무, 나무, 나무, 서커스!"
+w:2
+@The_monster@이(가) 말해. "난 미치지 않았어!"
+w:2
+@The_monster@이(가) 말해. "이 세상에 살면서 미치지 않을 수 있는 사람이 어디 있어?"
+%%%%
+_crazy_yiuf_speech_verbs_
+
+w:20
+말해
+훌쩍거려
+외쳐
+웃어
+비명을 질러
+고함쳐
+이를 악물고 말해
+%%%%
+_crazy_yiuf_sentence_
+
+w:2
+@_crazy_yiuf_wordlist1_@! @_crazy_yiuf_wordlist1_@ @_crazy_yiuf_wordlist2_@ @_crazy_yiuf_wordlist2_@.
+w:6
+@_crazy_yiuf_wordlist1_@ @_crazy_yiuf_wordlist2_@ @_crazy_yiuf_wordlist2_@!
+w:2
+@_crazy_yiuf_wordlist1_@!
