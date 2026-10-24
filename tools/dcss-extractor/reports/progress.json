@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "DCSS-0.34.1-KO",
-  "updated_at": "2026-10-24",
+  "updated_at": "2026-10-25",
   "tracking_ref": "main",
   "reference_source": "C:/DCSS-Dev/stone_soup-0.34.1/source",
   "integration_source": "C:/DCSS-Dev/stone_soup-0.34.1-ko/source",
@@ -31,7 +31,7 @@
     },
     "03": {
       "status": "in_progress",
-      "detail": "23 description pairs plus 23 source text databases. Four Korean overlays: godname 23, monspell 245, monspeak 629, wpnnoise 65 matched unique source keys. Top-level source databases still contain mixed Korean/English."
+      "detail": "23 description pairs and 23 top-level text databases; Korean DB overlays now 7 files: godname, monspell, monspeak, wpnnoise, godspeak, miscast, shout (PR #20 merged). Some source databases already contain mixed Korean/English."
     },
     "04": {
       "status": "in_progress",
@@ -43,7 +43,7 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "P0 C++ messages integrated; monspell 245 text-bearing entries translated (17 alias/__NONE); monspeak 629/731; wpnnoise 65/65 unique source keys matched. Windows Tiles, Lua emitted dialogue and dynamic grammar not fully tested.. 87 reference-only and 15 no-output source keys need no independent Korean text overlay."
+      "detail": "PR #20 merged: godspeak 139 Korean overlay keys / 402 message variants; miscast 33/33 source keys / 193 variants; shout Polyphemus 1 key. Prior monspeak 629 (remaining 87 aliases + 15 silent), monspell 245 (remaining 12 aliases + 5 silent), wpnnoise 65/65. Broader database translation and in-game Korean grammar QA remain."
     },
     "07": {
       "status": "in_progress",
@@ -288,6 +288,21 @@
       "report": "docs/translation-review/wpnnoise-complete-20261024.md",
       "quality_status": "all_source_keys_present_structural_audit_passed",
       "limitations": "Coverage tracks source-key presence, not all actual composed Korean weapon speeches. Inline Lua, mixed dynamic phrases, Windows Tiles font and full in-game playback require separate tests."
+    },
+    "pr20_database_translation": {
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/20",
+      "merged_commit": "364bb9776a7e7a13fa5c56a84ac9b6144701fe17",
+      "merged": true,
+      "source_head": "39d58c27a5e14e96c791ba0aca031712dfdab422",
+      "godspeak_localized_keys": 139,
+      "godspeak_translated_variants": 402,
+      "miscast_source_keys": 33,
+      "miscast_localized_keys": 33,
+      "miscast_variants": 193,
+      "shout_new_localized_keys": 1,
+      "static_audit": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40110095562",
+      "linux_db_loading": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40110095554",
+      "limitations": "Automated static and headless Korean DB loading passed; Windows Tiles actual gameplay, text composition, Korean particles and dynamic Lua substitutions not verified."
     }
   },
   "current_qa_work": {
