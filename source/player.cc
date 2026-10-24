@@ -4519,7 +4519,7 @@ bool poison_player(int amount, string source, string source_aux, bool force)
     if (you.duration[DUR_POISONING] > old_value)
     {
         if (poison_is_lethal() && !was_fatal)
-            mprf(MSGCH_DANGER, "You are lethally poisoned!");
+            mprf(MSGCH_DANGER, "치명적인 독에 중독됐어!");
         else
         {
             mprf(MSGCH_WARN, "You are %spoisoned.",
@@ -4683,7 +4683,7 @@ void reduce_player_poison(int amount)
         you.duration[DUR_POISONING] = 0;
         you.props.erase(POISONER_KEY);
         you.props.erase(POISON_AUX_KEY);
-        mprf(MSGCH_RECOVERY, "You are no longer poisoned.");
+        mprf(MSGCH_RECOVERY, "독에서 벗어났다.");
     }
 
     you.redraw_hit_points = true;
@@ -4786,7 +4786,7 @@ bool miasma_player(actor *who, string source_aux)
 
     if (you.duration[DUR_DIVINE_STAMINA] > 0)
     {
-        mpr("Your divine stamina protects you from the miasma!");
+        mpr("신성한 활력이 독기를 막아 줬다!");
         return false;
     }
 
@@ -4852,7 +4852,7 @@ void dec_sticky_flame_player(int delay)
 
     if (feat_is_water(env.grid(you.pos())))
     {
-        mprf(MSGCH_RECOVERY, "You dip into the water, and the flames go out!");
+        mprf(MSGCH_RECOVERY, "물에 몸을 담그자 불길이 꺼졌다!");
         end_sticky_flame_player();
         return;
     }
@@ -4875,7 +4875,7 @@ void dec_sticky_flame_player(int delay)
 
     if (you.duration[DUR_STICKY_FLAME == 0])
     {
-        mprf(MSGCH_RECOVERY, "The liquid fire finally exhausts itself.");
+        mprf(MSGCH_RECOVERY, "액체 불꽃이 마침내 사그라들었다.");
         end_sticky_flame_player();
     }
 }
@@ -4897,11 +4897,11 @@ void shake_off_sticky_flame()
     // (20 aut is picked fairly arbitrarily to include even most slowed actions)
     if (dur <= 20)
     {
-        mprf(MSGCH_RECOVERY, "You shake off the liquid fire.");
+        mprf(MSGCH_RECOVERY, "몸에 붙은 액체 불꽃을 털어 냈다.");
         end_sticky_flame_player();
     }
     else
-        mpr("You shake off some of the fire as you move.");
+        mpr("움직이면서 불꽃 일부를 털어 냈다.");
 }
 
 // End the sticky flame status entirely
@@ -4918,9 +4918,9 @@ void silence_player(int turns)
     ASSERT(!crawl_state.game_is_arena());
 
     if (you.duration[DUR_SILENCE])
-        mpr("You feel your silence will last longer.");
+        mpr("침묵이 더 오래 지속될 것 같아.");
     else
-        mpr("An unnatural silence engulfs you.");
+        mpr("부자연스러운 침묵이 당신을 감싼다.");
 
     you.increase_duration(DUR_SILENCE, turns, 30);
 
@@ -4939,7 +4939,7 @@ bool slow_player(int turns)
 
     if (you.stasis())
     {
-        mpr("Your stasis prevents you from being slowed.");
+        mpr("정지 효과가 둔화를 막아 줬다.");
         return false;
     }
 
@@ -4949,13 +4949,13 @@ bool slow_player(int turns)
     int threshold = haste_mul(100);
 
     if (you.duration[DUR_SLOW] >= threshold * BASELINE_DELAY)
-        mpr("You already are as slow as you could be.");
+        mpr("이미 더는 느려질 수 없을 만큼 느려.");
     else
     {
         if (you.duration[DUR_SLOW] == 0)
-            mprf(MSGCH_WARN, "You feel yourself slow down.");
+            mprf(MSGCH_WARN, "몸이 느려지는 것 같아.");
         else
-            mprf(MSGCH_WARN, "You feel as though you will be slow longer.");
+            mprf(MSGCH_WARN, "느려진 상태가 더 오래 지속될 것 같아.");
 
         you.increase_duration(DUR_SLOW, turns, threshold);
         learned_something_new(HINT_YOU_ENCHANTED);
@@ -4988,7 +4988,7 @@ void dec_slow_player(int delay)
     {
         you.duration[DUR_SLOW] = 0;
         if (!have_stat_zero())
-            mprf(MSGCH_DURATION, "You feel yourself speed up.");
+            mprf(MSGCH_DURATION, "몸이 빨라지는 것 같아.");
     }
 }
 
@@ -5004,13 +5004,13 @@ void barb_player(int turns, int pow)
 
     if (!you.duration[DUR_BARBS])
     {
-        mpr("Barbed spikes become lodged in your body.");
+        mpr("가시가 몸에 박혔다.");
         you.set_duration(DUR_BARBS, min(max_turns, turns));
         you.attribute[ATTR_BARBS_POW] = min(max_pow, pow);
     }
     else
     {
-        mpr("More barbed spikes become lodged in your body.");
+        mpr("몸에 가시가 더 많이 박혔다.");
         you.increase_duration(DUR_BARBS, turns, max_turns);
         you.attribute[ATTR_BARBS_POW] =
             min(max_pow, you.attribute[ATTR_BARBS_POW]++);
@@ -5036,9 +5036,9 @@ void blind_player(int amount, colour_t flavour_colour)
     {
         you.props[BLIND_COLOUR_KEY] = flavour_colour;
         if (current > 0)
-            mpr("You are blinded for an even longer time.");
+            mpr("실명 상태가 더 오래 지속된다.");
         else
-            mpr("You are blinded!");
+            mpr("눈이 멀었다!");
         learned_something_new(HINT_YOU_ENCHANTED);
         xom_is_stimulated((you.duration[DUR_BLIND] - current) / BASELINE_DELAY);
     }
@@ -5067,7 +5067,7 @@ void dec_berserk_recovery_player(int delay)
 
     if (you.duration[DUR_BERSERK_COOLDOWN] <= BASELINE_DELAY)
     {
-        mprf(MSGCH_DURATION, "You recover from your berserk rage.");
+        mprf(MSGCH_DURATION, "광폭화 상태에서 회복됐다.");
         you.duration[DUR_BERSERK_COOLDOWN] = 0;
     }
 }
@@ -5081,7 +5081,7 @@ bool haste_player(int turns, bool rageext)
 
     if (you.stasis())
     {
-        mpr("Your stasis prevents you from being hasted.");
+        mpr("정지 효과가 가속을 막았다.");
         return false;
     }
     else if (have_passive(passive_t::no_haste))
@@ -5096,11 +5096,11 @@ bool haste_player(int turns, bool rageext)
     const int threshold = 80;
 
     if (!you.duration[DUR_HASTE])
-        mpr("You feel yourself speed up.");
+        mpr("몸이 빨라지는 것 같아.");
     else if (you.duration[DUR_HASTE] > threshold * BASELINE_DELAY)
-        mpr("You already have as much speed as you can handle.");
+        mpr("이미 감당할 수 있는 최대 속도야.");
     else if (!rageext)
-        mpr("You feel as though your hastened speed will last longer.");
+        mpr("가속 상태가 더 오래 지속될 것 같아.");
 
     you.increase_duration(DUR_HASTE, turns, threshold);
 
@@ -5122,7 +5122,7 @@ void dec_haste_player(int delay)
         // message if we cross the threshold
         if (old_dur > threshold && you.duration[DUR_HASTE] <= threshold)
         {
-            mprf(MSGCH_DURATION, "Your extra speed is starting to run out.");
+            mprf(MSGCH_DURATION, "추가 속도 효과가 사라지기 시작한다.");
             if (coinflip())
                 you.duration[DUR_HASTE] -= BASELINE_DELAY;
         }
@@ -5130,7 +5130,7 @@ void dec_haste_player(int delay)
     else if (you.duration[DUR_HASTE] <= BASELINE_DELAY)
     {
         if (!you.duration[DUR_BERSERK])
-            mprf(MSGCH_DURATION, "You feel yourself slow down.");
+            mprf(MSGCH_DURATION, "몸이 느려지는 것 같아.");
         you.duration[DUR_HASTE] = 0;
     }
 }
@@ -5176,7 +5176,7 @@ void dec_ambrosia_player(int delay)
     inc_mp(you.scale_potion_mp_healing(mp_restoration));
 
     if (!you.duration[DUR_AMBROSIA])
-        mpr("You feel less invigorated.");
+        mpr("활력이 줄어드는 것 같아.");
 }
 
 void dec_channel_player(int delay)
@@ -5193,7 +5193,7 @@ void dec_channel_player(int delay)
     inc_mp(mp_restoration);
 
     if (!you.duration[DUR_CHANNEL_ENERGY])
-        mpr("You feel less invigorated.");
+        mpr("활력이 줄어드는 것 같아.");
 }
 
 void dec_frozen_ramparts(int delay)
@@ -5207,7 +5207,7 @@ void dec_frozen_ramparts(int delay)
     if (!you.duration[DUR_FROZEN_RAMPARTS])
     {
         end_frozen_ramparts();
-        mpr("The frozen ramparts melt away.");
+        mpr("얼어붙은 방벽이 녹아 사라진다.");
     }
 }
 
@@ -5318,13 +5318,13 @@ void float_player()
 {
     if (you.fishtail)
     {
-        mpr("Your tail turns into legs as you fly out of the water.");
+        mpr("물 밖으로 날아오르자 꼬리가 다리로 변했다.");
         merfolk_stop_swimming();
     }
     else if (you.has_mutation(MUT_TENGU_FLIGHT))
-        mpr("You swoop lightly up into the air.");
+        mpr("가볍게 날아올랐다.");
     else
-        mpr("You fly up into the air.");
+        mpr("공중으로 날아올랐다.");
 }
 
 void fly_player(int pow, bool already_flying)
@@ -5381,7 +5381,7 @@ bool land_player(bool quiet)
     }
 
     if (!quiet)
-        mpr("You float gracefully downwards.");
+        mpr("우아하게 떠서 내려온다.");
 
     // Re-enter the terrain.
     // Interrupt travel, but not other delays.
@@ -5958,14 +5958,14 @@ void player::banish(const actor* /*agent*/, const string &who, bool force)
 
     if (elapsed_time <= attribute[ATTR_BANISHMENT_IMMUNITY])
     {
-        mpr("You resist the pull of the Abyss.");
+        mpr("심연으로 끌려가는 힘을 저항했다.");
         return;
     }
 
     if (!force && player_in_branch(BRANCH_ABYSS)
         && x_chance_in_y(you.depth, brdepth[BRANCH_ABYSS]))
     {
-        mpr("You wobble for a moment.");
+        mpr("잠시 몸이 휘청거린다.");
         return;
     }
 
@@ -7448,7 +7448,7 @@ void player::paralyse(const actor *who, int str, string source)
 
     if (stasis())
     {
-        mpr("Your stasis prevents you from being paralysed.");
+        mpr("정지 효과가 마비를 막았다.");
         return;
     }
 
@@ -7456,13 +7456,13 @@ void player::paralyse(const actor *who, int str, string source)
     if (who && who != &you
         && (duration[DUR_PARALYSIS] || duration[DUR_STUN_IMMUNITY]))
     {
-        mpr("You shrug off the repeated attempt to disable you.");
+        mpr("연달아 가해진 행동 불능 효과를 떨쳐 냈다.");
         return;
     }
 
     you.wake_up();
 
-    mpr("You suddenly lose the ability to move!");
+    mpr("갑자기 몸을 움직일 수 없게 됐다!");
     _pruneify();
 
     you.duration[DUR_PARALYSIS] = str * BASELINE_DELAY + 5;
@@ -7500,7 +7500,7 @@ void player::petrify(const actor *who, bool force)
 
     if (duration[DUR_DIVINE_STAMINA] > 0)
     {
-        mpr("Your divine stamina protects you from petrification!");
+        mpr("신성한 활력이 석화를 막아 줬다!");
         return;
     }
 
@@ -7517,7 +7517,7 @@ void player::petrify(const actor *who, bool force)
         props.erase(DISABLED_BY_KEY);
 
     redraw_evasion = true;
-    mprf(MSGCH_WARN, "You are slowing down.");
+    mprf(MSGCH_WARN, "몸이 점점 느려진다.");
 }
 
 bool player::fully_petrify(bool /*quiet*/)
@@ -7526,7 +7526,7 @@ bool player::fully_petrify(bool /*quiet*/)
                         + random2(4 * BASELINE_DELAY);
     redraw_armour_class = true;
     redraw_evasion = true;
-    mpr("You have turned to stone.");
+    mpr("돌로 변했다.");
     _pruneify();
 
     stop_delay(true, true);
@@ -7539,12 +7539,12 @@ bool player::vex(const actor* who, int dur, string source, string special_msg)
 {
     if (you.clarity())
     {
-        mprf("Your clarity of mind shields you.");
+        mprf("맑은 정신이 당신을 보호했다.");
         return false;
     }
     else if (duration[DUR_STUN_IMMUNITY])
     {
-        mpr("You shrug off the repeated attempt to disable you.");
+        mpr("연달아 가해진 행동 불능 효과를 떨쳐 냈다.");
         return false;
     }
     else if (you.duration[DUR_VEXED])
@@ -7553,7 +7553,7 @@ bool player::vex(const actor* who, int dur, string source, string special_msg)
     if (!special_msg.empty())
         mprf(MSGCH_WARN, "You %s", special_msg.c_str());
     else
-        mprf(MSGCH_WARN, "You feel overwhelmed by frustration!");
+        mprf(MSGCH_WARN, "좌절감이 밀려온다!");
     you.duration[DUR_VEXED] = dur * BASELINE_DELAY;
 
     const bool use_actor_name = source.empty() && who != nullptr;
@@ -7763,11 +7763,11 @@ bool player::sicken(int amount)
 
     if (duration[DUR_DIVINE_STAMINA] > 0)
     {
-        mpr("Your divine stamina protects you from disease!");
+        mpr("신성한 활력이 질병을 막아 줬다!");
         return false;
     }
 
-    mpr("You feel ill.");
+    mpr("몸이 아픈 것 같아.");
     increase_duration(DUR_SICKNESS, amount, 210);
 
     return true;
@@ -7869,12 +7869,12 @@ void player::backlight()
     if (!duration[DUR_INVIS])
     {
         if (duration[DUR_CORONA])
-            mpr("You glow brighter.");
+            mpr("몸에서 더욱 밝은 빛이 난다.");
         else
-            mpr("You are outlined in light.");
+            mpr("몸의 윤곽이 빛으로 드러난다.");
     }
     else
-        mpr("You feel strangely conspicuous.");
+        mpr("이상하게 눈에 잘 띄는 것 같아.");
 
     increase_duration(DUR_CORONA, random_range(15, 35), 250);
 }
@@ -8034,7 +8034,7 @@ bool player::doom(int amount)
     if (you.attribute[ATTR_DOOM] >= 100)
     {
         you.attribute[ATTR_DOOM] = 0;
-        mprf(MSGCH_WARN, "Doom befalls you....");
+        mprf(MSGCH_WARN, "파멸이 당신에게 닥쳐온다....");
         add_bane();
         return true;
     }
@@ -8120,7 +8120,7 @@ void player::put_to_sleep(actor* source, int dur, bool hibernate)
         || duration[DUR_PETRIFIED]
         || duration[DUR_PETRIFYING])
     {
-        mpr("You can't fall asleep in your current state!");
+        mpr("현재 상태에서는 잠들 수 없어!");
         return;
     }
 
@@ -8129,7 +8129,7 @@ void player::put_to_sleep(actor* source, int dur, bool hibernate)
     else
         props.erase(DISABLED_BY_KEY);
 
-    mpr("You fall asleep.");
+    mpr("잠이 들었다.");
     _pruneify();
 
     stop_directly_constricting_all();
@@ -8149,7 +8149,7 @@ void player::wake_up(bool break_sleep, bool break_daze)
     {
         duration[DUR_SLEEP] = 0;
         give_stun_immunity(random_range(3, 5));
-        mprf(MSGCH_RECOVERY, "You wake up.");
+        mprf(MSGCH_RECOVERY, "잠에서 깨어났다.");
         flash_view(UA_MONSTER, BLACK);
         redraw_armour_class = true;
         redraw_evasion = true;
@@ -8159,7 +8159,7 @@ void player::wake_up(bool break_sleep, bool break_daze)
     {
         duration[DUR_DAZED] = 0;
         give_stun_immunity(1);
-        mprf(MSGCH_RECOVERY, "You snap out of your daze.");
+        mprf(MSGCH_RECOVERY, "멍한 상태에서 정신을 차렸다.");
     }
 }
 
@@ -8196,7 +8196,7 @@ bool player::do_shaft()
     }
     if (you.species == SP_FORMICID)
     {
-        mpr("Your tunneler's instincts keep you from falling into a shaft!");
+        mpr("굴착 본능 덕분에 수직 통로로 떨어지지 않았다!");
         return false;
     }
     if (you_worship(GOD_YREDELEMNUL) && yred_torch_is_raised())
@@ -8216,7 +8216,7 @@ bool player::can_do_shaft_ability(bool quiet) const
     if (form_changes_anatomy())
     {
         if (!quiet)
-            mpr("You can't shaft yourself in your current form.");
+            mpr("현재 모습으로는 수직 통로에 몸을 던질 수 없어.");
         return false;
     }
 
@@ -8230,7 +8230,7 @@ bool player::can_do_shaft_ability(bool quiet) const
     if (you.cannot_move())
     {
         if (!quiet)
-            mpr("You can't shaft yourself while unable to move.");
+            mpr("움직일 수 없는 상태에서는 수직 통로에 몸을 던질 수 없어.");
         return false;
     }
 
@@ -8239,14 +8239,14 @@ bool player::can_do_shaft_ability(bool quiet) const
         if (!is_valid_shaft_level(false))
         {
             if (!quiet)
-                mpr("You can't shaft yourself on this level.");
+                mpr("이 층에서는 수직 통로로 내려갈 수 없어.");
             return false;
         }
     }
     else
     {
         if (!quiet)
-            mpr("You can't shaft yourself on this terrain.");
+            mpr("이 지형에서는 수직 통로로 내려갈 수 없어.");
         return false;
     }
 
@@ -8403,7 +8403,7 @@ void player::sentinel_mark(bool trap)
     flash_tile(you.pos(), YELLOW, 120, TILE_BOLT_SENTINEL_MARK);
     if (duration[DUR_SENTINEL_MARK])
     {
-        mpr("The mark upon you grows brighter.");
+        mpr("몸에 새겨진 표식이 더 밝게 빛난다.");
         increase_duration(DUR_SENTINEL_MARK, random_range(20, 40), 180);
     }
     else
@@ -8460,9 +8460,9 @@ bool player::made_nervous_by(const monster *mons)
 void player::weaken(const actor */*attacker*/, int pow)
 {
     if (!duration[DUR_WEAK])
-        mprf(MSGCH_WARN, "You feel your attacks grow feeble.");
+        mprf(MSGCH_WARN, "공격이 약해진 것 같아.");
     else
-        mprf(MSGCH_WARN, "You feel as though you will be weak longer.");
+        mprf(MSGCH_WARN, "약화 상태가 더 오래 지속될 것 같아.");
 
     increase_duration(DUR_WEAK, pow + random2(pow + 3), 50);
 }
@@ -8470,9 +8470,9 @@ void player::weaken(const actor */*attacker*/, int pow)
 void player::diminish(const actor */*attacker*/, int pow)
 {
     if (!duration[DUR_DIMINISHED_SPELLS])
-        mprf(MSGCH_WARN, "You feel your spells grow feeble.");
+        mprf(MSGCH_WARN, "주문이 약해진 것 같아.");
     else
-        mprf(MSGCH_WARN, "You feel as though your spells will be weakened for longer.");
+        mprf(MSGCH_WARN, "주문 약화 상태가 더 오래 지속될 것 같아.");
 
     increase_duration(DUR_DIMINISHED_SPELLS, pow + random2(pow + 3), 50);
 }
@@ -8482,7 +8482,7 @@ bool player::strip_willpower(actor */*attacker*/, int dur, bool quiet)
     // Only prints a message when you gain this status for the first time,
     // replicating old behavior. Should this change?
     if (!quiet && !you.duration[DUR_LOWERED_WL])
-        mpr("Your willpower is stripped away!");
+        mpr("의지력이 사라졌다!");
 
     you.increase_duration(DUR_LOWERED_WL, dur, 40);
 
@@ -8495,7 +8495,7 @@ bool player::drain_magic(actor */*attacker*/, int pow)
     if (!amount)
         return false;
 
-    mprf(MSGCH_WARN, "You feel your power leaking away.");
+    mprf(MSGCH_WARN, "힘이 새어 나가는 것 같아.");
     drain_mp(amount);
     return true;
 }
@@ -8514,9 +8514,9 @@ void player::vitrify(const actor* /*attacker*/, int dur, bool quiet)
     if (!quiet)
     {
         if (!you.duration[DUR_VITRIFIED])
-            mprf(MSGCH_WARN, "Your body becomes as fragile as glass!");
+            mprf(MSGCH_WARN, "몸이 유리처럼 연약해졌다!");
         else
-            mpr("You feel your fragility will last longer.");
+            mpr("연약화 상태가 더 오래 지속될 것 같아.");
     }
 
     you.increase_duration(DUR_VITRIFIED, dur, 50);
@@ -8720,15 +8720,15 @@ void print_potion_heal_message()
                  you.body_armour()->name(DESC_THE, false, false, false).c_str());
         }
         else if (you.has_mutation(MUT_DOUBLE_POTION_HEAL))
-            mpr("You savour every drop.");
+            mpr("한 방울 한 방울 음미한다.");
         else
-            mpr("The healing is enhanced."); // bad message, but this should
+            mpr("치유 효과가 강화됐다."); // bad message, but this should
                                              // never be possible anyway
     }
     else if (_get_potion_heal_factor() == 0)
-        mpr("Your system rejects the healing.");
+        mpr("몸이 치유 효과를 거부한다.");
     else if (_get_potion_heal_factor() < 2)
-        mpr("Your system partially rejects the healing.");
+        mpr("몸이 치유 효과를 일부 거부한다.");
 }
 
 bool player::can_potion_heal(bool temp)
@@ -9198,7 +9198,7 @@ int player::inaccuracy() const
 void player_end_berserk()
 {
     if (!you.duration[DUR_PARALYSIS] && !you.petrified())
-        mprf(MSGCH_WARN, "You are exhausted.");
+        mprf(MSGCH_WARN, "탈진했다.");
 
     you.berserk_penalty = 0;
 
@@ -9241,7 +9241,7 @@ void activate_sanguine_armour()
     you.duration[DUR_SANGUINE_ARMOUR] = random_range(60, 100);
     if (!was_active)
     {
-        mpr("Your blood congeals into armour.");
+        mpr("피가 응고되어 갑옷이 된다.");
         you.redraw_armour_class = true;
     }
 }
@@ -9253,7 +9253,7 @@ void activate_sanguine_armour()
 void refresh_weapon_protection()
 {
     if (!you.duration[DUR_SPWPN_PROTECTION])
-        mpr("Your weapon exudes an aura of protection.");
+        mpr("무기에서 보호의 기운이 뿜어져 나온다.");
 
     you.increase_duration(DUR_SPWPN_PROTECTION, 3 + random2(2), 5);
     you.redraw_armour_class = true;
