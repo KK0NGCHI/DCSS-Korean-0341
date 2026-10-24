@@ -153,3 +153,10 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 첫 실제 C++ 컴파일에서 `source/newgame.cc:161`의 `const char* + const char[]` 표현식 오류 발견. `string(get_job_name(ng.job)) + " / " + s`로 수정, 커밋 `204508f5c213edcefab37f41287a3a4761c58f9a`.
 - **재빌드 성공**: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40069066496 (`C++ Korean build verification` #3). `make -j2` 성공, `crawl` 실행 파일 존재·실행 권한 확인, `file` 결과 Linux x86-64 ELF.
 - 확인 범위: Linux 콘솔 전체 컴파일/링크. **미확인**: Windows 11 MSYS2 타일 빌드, 실제 실행 시 한국어 출력·폰트·텍스트 조합, 사용자의 Windows 환경에서의 동작. 원본 릴리스에 대한 파일 덮어쓰기 빌드이므로 현재 저장소 자체의 완전한 소스 체크아웃을 검증하는 것은 아님.
+
+## 2026-10-24 C++ 4차 묶음: 몬스터 반응 및 소환
+- `source/god-abil.cc`: 낭송·진의 징벌·몬스터 반응 등 영문 메시지 패턴 24종 번역.
+- `source/beam.cc`: 몬스터의 저항·화상·냉기·감전·석화·마비 등 메시지 패턴 21종 번역. 공통 메시지의 동일 문자열 발생 위치는 함께 교체됨.
+- `source/spl-summoning.cc`: 소환·소환수·태엽벌 관련 출력 19종(연결된 C++ 문자열 5건 포함) 번역.
+- **이번 일괄 작업에서 문자열 패턴 64종을 추가 번역**. `simple_monster_message`에 이름이 먼저 출력되는 구조를 유지했으나, 한국어 조사(`이(가)`, `은(는)` 등)는 일단 임시 중립 표기로 남아 있다. 실제 한국어 조사 선택·용어 통일은 별도 후속 과제.
+- 전체 번역 완료 아님. 코드의 문자열 변수를 조합하는 동적 출력은 계속 검토해야 하며, 이 변경까지 반영한 신규 C++ Linux 빌드의 결과는 https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40070150620 에서 확인 가능.
