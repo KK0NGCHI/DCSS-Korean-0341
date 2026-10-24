@@ -1,0 +1,51 @@
+# DCSS 0.34.1 한국어 몬스터 주문 시전 대사
+# 누락된 키는 원문 데이터베이스에서 가져옵니다.
+%%%%
+Airstrike cast
+
+@The_monster@이(가) 두 팔을 크게 휘저어 원을 그린다.
+%%%%
+unseen Airstrike cast
+
+바람이 거세게 부는 소리가 들린다.
+%%%%
+Blinkbolt cast
+
+@The_monster@이(가) 살아 있는 번개로 변해 튀어 오른다!
+%%%%
+unseen Blinkbolt cast
+
+살아 있는 번개가 갑자기 나타난다!
+%%%%
+branch summon cast prefix
+
+@The_monster@이(가) 생명체들을 불러낸다. 장소:
+%%%%
+Call Lost Souls cast
+
+@The_monster@이(가) 안식을 찾지 못한 영혼들을 불러낸다!
+%%%%
+Call of Chaos cast
+
+@The_monster@이(가) 혼돈의 힘에 호소한다!
+%%%%
+unseen Call of Chaos cast
+
+@The_something@이(가) 혼돈의 힘에 호소한다!
+%%%%
+Call Down Lightning cast
+
+@the_monster_possessive@ 장치에서 전기가 지직거리며 튄다.
+%%%%
+Conjure Living Spells cast
+
+@The_monster@에게서 살아 움직이는 주문들이 한꺼번에 쏟아져 나온다!
+%%%%
+Creeping Frost cast
+
+@The_monster@이(가) 벽에서 얼어붙을 듯한 냉기를 불러낸다.
+%%%%
+Divine Armament cast
+
+@The_monster@이(가) @My_God@에게 무기를 내려 달라고 간청한다.
+%%%%
