@@ -5544,3 +5544,41 @@ _Xak'krixis_monster_thoughts_
 @The_monster@이(가) 생각에 잠겨. "황제전갈처럼 단단할 수 있다면…"
 @The_monster@이(가) 생각에 잠겨. "분노나방처럼 격렬한 열정을 불러일으킬 수 있다면…"
 @The_monster@이(가) 투덜거려. "빌어먹을 파라오개미처럼 내 표본을 몽땅 망칠 수 있다면…"
+%%%%
+_friendly_beogh_speech_common_
+
+w:5
+@The_monster@이(가) @_loudly_or_repeatedly_@ 격려의 말을 @_shouts_@@_orc_modifier_@
+@The_monster@이(가) 소리쳐. "오크는 베오그를 위해 죽이고, 베오그를 위해 죽는다!"
+@The_monster@이(가) 말해. "네가 나타난 뒤 내 인생이 바뀌었어!"
+@The_monster@이(가) @_says_or_shouts_@. "베오그를 위해 죽는 것이 내 삶의 의미야."
+@The_monster@이(가) @_shouts_@. "베오그의 이름으로 피를!"
+@The_monster@이(가) 소리쳐. "우리 적들은 모두 죽어야 해!"
+@The_monster@이(가) @_shouts_@. "앞길을 가로막는 놈들은 모조리 [죽이고|부수고|불태우고|불구로 만들자]!"
+@The_monster@이(가) @_orc_says_@. "베오그의 도움으로 거짓 신들을 모두 쓰러뜨릴 거야!"
+@The_monster@이(가) @_shouts_@. "저 @_orc_heathen_@를 처단하라!"
+@The_monster@이(가) @_shouts_@. "빼앗긴 모든 것을 되찾아라!"
+@The_monster@이(가) @_says_or_shouts_@. "섬기는 게 자랑스러워. 죽을 각오도 되어 있어."
+@The_monster@이(가) 말해. "베오그께서 너를 보며 웃으시길, @player_name@."
+@The_monster@이(가) 외쳐. "두려워 마, @player_name@! 베오그께서는 전투에서 쓰러진 자에게 미소 지으시니까!"
+@The_monster@이(가) 베오그의 이름으로 잇따라 거친 욕설을 퍼부어.
+@The_monster@이(가) @_says_or_shouts_@. "나는 @player_name@을(를) 위해 싸워. 베오그께서 우리 모두를 인도하시니까!"
+@The_monster@이(가) @_says_or_shouts_@. "오크가 저들을 모두 죽일 거야!"
+@The_monster@이(가) @_shouts_@. "오크가 지배한다!"
+@The_monster@이(가) 말해. "널 섬기다 죽는 게 내 소원이야, @player_name@!"
+@The_monster@이(가) 말해. "베오그께서 이렇게 죽이는 걸 싫어하진 않으셔."
+%%%%
+_friendly_beogh_speech_rare_
+
+@The_monster@이(가) @_says_or_shouts_@. "베오그도 위대하고, @player_name@도 위대해!"
+@The_monster@이(가) @_says_or_shouts_@. "너를 만나서 정말 기뻐."
+@The_monster@이(가) @_orc_says_@. "죽은 @_orc_heathen_@은(는) 더는 내 영혼을 괴롭히지 못하겠지."
+@The_monster@이(가) 말해. "예전엔 계시를 받은 적이 없었어."
+@The_monster@이(가) @_says_or_shouts_@. "쓰러진 형제들을 잊지 않을 거야."
+VISUAL:@The_monster@이(가) @at_foe/around@ 불안한 눈길을 보내.
+@The_monster@이(가) @at_foe@을(를) 바라보며 말해. "널 섬기다 죽고 싶진 않아, @player_name@."
+@The_monster@이(가) 읊조려. "악을 두려워하지 않으리. @player_name@이(가) 나의 구원자이므로."
+@The_monster@이(가) 말해. "오크인 게 자랑스러워."
+@The_monster@이(가) 말해. "나도 오크, 너도 오크. 뭐 어때."
+@The_monster@이(가) @subjective@은(는) 너에게 무언가 말하려다 그만둬.
+@The_monster@이(가) @_mutters_@. "이 일이 끝나면 버섯 농장을 차릴 거야."
