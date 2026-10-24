@@ -161,3 +161,25 @@ Shadow Shot cast
 
 @The_monster@이(가) @target@에게 그림자 탄환을 쏜다.
 %%%%
+Siphon Essence cast
+
+@The_monster@이(가) 주변의 영혼들을 자기 몸속으로 빨아들인다!
+%%%%
+Symbol of Torment cast
+
+@The_monster@이(가) 어둠의 힘을 불러낸다!
+%%%%
+unseen Symbol of Torment cast
+
+@The_something@이(가) 어둠의 힘을 불러낸다!
+%%%%
+Sheza's Dance cast
+
+@The_monster@이(가) 무기들을 공중에 띄워 전투에 내보낸다!
+
+@The_monster@이(가) 손짓하자 무기들이 공중으로 날아오른다!
+%%%%
+Sojourning Bolt cast
+
+@The_monster@이(가) @target@에게 시공간을 찢는 숨결을 내뿜는다.
+%%%%
