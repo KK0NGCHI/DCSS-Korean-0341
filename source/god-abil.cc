@@ -223,7 +223,7 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
     wpn.flags |= ISFLAG_NOTED_ID;
     wpn.props[FORCED_ITEM_COLOUR_KEY] = colour;
 
-    mprf(MSGCH_GOD, "Your %s shines brightly!", wpn.name(DESC_QUALNAME).c_str());
+    mprf(MSGCH_GOD, "%s이(가) 밝게 빛난다!", wpn.name(DESC_QUALNAME).c_str());
     flash_view(UA_PLAYER, colour);
     simple_god_message(" booms: Use this gift wisely!");
     you.one_time_ability_used.set(you.religion);
@@ -2312,7 +2312,7 @@ void ashenzari_offer_new_curse()
 
 static void _do_curse_item(item_def &item)
 {
-    mprf("Your %s glows black for a moment.", item.name(DESC_PLAIN).c_str());
+    mprf("%s이(가) 잠시 검게 빛난다.", item.name(DESC_PLAIN).c_str());
     item.flags |= ISFLAG_CURSED;
 
     if (item.base_type == OBJ_WEAPONS)
@@ -2414,7 +2414,7 @@ bool ashenzari_uncurse_item()
     if (!handle_chain_removal(to_remove, true))
         return false;
 
-    mprf("You shatter the curse binding %s!", item.name(DESC_THE).c_str());
+    mprf("%s을(를) 속박하던 저주를 깨뜨렸다!", item.name(DESC_THE).c_str());
     item_skills(item, you.skills_to_hide);
 
     for (item_def* _item : to_remove)
@@ -3256,7 +3256,7 @@ bool gozag_setup_potion_petition(bool quiet)
     {
         if (!quiet)
         {
-            mprf("You need at least %d gold to purchase potions right now!",
+            mprf("지금 물약을 구매하려면 금화가 최소 %d개 필요해!",
                  GOZAG_POTION_PETITION_AMOUNT);
         }
         return false;
@@ -3750,7 +3750,7 @@ void gozag_deduct_bribe(branch_type br, int amount)
     branch_bribe[br] = max(0, branch_bribe[br] - amount);
     if (branch_bribe[br] <= 0)
     {
-        mprf(MSGCH_DURATION, "Your bribe of %s has been exhausted.",
+        mprf(MSGCH_DURATION, "%s에게 준 뇌물이 다 떨어졌다.",
              branches[br].longname);
         add_daction(DACT_BRIBE_TIMEOUT);
     }
@@ -3762,7 +3762,7 @@ bool gozag_check_bribe_branch(bool quiet)
     if (you.gold < bribe_amount)
     {
         if (!quiet)
-            mprf("You need at least %d gold to offer a bribe.", bribe_amount);
+            mprf("뇌물을 주려면 금화가 최소 %d개 필요해.", bribe_amount);
         return false;
     }
     branch_type branch = you.where_are_you;
@@ -3790,9 +3790,9 @@ bool gozag_check_bribe_branch(bool quiet)
         if (!quiet)
         {
             if (branch2 != NUM_BRANCHES)
-                mprf("You can't bribe %s or %s.", who.c_str(), who2.c_str());
+                mprf("%s이나(나) %s에게 뇌물을 줄 수 없어.", who.c_str(), who2.c_str());
             else
-                mprf("You can't bribe %s.", who.c_str());
+                mprf("%s에게 뇌물을 줄 수 없어.", who.c_str());
         }
         return false;
     }
@@ -3835,7 +3835,7 @@ bool gozag_bribe_branch()
                               branches[branch].longname);
     if (!gozag_branch_bribable(branch))
     {
-        mprf("You can't bribe %s.", who.c_str());
+        mprf("%s에게 뇌물을 줄 수 없어.", who.c_str());
         return false;
     }
 
@@ -3936,7 +3936,7 @@ spret qazlal_upheaval(coord_def target, bool quiet, bool fail, dist *player_targ
 
         if (cell_is_invalid_target(beam.target))
         {
-            mprf("There is %s there.",
+            mprf("그곳에 %s이(가) 있어.",
                  article_a(feat_type_name(env.grid(beam.target))).c_str());
             return spret::abort;
         }
@@ -4956,7 +4956,7 @@ static void _apply_ru_sacrifice(mutation_type sacrifice)
 
 static bool _execute_sacrifice(ability_type sac, const char* message)
 {
-    mprf("Ru asks you to %s.", message);
+    mprf("루가 당신에게 %s을(를) 요구한다.", message);
     mpr(ru_sacrifice_description(sac));
     if (!yesno("Do you really want to make this sacrifice?",
                false, 'n'))
@@ -5322,25 +5322,25 @@ void ru_do_retribution(monster* mons, int damage)
     }
     else if (power > 35)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and paralyse %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s을(를) 마비시켰다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_PARALYSIS, act, power+random2(60)));
     }
     else if (power > 25)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and slow %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s을(를) 둔화시켰다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_SLOW, act, power+random2(100)));
     }
     else if (power > 10)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and blind %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s의 눈을 멀게 했다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_BLIND, act, power+random2(100)));
     }
     else if (power > 0)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and illuminate %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s을(를) 빛나게 했다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_CORONA, act, power+random2(150)));
     }
@@ -5442,7 +5442,7 @@ bool ru_power_leap()
         if (beholder)
         {
             clear_messages();
-            mprf("You cannot leap away from %s!",
+            mprf("%s에게서 멀어지는 방향으로 도약할 수 없어!",
                  beholder->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5451,7 +5451,7 @@ bool ru_power_leap()
         if (fearmonger)
         {
             clear_messages();
-            mprf("You cannot leap closer to %s!",
+            mprf("%s에게 가까워지는 방향으로 도약할 수 없어!",
                  fearmonger->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5752,7 +5752,7 @@ bool uskayaw_line_pass()
         if (beholder)
         {
             clear_messages();
-            mprf("You cannot move away from %s!",
+            mprf("%s에게서 멀어질 수 없어!",
                  beholder->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5761,7 +5761,7 @@ bool uskayaw_line_pass()
         if (fearmonger)
         {
             clear_messages();
-            mprf("You cannot move closer to %s!",
+            mprf("%s에게 다가갈 수 없어!",
                  fearmonger->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5881,7 +5881,7 @@ spret uskayaw_grand_finale(bool fail)
         else if (cell_is_solid(beam.target))
         {
             clear_messages();
-            mprf("You cannot occupy %s.", article_a(feat_type_name(env.grid(beam.target))).c_str());
+            mprf("%s에는 자리 잡을 수 없어.", article_a(feat_type_name(env.grid(beam.target))).c_str());
         }
         else if (you.see_cell_no_trans(beam.target))
         {
@@ -6129,7 +6129,7 @@ spret hepliaklqana_transference(bool fail)
 
     if (victim == ancestor)
     {
-        mprf("You can't transfer your ancestor with %s.",
+        mprf("%s을(를) 이용해 조상을 옮길 수 없어.",
              ancestor->pronoun(PRONOUN_REFLEXIVE).c_str());
         return spret::abort;
     }
@@ -6219,7 +6219,7 @@ static void _hepliaklqana_choose_name()
     }
 
     you.props[HEPLIAKLQANA_ALLY_NAME_KEY] = new_name;
-    mprf("Yes, %s is definitely a better name.", new_name.c_str());
+    mprf("그래, %s이(가) 확실히 더 좋은 이름이야.", new_name.c_str());
     upgrade_hepliaklqana_ancestor(true);
 }
 
@@ -6436,7 +6436,7 @@ spret wu_jian_wall_jump_ability()
 
     if (you.attribute[ATTR_HELD])
     {
-        mprf("You cannot wall jump while caught in a %s.",
+        mprf("%s에 붙잡힌 상태에서는 벽 도약을 할 수 없어.",
              you.caught_by() == CAUGHT_WEB ? "web" : "net");
         return spret::abort;
     }
@@ -6556,7 +6556,7 @@ spret okawaru_duel(const coord_def& target, bool fail)
 
     fail_check();
 
-    mprf("You enter into single combat with %s!",
+    mprf("%s와(과) 일대일 결투를 시작한다!",
          mons->name(DESC_THE).c_str());
 
     behaviour_event(mons, ME_ALERT, &you);
@@ -7075,7 +7075,7 @@ void makhleb_inscribe_mark(mutation_type mark)
         return;
     }
 
-    mprf("You utter a prayer to Makhleb and carve the %s into yourself.",
+    mprf("마크레브에게 기도하며 자기 몸에 %s을(를) 새긴다.",
          mutation_name(mark));
 
     const int hploss = min(you.hp - 1, you.hp * 2 / 3);
