@@ -35,5 +35,10 @@ class MonsterSpellKoreanAuditTests(unittest.TestCase):
                             for e in result["issues"]))
 
 
+    def test_engine_accepts_long_percent_delimiters(self):
+        source = "%%%%\nfirst cast\n\nFirst.\n%%%%%\nsecond cast\n\nSecond.\n%%%%\n"
+        self.assertEqual(set(parse(source)[0]), {"first cast", "second cast"})
+
+
 if __name__ == "__main__":
     unittest.main()
