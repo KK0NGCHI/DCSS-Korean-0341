@@ -967,13 +967,11 @@ static void _mimic_vanish(const coord_def& pos, const string& name)
     if (!you.see_cell(pos))
         return;
 
-    const char* const smoke_str = can_place_smoke ? " in a puff of smoke" : "";
-
     const bool can_cackle = !silenced(pos) && !silenced(you.pos());
-    const string cackle = can_cackle ? getSpeakString("_laughs_") + " and " : "";
-
-    mprf("The %s mimic %svanishes%s!",
-         name.c_str(), cackle.c_str(), smoke_str);
+    mprf("%s 흉내쟁이가 %s%s사라졌다!",
+         name.c_str(),
+         can_cackle ? "웃음을 터뜨리더니 " : "",
+         can_place_smoke ? "연기 속으로 " : "");
     interrupt_activity(activity_interrupt::mimic);
 }
 
@@ -3469,8 +3467,7 @@ void mons_pacify(monster& mon, mon_attitude_type att, bool no_xp)
     if (mon.type == MONS_GERYON)
     {
         simple_monster_message(mon,
-            make_stringf(" discards %s horn.",
-                         mon.pronoun(PRONOUN_POSSESSIVE).c_str()).c_str());
+            "이(가) 자신의 뿔을 버린다.");
         monster_drop_things(&mon, false, item_is_horn_of_geryon);
     }
 
