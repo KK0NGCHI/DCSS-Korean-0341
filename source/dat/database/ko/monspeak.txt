@@ -4626,3 +4626,48 @@ _Norris_verb_
 웅얼거려
 무심코 말해
 속삭여
+%%%%
+Saint Roka
+
+w:7
+@_Saint Roka generic_@
+@The_monster@이(가) 말해. "이 아래에서는 오크이거나 아무것도 아니거나, 둘 중 하나야."
+@The_monster@이(가) 말해. "오크 광산에서는 너 같은 녀석을 달가워하지 않아!"
+%%%%
+_Saint Roka generic_
+
+w:2
+@_generic_orc_speech_@
+@The_monster@이(가) 외쳐. "오크들이여! 내 뒤로 모여라!"
+@The_monster@이(가) 외쳐. "이곳을 지배하는 분은 오직 베오그뿐이다!"
+@The_monster@이(가) 말해. "널 쓰러뜨리고 짓밟겠다."
+@The_monster@이(가) 우렁찬 함성을 질러!
+@The_monster@이(가) 외쳐. "베오그여, 제게 힘을 주소서!"
+@The_monster@이(가) 외쳐. "베오그의 이름으로, 각오하라!"
+%%%%
+related Saint Roka
+
+@_Saint Roka generic_@
+w:2
+@The_monster@이(가) 외쳐. "내게 합류하든가, 끝까지 맞서든가!"
+%%%%
+_Sprozz_thief_
+
+@The_monster@이(가) 외쳐. "특허 도둑! 그냥 도망칠 수는 없을걸!"
+@The_monster@이(가) 소리쳐. "내가 먼저 생각해 냈다고! 돌려줘!"
+@The_monster@이(가) 투덜거려. "네 벌은 아직도 구리 톱니바퀴를 쓰겠지!"
+@The_monster@이(가) 외쳐. "누가 내 설계도를 팔고 다니는 거야? 말해!"
+%%%%
+_Sprozz_common_
+
+@The_monster@이(가) 말해. "미래의 벌을 보여 주겠어!"
+@The_monster@이(가) 말해. "꿀도 만들고 해충도 없애지. 기발하지 않아?"
+@The_monster@이(가) 말해. "태엽식 꿀에는 철분이 최소 35% 더 들어 있어! 영양 만점이지."
+@The_monster@이(가) 말해. "이제 키틴질도 구시대의 유물이 될 거야!"
+@The_monster@이(가) 씨익 웃어. "곧 모든 양봉장에서 스프로즈의 발명품을 찾게 될걸!"
+@The_monster@이(가) 말해. "새로운 침을 시험할 대상이 필요해. 네가 해 줘."
+@The_monster@이(가) 말해. "얼마나 아픈지 알려 줘. 데이터가 더 필요하거든."
+@The_monster@이(가) 중얼거려. "날개에 아연을 조금 더 넣어야 하나…"
+@The_monster@이(가) 중얼거려. "다음에는 평기어를 써야겠어. 윙윙거림이 덜할 테니."
+@The_monster@이(가) 중얼거려. "꽃가루 채집 효율은 아직도 41% 떨어져. 개선해야 해."
+@The_monster@이(가) 중얼거려. "꿀 채집 효율도 아직 37% 떨어져. 개선해야 해."
