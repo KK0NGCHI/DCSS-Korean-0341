@@ -30,7 +30,8 @@ def check_variants(source, korean):
     for i, (en, ko) in enumerate(zip(src, dst), 1):
         required = Counter(tag for tag in MARKER.findall(en)
                            if tag not in OMITTABLE)
-        actual = Counter(MARKER.findall(ko))
+        actual = Counter(tag for tag in MARKER.findall(ko)
+                         if tag not in OMITTABLE)
         if required != actual:
             issues.append(f"line_{i}_markers")
         if len(ALT.findall(en)) != len(ALT.findall(ko)):
