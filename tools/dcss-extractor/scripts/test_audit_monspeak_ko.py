@@ -74,6 +74,12 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         self.assertIn("line_2_lua_control_modified",
                       check_variants(src, modified))
 
+    def test_lua_close_brace_can_be_followed_by_translated_prose(self):
+        src = ["{{", "return 'up'", "}} at you expectantly."]
+        ko = ["{{", "return '올려다'", "}}봐."]
+        self.assertEqual(check_variants(src, ko), [])
+        self.assertIn("line_3_no_hangul", check_variants(src, src))
+
     def test_lua_dynamic_return_stays_program_code(self):
         src = ["{{", "return you.genus()", "}}"]
         self.assertEqual(check_variants(src, src), [])
