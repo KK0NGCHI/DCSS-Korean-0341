@@ -3562,14 +3562,14 @@ void display_char_status()
     if (halo_size >= 0)
     {
         if (halo_size > 5)
-            mpr("You are illuminated by a large divine halo.");
+            mpr("거대한 신성한 후광이 당신을 비춘다.");
         else if (halo_size > 3)
-            mpr("You are illuminated by a divine halo.");
+            mpr("신성한 후광이 당신을 비춘다.");
         else
-            mpr("You are illuminated by a small divine halo.");
+            mpr("작은 신성한 후광이 당신을 비춘다.");
     }
     else if (you.haloed())
-        mpr("An external divine halo illuminates you.");
+        mpr("외부에서 뻗어 온 신성한 후광이 당신을 비춘다.");
 
     status_info inf;
     for (unsigned i = 0; i <= STATUS_LAST_STATUS; ++i)
@@ -3981,7 +3981,7 @@ bool enough_hp(int minimum, bool suppress_msg, bool abort_macros)
     if (you.duration[DUR_DEATHS_DOOR])
     {
         if (!suppress_msg)
-            mpr("You cannot pay life while functionally dead.");
+            mpr("사실상 죽은 상태에서는 생명력을 대가로 지불할 수 없어.");
 
         if (abort_macros)
         {
@@ -3995,7 +3995,7 @@ bool enough_hp(int minimum, bool suppress_msg, bool abort_macros)
     if (you.hp < minimum + 1)
     {
         if (!suppress_msg)
-            mpr("You don't have enough health at the moment.");
+            mpr("지금은 체력이 부족해.");
 
         if (abort_macros)
         {
@@ -4020,9 +4020,9 @@ bool enough_mp(int minimum, bool suppress_msg, bool abort_macros)
         if (!suppress_msg)
         {
             if (get_real_mp(true) < minimum)
-                mpr("You don't have enough magic capacity.");
+                mpr("마력 용량이 부족해.");
             else
-                mpr("You don't have enough magic at the moment.");
+                mpr("지금은 마력이 부족해.");
         }
         if (abort_macros)
         {
@@ -4408,7 +4408,7 @@ void contaminate_player(int change, bool controlled, bool msg)
     }
 
     if (msg && old_amount > 0 && you.magic_contamination == 0)
-        mpr("Your magical contamination has completely faded away.");
+        mpr("마법 오염이 완전히 사라졌다.");
 
     if (you.magic_contamination > 0)
         learned_something_new(HINT_GLOWING);
@@ -4450,14 +4450,14 @@ bool confuse_player(int amount, bool quiet, bool force)
     if (!force && you.clarity())
     {
         if (!quiet)
-            mpr("You feel momentarily confused.");
+            mpr("잠시 혼란스러운 기분이 든다.");
         return false;
     }
 
     if (!force && you.duration[DUR_DIVINE_STAMINA] > 0)
     {
         if (!quiet)
-            mpr("Your divine stamina protects you from confusion!");
+            mpr("신성한 활력이 혼란에서 당신을 보호했다!");
         return false;
     }
 
@@ -4492,7 +4492,7 @@ bool poison_player(int amount, string source, string source_aux, bool force)
 
     if (you.duration[DUR_DIVINE_STAMINA] > 0)
     {
-        mpr("Your divine stamina protects you from poison!");
+        mpr("신성한 활력이 독에서 당신을 보호했다!");
         return false;
     }
 
