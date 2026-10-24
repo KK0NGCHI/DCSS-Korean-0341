@@ -115,3 +115,29 @@ Major Destruction cast
 
 @The_monster@이(가) @possessive_God@의 이름으로 파괴의 힘을 불러낸다!
 %%%%
+Mara Summon cast
+
+@The_monster@이(가) 환영을 만들어 낸다.
+
+@The_monster@의 모습이 일렁인다.
+%%%%
+unseen Mara summon cast
+
+무언가가 환영을 만들어 낸다!
+%%%%
+Orb of Destruction orb spider cast
+
+@The_monster@이(가) 빛나는 에너지 구체를 만들어 낸다.
+%%%%
+Orb of Destruction cast
+
+@The_monster@이(가) 빛나는 구체를 만들어 낸다.
+
+@The_monster@이(가) 순수한 마력으로 이루어진 구체를 만들어 낸다.
+
+@The_monster@이(가) 파괴적인 마력의 구체를 발사한다.
+%%%%
+unseen Orb of Destruction cast
+
+@The_something@이(가) 빛나는 구체를 만들어 낸다.
+%%%%
