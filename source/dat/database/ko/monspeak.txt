@@ -1,0 +1,152 @@
+# 몬스터 대사 한국어 번역. 번역되지 않은 키는 원문으로 대체됩니다.
+%%%%
+hound
+
+VISUAL:@The_monster@이(가) [잠시 멈춰|멈칫하며] @surface@의 냄새를 맡는다.
+%%%%
+default insect
+
+VISUAL:@The_monster@이(가) 더듬이를 흔든다.
+%%%%
+default confused insect
+
+VISUAL:@The_monster@이(가) 더듬이를 정신없이 흔든다.
+
+VISUAL:@The_monster@이(가) 다리 6개를 제대로 움직이지 못하는 듯하다.
+%%%%
+default confused winged insect
+
+VISUAL:@The_monster@이(가) 불규칙한 원을 그리며 날아다닌다.
+
+VISUAL:@The_monster@이(가) 더듬이를 정신없이 흔든다.
+
+VISUAL:@The_monster@이(가) 비틀거리며 날아다닌다.
+%%%%
+default confused arachnid
+
+VISUAL:@The_monster@이(가) 다리 8개를 제대로 움직이지 못하는 듯하다.
+%%%%
+centipede
+
+VISUAL:@The_monster@이(가) 더듬이를 흔든다.
+%%%%
+default confused centipede
+
+VISUAL:@The_monster@이(가) 수많은 다리를 제대로 움직이지 못하는 듯하다.
+
+VISUAL:@The_monster@이(가) 더듬이를 정신없이 흔든다.
+%%%%
+default confused 'b'
+
+VISUAL:@The_monster@이(가) 불규칙한 원을 그리며 날아다닌다.
+%%%%
+default 'cap-G'
+
+VISUAL:@The_monster@이(가) 불길하게 맥동한다.
+%%%%
+default 'cap-J'
+
+VISUAL:@The_monster@이(가) 흐느적거린다.
+%%%%
+'l'
+
+@The_monster@이(가) 위협적으로 쉿쉿거린다.
+%%%%
+'r'
+
+VISUAL:@The_monster@이(가) 수염을 움찔거린다.
+%%%%
+default confused 'r'
+
+VISUAL:@The_monster@이(가) 빙글빙글 원을 그리며 돌아다닌다.
+%%%%
+default confused 'y'
+
+SOUND:@The_monster@이(가) 좁은 원을 그리며 윙윙거린다.
+%%%%
+default silenced confused 'y'
+
+VISUAL:@The_monster@이(가) 좁은 원을 그리며 날아다닌다.
+%%%%
+elephant slug
+
+VISUAL:@The_monster@이(가) 잠깐 눈자루를 길게 뻗는다.
+%%%%
+_silenced_humanoid_common_
+
+VISUAL:@The_monster@이(가) 무언가 말하지만 소리가 들리지 않는다.
+
+VISUAL:@The_monster@이(가) 손짓한다.
+%%%%
+_silenced_humanoid_rare_
+
+VISUAL:@The_monster@이(가) 외설적인 손짓을 한다.
+
+VISUAL:@The_monster@이(가) 씩 웃는다.
+
+VISUAL:@The_monster@이(가) 화난 표정을 짓는다.
+
+VISUAL:@The_monster@이(가) 귀를 기울이는 듯하다.
+%%%%
+_friendly_silenced_common_
+
+VISUAL:@The_monster@이(가) 당신에게 엄지를 치켜든다.
+
+VISUAL:@The_monster@이(가) 말하지만 소리가 들리지 않는다.
+%%%%
+_friendly_silenced_rare_
+
+VISUAL:@The_monster@이(가) 당신을 바라본다.
+
+VISUAL:@The_monster@이(가) 당신에게 손을 흔든다.
+
+VISUAL:@The_monster@이(가) 행복하게 웃는다.
+
+VISUAL:@The_monster@이(가) 당신의 관심을 끌려고 펄쩍펄쩍 뛴다.
+
+VISUAL:@The_monster@이(가) 당신에게 윙크한다.
+%%%%
+_fleeing_silenced_common_
+
+VISUAL:@The_monster@이(가) 주변을 몰래 힐끗거린다.
+
+VISUAL:@The_monster@이(가) 무슨 말을 하는 듯하다.
+%%%%
+_fleeing_silenced_rare_
+
+VISUAL:@The_monster@이(가) 소리치려는 듯 입을 벌린다.
+
+VISUAL:@The_monster@이(가) 다급하게 주변을 살핀다.
+
+VISUAL:@The_monster@이(가) 상황을 곰곰이 생각한다.
+%%%%
+_wizard_common_spell_
+
+@The_monster@이(가) 마구 손짓한다.
+
+@The_monster@이(가) 낯선 말을 중얼거린다.
+
+@The_monster@이(가) 주문을 소리 높여 외운다.
+%%%%
+_fake_spell_effect_
+
+VISUAL:@The_monster@의 모습이 격렬하게 일렁인다.
+
+VISUAL:@The_monster@이(가) 잠깐 환하게 빛난다.
+
+VISUAL:@The_monster_possessive@ @hands@에서 빛이 나기 시작한다.
+
+VISUAL:방향 감각이 흐트러진다. @player_only@
+
+VISUAL:마음이 불안해진다. @player_only@
+%%%%
+_wizard_medium_
+
+VISUAL:@The_monster@이(가) 잠시 커진 듯 보인다.
+
+VISUAL:@The_monster_possessive@ 눈이 빛나기 시작한다.
+
+@The_monster@이(가) 외친다. "넌 내 힘을 견딜 수 없어!"
+
+@The_monster@이(가) 외친다. "넌 이제 끝이야!"
+%%%%
