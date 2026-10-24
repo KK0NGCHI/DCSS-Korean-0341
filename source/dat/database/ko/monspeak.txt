@@ -656,3 +656,45 @@ Boris timeout
 Boris riddle
 
 @The_monster@이(가) 말한다. "죽음 자체를 해결한 자에게 그런 하찮은 질문을 하다니?"
+%%%%
+Cassandra triumphant
+
+@The_monster@이(가) 헐떡인다. "내가... 내가 마침내 미래를 바꾼 건가?"
+%%%%
+Donald marionette
+
+@The_monster@이(가) 말한다. "날 싸구려 손 인형처럼 부리지 마. 질색이라고."
+%%%%
+Donald riddle
+
+@The_monster@이(가) 말한다. "그건 누구나 아는 거잖아. 좀 더 참신한 걸 내 봐."
+%%%%
+Donald triumphant
+
+@The_monster@이(가) 말한다. "이겼군. 이런... 나쁘지 않은데."
+
+@The_monster@이(가) 말한다. "뭐, 생각보다 형편없는 상대는 아니었어."
+%%%%
+Dowan_Duvessa_dies_invisible
+
+@The_monster@이(가) 비명을 지른다. "안 돼! 안 돼! 안 된다고!"
+%%%%
+Dowan_Duvessa_dies_distance
+
+멀리서 절망에 찬 통곡이 들린다.
+%%%%
+Duvessa_Dowan_dies_distance
+
+멀리서 분노에 찬 비명이 들린다.
+%%%%
+Frederick riddle
+
+@The_monster@이(가) 한숨 쉰다. "네 머리는 발톱보다도 무딘 모양이군."
+%%%%
+Jory triumphant
+
+@The_monster@이(가) 외친다. "그래, 바로 이거야!"
+%%%%
+Polyphemus triumphant
+
+@The_monster@이(가) 말한다. "넌 아무것도 아니야."
