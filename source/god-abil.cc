@@ -2468,7 +2468,7 @@ void announce_beogh_conversion_offer()
 
             ASSERT_RANGE(get_talent(ABIL_CONVERT_TO_BEOGH).hotkey,
                             'A', 'z' + 1);
-            mprf("베오그로 개종하려면 능력 메뉴(<w>%s</w>)에서 <w>%c</w>를 누르세요.",
+            mprf("베오그로 개종하려면 <w>%c</w> 키를 누르세요(능력 메뉴: <w>%s</w>).",
                     get_talent(ABIL_CONVERT_TO_BEOGH).hotkey,
                     command_to_string(CMD_USE_ABILITY).c_str());
             you.attribute[ATTR_SEEN_BEOGH] = 1;
@@ -4193,8 +4193,7 @@ spret qazlal_disaster_area(bool fail)
     }
 
     if (friendlies
-        && !yesno("주변에 아군이 있어. 정말 공격할까?"
-                  "them?", true, 'n'))
+        && !yesno("주변에 아군이 있어. 정말 공격할까?", true, 'n'))
     {
         canned_msg(MSG_OK);
         return spret::abort;
