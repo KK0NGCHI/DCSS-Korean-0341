@@ -349,3 +349,119 @@ ice miscast monster
 @The_monster@ 얼음과 서리의 폭발에 휘말려.
 
 @The_monster@ [얼음|서리] 속에 갇혀.
+%%%%
+air miscast player
+
+전기 불꽃이 주변에서 춤춰.
+
+주변 공기가 에너지로 지직거려.
+
+강한 바람이 너를 덮쳐.
+
+짧고 날카로운 불꽃이 빗발쳐.
+
+바람이 네 주위를 세차게 휘몰아쳐.
+
+갑자기 감전되는 느낌이 들어.
+
+전류가 온몸을 타고 흘러.
+
+방전 폭발에 휘말려.
+%%%%
+air miscast monster
+
+@The_monster@ 잠시 공중에서 위아래로 흔들려.
+
+전기 불꽃이 @the_monster_possessive@ @hands@ 사이에서 춤춰.
+
+@the_monster@ 주위 공기가 에너지로 지직거려.
+
+@The_monster@ 강한 바람에 얻어맞아.
+
+@The_monster@ 잠시 불꽃 세례를 받아.
+
+@the_monster@ 주위로 바람이 세차게 휘몰아쳐.
+
+@The_monster@ 전기에 움찔거려.
+
+@The_monster@ 방전 폭발에 휘말려.
+
+@The_monster@ 뒤틀리는 바람에 얻어맞아.
+%%%%
+earth miscast player
+
+[모래|자갈]가 @hands@에서 쏟아져.
+
+땅에서 에너지가 솟구치는 느낌이 들어.
+
+발밑의 바닥이 무섭게 [움직여|진동해|흔들려|우르릉거려].
+
+날아오는 돌에 맞아.
+
+모래가 너를 강타해.
+
+어디선가 돌이 네 위로 떨어져.
+
+날카로운 파편의 폭발에 휘말려.
+%%%%
+earth miscast monster
+
+[모래|자갈]가 @the_monster_possessive@ @hands@에서 쏟아져.
+
+@The_monster@ 날아오는 돌에 맞아.
+
+@The_monster@ 모래에 얻어맞아.
+
+어디선가 돌이 @the_monster@ 위로 떨어져.
+
+@The_monster@ 날카로운 파편의 폭발에 휘말려.
+%%%%
+alchemy miscast player
+
+유독한 연기가 너를 집어삼켜.
+
+주홍빛 섬광이 번쩍여.
+
+[수은|액체 수은|황철석|초석|유황|액체 금속]이 @hands@에서 흘러나와.
+
+몸 일부가 잠시 [금빛|은빛|금속성|납빛|수정 같은] 모습으로 변해.
+
+w:4
+
+@any_colour@ 연기 구름에 휩싸여.
+
+w:4
+
+입안에서 잠시 @any_colour@ 맛이 나.
+
+w:2
+
+피부가 @any_colour_pattern@ 무늬로 변해.
+
+w:2
+
+@any_glowing_colour@ 먼지 구름이 너를 둘러싸.
+%%%%
+alchemy miscast monster
+
+@The_monster@ 유독한 연기에 휩싸여.
+
+@The_monster@ [진사|유황] 가루를 [얻어맞아|뒤집어써].
+
+@The_monster@ 소금에 뒤덮여.
+
+@The_monster@ 심하게 기침하기 시작해.
+
+@The_monster@ 몹시 아파 보여.
+
+w:5
+
+@The_monster@ @any_colour@ 연기 구름에 휩싸여.
+
+w:5
+
+@The_monster_possessive@ 피부가 @any_colour_pattern@ 무늬로 변해.
+
+w:5
+
+@The_monster@ @any_glowing_colour@ 먼지 구름에 둘러싸여.
