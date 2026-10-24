@@ -6,6 +6,8 @@ on:
       - 'source/dat/database/**'
       - 'tools/dcss-extractor/scripts/audit_database_translations.py'
       - 'tools/dcss-extractor/scripts/test_audit_database_translations.py'
+      - 'tools/dcss-extractor/scripts/audit_monspell_ko.py'
+      - 'tools/dcss-extractor/scripts/test_audit_monspell_ko.py'
       - '.github/workflows/database-translation-audit.yml'
   push:
     branches: [main]
@@ -13,6 +15,8 @@ on:
       - 'source/dat/database/**'
       - 'tools/dcss-extractor/scripts/audit_database_translations.py'
       - 'tools/dcss-extractor/scripts/test_audit_database_translations.py'
+      - 'tools/dcss-extractor/scripts/audit_monspell_ko.py'
+      - 'tools/dcss-extractor/scripts/test_audit_monspell_ko.py'
       - '.github/workflows/database-translation-audit.yml'
 jobs:
   audit:
@@ -29,6 +33,14 @@ jobs:
       - name: Audit all gameplay text database files
         run: |
           python tools/dcss-extractor/scripts/audit_database_translations.py --source source --output tools/dcss-extractor/output/DB-AUDIT-001
+      - name: Test monster speech grammar and markup validation
+        run: python -m unittest discover -s tools/dcss-extractor/scripts -p 'test_audit_monspell_ko.py' -v
+      - name: Audit Korean monster spell overlays against original keys
+        run: |
+          python tools/dcss-extractor/scripts/audit_monspell_ko.py \
+            --original source/dat/database/monspell.txt \
+            --localized source/dat/database/ko/monspell.txt \
+            --output tools/dcss-extractor/output/DB-AUDIT-001/monspell_ko.json
       - name: Publish detailed database audit reports
         uses: actions/upload-artifact@v4
         with:
