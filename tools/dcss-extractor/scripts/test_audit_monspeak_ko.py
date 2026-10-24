@@ -48,6 +48,75 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         self.assertTrue(audit(src, ko.replace("w:3", "w:4"))["problems"])
         self.assertTrue(audit(src, ko.replace("SOUND:", ""))["problems"])
 
+    def test_lua_conditionals_are_not_display_text(self):
+        src = [
+            "{{",
+            '  if you.race() == "Felid" then',
+            '    return "@_friendly_imp_@"',
+            "  else",
+            '    return "Hello there!"',
+            "  end",
+            "}}",
+        ]
+        translated = [
+            "{{",
+            '  if you.race() == "Felid" then',
+            '    return "@_friendly_imp_@"',
+            "  else",
+            '    return "반가워!"',
+            "  end",
+            "}}",
+        ]
+        self.assertEqual(check_variants(src, translated), [])
+        self.assertIn("line_5_no_hangul", check_variants(src, src))
+        modified = list(translated)
+        modified[1] = '  if you.race() == "Mummy" then'
+        self.assertIn("line_2_lua_control_modified",
+                      check_variants(src, modified))
+
+    def test_lua_close_brace_can_be_followed_by_translated_prose(self):
+        src = ["{{", "return 'up'", "}} at you expectantly."]
+        ko = ["{{", "return '올려다'", "}}봐."]
+        self.assertEqual(check_variants(src, ko), [])
+        self.assertIn("line_3_no_hangul", check_variants(src, src))
+
+    def test_inline_lua_else_with_trailing_message(self):
+        src = [
+            '@The_weapon@ says, "{{ if you.god() == "No God" then return "my blade"',
+            'else return "@player_god@"; end }}, you are such a [wuss|coward]."',
+        ]
+        ko = [
+            '@The_weapon@이(가) 말해. "{{ if you.god() == "No God" then return "내 칼날"',
+            'else return "@player_god@"; end }}, 넌 정말 [겁쟁이|약골]야."',
+        ]
+        self.assertEqual(check_variants(src, ko), [])
+
+    def test_lua_end_quote_player_marker_is_control_syntax(self):
+        source = [
+            '@The_monster@ says, "{{',
+            'if you.god() == "Makhleb" then',
+            'return "Something."',
+            "else",
+            'return "Other."',
+            'end }}" @player_only@',
+        ]
+        translated = [
+            '@The_monster@이(가) 말해. "{{',
+            'if you.god() == "Makhleb" then',
+            'return "무언가."',
+            "else",
+            'return "다른 것."',
+            'end }}" @player_only@',
+        ]
+        self.assertEqual(check_variants(source, translated), [])
+
+    def test_lua_dynamic_return_stays_program_code(self):
+        src = ["{{", "return you.genus()", "}}"]
+        self.assertEqual(check_variants(src, src), [])
+        changed = ["{{", "return you.race()", "}}"]
+        # Changing non-displaying Lua expressions must also fail.
+        self.assertIn("line_2_no_hangul", check_variants(src, changed))
+
     def test_counts_and_duplicate_data(self):
         src = "%%%%\nthing\n\n@The_monster@ speaks.\n%%%%\nthing\n\n@The_monster@ shouts.\n%%%%\n"
         ko = "%%%%\nthing\n\n@The_monster@이(가) 말한다.\n%%%%\n"
