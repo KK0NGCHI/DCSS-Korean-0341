@@ -1,0 +1,97 @@
+# Spell miscast Korean overlay; all source keys and placeholders retained.
+%%%%
+conjuration miscast player
+
+@hands@에서 불꽃이 튀어.
+
+어디선가 기이한 에너지의 파동이 너를 덮쳐.
+
+격렬한 에너지의 파도가 네 몸을 휩쓸어.
+
+에너지가 네 몸을 찢고 지나가.
+
+너는 격렬한 폭발에 휘말려.
+
+마력의 충격이 너를 강타해.
+%%%%
+conjuration miscast monster
+
+@the_monster_possessive@ @hands@에서 불꽃이 튀어.
+
+@The_monster@ 섬광을 내뿜어.
+
+@The_monster@ 거칠게 휘청거려.
+
+@The_monster@ 거칠게 경련해.
+
+@The_monster@ 격렬한 폭발에 휘말려.
+
+@The_monster@ 마력의 충격을 받아.
+%%%%
+conjuration miscast unseen
+
+허공에서 격렬한 폭발이 일어나.
+
+갑자기 마력의 폭발이 일어나.
+%%%%
+hexes miscast player
+
+형형색색의 빛이 눈앞에서 춤춰.
+
+조금 피곤해져.
+
+네 주위의 빛이 잠깐 어두워져.
+
+정신 속에서 알아들을 수 없는 불협화음의 속삭임이 들려.
+
+기이한 에너지가 솟구치는 느낌이 들어.
+
+@any_colour@ 빛의 물결이 네 몸을 타고 퍼져.
+
+몸에 힘이 빠져.
+
+마력이 네 몸에서 솟구쳐 나와.
+%%%%
+hexes miscast monster
+
+형형색색의 빛이 @the_monster@ 주위에서 춤춰.
+
+@The_monster@ 잠깐 졸린 듯 보여.
+
+@the_monster@ 주변의 빛이 잠깐 어두워져.
+
+@The_monster@ 움찔거려.
+
+@The_monster_possessive@ 몸이 잠깐 빛나.
+
+@any_colour@ 빛의 물결이 @the_monster_possessive@ 몸을 타고 퍼져.
+
+마력이 @the_monster@에게서 솟구쳐 나와.
+%%%%
+hexes miscast unseen
+
+형형색색의 빛이 공중에서 춤춰.
+
+한곳의 빛이 잠깐 어두워져.
+
+허공에서 마력이 솟구쳐 나와.
+%%%%
+summoning miscast player
+
+한 움큼의 눈알이 네 시야를 스쳐 지나가.
+
+정신 속에서 먼 곳의 목소리가 너를 불러.
+
+허공에서 무언가 형체를 갖춰.
+
+정신 속에서 신음 소리가 합창처럼 울려.
+
+필사적으로 뻗은 손들이 너를 할퀴려 해.
+%%%%
+summoning miscast monster
+
+필사적으로 뻗은 손들이 @the_monster@을 할퀴려 해.
+%%%%
+summoning miscast unseen
+
+필사적으로 뻗은 손들이 사방을 마구 할퀴어.
