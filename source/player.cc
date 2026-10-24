@@ -3892,7 +3892,7 @@ void flush_mp()
         && you.magic_points < you.max_magic_points
                               * Options.magic_point_warning / 100)
     {
-        mprf(MSGCH_DANGER, "* * * LOW MAGIC WARNING * * *");
+        mprf(MSGCH_DANGER, "* * * 마력 부족 경고 * * *");
     }
 
     take_note(Note(NOTE_MP_CHANGE, you.magic_points, you.max_magic_points));
@@ -3905,7 +3905,7 @@ void flush_hp()
         && you.hp <= (you.hp_max * Options.hp_warning) / 100)
     {
         flash_view_delay(UA_HP, RED, 50);
-        mprf(MSGCH_DANGER, "* * * LOW HITPOINT WARNING * * *");
+        mprf(MSGCH_DANGER, "* * * 생명력 부족 경고 * * *");
         dungeon_events.fire_event(DET_HP_WARNING);
     }
     you.redraw_hit_points = true;
@@ -8201,8 +8201,7 @@ bool player::do_shaft()
     }
     if (you_worship(GOD_YREDELEMNUL) && yred_torch_is_raised())
     {
-        mpr("Yredelemnul refuses to let your conquest be stopped by a trick of"
-            " the earth!");
+        mpr("이레데렘눌은 지형의 속임수 때문에 당신의 정복이 멈추는 것을 허락하지 않는다!");
         return false;
     }
 
@@ -8259,7 +8258,7 @@ bool player::do_shaft_ability()
 {
     if (can_do_shaft_ability(true))
     {
-        mpr("A shaft appears beneath you!");
+        mpr("발밑에 수직 통로가 생겼다!");
         down_stairs(DNGN_TRAP_SHAFT, true);
         return true;
     }
