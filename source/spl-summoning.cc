@@ -4243,7 +4243,7 @@ void paragon_charge_up(monster& paragon)
         if (new_charge == 2)
             mprf(MSGCH_DURATION, "모범 전사의 힘이 최대치에 도달했다!");
         else if (new_charge == 1)
-            mprf(MSGCH_DURATION, "Your paragon is now ready to unleash a masterful attack.");
+            mprf(MSGCH_DURATION, "모범 전사가 이제 강력한 일격을 날릴 준비가 됐다.");
     }
 }
 
@@ -4283,12 +4283,12 @@ static void _do_player_potion()
 {
     if (player_in_branch(BRANCH_COCYTUS))
     {
-        mpr("The potion freezes solid before it can reach you!");
+        mpr("물약이 당신에게 닿기도 전에 꽁꽁 얼어붙는다!");
         return;
     }
     else if (!you.can_drink())
     {
-        mpr("You sigh wistfully at the memory of the taste.");
+        mpr("그 맛을 떠올리며 아쉬운 한숨을 쉰다.");
         return;
     }
 
@@ -4316,7 +4316,7 @@ static void _do_player_potion()
 
     potion_type potion = *random_choose_weighted(weights);
 
-    mprf("Mmmm... tastes like %s.", potion_type_name(potion));
+    mprf("음... %s 맛이 나는군.", potion_type_name(potion));
 
     if (you.has_mutation(MUT_DRUNKEN_BRAWLING) && oni_likes_potion(potion))
         oni_drunken_swing();
@@ -4326,7 +4326,7 @@ static void _do_player_potion()
         const int amu = you.wearing(OBJ_JEWELLERY, AMU_CHEMISTRY, false, true);
         if (amu)
         {
-            mprf("You extract %smagical energy from the potion.",
+            mprf("물약에서 %s마법 에너지를 추출한다.",
                  amu > 1 ? "even more " : "");
             inc_mp(random_range(5, 9) * amu);
         }
@@ -4372,7 +4372,7 @@ void alembic_brew_potion(monster& mons)
         if (grid_distance(you.pos(), mons.pos()) <= 3)
             _do_player_potion();
         else
-            mpr("But you're too far away!");
+            mpr("하지만 너무 멀리 있어!");
     }
 
     int num_potions = 5;
@@ -4618,7 +4618,7 @@ spret cast_splinterfrost_shell(const actor& agent, const coord_def& aim,
     }
 
     if (num_created > 0)
-        mprf("You construct a shell of ice in front of yourself.");
+        mprf("눈앞에 얼음 껍질을 만들어 냈다.");
     else
         canned_msg(MSG_NOTHING_HAPPENS);
 
@@ -4693,7 +4693,7 @@ spret cast_phalanx_beetle(const actor& agent, int pow, bool fail)
     {
         if (agent.is_player())
         {
-            mpr("You forge a skittering defender to stand by your side.");
+            mpr("곁을 지킬 재빠른 수호자를 만들어 냈다.");
             you.props[PHALANX_BARRIER_POWER_KEY] = 400 + pow * 3;
         }
         else if (you.can_see(agent))
@@ -4734,7 +4734,7 @@ spret cast_rending_blade(int pow, bool fail)
 
     if (monster* mon = create_monster(blade))
     {
-        mpr("You condense your magic into a crackling blade!");
+        mpr("마력을 응축해 번개가 튀는 칼날을 만들어 냈다!");
         you.props[RENDING_BLADE_MP_KEY].get_int() = you.magic_points;
         mon->props[RENDING_BLADE_POWER_KEY] = _rending_blade_power(pow);
         pay_mp(you.magic_points);
