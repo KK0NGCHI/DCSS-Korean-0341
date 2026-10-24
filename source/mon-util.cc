@@ -5575,7 +5575,7 @@ void throw_monster_bits(const monster& mon)
 
         int damage = 1 + random2(mon.get_hit_dice());
 
-        mprf("%s is hit by a flying piece of %s!",
+        mprf("%s이(가) 날아온 %s의 파편에 맞았다!",
                 target->name(DESC_THE, false).c_str(),
                 mon.name(DESC_THE, false).c_str());
 
@@ -5839,7 +5839,7 @@ bool could_harm(const actor* agent, const actor* target, bool announce_important
         && target->wont_attack())
     {
         if (announce_mundane && you.can_see(*target))
-            simple_god_message(" protects your slime from harm.", false, GOD_JIYVA);
+            simple_god_message("이(가) 당신의 점액이 피해를 입지 않도록 보호한다.", false, GOD_JIYVA);
         return false;
     }
 
