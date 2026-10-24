@@ -134,3 +134,13 @@
 - [최종 구조 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40097262348) 및 [Linux 한국어 DB 로더 재검증](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40097262320)을 실행. 실행 완료 여부와 성공 판정은 링크에서 확인; Windows Tiles 및 동적 조사 결합은 검사 범위 밖.
 - DB 4개 오버레이의 원문 대응 키 합계는 **628개**(godname 23 + monspell 245 + monspeak 342 + wpnnoise 18). **게임 전체 번역률 아님**.
 - 상세: [고유 몬스터 대사 번역 배치](../../docs/translation-review/monspeak-unique-batch-20261024.md).
+
+## 2026-10-24 고유 몬스터 대사 추가 번역 — PR #15
+
+- `monspeak.txt` 원문 고유 키 대응 **342/731(46.8%) → 413/731(56.5%)**. 추가 **71개**, 미대응 **318개**.
+- 추가된 출력·참조 변형 **350줄** 중 **305줄**이 한국어 포함. 참조만 있는 원문 동일 키 **20개**가 포함되므로 이를 모두 별도 번역 문장으로 셀 수 없음.
+- 대상: Pikel, Polyphemus, Prince Ribbit, Parghit, Roxanne, Rupert, Snorg, Sonja, Xtahua, Zenata, Aizul, Agnes, Amaemon, Arachne, Azrael, Bai Suzhen, Dissolution, Murray, Nellie, Nergalle, Nikola, Menkaure, Maurice 등.
+- 잔여 318개 1차 분류: 일반·혼합 본문 190, 참조 전용 99, Lua 14, 무출력 15. 분류는 최종 실출력 판정이 아닌 잠정 구조 분류.
+- [구조 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40098709326) 성공. [Linux 런타임 DB 재검증](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40098709301)은 별도 확인. 실제 고유 몬스터 출력 및 Windows Tiles와 한글 조사는 여전히 미검증.
+- 누적 4개 데이터 오버레이 원문 대응 합계 **699개** = godname 23 + monspell 245 + monspeak 413 + wpnnoise 18. 이는 게임 전체 한국어화율과 무관.
+- 상세 기록: [고유 몬스터 대사 71키 추가 보고](../../docs/translation-review/monspeak-named-20261024-batch2.md).
