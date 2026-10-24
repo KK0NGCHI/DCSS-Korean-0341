@@ -318,8 +318,8 @@ static bool _stop_because_god_hates_target_prompt(const monster* mon,
         {
             if (check_only)
                 return true;
-            if (!yesno("Animating this weapon would place you under penance. "
-                "Really cast this spell?", false, 'n'))
+            if (!yesno("이 무기를 움직이게 하면 신의 징벌을 받게 돼. "
+                "그래도 이 주문을 시전할까?", false, 'n'))
             {
                 canned_msg(MSG_OK);
                 return true;
@@ -663,7 +663,7 @@ void bolt::initialise_fire()
             && !crawl_state.is_god_acting()
             && (!mon || !mon->observable()))
         {
-            mprf("%s appears from out of thin air!",
+            mprf("%s이(가) 허공에서 갑자기 나타났다!",
                  article_a(name, false).c_str());
         }
     }
@@ -1401,7 +1401,7 @@ void bolt::do_fire()
 
         if (flavour != BEAM_VISUAL && !was_seen && seen && !is_tracer())
         {
-            mprf("%s appears from out of your range of vision.",
+            mprf("%s이(가) 시야 밖에서 나타났다.",
                  article_a(name, false).c_str());
         }
 
@@ -2034,8 +2034,8 @@ static bool _curare_hits_monster(actor *agent, monster* mons, int bonus_poison)
     if (mons->alive() && !mons->stasis())
     {
         simple_monster_message(*mons, mons->has_ench(ENCH_SLOW)
-                                         ? " seems to be slow for longer."
-                                         : " seems to slow down.");
+                                         ? "의 움직임이 더 오랫동안 느려진 것 같다."
+                                         : "의 움직임이 느려진다.");
         mons->add_ench(mon_enchant(ENCH_SLOW, agent));
     }
 
@@ -2362,7 +2362,7 @@ static void _vampiric_draining_effect(actor& victim, actor& agent, int damage)
     {
         const int hp_gain = drain_amount * 2 / 3;
         if (agent.heal(hp_gain))
-            simple_monster_message(*agent.as_monster(), " is healed by the life force!");
+            simple_monster_message(*agent.as_monster(), "의 상처가 생명력으로 치유된다!");
     }
     else
     {
@@ -4172,7 +4172,7 @@ static const vector<pie_effect> pie_effects = {
             {
                 monster *mons = defender.as_monster();
                 simple_monster_message(*mons,
-                        " looks more vulnerable to fire.");
+                        "이(가) 화염에 더 취약해 보인다.");
                 mons->add_ench(mon_enchant(ENCH_FIRE_VULN, beam.agent(),
                                            15 + random2(11) * BASELINE_DELAY));
             }
@@ -5299,7 +5299,7 @@ void bolt::monster_post_hit(monster* mon, int dmg)
         const int dur = max(1, div_rand_round(54, mon->get_hit_dice())) * BASELINE_DELAY;
         auto ench = mon_enchant(ENCH_BLIND, agent(), random_range(dur, dur * 2));
         if (mon->add_ench(ench))
-            simple_monster_message(*mon, " is blinded.");
+            simple_monster_message(*mon, "의 눈이 멀었다.");
     }
 
     if (origin_spell == SPELL_HURL_TORCHLIGHT && mon->holiness() & MH_UNDEAD
@@ -5310,12 +5310,12 @@ void bolt::monster_post_hit(monster* mon, int dmg)
                                * BASELINE_DELAY;
         mon->add_ench(mon_enchant(ENCH_MIGHT, agent(), dur));
         mon->speed_increment += 10;
-        simple_monster_message(*mon, " is empowered.");
+        simple_monster_message(*mon, "에게 힘이 솟구친다.");
     }
 
     if (origin_spell == SPELL_GRAVE_CLAW && !mon->has_ench(ENCH_BOUND))
     {
-        simple_monster_message(*mon, " is pinned in place!");
+        simple_monster_message(*mon, "이(가) 그 자리에 묶였다!");
         mon->add_ench(mon_enchant(ENCH_BOUND, agent(), random_range(2, 4) * BASELINE_DELAY));
     }
 
@@ -6266,7 +6266,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
                                       random_range(6, 8) * BASELINE_DELAY, 2)))
         {
             obvious_effect = true;
-            simple_monster_message(*mon, " is cursed with the promise of agony.");
+            simple_monster_message(*mon, "에게 고통의 약속이라는 저주가 내려졌다.");
 
         }
         return MON_AFFECTED;
@@ -6297,7 +6297,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
     case BEAM_HIBERNATION:
         if (mon->can_hibernate())
         {
-            if (simple_monster_message(*mon, " looks drowsy..."))
+            if (simple_monster_message(*mon, "은(는) 졸려 보인다..."))
                 obvious_effect = true;
             // Since 1 turn will pass for the player's own action here, EH will
             // put a monster to sleep for between ~20-55 aut, slanted towards
@@ -6335,7 +6335,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
             && mon->add_ench(ENCH_HASTE))
         {
             if (!mons_is_immotile(*mon)
-                && simple_monster_message(*mon, " seems to speed up."))
+                && simple_monster_message(*mon, "의 움직임이 빨라진다."))
             {
                 obvious_effect = true;
             }
@@ -6347,7 +6347,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
             && mons_has_attacks(*mon)
             && mon->add_ench(ENCH_MIGHT))
         {
-            if (simple_monster_message(*mon, " seems to grow stronger."))
+            if (simple_monster_message(*mon, "에게서 더 강한 힘이 느껴진다."))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6356,7 +6356,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         if (!mon->has_ench(ENCH_DOUBLED_VIGOUR)
             && mon->add_ench(ENCH_DOUBLED_VIGOUR))
         {
-            if (simple_monster_message(*mon, " surges with doubled vitality!"))
+            if (simple_monster_message(*mon, "의 생명력이 2배로 치솟는다!"))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6390,10 +6390,10 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             if (mon->hit_points == mon->max_hit_points)
             {
-                if (simple_monster_message(*mon, " wounds heal themselves!", true))
+                if (simple_monster_message(*mon, "의 상처가 저절로 아문다!", true))
                     obvious_effect = true;
             }
-            else if (simple_monster_message(*mon, " is healed somewhat."))
+            else if (simple_monster_message(*mon, "의 상처가 조금 회복된다."))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6438,7 +6438,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             // FIXME: Put in an exception for things you won't notice
             // becoming confused.
-            if (simple_monster_message(*mon, " appears confused."))
+            if (simple_monster_message(*mon, "은(는) 혼란스러워 보인다."))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6449,7 +6449,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
             return MON_UNAFFECTED;
 
         mon->put_to_sleep(agent(), random_range(4, 7) * BASELINE_DELAY);
-        if (simple_monster_message(*mon, " falls asleep!"))
+        if (simple_monster_message(*mon, "은(는) 잠들었다!"))
             obvious_effect = true;
 
         return MON_AFFECTED;
@@ -6476,7 +6476,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
                 obvious_effect = mon->del_ench(bad);
                 return MON_AFFECTED;
             }
-            if (simple_monster_message(*mon, " is charmed!"))
+            if (simple_monster_message(*mon, "은(는) 매혹되었다!"))
                 obvious_effect = true;
             mon->add_ench(mon_enchant(good, agent()));
             if (!obvious_effect && could_see && !you.can_see(*mon))
