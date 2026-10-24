@@ -1350,3 +1350,149 @@ Gozag bribe
 Gozag permabribe
 
 @The_monster@이(가) @at_foe@ 탐욕스럽게 웃으며 금화 주머니를 짤랑거린다.
+%%%%
+Rupert triumphant
+
+@The_monster@이(가) 승리의 포효를 지른다.
+%%%%
+Saint Roka triumphant
+
+@The_monster@이(가) 포효한다. "베오그를 찬양하라!"
+%%%%
+Sojobo triumphant
+
+@The_monster@이(가) 말한다. "결과는 처음부터 정해져 있었지."
+
+@The_monster@이(가) 말한다. "모두 계획대로군."
+%%%%
+Urug triumphant
+
+@The_monster@이(가) 외친다. "드디어 복수했다!"
+
+@The_monster@이(가) 말한다. "하피 한 놈을 더 해치웠군."
+%%%%
+Xak'krixis triumphant
+
+@The_monster@이(가) 말한다. "내 논문이 나오면 널 꼭 공동 저자로 올려 줄게!"
+%%%%
+Zenata triumphant
+
+@The_monster@이(가) 말한다. "불 속에 던질 찌꺼기가 또 늘었군."
+
+@The_monster@이(가) 말한다. "네 안에 뭐가 들었는지 볼까."
+%%%%
+Killer Klown triumphant
+
+VISUAL:@The_monster@이(가) 인사하려다 바나나 껍질에 미끄러진다.
+
+@The_monster@이(가) 기뻐하며 빵빵거리는 소리를 낸다.
+
+VISUAL:@The_monster@이(가) 당신을 풍선 동물 모양으로 묶으려 한다.
+%%%%
+Slings player ghost
+
+@The_monster@이(가) 말한다. "덩치가 클수록 넘어질 때도 요란하지!"
+
+VISUAL:@The_monster@이(가) 머리 위로 유령 같은 투석구를 빙빙 돌린다.
+
+@_generic_ranged_@
+%%%%
+Ranged Weapons player ghost
+
+@_generic_ranged_@
+
+@The_monster@이(가) 말한다. "사과 하나 없나? 시험해 보고 싶은 사격이 있거든."
+
+VISUAL:@The_monster@이(가) 머리 위로 유령 같은 투석구를 빙빙 돌린다.
+
+VISUAL:@The_monster@이(가) [힘겹게 재장전한다|능숙하게 재장전한다].
+%%%%
+Crossbows player ghost
+
+@_generic_ranged_@
+
+VISUAL:@The_monster@이(가) [힘겹게 재장전한다|능숙하게 재장전한다].
+%%%%
+Throwing player ghost
+
+VISUAL:@The_monster@이(가) 던질 만한 물건이 없나 주위를 둘러본다.
+
+@The_monster@이(가) 당신에게 재치 있는 모욕을 던진다. @player_only@
+
+@_generic_ranged_@
+%%%%
+Conjurations player ghost
+
+VISUAL:@The_monster@이(가) 조준한다.
+
+@The_monster@이(가) 말한다. "널 산산조각 내 주마."
+
+@The_monster@이(가) 알아듣기 어려운 주문을 [능숙하게 읊는다|엉터리로 외운다].
+
+VISUAL:@The_monster@이(가) 이스켄데룬의 눈부신 광휘에 휩싸인다.
+
+VISUAL:@the_monster@ 앞에 에너지가 응축되더니 금세 흩어진다.
+%%%%
+Alchemy player ghost
+
+@The_monster@이(가) 말한다. "그 정도 작은 긁힌 상처라면 분명 괜찮겠지."
+
+@The_monster@이(가) @to_foe@ 말한다. "어서 도망쳐 봐."
+
+@The_monster@이(가) @to_foe@ 말한다. "날 죽여도 소용없어. 너도 결국 죽을 테니까."
+
+@The_monster@이(가) @to_foe@ 말한다. "움직이지 마. 독이 더 빨리 퍼질 테니."
+
+@The_monster@이(가) @to_foe@ 말한다. "난 이제 숨 쉴 필요 없지만, 넌 다르지!"
+%%%%
+default Mennas
+
+VISUAL:@The_monster@이(가) 당신을 향해 몸짓한다. @player_only@
+
+VISUAL:@The_monster@이(가) 하늘을 올려다본다.
+
+VISUAL:@The_monster@이(가) 슬픈 듯 고개를 흔든다.
+
+VISUAL:@The_monster@이(가) 잠시 기도에 몰두한다.
+%%%%
+twin_ikilled Duvessa
+
+VISUAL:@The_monster@이(가) 슬픔과 공포로 몸을 떤다.
+
+@The_monster@이(가) 말한다. "내가 무슨 짓을 한 거야? 도대체 무슨 짓을..."
+
+@The_monster@이(가) 말한다. "이제 어떻게 살아가란 말이야?"
+
+@The_monster@이(가) 비명을 지른다.
+%%%%
+twin_ikilled Dowan
+
+VISUAL:@The_monster@이(가) 공포에 눈을 크게 뜬다.
+
+@The_monster@이(가) 비명을 지른다.
+
+@The_monster@이(가) 고개를 저으며 말한다. "안 돼, 안 돼, 안 된다고!"
+
+@The_monster@이(가) 외친다. "안 돼! 내가 무슨 짓을 한 거야?"
+%%%%
+_form_
+
+거미
+
+석상
+
+용
+%%%%
+_laughs_
+
+미친 듯이 낄낄거린다
+
+거칠게 킥킥거린다
+
+음산하게 중얼거리며 웃는다
+%%%%
+_says_or_shouts_
+
+말한다
+
+외친다
