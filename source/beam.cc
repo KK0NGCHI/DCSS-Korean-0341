@@ -2722,7 +2722,7 @@ void bolt::affect_endpoint()
 
     case SPELL_MUD_BREATH:
     {
-        mpr("The mud splashes down.");
+        mpr("진흙이 철썩이며 가라앉는다.");
         const int num = 3 + div_rand_round(ench_power * 3, 7) + random2(4);
         const int dur = (div_rand_round(ench_power * 1, 3) + 15) * BASELINE_DELAY;
         const int rad = (num > 20) ? 3 : (num > 9) ? 2 : 1;
@@ -3002,7 +3002,7 @@ void bolt::affect_place_clouds()
             || (cloud->type == CLOUD_FIRE && flavour == BEAM_COLD))
         {
             if (player_can_hear(p))
-                mprf(MSGCH_SOUND, "You hear a sizzling sound!");
+                mprf(MSGCH_SOUND, "지글거리는 소리가 들린다!");
 
             delete_cloud(p);
             extra_range_used += 5;
@@ -3709,7 +3709,7 @@ void bolt::affect_player_enchantment(bool resistible)
 
     case BEAM_MALMUTATE:
     case BEAM_UNRAVELLED_MAGIC:
-        mpr("Strange energies course through your body.");
+        mpr("기이한 에너지가 온몸을 흐른다.");
         you.malmutate(agent(), aux_source.empty() ? get_source_name() :
                       (get_source_name() + "/" + aux_source));
         obvious_effect = true;
@@ -3802,7 +3802,7 @@ void bolt::affect_player_enchantment(bool resistible)
         break;
 
     case BEAM_CHARM:
-        mprf(MSGCH_WARN, "Your will is overpowered!");
+        mprf(MSGCH_WARN, "의지가 압도당했다!");
         confuse_player(5 + random2(3));
         obvious_effect = true;
         break;     // charming - confusion?
@@ -3810,7 +3810,7 @@ void bolt::affect_player_enchantment(bool resistible)
     case BEAM_BANISH:
         if (YOU_KILL(thrower))
         {
-            mpr("This spell isn't strong enough to banish yourself.");
+            mpr("이 주문은 당신 자신을 추방할 만큼 강력하지 않아.");
             break;
         }
         you.banish(agent(), get_source_name());
@@ -3825,7 +3825,7 @@ void bolt::affect_player_enchantment(bool resistible)
         const int dam = resist_adjust_damage(&you, flavour, damage.roll());
         if (dam)
         {
-            mpr("Pain shoots through your body!");
+            mpr("온몸에 격렬한 통증이 퍼진다!");
             internal_ouch(dam);
             obvious_effect = true;
         }
@@ -3846,7 +3846,7 @@ void bolt::affect_player_enchantment(bool resistible)
             break;
         }
 
-        mpr("You convulse!");
+        mpr("몸에 경련이 일어난다!");
 
         if (aux_source.empty())
             aux_source = "by dispel undead";
@@ -3856,7 +3856,7 @@ void bolt::affect_player_enchantment(bool resistible)
         break;
 
     case BEAM_MINDBURST:
-        mpr("Your mind is blasted!");
+        mpr("정신이 강렬한 충격을 받았다!");
 
         if (aux_source.empty())
             aux_source = "mindburst bolt";
@@ -3875,7 +3875,7 @@ void bolt::affect_player_enchantment(bool resistible)
     case BEAM_PORKALATOR:
         if (!transform(20 + roll_dice(3, 10), transformation::pig, true))
         {
-            mpr("You feel a momentary urge to oink.");
+            mpr("순간 꿀꿀거리고 싶은 충동이 든다.");
             break;
         }
 
@@ -3900,7 +3900,7 @@ void bolt::affect_player_enchantment(bool resistible)
         if (you.duration[DUR_TELEPORT])
         {
             you.duration[DUR_TELEPORT] = 0;
-            mpr("Your teleport is interrupted.");
+            mpr("순간이동이 방해받았다.");
         }
         you.redraw_evasion = true;
         obvious_effect = true;
@@ -3973,7 +3973,7 @@ void bolt::affect_player_enchantment(bool resistible)
             break;
         }
 
-        mpr("You feel yourself grow more vulnerable to poison.");
+        mpr("독에 더욱 취약해진 것 같아.");
         you.increase_duration(DUR_POISON_VULN, 12 + random2(18), 50);
         obvious_effect = true;
         break;
@@ -4030,7 +4030,7 @@ void bolt::affect_player_enchantment(bool resistible)
     case BEAM_ILL_OMEN:
         obvious_effect = true;
         if (!you.doom(random_range(16, 30) + ench_power / 20))
-            mpr("You feel an ill-omen....");
+            mpr("불길한 예감이 든다....");
         break;
 
     case BEAM_ENFEEBLE:
@@ -4040,7 +4040,7 @@ void bolt::affect_player_enchantment(bool resistible)
 
     case BEAM_WARP_BODY:
         obvious_effect = true;
-        mpr("Your body is warped painfully!");
+        mpr("몸이 고통스럽게 뒤틀린다!");
         if (temp_mutation_count() >= 3)
             you.vitrify(agent(), random_range(12, 22));
         else
@@ -4050,7 +4050,7 @@ void bolt::affect_player_enchantment(bool resistible)
 
     default:
         // _All_ enchantments should be enumerated here!
-        mpr("Software bugs nibble your toes!");
+        mpr("소프트웨어 버그가 발가락을 갉아먹는다!");
         break;
     }
 
@@ -4116,9 +4116,9 @@ static const vector<pie_effect> pie_effects = {
         },
         [](actor &/*defender*/, const bolt &/*beam*/) {
             if (you.duration[DUR_VERTIGO])
-                mpr("You feel your light-headedness will last longer.");
+                mpr("어지러움이 더 오래 지속될 것 같아.");
             else
-                mpr("You feel light-headed.");
+                mpr("머리가 어질어질해.");
 
             you.increase_duration(DUR_VERTIGO, 10 + random2(11), 50);
         },
@@ -4132,9 +4132,9 @@ static const vector<pie_effect> pie_effects = {
         },
         [](actor &/*defender*/, const bolt &/*beam*/) {
             if (you.duration[DUR_NO_POTIONS])
-                mpr("You feel your inability to drink will last longer.");
+                mpr("물약을 마시지 못하는 상태가 더 오래 지속될 것 같아.");
             else
-                mpr("You feel unable to drink.");
+                mpr("물약을 마실 수 없을 것 같아.");
 
             you.increase_duration(DUR_NO_POTIONS, 10 + random2(11), 50);
         },
@@ -4152,9 +4152,9 @@ static const vector<pie_effect> pie_effects = {
             else
             {
                 if (you.duration[DUR_SILENCE])
-                    mpr("You feel your silence will last longer.");
+                    mpr("침묵 상태가 더 오래 지속될 것 같아.");
                 else
-                    mpr("An unnatural silence engulfs you.");
+                    mpr("부자연스러운 침묵이 당신을 감싼다.");
 
                 silence_player(4 + random2(7));
 
@@ -4425,7 +4425,7 @@ void bolt::affect_player()
 
     if (origin_spell == SPELL_GRAVE_CLAW && !you.unrand_equipped(UNRAND_SLICK_SLIPPERS))
     {
-        mpr("You are skewered in place!");
+        mpr("몸이 꿰뚫려 움직일 수 없게 됐다!");
         you.increase_duration(DUR_NO_MOMENTUM, random_range(2, 4));
     }
 
@@ -4510,7 +4510,7 @@ void bolt::affect_player()
     {
         if (!you.duration[DUR_FROZEN])
         {
-            mprf(MSGCH_WARN, "You are encased in ice.");
+            mprf(MSGCH_WARN, "얼음에 갇혔다.");
             you.duration[DUR_FROZEN] = (random_range(3, 5)) * BASELINE_DELAY;
         }
     }
@@ -4519,7 +4519,7 @@ void bolt::affect_player()
         && is_fiery() && x_chance_in_y(final_dam, you.hp_max * 2 / 3))
     {
         const int pow = div_rand_round(final_dam * 100 / you.hp_max, 10);
-        mpr("A part of your body evaporates into steam!");
+        mpr("몸의 일부가 증기로 증발한다!");
         big_cloud(CLOUD_STEAM, monster_by_mid(MID_YOU_FAULTLESS), you.pos(),
                   random_range(1, 4) + pow, random_range(2, 7));
     }
