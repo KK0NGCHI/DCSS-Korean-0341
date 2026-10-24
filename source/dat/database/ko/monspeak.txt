@@ -1,0 +1,586 @@
+# 몬스터 대사 한국어 번역. 번역되지 않은 키는 원문으로 대체됩니다.
+%%%%
+hound
+
+VISUAL:@The_monster@이(가) [잠시 멈춰|멈칫하며] @surface@의 냄새를 맡는다.
+%%%%
+default insect
+
+VISUAL:@The_monster@이(가) 더듬이를 흔든다.
+%%%%
+default confused insect
+
+VISUAL:@The_monster@이(가) 더듬이를 정신없이 흔든다.
+
+VISUAL:@The_monster@이(가) 다리 6개를 제대로 움직이지 못하는 듯하다.
+%%%%
+default confused winged insect
+
+VISUAL:@The_monster@이(가) 불규칙한 원을 그리며 날아다닌다.
+
+VISUAL:@The_monster@이(가) 더듬이를 정신없이 흔든다.
+
+VISUAL:@The_monster@이(가) 비틀거리며 날아다닌다.
+%%%%
+default confused arachnid
+
+VISUAL:@The_monster@이(가) 다리 8개를 제대로 움직이지 못하는 듯하다.
+%%%%
+centipede
+
+VISUAL:@The_monster@이(가) 더듬이를 흔든다.
+%%%%
+default confused centipede
+
+VISUAL:@The_monster@이(가) 수많은 다리를 제대로 움직이지 못하는 듯하다.
+
+VISUAL:@The_monster@이(가) 더듬이를 정신없이 흔든다.
+%%%%
+default confused 'b'
+
+VISUAL:@The_monster@이(가) 불규칙한 원을 그리며 날아다닌다.
+%%%%
+default 'cap-G'
+
+VISUAL:@The_monster@이(가) 불길하게 맥동한다.
+%%%%
+default 'cap-J'
+
+VISUAL:@The_monster@이(가) 흐느적거린다.
+%%%%
+'l'
+
+@The_monster@이(가) 위협적으로 쉿쉿거린다.
+%%%%
+'r'
+
+VISUAL:@The_monster@이(가) 수염을 움찔거린다.
+%%%%
+default confused 'r'
+
+VISUAL:@The_monster@이(가) 빙글빙글 원을 그리며 돌아다닌다.
+%%%%
+default confused 'y'
+
+SOUND:@The_monster@이(가) 좁은 원을 그리며 윙윙거린다.
+%%%%
+default silenced confused 'y'
+
+VISUAL:@The_monster@이(가) 좁은 원을 그리며 날아다닌다.
+%%%%
+elephant slug
+
+VISUAL:@The_monster@이(가) 잠깐 눈자루를 길게 뻗는다.
+%%%%
+_silenced_humanoid_common_
+
+VISUAL:@The_monster@이(가) 무언가 말하지만 소리가 들리지 않는다.
+
+VISUAL:@The_monster@이(가) 손짓한다.
+%%%%
+_silenced_humanoid_rare_
+
+VISUAL:@The_monster@이(가) 외설적인 손짓을 한다.
+
+VISUAL:@The_monster@이(가) 씩 웃는다.
+
+VISUAL:@The_monster@이(가) 화난 표정을 짓는다.
+
+VISUAL:@The_monster@이(가) 귀를 기울이는 듯하다.
+%%%%
+_friendly_silenced_common_
+
+VISUAL:@The_monster@이(가) 당신에게 엄지를 치켜든다.
+
+VISUAL:@The_monster@이(가) 말하지만 소리가 들리지 않는다.
+%%%%
+_friendly_silenced_rare_
+
+VISUAL:@The_monster@이(가) 당신을 바라본다.
+
+VISUAL:@The_monster@이(가) 당신에게 손을 흔든다.
+
+VISUAL:@The_monster@이(가) 행복하게 웃는다.
+
+VISUAL:@The_monster@이(가) 당신의 관심을 끌려고 펄쩍펄쩍 뛴다.
+
+VISUAL:@The_monster@이(가) 당신에게 윙크한다.
+%%%%
+_fleeing_silenced_common_
+
+VISUAL:@The_monster@이(가) 주변을 몰래 힐끗거린다.
+
+VISUAL:@The_monster@이(가) 무슨 말을 하는 듯하다.
+%%%%
+_fleeing_silenced_rare_
+
+VISUAL:@The_monster@이(가) 소리치려는 듯 입을 벌린다.
+
+VISUAL:@The_monster@이(가) 다급하게 주변을 살핀다.
+
+VISUAL:@The_monster@이(가) 상황을 곰곰이 생각한다.
+%%%%
+_wizard_common_spell_
+
+@The_monster@이(가) 마구 손짓한다.
+
+@The_monster@이(가) 낯선 말을 중얼거린다.
+
+@The_monster@이(가) 주문을 소리 높여 외운다.
+%%%%
+_fake_spell_effect_
+
+VISUAL:@The_monster@의 모습이 격렬하게 일렁인다.
+
+VISUAL:@The_monster@이(가) 잠깐 환하게 빛난다.
+
+VISUAL:@The_monster_possessive@ @hands@에서 빛이 나기 시작한다.
+
+VISUAL:방향 감각이 흐트러진다. @player_only@
+
+VISUAL:마음이 불안해진다. @player_only@
+%%%%
+_wizard_medium_
+
+VISUAL:@The_monster@이(가) 잠시 커진 듯 보인다.
+
+VISUAL:@The_monster_possessive@ 눈이 빛나기 시작한다.
+
+@The_monster@이(가) 외친다. "넌 내 힘을 견딜 수 없어!"
+
+@The_monster@이(가) 외친다. "넌 이제 끝이야!"
+%%%%
+_high_priest_common_
+
+@The_monster@이(가) 기도한다.
+
+@The_monster@이(가) 낯선 기도문을 중얼거린다.
+
+@The_monster@이(가) 끔찍한 기도를 읊는다.
+
+@The_monster@이(가) 기도문을 노래하기 시작한다.
+%%%%
+_high_priest_medium_
+
+VISUAL:@The_monster@이(가) 기묘한 손짓을 한다.
+
+@The_monster@이(가) 외친다. "넌 이단자야! 죽어 마땅해!"
+
+@The_monster@이(가) 말한다. "훌륭한 제물이 되겠군."
+
+@The_monster@이(가) 외친다. "벌을 받아야 해!"
+
+@The_monster@이(가) 말한다. "죄인은 모두 죽어야 해."
+
+@The_monster@이(가) 말한다. "불신자에게는 망각뿐이야."
+%%%%
+_high_priest_rare_
+
+@The_monster@이(가) 말한다. "설교 한창인데 방해하다니."
+
+@The_monster@이(가) 말한다. "죄의 대가는 죽음인 거 알지?"
+
+@The_monster@이(가) 속삭인다. "내 일을 대신하면 살려 줄게."
+
+@The_monster@이(가) 속삭인다. "가끔 마음 깊은 곳이 너무 공허해."
+
+@The_monster@이(가) 말한다. "@my_God@의 분노가 널 덮칠 거야."
+
+@The_monster@이(가) 말한다. "신성한 힘을 맛봐라, 멍청아."
+
+@The_monster@이(가) 말한다. "고통이 네 이단의 죄를 씻어 줄 거야."
+%%%%
+_mercenary_guard_common_
+
+VISUAL:@The_monster@이(가) 몹시 적대적인 표정을 짓는다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+@The_monster@이(가) 소리친다. "한 발짝만 잘못 디뎌 봐. 죽여 버릴 테니까."
+
+@The_monster@이(가) 소리친다. "지금 당장 죽여 주마!"
+
+@The_monster@이(가) 외친다. "네가 오브를 손에 넣을 일은 절대 없어!" @player_only@
+
+@The_monster@이(가) 말한다. "이곳은 출입 금지야."
+
+@The_monster@이(가) 말한다. "여기서 찾은 물건을 전부 내려놓고 집으로 돌아가."
+
+@The_monster@이(가) 말한다. "훔친 물건을 전부 돌려놔!"
+
+@The_monster@이(가) 외친다. "침입자다!"
+
+@The_monster@이(가) 소리친다. "벌을 받아야 해!"
+%%%%
+_mercenary_guard_medium_
+
+@The_monster@이(가) 말한다. "네 여정도 여기까지야."
+
+@The_monster@이(가) 말한다. "개인적인 감정은 없어."
+
+@The_monster@이(가) 말한다. "여기 온 게 마지막 실수였어."
+
+@The_monster@이(가) 말한다. "최선의 공격은 더 강한 공격이지."
+
+@The_monster@이(가) 외친다. "당장 돌아가! 안 그러면 죽여 버린다!"
+%%%%
+_mercenary_guard_rare_
+
+@The_monster@이(가) 말한다. "죽은 모험가가 좋은 모험가지." @player_only@
+
+@The_monster@이(가) 외친다. "잔치는 이제 끝이야!"
+
+@The_monster@이(가) 외친다. "항복하고 죽어라!"
+%%%%
+_friendly_imp_common_
+
+VISUAL:@The_monster@이(가) 신이 나서 펄쩍펄쩍 뛴다.
+
+VISUAL:@The_monster@이(가) 장난스러운 미소를 짓는다.
+
+VISUAL:@The_monster@이(가) 땅바닥에서 딱정벌레 몇 마리를 주워 당신에게 내민다.
+
+VISUAL:@The_monster@이(가) 연기로 고리를 만든다.
+
+@The_monster@이(가) 말한다. "알겠어, 대장!"
+
+@The_monster@이(가) 말한다. "오브는 전부 대장 거야."
+
+@The_monster@이(가) 말한다. "친구들이랑 같이 있으니까 더 재밌지 않아?"
+%%%%
+_friendly_imp_rare_
+
+@The_monster@이(가) 말한다. "어어? 잠깐. 아, 됐어."
+
+@The_monster@이(가) 말한다. "대장은 지난번 주인보다 훨씬 착해."
+
+@The_monster@이(가) 외친다. "물러서! 이건 [속임수|함정|계략|덫]일지도 몰라!"
+
+@The_monster@이(가) 외친다. "여기야! 내가 찾았어!"
+
+@The_monster@이(가) 말한다. "죽이면 안 되는 놈이 누군지만 알려 줘."
+%%%%
+_hostile_imp_common_
+
+@The_monster@이(가) 미친 듯 웃는다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+VISUAL:@The_monster@이(가) 꼬리를 사납게 휘두른다.
+
+VISUAL:@The_monster@이(가) 이를 간다.
+
+VISUAL:@The_monster@이(가) @foe@에게 안개를 뿜는다.
+%%%%
+_hostile_imp_rare_
+
+VISUAL:@The_monster@이(가) @foe@에게 침을 뱉는다.
+
+VISUAL:@The_monster@이(가) 딱정벌레를 집어 먹는다.
+
+@The_monster@이(가) 푸르륵거린다.
+
+VISUAL:@The_monster@이(가) 잠깐 사라진다.
+
+VISUAL:@The_monster@이(가) 파리 떼를 불러낸다.
+%%%%
+_friendly_humanoid_common_
+
+@The_monster@이(가) 외친다. "도망쳐! 내가 엄호할게!"
+
+@The_monster@이(가) 외친다. "죽어라, 괴물아!"
+
+VISUAL:@The_monster@이(가) 당신을 바라본다.
+
+VISUAL:@The_monster@이(가) 당신에게 미소 짓는다.
+
+@The_monster@이(가) 말한다. "@player_name@, 난 네가 좋아."
+
+VISUAL:@The_monster@이(가) 당신에게 손을 흔든다.
+
+@The_monster@이(가) 말한다. "조심해!"
+
+@The_monster@이(가) 말한다. "절대 널 떠나지 않을게."
+%%%%
+_friendly_humanoid_medium_
+
+@The_monster@이(가) 말한다. "친구가 있다는 건 좋은 일이야."
+
+@The_monster@이(가) 말한다. "@player_name@, 넌 내 유일한 친구야."
+
+@The_monster@이(가) 외친다. "자비는 없어! 전부 죽여!"
+
+@The_monster@이(가) 말한다. "걱정하지 마. 내가 곁에 있어."
+
+VISUAL:@The_monster@이(가) 행복하게 웃는다.
+
+@The_monster@이(가) 외친다. "괴물을 조심해!"
+%%%%
+_friendly_humanoid_rare_
+
+VISUAL:@The_monster@이(가) 친근한 표정을 짓는다.
+%%%%
+_friendly_confused_common_
+
+@The_monster@이(가) 비명을 지른다. "살려 줘!"
+
+@The_monster@이(가) 외친다. "대체 무슨 일이야?!"
+
+@The_monster@이(가) 무언가 중얼거린다.
+
+@The_monster@이(가) 미친 듯 웃는다.
+
+VISUAL:@The_monster@이(가) 운다.
+
+VISUAL:@The_monster@이(가) 몹시 혼란스러워 보인다.
+%%%%
+_friendly_confused_medium_
+
+@The_monster@이(가) 미친 듯 키득거린다.
+
+@The_monster@이(가) 소리친다. "@player_name@! 대체 무슨 일이야?!"
+
+@The_monster@이(가) 도움을 청하며 기도한다.
+
+@The_monster@이(가) 허공을 비웃으며 말한다. "날 못 잡겠지!"
+
+VISUAL:@The_monster@이(가) 미친 듯 씩 웃는다.
+
+VISUAL:@The_monster@이(가) 상황을 곰곰이 생각한다.
+
+VISUAL:@The_monster@이(가) 이리저리 발을 구른다.
+%%%%
+_friendly_confused_rare_
+
+@The_monster@이(가) 외친다. "제어가 안 돼!"
+
+@The_monster@이(가) 외친다. "그래!"
+
+@The_monster@이(가) 노래한다.
+
+@The_monster@이(가) 소리친다. "@player_name@! 도와줘!"
+
+@The_monster@이(가) 말한다. "@player_name@, 나 좀 혼란스러워!"
+
+VISUAL:@The_monster@이(가) @foe@에게 푹 빠진 듯 보인다.
+%%%%
+_confused_humanoid_common_
+
+w:20
+VISUAL:@The_monster@이(가) 정신없이 손짓한다.
+
+@The_monster@이(가) 외친다. "무슨 일이 벌어지는 거야?!"
+
+VISUAL:@The_monster@이(가) 운다.
+
+@The_monster@이(가) 미친 듯 웃는다.
+
+VISUAL:@The_monster@이(가) 미친 듯 씩 웃는다.
+
+VISUAL:@The_monster@이(가) 아무것도 없는 곳을 보고 웃는다.
+
+VISUAL:@The_monster@이(가) 허공을 바라보며 낄낄거린다.
+
+VISUAL:@The_monster@이(가) 몹시 혼란스러워 보인다.
+
+@The_monster@이(가) 무언가 중얼거린다.
+%%%%
+_confused_humanoid_medium_
+
+VISUAL:@The_monster@이(가) 상황을 곰곰이 생각한다.
+
+@The_monster@이(가) 말한다. "좀 헷갈리는데."
+
+@The_monster@이(가) 묻는다. "여기가 어디지?"
+
+@The_monster@이(가) 중얼거린다. "내가 여기서 뭐 하는 거지?"
+
+@The_monster@이(가) 말한다. "왜 온 세상이 빙빙 도는 거야?"
+
+@The_monster@이(가) 소리친다. "그래도 널 죽이겠어!"
+%%%%
+_confused_humanoid_rare_
+
+@The_monster@이(가) 소리친다. "이것들 좀 떼어 내!"
+
+@The_monster@이(가) 외친다. "안 돼!"
+
+@The_monster@이(가) 울부짖는다. "내 콧구멍!"
+
+@The_monster@이(가) 외친다. "좋아!"
+
+VISUAL:@The_monster@이(가) 몸을 부르르 떤다.
+
+VISUAL:@The_monster@이(가) 갑자기 던전을 향해 몹시 화난 표정을 짓는다.
+
+@The_monster@이(가) @foe,@에게 묻는다. "넌 누구야?"
+
+@The_monster@이(가) @foe,@에게 묻는다. "도대체 우리가 여기서 뭐 하는 거야? 흠, 알겠어..."
+
+@The_monster@이(가) 외친다. "내 머리! 내 머리가!!!"
+
+@The_monster@이(가) 소리친다. "안 돼! 이런 소음은 못 견뎌!"
+%%%%
+_friendly_fleeing_common_
+
+w:20
+VISUAL:@The_monster@이(가) 숨을 곳을 찾는다.
+
+@The_monster@이(가) 소리친다. "살려 줘!"
+
+@The_monster@이(가) 외친다. "엄호해 줘!"
+
+@The_monster@이(가) 소리친다. "@player_name@! 도와줘!"
+
+@The_monster@이(가) 도움을 청하며 기도한다.
+%%%%
+Short Blades player ghost
+
+@The_monster@이(가) 말한다. "칼날의 길이보다 쓰는 솜씨가 중요한 법이지."
+
+@The_monster@이(가) 말한다. "내 짧은 칼을 비웃어? 난 네 차가운 시체를 비웃어 주마."
+
+VISUAL:@The_monster@이(가) 눈으로 따라잡기 힘들 만큼 빠르게 칼을 이 손 저 손으로 옮긴다.
+%%%%
+Long Blades player ghost
+
+VISUAL:@The_monster@이(가) 언제든 휘두를 태세로 칼을 든다.
+
+@The_monster@이(가) 말한다. "칼로 살면 칼로 죽는 법이지."
+%%%%
+Axes player ghost
+
+@The_monster@이(가) 말한다. "널 둘로 쪼개 주마!"
+
+@The_monster@이(가) 중얼거린다. "다들 베갯잇처럼 보여..."
+
+@The_monster@이(가) 말한다. "피는 너무 많이 흘리지 마."
+%%%%
+Maces & Flails player ghost
+
+@The_monster@이(가) 말한다. "내가 끝내고 나면 넌 바닥에서 쓸어 담아야 할걸!"
+
+VISUAL:@The_monster@이(가) 가까이 있는 벌레를 짓뭉개고 웃는다.
+
+@The_monster@이(가) 말한다. "널 곤죽으로 만드는 건 아프겠지. 그 뒤에는? 하나도 안 아플 거야! 약속해!"
+%%%%
+Polearms player ghost
+
+@The_monster@이(가) 말한다. "꼬챙이에 꿴 @foe_genus@ 하나, 금방 나갑니다."
+
+@The_monster@이(가) 말한다. "네 머리를 창끝에 꽂아 두면 이 바닥과 잘 어울리겠군."
+
+@The_monster@이(가) 말한다. "네 머리는 내 창끝과 참 잘 어울리겠어."
+%%%%
+Staves player ghost
+
+@The_monster@이(가) 말한다. "약해 빠진 모험가를 막는 데는 몽둥이가 최고지."
+
+VISUAL:@The_monster@이(가) 육척봉을 빙글빙글 돌린다.
+
+@The_monster@이(가) 당신의 두개골을 부숴 버리겠다고 위협한다. @player_only@
+%%%%
+Armour player ghost
+
+@The_monster@이(가) 말한다. "넌 날 해칠 수 없어!"
+
+@The_monster@이(가) 말한다. "난 무적이야!"
+
+@The_monster@이(가) 말한다. "내 몸은 강철로 만들어졌어!"
+%%%%
+Dodging player ghost
+
+@The_monster@이(가) 말한다. "빗나갔지!"
+
+@The_monster@이(가) 몸을 숙이며 말한다. "너무 높았어!"
+
+@The_monster@이(가) 피하면서 말한다. "너무 느려!"
+%%%%
+Shields player ghost
+
+@The_monster@이(가) 말한다. "날 때릴 수는 있어도 다치게 할 수는 없지."
+%%%%
+Hexes player ghost
+
+@The_monster@이(가) 말한다. "곧 내 힘에 저항할 수 없게 될 거야."
+
+@The_monster@이(가) 말한다. "내가 손가락을 튕기면 넌 네가 닭인 줄 알게 될걸."
+%%%%
+Summonings player ghost
+
+@The_monster@이(가) 말한다. "혼자 모험하는 건 위험해."
+
+VISUAL:@The_monster@이(가) 모자에서 쿼카를 꺼낸다.
+
+@The_monster@이(가) 적을 가리키며 외친다. "공격해!"
+
+@The_monster@이(가) 말한다. "친구가 있다는 건 좋은 일이야."
+%%%%
+Necromancy player ghost
+
+@The_monster@이(가) 말한다. "죽으면 고통도 끝나지."
+
+@The_monster@이(가) 말한다. "걱정 마. 네 시체를 허투루 쓰진 않을 테니."
+
+@The_monster@이(가) 말한다. "널 죽인 다음에 한 번 더 죽여 주지."
+
+@The_monster@이(가) 말한다. "내 주문에는 네 뼈가 필요해."
+%%%%
+Translocations player ghost
+
+VISUAL:@The_monster@이(가) 현실과 비현실 사이에서 깜박거린다.
+
+VISUAL:@The_monster@의 몸이 공간이동 에너지 구름에 둘러싸인다.
+
+VISUAL:@The_monster@이(가) 적을 향해 눈을 깜박인다.
+%%%%
+Fire Magic player ghost
+
+@The_monster@이(가) 말한다. "살이 타는 냄새는 정말 좋아."
+
+@The_monster@이(가) 말한다. "화장해 줄까?"
+
+@The_monster@이(가) 말한다. "걱정 마. 곧 따뜻해질 테니까."
+%%%%
+Ice Magic player ghost
+
+VISUAL:등골이 서늘해진다. @player_only@
+
+@The_monster@이(가) 말한다. "다음에 널 만날 괴물이 냉동식품을 좋아하면 좋겠네!"
+
+@The_monster@이(가) 말한다. "널 본뜬 얼음 조각상이 여기 있으면 꽤 멋지겠군."
+%%%%
+Air Magic player ghost
+
+VISUAL:@The_monster@의 몸을 불꽃이 둘러싼다.
+
+@The_monster@이(가) 말한다. "이번 싸움은 정말 짜릿하겠어."
+
+@The_monster@이(가) 말한다. "저항해 봐야 소용없어!"
+%%%%
+Earth Magic player ghost
+
+@The_monster@이(가) 말한다. "굴러가는 돌에도 @foe_name@이(가) 잔뜩 묻지."
+
+@The_monster@이(가) 말한다. "온 땅이 내 명령을 따른다."
+
+VISUAL:땅이 잠깐 흔들린다.
+%%%%
+Evocations player ghost
+
+@The_monster@이(가) 말한다. "그 마법봉이 올바른 방향을 향하고 있는 건 맞아?"
+%%%%
+Shapeshifting player ghost
+
+@The_monster@이(가) 말한다. "형태는 공이고, 공은 곧 형태지."
+
+VISUAL:@The_monster@이(가) 잠시 설명할 수 없을 정도로 @_form_@처럼 보인다.
+
+VISUAL:@The_monster@이(가) 잠시 @_form_@으로 변했다가 돌아온다.
+%%%%
+Forgecraft player ghost
+
+@The_monster@이(가) 말한다. "내 작품을 보고 절망해라!"
+
+@The_monster@이(가) 말한다. "내 피조물들은 너보다 오래 남을 거야."
+%%%%
