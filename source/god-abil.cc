@@ -2579,7 +2579,7 @@ void beogh_blood_for_blood()
         }
     }
 
-    mprf("죽은 %s의 몸 위에 %s을(를) 올려놓고 복수의 기도를 올린다.",
+    mprf("%s을(를) 죽은 %s의 몸 위에 올려놓고 복수의 기도를 올린다.",
          you.hand_name(false).c_str(), apostle_name.c_str());
 
     you.duration[DUR_BLOOD_FOR_BLOOD] = random_range(130, 180) * BASELINE_DELAY;
