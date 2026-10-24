@@ -866,7 +866,7 @@ void bolt::digging_wall_effect()
             {
                 if (!silenced(you.pos()))
                 {
-                    mprf(MSGCH_SOUND, "You hear a grinding noise.");
+                    mprf(MSGCH_SOUND, "무언가 갈리는 소리가 들린다.");
                     obvious_effect = true; // You may still see the caster.
                     msg_generated = true;
                 }
@@ -880,7 +880,7 @@ void bolt::digging_wall_effect()
             if (feat == DNGN_GRATE)
             {
                 // XXX: should this change for monsters?
-                mpr("The damaged grate falls apart.");
+                mpr("손상된 쇠창살이 무너져 내린다.");
                 return;
             }
             else if (feat == DNGN_SLIMY_WALL)
@@ -1651,7 +1651,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
                     if (!did_splash_msg)
                     {
                         if (you.see_cell(mons->pos()))
-                            mprf("The mercury splashes!");
+                            mprf("수은이 사방으로 튄다!");
                         did_splash_msg = true;
                     }
 
@@ -2140,7 +2140,7 @@ static bool _curare_hits_player(actor* agent, string name,
     // We force apply this poison, since the 1-in-3 chance was already passed
     poison_player(roll_dice(2, 12) + bonus_poison + 1, source_name, name, true);
 
-    mpr("You have difficulty breathing.");
+    mpr("숨쉬기가 힘들어.");
     ouch(roll_dice(2, 6), KILLED_BY_CURARE, agent->mid, "curare-induced apnoea");
     slow_player(10 + random2(2 + random2(6)));
 
@@ -2635,7 +2635,7 @@ void bolt::affect_endpoint()
     if (use_bullseye && you.duration[DUR_DIMENSIONAL_BULLSEYE] > 0)
     {
         monster* bullseye_targ = monster_by_mid(you.props[BULLSEYE_TARGET_KEY].get_int());
-        mpr("Your projectile teleports!");
+        mpr("발사체가 순간이동한다!");
         use_target_as_pos = true;
         target = bullseye_targ->pos();
         affect_monster(bullseye_targ);
@@ -2657,7 +2657,7 @@ void bolt::affect_endpoint()
     case SPELL_PRIMAL_WAVE:
     {
         if (you.see_cell(pos()))
-            mpr("The wave splashes down.");
+            mpr("파도가 철썩이며 가라앉는다.");
         else
             mpr("You hear a splash.");
 
