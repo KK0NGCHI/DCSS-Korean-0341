@@ -3099,3 +3099,51 @@ Sonja triumphant
 VISUAL:@The_monster@이(가) 무대 인사를 하듯 고개 숙여.
 VISUAL:@The_monster@이(가) 혼자 박수를 쳐.
 @The_monster@이(가) 말해. "공연 끝."
+%%%%
+Xtahua
+
+@_Xtahua_common_@
+w:5
+@_Xtahua_rare_@
+%%%%
+_Xtahua_common_
+
+@The_monster@이(가) 끔찍하게 포효해.
+VISUAL:@The_monster@이(가) @foe@을(를) 노려봐.
+@The_monster@이(가) 으르렁거려. "정말 따분한 놈이군."
+@The_monster@이(가) 포효해. "죽어라, 하찮은 것아!"
+@The_monster@이(가) 포효해. "내 분노를 받아라!"
+@The_monster@이(가) 포효해. "여기 온 것이 네 마지막 실수다!"
+@The_monster@이(가) 포효해. "모험가 따위 수백 명이나 죽였다!" @player_only@
+%%%%
+_Xtahua_rare_
+
+@The_monster@이(가) 우르릉거려. "넌 간식거리도 못 된다."
+@The_monster@이(가) 우르릉거려. "맛있게 생겼군."
+@The_monster@이(가) 포효해. "날 귀찮게 하는 건 질색이다!"
+@The_monster@이(가) 포효해. "제발 맛있는 놈이길 바란다!"
+@The_monster@이(가) 포효해. "쳇! 망할 모험가 놈들." @player_only@
+%%%%
+Zenata
+
+@_Zenata_common_@
+w:5
+@_Zenata_rare_@
+%%%%
+_Zenata_common_
+
+VISUAL:@The_monster@이(가) 칼날 하나를 닦아.
+@the_monster@이(가) @foe@에게 집중하자 기묘한 장치들이 윙윙 돌아가.
+VISUAL:떠도는 칼날이 @the_monster_possessive@ 살을 베지만, @Subjective@은(는) 신경 쓰지 않아.
+@The_monster@이(가) 울부짖어. "아무것도 남지 않을 때까지 네 살점을 벗겨 주마!"
+@The_monster@이(가) 소리쳐. "널 두들겨 고철로 만들어 주지!"
+@The_monster@이(가) 비명을 질러. "거의 알 것 같아… 내 앞에서 비켜!"
+%%%%
+_Zenata_rare_
+
+@The_monster@이(가) 말해. "내가 내 몸에 무슨 짓을 했는지 봐! 너는 이보다 더 심하게 할 수 있겠어?"
+@The_monster@이(가) 비웃어. "네가 나보다 날카롭다고 생각해?"
+@The_monster@이(가) 코웃음 쳐. "완벽한 불멸의 기계에 감히 도전하다니?"
+@The_monster@이(가) 생각해. "네 속을 열어 보면 어떤 비밀이 나올까?"
+@The_monster@이(가) 중얼거려. "그녀의 속삭임이 들려… 하지만 죽었는데. 분명 죽었는데!"
+@The_monster@이(가) 말해. "그들을 되살리겠어. 그러면 내게… 모든 걸 보여 주겠지…"
