@@ -141,3 +141,23 @@ unseen Orb of Destruction cast
 
 @The_something@이(가) 빛나는 구체를 만들어 낸다.
 %%%%
+Phantom Blitz cast
+
+@The_monster@이(가) 환영을 만들어 @target@에게 쏘아 보낸다.
+%%%%
+unseen Phantom Blitz cast
+
+@The_something@이(가) 환영을 만들어 앞으로 쏘아 보낸다!
+%%%%
+Phantom Mirror cast
+
+@The_monster@이(가) 환영을 만들어 낸다.
+%%%%
+Pyroclastic Surge cast
+
+@The_monster@이(가) 용암에서 거센 불길을 끌어올린다!
+%%%%
+Shadow Shot cast
+
+@The_monster@이(가) @target@에게 그림자 탄환을 쏜다.
+%%%%
