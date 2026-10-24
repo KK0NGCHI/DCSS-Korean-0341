@@ -1,6 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "DCSS-0.34.1-KO",
+  "updated_at": "2026-10-24",
+  "tracking_ref": "main",
   "reference_source": "C:/DCSS-Dev/stone_soup-0.34.1/source",
   "integration_source": "C:/DCSS-Dev/stone_soup-0.34.1-ko/source",
   "baseline": {
@@ -11,42 +13,104 @@
     "manifest_size_bytes": 4884428,
     "pilot_files_missing": 0,
     "read_errors": 0,
-    "validation": "User-provided command output; full manifest not uploaded or independently checked"
+    "validation": "User-provided command output; full manifest not uploaded or independently checked",
+    "note": "Legacy Windows file manifest (26,187 files) was reported locally; it is not identical to the GitHub lexical inventory of 1,341 in-scope text files."
   },
   "phases": {
     "00": {
-      "status": "completed",
-      "completed_batches": 1
+      "status": "completed_with_external_evidence",
+      "detail": "Local baseline manifest reported, full manifest not checked into repository"
     },
     "01": {
-      "status": "pending",
-      "completed_batches": 0
+      "status": "in_progress",
+      "detail": "Pilot and lexical extraction implemented; AST-vs-lexical coverage closure not verified"
     },
     "02": {
-      "status": "pending",
-      "completed_batches": 0
+      "status": "in_progress",
+      "detail": "C++/Lua/DES lexical inventory measured; many candidates still lack callsite proof"
     },
     "03": {
-      "status": "pending",
-      "completed_batches": 0
+      "status": "in_progress",
+      "detail": "23 description pairs covered; other database and script families not fully audited"
     },
     "04": {
-      "status": "pending",
-      "completed_batches": 0
+      "status": "in_progress",
+      "detail": "Classified candidates are not confirmed untranslated output units"
     },
     "05": {
       "status": "pending",
-      "completed_batches": 0
+      "detail": "No reproducible 0.24 legacy-to-0.34 mapping report"
     },
     "06": {
-      "status": "pending",
-      "completed_batches": 0
+      "status": "in_progress",
+      "detail": "Translations exist in source/data; reviewed unit catalog and formal format checks are incomplete"
     },
     "07": {
-      "status": "pending",
-      "completed_batches": 0
+      "status": "in_progress",
+      "detail": "Linux console C++ overlay build verified; Windows Tiles and Korean runtime not verified"
     }
   },
-  "batches": [],
-  "updated_at": "2026-10-21"
+  "verified_measurements": {
+    "description_audit": {
+      "source_ref": "b940c05a1bf752ba2052865bb62b5c410b1458eb",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181157",
+      "english_files": 23,
+      "korean_files": 23,
+      "english_entries": 3781,
+      "english_unique_keys": 3778,
+      "korean_entries": 4038,
+      "matched_unique_keys": 3778,
+      "missing_korean_keys": 0,
+      "extra_korean_keys": 260,
+      "duplicate_english_keys": 3,
+      "reference_count_reviews": 5,
+      "lua_delimiter_reviews": 4,
+      "review_no_hangul": 0,
+      "printf_count_reviews": 0,
+      "note": "Key correspondence, not correctness or runtime test. Reviews reflect pre-fix baseline; see pending changes."
+    },
+    "lexical_inventory": {
+      "source_ref": "b940c05a1bf752ba2052865bb62b5c410b1458eb",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181172",
+      "files_scanned": 1341,
+      "records": 61032,
+      "read_errors": 0,
+      "status_counts": {
+        "internal_candidate": 8448,
+        "review_unknown": 41242,
+        "comment_candidate": 1501,
+        "review_dynamic": 2286,
+        "visible_candidate": 3753,
+        "test_marker": 21,
+        "review_translation_present": 3781
+      },
+      "note": "Lexical records may contain duplicates, fragments, false positives and already translated strings."
+    },
+    "linux_console_build": {
+      "source_ref": "b940c05a1bf752ba2052865bb62b5c410b1458eb",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181195",
+      "status": "passed",
+      "overlay_cpp_files": 10,
+      "artifact": "Linux x86-64 ELF crawl executable",
+      "limits": "Official 0.34.1 source with translated C++ overlay only; Windows Tiles, complete translated data load and actual game output not tested."
+    }
+  },
+  "current_qa_work": {
+    "branch": "fix/ko-qa-progress-20261024",
+    "edits": "Corrected 8 Korean description entries across ability/features/monsters/tutorial. Audited initial remaining references and Lua warnings; full CI rerun pending.",
+    "remaining_known_pre_fix": "3 original English duplicate keys, 260 extra Korean keys, 5 reference-count candidates, 4 Lua candidates. No keys missing.",
+    "unresolved_by_design": [
+      "HINT_SEEN_BRANCH has a source markup discrepancy (EN 3 vs KO 4 tags); requires loader-context validation.",
+      "Original duplicate English keys must be evaluated against real loader precedence.",
+      "260 extra KO keys require reachability/version classification and should not be auto-deleted."
+    ]
+  },
+  "runtime_verification": {
+    "windows_tiles": "not_run",
+    "ko_locale_data_load": "not_run",
+    "korean_glyphs": "not_run",
+    "dynamic_message_grammar": "not_run",
+    "saved_game_regression": "not_run"
+  },
+  "coverage_policy": "Never infer whole-game translation percentage from description-key correspondence or lexical inventory counts."
 }
