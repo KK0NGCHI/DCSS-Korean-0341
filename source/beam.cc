@@ -4180,8 +4180,7 @@ static const vector<pie_effect> pie_effects = {
             {
                 if (you.duration[DUR_FIRE_VULN])
                 {
-                    mpr("화염에 취약한 상태가 더 오래 지속될 것 같아 "
-                        "longer.");
+                    mpr("화염에 취약한 상태가 더 오래 지속될 것 같아.");
                 }
                 else
                     mpr("Cherry-coloured flames burn away your fire "
