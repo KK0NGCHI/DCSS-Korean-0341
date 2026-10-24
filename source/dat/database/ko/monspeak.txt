@@ -896,3 +896,159 @@ Xom player ghost
 @The_monster@이(가) 말한다. "가위가 필요해! 어딘가에서 손톱이 깨진 것 같거든..."
 
 @The_monster@이(가) 우스꽝스러운 표정을 지으려 한다.
+%%%%
+Ashenzari Frederick triumphant
+
+@The_monster@이(가) 슬프게 고개를 흔든다. "스스로 신의 족쇄를 차다니... 가엾군."
+
+@Frederick@
+%%%%
+Beogh Frederick triumphant
+
+@The_monster@이(가) 한숨 쉰다. "@player_genus@ 동족들이 네 발목만 잡았군."
+
+@Frederick@
+%%%%
+Cheibriados Frederick triumphant
+
+@The_monster@이(가) 말한다. "기뻐해라. 죽은 것보다 더 느려질 수는 없으니까."
+
+@Frederick@
+%%%%
+Dithmenos Frederick triumphant
+
+@The_monster@이(가) 말한다. "이제 어둠 속으로 사라질 시간이군."
+
+@Frederick@
+%%%%
+Elyvilon Frederick triumphant
+
+@The_monster@이(가) 말한다. "치유사여, 스스로를 치유해 보시지."
+
+@Frederick@
+%%%%
+Fedhas Frederick triumphant
+
+@The_monster@이(가) 말한다. "필멸자여, 넌 한낱 풀잎에 불과해."
+
+@Frederick@
+%%%%
+Gozag Frederick triumphant
+
+@The_monster@이(가) 말한다. "네 탐욕이 결국 발목을 잡았군."
+
+@Frederick@
+%%%%
+Hepliaklqana Frederick triumphant
+
+@The_monster@이(가) 말한다. "조상들의 업적에 기댄다고 영광이 따라오진 않아."
+
+@Frederick@
+%%%%
+Ignis Frederick triumphant
+
+@The_monster@이(가) 말한다. "너보다도 불꽃이 희미한 신을 섬기다니, 어리석군."
+
+@Frederick@
+%%%%
+Jivya Frederick triumphant
+
+@The_monster@이(가) 말한다. "우리 싸움도 네 신처럼 따분하고 형체가 없었어."
+
+@Frederick@
+%%%%
+Kikubaaqudgha Frederick triumphant
+
+@The_monster@이(가) 한숨 쉰다. "네가 숭배하는 시체들 곁으로 가라, 필멸자여."
+
+@Frederick@
+%%%%
+Lugonu Frederick triumphant
+
+@The_monster@이(가) 말한다. "이번에는 좀 더 영구적인 추방을 선사하지."
+
+@Frederick@
+%%%%
+Makhleb Frederick triumphant
+
+@The_monster@이(가) 말한다. "네 악마들도 함께 데려가라."
+
+@Frederick@
+%%%%
+Nemelex Xobeh Frederick triumphant
+
+@The_monster@이(가) 말한다. "도박꾼 양반, 이번에는 패를 접는군."
+
+@Frederick@
+%%%%
+Okawaru Frederick triumphant
+
+@The_monster@이(가) 말한다. "이제 나를 상대할 가치가 있는 적으로 인정하겠나?"
+
+@Frederick@
+%%%%
+Qazlal Frederick triumphant
+
+@The_monster@이(가) 말한다. "드디어 조용하고 평화롭게 지낼 수 있겠군."
+
+@Frederick@
+%%%%
+Ru Frederick triumphant
+
+@The_monster@이(가) 말한다. "너 자신을 너무 많이 희생했어."
+
+@Frederick@
+%%%%
+Sif Muna Frederick triumphant
+
+@The_monster@이(가) 한숨 쉰다. "남의 지식에만 의지해 봐야 아무 데도 가지 못하지."
+
+@Frederick@
+%%%%
+Trog Frederick triumphant
+
+@The_monster@이(가) 말한다. "넌 분명 화를 잘 내는 유령이 되겠군."
+
+@Frederick@
+%%%%
+Uskayaw Frederick triumphant
+
+@The_monster@이(가) 말한다. "네 마지막 춤이 끝났어."
+
+@Frederick@
+%%%%
+Vehumet Frederick triumphant
+
+@The_monster@이(가) 말한다. "마법사는 오직 자신의 능력에 의존해야 하지."
+
+@Frederick@
+%%%%
+Wu Jian Frederick triumphant
+
+@The_monster@이(가) 말한다. "네가 직접 갈고닦은 기술만 믿었어야지."
+
+@Frederick@
+%%%%
+Xom Frederick triumphant
+
+@The_monster@이(가) 찡그린다. "스스로 좀의 장난감이 되기를 자처하다니... 별난 녀석이군."
+
+@Frederick@
+%%%%
+Yredelemnul Frederick triumphant
+
+@The_monster@이(가) 말한다. "네가 숭배하는 군단에 합류하는 걸 위안으로 삼아라."
+
+@Frederick@
+%%%%
+Zin Frederick triumphant
+
+@The_monster@이(가) 말한다. "신도보다 더 성가신 건 남에게 신앙을 강요하는 녀석이지."
+
+@Frederick@
+%%%%
+the Shining One Frederick triumphant
+
+@The_monster@이(가) 말한다. "2배 밝게 빛나는 모험가는 2배 빨리 타 버리는 법이지."
+
+@Frederick@
