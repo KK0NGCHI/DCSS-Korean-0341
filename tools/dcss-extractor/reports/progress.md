@@ -125,3 +125,12 @@
 - 게임 실행 파일이 생성한 `descriptions.ko.db`, `speak.ko.db`, `misc.ko.db`에서 한국어 UTF-8 본문 **3종**을 직접 확인. 검사값은 `대상에게 독침을 내뱉는다.`, `바람이 거세게 부는 소리가 들린다.`, `율법을 세우는 진`임.
 - **검증 범위의 한계:** 이 테스트는 한국어 데이터베이스를 실제 런타임에서 생성할 수 있음을 입증함. Windows Tiles 빌드, 게임 내 UI·전투 출력, 실제 글꼴 표시, 조사·변수 결합, 세이브 로드 정상성은 **여전히 미검증**.
 - 재검사 자동화: `.github/workflows/korean-runtime-smoke.yml`. GitHub Actions에서 수동 실행 또는 해당 소스·데이터 변경 PR로 다시 검사 가능.
+
+## 2026-10-24 고유 몬스터 대사 82개 키 추가 — PR #14
+
+- 번역 파일: `source/dat/database/ko/monspeak.txt`. [PR #14](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/14)에서 **82개 원문 대응 키**(27+31+24)를 추가해 **260/731 → 342/731(46.8%)**, 미대응 **471 → 389개**.
+- 이번 배치에는 원문/한국어 변형 및 참조 **418줄**이 대응하며, 그중 **361줄**에 한글 본문이 포함됨. 원문 참조만 하는 별칭 등도 집계하므로 418을 고유 번역 문장 수로 취급하지 않음.
+- Edmund, Erica, Erolcha, Eustachio, Frances, Frederick, Fannar, Gastronok, Grinder, Harold, Ignacio, Ilsuiw, Jessica, Natasha, Robin, Nessos, Pargi, Jorgrun, Joseph, Josephina, Josephine, Khufu, Kirke, Lodul, Louise, Maggie, Mara 등 고유 몬스터 대사를 번역.
+- [최종 구조 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40097262348) 및 [Linux 한국어 DB 로더 재검증](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40097262320)을 실행. 실행 완료 여부와 성공 판정은 링크에서 확인; Windows Tiles 및 동적 조사 결합은 검사 범위 밖.
+- DB 4개 오버레이의 원문 대응 키 합계는 **628개**(godname 23 + monspell 245 + monspeak 342 + wpnnoise 18). **게임 전체 번역률 아님**.
+- 상세: [고유 몬스터 대사 번역 배치](../../docs/translation-review/monspeak-unique-batch-20261024.md).

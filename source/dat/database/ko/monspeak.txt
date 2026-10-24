@@ -2149,3 +2149,707 @@ orc_apostle_dismissed
 @The_monster@이(가) 지상에 베오그의 말씀을 전하러 떠난다.
 
 @The_monster@이(가) 떠나기 전에 당신에게 경례한다.
+%%%%
+Edmund
+
+@_Edmund_common_@
+w:5
+@_Edmund_rare_@
+%%%%
+_Edmund_common_
+
+VISUAL:@The_monster@이(가) 도리깨를 들어 상대를 위협하듯 휘둘러.
+@The_monster@이(가) 헛기침을 해.
+@The_monster@이(가) 말해. "이 도리깨에 돈을 얼마나 썼는지 알면 놀랄걸."
+@The_monster@이(가) 물어. "@foe,@ 내 대단한 형을 만나 본 적 있어?"
+@The_monster@이(가) 말해. "난 마법에는 소질이 없어도 널 죽일 수는 있어!"
+@The_monster@이(가) 말해. "다들 내 형이 최고래. 내가 보기엔 미친놈인데."
+@The_monster@이(가) 말해. "계산도 꽤 잘한다고."
+@The_monster@이(가) 말해. "사람들이 날 소매치기라고 몰아갔다니까!"
+%%%%
+_Edmund_rare_
+
+VISUAL:@The_monster@이(가) 이를 갈다가 한숨을 쉬어.
+w:1
+VISUAL:@The_monster@이(가) 제법 질투하는 눈치야.
+@The_monster@이(가) 말해. "낫보단 도리깨가 언제나 낫지!"
+w:5
+@The_monster@이(가) 말해. "마법 따위가 무슨 소용이야?"
+w:5
+@The_monster@이(가) 중얼거려. "마법이 뭐가 필요하다고."
+@The_monster@이(가) 말해. "다들 내 형만 기억해. '에드먼드가 누구야?'라면서!"
+@The_monster@이(가) 말해. "사람들은 날 기억하게 될 거야! 죽는 순간까지!"
+w:1
+@The_monster@이(가) 말해. "작위라도 사 볼까? 에드먼드 백작, 어때?"
+w:1
+@The_monster@이(가) 칭얼거려. "부모님은 나한테 신경 쓸 시간도 없었다고!"
+%%%%
+Erica
+
+@_Erica_common_@
+w:5
+@_Erica_rare_@
+%%%%
+_Erica_common_
+
+VISUAL:@The_monster@이(가) 성난 채 촉수들을 꿈틀거려.
+@The_monster@이(가) 거품 섞인 괴상한 소리를 내.
+@The_monster@이(가) 말해. "난 너 따위보다 훨씬 우월해."
+@The_monster@이(가) 말해. "겁에 질리게 만드는 것도 좋지만, 죽이는 게 더 좋아."
+@The_monster@이(가) 말해. "빠르고 완벽하게. 그게 내 살해 방식이지."
+@The_monster@이(가) 소리쳐. "네 피가 솟구치고 살갗이 터질 거야!"
+%%%%
+_Erica_rare_
+
+@The_monster@이(가) 소리쳐. "서둘러, 죽음이 널 기다려!"
+@The_monster@이(가) 소리쳐. "그게 어디 있는지는 절대 안 알려 줘!"
+@The_monster@이(가) 소리쳐. "넌 절대 손에 넣지 못해!"
+@The_monster@이(가) 말해. "발톱 따위는 흡반에 비하면 아무것도 아니지!"
+@The_monster@이(가) 자랑해. "공포를 주는 게 목적이라면, 나는 걸작이지!"
+@The_monster@이(가) 자랑해. "내가 없었다면 이성에도 존재할 이유가 있었겠지!"
+%%%%
+Erolcha
+
+@_Erolcha_common_@
+w:5
+@_Erolcha_rare_@
+%%%%
+_Erolcha_common_
+
+@The_monster@이(가) 포효해.
+@The_monster@이(가) 으르렁거려.
+VISUAL:@The_monster@이(가) 사악한 미소를 지으려 애써.
+@The_monster@이(가) 소리쳐. "죽어!"
+@The_monster@이(가) 소리쳐. "점심밥!"
+@The_monster@이(가) 소리쳐. "에롤카 너 죽인다!"
+%%%%
+_Erolcha_rare_
+
+@The_monster@이(가) 소리쳐. "먹는다!"
+@The_monster@이(가) 소리쳐. "서 있어! 에롤카 너 때린다!"
+@The_monster@이(가) 소리쳐. "피!"
+@The_monster@이(가) 소리쳐. "에롤카 네 머리 부순다!"
+@The_monster@이(가) 소리쳐. "에롤카 너 죽이면 신난다!"
+@The_monster@이(가) 소리쳐. "에롤카 화났다!"
+%%%%
+Eustachio
+
+@_Eustachio_common_@
+w:5
+@_Eustachio_rare_@
+%%%%
+_Eustachio_common_
+
+@The_monster@이(가) 소리쳐. "드디어 복수할 때가 왔군!"
+@The_monster@이(가) 소리쳐. "야, 네가 내가 아끼던 박쥐를 죽였잖아!"
+@The_monster@이(가) 말해. "소환은 재미있지!"
+@The_monster@이(가) 말해. "내 동료들이 내 원수를 갚아 줄 거야."
+@The_monster@이(가) 소리쳐. "이런 만행은 피로만 씻을 수 있어!"
+@The_monster@이(가) 맹세해. "친구들을 위해서라면 죽을 수도 있어!"
+@The_monster@이(가) 으르렁거려. "명예도 모르는 악당 놈, 지옥에나 떨어져라!"
+@The_monster@이(가) 물어. "예의도 덕도 명예도 없이 어떻게 살아갈 수 있지?"
+%%%%
+_Eustachio_rare_
+
+@The_monster@이(가) 소리쳐. "맹세를 저버린 배신자야, 죽어라!"
+VISUAL:@The_monster@이(가) 콧수염을 배배 꼬아.
+@The_monster@이(가) 그림자의 힘을 불러내!
+@The_monster@이(가) 뽐내며 말해. "난 아득한 심연에서도 영혼을 불러낼 수 있지."
+%%%%
+Frances
+
+@_Frances_common_@
+w:5
+@_Frances_rare_@
+%%%%
+_Frances_common_
+
+VISUAL:@The_monster@이(가) 상대를 비웃어.
+VISUAL:@The_monster@이(가) 자신의 흉터를 손가락으로 훑어.
+@The_monster@이(가) 알아들을 수 없는 언어로 이야기해.
+@The_monster@이(가) 차마 입에 담기 어려운 말을 중얼거려.
+@The_monster@이(가) 말해. "네가 이룬 정복의 증거를 보여 줘. 그러면 위대한 모험가라고 불러 주지." @player_only@
+@The_monster@이(가) 말해. "나는 악마의 군대를 지휘해. 너는 뭘 지휘하지?" @player_only@
+@The_monster@이(가) 말해. "난 힘과 권력을 높이 사. 그런데 너한테선 어느 쪽도 안 보이네." @player_only@
+@The_monster@이(가) 말해. "나는 악마들의 언어를 구사하지!"
+@The_monster@이(가) 형언할 수 없는 저주를 울부짖어.
+@The_monster@이(가) 말해. "나는 상상조차 못 할 세계와 우주들을 보았어."
+%%%%
+_Frances_rare_
+
+VISUAL:@The_monster@이(가) 방어 태세를 취해.
+@The_monster@이(가) 목구멍 깊은 곳에서 거친 음절들을 연달아 내뱉어.
+@The_monster@이(가) 말해. "악마적인 것에도 기묘한 아름다움이 있지 않나?"
+@The_monster@이(가) 말해. "내 힘을 알고도 도전하겠다고?"
+@The_monster@이(가) 말해. "나는 일대일 싸움에서 한 번도 진 적이 없어."
+@The_monster@이(가) 말해. "전사는 전쟁과 싸움을 위해 존재하지. 너도 스스로 전사라 부르나?"
+w:1
+@The_monster@이(가) 말해. "지옥의 전당조차 나를 가둬 둘 수 없었지."
+@The_monster@이(가) 말해. "널 꺾을 거야. 의심할 여지도 없지!" @player_only@
+%%%%
+Frederick
+
+@_Frederick_common_@
+w:5
+@_Frederick_rare_@
+%%%%
+Beogh Frederick
+
+w:2
+@The_monster@이(가) 말해. "지원군이 턱없이 부족한데. 더 데리고 다시 와!"
+w:30
+@Frederick@
+%%%%
+Okawaru Frederick
+
+w:2
+@The_monster@이(가) 말해. "흥! 신에게 힘을 구걸하는 놈은 평생 별 볼 일 없지."
+w:30
+@Frederick@
+%%%%
+_Frederick_common_
+
+VISUAL:@The_monster@이(가) 상대할 만한 적을 그리워하는 눈치야.
+VISUAL:@The_monster@이(가) 과장되게 하품을 해.
+@The_monster@이(가) 전술에 관한 조언을 몇 마디 해.
+@The_monster@이(가) 말해. "요즘 모험가들은 싸우기는커녕 제대로 걷지도 못해."
+@The_monster@이(가) 말해. "내 시절엔 영웅이라는 말에 무게가 있었지. 요즘은 더 빨리 죽는다는 뜻일 뿐이야."
+@The_monster@이(가) 말해. "네가 모험가라고? 하!"
+@The_monster@이(가) 말해. "오늘 벌써 '모험가'를 5명 죽였어. 네가 6번째가 될까?"
+@The_monster@이(가) 말해. "나에게 도전한다고? 너랑 무슨 군대가?" @player_only@
+@The_monster@이(가) 말해. "너 같은 상대와 굳이 싸워야 하나?"
+%%%%
+_Frederick_rare_
+
+VISUAL:@The_monster@이(가) 외알안경을 닦아.
+VISUAL:@The_monster@이(가) 지루해 보여.
+VISUAL:@The_monster@이(가) 한숨을 쉬어.
+@The_monster@이(가) 명예가 땅에 떨어졌다며 열변을 토해.
+@The_monster@이(가) 말해. "내 눈엔 모험가라는 놈들이 다 똑같아! 우왕좌왕하는 약골들뿐이지!" @player_only@
+w:5
+@The_monster@이(가) 말해. "너에겐 오늘이 생애 최악의 싸움이겠지. 나는… 곧 점심이나 먹어야겠군." @player_only@
+@The_monster@이(가) 말해. "차라리 나무꾼이나 될 걸 그랬나. 나무들이 너희보단 잘 버티겠어."
+@The_monster@이(가) 말해. "널 죽이는 건 즐거움이 아니라 노동이겠군." @player_only@
+@The_monster@이(가) @foe@을(를) 주의 깊게 살펴봐. "여기까지 온 건 실력 있는 자뿐이라던데."
+%%%%
+Frederick triumphant
+
+@The_monster@이(가) 코웃음 쳐. "네겐 승산이 없었어."
+@The_monster@이(가) 한숨 쉬어. "언젠가는 진짜 도전다운 도전을 받겠지."
+@The_monster@이(가) 말해. "성가신 일이었군."
+@The_monster@이(가) 말해. "죽는 법조차 제대로 모르는군."
+@The_monster@이(가) 한숨 쉬어. "나약한 @player_genus_plural@들을 죽여 봐야 내 우월함을 증명할 순 없지."
+@The_monster@이(가) 한숨 쉬어. "또 시간만 낭비했군."
+%%%%
+Fannar
+
+@_Fannar_common_@
+w:5
+@_Fannar_rare_@
+%%%%
+_Fannar_common_
+
+VISUAL:@The_monster@이(가) 상대를 얼음장 같은 눈빛으로 노려봐.
+VISUAL:@the_monster@의 몸에 눈송이가 맺혀.
+VISUAL:@The_monster@이(가) 옷에서 눈송이를 털어 내.
+@The_monster@이(가) 혼잣말로 신비한 주문을 읊조려.
+%%%%
+_Fannar_rare_
+
+@The_monster@이(가) 말해. "얼어붙어라!"
+@The_monster@이(가) 말해. "영혼까지 얼려 주지!"
+@The_monster@이(가) 말해. "차디찬 포옹이 널 기다려…"
+@The_monster@이(가) 말해. "훌륭한 얼음 조각상이 되겠는걸."
+@The_monster@이(가) 말해. "등골이 서늘하지 않나?"
+%%%%
+Gastronok
+
+@_Gastronok_common_@
+w:4
+@_Gastronok_rare_@
+%%%%
+_Gastronok_common_
+
+VISUAL:@The_monster@이(가) 철벅거리며 움직여.
+@The_monster@이(가) 꿀렁거리며 말해. "널 먹어 버릴 테다!"
+@The_monster@이(가) 꿀렁거리며 말해. "간식이다! 간식!"
+@The_monster@이(가) 꾸르륵 소리를 내.
+@The_monster@이(가) 기묘한 소리를 내.
+%%%%
+_Gastronok_rare_
+
+VISUAL:@The_monster_possessive@ 입이 벌어지고, 치설이 사납게 휘둘러져.
+VISUAL:@The_monster@이(가) 갑작스러운 바람에 휘청거려.
+VISUAL:@The_monster_possessive@ 눈자루가 흔들려서 마법사 모자가 벗겨질 뻔해.
+@The_monster@이(가) 꿀렁거리며 말해. "빠른 놈이군. 딱 내가 좋아하는 음식이야!"
+@The_monster@이(가) 꿀렁거리며 말해. "천천히 가. 그래야 먹지."
+@The_monster@이(가) 꿀렁거리며 말해. "너 마법사냐? 마법사는 맛있는데…"
+@The_monster@이(가) 꿀렁거리며 말해. "배애애애고파아아!"
+@The_monster@이(가) 꿀렁거리며 말해. "먹는 것이 곧 자신이 된다더니, 그 말이 맞아."
+@The_monster@이(가) 꿀렁거리며 말해. "맛있겠는데."
+%%%%
+Grinder
+
+@_Grinder_common_@
+w:2
+@_Grinder_rare_@
+%%%%
+_Grinder_common_
+
+VISUAL:@The_monster@이(가) 날카로운 이빨을 드러내며 웃어.
+@The_monster@이(가) 말해. "고문대에 한번 묶어 주면 딱 좋겠네."
+@The_monster@이(가) 말해. "난 암시장에서 발톱을 팔던 시절도 있었지."
+@The_monster@이(가) 말해. "혀의 쓸모는 딱 하나야. 잘라 내는 거지."
+@The_monster@이(가) 말해. "대부분은 끝까지 살려 두질 못했지."
+@The_monster@이(가) 말해. "엎드려!"
+@The_monster@이(가) 한숨 쉬어. "내 작품을 알아주는 놈이 없어."
+@The_monster@이(가) 말해. "좀 기다려 봐."
+@The_monster@이(가) 말해. "거기 잠깐 멈춰…"
+@The_monster@이(가) 말해. "꼼짝 마."
+@The_monster@이(가) 말해. "비밀을 몽땅 털어놔. 아니면 죽여 버릴 테니까."
+%%%%
+_Grinder_rare_
+
+@The_monster@이(가) 말해. "너 물고기냐?"
+@The_monster@이(가) 말해. "우주란 대체 왜 존재하는 걸까?"
+@The_monster@이(가) 말해. "상관이 날 쓰레기라고 했지. 그놈의 내장은 생각이 다르던데."
+@The_monster@이(가) 말해. "적어도 @my_God@은(는) 내가 하는 일을 인정해 주지."
+@The_monster@이(가) 말해. "나무처럼 굴어 봐!"
+VISUAL:@The_monster@이(가) 눈을 굴려.
+%%%%
+Harold
+
+@_Harold_common_@
+w:6
+@_Harold_rare_@
+%%%%
+_Harold_common_
+
+VISUAL:@The_monster@이(가) 이 일을 빨리 끝내고 싶은 눈치야.
+@The_monster@이(가) 소리쳐. "하루 종일 시간 있는 줄 알아?"
+@The_monster@이(가) 투덜거려. "그냥 포기해. 나 집에 가고 싶다고!"
+@The_monster@이(가) 말해. "마지막 의뢰는 좀 더 어려울 줄 알았는데. 뭐, 돈은 돈이지."
+@The_monster@이(가) 소리쳐. "이제 좀 죽어 줄래? 오늘 다른 약속도 있단 말이야!"
+@The_monster@이(가) 말해. "널 죽이려고 사람들이 얼마나 큰돈을 쓰려는지 알아, @player_name@?" @player_only@
+@The_monster@이(가) 말해. "빨리 끝내자고. 먹여 살릴 식구가 있어."
+@The_monster@이(가) 말해. "오해는 마. 사적인 감정은 없어. 그냥 일이야."
+@The_monster@이(가) 말해. "정말 신나는데! 내 경력을 끝내기에 완벽한 일이야!"
+@The_monster@이(가) 말해. "아, 바로 이 맛에 이 일을 시작했지!"
+%%%%
+_Harold_rare_
+
+VISUAL:@The_monster@이(가) 무언가 행복한 상상을 하며 잠시 미소 지어.
+@The_monster@이(가) 생각에 잠겨 말해. "네 현상금으로 @_Harold_retirement_plan_@을(를) 장만할까…" @player_only@
+@The_monster@이(가) 물어. "내 배에 '@player_name@'호라고 이름 붙여도 되겠지? 네 목값으로 살 거니까." @player_only@
+@The_monster@이(가) 기쁘게 말해. "네 목에 걸린 현상금이면 노후 자금은 충분하겠어!" @player_only@
+@The_monster@이(가) 생각하다가 말해. "이 일이 끝나면 @_Harold_ret_hobby_@을(를) 취미로 삼아 볼까…"
+@The_monster@이(가) 말해. "좋은 쪽으로 생각해 봐. 네 죽음 덕에 내 아이들이 학교에 갈 수 있어." @player_only@
+@The_monster@이(가) 말해. "현상금 사냥도 좋았지만 얼른 은퇴하고 싶군."
+@The_monster@이(가) 말해. "아내도 이제 내 옷에 묻은 피를 빨지 않아도 되니 좋아하겠지."
+%%%%
+_Harold_retirement_plan_
+
+@_Harold_ret_place_@의 @_Harold_ret_house_@
+낚싯배
+말 목장
+소 목장
+괜찮은 땅 한 필지
+%%%%
+_Harold_ret_house_
+
+별장
+대저택
+집
+작은 오두막
+보금자리
+%%%%
+_Harold_ret_place_
+
+산속
+호숫가
+바닷가
+시골
+숲속
+%%%%
+_Harold_ret_hobby_
+
+낚시
+등산
+목공
+모형 만들기
+글쓰기
+그림 그리기
+%%%%
+Ignacio
+
+@_Ignacio_common_@
+w:3
+@_Ignacio_rare_@
+%%%%
+_Ignacio_common_
+
+VISUAL:@The_monster@이(가) 자신의 도끼를 보고, @foe@을(를) 보고, 다시 도끼를 보고, 다시 @foe@을(를) 봐…
+VISUAL:@The_monster@이(가) 기쁨에 겨워 활짝 웃어.
+@The_monster@이(가) 외쳐. "좋아! 아주 재미있겠는데!"
+@The_monster@이(가) 말해. "고통이 내 전문이지. 곧 알게 될 거야!"
+@The_monster@이(가) 소리쳐. "목을 쳐라!"
+%%%%
+_Ignacio_rare_
+
+@The_monster@이(가) 말해. "난 죽음을 즐겨. 냄새도 좋고, 식어 가는 피의 미끈한 감촉도 좋지."
+@The_monster@이(가) 말해. "난 아름다움과 완벽함을 존중해. 그게 죽어 가는 모습을 보는 것도 좋아하지. 썩어 가면서 드러나는 대비가 정말 절묘해."
+@The_monster@이(가) 낮고 거친 목소리로 차분하게 말해. "173명 처리했군. 앞으로 100만 명 남았어."
+@The_monster@이(가) 말해. "숨통을 끊는 순간도 재밌지만, 진짜 즐거움은 그전에 고문하는 거지."
+@The_monster@이(가) 말해. "교수대도 없으니 목을 베어야겠군."
+%%%%
+Ilsuiw
+
+@_Ilsuiw_common_@
+w:5
+@_Ilsuiw_rare_@
+%%%%
+_Ilsuiw_common_
+
+@The_monster@이(가) 물어. "@foe,@ 나랑 함께 헤엄치지 않을래?"
+@The_monster@이(가) 속삭여. "들어와. 물이 아주 좋아."
+@The_monster@이(가) [기묘한|애절한] [뱃노래|선율]을(를) 불러.
+VISUAL:@The_monster@이(가) 길게 늘어진 초록 머리카락을 손가락으로 쓸어 넘겨.
+%%%%
+_Ilsuiw_rare_
+
+VISUAL:@The_monster@이(가) @foe@을(를) [최면을 걸 듯이|유혹하듯이] 바라봐.
+@The_monster@이(가) 노래해. "잠들어라, 잠들어라… 어쩌면 물속에 영영 잠기겠지."
+@The_monster@이(가) 말해. "파도 아래 세상은 정말 아름다워. 곧 알게 될 거야!"
+@The_monster@이(가) 물어. "@foe,@ 감히 해변을 걸어 볼 용기가 있어?"
+@The_monster@이(가) 말해. "날 잡고, 만지고, 사랑하고, 먹여 줘!"
+@The_monster@이(가) 순진한 목소리로 속삭여. "떠도는 이야기는 믿지 마. 나를 믿어!"
+@The_monster@이(가) 말해. "해변에서 너와 나, 그보다 좋은 게 어디 있겠어…"
+%%%%
+Jessica
+
+@_Jessica_common_@
+w:5
+@_Jessica_rare_@
+%%%%
+_Jessica_common_
+
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 몹시 화가 난 것 같아.
+@The_monster@이(가) 소리쳐. "날 방해하다니! 죽여 버리겠어!"
+VISUAL:@The_monster@이(가) 두 팔을 마구 휘둘러.
+@The_monster@이(가) 알아들을 수 없는 말을 중얼거려.
+%%%%
+_Jessica_rare_
+
+@The_monster@이(가) 말해. "여긴 왜 온 거야?"
+@The_monster@이(가) 말해. "정말 기분 나빠."
+@The_monster@이(가) 차갑게 말해. "너와 같이 있는 건 질색이야."
+@The_monster@이(가) 소리쳐. "너 같은 것들은 싫어!"
+@The_monster@이(가) 소리쳐. "계속 방해하면 죽일 거야!"
+@The_monster@이(가) 소리쳐. "정말 소름 끼치게 성가시네!"
+%%%%
+Natasha
+
+@_Natasha_common_@
+w:5
+@_Natasha_rare_@
+%%%%
+_Natasha_common_
+
+@_wizard_common_spell_@
+@_fake_spell_effect_@
+%%%%
+_Natasha_rare_
+
+@The_monster@이(가) 적을 향해 쉭쉭거려.
+@The_monster@이(가) 적에게 으르렁거려.
+@The_monster@이(가) 슬프게 야옹거려.
+VISUAL:@The_monster@이(가) 발톱을 내밀어.
+%%%%
+Robin
+
+@_Robin_common_@
+w:5
+@_Robin_rare_@
+%%%%
+_Robin_common_
+
+@The_monster@이(가) 말해. "무릎 꿇어, 벌레야!"
+@The_monster@이(가) 말해. "내 군대는 무적이야!"
+@The_monster@이(가) 말해. "외롭지?"
+@The_monster@이(가) 말해. "숙여!"
+@The_monster@이(가) 몹시 우쭐한 듯 웃어.
+VISUAL:@The_monster_possessive@ 팔찌가 요란하게 짤랑거려.
+VISUAL:@The_monster_possessive@ 뿔 달린 투구가 덜걱거려.
+VISUAL:@The_monster@이(가) 위협하듯 팔 근육에 힘을 줘.
+@The_monster@이(가) 손가락으로 상대를 가리켜. "죽여!"
+%%%%
+_Robin_rare_
+
+@The_monster@이(가) 말해. "너 같은 가엾은 @player_genus@은(는) 절대 오브를 찾지 못해!"
+@The_monster@이(가) 말해. "모든 홉고블린 중 가장 강한 내 앞에 엎드려라!"
+@The_monster@이(가) 말해. "내 고블린들이 네 뼈로 잔치를 벌일 거야."
+w:2
+@The_monster@이(가) 말해. "우리가 언덕 드워프도 쓸어 버렸어. 다음은 너야!"
+%%%%
+Nessos
+
+@_Nessos_common_@
+w:3
+@_Nessos_rare_@
+%%%%
+_Nessos_common_
+
+@The_monster@이(가) 발굽으로 땅을 세차게 구르며 소리를 내.
+@The_monster@이(가) 꼬리를 천천히 흔들며 @foe@을(를) 뚫어지게 바라봐.
+@The_monster@이(가) 잠시 뒷다리로 일어서.
+%%%%
+_Nessos_rare_
+
+@The_monster@이(가) 말해. "고전부터 공부해!"
+@The_monster@이(가) 말해. "아주 톡톡히 가르쳐 주지!"
+@The_monster@이(가) 말해. "네가 암말이었다고 해도 죽였을 거야!"
+@The_monster@이(가) 소리쳐. "난 반은 인간, 반은 말! 그리고 온몸이 냉혹한 살인자지!"
+w:1
+@The_monster@이(가) 말해. "잠깐 가만히 있을래? 시험해 보고 싶은 묘기가 있어서."
+w:1
+@The_monster@이(가) 말해. "그 덩치 큰 놈도 내가 가르쳤어. 너쯤이야 문제없지."
+w:1
+@The_monster@이(가) @foe@에게 히드라와 자신의 피, 결혼에 얽힌 복잡한 이야기를 들려주려 해.
+%%%%
+Pargi
+
+@_Pargi_common_@
+w:5
+@_Pargi_rare_@
+%%%%
+_Pargi_common_
+
+@The_monster@이(가) 으르렁거려. "저리! 가!"
+VISUAL:@The_monster@이(가) 불안하게 주위를 두리번거려.
+@The_monster@이(가) 위협적으로 쉭쉭거려.
+@The_monster@이(가) 으르렁거려. "내 집이야! 나가!"
+%%%%
+_Pargi_rare_
+
+VISUAL:@The_monster@이(가) 이를 악물어.
+VISUAL:@The_monster@이(가) 발톱에 힘을 줘.
+@The_monster@이(가) 쉭쉭거리며 말해. "물어 버린다!"
+@The_monster@이(가) 애원해. "때리지 마!"
+VISUAL:@The_monster@이(가) 잠시 몹시 슬퍼 보여.
+%%%%
+Jorgrun
+
+@_Jorgrun_common_@
+w:5
+@_Jorgrun_rare_@
+%%%%
+_Jorgrun_common_
+
+@The_monster@이(가) 말해. "대지가 네놈을 삼켜 버릴 게다!"
+@The_monster@이(가) 말해. "여기가 네 무덤이 될 게다!"
+@The_monster@이(가) 혼자서 주문을 중얼거려.
+%%%%
+_Jorgrun_rare_
+
+@The_monster@이(가) 말해. "대지는 내 집이여. 네놈은 무단 침입자고!"
+@The_monster@이(가) 말해. "네놈은 영 땅에 발을 붙이고 살질 못하는군."
+@The_monster@이(가) 말해. "이런 바위층은 평생 처음 보는구먼."
+@The_monster@이(가) 말해. "여기저기 벽을 몇 개만 더 허물면 이곳이 통째로 무너지겠구먼."
+%%%%
+Joseph
+
+@_Joseph_common_@
+w:2
+@_Joseph_rare_@
+%%%%
+_Joseph_common_
+
+w:20
+@_mercenary_guard_@
+VISUAL:@The_monster@이(가) 기쁘게 미소 지어.
+VISUAL:@The_monster@이(가) 사악한 미소를 지으려 애써.
+@The_monster@이(가) 말해. "널 보니 반갑네. 죽일 생각을 하니 더 반갑고."
+@The_monster@이(가) 말해. "이 순간을 정말 오래 기다렸어."
+@The_monster@이(가) 말해. "개인적인 감정은 없지만 널 죽여야겠어."
+@The_monster@이(가) 말해. "안됐지만 넌 절대로 오브를 얻지 못해." @player_only@
+@The_monster@이(가) 소리쳐. "싸우는 게 좋아! 죽이는 건 더 좋아!"
+@The_monster@이(가) 말해. "침입자를 죽이는 게 내 일이야. 마음에 드는 일이지."
+@The_monster@이(가) 말해. "넌 벌을 받아야 해! 아니… 내가 벌주고 싶어!"
+%%%%
+_Joseph_rare_
+
+@The_monster@이(가) 소리쳐. "드디어 한바탕 놀아 볼 시간이군!"
+@The_monster@이(가) 한숨 쉬어. "경비 일은 평소엔 너무 지루해…"
+@The_monster@이(가) 소리쳐. "우와!"
+%%%%
+Josephina
+
+@_Josephina_common_@
+w:5
+@_Josephina_rare_@
+%%%%
+_Josephina_common_
+
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 악의에 차서 웃어.
+@The_monster@이(가) 미친 듯이 웃어.
+@The_monster@이(가) 길게 낄낄대.
+VISUAL:@The_monster@이(가) 차가운 서리 빛으로 반짝여.
+@The_monster@이(가) 소리쳐. "죽어!"
+%%%%
+_Josephina_rare_
+
+VISUAL:@The_monster@이(가) 이를 갈아.
+VISUAL:@the_monster_possessive@ 얼어붙은 손가락 하나가 떨어져 나가.
+@The_monster@이(가) 말해. "네 가죽으로 양탄자를 만들겠어."
+@The_monster@이(가) 울부짖어. "지옥은 내게 비밀을 숨기지 못해!"
+@The_monster@이(가) 소리쳐. "넌 날 해칠 수 없어! 얼음은 다시 얼어붙거든…"
+@The_monster@이(가) 소리쳐. "난 절대 죽지 않아! 불멸이라고!"
+@The_monster@이(가) 소리쳐. "네 머리를 지옥의 장식품으로 쓰겠어!"
+%%%%
+Josephine
+
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 악의에 차서 웃어.
+VISUAL:@The_monster@이(가) 이를 갈아.
+@The_monster@이(가) 미친 듯이 웃어.
+@The_monster@이(가) 말해. "네 가죽으로 양탄자를 만들겠어."
+@The_monster@이(가) 말해. "목을 좀 잘라 볼까?"
+@The_monster@이(가) 소리쳐. "죽어!"
+@The_monster@이(가) 소리쳐. "널 위해 특별히 준비한 게 있어."
+@The_monster@이(가) 소리쳐. "네 머리를 내 오두막 장식품으로 쓰겠어!"
+%%%%
+Khufu
+
+@The_monster@이(가) 우렁차게 말해. "너만 빼고 모두 쿠푸를 숭배하게 될 것이다!"
+@The_monster@이(가) 선언해. "너를 끝장내고 나면 신들에게도 맞서리라!"
+@The_monster@이(가) 물어. "내 백성은 나를 위해 피라미드를 지었다. 네 백성은 무엇을 지었느냐?"
+@The_monster@이(가) 말해. "이런 치고 빠지기는 내 격에 맞지 않는다."
+@The_monster@이(가) 말해. "나는 초월이고, 너는 증발일 뿐이다."
+@The_monster@이(가) 말해. "네 시체는 어느 영묘에 두어도 오점이 되겠군."
+@The_monster@이(가) 말해. "너는 역사상 가장 추한 미라가 되리라."
+@The_monster@이(가) 말해. "나는 북극성을 따른다."
+@The_monster@이(가) 소리쳐. "나일강에 던져 버려라!"
+%%%%
+Kirke
+
+VISUAL:@The_monster@이(가) 상대에게 물약을 뿌려.
+VISUAL:@The_monster@이(가) 상대에게 [기묘한|이상한|수수께끼 같은] 가루를 던져.
+@The_monster@이(가) 말해. "오디스는 좋은 남자였는데, 넌 형편없네."
+@The_monster@이(가) 옆구리를 움켜쥐고 말해. "넌 내 발밑에서 흙이나 먹게 될 거야."
+@The_monster@이(가) 속삭여. "그 어떤 신성한 주문도 널 구하지 못해."
+@The_monster@이(가) 말해. "싸움은 그만두면 안 될까? 너한테 줄 좋은 포도주가 있는데…" @player_only@
+@The_monster@이(가) 소리쳐. "이 돼지야! 네 본성에 어울리는 모습으로 만들어 주겠어."
+@The_monster@이(가) 속삭여. "작고 동그랗게 말린 꼬리가 있으면 귀엽겠는데."
+@The_monster@이(가) 속삭여. "어떤 @player_genus@도 나를 거역할 수 없어…"
+@_wizard_common_spell_@
+@_fake_spell_effect_@
+%%%%
+Lodul
+
+@_Lodul_common_@
+w:5
+@_Lodul_rare_@
+%%%%
+_Lodul_common_
+
+@The_monster@이(가) 우렁찬 함성을 질러.
+VISUAL:@The_monster@이(가) 묵직한 돈주머니를 짤랑거리며 윙크해.
+@The_monster@이(가) 소리쳐. "침입자!"
+@The_monster@이(가) 말해. "나 금고 잘 지킨다! 넌 못 들어와!"
+VISUAL:@The_monster@이(가) 발을 쾅 굴러.
+%%%%
+_Lodul_rare_
+
+@The_monster@이(가) 말해. "나 위해 일할래? 돈 많이 준다."
+@The_monster@이(가) 소리쳐. "천둥 맛 좀 봐라!"
+VISUAL:@The_monster@이(가) 몸에 단 장치를 고쳐 매.
+@The_monster@이(가) 소리쳐. "찌릿! 하하하, 깜짝 놀랐지?"
+@The_monster@이(가) 포효해. "나 철벽! 너 놋쇠… 쓰레기!"
+@The_monster@이(가) 사악하게 웃으며 말해. "돈이 세상을 돌린다."
+@The_monster@이(가) 윙크하며 말해. "모든 것에는 값이 있다."
+@The_monster@이(가) 말해. "모든 부는 노동의 산물이다."
+@The_monster@이(가) 말해. "일 잘하는 오거가 행복한 오거다."
+@The_monster@이(가) 말해. "나 직원들 자랑스럽다."
+@The_monster@이(가) 말해. "로둘의 좌우명! 금고 안전? 내 책임!"
+@The_monster@이(가) 인상을 쓰며 말해. "너 여기 보안 규칙 어겼다."
+%%%%
+Louise
+
+@_Louise_common_@
+w:2
+@_Louise_rare_@
+%%%%
+_Louise_common_
+
+@The_monster@이(가) 말해. "여행 한번 갈래?"
+@The_monster@이(가) 말해. "심연도 날 죽이지 못했어! 네가 뭘 할 수 있다고 생각해?"
+@The_monster@이(가) 말해. "현실 너머의 힘도 내 부름에 응하지!"
+@The_monster@이(가) 말해. "오브까지 지름길이 필요해? 자, 내가 도와줄게!"
+@The_monster@이(가) 앞뒤가 맞지 않는 소리를 지껄여.
+@The_monster@이(가) 비명을 질러!
+@The_monster@이(가) 주체할 수 없이 웃어.
+@The_monster@이(가) 흐느끼기 시작해.
+@The_monster@이(가) 물어. "왜 내 친구가 되어 주지 않는 거야?"
+@_wizard_common_spell_@
+@_fake_spell_effect_@
+%%%%
+_Louise_rare_
+
+@The_monster@이(가) 말해. "몸이 영 안 좋아…"
+@The_monster@이(가) 말해. "날 뭐로 보는 거야? 평범한 용병인 줄 알아?"
+@The_monster@이(가) 말해. "휴가 가기 딱 좋은 계절인데!"
+%%%%
+Maggie
+
+@_Maggie_common_@
+w:5
+@_Maggie_rare_@
+%%%%
+_Maggie_common_
+
+VISUAL:@The_monster@이(가) 멋진 자세를 연습해.
+VISUAL:@The_monster@이(가) 웃지만, 억지웃음인 게 빤히 보여.
+@The_monster@이(가) 말해. "지금 떠나. 그리고 모두에게 매기의 자비를 전해!"
+@The_monster@이(가) 말해. "두려워 마. 널 내 첫 살인의 전설 속에 영원히 남겨 주겠어."
+VISUAL:@The_monster@이(가) 자기 몸에 마법의 후광을 두르지만 곧 꺼져 버려.
+@The_monster@이(가) 주문 구절을 순서도 틀리게 중얼거려.
+%%%%
+_Maggie_rare_
+
+@The_monster@이(가) 말해. "던전에서 죽어도 아무도 보지 못했다면, 그 죽음이 의미가 있을까?"
+@The_monster@이(가) 말해. "랜스 스승님이 널 보냈어?"
+@The_monster@이(가) 말해. "드래곤 못 봤어?"
+@The_monster@이(가) 말해. "여기 사는 사람들은 어떻게 이런 고립을 견디지?"
+@The_monster@이(가) 소리쳐. "날 좀 내버려 둬!"
+@The_monster@이(가) 혼잣말해. "랜스 스승님은 날 다시 받아 주지 않을 거야. 이 길밖에 없어."
+%%%%
+Mara
+
+@_Mara_common_@
+w:5
+@_Mara_rare_@
+%%%%
+_Mara_common_
+
+VISUAL:@The_monster_possessive@ 얼굴이 두 번이나 변해.
+@The_monster@이(가) 말해. "나는 사람의 마음을 그릇된 길로 이끈다!"
+@The_monster@이(가) 말해. "내 환영 앞에서 강철과 마법이 무슨 소용이 있겠느냐?"
+@The_monster@이(가) 말해. "그럴듯한 시구에 넋이라도 빼앗겼느냐?"
+@The_monster@이(가) 말해. "네 몸은 온갖 올가미에 묶였도다!"
+@The_monster@이(가) 으르렁거려.
+VISUAL:@The_monster@이(가) 손짓해.
+VISUAL:@The_monster@이(가) 과장되게 손가락질해.
+VISUAL:@The_monster@이(가) 환영을 만들어 내.
+%%%%
+_Mara_rare_
+
+@The_monster@이(가) 소리쳐. "열 배의 저주가 네게 내리리라!"
+@The_monster_possessive@ 모습이 잠시 너와 똑같아져. "스스로를 죽일 셈이냐?"
+@The_monster@이(가) 말해. "바다 밑바닥 위에 뜬 별처럼 나는 너보다 아득히 높다."
+@The_monster@이(가) 비웃어. "나는 올바른 길과 진리를 찾는 자다."
+@The_monster@이(가) 말해. "너는 앙상하고 추하니, 죽음이 네 곁에 머무는구나!"
+@The_monster@이(가) 말해. "정진의 길은 험하고, 지나기도 들어서기도 어렵다."
+@The_monster@이(가) 외쳐. "멈추어라! 7일 뒤면 제국의 수레바퀴가 나타나리라!"
+@The_monster@이(가) 자랑해. "나는 4개 대륙과 그에 딸린 2,000개 섬의 주인이다."
