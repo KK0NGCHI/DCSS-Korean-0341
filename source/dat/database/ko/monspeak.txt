@@ -4430,3 +4430,68 @@ VISUAL:@The_monster@이(가) 너를 의심스러운 눈으로 살펴봐.
 @The_monster@이(가) 말해. "최고 돌! 돌!"
 @The_monster@이(가) 말해. "돌!"
 @The_monster@이(가) 말해. "내 돌!"
+%%%%
+_weeping_skull_common_
+
+@The_monster@이(가) 네게 닥칠 피할 수 없는 운명을 생각하며 @_weeps_@. @player_only@
+@The_monster@이(가) 자신의 [가련한|쇠락한] 처지를 한탄하며 @_weeps_@.
+@The_monster@이(가) 몰락한 수많은 [제국|문명]을 애도해.
+@The_monster@이(가) 던전에서 안식을 찾지 못한 망자들에게 정중한 장례를 치러 달라고 애원해.
+%%%%
+_weeping_skull_rare_
+
+@The_monster@이(가) 멈출 수 없는 시간과 엔트로피의 흐름을 한탄하며 @_weeps_@.
+@The_monster@이(가) 이 세상이 과거에 살았던 이들의 무게를 얼마나 더 버틸 수 있을지 물어.
+w:5
+@The_monster@이(가) 던전으로 이주해 온 오크들이 잃은 수많은 생명을 애도해.
+w:1
+@The_monster@이(가) 흐느껴.
+%%%%
+_weeps_
+
+신음해
+울부짖어
+흐느껴
+%%%%
+arcanist
+
+w:20
+@_wizard_@
+w:1
+@The_monster@이(가) [불평하며|투덜대며] 비술사들에 관한 말을 늘어놓아.
+w:9
+__NONE
+%%%%
+occultist
+
+w:20
+@_wizard_@
+w:1
+@The_monster@이(가) [불평하며|투덜대며] 비전술사들에 관한 말을 늘어놓아.
+w:9
+__NONE
+%%%%
+_holy_being_
+
+w:2
+@The_monster@이(가) 경건하게 기도를 읊어.
+VISUAL:평온한 기운이 너를 감싸.
+w:1
+@The_monster@이(가) 말해. "악과 싸울 때에는 순결함을 잃지 말지어다."
+w:1
+@The_monster@이(가) 말해. "@foe_god@의 빛이 늘 너를 비추기를, @foe_name@!"
+w:1
+@The_monster@이(가) 말해. "필멸자여, @foe_god@의 가호가 함께하기를!" @player_only@
+w:1
+@The_monster@이(가) 말해. "높은 하늘의 @_good_god_@을(를) 찬미하라!"
+%%%%
+good god '&'
+
+w:20
+@_demon_taunt_@
+w:1
+@The_monster@이(가) 외쳐. "@Foe_god@도 널 지키지 못해, @foe_name@!"
+w:1
+@The_monster@이(가) 외쳐. "필멸자여, @Foe_god@ 따위는 내게 성가실 뿐이야!"
+w:1
+@The_monster@이(가) 외쳐. "@Foe_god@도 네 최후를 보고 울게 될 거야!"
