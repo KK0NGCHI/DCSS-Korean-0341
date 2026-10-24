@@ -183,3 +183,39 @@ Sojourning Bolt cast
 
 @The_monster@이(가) @target@에게 시공간을 찢는 숨결을 내뿜는다.
 %%%%
+polymorphed wizard cast targeted
+
+@The_monster@이(가) @target@에게 주문을 시전한다.
+%%%%
+polymorphed wizard cast
+
+@The_monster@이(가) 주문을 시전한다.
+%%%%
+polymorphed unseen wizard cast
+
+어디선가 알아들을 수 없는 중얼거림이 들린다.
+%%%%
+Haste Other priest cast
+
+@The_monster@이(가) @possessive_God@에게 기도하여 @target@의 움직임을 빠르게 한다.
+%%%%
+Heal Other priest cast
+
+@The_monster@이(가) @possessive_God@에게 기도하여 @target@의 상처를 치유한다.
+%%%%
+Might Other priest cast
+
+@The_monster@이(가) @possessive_God@에게 기도하여 @target@에게 힘을 내려준다.
+%%%%
+Malign Offering priest cast
+
+@The_monster@이(가) 어두운 기도를 읊으며 @target@을(를) 가리킨다.
+%%%%
+priest cast
+
+@The_monster@이(가) @possessive_God@에게 기도한다.
+
+@The_monster@이(가) @possessive_God@에게 낯선 기도를 중얼거린다.
+
+@The_monster@이(가) @possessive_God@에게 기원문을 바친다.
+%%%%
