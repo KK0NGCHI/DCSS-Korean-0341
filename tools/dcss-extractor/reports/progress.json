@@ -93,12 +93,25 @@
       "overlay_cpp_files": 10,
       "artifact": "Linux x86-64 ELF crawl executable",
       "limits": "Official 0.34.1 source with translated C++ overlay only; Windows Tiles, complete translated data load and actual game output not tested."
+    },
+    "description_audit_after_fix": {
+      "source_ref": "db9b8c4018cc1f21301eab6786396f03c9768e8e",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40073426356",
+      "status": "passed",
+      "english_unique_keys": 3778,
+      "matched_unique_keys": 3778,
+      "missing_korean_keys": 0,
+      "reference_count_reviews": 1,
+      "lua_delimiter_reviews": 0,
+      "duplicate_english_keys": 3,
+      "extra_korean_keys": 260,
+      "note": "8 Korean entries updated; remaining reference warning HINT_SEEN_BRANCH. Duplicates are in English reference files."
     }
   },
   "current_qa_work": {
     "branch": "fix/ko-qa-progress-20261024",
-    "edits": "Corrected 8 Korean description entries across ability/features/monsters/tutorial. Audited initial remaining references and Lua warnings; full CI rerun pending.",
-    "remaining_known_pre_fix": "3 original English duplicate keys, 260 extra Korean keys, 5 reference-count candidates, 4 Lua candidates. No keys missing.",
+    "edits": "8 Korean description entries corrected and verified by automated structural audit; contextual/runtime checks remain pending.",
+    "remaining_known_pre_fix": "Baseline before fixes: 5 reference-count reviews and 4 Lua reviews. Latest audit: 1 reference-count review, 0 Lua reviews, 3 original English duplicate keys, 260 extra Korean keys.",
     "unresolved_by_design": [
       "HINT_SEEN_BRANCH has a source markup discrepancy (EN 3 vs KO 4 tags); requires loader-context validation.",
       "Original duplicate English keys must be evaluated against real loader precedence.",
