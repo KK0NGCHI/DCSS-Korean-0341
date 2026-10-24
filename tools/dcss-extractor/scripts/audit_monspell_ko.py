@@ -84,11 +84,26 @@ def audit(original, localized):
             issues.append({"key": key, "issue": issue})
     for key in ko_duplicates:
         issues.append({"key": key, "issue": "duplicate_korean_key"})
+    remaining = {key: body for key, body in en.items() if key not in ko}
+    alias_only = []
+    intentionally_silent = []
+    untranslated_text = []
+    for key, body in remaining.items():
+        actual = visible_lines(body)
+        if len(actual) == 1 and actual[0] == "__NONE":
+            intentionally_silent.append(key)
+        elif len(actual) == 1 and re.fullmatch(r"@[^@]+@", actual[0]):
+            alias_only.append(key)
+        else:
+            untranslated_text.append(key)
     return {
         "original_unique_keys": len(en),
         "translated_unique_keys": len(ko),
         "matching_keys": len(set(en) & set(ko)),
         "untranslated_keys": len(set(en) - set(ko)),
+        "remaining_alias_only_keys": alias_only,
+        "remaining_silent_keys": intentionally_silent,
+        "remaining_text_keys": untranslated_text,
         "original_duplicate_keys": en_duplicates,
         "issues": issues,
         "limitations": [

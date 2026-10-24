@@ -722,3 +722,456 @@ Spit Lava cast
 
 @The_monster@이(가) @target@에게 용암을 뱉는다.
 %%%%
+Sticks to Snakes cast
+
+@The_monster@이(가) 나뭇가지 2개를 떨어뜨리자 두 가지가 살아 움직이기 시작한다!
+%%%%
+Sticky Flame cast
+
+@The_monster@이(가) @target@에게 액체 불꽃을 뿌린다.
+%%%%
+Stunning Burst cast
+
+@The_monster@이(가) @target@에게 강력한 전격을 쏜다.
+%%%%
+Throw Bolas cast
+
+@The_monster@이(가) @target@에게 볼라를 던진다.
+%%%%
+Throw Klown Pie cast
+
+@The_monster@이(가) @target@에게 파이를 거칠게 던진다!
+%%%%
+Vhi's Electrolunge cast
+
+@The_monster@이(가) 전기 불꽃을 튀기며 앞으로 돌진한다.
+%%%%
+Wind Blast cast
+
+@The_monster@이(가) 거센 돌풍을 만들어 낸다!
+%%%%
+Word of Recall cast
+
+@The_monster@이(가) 소환의 언령을 읊기 시작한다!
+%%%%
+March of Sorrows Boris cast
+
+@The_monster@이(가) 희생자들의 슬픔을 [내뿜는다|던져 보낸다].
+
+w:5
+@The_monster@이(가) 희생자들의 [비탄|고통]을 쏟아 낸다.
+%%%%
+Cantrip Dissolution cast
+
+@The_monster@이(가) 사라진 신을 향해 꾸르륵 소리를 낸다.
+
+@The_monster@이(가) 슬픔에 잠겨 몸을 꿈틀거린다.
+
+@The_monster@이(가) 목적 없이 흔들거린다.
+
+@The_monster@이(가) 말한다. "내 슬픔과 하나가 되어라!"
+
+w:1
+@The_monster@이(가) 묻는다. "@My_God@시여, 어째서 저를 버리셨습니까?"
+%%%%
+Cantrip Gastronok cast
+
+@The_monster@이(가) 흥겹게 부글거린다.
+
+VISUAL:@The_monster@이(가) 선명한 자홍색으로 빛난다.
+
+VISUAL:@The_monster@이(가) 미친 듯 흔들거린다.
+
+VISUAL:@The_monster_possessive@ 눈자루가 길게 늘어났다가 원래대로 돌아온다.
+
+당신의 몸이 흔들거린다.
+
+몸이 약간 녹색으로 변한다.
+
+잠시 몸이 둔해진 듯하다.
+
+갑자기 소금이 몹시 싫어졌다가 곧 괜찮아진다.
+
+w:5
+존재하지 않는 눈자루를 빙빙 돌리고 싶은 충동이 든다.
+%%%%
+Smiting Jeremiah cast
+
+@The_monster@이(가) 뒤틀린 울부짖음을 터뜨린다.
+
+@The_monster@이(가) 발음이 뭉개진 기도를 중얼거린다.
+
+VISUAL:@The_monster@이(가) 간청하듯 두 팔을 들어 올린다.
+
+@The_monster@이(가) 외친다. "두려운 주인이여, 저를 보호하소서!"
+
+@The_monster@이(가) 외친다. "오, 공포스러운 분이여, 제 적을 멸하소서!"
+%%%%
+Hellfire Mortar Wiglaf cast
+
+VISUAL:@The_monster@이(가) 무기를 땅에 세게 내려친다.
+
+@The_monster@이(가) @foe@에게 외친다. "산의 피맛을 한번 봐라!"
+
+@The_monster@이(가) @foe@에게 포효한다. "진짜 대포가 뭔지 보여 주마!"
+%%%%
+March of Sorrows bone dragon cast
+
+@The_monster@이(가) @target@에게 [모두의 절망|끝없는 슬픔]을 내뿜는다.
+%%%%
+Beckoning Gale chonchon cast
+
+@The_monster@이(가) 날개를 퍼덕이며 @target@에게 주문을 외운다.
+
+w:5
+@The_monster@이(가) 빙빙 돌면서 @target@에게 날카롭게 비명을 지른다.
+%%%%
+guardian serpent cast targeted
+
+@The_monster@이(가) 몸을 감고 상체를 흔들며 @target@을(를) 노린다.
+
+@The_monster@이(가) 꼬리를 흔들어 @target@을(를) 겨냥한다.
+
+w:3
+@The_monster@이(가) 혀끝으로 복잡한 무늬를 그린다.
+%%%%
+guardian serpent cast
+
+@The_monster@이(가) 주문을 시전한다.
+%%%%
+Fireball hell hog cast
+
+@The_monster@이(가) @target@에게 @beam@을(를) 내뿜는다.
+%%%%
+Beckoning Gale hippogriff cast
+
+@The_monster@이(가) @target@을(를) 향해 날개를 퍼덕인다.
+%%%%
+Warning Cry hippogriff cast
+
+@The_monster@이(가) 날카로운 경고의 비명을 지른다!
+%%%%
+unseen Warning Cry howler monkey cast
+
+엄청나게 큰 울음소리와 포효가 들린다!
+%%%%
+Warning Cry howler monkey cast
+
+@The_monster@이(가) 힘차게 울고 포효한다!
+%%%%
+Blink Range ironbound thunderhulk cast
+
+@the_monster_possessive@ 장치에서 기묘한 에너지가 지직거리며 튄다.
+%%%%
+kobold blastminer cast targeted
+
+@The_monster@이(가) @target@에게 대포를 발사한다.
+%%%%
+Awaken Flesh kobold fleshcrafter cast
+
+@The_monster@이(가) 낄낄대며 손짓한다.
+
+@The_monster@이(가) 주문을 외며 몸을 뒤튼다.
+%%%%
+Bolt of Flesh kobold fleshcrafter cast
+
+@The_monster@이(가) @target@에게 살점의 파도를 쏘아 보낸다.
+%%%%
+laughing skull cast
+
+@The_monster@이(가) 악의에 차 낄낄거린다.
+
+@The_monster@이(가) 비웃으며 알아들을 수 없는 말을 지껄인다.
+
+@The_monster@이(가) 사납게 웃음을 터뜨린다.
+%%%%
+silent laughing skull cast
+
+@The_monster@이(가) 소리 없이 조롱하듯 낄낄거린다.
+
+@The_monster@이(가) 기뻐하며 격렬하게 덜컥거린다.
+%%%%
+unseen laughing skull cast
+
+악의에 찬 웃음소리가 들린다.
+
+비웃는 듯한 알 수 없는 소리가 들린다.
+%%%%
+manticore cast
+
+@The_monster@이(가) 꼬리를 휙 움직인다.
+%%%%
+Bolt of Magma molten gargoyle cast
+
+@The_monster@이(가) @target@에게 용암을 뿜어낸다!
+%%%%
+orange crystal statue cast
+
+@The_monster@이(가) 반짝인다.
+%%%%
+orange crystal statue cast targeted
+
+@The_monster@이(가) @target@에게 날카로운 시선을 고정한다.
+%%%%
+orb of fire cast
+
+@The_monster@이(가) 노란색으로 빛난다.
+
+@The_monster@이(가) 눈부신 자홍색으로 빛난다.
+
+@The_monster@이(가) 짙은 보라색으로 빛난다.
+
+@The_monster@이(가) 붉게 빛난다.
+
+@The_monster@이(가) 섬뜩한 붉은 빛을 뿜는다.
+%%%%
+orb of entropy cast
+
+w:20
+@The_monster@이(가) [맥동한다|진동한다].
+
+@The_monster@이(가) 세상을 갉아먹는다.
+
+@The_monster@이(가) 현실을 잠식한다.
+
+@the_monster@ 주위에서 존재 자체가 부패한다.
+%%%%
+orb of winter cast
+
+@The_monster@이(가) 서리로 반짝인다.
+
+@The_monster@이(가) 눈보라처럼 소용돌이친다.
+
+w:30
+@The_monster@이(가) [얼음빛 푸른색|창백한 빛|사파이어색]으로 빛난다.
+%%%%
+obsidian statue cast
+
+@The_monster_possessive@ 눈이 잠시 빛난다.
+%%%%
+Bolt of Fire ophan cast
+
+@The_monster@이(가) 정화하는 불꽃의 힘을 끌어낸다!
+%%%%
+unseen Bolt of Fire ophan cast
+
+무언가가 정화하는 불꽃의 힘을 끌어낸다!
+%%%%
+Force Lance polterguardian cast
+
+@The_monster@이(가) @target@에게 정신을 집중한다.
+%%%%
+Slug Dart cast
+
+@The_monster@이(가) @target@에게 점액탄을 쏜다.
+%%%%
+Ghostly Fireball revenant cast
+
+@The_monster@이(가) 유령 같은 불꽃을 휘두른다.
+%%%%
+Spectral Cloud revenant cast
+
+@The_monster@이(가) @target@ 주위에 영혼의 안개를 불러낸다.
+%%%%
+Dispel Undead revenant cast
+
+@The_monster@이(가) @target@을(를) 향해 거칠게 손짓한다.
+%%%%
+Battlecry satyr cast
+
+@The_monster@이(가) 피리로 용기를 북돋우는 선율을 연주한다!
+%%%%
+Cause Fear satyr cast
+
+@The_monster@이(가) 피리로 무시무시한 선율을 연주한다!
+%%%%
+Sleep satyr cast
+
+@The_monster@이(가) 피리로 잠을 재우는 선율을 연주한다!
+%%%%
+Injury Mirror screaming refraction cast
+
+@The_monster@이(가) 비통한 고통을 담아 빛난다.
+
+@The_monster@이(가) 찬란한 고통에 몸의 뼈들을 덜컥거린다.
+%%%%
+Lee's Rapid Deconstruction screaming refraction cast
+
+@the_monster@의 메아리가 일렁이더니 @target@을(를) 향해 절망적으로 통곡한다.
+%%%%
+scrub nettle cast targeted
+
+@The_monster@이(가) @target@에게 독 가시를 발사한다.
+%%%%
+Warning Cry seraph cast
+
+@The_monster@이(가) 동료들에게 경고를 외친다!
+%%%%
+unseen Warning Cry seraph cast
+
+어디선가 우렁찬 경고의 외침이 들린다!
+%%%%
+Invisibility shadowghast cast
+
+@The_monster@이(가) 어둠 속으로 스며든다.
+%%%%
+Throw Icicle shard shrike cast
+
+@The_monster@이(가) @target@에게 얼음 파편을 내뱉는다.
+%%%%
+Confuse sphinx marauder cast
+
+@The_monster@이(가) 기묘한 언어로 [난해한|수수께끼 같은] 질문을 포효한다.
+%%%%
+Vex sphinx marauder cast
+
+@The_monster@이(가) 신비한 언어로 [불가능한|터무니없는|진부한] 수수께끼를 날카롭게 외친다.
+%%%%
+Smiting guardian sphinx cast
+
+@The_monster@이(가) @target@에게 고대의 저주를 중얼거린다.
+%%%%
+Paralysis guardian sphinx cast
+
+@The_monster@이(가) [멍하게 만드는|휘청이게 만드는] 신비한 수수께끼를 속삭인다.
+%%%%
+sphinx cast
+
+@The_monster@이(가) 알아들을 수 없는 말을 중얼거린다.
+
+@The_monster@이(가) 주문을 시전한다.
+%%%%
+Electrical Bolt shock serpent cast
+
+@The_monster@이(가) 전기를 뻗어 번개를 방출한다.
+%%%%
+sun moth cast
+
+@The_monster_possessive@ 날개가 거세게 퍼덕인다.
+%%%%
+Rebounding Blaze thermic dynamo cast
+
+@the_monster@에게서 거센 불길의 소용돌이가 @target@을(를) 향해 뻗어 나간다.
+
+@The_monster@이(가) 몸을 과충전하고 여분의 열기를 @target@에게 방출한다.
+%%%%
+Rebounding Chill thermic dynamo cast
+
+@the_monster@에게서 얼음의 소용돌이가 @target@을(를) 향해 뻗어 나간다.
+
+@The_monster@이(가) 얼음의 힘으로 가득 차서 여분의 냉기를 @target@에게 내뿜는다.
+%%%%
+unseen thermic dynamo cast
+
+격렬한 소용돌이 소리가 들린다.
+%%%%
+thrashing horror cast
+
+@The_monster@이(가) 격렬하게 꿈틀거린다!
+%%%%
+undertaker cast targeted
+
+@The_monster@이(가) @target@을(를) 향해 손을 뻗는다.
+%%%%
+Flashing Balestra undying armoury cast
+
+@the_monster@에서 무기가 튀어나와 @target@을(를) 향해 돌진한다!
+%%%%
+Death Rattle ushabti cast
+
+@The_monster@이(가) 몸을 흔들며 덜컥거린다.
+%%%%
+Warning Cry ushabti cast
+
+@The_monster@이(가) 몸을 흔들며 귀가 먹먹할 만큼 덜컥거린다!
+%%%%
+unseen Warning Cry ushabti cast
+
+귀가 먹먹할 만큼 큰 덜컥거림이 들린다!
+%%%%
+ushabti cast targeted
+
+@The_monster@이(가) @target@을(를) 향해 뻣뻣하게 손짓한다.
+%%%%
+unseen Warning Cry vault sentinel cast
+
+나팔을 크게 부는 소리가 들린다!
+%%%%
+Warning Cry vault sentinel cast
+
+@The_monster@이(가) 신호 나팔을 크게 분다!
+%%%%
+Metal Splinters war gargoyle cast
+
+@The_monster@이(가) @target@에게 @beam@을(를) 발사한다.
+%%%%
+weeping skull cast
+
+@The_monster@이(가) [억누르지 못하고|터뜨리듯] 흐느껴 운다.
+
+@The_monster_possessive@ 슬픔이 [차오른다|넘쳐흐른다].
+%%%%
+silent weeping skull cast
+
+@The_monster_possessive@ 슬픔이 [차오른다|넘쳐흐른다].
+%%%%
+unseen weeping skull cast
+
+흐느끼는 소리가 들린다.
+%%%%
+Airstrike wind drake cast
+
+@The_monster@이(가) @target@을(를) 향해 날개를 퍼덕인다.
+%%%%
+Wind Blast wind drake cast
+
+@The_monster@이(가) 거센 돌풍을 내뿜는다!
+%%%%
+Corrupting Pulse wretched star cast
+
+@The_monster@이(가) 기이한 빛으로 맥동한다!
+%%%%
+wretched star cast
+
+@The_monster@이(가) 불안정하게 빛난다.
+%%%%
+Grave Claw vampire bloodprince cast
+
+@The_monster@이(가) 손을 뻗는다.
+
+@The_monster@이(가) 손가락을 튕긴다.
+%%%%
+Ravenous Swarm vampire bloodprince cast
+
+@The_monster@이(가) 날개를 활짝 펼친다.
+
+@The_monster@이(가) 두 팔을 넓게 벌린다.
+%%%%
+Dominate Undead vampire bloodprince cast
+
+@The_monster@이(가) 위압적인 권위를 행사한다.
+
+@The_monster@이(가) 죽은 자들에게 복종을 명한다.
+
+@The_monster@이(가) 속삭인다. "무릎 꿇어."
+%%%%
+Manifold Assault natural cast
+
+@The_monster@이(가) 동시에 여러 장소에 있는 것처럼 보인다.
+%%%%
+Acid Ball nascent plasmodium cast
+
+@The_monster@이(가) @target@에게 산성 액체를 뿜어낸다.
+%%%%
+angel cast targeted
+
+@The_monster@이(가) @possessive_God@의 분노를 @target@에게 내린다.
+%%%%
+raven cast
+
+@The_monster@이(가) @foe_possessive@ 영혼을 꿰뚫어 본다.
+%%%%
+malmutate zykzyl cast
+
+@The_monster@이(가) @foe_possessive@ 모습에 질투심으로 몸을 떤다.
+%%%%
