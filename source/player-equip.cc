@@ -2394,7 +2394,7 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     {
         // XX can the noun here be derived from the species walking verb?
         const string noun = you.species == SP_NAGA ? "slither" : "step";
-        mprf("That put a bit of spring back into your %s.", noun.c_str());
+        mprf("덕분에 %s이(가) 다시 한결 가벼워진 것 같아.", noun.c_str());
         break;
     }
 
@@ -2641,7 +2641,7 @@ static void _equip_jewellery_effect(item_def &item, bool unmeld)
             simple_god_message(ignore_reason.c_str());
         else
         {
-            mprf(MSGCH_GOD, "You feel a %ssurge of divine interest.",
+            mprf(MSGCH_GOD, "신의 관심이 %s몰려오는 것 같아.",
                             you_worship(GOD_NO_GOD) ? "strange " : "");
         }
     }
