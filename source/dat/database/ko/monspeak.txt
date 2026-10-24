@@ -4813,3 +4813,75 @@ _hostile_orc_beogh_believer_speech_common_
 @The_monster@이(가) @_shouts_@. "물러가라, @_orc_heathen_@!"
 @The_monster@이(가) @_shouts_@. "베오그의 이름을 더럽힌 대가를 치러라, @foe_name@!"
 VISUAL:@The_monster@이(가) 얼굴을 찌푸려.
+%%%%
+Temple Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "이 안에서 내가 찾는 제단은 절대 못 찾겠군."
+@The_monster@이(가) 말해. "숭배하라고 들볶는 신들이 너무 많아. 정말 싫어."
+@The_monster@이(가) 말해. "신전 하나 보여 주겠다고 날 여기까지 데려온 거야?"
+@The_monster@이(가) 말해. "여긴 보물도 별로 없잖아."
+@The_monster@이(가) 말해. "여기서 룬은 이미 챙겼지?"
+@The_monster@이(가) 말해. "소위 선하다는 신들도 다른 신들만큼 사악해. 위선은 정말 싫어."
+@The_monster@이(가) 말해. "난 신전이 싫어."
+w:5
+@The_monster@이(가) 말해. "모든 종교를 위한 선술집은 안 되는 건가?"
+%%%%
+No God Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "신도 없이 외롭지 않아?"
+@The_monster@이(가) 말해. "난 신들이 싫어."
+@The_monster@이(가) 말해. "무신론자도 싫고."
+w:5
+@The_monster@이(가) 말해. "난 신들이 싫고, 신들도 날 싫어해."
+@The_monster@이(가) 말해. "저주할 신도 없어서 곤란하겠군."
+@The_monster@이(가) 말해. "만신전 신전을 지나친 거야?"
+%%%%
+friendly Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 노래해. "장미는 붉고 / 제비꽃은 푸르고 / 싫은 것도 많지만 / 제일 싫은 건 너야!"
+%%%%
+default hostile confused Donald
+
+@The_monster@이(가) 말해. "그럼 모든 게 괜찮은 건가?"
+@The_monster@이(가) 말해. "사실 난 네가 좋아."
+@The_monster@이(가) 말해. "어머나, 어머나, 어머나!"
+@The_monster@이(가) 말해. "아, 이런!"
+@The_monster@이(가) 말해. "그런데 나에겐 아내가 있어! 자식들도! 있던가?"
+@The_monster@이(가) 비명을 질러.
+@The_monster@이(가) 꽥꽥 소리를 내.
+@The_monster@이(가) 말해. "내 다리! 내 다리! 다리가 어떻게 된 거야?"
+@The_monster@이(가) 음정도 못 맞춘 채 노래해.
+VISUAL:@The_monster@이(가) 기분 좋게 춤을 조금 춰.
+VISUAL:@The_monster@이(가) 코에 손가락을 넣어.
+VISUAL:@The_monster@이(가) 머리카락을 잡아당겨.
+VISUAL:@The_monster@이(가) 제자리에서 가볍게 빙글빙글 돌아.
+%%%%
+Fedhas Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "버섯들이 왜 이렇게 많은 거야?"
+@The_monster@이(가) 말해. "난 [나무|식물|버섯]가 싫어."
+@The_monster@이(가) 말해. "정원 가꾸기 좋아해? 난 정말 싫어."
+@The_monster@이(가) 말해. "그런데 잡초는 어떻게 처리해?"
+@The_monster@이(가) 말해. "식물이 나한테 산을 뱉었어. 정말 싫더군."
+@The_monster@이(가) 말해. "알레르기나 안 생기길 빌어."
+%%%%
+Ru Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "뭐 빠뜨린 거라도 있어?"
+@The_monster@이(가) 말해. "난 희생이 싫어."
+@The_monster@이(가) 말해. "희생을 바치는 자들도 싫고."
+@The_monster@이(가) 말해. "한번은 일주일 동안 고기를 끊었지. 정말 싫었어."
+@The_monster@이(가) 말해. "일주일 동안 술을 끊어 본 적도 있어. 끔찍했지."
+@The_monster@이(가) 말해. "현실에 감춰진 또 다른 층위도 싫어."
+@The_monster@이(가) 말해. "실존적 회의도 싫고."
+@The_monster@이(가) 말해. "모든 것을 지워 버릴 위대한 진실은 내가 널 싫어한다는 거야."
