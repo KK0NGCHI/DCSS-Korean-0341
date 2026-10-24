@@ -551,8 +551,7 @@ static void _place_dragon()
         // remains, as the player might soon have enough again.
         if (!enough_mp(mp_cost, true))
         {
-            mpr("용 한 마리가 부름에 응답하려 하지만 마력이 부족해 "
-                "magical power!");
+            mpr("용 한 마리가 부름에 응답하려 하지만 마력이 부족해!");
             return;
         }
 
