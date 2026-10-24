@@ -146,3 +146,10 @@ python tools/dcss-extractor/scripts/audit_descriptions.py --source source --outp
 - 합계 **31종** 영문 출력 리터럴 교체(중복 발생 지점의 변경은 별도 계수하지 않음).
 - 연결된 C++ 복수 리터럴로 번역이 일부만 적용된 구절을 한 번 더 바로잡음.
 - 마찬가지로 정적 편집이며 실제 C++ 컴파일 및 게임 실행은 확인되지 않음.
+
+## 2026-10-24 Linux 콘솔 C++ 빌드 검증 결과
+
+- 실제 C++ 전체 컴파일을 수행하는 `.github/workflows/cpp-build-verification.yml` 추가. 저장소 `source/Makefile.obj` 부재로 직접 빌드가 불가능하여 공식 DCSS 0.34.1 전체 릴리스 소스에 번역 C++ 파일을 덮어씌우는 방식으로 실행.
+- 첫 실제 C++ 컴파일에서 `source/newgame.cc:161`의 `const char* + const char[]` 표현식 오류 발견. `string(get_job_name(ng.job)) + " / " + s`로 수정, 커밋 `204508f5c213edcefab37f41287a3a4761c58f9a`.
+- **재빌드 성공**: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40069066496 (`C++ Korean build verification` #3). `make -j2` 성공, `crawl` 실행 파일 존재·실행 권한 확인, `file` 결과 Linux x86-64 ELF.
+- 확인 범위: Linux 콘솔 전체 컴파일/링크. **미확인**: Windows 11 MSYS2 타일 빌드, 실제 실행 시 한국어 출력·폰트·텍스트 조합, 사용자의 Windows 환경에서의 동작. 원본 릴리스에 대한 파일 덮어쓰기 빌드이므로 현재 저장소 자체의 완전한 소스 체크아웃을 검증하는 것은 아님.
