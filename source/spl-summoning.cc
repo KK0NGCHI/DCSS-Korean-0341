@@ -2248,7 +2248,7 @@ spret cast_fulminating_prism(actor* caster, int pow, const coord_def& where,
         }
         else if (you.can_see(*prism))
         {
-            mprf("A prism of %s energy appears from nowhere!",
+            mprf("어디선가 %s 에너지 프리즘이 나타났다!",
                  is_shadow ? "shadowy" : "explosive");
         }
 
@@ -2720,7 +2720,7 @@ static void _overgrow_wall(const coord_def &pos)
 
     if (monster_at(pos))
     {
-        mprf("Something unseen blocks growth in %s.", what.c_str());
+        mprf("보이지 않는 무언가가 %s에서 자라는 것을 막고 있어.", what.c_str());
         return;
     }
 
@@ -2742,7 +2742,7 @@ static void _overgrow_wall(const coord_def &pos)
     }
     // XXX: Maybe try to make this revert the terrain if a monster isn't placed.
     else
-        mprf("%s falls apart, but nothing grows.", what.c_str());
+        mprf("%s이(가) 무너졌지만 아무것도 자라지 않았다.", what.c_str());
 }
 
 spret fedhas_overgrow(bool fail)
@@ -3595,7 +3595,7 @@ void launch_clockwork_bee(const actor& agent)
             mg.hd = 5 + div_rand_round(calc_spell_power(SPELL_CLOCKWORK_BEE), 20);
             if (monster* bee = create_monster(mg))
             {
-                mprf("Without a target, your clockwork bee falls to the ground.");
+                mprf("표적이 없어서 태엽벌이 땅으로 떨어진다.");
 
                 // Still remember our original target, just in case it merely
                 // ducked out of sight for a moment and the player wants to
@@ -3685,7 +3685,7 @@ spret cast_clockwork_bee(coord_def target, bool fail)
         if (mi->was_created_by(you, SPELL_CLOCKWORK_BEE))
         {
             if (you.can_see(**mi))
-                mprf("Your existing bee falls apart.");
+                mprf("기존 태엽벌이 산산이 부서진다.");
             monster_die(**mi, KILL_RESET, NON_MONSTER, true);
         }
     }
