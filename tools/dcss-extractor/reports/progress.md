@@ -1,28 +1,53 @@
-# DCSS Korean extraction progress
+# DCSS 0.34.1 한국어화 현황
 
-Current phase: **01 — pilot (pending)**
+**기준일:** 2026-10-24 · **공식 작업 브랜치:** `main` · **대상 버전:** DCSS 0.34.1
 
-## Phase 00 — baseline completed (2026-10-21)
-- Roadmap, extraction rules and tracking schema committed to GitHub.
-- Source: `C:\DCSS-Dev\stone_soup-0.34.1\source` (English original).
-- Local manifest: `C:\DCSS-Dev\dcss-extractor\source-manifest.json`.
-- Files hashed: **26,187**.
-- Manifest size: **4,884,428 bytes**.
-- Missing pilot files: **0**.
-- Read errors: **0**.
-- Validation evidence: user-provided console output; manifest contents not independently reviewed.
-- Full manifest not yet committed to GitHub.
-- Extracted strings / translation coverage: not yet measured.
+> 여기서 '설명 데이터 키 대응 100%'는 게임 전체 번역률, 번역 품질, 실제 출력 검증률이 아닙니다.
 
-## Next batch
-CPP-PILOT-001: `message.cc`, `invent.cc`, `describe.cc`, `newgame.cc`.
+## 확인된 결과
 
-## Batch log
-- BASELINE-001: local source manifest generated; zero missing pilot files and read errors.
+| 항목 | 기준 커밋 / 검사 | 관측된 결과 |
+|---|---|---|
+| 설명 파일 쌍 | [설명 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181157) | EN 23개 / KO 23개 |
+| 설명 원문 고유 키 | 동일 | 3,778개, 한국어 대응 3,778개, 누락 0개 |
+| 원문에 없는 한국어 키 | 동일 | 260개, 삭제하지 않고 검토 |
+| 참조/Lua 검사 후보 | 동일 | 참조 5건 / Lua 4건 / 원문 중복 키 3건 (이후 수정 전 측정) |
+| 전체 읽기·추출 | [전체 조사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181172) | 텍스트 소스 1,341개 / 추출 레코드 61,032개 / 읽기 오류 0 |
+| 화면 출력·동적 후보 | 동일 | 3,753개 + 2,286개; 이들은 미번역 확정 수가 아님 |
+| Linux 콘솔 C++ 빌드 | [빌드 성공](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181195) | 공식 0.34.1 릴리스에 번역 C++ 10개를 덮어써 전체 컴파일·링크 성공 |
+| Windows 타일 빌드·한국어 UI 출력 | 미검사 | 실제 실행 및 한글 폰트, 동적 조사, 저장/불러오기 미확인 |
 
-## FULL-INVENTORY-001 (2026-10-23)
-- 전체 소스를 읽기 전용으로 훑는 `scripts/full_inventory_v1.py` 추가. C++/Lua/DES 리터럴과 23종 설명 데이터의 영문↔한국어 키·본문 누락을 CSV로 기록하도록 설계.
-- **스크립트 추가 완료 / 실제 전체 실행 및 건수 검증은 미완료**: 현재 연결된 GitHub 환경에서 로컬 Windows의 원본 소스 및 이전 `CPP-PILOT-005/strings.csv`에 접근할 수 없음.
-- 실행: `python tools/dcss-extractor/scripts/full_inventory_v1.py --source source --output tools/dcss-extractor/output/FULL-INVENTORY-001`
-- 산출물: `strings.csv`, `summary.json`. 이 결과를 기존 AST 기반 `cpp_pilot_v4.py` 분류와 합쳐 정밀 누락 검사를 거쳐야 진정한 전체 인벤토리로 확정 가능.
-- 참고: 단순 정규표현식 추출에는 주석 내부 문자열의 오탐 및 C++ raw literal 누락 가능성이 있음. `visible_candidate`는 화면 노출 확정 판정이 아님.
+전체 조사 상세 분류: `internal_candidate=8448`, `review_unknown=41242`, `comment_candidate=1501`, `review_dynamic=2286`, `visible_candidate=3753`, `test_marker=21`, `review_translation_present=3781`.
+
+`test_marker=21`은 전 소스의 어휘적 검사 결과이며, `message.cc`, `invent.cc`, `describe.cc`의 과거 강제 표시 코드가 남아 있다는 뜻이 아닙니다. 별도 smoke guard는 이 세 파일의 마커 부재를 검사해 통과했습니다.
+
+## 작업 단계
+
+| 단계 | 상태 | 완료 조건 |
+|---|---|---|
+| 00 원본 파일 기준 | 완료(외부 근거) | 로컬 26,187개 파일의 manifest 보고, 원본 해시·manifest 미등록 |
+| 01 추출 파일럿 | 진행 중 | 샘플 파일의 렉시컬/AST 누락·오탐 검토 |
+| 02 C++ 전체 조사 | 진행 중 | 실출력 콜사이트와 중복 번역 단위 확정 |
+| 03 Lua·데이터 조사 | 진행 중 | 23개 설명쌍 및 기타 게임 데이터 전체 검증 |
+| 04 분류 | 진행 중 | 화면 출력/내부/동적/미확인 분류 정밀 검증 |
+| 05 0.24 구번역 대응 | 미착수 | 재현 가능한 매핑·충돌 리포트 |
+| 06 검수 가능한 번역 카탈로그 | 진행 중 | 키·문맥·포맷·용어별 검수·검증 상태 |
+| 07 통합 및 런타임 | 진행 중 | Linux 콘솔 C++ 빌드 통과, Windows 타일/게임 출력 검증 필요 |
+
+## 2026-10-24 후속 작업
+
+- PR #1의 87개 커밋을 `main`에 병합 (병합 커밋 `c59c4dd`).
+- `fix/ko-qa-progress-20261024`에서 `ability.txt`, `features.txt`, `monsters.txt`, `tutorial.txt`의 한국어 설명 항목 8개 교정. 실제 CI 전체 재검사 후 수치 갱신 예정.
+- `HINT_SEEN_BRANCH`의 원문/번역 태그 개수 차이는 원문 자체의 `<nomouse` 표기 문제를 동반하므로 로더 동작 확인 전까지 임의로 삭제하지 않음.
+- 영어 중복 3개 키(`CMD_EXPLORE_NO_REST`, `damage-immune at range monstatus`, `+LOS mutation`)는 게임 로더의 중복 키 처리 순서를 확인하기 전 삭제하지 않음.
+- 한국어 추가 키 260개는 기존 버전의 번역 자산일 수 있어 참조 여부 조사 전 일괄 삭제 금지.
+
+## 다음 작업의 우선순위
+
+1. 설명 감사 경고의 재측정과 실오류 확인. 차이가 의도적인 태그·원본 중복·과거 데이터인지 문맥별로 분류.
+2. `full_inventory_v1.py`의 후보를 **실제 화면 출력 호출부**로 좁혀 미번역/이미 번역/내부용을 분리하고 파일별 통계를 남김.
+3. 전투·상태·메뉴·신앙·소환 등 P0/P1 실출력 미번역을 일괄 교정. 동적 한국어 조사는 공통 처리 방식을 별도로 설계.
+4. 공식 Windows 타일 게임에 C++ 및 설명 데이터를 함께 통합해 `language = ko` 실행·UI 렌더링·문자열 조합을 검증.
+5. 재현 가능한 릴리스 제작, 설치 가이드, README, 번역 범위 고지.
+
+**기록 규칙:** C++ 후보 개수와 완성 번역 개수를 혼동하지 않는다. 0.24 자산의 재사용 가능성을 분석하되 현재 0.34.1의 사용 가능 키만 검증한다. 문서에 각 수치의 CI 링크 및 대상 커밋을 함께 기록한다.
