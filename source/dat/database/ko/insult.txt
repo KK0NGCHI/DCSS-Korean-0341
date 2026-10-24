@@ -1143,3 +1143,65 @@ insult general noun
 야크 똥
 
 좀비 먹이
+%%%%
+run_or_give_up
+
+w:6
+
+@run_away@
+
+w:1
+
+@give_up@
+%%%%
+demon_taunt
+
+w:1
+
+@run_away@, 이 @generic_insult@ 녀석아!
+
+w:2
+
+@give_up@, 이 @generic_insult@ 녀석아!
+
+w:3
+
+@demon_taunt_special@
+%%%%
+body_or_spiritual_part
+
+w:3
+
+@important_body_part@
+
+w:1
+
+@important_spiritual_part@
+%%%%
+generic_insult
+
+@insult_adjective1@ @insult_adjective2@ @insult_noun@
+%%%%
+insult_adjective1
+
+w:5
+
+@species_insult_adj1@
+
+@insult general adj1@
+%%%%
+insult_adjective2
+
+w:5
+
+@species_insult_adj2@
+
+@insult general adj2@
+%%%%
+insult_noun
+
+w:5
+
+@species_insult_noun@
+
+@insult general noun@
