@@ -4116,3 +4116,50 @@ _Wiglaf_nondwarf_
 w:5
 @The_monster@이(가) 말해. "드워프의 포격술은 네가 당해 낼 수 없어."
 @The_monster@이(가) 말해. "드워프와 싸워 본 적도 없어?"
+%%%%
+_spell_colour_
+
+붉은
+푸른
+초록색
+%%%%
+_Margery_spell_results_
+
+VISUAL:@The_monster@이(가) 강력한 기운에 감싸여.
+VISUAL:@The_monster@이(가) 잠시 투명해져.
+VISUAL:@The_monster_possessive@ 손이 빛나기 시작해.
+%%%%
+_Margery_common_
+
+VISUAL:@The_monster@이(가) 손짓해.
+@_Margery_spell_results_@
+VISUAL:@The_monster_possessive@ 눈이 @_spell_colour_@ 빛으로 빛나기 시작해.
+VISUAL:@The_monster@이(가) 손짓해.
+VISUAL:너는 [저주받은|파멸을 앞둔] 기분이 들어.
+w:5
+VISUAL:@The_monster@이(가) 너를 향해 보라색 가루를 뿌려.
+@The_monster@이(가) 말해. "물러서라!"
+@The_monster@이(가) 비명을 질러. "벌을 받아야 해!"
+@The_monster@이(가) 비명을 질러. "넌 내 힘을 견디지 못할 거야!"
+@The_monster@이(가) 비명을 질러. "침입자는 모두 사라져야 해!"
+%%%%
+_Margery_rare_
+
+@The_monster@이(가) 소리쳐. "에르기찬테그 레즈타하우!"
+VISUAL:@The_monster@이(가) 자신감에 넘쳐 보여.
+@The_monster@이(가) 말해. "넌 이미 끝났어."
+@The_monster@이(가) 비명을 질러. "날 지나쳐야 할걸!"
+@The_monster@이(가) 비명을 질러. "너는 파멸할 거야!"
+@The_monster@이(가) 비명을 질러. "아무것도 널 도울 수 없어."
+@The_monster@이(가) 비명을 질러. "내 별명은 죽음이야!"
+@The_monster@이(가) 비명을 질러. "셀 수도 없이 많은 드래곤을 쓰러뜨렸어!"
+@The_monster@이(가) 소리쳐. "오브는 전설일 뿐이지만 널 그냥 보내진 않겠어!" @player_only@
+%%%%
+_Ijyb_rare_
+
+@The_monster@이(가) 소리쳐. "발전 방해하지 마!"
+@The_monster@이(가) 소리쳐. "나 신 흉내 낸다!"
+@The_monster@이(가) 소리쳐. "다들 나 미쳤대!"
+w:5
+@The_monster@이(가) 소리쳐. "마법봉보다 똑똑한 놈 아직 못 봤다!"
+@The_monster@이(가) 소리쳐. "나 너 싫다!"
