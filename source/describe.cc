@@ -5707,12 +5707,12 @@ static string _monster_spells_description(const monster_info& mi, bool mark_spel
     if (mark_spells)
         description += SPELL_LIST_END;
 
-    description.cprintf("\nTo read a description, press the key listed above. "
+    description.cprintf("\n설명을 읽으려면 위에 표시된 키를 누르세요. "
         "(AdB)는 피해량(A개의 B면체 주사위 합계), "
         "(x%%)는 의지를 뚫을 확률, "
         "(y)는 주문 사거리를 나타냅니다");
     description.cprintf(crawl_state.need_save
-        ? "; shown in red if you are in range.\n"
+        ? "; 사거리 안에 있으면 빨간색으로 표시됩니다.\n"
         : ".\n");
 
     return description.to_colour_string();
@@ -5722,9 +5722,7 @@ static string _monster_notice_chance(const monster_info& mi)
 {
     ostringstream result;
 
-    result << uppercase_first(mi.pronoun(PRONOUN_SUBJECTIVE)) << " "
-           << conjugate_verb("have", mi.pronoun_plurality())
-           << " a ";
+    result << "이 몬스터가 매 턴 당신을 알아차릴 확률: ";
 
     int perception = mi.perception() * 100;
     int stealth = player_stealth() * 100;
@@ -5734,7 +5732,7 @@ static string _monster_notice_chance(const monster_info& mi)
     else
         result << perception * 100 / stealth;
 
-    result << "% chance to notice you each turn.\n";
+    result << "%\n";
 
     return result.str();
 }
