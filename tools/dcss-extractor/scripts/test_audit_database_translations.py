@@ -46,5 +46,12 @@ Xom of Chaos
             self.assertFalse(result["issues"])
 
 
+    def test_long_separator_is_new_entry(self):
+        from audit_database_translations import parsed_entries
+        text = "%%%%\nfirst cast\n\nfirst\n%%%%%\nsecond cast\n\nsecond\n%%%%\n"
+        self.assertEqual([key for key, _ in parsed_entries(text)],
+                         ["first cast", "second cast"])
+
+
 if __name__ == "__main__":
     unittest.main()
