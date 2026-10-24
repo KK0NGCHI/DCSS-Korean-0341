@@ -85,3 +85,81 @@ w:20
 @Your_weapon@이(가) 뚜뚜! 하고 운다.
 
 @Your_weapon@이(가) 드럼 연타 소리를 낸다.
+%%%%
+_weapon_chatter_
+
+@Your_weapon@이(가) 외친다. "야호!"
+
+@Your_weapon@이(가) 혼자서 말다툼한다.
+
+@Your_weapon@이(가) 주변 풍경에 불평한다.
+
+@Your_weapon@이(가) 말한다. "심심해."
+
+@Your_weapon@이(가) 큰 소리로 지시를 내린다!
+
+@Your_weapon@이(가) 말한다. "쉿! 방금 들었어?"
+
+@Your_weapon@이(가) 당신을 응원한다.
+
+@Your_weapon@이(가) 기도문을 읊는다.
+
+@Your_weapon@이(가) 경고를 외친다!
+
+@Your_weapon@이(가) 즐겁게 수다를 떤다.
+
+@Your_weapon@이(가) 시를 읊는다.
+
+@Your_weapon@이(가) 끝없이 떠들어 댄다.
+
+@Your_weapon@이(가) 당신의 가족에 관해 묻는다.
+
+@Your_weapon@이(가) 날씨에 대해 논평한다.
+
+@Your_weapon@이(가) 자기 인생 이야기를 늘어놓는다.
+
+@Your_weapon@이(가) 알아들을 수 없는 말을 한다.
+
+@Your_weapon@이(가) 앞뒤 맞지 않는 말을 떠들어 댄다.
+
+@Your_weapon@이(가) 소리친다. "도와줘!"
+
+@Your_weapon@이(가) [썰렁한|시시한|유치한] 농담을 던진다.
+
+@Your_weapon@이(가) [옛 영광|지난날]의 무용담을 떠올린다.
+
+@Your_weapon@이(가) 목청껏 노래한다. "전장에서 죽는 것이 가장 명예롭지!"
+
+@Your_weapon@이(가) 자신의 [악행|잔혹한 짓]을 [자랑스럽게|즐겁게] 고백한다.
+
+w:30
+
+@_rare_chatter_@
+%%%%
+_rare_chatter_
+
+@Your_weapon@이(가) 외친다. "이 층은 내 거야! 아니, 우리 거."
+
+@Your_weapon@이(가) 외친다. "아직 날 버리지 마! 앞으로는 영원히 조용히 있을게."
+
+@Your_weapon@이(가) 신음한다. "그게 싸우는 거라고?"
+
+@Your_weapon@이(가) 외친다. "왼쪽! 아니, 아니, 오른쪽!"
+
+@Your_weapon@이(가) 말한다. "이번엔 네가 좀 말해 보면 어때?"
+
+@Your_weapon@이(가) 묻는다. "침묵 서약이라도 했어?"
+
+@Your_weapon@이(가) 말한다. "나한텐 뭐든 털어놔도 돼! 비밀은 꼭 지킬게!"
+
+@Your_weapon@이(가) 묻는다. "설명서라도 보여 줄까?"
+
+@Your_weapon@이(가) 묻는다. "조트의 오브란 거 들어 봤어?"
+
+@Your_weapon@이(가) 신음한다. "어지러워."
+
+@Your_weapon@이(가) 말한다. "금화는 반반씩 나누자! 공평하게!"
+
+@Your_weapon@이(가) 말한다. "@a_player_genus@치고는 제법 괜찮은 녀석이네."
+
+@Your_weapon@이(가) 한숨 쉰다. "@player_name@, 네가 죽으면 참 보고 싶을 거야."
