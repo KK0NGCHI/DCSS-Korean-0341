@@ -4539,3 +4539,90 @@ _tormentor_rare_
 @The_monster@이(가) 말해. "각오해! 지독한 고통이 기다리고 있어."
 @The_monster@이(가) 외쳐. "수천 개의 바늘로 고문할 테니 각오해!"
 @The_monster@이(가) 외쳐. "갈기갈기 찢어 주마!"
+%%%%
+_Jeremiah_common_
+
+@The_monster@이(가) 말해. "정말 기묘한 꿈이야."
+@The_monster@이(가) 물어. "꿈을 꾸고 있나? 이게 현실이야?"
+@The_monster@이(가) 소리쳐. "그만해! 이런 짓을 시키지 마!"
+@The_monster@이(가) 말해. "널 해치고 싶지 않아. 그냥… 가! 도망쳐!"
+@The_monster@이(가) 물어. "여긴 어디지? 왜 나와 싸우는 거야?"
+@The_monster@이(가) 속삭여. "복종합니다. 복종합니다. 복종합니다."
+VISUAL:@The_monster_possessive@ 눈이 잠시 감겼다가 번쩍 뜨여.
+VISUAL:@The_monster_possessive@ 눈이 잠시 붉게 번쩍여.
+VISUAL:@The_monster@이(가) 하품해.
+VISUAL:@The_monster@이(가) 손끝에서 무지갯빛 잔상을 흘려.
+VISUAL:@The_monster@이(가) 구체에 홀린 듯 시선을 고정해.
+VISUAL:@The_monster@이(가) 손에 든 무기를 어리둥절하게 바라봐.
+%%%%
+_Jeremiah_rare_
+
+@The_monster@이(가) 울부짖어. "왜 깨어날 수 없는 거지?"
+@The_monster@이(가) 통곡해. "그만 끝내 줘! 날 놓아줘!"
+@The_monster@이(가) 흐느껴. "이런 건 싫어. 멈추게 해 줘! 제발 멈춰!"
+@The_monster@이(가) 말해. "이건 꿈일 거야. 전혀 현실 같지 않잖아."
+@The_monster@이(가) 말해. "세상에, 반짝임과 무지개가 정말 아름다워!"
+@The_monster@이(가) @foe@에게 물어. "꿈의 파편을 본 적 있어? 난… 그게 필요해…"
+@The_monster@이(가) 속삭여. "네가 죽으면 모든 게 괜찮아질 거야. 그렇게 약속했어."
+@The_monster@이(가) 말해. "이게 끝나면 낮잠이나 자야겠어."
+@The_monster@이(가) @foe@에게 물어. "날 좀 깨워 줄래? 정말 고마울 거야."
+@The_monster@이(가) 통곡해. "그것은 풀려나고 싶어 해! 모두를 노예로 삼으려 해!"
+@The_monster@이(가) @foe@에게 물어. "이 삼지창은 어디서 왔지? 네 거야?"
+@The_monster@이(가) 낄낄거려. "꿈들아, 꿈들아, 나와서 놀자!"
+VISUAL:@The_monster@이(가) 자기 몸을 꼬집어.
+%%%%
+confused Ijyb
+
+@The_monster@이(가) 움츠리며 외쳐. "내 머리! 아아악! 당장 나가!"
+@The_monster@이(가) 외쳐. "이 층 전부 너 준다! 그러니까 나 내버려 둬!"
+@The_monster@이(가) 외쳐. "그래도 마법봉이 더 세다! 너 정말 나쁘다!"
+w:5
+@The_monster@이(가) 외쳐. "과학은 이런 대접 받을 이유 없다!"
+@The_monster@이(가) 외쳐. "나 너한테 친절하게 한다! 약속!"
+@The_monster@이(가) 외쳐. "나 처음부터 다시 연구한다!"
+@The_monster@이(가) 외쳐. "나한테 이상한 마법 쓰지 마!"
+VISUAL:@The_monster@이(가) 머리를 움켜쥔 채 몸을 흔들며 빠르게 중얼거려.
+%%%%
+_Norris_common_
+
+@The_monster@이(가) 몇 가지 진언을 중얼거려.
+VISUAL:@The_monster@이(가) 평화로운 기운에 감싸여.
+VISUAL:@The_monster@이(가) 상대에게 미소 지어.
+VISUAL:@The_monster@이(가) 느긋해 보여.
+@The_monster@이(가) 노래해. "평화를 지금, 자유를 지금! 평화를 지금, 자유를 지금!"
+@The_monster@이(가) @_Norris_verb_@. "삶은 고통일 뿐이지. 내가 도와줄게."
+@The_monster@이(가) @_Norris_verb_@. "우주의 흐름으로 돌아가!"
+@The_monster@이(가) 말해. "때로는 헤엄치는 것보다 가라앉는 편이 나아."
+@The_monster@이(가) 말해. "깊이 숨을 들이마셔."
+@The_monster@이(가) @_Norris_verb_@. "평화! 너에게 영원한 평화를 가져왔어!"
+@The_monster@이(가) @_Norris_verb_@. "파도에 몸을 맡겨."
+@The_monster@이(가) @_Norris_verb_@. "그냥 흐름을 따라가."
+@The_monster@이(가) @_Norris_verb_@. "피할 수 없는 일을 왜 미뤄?"
+@The_monster@이(가) @_Norris_verb_@. "큰 파도를 쫓기 전에 작은 파도부터 잡아."
+%%%%
+_Norris_rare_
+
+VISUAL:@The_monster@이(가) 아주 균형 잡혀 보여.
+@The_monster@이(가) 물어. "내 서핑보드 못 봤어?"
+@The_monster@이(가) @_Norris_verb_@. "나도 한번 죽어 보는 게 좋겠어."
+@The_monster@이(가) @_Norris_verb_@. "그다음에 무슨 일이 일어날지 조금도 궁금하지 않아?"
+@The_monster@이(가) @_Norris_verb_@. "우주는 거대한 물고기 같아."
+@The_monster@이(가) @_Norris_verb_@. "지혜란 포기할 때를 아는 거지."
+@The_monster@이(가) @_Norris_verb_@. "어리석은 자들만 죽음을 두려워해. 난 받아들이지."
+@The_monster@이(가) @_Norris_verb_@. "죽은 뒤에는 마음의 평화를 찾게 될 거야."
+@The_monster@이(가) 궁금해해. "같은 강에 2번 발을 담글 수 있을까?"
+@The_monster@이(가) 말해. "결국 모든 것은 물이야."
+@The_monster@이(가) 한숨 쉬어. "깨달음에도 책임이 따르는 법이지."
+@The_monster@이(가) @_Norris_verb_@. "함께 하늘상어에게 먹이를 주자."
+@The_monster@이(가) @_Norris_verb_@. "우리는 모두 신들로 이루어져 있어."
+%%%%
+_Norris_verb_
+
+흥얼거려
+웃어
+낮게 중얼거려
+부드럽게 말해
+한숨 쉬어
+웅얼거려
+무심코 말해
+속삭여
