@@ -59,3 +59,11 @@
 - 결과물: `triage/review_queue.csv`, `triage/p0_english_review.csv`, `triage/triage_summary.json` (GitHub Actions 아티팩트).
 - 상세 기준: [TRIAGE-001](../../docs/translation-review/visible-candidate-triage-20261024.md).
 - 다음: P0 642개에 대한 콜사이트 검증 및 실제 미번역 확인 후 일괄 번역.
+
+## 2026-10-24 P0 출력 호출부 감사 및 첫 한국어화 묶음
+
+- [최초 P0 호출부 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40074747440) 통과: 11개 C++ 파일, 직접 문자열 호출 959곳, 한글 포함 729, 영어 출력 검토 후보 202, 오류용 후보 3, 서식/기호 25.
+- 후속 광선 메시지 21종 번역 전의 최초 수치. 최신 최종 커밋 기준 검사를 별도로 확인한다.
+- 실제 소스 변경: 59종 원문 패턴(62개 발생 위치) 한국어화, `newgame.cc` 잔여 `[KO TEST]` 2곳 제거.
+- `mon-util.cc`를 Linux 콘솔 빌드 오버레이에 추가. C++ 빌드와 실제 타일 게임 출력은 별도 검증.
+- 자세한 내용: [P0 직접 호출부 보고서](../../docs/translation-review/p0-direct-callsites-20261024.md).

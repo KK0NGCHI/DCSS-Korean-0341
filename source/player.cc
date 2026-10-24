@@ -459,7 +459,7 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
     if (mons->is_constricted())
     {
         if (!quiet)
-            simple_monster_message(*mons, " is being constricted!");
+            simple_monster_message(*mons, "이(가) 조여지고 있다!");
         return false;
     }
 
@@ -471,18 +471,18 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
         {
             if (is_valid_tempering_target(*mons, you))
             {
-                simple_monster_message(*mons, " cannot move out of your way! "
-                    "(Use ctrl+direction or * direction to deconstruct it instead.)");
+                simple_monster_message(*mons, "이(가) 길을 비켜 줄 수 없어! "
+                    "(대신 Ctrl+방향키 또는 * 방향키로 분해할 수 있다.)");
             }
             else
-                simple_monster_message(*mons, " cannot move out of your way!");
+                simple_monster_message(*mons, "이(가) 길을 비켜 줄 수 없어!");
         }
         return false;
     }
 
     // prompt when swapping into known zot traps
     if (!quiet && trap_at(loc) && trap_at(loc)->type == TRAP_ZOT
-        && !confirm_prompt("yes", "Do you really want to swap %s into the Zot trap?",
+        && !confirm_prompt("yes", "정말 %s을(를) 조트의 함정으로 밀어 넣을까?",
                            mons->name(DESC_YOUR).c_str()))
     {
         return false;
@@ -510,8 +510,8 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
     if (!swap && !quiet)
     {
         // Might not be ideal, but it's better than insta-killing the monster.
-        mprf("There is no room for %s to move out of your way! "
-             "(Try telling them to retreat with <w>%sr</w> instead.)",
+        mprf("%s이(가) 길을 비켜 설 공간이 없어! "
+             "(대신 <w>%sr</w>로 물러나라고 명령할 수 있다.)",
               mons->name(DESC_THE).c_str(),
               command_to_string(CMD_SHOUT).c_str());
         // FIXME: activity_interrupt::hit_monster isn't ideal.
@@ -537,9 +537,9 @@ static void _enter_water(dungeon_feature_type old_feat,
     if (!stepped)
     {
         if (you.can_swim())
-            noisy(4, you.pos(), "Floosh!");
+            noisy(4, you.pos(), "철벅!");
         else
-            noisy(8, you.pos(), "Splash!");
+            noisy(8, you.pos(), "첨벙!");
     }
 
     // Merfolk special-case most relevant messages.
@@ -551,12 +551,12 @@ static void _enter_water(dungeon_feature_type old_feat,
         return;
 
     if (new_grid == DNGN_TOXIC_BOG)
-        mprf("You %s the toxic bog.", stepped ? "enter" : "fall into");
+        mprf("독성 늪에 %s.", stepped ? "들어갔다" : "빠졌다");
     else
     {
-        mprf("You %s the %s water.",
-             stepped ? "enter" : "fall into",
-             new_grid == DNGN_SHALLOW_WATER ? "shallow" : "deep");
+        mprf("%s 물에 %s.",
+             new_grid == DNGN_SHALLOW_WATER ? "얕은" : "깊은",
+             stepped ? "들어갔다" : "빠졌다");
     }
 
     if (you.slow_in_water())
@@ -627,7 +627,7 @@ static void _check_spatial_entanglement(const coord_def& oldpos)
     place_cloud(CLOUD_TLOC_ENERGY, mon->pos(), random_range(2, 3), &you);
     mon->move_to(spot, MV_TRANSLOCATION, true);
 
-    mprf("%s is dragged along with you!", mon->name(DESC_THE).c_str());
+    mprf("%s이(가) 당신과 함께 끌려간다!", mon->name(DESC_THE).c_str());
     mon->speed_increment -= you.time_taken;
     mon->finalise_movement();
     if (mon->alive())
@@ -2959,7 +2959,7 @@ static void _revenant_spell_gift()
     }
 
     mprf("%s을(를) 기억해 냈다.", msg.c_str());
-    mprf("(You can now cast %s.)", spell_title(spell));
+    mprf("(이제 %s 주문을 시전할 수 있다.)", spell_title(spell));
     library_add_spells({spell}, true);
     add_spell_to_memory(spell);
 }
@@ -3007,7 +3007,7 @@ void level_change(bool skip_attribute_increase)
         if (new_exp <= you.max_level)
         {
             mprf(MSGCH_INTRINSIC_GAIN,
-                 "Welcome back to level %d!", new_exp);
+                 "다시 %d레벨로 돌아왔다!", new_exp);
 
             // No more prompts for this XL past this point.
 
@@ -3107,10 +3107,10 @@ void level_change(bool skip_attribute_increase)
                         const int newapt = species_apt(sk, you.species);
                         if (oldapt != newapt)
                         {
-                            mprf(MSGCH_INTRINSIC_GAIN, "You learn %s %s%s.",
+                            mprf(MSGCH_INTRINSIC_GAIN, "이제 %s 스킬을 %s%s 배우게 된다.",
                                  skill_name(sk),
-                                 abs(oldapt - newapt) > 1 ? "much " : "",
-                                 oldapt > newapt ? "slower" : "quicker");
+                                 abs(oldapt - newapt) > 1 ? "훨씬 " : "",
+                                 oldapt > newapt ? "느리게" : "빠르게");
                         }
 
                         you.skills[sk] = saved_skills[sk];
@@ -3203,7 +3203,7 @@ void level_change(bool skip_attribute_increase)
                     case COGLIN_GIZMO_XL:
                     {
                         mpr("갑자기 영감이 솟구친다! 이제 독창적인 장치를 만들 수 있어!");
-                        mprf("(press <w>%c</w> on the <w>%s</w>bility menu to create your gizmo)",
+                        mprf("장치를 만들려면 <w>%c</w>를 누르세요(능력 메뉴: <w>%s</w>).",
                                 get_talent(ABIL_INVENT_GIZMO).hotkey,
                                 command_to_string(CMD_USE_ABILITY).c_str());
                     }
@@ -3892,7 +3892,7 @@ void flush_mp()
         && you.magic_points < you.max_magic_points
                               * Options.magic_point_warning / 100)
     {
-        mprf(MSGCH_DANGER, "* * * LOW MAGIC WARNING * * *");
+        mprf(MSGCH_DANGER, "* * * 마력 부족 경고 * * *");
     }
 
     take_note(Note(NOTE_MP_CHANGE, you.magic_points, you.max_magic_points));
@@ -3905,7 +3905,7 @@ void flush_hp()
         && you.hp <= (you.hp_max * Options.hp_warning) / 100)
     {
         flash_view_delay(UA_HP, RED, 50);
-        mprf(MSGCH_DANGER, "* * * LOW HITPOINT WARNING * * *");
+        mprf(MSGCH_DANGER, "* * * 생명력 부족 경고 * * *");
         dungeon_events.fire_event(DET_HP_WARNING);
     }
     you.redraw_hit_points = true;
@@ -4397,7 +4397,7 @@ void contaminate_player(int change, bool controlled, bool msg)
         if (!player_harmful_contamination() && was_glowing)
         {
             mprf(MSGCH_RECOVERY,
-                 "Your magical contamination has faded to a safe level.");
+                 "마법 오염도가 안전한 수준으로 낮아졌다.");
         }
 
         if (!player_harmful_contamination() && was_glowing && you.invisible())
@@ -5086,7 +5086,7 @@ bool haste_player(int turns, bool rageext)
     }
     else if (have_passive(passive_t::no_haste))
     {
-        simple_god_message(" protects you from inadvertent hurry.");
+        simple_god_message("이(가) 당신이 뜻하지 않게 서두르지 않도록 보호한다.");
         return false;
     }
 
@@ -5272,7 +5272,7 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
         msg = "You are backlit; invisibility will do you no good right now";
         if (quiet)
             success = false;
-        else if (!quiet && !yesno((msg + "; use anyway?").c_str(), false, 'n'))
+        else if (!quiet && !yesno((msg + "; 그래도 사용할까?").c_str(), false, 'n'))
         {
             // XX this shouldn't be here. Currently used only for evoke invis.
             canned_msg(MSG_OK);
@@ -5943,14 +5943,14 @@ void player::banish(const actor* /*agent*/, const string &who, bool force)
 
     if (player_in_branch(BRANCH_ARENA))
     {
-        simple_god_message(" prevents your banishment from the Arena!",
+        simple_god_message("이(가) 당신이 투기장에서 추방되지 않도록 막는다!",
                            false, GOD_OKAWARU);
         return;
     }
 
     if (you.duration[DUR_BEOGH_DIVINE_CHALLENGE])
     {
-        simple_god_message(" refuses to let the Abyss claim you during a challenge!",
+        simple_god_message("이(가) 시련 도중 심연이 당신을 삼키지 못하게 한다!",
                            false, GOD_BEOGH);
 
         return;
@@ -8201,8 +8201,7 @@ bool player::do_shaft()
     }
     if (you_worship(GOD_YREDELEMNUL) && yred_torch_is_raised())
     {
-        mpr("Yredelemnul refuses to let your conquest be stopped by a trick of"
-            " the earth!");
+        mpr("이레데렘눌은 지형의 속임수 때문에 당신의 정복이 멈추는 것을 허락하지 않는다!");
         return false;
     }
 
@@ -8259,7 +8258,7 @@ bool player::do_shaft_ability()
 {
     if (can_do_shaft_ability(true))
     {
-        mpr("A shaft appears beneath you!");
+        mpr("발밑에 수직 통로가 생겼다!");
         down_stairs(DNGN_TRAP_SHAFT, true);
         return true;
     }
@@ -8391,7 +8390,7 @@ bool player::attempt_escape()
     }
     else
     {
-        mprf("%s grasp on you weakens, but your attempt to escape fails.",
+        mprf("%s의 속박이 약해졌지만 탈출에 실패했다.",
              object.c_str());
         turn_is_over = true;
         return false;
@@ -8408,7 +8407,7 @@ void player::sentinel_mark(bool trap)
     }
     else
     {
-        mprf(MSGCH_WARN, "A sentinel's mark forms upon you.");
+        mprf(MSGCH_WARN, "감시자의 표식이 당신에게 새겨진다.");
         increase_duration(DUR_SENTINEL_MARK, trap ? random_range(25, 40)
                                                   : random_range(35, 60),
                           250);
@@ -8716,7 +8715,7 @@ void print_potion_heal_message()
     {
         if (you.unrand_equipped(UNRAND_KRYIAS))
         {
-            mprf("%s enhances the healing.",
+            mprf("%s이(가) 치유 효과를 강화한다.",
                  you.body_armour()->name(DESC_THE, false, false, false).c_str());
         }
         else if (you.has_mutation(MUT_DOUBLE_POTION_HEAL))
@@ -8835,7 +8834,7 @@ void player_open_door(coord_def doorpos)
                     canned_msg(MSG_OK);
                 else
                 {
-                    if (yesno("Put travel exclusion on door? (Y/n)",
+                    if (yesno("이 문을 자동 이동 제외 구역으로 지정할까? (Y/n)",
                               true, 'y'))
                     {
                         // Zero radius exclusion right on top of door.

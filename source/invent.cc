@@ -1832,7 +1832,7 @@ int prompt_invent_item(const char *prompt,
         }
 
         if (need_prompt)
-            mprf(MSGCH_PROMPT, "%s (<w>?</w> for menu, <w>Esc</w> to quit)", prompt);
+            mprf(MSGCH_PROMPT, "%s (<w>?</w>: 메뉴, <w>Esc</w>: 취소)", prompt);
         else
             flush_prev_message();
 

@@ -400,9 +400,7 @@ spret cast_monstrous_menagerie(monster* caster, int pow)
 
     if (you.can_see(*beast))
     {
-        mprf("%s %s %s!", caster->name(DESC_THE).c_str(),
-                          caster->conj_verb("summon").c_str(),
-                          mons_type_name(type, DESC_A).c_str());
+        mprf("%s이(가) %s을(를) 소환한다!", caster->name(DESC_THE).c_str(), mons_type_name(type, DESC_A).c_str());
     }
     else
         canned_msg(MSG_NOTHING_HAPPENS);
@@ -893,9 +891,7 @@ static bool _check_tukima_validity(const actor *target)
         }
         else
         {
-            mprf("%s vibrate%s crazily for a second.",
-                 wpn->name(DESC_THE).c_str(),
-                 wpn->quantity > 1 ? "" : "s");
+            mprf("%s이(가) 잠시 격렬하게 진동한다.", wpn->name(DESC_THE).c_str());
         }
         return false;
     }
@@ -956,7 +952,7 @@ static void _animate_weapon(int pow, actor* target)
 
     if (why)
     {
-        simple_god_message(" booms: How dare you animate that foul thing!");
+        simple_god_message("이(가) 우렁차게 외친다. 감히 그 불경한 물건을 움직이게 하다니!");
         did_god_conduct(why, 10, true, mons);
     }
 }
@@ -1777,13 +1773,10 @@ void init_servitor(monster* servitor, actor* caster, int pow)
 
     if (you.can_see(*caster))
     {
-        mprf("%s %s a servant imbued with %s destructive magic!",
-             caster->name(DESC_THE).c_str(),
-             caster->conj_verb("forge").c_str(),
-             caster->pronoun(PRONOUN_POSSESSIVE).c_str());
+        mprf("%s이(가) 파괴 마법이 깃든 사역마를 만들어 낸다!", caster->name(DESC_THE).c_str());
     }
     else
-        simple_monster_message(*servitor, " appears!");
+        simple_monster_message(*servitor, "이(가) 나타난다!");
 
     int shortest_range = LOS_RADIUS + 1;
     for (const mon_spell_slot &slot : servitor->spells)
@@ -1928,7 +1921,7 @@ spret cast_battlesphere(actor* agent, int pow, bool fail)
                                            " conjures a globe of magical energy!");
                 }
                 else if (you.can_see(*battlesphere))
-                    simple_monster_message(*battlesphere, " appears!");
+                    simple_monster_message(*battlesphere, "이(가) 나타난다!");
 
                 if (agent->is_monster())
                     battlesphere->set_band_leader(*(agent->as_monster()));
@@ -1971,7 +1964,7 @@ void end_battlesphere(monster* mons, bool killed)
                 mpr("전투 구체와의 연결이 약해지는 것 같아.");
         }
         else if (you.can_see(*mons))
-            simple_monster_message(*mons, " dissipates.");
+            simple_monster_message(*mons, "이(가) 흩어진다.");
 
         place_cloud(CLOUD_MAGIC_TRAIL, mons->pos(), 3 + random2(3), mons);
 
@@ -2208,8 +2201,7 @@ spret cast_fulminating_prism(actor* caster, int pow, const coord_def& where,
         {
             if (you.can_see(*victim))
             {
-                mprf("%s %s.", victim->name(DESC_THE).c_str(),
-                               victim->conj_verb("twitch").c_str());
+                mprf("%s이(가) 움찔한다.", victim->name(DESC_THE).c_str());
             }
             else
                 canned_msg(MSG_GHOSTLY_OUTLINE);
@@ -2237,10 +2229,7 @@ spret cast_fulminating_prism(actor* caster, int pow, const coord_def& where,
     {
         if (caster->observable())
         {
-            mprf("%s %s a prism of %s energy!",
-                 caster->name(DESC_THE).c_str(),
-                 caster->conj_verb("conjure").c_str(),
-                 is_shadow ? "shadowy" : "explosive");
+            mprf("%s이(가) %s 에너지의 프리즘을 만들어 낸다!", caster->name(DESC_THE).c_str(), is_shadow ? "그림자" : "폭발성");
         }
         else if (you.can_see(*prism))
         {
@@ -2322,7 +2311,7 @@ void end_spectral_weapon(monster* mons, bool killed, bool quiet)
         item->props.erase(SPECTRAL_WEAPON_KEY);
 
     if (!quiet && you.can_see(*mons))
-        simple_monster_message(*mons, " disappears.");
+        simple_monster_message(*mons, "이(가) 사라진다.");
 
     if (!killed)
         monster_die(*mons, KILL_RESET, NON_MONSTER);
@@ -2910,9 +2899,9 @@ spret kiku_unearth_wretches(bool fail)
         mon->add_ench(mon_enchant(ENCH_PARALYSIS, nullptr, 9999));
     }
     if (!created)
-        simple_god_message(" has no space to call forth the wretched!");
+        simple_god_message("은(는) 비참한 존재를 불러낼 공간이 없다고 알린다!");
     else
-        simple_god_message(" calls piteous wretches from the earth!");
+        simple_god_message("이(가) 땅속에서 가련한 존재들을 불러낸다!");
 
     return spret::success;
 }
@@ -2985,10 +2974,7 @@ spret cast_foxfire(actor &agent, int pow, bool fail, bool marshlight)
 
     if (created && you.see_cell(agent.pos()))
     {
-        mprf("%s conjure%s some %s!",
-             agent.name(DESC_THE).c_str(),
-             agent.is_monster() ? "s" : "",
-             marshlight ? "marshlight" : "foxfire");
+        mprf("%s이(가) %s을(를) 만들어 낸다!", agent.name(DESC_THE).c_str(), marshlight ? "늪불" : "여우불");
     }
     else if (agent.is_player())
         canned_msg(MSG_NOTHING_HAPPENS);
@@ -3178,8 +3164,7 @@ spret cast_broms_barrelling_boulder(actor& agent, coord_def targ, int pow, bool 
 
     if (you.can_see(*boulder))
     {
-        mprf("%s send%s a boulder barrelling forward!",
-            agent.name(DESC_THE).c_str(), agent.is_player() ? "" : "s");
+        mprf("%s이(가) 거대한 바위를 앞으로 굴려 보낸다!", agent.name(DESC_THE).c_str());
     }
 
     // Let the boulder roll one space immediately.
@@ -3322,15 +3307,11 @@ spret cast_hoarfrost_cannonade(const actor& agent, int pow, bool fail)
 
     if (num_seen > 1)
     {
-        mprf("%s sculpt%s a pair of cannons out of ice!",
-             agent.name(DESC_THE).c_str(),
-             agent.is_player() ? ""  : "s");
+        mprf("%s이(가) 얼음으로 대포 2문을 빚어 낸다!", agent.name(DESC_THE).c_str());
     }
     else if (num_seen == 1)
     {
-        mprf("%s sculpt%s a cannon out of ice!",
-             agent.name(DESC_THE).c_str(),
-             agent.is_player() ? ""  : "s");
+        mprf("%s이(가) 얼음으로 대포 1문을 빚어 낸다!", agent.name(DESC_THE).c_str());
     }
     else
         canned_msg(MSG_NOTHING_HAPPENS);
@@ -3478,7 +3459,7 @@ bool make_soul_wisp(const actor& agent, actor& victim)
     {
         if (agent.is_player() && victim.observable())
         {
-            mprf("A fragment of %s is already outside their body!",
+            mprf("%s의 일부가 이미 몸 밖으로 떨어져 나와 있다!",
                     victim.name(DESC_THE).c_str());
         }
         return false;
@@ -3497,9 +3478,7 @@ bool make_soul_wisp(const actor& agent, actor& victim)
     {
         if (you.see_cell(victim.pos()))
         {
-            mprf("A fragment of %s soul is dislodged from %s body.",
-                    victim.name(DESC_ITS).c_str(),
-                    victim.pronoun(PRONOUN_POSSESSIVE).c_str());
+            mprf("%s의 영혼 조각이 몸에서 떨어져 나온다.", victim.name(DESC_ITS).c_str());
 
         }
 
@@ -3639,7 +3618,7 @@ void launch_clockwork_bee(const actor& agent)
 
         if (you.can_see(*bee))
         {
-            mprf("With a metallic buzz, %s clockwork bee launches itself at %s.",
+            mprf("금속성 윙윙거림과 함께 %s의 태엽벌이 %s을(를) 향해 돌진한다.",
                  agent.name(DESC_ITS).c_str(),
                  targ->name(DESC_THE).c_str());
         }
@@ -3692,7 +3671,7 @@ void clockwork_bee_go_dormant(monster& bee)
 {
     if (you.can_see(bee))
     {
-        mprf("%s clockwork bee winds down and falls to the ground.",
+        mprf("%s의 태엽벌이 동력을 잃고 바닥에 떨어진다.",
              bee.summoner == MID_PLAYER ? "Your" : "The");
     }
 
@@ -3733,8 +3712,8 @@ bool clockwork_bee_recharge(actor& agent, monster& bee)
     {
         if (agent.is_player())
         {
-            mpr("You need a visible target to rewind your bee! "
-                "(Use ctrl+direction or * direction to deconstruct it instead.)");
+            mpr("태엽벌을 다시 감으려면 보이는 목표가 필요해! "
+                "(대신 Ctrl+방향키 또는 * 방향키를 눌러 분해할 수 있다.)");
         }
         return false;
     }
@@ -3750,11 +3729,7 @@ bool clockwork_bee_recharge(actor& agent, monster& bee)
         finalize_mp_cost();
     }
 
-    mprf("%s wind%s %s clockwork bee back up and it locks its sights upon %s!",
-         agent.name(DESC_THE).c_str(),
-         agent.is_player() ? "" : "s",
-         agent.pronoun(PRONOUN_POSSESSIVE).c_str(),
-         targ->name(DESC_THE).c_str());
+    mprf("%s이(가) 태엽벌을 다시 감고 %s을(를) 조준한다!", agent.name(DESC_THE).c_str(), targ->name(DESC_THE).c_str());
     int old_max_hp = bee.max_hit_points;
     int old_hp = bee.hit_points;
     int old_hd = bee.get_experience_level();
@@ -3783,7 +3758,7 @@ void clockwork_bee_pick_new_target(monster& bee)
        clockwork_bee_go_dormant(bee);
     else
     {
-        mprf("%s clockwork bee locks its sights upon %s.",
+        mprf("%s의 태엽벌이 %s을(를) 조준한다.",
                 agent ? agent->pronoun(PRONOUN_POSSESSIVE).c_str() : "Someone's",
                 targ->name(DESC_THE).c_str());
         bee.add_ench(mon_enchant(ENCH_HAUNTING, targ, INFINITE_DURATION));
@@ -3992,7 +3967,7 @@ spret cast_surprising_crocodile(actor& agent, const coord_def& targ, int pow, bo
 
     if (you.can_see(agent))
     {
-        mprf("A crocodile bursts forth beneath %s and grabs %s in its jaws!",
+        mprf("%s의 발밑에서 악어가 튀어나와 %s을(를) 턱으로 붙잡는다!",
                 agent.name(DESC_THE).c_str(),
                 victim->name(DESC_THE).c_str());
     }
@@ -4015,10 +3990,7 @@ spret cast_surprising_crocodile(actor& agent, const coord_def& targ, int pow, bo
 
     if (you.can_see(agent))
     {
-        mprf("%s dismount%s %s crocodile.",
-             agent.name(DESC_THE).c_str(),
-             agent.is_player() ? "" : "s",
-             agent.pronoun(PRONOUN_POSSESSIVE).c_str());
+        mprf("%s이(가) 악어에서 내린다.", agent.name(DESC_THE).c_str());
     }
 
     // Make the temporary water (after the movement, so we don't get slash
@@ -4269,7 +4241,7 @@ spret cast_walking_alembic(const actor& agent, int pow, bool fail)
     if (monster* mon = create_monster(mg))
     {
         if (you.can_see(*mon))
-            mpr("A lumbering aparatus takes shape within a cloud of fumes.");
+            mpr("연기가 피어오르는 가운데 육중한 장치가 모습을 드러낸다.");
 
         mon->number = random_range(4, 6);
     }
@@ -4364,7 +4336,7 @@ static bool _do_monster_potion(monster& mons, monster& alembic)
 
 void alembic_brew_potion(monster& mons)
 {
-    simple_monster_message(mons, " finishes brewing potions and dispenses them!",
+    simple_monster_message(mons, "이(가) 물약 제조를 마치고 물약을 내놓는다!",
                             false, MSGCH_MONSTER_SPELL);
 
     if (mons.friendly() && you.see_cell_no_trans(mons.pos()))
@@ -4389,7 +4361,7 @@ void alembic_brew_potion(monster& mons)
         }
     }
 
-    simple_monster_message(mons, " collapses with a clattering noise.", false,
+    simple_monster_message(mons, "이(가) 덜커덕거리는 소리와 함께 무너진다.", false,
                            MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
     monster_die(mons, KILL_RESET, NON_MONSTER);
 }
@@ -4412,8 +4384,7 @@ spret cast_monarch_bomb(const actor& agent, int pow, bool fail)
     {
         if (you.can_see(*mon))
         {
-            mprf("%s construct%s an explosive harbinger and set it loose.",
-                 agent.name(DESC_THE).c_str(), agent.is_player() ? "" : "s");
+            mprf("%s이(가) 폭발의 선봉을 만들어 풀어놓는다.", agent.name(DESC_THE).c_str());
         }
 
         mon->number = 5 + div_rand_round(pow, 50);
@@ -4438,7 +4409,7 @@ bool monarch_deploy_bomblet(monster& original, const coord_def& target,
     if (create_monster(mg))
     {
         if (!quiet && you.can_see(original))
-            mprf("%s deploys a bomblet.", original.name(DESC_THE).c_str());
+            mprf("%s이(가) 소형 폭탄을 배치한다.", original.name(DESC_THE).c_str());
 
         return true;
     }
@@ -4483,10 +4454,7 @@ spret monarch_detonation(const actor& agent, int pow, bool fail)
 
     if (you.can_see(agent))
     {
-        mprf("%s command%s %s explosives to detonate!",
-                agent.name(DESC_THE).c_str(),
-                agent.is_player() ? "" : "s",
-                agent.pronoun(PRONOUN_POSSESSIVE).c_str());
+        mprf("%s이(가) 폭발물에 폭발 명령을 내린다!", agent.name(DESC_THE).c_str());
     }
 
     for (coord_def spot : spots)
@@ -4664,7 +4632,7 @@ spret cast_summon_seismosaurus_egg(const actor& agent, int pow, bool fail)
 
     if (monster* mons = create_monster(egg))
     {
-        mpr("A rock-encrusted egg appears nearby and begins to stir.");
+        mpr("돌로 뒤덮인 알이 근처에 나타나 꿈틀거리기 시작한다.");
         mons->add_ench(mon_enchant(ENCH_HATCHING, &agent, random_range(6, 9)));
 
         // Mark all terrain in range.
@@ -4698,8 +4666,7 @@ spret cast_phalanx_beetle(const actor& agent, int pow, bool fail)
         }
         else if (you.can_see(agent))
         {
-            mprf("%s forges a skittering defender to stand by %s side.",
-                 agent.name(DESC_THE).c_str(), agent.pronoun(PRONOUN_POSSESSIVE).c_str());
+            mprf("%s이(가) 자신의 곁을 지킬 수호자를 만들어 낸다.", agent.name(DESC_THE).c_str());
         }
         mons_update_aura(*mons);
     }

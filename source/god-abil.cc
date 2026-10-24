@@ -225,7 +225,7 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
 
     mprf(MSGCH_GOD, "%s이(가) 밝게 빛난다!", wpn.name(DESC_QUALNAME).c_str());
     flash_view(UA_PLAYER, colour);
-    simple_god_message(" booms: Use this gift wisely!");
+    simple_god_message("이(가) 우렁차게 외친다. 이 선물을 현명하게 사용해라!");
     you.one_time_ability_used.set(you.religion);
     take_note(Note(NOTE_GOD_GIFT, you.religion));
 
@@ -272,7 +272,7 @@ bool zin_donate_gold()
         return false;
     }
 
-    if (!yesno("Do you wish to donate half of your money?", true, 'n'))
+    if (!yesno("소지한 금화의 절반을 기부할까?", true, 'n'))
     {
         canned_msg(MSG_OK);
         return false;
@@ -294,7 +294,7 @@ bool zin_donate_gold()
 
     if (donation < 1)
     {
-        simple_god_message(" finds your generosity lacking.");
+        simple_god_message("은(는) 당신의 기부가 충분하지 않다고 여긴다.");
         return true;
     }
 
@@ -1252,7 +1252,7 @@ static void _zin_saltify(monster* mon)
 
 bool zin_vitalisation()
 {
-    simple_god_message(" grants you divine stamina.");
+    simple_god_message("이(가) 당신에게 신성한 활력을 부여한다.");
 
     // Add divine stamina.
     const int stamina_amt =
@@ -1361,7 +1361,7 @@ void elyvilon_divine_vigour()
     if (you.duration[DUR_DIVINE_VIGOUR])
         return;
 
-    mprf("%s grants you divine vigour.",
+    mprf("%s이(가) 당신에게 신성한 원기를 부여한다.",
          god_name(GOD_ELYVILON).c_str());
 
     const int vigour_amt = 1 + you.skill_rdiv(SK_INVOCATIONS, 1, 3);
@@ -1806,7 +1806,7 @@ bool kiku_gift_capstone_spells()
 
     if (spells.empty())
     {
-        simple_god_message(" has no more spells that you can make use of!");
+        simple_god_message("에게는 당신이 활용할 수 있는 주문이 더는 없다!");
         return false;
     }
 
@@ -1820,7 +1820,7 @@ bool kiku_gift_capstone_spells()
         return false;
     }
 
-    simple_god_message(" grants you forbidden knowledge!");
+    simple_god_message("이(가) 당신에게 금단의 지식을 전한다!");
     library_add_spells(spells);
     flash_view(UA_PLAYER, RED);
     // Allow extra time for the flash to linger.
@@ -1878,7 +1878,7 @@ void cheibriados_time_bend(int pow)
             }
 
             simple_god_message(
-                make_stringf(" rebukes %s.",
+                make_stringf("이(가) %s을(를) 질책한다.",
                              mon->name(DESC_THE).c_str()).c_str(),
                              false, GOD_CHEIBRIADOS);
             do_slow_monster(*mon, &you);
@@ -1953,7 +1953,7 @@ spret cheibriados_slouch(bool fail)
 {
     int count = apply_area_visible(is_slouchable, you.pos());
     if (!count)
-        if (!yesno("There's no one hasty visible. Invoke Slouch anyway?",
+        if (!yesno("시야에 빠르게 움직이는 대상이 없어. 그래도 느림의 권능을 사용할까?",
                    true, 'n'))
         {
             canned_msg(MSG_OK);
@@ -2417,7 +2417,7 @@ bool ashenzari_uncurse_item()
     for (item_def* _item : to_remove)
     {
         if (_item-> link != item_slot)
-            mprf("%s falls away from you.", _item->name(DESC_YOUR).c_str());
+            mprf("%s이(가) 몸에서 떨어져 나간다.", _item->name(DESC_YOUR).c_str());
         unequip_item(*_item);
     }
 
@@ -2426,7 +2426,7 @@ bool ashenzari_uncurse_item()
     you.props[ASHENZARI_CURSE_PROGRESS_KEY] = 0;
     if (you.props.exists(AVAILABLE_CURSE_KEY))
     {
-        simple_god_message(" withdraws the vision and curse.");
+        simple_god_message("이(가) 계시와 저주를 거둬들인다.");
         you.props.erase(AVAILABLE_CURSE_KEY);
     }
 
@@ -2468,7 +2468,7 @@ void announce_beogh_conversion_offer()
 
             ASSERT_RANGE(get_talent(ABIL_CONVERT_TO_BEOGH).hotkey,
                             'A', 'z' + 1);
-            mprf("(press <w>%c</w> on the <w>%s</w>bility menu to convert to Beogh)",
+            mprf("베오그로 개종하려면 <w>%c</w> 키를 누르세요(능력 메뉴: <w>%s</w>).",
                     get_talent(ABIL_CONVERT_TO_BEOGH).hotkey,
                     command_to_string(CMD_USE_ABILITY).c_str());
             you.attribute[ATTR_SEEN_BEOGH] = 1;
@@ -2710,7 +2710,7 @@ void beogh_blood_for_blood_tick(int delay)
 void beogh_end_blood_for_blood()
 {
     mprf(MSGCH_DURATION,
-         "You reach the end of your prayer and your brethren are recalled.");
+         "기도가 끝나자 동료들이 소환에서 해제된다.");
     for (monster_iterator mi; mi; ++mi)
     {
         if (mons_is_blood_for_blood_orc(**mi))
@@ -2775,8 +2775,7 @@ bool beogh_cancel_leaving_floor()
 
     if (you.duration[DUR_BEOGH_DIVINE_CHALLENGE])
     {
-        if (!yesno("Are you sure you wish to flee a divine trial? This will "
-                   "place you under penance!", false, 'n'))
+        if (!yesno("정말 신성한 시련에서 도망칠까? 그러면 신의 징벌을 받게 돼!", false, 'n'))
         {
             mpr("베오그가 당신의 용기를 기꺼워한다.");
             return true;
@@ -2785,8 +2784,8 @@ bool beogh_cancel_leaving_floor()
 
     if (you.duration[DUR_BLOOD_FOR_BLOOD])
     {
-        if (!yesno("Your vengeful prayer will end if you leave here."
-                   " Continue?", false, 'n'))
+        if (!yesno("이곳을 떠나면 복수의 기도가 끝나게 된다."
+                   " 그래도 계속할까?", false, 'n'))
         {
             canned_msg(MSG_OK);
             return true;
@@ -2901,9 +2900,8 @@ spret dithmenos_shadowslip(bool fail)
                 mi->foe = shadow->mindex();
                 mi->behaviour = BEH_SEEK;
 
-                mprf("%s turns %s attention towards your shadow.",
-                        mi->name(DESC_THE).c_str(),
-                        mi->pronoun(PRONOUN_POSSESSIVE).c_str());
+                mprf("%s이(가) 당신의 그림자로 시선을 돌린다.",
+                        mi->name(DESC_THE).c_str());
             }
         }
     }
@@ -3178,7 +3176,7 @@ spret dithmenos_marionette(monster& target, bool fail)
     }
 
     target.add_ench(ENCH_SHADOWLESS);
-    mprf("%s shadow slips away and your performance ends.",
+    mprf("%s의 그림자가 사라지며 공연도 끝난다.",
             target.name(DESC_ITS).c_str());
 
     // Let the monster complain about what you did to them, in their own way.
@@ -4194,8 +4192,7 @@ spret qazlal_disaster_area(bool fail)
     }
 
     if (friendlies
-        && !yesno("There are friendlies around; are you sure you want to hurt "
-                  "them?", true, 'n'))
+        && !yesno("주변에 아군이 있어. 정말 공격할까?", true, 'n'))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -4913,7 +4910,7 @@ void ru_offer_new_sacrifices()
                                   possible_sacrifices.end());
     }
 
-    simple_god_message(" believes you are ready to make a new sacrifice.");
+    simple_god_message("은(는) 당신이 새로운 희생을 바칠 준비가 되었다고 여긴다.");
     // included in default force_more_message
 }
 
@@ -4954,7 +4951,7 @@ static bool _execute_sacrifice(ability_type sac, const char* message)
 {
     mprf("루가 당신에게 %s을(를) 요구한다.", message);
     mpr(ru_sacrifice_description(sac));
-    if (!yesno("Do you really want to make this sacrifice?",
+    if (!yesno("정말 이 희생을 바칠까?",
                false, 'n'))
     {
         canned_msg(MSG_OK);
@@ -5196,7 +5193,7 @@ bool ru_do_sacrifice(ability_type sac)
     set_piety(min(piety_breakpoint(5), you.raw_piety + piety_gain));
 
     if (you.raw_piety == piety_breakpoint(5))
-        simple_god_message(" indicates that your awakening is complete.");
+        simple_god_message("은(는) 당신의 각성이 완료되었음을 알린다.");
 
     // Clean up.
     _ru_expire_sacrifices();
@@ -5220,7 +5217,7 @@ bool ru_do_sacrifice(ability_type sac)
 bool ru_reject_sacrifices(bool forced_rejection)
 {
     if (!forced_rejection &&
-        !yesno("Do you really want to reject the sacrifices Ru is offering?",
+        !yesno("정말 루가 제시한 희생들을 거절할까?",
                false, 'n'))
     {
         canned_msg(MSG_OK);
@@ -5229,7 +5226,7 @@ bool ru_reject_sacrifices(bool forced_rejection)
 
     ru_reset_sacrifice_timer(false, forced_rejection);
     _ru_expire_sacrifices();
-    simple_god_message(" will take longer to evaluate your readiness.");
+    simple_god_message("은(는) 당신의 준비 상태를 다시 평가하는 데 더 많은 시간을 들일 것이다.");
     return true;
 }
 
@@ -5622,7 +5619,7 @@ bool ru_apocalypse()
     int count = apply_area_visible(cell_has_valid_target, you.pos());
     if (!count)
     {
-        if (!yesno("There are no visible enemies. Unleash your apocalypse anyway?",
+        if (!yesno("시야에 적이 없어. 그래도 종말을 발동할까?",
             true, 'n'))
         {
             canned_msg(MSG_OK);
@@ -5675,8 +5672,7 @@ bool uskayaw_stomp()
     // XXX: this 'friendlies' wording feels a little odd, but we do use it in a
     // a few places already; see spl-vortex.cc, disaster area, etc.
     if (friendlies
-        && !yesno("There are friendlies around, "
-                  "are you sure you want to hurt them?",
+        && !yesno("주변에 아군이 있어. 정말 공격할까?",
                   true, 'n'))
     {
         canned_msg(MSG_OK);
@@ -5904,12 +5900,12 @@ spret uskayaw_grand_finale(bool fail)
     if (mons->type == MONS_ROYAL_JELLY && !mons->is_summoned())
     {
         // need to do this here, because react_to_damage is never called
-        mprf("%s explodes violently into a cloud of jellies%s",
+        mprf("%s이(가) 격렬하게 폭발하며 젤리 구름을 뿜어낸다%s",
                                         mons->name(DESC_THE, false).c_str(), attack_punctuation.c_str());
         schedule_trj_spawn_fineff(&you, mons, mons->pos(), mons->hit_points);
     }
     else
-        mprf("%s explodes violently%s", mons->name(DESC_THE, false).c_str(), attack_punctuation.c_str());
+        mprf("%s이(가) 격렬하게 폭발한다%s", mons->name(DESC_THE, false).c_str(), attack_punctuation.c_str());
     mons->flags |= MF_EXPLODE_KILL;
     if (!mons->is_insubstantial())
     {
@@ -5964,8 +5960,7 @@ bool hepliaklqana_choose_ancestor_type(int ancestor_choice)
     const auto ancestor_type = *ancestor_mapped;
     const string ancestor_type_name = mons_type_name(ancestor_type, DESC_A);
 
-    if (!yesno(make_stringf("Are you sure you want to remember your ancestor "
-                            "as %s?", ancestor_type_name.c_str()).c_str(),
+    if (!yesno(make_stringf("정말 조상을 %s의 모습으로 기억할까?", ancestor_type_name.c_str()).c_str(),
                false, 'n'))
     {
         canned_msg(MSG_OK);
@@ -6013,13 +6008,13 @@ spret hepliaklqana_idealise(bool fail)
     monster *ancestor = monster_by_mid(ancestor_mid);
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s is not nearby!", hepliaklqana_ally_name().c_str());
+        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
     fail_check();
 
-    simple_god_message(make_stringf(" grants %s healing and protection!",
+    simple_god_message(make_stringf("이(가) %s에게 치유와 보호를 내려준다!",
                                     ancestor->name(DESC_YOUR).c_str()).c_str());
 
     // 1/3 mhp healed at 0 skill, full at 27 invo
@@ -6100,7 +6095,7 @@ spret hepliaklqana_transference(bool fail)
     monster *ancestor = hepliaklqana_ancestor_mon();
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s is not nearby!", hepliaklqana_ally_name().c_str());
+        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
@@ -6114,7 +6109,7 @@ spret hepliaklqana_transference(bool fail)
     actor* victim = actor_at(target);
     const bool victim_visible = victim && you.can_see(*victim);
     if ((!victim || !victim_visible)
-        && !yesno("You can't see anything there. Try transferring anyway?",
+        && !yesno("그곳에는 보이는 대상이 없어. 그래도 이동을 시도할까?",
                   true, 'n'))
     {
         canned_msg(MSG_OK);
@@ -6145,7 +6140,7 @@ spret hepliaklqana_transference(bool fail)
     const bool uninhabitable = victim && !victim->is_habitable(destination);
     if (uninhabitable && victim_visible)
     {
-        mprf("%s can't be transferred there.", victim->name(DESC_THE).c_str());
+        mprf("%s은(는) 그곳으로 이동시킬 수 없어.", victim->name(DESC_THE).c_str());
         return spret::abort;
     }
 
@@ -6169,9 +6164,8 @@ spret hepliaklqana_transference(bool fail)
     else
         ancestor->swap_with(victim->as_monster(), MV_TRANSLOCATION, true);
 
-    mprf("%s swap%s with %s!",
+    mprf("%s이(가) %s와(과) 위치를 맞바꾼다!",
          victim->name(DESC_THE).c_str(),
-         victim->is_player() ? "" : "s",
          ancestor->name(DESC_YOUR).c_str());
 
     place_cloud(CLOUD_MIST, target, random_range(10,20), ancestor);
@@ -6232,7 +6226,7 @@ static void _hepliaklqana_choose_gender()
     ASSERT(desc);
 
     mprf(MSGCH_PROMPT,
-         "Was %s a) male, b) female, or c) neither? (Currently %s.)",
+         "%s의 성별을 선택하세요. a) 남성, b) 여성, c) 어느 쪽도 아님 (현재: %s)",
          hepliaklqana_ally_name().c_str(),
          desc->c_str());
 
@@ -6263,7 +6257,7 @@ static void _hepliaklqana_choose_gender()
     }
 
     you.props[HEPLIAKLQANA_ALLY_GENDER_KEY] = new_gender;
-    mprf("%s was always %s, you're pretty sure.",
+    mprf("%s은(는) 원래부터 %s이었던 것 같아.",
          hepliaklqana_ally_name().c_str(),
          map_find(gender_map, new_gender)->c_str());
     upgrade_hepliaklqana_ancestor(true);
@@ -6635,8 +6629,8 @@ void okawaru_end_duel(bool kicked_out)
     if (you.props.exists(OKAWARU_DUEL_ORIG_MP_KEY))
         set_mp(you.props[OKAWARU_DUEL_ORIG_MP_KEY].get_int());
 
-    simple_god_message(kicked_out ? " casts you out from the arena!"
-                                  : " crowns you victorious!",
+    simple_god_message(kicked_out ? "이(가) 당신을 투기장에서 내쫓는다!"
+                                  : "이(가) 당신에게 승리의 영예를 내린다!",
                        false, GOD_OKAWARU);
 
     stop_delay(true);
@@ -7003,21 +6997,21 @@ void makhleb_infernal_servant()
             beam.is_explosion = true;
             beam.ex_size = 2;
 
-            mprf("%s appears in a burst of %s!", demon->name(DESC_A).c_str(),
+            mprf("%s이(가) %s의 폭발 속에서 나타난다!", demon->name(DESC_A).c_str(),
                                         beam.get_short_name().c_str());
 
             beam.explode();
         }
         else if (tyrant)
         {
-            mprf("%s answers its master's command!",
+            mprf("%s이(가) 주인의 명령에 응한다!",
                     demon->name(DESC_A).c_str());
         }
         else
         {
-            mprf("%s answers the call of your %s!",
+            mprf("%s이(가) 당신의 %s에 이끌려 나타난다!",
                     demon->name(DESC_A).c_str(),
-                    you.has_blood() ? "blood" : "suffering");
+                    you.has_blood() ? "피" : "고통");
         }
 
         // Top-tier demons are more costly to summon.
@@ -7041,17 +7035,17 @@ void makhleb_infernal_servant()
             {
                 if (tyrant)
                 {
-                    mprf(MSGCH_WARN, "A traitorous %s dares provoke your wrath!",
+                    mprf(MSGCH_WARN, "배신한 %s이(가) 감히 당신의 분노를 자극한다!",
                         bad_demon->name(DESC_PLAIN).c_str());
                 }
                 else if (coinflip())
                 {
-                    mprf(MSGCH_WARN, "A jealous %s pursues it!",
+                    mprf(MSGCH_WARN, "질투에 사로잡힌 %s이(가) 뒤쫓는다!",
                         bad_demon->name(DESC_PLAIN).c_str());
                 }
                 else
                 {
-                    mprf(MSGCH_WARN, "A rebellious %s escapes with it!",
+                    mprf(MSGCH_WARN, "반항적인 %s이(가) 그것을 데리고 달아난다!",
                         bad_demon->name(DESC_PLAIN).c_str());
                 }
             }
@@ -7299,12 +7293,10 @@ void makhleb_enter_crucible_of_flesh(int debt)
     for (int i = 0; i < num_victims; ++i)
         _spawn_crucible_victim(true);
 
-    simple_god_message(" says: Flay and bleed and purify yourself, if you wish"
-                       " to be found worthy of leaving this place!", false,
+    simple_god_message("이(가) 명한다. 이곳을 떠날 자격을 얻고 싶다면 살을 벗기고 피를 흘려 스스로를 정화하라!", false,
                        GOD_MAKHLEB);
 
-    mpr("(Slaughtering mortal victims (and sometimes even demons) will "
-        "eventually satisfy Makhleb and create an exit.)");
+    mpr("(필멸자와 때때로 악마까지 제물로 바치면 마크레브를 만족시켜 출구를 만들 수 있다.)");
 
     you.props[MAKHLEB_CRUCIBLE_DEBT_KEY].get_int() = debt;
 }
@@ -7356,8 +7348,7 @@ void makhleb_crucible_kill(monster& victim)
         }
 
         dungeon_terrain_changed(pos, DNGN_EXIT_CRUCIBLE);
-        simple_god_message(" acknowledges your contrition and permits you to"
-                           " depart the Crucible.", false, GOD_MAKHLEB);
+        simple_god_message("이(가) 당신의 참회를 인정하고 도가니에서 떠나는 것을 허락한다.", false, GOD_MAKHLEB);
 
         env.map_knowledge(pos).set_feature(DNGN_EXIT_CRUCIBLE);
 #ifdef USE_TILE

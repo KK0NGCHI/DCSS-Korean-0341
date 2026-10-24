@@ -6,6 +6,7 @@ on:
       - 'source/message.cc'
       - 'source/invent.cc'
       - 'source/describe.cc'
+      - 'source/newgame.cc'
       - '.github/workflows/korean-smoke-guard.yml'
 jobs:
   guard:
@@ -14,11 +15,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Reject old smoke overrides
         run: |
-          if grep -nF '[KO TEST]' source/message.cc source/invent.cc source/describe.cc; then
+          if grep -nF '[KO TEST]' source/message.cc source/invent.cc source/describe.cc source/newgame.cc; then
             echo 'Old KO smoke text found: do not alter user-facing text to test Korean rendering.'
             exit 1
           fi
-          echo 'No KO TEST overrides in core message, inventory, description paths.'
+          echo 'No KO TEST overrides in core message, inventory, description and newgame paths.'
       - name: Verify intentional Korean menu labels
         run: |
           grep -qF '장비 칸 %d/%d' source/invent.cc

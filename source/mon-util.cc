@@ -967,13 +967,11 @@ static void _mimic_vanish(const coord_def& pos, const string& name)
     if (!you.see_cell(pos))
         return;
 
-    const char* const smoke_str = can_place_smoke ? " in a puff of smoke" : "";
-
     const bool can_cackle = !silenced(pos) && !silenced(you.pos());
-    const string cackle = can_cackle ? getSpeakString("_laughs_") + " and " : "";
-
-    mprf("The %s mimic %svanishes%s!",
-         name.c_str(), cackle.c_str(), smoke_str);
+    mprf("%s 흉내쟁이가 %s%s사라졌다!",
+         name.c_str(),
+         can_cackle ? "웃음을 터뜨리더니 " : "",
+         can_place_smoke ? "연기 속으로 " : "");
     interrupt_activity(activity_interrupt::mimic);
 }
 
@@ -1020,10 +1018,9 @@ void discover_mimic(const coord_def& pos)
     const string name = feature_mimic ? "the " + string(feat_type_name(feat))
                                       : item->name(DESC_THE, false, false,
                                                              false, true);
-    const bool plural = feature_mimic ? false : item->quantity > 1;
 
     if (you.see_cell(pos))
-        mprf("%s %s a mimic!", name.c_str(), plural ? "are" : "is");
+        mprf("%s의 정체는 흉내쟁이였다!", name.c_str());
 
     const string shortname = feature_mimic ? feat_type_name(feat)
                                            : item->name(DESC_BASENAME);
@@ -3470,8 +3467,7 @@ void mons_pacify(monster& mon, mon_attitude_type att, bool no_xp)
     if (mon.type == MONS_GERYON)
     {
         simple_monster_message(mon,
-            make_stringf(" discards %s horn.",
-                         mon.pronoun(PRONOUN_POSSESSIVE).c_str()).c_str());
+            "이(가) 자신의 뿔을 버린다.");
         monster_drop_things(&mon, false, item_is_horn_of_geryon);
     }
 
@@ -5575,7 +5571,7 @@ void throw_monster_bits(const monster& mon)
 
         int damage = 1 + random2(mon.get_hit_dice());
 
-        mprf("%s is hit by a flying piece of %s!",
+        mprf("%s이(가) 날아온 %s의 파편에 맞았다!",
                 target->name(DESC_THE, false).c_str(),
                 mon.name(DESC_THE, false).c_str());
 
@@ -5645,9 +5641,8 @@ void set_ancestor_spells(monster &ancestor, bool notify)
         if (find(old_spells.begin(), old_spells.end(), spellslot.spell)
             == old_spells.end())
         {
-            mprf("%s regains %s memory of %s.",
+            mprf("%s이(가) %s 주문에 대한 기억을 되찾는다.",
                  ancestor.name(DESC_YOUR, true).c_str(),
-                 ancestor.pronoun(PRONOUN_POSSESSIVE, true).c_str(),
                  spell_title(spellslot.spell));
         }
     }
@@ -5748,7 +5743,7 @@ bool shoot_through_actor(const actor* agent, const actor* target, bool announce)
             // TODO: this message does not work very well for all sorts of attacks
             // should this be a god message?
             if (announce && you.can_see(*target))
-                mprf("%s avoids your attack.", target->name(DESC_THE).c_str());
+                mprf("%s: 당신의 공격을 피한다.", target->name(DESC_THE).c_str());
             return true;
         }
 
@@ -5762,7 +5757,7 @@ bool shoot_through_actor(const actor* agent, const actor* target, bool announce)
         if (agent->is_player() && testbits(mon->flags, MF_DEMONIC_GUARDIAN))
         {
             if (announce && you.can_see(*mon))
-                mpr("Your demonic guardian avoids your attack.");
+                mpr("악마 수호자가 당신의 공격을 피한다.");
             return true;
         }
 
@@ -5826,7 +5821,7 @@ bool could_harm(const actor* agent, const actor* target, bool announce_important
     {
         if (announce_important && you.see_cell(target->pos()))
         {
-            string msg = make_stringf("The Sanctuary protects %s from harm.",
+            string msg = make_stringf("성역의 가호로 %s에 피해가 미치지 않는다.",
                                         target->name(DESC_THE).c_str());
             god_speaks(GOD_ZIN, msg.c_str());
         }
@@ -5839,7 +5834,7 @@ bool could_harm(const actor* agent, const actor* target, bool announce_important
         && target->wont_attack())
     {
         if (announce_mundane && you.can_see(*target))
-            simple_god_message(" protects your slime from harm.", false, GOD_JIYVA);
+            simple_god_message("이(가) 당신의 점액이 피해를 입지 않도록 보호한다.", false, GOD_JIYVA);
         return false;
     }
 

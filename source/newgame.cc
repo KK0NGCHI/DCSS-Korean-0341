@@ -1174,7 +1174,6 @@ public:
         welcome.textcolour(BROWN);
         welcome.cprintf("%s", _welcome(m_ng).c_str());
         welcome.textcolour(YELLOW);
-        welcome.cprintf(" [KO TEST] ");
         welcome.cprintf(m_choice_type == C_JOB ? "직업을 선택하세요." : "종족을 선택하세요.");
         m_vbox->add_child(make_shared<Text>(welcome));
 
@@ -1834,7 +1833,7 @@ static bool _prompt_weapon(const newgame_def& ng, newgame_def& ng_choice,
     auto vbox = make_shared<Box>(Box::VERT);
     vbox->set_cross_alignment(Widget::Align::STRETCH);
     vbox->add_child(title_hbox);
-    auto prompt = make_shared<Text>(formatted_string("[KO TEST] 시작 무기를 선택하세요.", CYAN));
+    auto prompt = make_shared<Text>(formatted_string("시작 무기를 선택하세요.", CYAN));
     vbox->add_child(prompt);
 
     auto main_items = make_shared<OuterMenu>(true, 1, weapons.size());
