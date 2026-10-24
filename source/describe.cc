@@ -4059,7 +4059,7 @@ command_type describe_item_popup(const item_def &item,
     if (!actions.empty())
     {
         if (!spells.empty())
-            footer_text.cprintf("Select a spell, or ");
+            footer_text.cprintf("주문을 선택하거나 ");
         footer_text += formatted_string(_actions_desc(actions));
         auto footer = make_shared<Text>();
         footer->set_text(footer_text);
@@ -5708,9 +5708,9 @@ static string _monster_spells_description(const monster_info& mi, bool mark_spel
         description += SPELL_LIST_END;
 
     description.cprintf("\nTo read a description, press the key listed above. "
-        "(AdB) indicates damage (the sum of A B-sided dice), "
-        "(x%%) indicates the chance to defeat your Will, "
-        "and (y) indicates the spell range");
+        "(AdB)는 피해량(A개의 B면체 주사위 합계), "
+        "(x%%)는 의지를 뚫을 확률, "
+        "(y)는 주문 사거리를 나타냅니다");
     description.cprintf(crawl_state.need_save
         ? "; shown in red if you are in range.\n"
         : ".\n");
