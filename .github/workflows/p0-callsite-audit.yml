@@ -1,0 +1,37 @@
+name: P0 Korean output callsite audit
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/**/*.cc'
+      - 'tools/dcss-extractor/scripts/audit_p0_callsites.py'
+      - 'tools/dcss-extractor/scripts/test_audit_p0_callsites.py'
+      - '.github/workflows/p0-callsite-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'source/**/*.cc'
+      - 'tools/dcss-extractor/scripts/audit_p0_callsites.py'
+      - 'tools/dcss-extractor/scripts/test_audit_p0_callsites.py'
+      - '.github/workflows/p0-callsite-audit.yml'
+jobs:
+  callsites:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify callsite parser
+        run: python -m unittest discover -s tools/dcss-extractor/scripts -p 'test_audit_p0_callsites.py' -v
+      - name: Locate C++ output string callsites
+        run: |
+          python tools/dcss-extractor/scripts/audit_p0_callsites.py --source source --output tools/dcss-extractor/output/P0-CALLSITE-001
+      - name: Save candidate queues
+        uses: actions/upload-artifact@v4
+        with:
+          name: p0-output-callsites
+          path: tools/dcss-extractor/output/P0-CALLSITE-001/
+          if-no-files-found: error
