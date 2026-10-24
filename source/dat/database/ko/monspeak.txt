@@ -284,3 +284,153 @@ VISUAL:@The_monster@이(가) 잠깐 사라진다.
 
 VISUAL:@The_monster@이(가) 파리 떼를 불러낸다.
 %%%%
+_friendly_humanoid_common_
+
+@The_monster@이(가) 외친다. "도망쳐! 내가 엄호할게!"
+
+@The_monster@이(가) 외친다. "죽어라, 괴물아!"
+
+VISUAL:@The_monster@이(가) 당신을 바라본다.
+
+VISUAL:@The_monster@이(가) 당신에게 미소 짓는다.
+
+@The_monster@이(가) 말한다. "@player_name@, 난 네가 좋아."
+
+VISUAL:@The_monster@이(가) 당신에게 손을 흔든다.
+
+@The_monster@이(가) 말한다. "조심해!"
+
+@The_monster@이(가) 말한다. "절대 널 떠나지 않을게."
+%%%%
+_friendly_humanoid_medium_
+
+@The_monster@이(가) 말한다. "친구가 있다는 건 좋은 일이야."
+
+@The_monster@이(가) 말한다. "@player_name@, 넌 내 유일한 친구야."
+
+@The_monster@이(가) 외친다. "자비는 없어! 전부 죽여!"
+
+@The_monster@이(가) 말한다. "걱정하지 마. 내가 곁에 있어."
+
+VISUAL:@The_monster@이(가) 행복하게 웃는다.
+
+@The_monster@이(가) 외친다. "괴물을 조심해!"
+%%%%
+_friendly_humanoid_rare_
+
+VISUAL:@The_monster@이(가) 친근한 표정을 짓는다.
+%%%%
+_friendly_confused_common_
+
+@The_monster@이(가) 비명을 지른다. "살려 줘!"
+
+@The_monster@이(가) 외친다. "대체 무슨 일이야?!"
+
+@The_monster@이(가) 무언가 중얼거린다.
+
+@The_monster@이(가) 미친 듯 웃는다.
+
+VISUAL:@The_monster@이(가) 운다.
+
+VISUAL:@The_monster@이(가) 몹시 혼란스러워 보인다.
+%%%%
+_friendly_confused_medium_
+
+@The_monster@이(가) 미친 듯 키득거린다.
+
+@The_monster@이(가) 소리친다. "@player_name@! 대체 무슨 일이야?!"
+
+@The_monster@이(가) 도움을 청하며 기도한다.
+
+@The_monster@이(가) 허공을 비웃으며 말한다. "날 못 잡겠지!"
+
+VISUAL:@The_monster@이(가) 미친 듯 씩 웃는다.
+
+VISUAL:@The_monster@이(가) 상황을 곰곰이 생각한다.
+
+VISUAL:@The_monster@이(가) 이리저리 발을 구른다.
+%%%%
+_friendly_confused_rare_
+
+@The_monster@이(가) 외친다. "제어가 안 돼!"
+
+@The_monster@이(가) 외친다. "그래!"
+
+@The_monster@이(가) 노래한다.
+
+@The_monster@이(가) 소리친다. "@player_name@! 도와줘!"
+
+@The_monster@이(가) 말한다. "@player_name@, 나 좀 혼란스러워!"
+
+VISUAL:@The_monster@이(가) @foe@에게 푹 빠진 듯 보인다.
+%%%%
+_confused_humanoid_common_
+
+w:20
+VISUAL:@The_monster@이(가) 정신없이 손짓한다.
+
+@The_monster@이(가) 외친다. "무슨 일이 벌어지는 거야?!"
+
+VISUAL:@The_monster@이(가) 운다.
+
+@The_monster@이(가) 미친 듯 웃는다.
+
+VISUAL:@The_monster@이(가) 미친 듯 씩 웃는다.
+
+VISUAL:@The_monster@이(가) 아무것도 없는 곳을 보고 웃는다.
+
+VISUAL:@The_monster@이(가) 허공을 바라보며 낄낄거린다.
+
+VISUAL:@The_monster@이(가) 몹시 혼란스러워 보인다.
+
+@The_monster@이(가) 무언가 중얼거린다.
+%%%%
+_confused_humanoid_medium_
+
+VISUAL:@The_monster@이(가) 상황을 곰곰이 생각한다.
+
+@The_monster@이(가) 말한다. "좀 헷갈리는데."
+
+@The_monster@이(가) 묻는다. "여기가 어디지?"
+
+@The_monster@이(가) 중얼거린다. "내가 여기서 뭐 하는 거지?"
+
+@The_monster@이(가) 말한다. "왜 온 세상이 빙빙 도는 거야?"
+
+@The_monster@이(가) 소리친다. "그래도 널 죽이겠어!"
+%%%%
+_confused_humanoid_rare_
+
+@The_monster@이(가) 소리친다. "이것들 좀 떼어 내!"
+
+@The_monster@이(가) 외친다. "안 돼!"
+
+@The_monster@이(가) 울부짖는다. "내 콧구멍!"
+
+@The_monster@이(가) 외친다. "좋아!"
+
+VISUAL:@The_monster@이(가) 몸을 부르르 떤다.
+
+VISUAL:@The_monster@이(가) 갑자기 던전을 향해 몹시 화난 표정을 짓는다.
+
+@The_monster@이(가) @foe,@에게 묻는다. "넌 누구야?"
+
+@The_monster@이(가) @foe,@에게 묻는다. "도대체 우리가 여기서 뭐 하는 거야? 흠, 알겠어..."
+
+@The_monster@이(가) 외친다. "내 머리! 내 머리가!!!"
+
+@The_monster@이(가) 소리친다. "안 돼! 이런 소음은 못 견뎌!"
+%%%%
+_friendly_fleeing_common_
+
+w:20
+VISUAL:@The_monster@이(가) 숨을 곳을 찾는다.
+
+@The_monster@이(가) 소리친다. "살려 줘!"
+
+@The_monster@이(가) 외친다. "엄호해 줘!"
+
+@The_monster@이(가) 소리친다. "@player_name@! 도와줘!"
+
+@The_monster@이(가) 도움을 청하며 기도한다.
+%%%%
