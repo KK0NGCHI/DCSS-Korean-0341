@@ -22,12 +22,20 @@ LUA_REFERENCE_RETURN = re.compile(r"""^return\s+(['"])(@[^@\n]+@)\1$""")
 LUA_DYNAMIC_RETURN = re.compile(r"^return\s+you\.[a-zA-Z_]\w*\(")
 
 
+def lua_control_line(line):
+    """Only a bare brace/delimiter is non-prose; '}} at you' has text."""
+    stripped = line.strip()
+    return (stripped == "{{"
+            or bool(re.fullmatch(r"\}\}(?:\s+@[^@\s]+@)?", stripped))
+            or bool(LUA_CONTROL.match(stripped)))
+
+
 def lua_non_display_line(source_line, localized_line, in_lua):
     """Permit unchanged Lua syntax, not untranslated string literals."""
     if not in_lua:
         return False
     en, ko = source_line.strip(), localized_line.strip()
-    if en.startswith(("{{", "}}")) or LUA_CONTROL.match(en):
+    if lua_control_line(en):
         return en == ko
     if LUA_REFERENCE_RETURN.fullmatch(en) or LUA_DYNAMIC_RETURN.match(en):
         return en == ko
@@ -38,7 +46,7 @@ def lua_control_changed(source_line, localized_line, in_lua):
     if not in_lua:
         return False
     en, ko = source_line.strip(), localized_line.strip()
-    if en.startswith(("{{", "}}")) or LUA_CONTROL.match(en):
+    if lua_control_line(en):
         return en != ko
     return False
 
