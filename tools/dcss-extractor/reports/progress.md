@@ -67,3 +67,14 @@
 - 실제 소스 변경: 59종 원문 패턴(62개 발생 위치) 한국어화, `newgame.cc` 잔여 `[KO TEST]` 2곳 제거.
 - `mon-util.cc`를 Linux 콘솔 빌드 오버레이에 추가. C++ 빌드와 실제 타일 게임 출력은 별도 검증.
 - 자세한 내용: [P0 직접 호출부 보고서](../../docs/translation-review/p0-direct-callsites-20261024.md).
+
+## 2026-10-24 P0 번역 후속 + 게임 대사 DB 1차 감사 (병합 완료)
+
+- PR #4 [P0 C++ 직접 메시지 번역 및 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/4) 병합: `522d00b`.
+- 최종 [P0 출력 호출부 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076532595): 11개 파일, 문자열이 포함된 직접 호출부 959곳, 한글 포함 885곳, 영문·식별자 검토 후보 46곳(초기 202곳), 개발자 오류 후보 3곳, 포맷·기호 중심 25곳. 후보 수 감소는 전체 한국어화율이 아님.
+- 최신 [Linux 콘솔 컴파일](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076532601) 성공, 번역 C++ 오버레이 11개 파일. [스모크 마커 검사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076532612) 통과. Windows 타일 및 한국어 DB 로딩은 아직 미검증.
+- PR #5 [신의 칭호 KO 오버레이 + 게임 대사 DB 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/5) 병합: `5d766a3`.
+- [게임 대사 DB 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076997160): 최상위 텍스트 23개/원문 고유 키 2,019개, 한국어 오버레이 1개(`godname.txt` 키 23개/23개), 칭호 본문 50개. 기존 원본의 한글 본문 301줄, 라틴 전용 본문 13,245줄. 마커와 고유명칭이 포함되므로 미번역률을 뜻하지 않음.
+- DB 상세: [database-audit-20261024.md](../../docs/translation-review/database-audit-20261024.md).
+
+**다음 작업:** 남은 P0 직접 출력 후보 46곳의 문맥 검수, 동적 조사 결합, `monspeak.txt` 730개 키, `monspell.txt` 260개 키, `wpnnoise.txt` 65개 키 등 데이터 대사 한국어화. 기존 원본에 삽입된 한국어는 보존하고 KO 오버레이로 누락분을 병합. Windows Tiles 및 `language = ko` 출력은 별도 실행 검증.
