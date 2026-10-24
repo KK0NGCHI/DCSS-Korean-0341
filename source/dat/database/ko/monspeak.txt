@@ -4187,3 +4187,15 @@ _Grum_dog_name_
 스파키
 스팟
 스파이크
+%%%%
+_Grum_common_
+
+VISUAL:@The_monster@이(가) 이를 드러내.
+@The_monster@이(가) @_Grum_verb_@.
+@The_monster@이(가) 적을 뚫어지게 노려보며 @_Grum_verb_@.
+@The_monster@이(가) 위협적인 울음소리를 내.
+VISUAL:@The_monster@이(가) 허공의 냄새를 맡고 재빨리 주위를 둘러봐.
+@The_monster@이(가) 적을 손가락으로 가리키며 @_Grum_verb_@. "공격!"
+@The_monster@이(가) 적을 손가락으로 가리키며 소리쳐. "@_Grum_dog_name_@! 덤벼!"
+@The_monster@이(가) 주위를 둘러보며 외쳐. "@_Grum_dog_name_@! 이리 와!"
+@The_monster@이(가) 외쳐. "@_Grum_dog_name_@! 착하지!"
