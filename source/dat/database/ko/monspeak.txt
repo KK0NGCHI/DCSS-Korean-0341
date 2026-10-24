@@ -4219,3 +4219,74 @@ VISUAL:@The_monster@이(가) 옷에 붙은 벼룩 때문에 잠시 한눈을 팔
 @The_monster@이(가) 소리쳐. "사냥개들을 풀어라!"
 @The_monster@이(가) 말해. "이 멋진 가죽들을 팔고 있어."
 @The_monster@이(가) 소리쳐. "더 빨리, @_Grum_dog_name_@! 공격해!"
+%%%%
+_wizard_rare_
+
+@The_monster@이(가) 말해. "아르가탁스 네트라노크 데르텍스."
+@The_monster@이(가) 말해. "도그르우 누테우 베르그."
+@The_monster@이(가) 외쳐. "엔트람 모트 데그 울라그!"
+%%%%
+_friendly_imp_greeting
+
+@The_monster@이(가) 말해. "나 왔어!"
+@The_monster@이(가) 말해. "부르셨어?"
+@The_monster@이(가) 말해. "함께 @_mayhem_@을(를) @_cause_or_spread_@!"
+@The_monster@이(가) 말해. "@_suck_up_address_@, @_suck_up_adj1_@, @_suck_up_adj2_@ @_suck_up_noun_@여! 제 @_vassalage_@를 바치며 @_truckle_@!"
+w:300
+__NONE
+%%%%
+_cause_or_spread_
+
+일으키자
+퍼뜨리자
+뿌리자
+불러오자
+%%%%
+_mayhem_
+
+대혼란
+파괴
+소동
+무질서
+%%%%
+_truckle_
+
+굽실거리겠습니다
+충성하겠습니다
+굴복하겠습니다
+머리를 조아리겠습니다
+순종하겠습니다
+%%%%
+_vassalage_
+
+봉신의 충성
+봉사
+섬김
+충절
+%%%%
+_suck_up_address_
+
+오
+나의
+%%%%
+_suck_up_adj1_
+
+장엄하고 화려하신
+명망 높으신
+위대하신
+%%%%
+default silenced humanoid
+
+w:6
+@_silenced_humanoid_common_@
+w:4
+@_silenced_humanoid_rare_@
+@The_monster@이(가) 답답한 듯 발을 굴러.
+%%%%
+_friendly_family_
+
+@The_monster@이(가) 말해. "친척이라니 반가워!"
+@The_monster@이(가) 말해. "가족은 언제나 뭉쳐야지, @player_name@!"
+@The_monster@이(가) 말해. "우리 @player_genus@끼리는 서로 도와야 해!"
+@The_monster@이(가) 소리쳐. "@player_genus_plural@이(가) 최고야!"
+@The_monster@이(가) 기쁘게 말해. "너와 난 한 가족이야."
