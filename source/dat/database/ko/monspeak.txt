@@ -5396,3 +5396,110 @@ w:50
 @The_monster@이(가) 말해. "그런데 '좀'이라는 건 대체 무슨 이름이야?"
 @The_monster@이(가) 말해. "'난수의 신'은 또 뭐야?"
 @The_monster@이(가) 말해. "나도 곰 인형을 가진 적 있어. 싫었지."
+%%%%
+Vehumet Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "주문은 주면서 주문서는 안 주는 신이라니, 그게 무슨 신이야?"
+@The_monster@이(가) 말해. "지옥불로 끝장내라고? 그런데 왜 지옥불 주문은 하나뿐이지?"
+@The_monster@이(가) 말해. "베후멧은 싫어."
+@The_monster@이(가) 말해. "지옥불도 싫어."
+@The_monster@이(가) 말해. "그런데 파괴술은 대체 무슨 소용이야?"
+@The_monster@이(가) 말해. "이젠 주문 쓰기가 좀 쉬워졌어?"
+@The_monster@이(가) 말해. "폭발은 싫어."
+@The_monster@이(가) 말해. "능력도 별로 안 주는 신을 위해 모든 걸 폭파해야 한다고?"
+%%%%
+Ashenzari Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "넌 뭐든 다 아는 척하는군. 싫어."
+@The_monster@이(가) 말해. "아무것도 못 한다면 모든 걸 알아 봤자 무슨 소용이야?"
+@The_monster@이(가) 너를 향해 얼굴을 찌푸리며 외쳐. "저주받을!"
+@The_monster@이(가) 말해. "한번은 하늘에 못 박힌 적이 있어. 사실 별일 아니었지만."
+@The_monster@이(가) 말해. "남을 훔쳐보는 놈은 싫어."
+@The_monster@이(가) 말해. "신이 저주를 받으려면 대체 뭘 해야 하지?"
+%%%%
+Dithmenos Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "꽤 음침한 신을 상대하고 있는 모양이군."
+@The_monster@이(가) 말해. "네 미래도 상당히 어두울걸."
+@The_monster@이(가) 눈을 가늘게 뜨고 둘러봐. "아무것도 안 보여. 싫어."
+@The_monster@이(가) 말해. "그림자가 싫어."
+@The_monster@이(가) 말해. "별 없는 밤도 싫어."
+@The_monster@이(가) 말해. "아직도 어둠이 무서워?"
+@The_monster@이(가) 말해. "조심해. 네 그림자에 발이 걸려 넘어질지도 몰라."
+%%%%
+Gozag Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "잔돈 좀 있어?"
+@The_monster@이(가) 말해. "부자들은 싫어."
+@The_monster@이(가) 말해. "친구를 사귀려면 돈까지 줘야 할걸."
+@The_monster@이(가) 말해. "물약이 부족했어?"
+@The_monster@이(가) 말해. "그럼 여기 있던 상점들로는 모자랐다는 거야?"
+@The_monster@이(가) 말해. "저기 금이 있더라. 서둘러 주우러 가야지!"
+@The_monster@이(가) 말해. "그런데 황금의 신과 물약이 무슨 상관이야?"
+@The_monster@이(가) 말해. "네 금을 전부 주면 나도 친구가 되어 줄게."
+%%%%
+Qazlal Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "저 많은 폭풍 구름을 달고 어떻게 밤에 잠을 자?"
+@The_monster@이(가) 말해. "먼지가 저렇게 많은데 앞을 볼 수나 있겠어?"
+@The_monster@이(가) 말해. "폭풍은 싫어."
+@The_monster@이(가) 말해. "재해도 싫어."
+@The_monster@이(가) 말해. "정령들도 싫어."
+@The_monster@이(가) 말해. "뭐라고? 미안, 너무 시끄러워서 못 들었어."
+@The_monster@이(가) 말해. "뭐, 적어도 늘 말동무는 있겠군."
+@The_monster@이(가) 말해. "이런. 방패가 완전히 더러워졌잖아."
+%%%%
+Pakellas Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "발명가들은 싫어."
+@The_monster@이(가) 말해. "그 잡동사니들은 뭐야? 전당포라도 차렸어?"
+@The_monster@이(가) 말해. "오브를 손에 넣으면 뭘 하려고? 실험이라도 할 셈이야?"
+@The_monster@이(가) 말해. "이번에는 [분석|발명]만으로 벗어날 수 없을걸."
+@The_monster@이(가) 말해. "그 [마법봉|램프|부채] 좀 잠깐 빌려줄래? 남는 게 있을 텐데."
+%%%%
+Hepliaklqana Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "가족 모임에 한번 가 본 적이 있어. 정말 싫었지."
+@The_monster@이(가) 말해. "조상들을 왜 기억하려고 해? 이미 죽었는데."
+@The_monster@이(가) 말해. "네 조상이 그렇게 강했다면 왜 죽었겠어?"
+@The_monster@이(가) 말해. "혹시 오브가 어디 있는지 기억해?"
+@The_monster@이(가) 말해. "귀신 이야기라고? 아이고, 무서워라!"
+@The_monster@이(가) 말해. "조상이 언제나 싸우는 법을 안다니 정말 편리하겠군."
+@The_monster@이(가) 말해. "무슨 말을 하려고 했는지 까먹었어. 정말 싫어."
+%%%%
+Uskayaw Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "춤이라고? 됐어, 난 춤 안 춰."
+@The_monster@이(가) 말해. "북은 싫어."
+@The_monster@이(가) 말해. "영창도 싫어."
+@The_monster@이(가) 말해. "발의 시라고? 그냥 발만 쿵쿵 구르잖아."
+@The_monster@이(가) 말해. "팔다리를 그렇게 휘두르는 꼴이 우스꽝스러워."
+@The_monster@이(가) 말해. "그건 춤이 아니야. 좀 요란한 살인 방법이지."
+@The_monster@이(가) 말해. "관객을 폭파해 버리는 춤이 대체 어디 있어?"
+%%%%
+Wu Jian Donald
+
+w:50
+@_generic_Donald_@
+@The_monster@이(가) 말해. "길이라고? 어디에도 길은 안 보이는데."
+@The_monster@이(가) 말해. "벽을 타고 뛰어내린다고? 싫어."
+@The_monster@이(가) 말해. "네가 빙글빙글 도는 걸 보니 어지러워. 싫어."
+@The_monster@이(가) 말해. "그렇게 돌고 뒤집지 말고 그냥 때리면 안 돼?"
+@The_monster@이(가) 말해. "저 늙은이들이 이래라저래라 하는 게 지겹지도 않아?"
+@The_monster@이(가) 말해. "무위가 길이라고? 헛소리 같아."
