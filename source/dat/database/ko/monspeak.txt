@@ -3730,3 +3730,78 @@ VISUAL:@The_monster@이(가) 적을 향해 미친 듯이 손짓해.
 VISUAL:@The_monster@이(가) 분노에 차 하늘을 올려다봐.
 VISUAL:@The_monster@이(가) 사방으로 격렬하게 손짓해.
 VISUAL:@The_monster@이(가) 정의로운 분노로 얼굴을 찌푸려.
+%%%%
+spectator
+
+@_spectator_speech_@
+w:70
+__NONE
+%%%%
+_spectator_speech_
+
+@The_monster@이(가) 너를 향해 @_loudly_or_repeatedly_@ 야유해.
+@The_monster@이(가) @_loudly_or_repeatedly_@ 환호해.
+@The_monster@이(가) 찬성한다며 @_shouts_@.
+@The_monster@이(가) 다른 관전자에게 @_mutters_@.
+VISUAL:@The_monster@이(가) 신나게 손을 흔들어.
+w:5
+VISUAL:@The_monster@이(가) 네 이름이 적힌 깃발을 흔들어.
+w:5
+VISUAL:@The_monster@이(가) 네 적을 응원하는 깃발을 흔들어!
+w:5
+VISUAL:횃불빛에 @The_monster_possessive@ 갑옷이 반짝여.
+w:1
+VISUAL:오카와루의 선택을 받은 @The_monster@이(가) 찬란한 축복의 빛을 발해.
+%%%%
+_deck_of_oddities_card_
+
+거래
+저주
+기근
+집중
+연회
+지니
+나선
+좀
+%%%%
+_misplaced_card_
+
+스페이드 에이스
+조커
+올드 메이드
+매달린 사람
+행복한 다람쥐
+와일드 드로 포
+%%%%
+_deck_of_destruction_line_
+
+@The_monster@이(가) 퇴화 카드를 뽑아. "변이를 일으키는 방법이 이렇게 많다니!"
+@The_monster@이(가) 파괴의 구체 카드를 뽑아. "파괴의 구체는 아프지!"
+@The_monster@이(가) 고통 카드를 뽑아. "강령술은 아프다고!"
+@The_monster@이(가) 폭풍 카드를 뽑아. "천둥 번개가 사방에!"
+@The_monster@이(가) 부식 카드를 뽑아. "산은 아프지!"
+@The_monster@이(가) 폭주 마법 카드를 뽑아. "마법이 잘못될 방법이 이렇게나 많다니!"
+%%%%
+_deck_of_escape_line_
+
+@The_monster@이(가) 구름 카드를 뽑아. "적에게 신선한 공기는 없어!"
+@The_monster@이(가) 영약 카드를 뽑아. "치유와 마법이라니, 신난다!"
+@The_monster@이(가) 추방 카드를 뽑아. "심연은 끔찍한 곳이야!"
+@The_monster@이(가) 무덤 카드를 뽑아. "창문 없는 곳에 갇히긴 싫어!"
+@The_monster@이(가) 속도 카드를 뽑아. "물러설 때와 달릴 때를 구분해야지."
+%%%%
+_deck_of_summoning_line_
+
+@The_monster@이(가) 춤 카드를 뽑아. "무기가 정확히 맞혀 주면 좋겠네!"
+@The_monster@이(가) 원소 카드를 뽑아. "원소 짐승들이 사방에!"
+@The_monster@이(가) 환영 카드를 뽑아. "이제 나도 쌍둥이가 생겼어!"
+@The_monster@이(가) 오망성 카드를 뽑아. "친절한 악마가 나왔으면!"
+@The_monster@이(가) 사수들 카드를 뽑아. "활 쏘는 친구들이 생겼어!"
+@The_monster@이(가) 무리 카드를 뽑아. "벌이다, 벌이 사방에!"
+%%%%
+_deck_of_punishment_line_
+
+@The_monster@이(가) 돼지 카드를 뽑아. "이젠 내가 돼지네!"
+@The_monster@이(가) 고문 카드를 뽑아. "생명력이 반이나 없어졌다고? 으악!"
+@The_monster@이(가) 망령 카드를 뽑아. "기력을 빼앗기는 건 아프지!"
+@The_monster@이(가) 진노 카드를 뽑아. "신들이 벌주는 방법도 참 많다니까!"
