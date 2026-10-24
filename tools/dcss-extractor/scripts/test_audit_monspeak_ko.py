@@ -48,6 +48,39 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         self.assertTrue(audit(src, ko.replace("w:3", "w:4"))["problems"])
         self.assertTrue(audit(src, ko.replace("SOUND:", ""))["problems"])
 
+    def test_lua_conditionals_are_not_display_text(self):
+        src = [
+            "{{",
+            '  if you.race() == "Felid" then',
+            '    return "@_friendly_imp_@"',
+            "  else",
+            '    return "Hello there!"',
+            "  end",
+            "}}",
+        ]
+        translated = [
+            "{{",
+            '  if you.race() == "Felid" then',
+            '    return "@_friendly_imp_@"',
+            "  else",
+            '    return "반가워!"',
+            "  end",
+            "}}",
+        ]
+        self.assertEqual(check_variants(src, translated), [])
+        self.assertIn("line_5_no_hangul", check_variants(src, src))
+        modified = list(translated)
+        modified[1] = '  if you.race() == "Mummy" then'
+        self.assertIn("line_2_lua_control_modified",
+                      check_variants(src, modified))
+
+    def test_lua_dynamic_return_stays_program_code(self):
+        src = ["{{", "return you.genus()", "}}"]
+        self.assertEqual(check_variants(src, src), [])
+        changed = ["{{", "return you.race()", "}}"]
+        # Changing non-displaying Lua expressions must also fail.
+        self.assertIn("line_2_no_hangul", check_variants(src, changed))
+
     def test_counts_and_duplicate_data(self):
         src = "%%%%\nthing\n\n@The_monster@ speaks.\n%%%%\nthing\n\n@The_monster@ shouts.\n%%%%\n"
         ko = "%%%%\nthing\n\n@The_monster@이(가) 말한다.\n%%%%\n"
