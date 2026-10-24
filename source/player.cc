@@ -107,7 +107,7 @@ static void _pruneify()
     if (!you.may_pruneify())
         return;
 
-    mpr("The curse of the Prune overcomes you.");
+    mpr("자두의 저주가 당신을 덮친다.");
     did_god_conduct(DID_CHAOS, 10);
 }
 
@@ -248,7 +248,7 @@ static bool _check_moveto_dangerous(const coord_def& p, const string& msg)
     else if (species::likes_water(you.species) && feat_is_water(env.grid(p)))
     {
         // player normally likes water, but is in a form that doesn't
-        mpr("You cannot enter water in your current form.");
+        mpr("현재 모습으로는 물에 들어갈 수 없어.");
     }
     else
         canned_msg(MSG_UNTHINKING_ACT);
@@ -442,7 +442,7 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
         || mons->type == MONS_BLAZEHEART_CORE)
     {
         if (!quiet)
-            mpr("It's unwise to walk into this.");
+            mpr("이쪽으로 걸어 들어가는 건 현명하지 않아.");
         return false;
     }
 
@@ -561,11 +561,11 @@ static void _enter_water(dungeon_feature_type old_feat,
 
     if (you.slow_in_water())
     {
-        mpr("Moving in this stuff is going to be slow.");
+        mpr("이곳에서는 이동이 느려질 거야.");
         if (you.invisible())
-            mpr("...and don't expect to remain undetected.");
+            mpr("...그리고 들키지 않을 거라 기대하지 마.");
     } else if (you.invisible())
-        mpr("Don't expect to remain undetected while in the water.");
+        mpr("물속에서 들키지 않을 거라 기대하지 마.");
 }
 
 static bool _valid_entanglement_target(const monster& mon, bool check_no_tele)
@@ -761,7 +761,7 @@ void player::finalise_movement(const actor* /*to_blame*/)
            redraw_armour_class = true;
            wield_change = true;
            if (!was_slimy)
-               mpr("Acid dripping from the walls corrodes you.");
+               mpr("벽에서 떨어지는 산성 액체가 당신을 부식시킨다.");
        }
     }
 
@@ -2529,7 +2529,7 @@ static void _handle_hp_drain(int exp)
     calc_hp();
 
     if (drain_removed)
-        mprf(MSGCH_RECOVERY, "Your life force feels restored.");
+        mprf(MSGCH_RECOVERY, "생명력이 회복된 것 같아.");
 }
 
 static void _handle_breath_recharge(int exp)
@@ -2553,7 +2553,7 @@ static void _handle_breath_recharge(int exp)
     {
         you.props.erase(DRACONIAN_BREATH_RECHARGE_KEY);
         gain_draconian_breath_uses(1);
-        mprf(MSGCH_DURATION, "You feel power welling in your lungs.");
+        mprf(MSGCH_DURATION, "폐에서 힘이 솟아나는 것 같아.");
     }
 }
 
@@ -2568,7 +2568,7 @@ static void _handle_cacophony_recharge(int exp)
     if (you.props[CACOPHONY_XP_KEY].get_int() <= 0)
     {
         you.props.erase(CACOPHONY_XP_KEY);
-        mprf(MSGCH_DURATION, "You feel ready to make another cacophony.");
+        mprf(MSGCH_DURATION, "다시 귀를 찢는 소음을 낼 준비가 됐어.");
     }
 }
 
@@ -2586,7 +2586,7 @@ static void _handle_batform_recharge(int exp)
     if (you.props[BATFORM_XP_KEY].get_int() <= 0)
     {
         you.props.erase(BATFORM_XP_KEY);
-        mprf(MSGCH_DURATION, "You feel ready to scatter into bats once more.");
+        mprf(MSGCH_DURATION, "다시 박쥐 떼로 흩어질 준비가 됐어.");
     }
 }
 
@@ -2604,7 +2604,7 @@ static void _handle_watery_grave_recharge(int exp)
     if (you.props[WATERY_GRAVE_XP_KEY].get_int() <= 0)
     {
         you.props.erase(WATERY_GRAVE_XP_KEY);
-        mprf(MSGCH_DURATION, "You feel ready to drown your foes once more.");
+        mprf(MSGCH_DURATION, "다시 적들을 물에 빠뜨릴 준비가 됐어.");
     }
 }
 
@@ -2620,7 +2620,7 @@ static void _handle_banes(int exp)
         you.attribute[ATTR_DOOM] -= div_rand_round(loss, 60);
         if (you.attribute[ATTR_DOOM] <= 0)
         {
-            mprf(MSGCH_DURATION, "You feel the doom around you dissipate.");
+            mprf(MSGCH_DURATION, "주위를 감싸던 파멸의 기운이 흩어진다.");
             you.attribute[ATTR_DOOM] = 0;
         }
 
@@ -2751,7 +2751,7 @@ static bool _felid_extra_life()
         && you.lives < 2)
     {
         you.lives++;
-        mprf(MSGCH_INTRINSIC_GAIN, "Extra life!");
+        mprf(MSGCH_INTRINSIC_GAIN, "추가 목숨을 얻었어!");
         you.attribute[ATTR_LIFE_GAINED] = you.max_level;
         // Should play the 1UP sound from SMB...
         return true;
@@ -2893,7 +2893,7 @@ static void _gain_innate_spells()
                                      oldspell);
                 if (oldindex != end(you.spells))
                 {
-                    mpr("Your capacity for spells is full, and you lose "
+                    mpr("외울 수 있는 주문 수가 가득 차서 이전 주문을 잊었어. "
                         "access to an earlier spell.");
                     del_spell_from_memory(oldspell);
                     spell_vec[j].get_int() = SPELL_NO_SPELL;
@@ -2944,7 +2944,7 @@ static void _revenant_spell_gift()
     // spells. Hey, it's probably not literally impossible.
     if (gift_possibilities.empty())
     {
-        mpr("You remember only oblivion.");
+        mpr("아무것도 기억나지 않아.");
         return;
     }
 
@@ -3062,7 +3062,7 @@ void level_change(bool skip_attribute_increase)
             case SP_NAGA:
                 if (!(you.experience_level % 3))
                 {
-                    mprf(MSGCH_INTRINSIC_GAIN, "Your skin feels tougher.");
+                    mprf(MSGCH_INTRINSIC_GAIN, "피부가 더욱 단단해진 것 같아.");
                     you.redraw_armour_class = true;
                 }
                 break;
@@ -3156,7 +3156,7 @@ void level_change(bool skip_attribute_increase)
                         {
                             if (you.experience_level == level)
                             {
-                                mprf(MSGCH_MUTATION, "You feel monstrous as "
+                                mprf(MSGCH_MUTATION, "괴물 같은 기분이 들어. "
                                      "your demonic heritage exerts itself.");
                                 mark_milestone("monstrous", "discovered their "
                                                "monstrous ancestry!");
@@ -3181,7 +3181,7 @@ void level_change(bool skip_attribute_increase)
                         if (!gave_message)
                         {
                             mprf(MSGCH_INTRINSIC_GAIN,
-                                 "Your demonic ancestry asserts itself...");
+                                 "악마의 혈통이 그 존재를 드러낸다...");
 
                             gave_message = true;
                         }
@@ -3204,7 +3204,7 @@ void level_change(bool skip_attribute_increase)
 
                     case COGLIN_GIZMO_XL:
                     {
-                        mpr("You feel a burst of inspiration! You are finally "
+                        mpr("갑자기 영감이 솟구친다! 드디어 "
                             "ready to make a one-of-a-kind gizmo!");
                         mprf("(press <w>%c</w> on the <w>%s</w>bility menu to create your gizmo)",
                                 get_talent(ABIL_INVENT_GIZMO).hotkey,
@@ -3233,7 +3233,7 @@ void level_change(bool skip_attribute_increase)
 
         if (species::is_draconian(you.species) && !(you.experience_level % 3))
         {
-            mprf(MSGCH_INTRINSIC_GAIN, "Your scales feel tougher.");
+            mprf(MSGCH_INTRINSIC_GAIN, "비늘이 더욱 단단해진 것 같아.");
             you.redraw_armour_class = true;
         }
         if (!updated_maxhp)
