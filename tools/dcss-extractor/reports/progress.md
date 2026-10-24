@@ -87,3 +87,14 @@
 - 별도 게임 대사 DB 전체 조사: 원본 23개 파일에 고유 키 합계 **2,022개**, 한국어 오버레이 2개 파일, 오버레이 대응 키 합계 **179개**. 원본에 이미 한국어인 경우는 별도 집계.
 - 위 156/262(약 59.5%)는 **monspell.txt의 키 대응률**일 뿐, 실제 번역 품질·전체 게임 한국어화율·Windows Tiles 출력 검증률이 아님.
 - 상세 작업 및 후속 과제: [몬스터 주문 대사 검증 보고서](../../docs/translation-review/monspell-audit-20261024.md).
+
+## 2026-10-24 최신 몬스터 대사 한국어화 (PR #8 · #9 병합)
+
+**이 단락의 최신 CI 집계가 상단의 과거 스냅샷보다 우선합니다.**
+
+- [PR #8](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/8): `monspell.txt`에 추가 89개 대사 키를 번역해 **245/262개** 대응. 나머지 **12개 키 참조 + 5개 `__NONE`**으로, 독립적인 영문 대사 본문이 남은 키는 **0개**. [CI](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40082885965) 통과.
+- [PR #9](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/9): `monspeak.txt`에 **65개 키** 한국어 대사 오버레이 작성. 원문 **731개 고유 키(732개 항목, 중복 1건)** 대비 잔여 666개. 동작·전투·혼란·침묵·도주·사제·경비병·임프·플레이어 유령의 대사를 포함. [CI](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40084216618) 통과.
+- 게임 대사 DB 23개 원문 파일의 총 고유 키 합계 **2,022개**. 별도 한국어 오버레이 3개 파일, 원문과 대응하는 키 합계 **333개**(신 칭호 23 + 주문 대사 245 + 일반 대사 65). 원본 자체에 포함된 한국어는 별개이며 **전체 번역률은 아님**.
+- 전용 몬스터 대사 정적 검사(`audit_monspeak_ko.py`)는 필수 치환 변수·`VISUAL:`/`SOUND:`·`w:` 가중치·랜덤 대사 선택·변형 문장 수를 확인한다. 최신 구조 검사 오류 **0건**.
+- 남은 주요 번역 대상: `monspeak.txt` 추가 일반/고유 대사, `wpnnoise.txt` 무기 소음, `godspeak.txt` 영어 잔존, Lua와 동적 조사 등. Windows Tiles 실제 렌더링은 미검증.
+- 최신 자세한 기록: [monspell 완료 현황](../../docs/translation-review/monspell-audit-20261024.md).
