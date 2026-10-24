@@ -31,7 +31,7 @@
     },
     "03": {
       "status": "in_progress",
-      "detail": "Description pairs + 23 gameplay text DB files. 3 ko overlays: godname 23, monspell 245, monspeak 216 localized keys; other databases and Lua still need review."
+      "detail": "23 description pairs plus 23 source text databases. 4 Korean overlays: godname 23, monspell 245, monspeak 260 and wpnnoise 18 source keys. Remaining text DBs include mixed Korean."
     },
     "04": {
       "status": "in_progress",
@@ -43,7 +43,7 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "P0 C++ gameplay output integrated; monspell 245/262 keys (17 alias/__NONE); monspeak 216/731 keys with 127/379 additional key/variants in PR11. Dynamic particle handling and game runtime unverified."
+      "detail": "P0 C++ gameplay messages integrated; monspell 245/262 (17 alias or __NONE), monspeak 260/731, wpnnoise 18/65 keys translated. Live Windows Tiles, Lua and variable grammar not validated."
     },
     "07": {
       "status": "in_progress",
@@ -135,13 +135,13 @@
       "note": "Direct literal callsite heuristics only. English review candidates were 202 at first audit and 46 at final PR4 audit. Not complete untranslated count or game translation rate."
     },
     "gameplay_database_audit": {
-      "source_ref": "ccb53ddde06b462dd2eec2d4b6157089a55bed84",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40088380643",
+      "source_ref": "f98869c9271522bd2a80e4229756a5a7625c14f2",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40090108540",
       "status": "passed",
       "top_level_files": 23,
       "original_unique_keys_sum": 2022,
-      "localized_files": 3,
-      "localized_matched_keys": 484,
+      "localized_files": 4,
+      "localized_matched_keys": 546,
       "top_level_korean_lines": 301,
       "top_level_latin_only_lines": 13242,
       "godname_localized_entries": 23,
@@ -151,9 +151,12 @@
       "monspell_remaining_entries": 17,
       "monspeak_source_unique_keys": 731,
       "monspeak_source_duplicate_occurrences": 1,
-      "monspeak_localized_entries": 216,
-      "monspeak_remaining_entries": 515,
-      "notes": "Database overlay key matches (23 godname, 245 monspell, 216 monspeak) do not measure game-wide translation rate. Remaining monspell 17 keys are aliases or __NONE. Other source DB files may already contain Korean."
+      "monspeak_localized_entries": 260,
+      "monspeak_remaining_entries": 471,
+      "notes": "546 matched keys = 23 godname + 245 monspell + 260 monspeak + 18 wpnnoise; game-wide translation % cannot be inferred. Source includes existing Korean text; 17 monspell remainder keys alias or __NONE.",
+      "wpnnoise_source_unique_keys": 65,
+      "wpnnoise_localized_entries": 18,
+      "wpnnoise_remaining_entries": 47
     },
     "monspell_korean_translation": {
       "source_ref": "f37e093223b844291a7203c78b514f6c0585166b",
@@ -177,22 +180,38 @@
       "note": "Every independent text-bearing monspell key has a Korean body. Does not certify runtime output or Korean particles."
     },
     "monspeak_korean_translation": {
-      "source_ref": "ccb53ddde06b462dd2eec2d4b6157089a55bed84",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40088380643",
-      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/11",
+      "source_ref": "f98869c9271522bd2a80e4229756a5a7625c14f2",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40090108540",
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/12",
       "source_entries": 732,
       "source_unique_keys": 731,
       "source_duplicate_key_occurrences": 1,
-      "localized_keys": 216,
-      "matching_keys": 216,
-      "remaining_keys": 515,
+      "localized_keys": 260,
+      "matching_keys": 260,
+      "remaining_keys": 471,
       "added_keys_in_pr11": 127,
       "new_translated_variants_in_pr11": 379,
       "issues": 0,
       "unit_tests_passed": 5,
       "runtime_checked": false,
-      "scope": "Deity player ghosts, 26 Frederick god-specific victory taunts, unique monster reactions, common/rare ghost and fleeing humanoid speech, ambient visual/sound descriptions.",
-      "note": "Structural validator passes, including w: selection weights and English-only grammar tag replacements; real Windows Tiles language rendering and name particles remain unchecked. Original _laughs_ is duplicated."
+      "scope": "Includes player ghost classes, Donald and Dowan/Duvessa, Harold, Maurice, Nergalle, Beogh converts, orc priests and apostles.",
+      "note": "Combined overlay validated for markers, weights and variants, but translated dynamic particles and runtime Windows Tiles messages untested.",
+      "added_keys_in_pr12": 44,
+      "new_translated_variants_in_pr12": 150
+    },
+    "wpnnoise_korean_translation": {
+      "source_ref": "f98869c9271522bd2a80e4229756a5a7625c14f2",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40090108540",
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/12",
+      "source_unique_keys": 65,
+      "localized_keys": 18,
+      "remaining_keys": 47,
+      "translated_variants": 192,
+      "structural_issues": 0,
+      "runtime_checked": false,
+      "file": "source/dat/database/ko/wpnnoise.txt",
+      "scope": "Shield of the gong, frostbite axe, Condemnation, weapon chatter and rare chatter, weapon noises, singing sword silence and battle screaming.",
+      "note": "New database overlay and reusable Python/CI audit; 18/65 is file key match only."
     }
   },
   "current_qa_work": {
@@ -238,12 +257,25 @@
       "pr10": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/10",
       "pr11": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/11",
       "source_unique_keys": 731,
-      "localized_keys": 216,
-      "remaining_keys": 515,
+      "localized_keys": 260,
+      "remaining_keys": 471,
       "added_keys_in_pr11": 127,
       "variants_added_in_pr11": 379,
-      "report": "docs/translation-review/monspeak-batch-20261024.md",
-      "next": "Translate unhandled common humanoid statuses and unique monster Lua-dependent dialogues; audit wpnnoise and mixed-language godspeak."
+      "report": "docs/translation-review/monspeak-wpnnoise-batch-20261024.md",
+      "next": "Continue 471 unpaired speech keys, inspect alias/no-output entries and dynamic Lua; translate remaining 47 weapon chatter keys and godspeak mixed English/Korean.",
+      "pr12": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/12",
+      "added_keys_in_pr12": 44,
+      "variants_added_in_pr12": 150
+    },
+    "wpnnoise_database": {
+      "status": "merged",
+      "pr12": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/12",
+      "source_unique_keys": 65,
+      "localized_keys": 18,
+      "remaining_keys": 47,
+      "translated_variants": 192,
+      "report": "docs/translation-review/monspeak-wpnnoise-batch-20261024.md",
+      "next": "Translate longer singing sword songs and special item chatter."
     }
   },
   "runtime_verification": {
