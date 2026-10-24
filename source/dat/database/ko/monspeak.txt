@@ -434,3 +434,153 @@ VISUAL:@The_monster@이(가) 숨을 곳을 찾는다.
 
 @The_monster@이(가) 도움을 청하며 기도한다.
 %%%%
+Short Blades player ghost
+
+@The_monster@이(가) 말한다. "칼날의 길이보다 쓰는 솜씨가 중요한 법이지."
+
+@The_monster@이(가) 말한다. "내 짧은 칼을 비웃어? 난 네 차가운 시체를 비웃어 주마."
+
+VISUAL:@The_monster@이(가) 눈으로 따라잡기 힘들 만큼 빠르게 칼을 이 손 저 손으로 옮긴다.
+%%%%
+Long Blades player ghost
+
+VISUAL:@The_monster@이(가) 언제든 휘두를 태세로 칼을 든다.
+
+@The_monster@이(가) 말한다. "칼로 살면 칼로 죽는 법이지."
+%%%%
+Axes player ghost
+
+@The_monster@이(가) 말한다. "널 둘로 쪼개 주마!"
+
+@The_monster@이(가) 중얼거린다. "다들 베갯잇처럼 보여..."
+
+@The_monster@이(가) 말한다. "피는 너무 많이 흘리지 마."
+%%%%
+Maces & Flails player ghost
+
+@The_monster@이(가) 말한다. "내가 끝내고 나면 넌 바닥에서 쓸어 담아야 할걸!"
+
+VISUAL:@The_monster@이(가) 가까이 있는 벌레를 짓뭉개고 웃는다.
+
+@The_monster@이(가) 말한다. "널 곤죽으로 만드는 건 아프겠지. 그 뒤에는? 하나도 안 아플 거야! 약속해!"
+%%%%
+Polearms player ghost
+
+@The_monster@이(가) 말한다. "꼬챙이에 꿴 @foe_genus@ 하나, 금방 나갑니다."
+
+@The_monster@이(가) 말한다. "네 머리를 창끝에 꽂아 두면 이 바닥과 잘 어울리겠군."
+
+@The_monster@이(가) 말한다. "네 머리는 내 창끝과 참 잘 어울리겠어."
+%%%%
+Staves player ghost
+
+@The_monster@이(가) 말한다. "약해 빠진 모험가를 막는 데는 몽둥이가 최고지."
+
+VISUAL:@The_monster@이(가) 육척봉을 빙글빙글 돌린다.
+
+@The_monster@이(가) 당신의 두개골을 부숴 버리겠다고 위협한다. @player_only@
+%%%%
+Armour player ghost
+
+@The_monster@이(가) 말한다. "넌 날 해칠 수 없어!"
+
+@The_monster@이(가) 말한다. "난 무적이야!"
+
+@The_monster@이(가) 말한다. "내 몸은 강철로 만들어졌어!"
+%%%%
+Dodging player ghost
+
+@The_monster@이(가) 말한다. "빗나갔지!"
+
+@The_monster@이(가) 몸을 숙이며 말한다. "너무 높았어!"
+
+@The_monster@이(가) 피하면서 말한다. "너무 느려!"
+%%%%
+Shields player ghost
+
+@The_monster@이(가) 말한다. "날 때릴 수는 있어도 다치게 할 수는 없지."
+%%%%
+Hexes player ghost
+
+@The_monster@이(가) 말한다. "곧 내 힘에 저항할 수 없게 될 거야."
+
+@The_monster@이(가) 말한다. "내가 손가락을 튕기면 넌 네가 닭인 줄 알게 될걸."
+%%%%
+Summonings player ghost
+
+@The_monster@이(가) 말한다. "혼자 모험하는 건 위험해."
+
+VISUAL:@The_monster@이(가) 모자에서 쿼카를 꺼낸다.
+
+@The_monster@이(가) 적을 가리키며 외친다. "공격해!"
+
+@The_monster@이(가) 말한다. "친구가 있다는 건 좋은 일이야."
+%%%%
+Necromancy player ghost
+
+@The_monster@이(가) 말한다. "죽으면 고통도 끝나지."
+
+@The_monster@이(가) 말한다. "걱정 마. 네 시체를 허투루 쓰진 않을 테니."
+
+@The_monster@이(가) 말한다. "널 죽인 다음에 한 번 더 죽여 주지."
+
+@The_monster@이(가) 말한다. "내 주문에는 네 뼈가 필요해."
+%%%%
+Translocations player ghost
+
+VISUAL:@The_monster@이(가) 현실과 비현실 사이에서 깜박거린다.
+
+VISUAL:@The_monster@의 몸이 공간이동 에너지 구름에 둘러싸인다.
+
+VISUAL:@The_monster@이(가) 적을 향해 눈을 깜박인다.
+%%%%
+Fire Magic player ghost
+
+@The_monster@이(가) 말한다. "살이 타는 냄새는 정말 좋아."
+
+@The_monster@이(가) 말한다. "화장해 줄까?"
+
+@The_monster@이(가) 말한다. "걱정 마. 곧 따뜻해질 테니까."
+%%%%
+Ice Magic player ghost
+
+VISUAL:등골이 서늘해진다. @player_only@
+
+@The_monster@이(가) 말한다. "다음에 널 만날 괴물이 냉동식품을 좋아하면 좋겠네!"
+
+@The_monster@이(가) 말한다. "널 본뜬 얼음 조각상이 여기 있으면 꽤 멋지겠군."
+%%%%
+Air Magic player ghost
+
+VISUAL:@The_monster@의 몸을 불꽃이 둘러싼다.
+
+@The_monster@이(가) 말한다. "이번 싸움은 정말 짜릿하겠어."
+
+@The_monster@이(가) 말한다. "저항해 봐야 소용없어!"
+%%%%
+Earth Magic player ghost
+
+@The_monster@이(가) 말한다. "굴러가는 돌에도 @foe_name@이(가) 잔뜩 묻지."
+
+@The_monster@이(가) 말한다. "온 땅이 내 명령을 따른다."
+
+VISUAL:땅이 잠깐 흔들린다.
+%%%%
+Evocations player ghost
+
+@The_monster@이(가) 말한다. "그 마법봉이 올바른 방향을 향하고 있는 건 맞아?"
+%%%%
+Shapeshifting player ghost
+
+@The_monster@이(가) 말한다. "형태는 공이고, 공은 곧 형태지."
+
+VISUAL:@The_monster@이(가) 잠시 설명할 수 없을 정도로 @_form_@처럼 보인다.
+
+VISUAL:@The_monster@이(가) 잠시 @_form_@으로 변했다가 돌아온다.
+%%%%
+Forgecraft player ghost
+
+@The_monster@이(가) 말한다. "내 작품을 보고 절망해라!"
+
+@The_monster@이(가) 말한다. "내 피조물들은 너보다 오래 남을 거야."
+%%%%
