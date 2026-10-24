@@ -1725,3 +1725,163 @@ VISUAL:@The_monster@이(가) 가까스로 평정심을 되찾으려 한다.
 @The_monster@이(가) @_mutters_@. "재수가 이렇게 없을 수가!"
 
 VISUAL:@The_monster@이(가) 잃어버린 용기를 다시 끌어모으려 한다.
+%%%%
+Fighting player ghost
+
+@The_monster@이(가) 자랑한다. "네가 본 적도 없는 괴물들을 내가 쓰러뜨렸지."
+
+VISUAL:@The_monster@이(가) 전투 자세를 취한다.
+
+@The_monster@이(가) 말한다. "내 필승 전술 앞에 넌 패배할 수밖에 없어."
+
+@The_monster@이(가) 말한다. "싸우다 죽을 각오가 됐나? 난 그랬지!"
+
+@The_monster@이(가) 비웃는다. "그걸 싸움이라고 하는 거야?"
+
+@The_monster@이(가) 웃는다. "네가 오브를 찾을 수 있을 것 같아? 난 이미 손에 넣었었지. 그러고는 다시 훔치려고 일부러 내줬다고!"
+%%%%
+Stealth player ghost
+
+VISUAL:@The_monster@이(가) 몰래 빠져나가려 한다.
+
+VISUAL:@The_monster@이(가) 주변 환경에 몸을 숨기려 한다.
+
+VISUAL:@The_monster@이(가) 너무 조용히 속삭여서 @objective@의 말이 전혀 들리지 않는다.
+
+VISUAL:잠시 @the_monster@의 위치를 놓친다.
+
+@The_monster@이(가) 속삭인다. "아주, 아주 조용히 해. 지금 @player_genus_plural@을(를) 사냥 중이거든." @player_only@
+
+VISUAL:잠시 @the_monster@이(가) 그림자에 섞여 사라진다.
+%%%%
+Unarmed Combat player ghost
+
+@The_monster@이(가) 비웃는다. "무기는 약한 자들이나 쓰는 거지."
+
+VISUAL:@The_monster@이(가) [왼쪽|오른쪽]으로 속임 동작을 취한다.
+
+VISUAL:@The_monster@이(가) 격투 자세를 취한다.
+
+@The_monster@이(가) 말한다. "난 맨손으로 뼈를 부러뜨리고 두개골을 깨부수지."
+
+VISUAL:@The_monster@이(가) 당신을 향해 주먹을 휘두른다. @player_only@
+
+VISUAL:@The_monster@이(가) 손가락을 구부렸다 편다.
+%%%%
+Spellcasting player ghost
+
+@The_monster@이(가) 말한다. "어떤 상황에든 알맞은 주문을 준비해 뒀지."
+
+@The_monster@이(가) 말한다. "지식이 곧 힘이라는 사실을 내가 증명하지."
+
+@The_monster@이(가) 말한다. "잘 보고 놀랄 준비나 해!"
+
+@The_monster@이(가) 말한다. "죽은 뒤로도 연습을 꽤 많이 했거든."
+
+VISUAL:@The_monster_possessive@ 손끝에서 빛이 나기 시작한다.
+
+VISUAL:@The_monster@이(가) 집중하며 눈살을 찌푸린다.
+
+@The_monster@이(가) 말한다. "내가 너보다 똑똑하다고!"
+%%%%
+Invocations player ghost
+
+@The_monster@이(가) 신들을 저주한다.
+
+@The_monster@이(가) 말한다. "신들을 믿었다가 결국 이런 꼴이 됐어."
+
+@The_monster@이(가) 상대를 비웃는다. "이제 네 신은 어디 있지?"
+
+@The_monster@이(가) 말한다. "쳇, 신들은 죄다 쓸모없어!"
+
+@The_monster@이(가) 중얼거린다. "약속한 사후 세계가 고작 이거라니."
+
+VISUAL:@The_monster@이(가) 기도한다.
+%%%%
+orb Crazy Yiuf
+
+@The_monster@이(가) 말한다. "나도 데려가!"
+
+@The_monster@이(가) 말한다. "찾아냈구나!"
+
+@The_monster@이(가) 말한다. "여기서 날 꺼내 줘."
+
+@The_monster@이(가) 말한다. "날 데리러 돌아왔구나."
+%%%%
+Donald banished
+
+w:100
+
+__NONE
+
+w:1
+
+@The_monster@이(가) 말한다. "심연으로 추방이라니. 정말 싫어."
+%%%%
+Erolcha banished
+
+__NONE
+
+w:1
+
+@The_monster@이(가) 소리친다. "잠깐! 그건 에롤차가 하려던 건데!"
+%%%%
+Louise banished
+
+__NONE
+
+w:1
+
+@The_monster@이(가) 말한다. "전에도 돌아왔잖아... 이번에도 돌아올 거야!"
+%%%%
+fleeing Dowan
+
+VISUAL:@The_monster@이(가) 공포에 질려 운다.
+%%%%
+Xtahua riddle
+
+@The_monster@이(가) 당신에게 포효한다. "그 작은 먹잇감 주제에 말은 거창하군!"
+%%%%
+Nobody triumph
+
+@The_monster@이(가) 쉰 목소리로 말한다. "이제... 너도... 아무도 아니야."
+%%%%
+orb spider charge
+
+@The_monster@이(가) 순수한 에너지로 이루어진 실을 뽑아낸다.
+
+@The_monster@이(가) 기묘한 에너지로 맥동한다.
+
+@The_monster@이(가) 실을 엮어 눈부시게 빛나는 구체를 만들기 시작한다.
+%%%%
+silenced cognitogaunt
+
+VISUAL:@The_monster@이(가) 오래전에 사라진 밤의 잔광으로 빛난다.
+%%%%
+death cob
+
+w:1
+
+죽음의 옥수수 속대가 썰렁한 농담을 한다.
+
+w:1999
+
+__NONE
+%%%%
+raven
+
+w:100
+
+__NONE
+
+w:2
+
+@The_monster@이(가) 까악거리며 외친다. "다시는!"
+%%%%
+obsidian bat
+
+VISUAL:@The_monster@이(가) 잠시 던전의 어둠 속으로 날아든다.
+
+w:40
+
+__NONE
