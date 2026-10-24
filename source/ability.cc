@@ -2166,8 +2166,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         {
             if (!quiet)
             {
-                mprf("In %d experience levels, you will have learned enough to "
-                     "assemble a masterpiece.", (COGLIN_GIZMO_XL - you.experience_level));
+                mprf("경험 레벨이 %d만큼 더 오르면 걸작을 조립할 수 있게 돼.", (COGLIN_GIZMO_XL - you.experience_level));
             }
             return false;
         }
@@ -2332,7 +2331,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         {
             if (!quiet)
             {
-                mprf("%s is still trapped in memory!",
+                mprf("%s의 기억은 아직 봉인되어 있어!",
                      hepliaklqana_ally_name().c_str());
             }
             return false;
@@ -3044,7 +3043,7 @@ static vector<monster*> _get_siphon_victims(bool known)
 static spret _siphon_essence(bool fail)
 {
     if (_get_siphon_victims(true).empty()
-        && !yesno("There are no victims visible. Siphon anyway?", true, 'n'))
+        && !yesno("보이는 대상이 없어. 그래도 정수를 흡수할까?", true, 'n'))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -3254,7 +3253,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
             if (beogh_cancel_leaving_floor())
                 return spret::abort;
 
-            if (yesno("Are you sure you want to shaft yourself?", true, 'n'))
+            if (yesno("정말 스스로 수직 통로를 만들어 내려갈까?", true, 'n'))
                 start_delay<ShaftSelfDelay>(1);
             else
             {
@@ -3313,7 +3312,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
 
             if (god_hates_item(*wpn))
             {
-                mprf(MSGCH_WARN, "%s forbids using such a weapon!",
+                mprf(MSGCH_WARN, "%s의 계율 때문에 이런 무기는 사용할 수 없어!",
                      god_name(you.religion).c_str());
                 return spret::abort;
             }
@@ -3871,7 +3870,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         const item_def* const weapon = you.weapon();
         const string msg = weapon ? weapon->name(DESC_YOUR)
                                   : ("your " + you.hand_name(true));
-        mprf(MSGCH_DURATION, "A thick mucus forms on %s.", msg.c_str());
+        mprf(MSGCH_DURATION, "%s에 두꺼운 점액층이 형성된다.", msg.c_str());
         you.increase_duration(DUR_SLIMIFY,
                               random2avg(you.piety() / 4, 2) + 3, 100);
         break;
@@ -4055,7 +4054,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         return spret::success;
 
     case ABIL_RENOUNCE_RELIGION:
-        if (yesno("Really renounce your faith, foregoing its fabulous benefits?",
+        if (yesno("정말 신앙을 버리고 그 혜택도 모두 포기할까?",
                   false, 'n')
             && yesno("Are you sure?", false, 'n'))
         {
