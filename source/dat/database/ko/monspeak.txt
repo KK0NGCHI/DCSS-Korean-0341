@@ -4702,3 +4702,42 @@ VISUAL:@The_monster@이(가) 적에게 윙크해… 아니면 그냥 눈을 깜�
 @The_monster@이(가) 말해. "사람들은 날 외눈박이 우루그라 부르지. 너는 곧 머리 없는 @player_name@(으)로 불리게 될 거야." @player_only@
 @The_monster@이(가) 소리쳐. "넌 이미 죽은 목숨이야."
 @The_monster@이(가) 중얼거려. "가끔은 그놈들이 전부 진짜 하피인지 궁금하단 말이지."
+%%%%
+goblin sharper
+
+VISUAL:@The_monster@이(가) 휴대용 제단을 만지작거려.
+VISUAL:@The_monster@이(가) 카드 뭉치 하나를 섞어.
+VISUAL:@The_monster@이(가) 카드 몇 장을 부채처럼 펼쳐.
+VISUAL:@The_monster_possessive@ 카드 뭉치가 잠시 기묘한 무지갯빛으로 빛나.
+@The_monster@이(가) 읊조려. "패를 잡을 때와 내려놓을 때를 알아야지…"
+@The_monster@이(가) @possessive_God@을(를) 찬양해.
+@The_monster@이(가) 씩 웃어. "이 많은 카드! 전부 @my_God@ 덕분이지!"
+@The_monster@이(가) 보험 가입을 거부해.
+w:20
+@_deck_of_destruction_line_@
+w:20
+@_deck_of_escape_line_@
+w:20
+@_deck_of_summoning_line_@
+w:10
+@_deck_of_punishment_line_@
+w:5
+@The_monster@이(가) @_deck_of_oddities_card_@ 카드를 뽑아. "잠깐, 이건 여기 있을 카드가 아닌데!"
+w:5
+@The_monster@이(가) @_misplaced_card_@ 카드를 뽑아. "어라, 이게 어디서 나왔지?"
+w:5
+@The_monster@이(가) 카드를 잘못 집어 떨어뜨려. "이런!"
+w:1
+@The_monster@이(가) 말해. "와이번 기수가 되고 싶었는데, @my_God@께서는 다른 계획이 있으셨나 봐!"
+%%%%
+orc_apostle_unbanished
+
+VISUAL:@The_monster@이(가) 장화에서 잘린 촉수 하나를 꺼내며 깊이 한숨 쉬어.
+@The_monster@이(가) 씩 웃어. "형태 없는 자들도 베오그의 선택받은 자는 막지 못해!"
+@The_monster@이(가) 승리감에 차 외쳐. "이제 누가 웃고 있지?"
+@The_monster@이(가) 몸서리쳐. "잠깐 동안 머리가 팔꿈치에 붙어 있었던 것 같아…"
+@The_monster@이(가) 말해. "이제 별들을 전처럼 바라볼 수는 없겠어."
+@The_monster@이(가) 외쳐. "또 해 봐! 어디 다시 해 보라고!"
+w:1
+@The_monster@이(가) 조용히 중얼거려. "나비 1마리였을 뿐인데…"
+VISUAL:@The_monster@이(가) 비틀거리면서도 너에게 엄지를 치켜세워.
