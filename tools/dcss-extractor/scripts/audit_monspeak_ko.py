@@ -25,6 +25,9 @@ LUA_DYNAMIC_RETURN = re.compile(r"^return\s+you\.[a-zA-Z_]\w*\(")
 def lua_control_line(line):
     """Only a bare brace/delimiter is non-prose; '}} at you' has text."""
     stripped = line.strip()
+    # A closing delimiter may also end an interpolated sentence.
+    if "}}" in stripped and not stripped.startswith("}}"):
+        return False
     return (stripped == "{{"
             or bool(re.fullmatch(r"\}\}(?:\s+@[^@\s]+@)?", stripped))
             or bool(LUA_CONTROL.match(stripped)))
