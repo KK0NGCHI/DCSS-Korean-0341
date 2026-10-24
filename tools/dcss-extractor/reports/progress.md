@@ -78,3 +78,12 @@
 - DB 상세: [database-audit-20261024.md](../../docs/translation-review/database-audit-20261024.md).
 
 **다음 작업:** 남은 P0 직접 출력 후보 46곳의 문맥 검수, 동적 조사 결합, `monspeak.txt` 730개 키, `monspell.txt` 260개 키, `wpnnoise.txt` 65개 키 등 데이터 대사 한국어화. 기존 원본에 삽입된 한국어는 보존하고 KO 오버레이로 누락분을 병합. Windows Tiles 및 `language = ko` 출력은 별도 실행 검증.
+
+## 2026-10-24 몬스터 주문 대사 대량 번역 — 병합 완료
+
+- [PR #6](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/6): `source/dat/database/ko/monspell.txt` 154개 키 한국어 오버레이와 변형/토큰/가중치 자동 감사 추가.
+- [PR #7](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/7): 실제 게임 로더가 `%%%%%`도 구분자로 인정한다는 점을 반영하여 감사 도구의 키 집계 오류 수정, 누락 대사 2개 추가.
+- [최종 검증](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40081571286): 원문 키 **262개**, 한국어 **156개**, 잔여 **106개**, 원문과 불일치·중복·빈 본문·필수 마커/가중치 오류 **0건**.
+- 별도 게임 대사 DB 전체 조사: 원본 23개 파일에 고유 키 합계 **2,022개**, 한국어 오버레이 2개 파일, 오버레이 대응 키 합계 **179개**. 원본에 이미 한국어인 경우는 별도 집계.
+- 위 156/262(약 59.5%)는 **monspell.txt의 키 대응률**일 뿐, 실제 번역 품질·전체 게임 한국어화율·Windows Tiles 출력 검증률이 아님.
+- 상세 작업 및 후속 과제: [몬스터 주문 대사 검증 보고서](../../docs/translation-review/monspell-audit-20261024.md).
