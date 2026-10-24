@@ -1052,3 +1052,105 @@ the Shining One Frederick triumphant
 @The_monster@이(가) 말한다. "2배 밝게 빛나는 모험가는 2배 빨리 타 버리는 법이지."
 
 @Frederick@
+%%%%
+Blorkula the orcula killed
+
+블로르큘라의 무너진 몸에서 옅은 무지갯빛 안개가 피어올랐다가 흩어진다.
+%%%%
+Boris triumphant
+
+@The_monster@이(가) 말한다. "이제 너와 마주칠 일도 없겠군."
+
+@The_monster@이(가) 말한다. "이번에도 되살아나는 꼴을 한번 보고 싶군."
+
+@The_monster@이(가) 말한다. "이번 일은 오래도록 기억해 두지."
+%%%%
+Cassandra killed
+
+@The_monster@이(가) 마지막 숨을 몰아쉬며 말한다. "내가... 경고했잖아..."
+
+@The_monster@이(가) 마지막 숨을 몰아쉬며 말한다. "아무도... 들어주지 않아..."
+
+@The_monster@이(가) 마지막 숨을 몰아쉬며 말한다. "네 운명은... 네가 자초한 거야..."
+%%%%
+friendly Cassandra
+
+@The_monster@이(가) 당신에게 모험을 다시 생각해 보라고 간청한다.
+
+@The_monster@이(가) 간청한다. "친구의 말조차 듣지 않고 이 일을 끝내지 않을 건가요?"
+
+@The_monster@이(가) 말한다. "계속 나아간다면 나조차 당신을 구할 수 없어요."
+%%%%
+Donald killed
+
+__NONE
+
+@The_monster@이(가) 말한다. "죽는군. 정말 싫어."
+%%%%
+Edmund triumphant
+
+@The_monster@이(가) 말한다. "이걸 보면 우리 형도 생각이 달라지겠지!"
+
+@The_monster@이(가) 말한다. "낫으로도 이런 일을 할 수 있나 어디 보자!"
+
+@The_monster@이(가) 투덜댄다. "이제는 나한테도 관심을 좀 가져 줘야 할 텐데!"
+%%%%
+Erica triumphant
+
+@The_monster@이(가) 즐거움을 참지 못하고 꿀렁거리며 웃기 시작한다.
+%%%%
+Eustachio triumphant
+
+VISUAL:@The_monster@이(가) 콧수염을 빙빙 만다.
+
+@The_monster@이(가) 말한다. "명예도 모르는 악당들의 최후란 이런 법이지."
+%%%%
+Gastronok triumphant
+
+@The_monster@이(가) 부글거리며 말한다. "이제 먹어 볼까!"
+
+@The_monster@이(가) 부글거리며 말한다. "드디어! 배고파 죽겠어!"
+
+@The_monster@이(가) 부글거리며 말한다. "저 마법사만큼 맛이 좋을지 궁금하군."
+%%%%
+Grinder triumphant
+
+@The_monster@이(가) 말한다. "이제부터가 진짜 재미인데!"
+
+@The_monster@이(가) 말한다. "이봐, 아직 고문이 안 끝났다고!"
+
+@The_monster@이(가) 한숨 쉰다. "벌써 죽었어? 돈 돌려줘."
+%%%%
+ijyb triumphant
+
+@The_monster@이(가) 소리친다. "다음 실험 시작할 시간!"
+
+@The_monster@이(가) 끙끙거린다. "쓸 만한 부하 구하기 정말 힘들어!"
+%%%%
+Jeremiah triumphant
+
+@The_monster@이(가) 묻는다. "무슨 일이야? 설마... 죽은 거야?"
+
+@The_monster@이(가) 울부짖는다. "누굴 죽이려던 게 아니야! 난 살인자가 아니라고!"
+
+@The_monster@이(가) 묻는다. "끝난 거야? 이제 깨어나도 돼?"
+
+@The_monster@이(가) 말한다. "오, 두려운 주인이여. 당신의 뜻이 이루어졌습니다."
+%%%%
+Jory killed
+
+@The_monster@이(가) "안 돼, 안 돼!" 하고 비명을 지른 뒤 피구름이 되어 폭발한다!
+%%%%
+silent Jory killed
+
+VISUAL:@The_monster@이(가) 잠시 공포에 질려 당신을 바라보다 피구름이 되어 폭발한다!
+%%%%
+Mara riddle
+
+@The_monster@이(가) 비웃는다. "네 눈앞에 그보다 훨씬 어려운 수수께끼를 펼쳐 보이마."
+%%%%
+friendly Natasha
+
+@The_monster@이(가) 야옹거린다.
+
+@The_monster@이(가) 가르랑거린다.
