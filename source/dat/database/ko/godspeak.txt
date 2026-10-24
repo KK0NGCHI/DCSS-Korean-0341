@@ -987,3 +987,313 @@ w:3
 w:3
 
 조트의 힘이 너를 붙잡자 너는 검은 안개로 녹아내려.
+%%%%
+
+Xom impromptu dance
+
+너는 즉흥적으로 @dance_name@ 춤을 춰.
+
+너는 즉흥적으로 @acrobatic_move_name@ 동작을 해.
+
+너는 저도 모르게 발뒤꿈치를 @_xom_number_@번 맞부딪쳐.
+
+너는 저도 모르게 @feet@으로 바닥을 @_xom_number_@번 쿵쿵 굴러.
+%%%%
+
+dance_name
+
+발레
+
+차차차
+
+판당고
+
+지그
+
+라인 댄스
+
+마카레나
+
+탱고
+
+탭댄스
+
+왈츠
+%%%%
+
+acrobatic_move_name
+
+@hand@으로 물구나무서기
+
+옆돌기
+
+피루엣
+
+공중제비
+%%%%
+
+Xom random body part singular
+
+네 @random_body_part_internal_singular@이 잠시 몸 밖으로 빠져나왔다가 다시 융합돼!
+
+네 @random_body_part_external_singular@이 잠시 몸에서 튀어나왔다가 다시 붙어!
+%%%%
+
+Xom random body part plural
+
+네 @random_body_part_internal_plural@이 잠시 몸 밖으로 빠져나왔다가 다시 융합돼!
+
+네 @random_body_part_external_plural@이 잠시 몸에서 튀어나왔다가 다시 붙어!
+%%%%
+
+Xom unarmed two hands
+
+@Xom unarmed one hand@
+
+화려한 지팡이 2개가 잠깐 @hands@에 나타나.
+
+너는 저도 모르게 @hands@을 @_xom_number_@번 마주쳐 박수를 쳐.
+%%%%
+
+Xom repel stairs
+
+좀이 주변 풍경을 바꿔.
+
+좀이 근처 @staircase@을 쿡 찔러.
+
+좀이 근처 @staircase@을 밀어.
+
+좀이 근처 @staircase@을 잡아당겨.
+
+"술래는 너야!"
+
+좀이 네 주변의 던전을 바꿔 놓아.
+%%%%
+
+Xom good hyper enchant monster
+
+"진정한 [영웅|투사]의 탄생을 보아라!"
+
+좀이 전투에서 위대한 영광을 요구해!
+
+좀의 힘이 아주 잠깐 네 주변에 닿아.
+
+좀의 친근한 낄낄거림이 들려.
+%%%%
+
+Xom mass charm
+
+좀이 혼돈의 성전을 준비해!
+
+좀이 인형을 조종하는 실들을 한 움큼 거머쥐어.
+
+"친구가 더 필요하니, 아이야?"
+
+w:5
+
+좀이 주변 적들에게 @_trout_species_@ 송어를 주겠다며 매수해.
+
+w:5
+
+좀의 손길이 이 자리에 있는 정신들을 쿡 찔러.
+%%%%
+
+Xom stealth player
+
+좀이 요란하게 쉿 소리를 내며 너를 조용히 시켜.
+
+좀이 속삭여. "쉿!"
+%%%%
+
+Xom cloud
+
+"여기 날씨가 너무 따분했지."
+
+좀이 콰즈랄에게 분위기를 좀 띄워 달라고 부탁해.
+
+"일기예보: 대체로 흐림."
+%%%%
+
+Xom life saving general
+
+"뭐? 잠깐, 안 돼!"
+
+"이제 막 재미있어지려던 참인데!"
+
+"안 돼애애애, 내 @_xom_plaything_@을 빼앗지 마!"
+
+"여기서도, 지금도 안 돼."
+
+"딱 한 번만 더 해 보자."
+
+좀이 관대해진 모양이야.
+%%%%
+
+Xom life saving actor
+
+w:20
+
+@Xom life saving general@
+
+"야, 그건 내 @_xom_plaything_@이라고!"
+
+"어림도 없지!"
+
+"그건 내 @_xom_plaything_@이야. 네 건 네가 구해!"
+
+"내 @_xom_plaything_@을 내버려 둬!"
+%%%%
+
+Xom boring death
+
+좀이 큰 소리로 하품해!
+
+"살아서도 지루하더니 죽어서도 지루하네..."
+
+"뭐야!? 이걸로 끝이야?"
+
+"이제 새 장난감을 찾아야겠군."
+
+"응? 내가 뭘 놓쳤나?"
+
+"이제 죽을 때도 됐지."
+
+"이 장난감은 망가졌네."
+
+"누가 눈 하나 잃기 전까지는 다 즐거운 장난이지."
+
+w:1
+
+"누가 눈 하나 잃어야 비로소 즐거운 장난이지."
+%%%%
+
+Xom laughter
+
+좀이 껄껄 웃어!
+
+좀이 폭소를 터뜨려!
+
+좀이 이 상황을 아주 우스워해!
+
+좀이 몹시 즐거워해!
+
+좀이 미친 듯이 낄낄 웃어!
+
+좀이 킥킥 웃어!
+
+좀이 음흉하게 웃어!
+
+좀이 배를 잡고 웃어!
+
+좀이 웃음을 터뜨려!
+
+좀이 미친 듯이 깔깔 웃어!
+
+좀이 키득거려!
+
+좀이 호탕하게 웃어!
+
+좀이 싱글벙글 웃어!
+%%%%
+
+Xom bored
+
+좀이 하품해.
+
+"다른 데서는 뭘 하고 있으려나..."
+
+@Xom welcome@
+%%%%
+
+Xom newgame
+
+좀이 말해. "새 장난감이 생겼군!"
+%%%%
+
+Xom welcome
+
+좀이 킥킥 웃어.
+
+좀이 키득거려.
+
+w:3
+
+@_xom_welcome_rare_@
+%%%%
+
+_xom_welcome_rare_
+
+좀이 말해. "내가 지켜보고 있어, 내 @_xom_child_@ 아이야."
+
+좀이 @_trout_species_@ 송어로 너를 후려쳐!
+%%%%
+
+_xom_child_
+
+잘못 태어난
+
+사생아인
+
+못생긴
+
+붉은 머리 의붓
+
+어리석은
+
+쓸모없는
+
+탕아 같은
+
+미친
+
+말썽꾸러기
+%%%%
+
+_trout_species_
+
+무지개
+
+납작머리
+
+목잘린
+
+황소
+
+은빛
+
+w:3
+
+@_trout_species_rare_@
+%%%%
+
+_trout_species_rare_
+
+복잡한
+
+다각형의
+
+허수인
+
+역함수 같은
+
+있을 법하지 않은
+
+중고
+
+재판매된
+
+금지된
+
+까다로운
+
+맛있는
+
+곰팡이 핀
+
+가짜
+
+축축한
+
+w:2
+
+킬고어
