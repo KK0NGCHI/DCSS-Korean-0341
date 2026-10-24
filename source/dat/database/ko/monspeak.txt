@@ -3315,3 +3315,73 @@ w:1
 @The_monster@이(가) 예언해. "산의 홍수가 모든 오물을 씻어 내리라!"
 w:2
 @The_monster@이(가) 말해. "어떤 문제든 녹여 버리는 해결사가 있어. 바로 디졸버야!"
+%%%%
+Murray
+
+@_Murray_common_@
+w:5
+@_Murray_rare_@
+%%%%
+_Murray_common_
+
+VISUAL:@The_monster@이(가) 둥글게 굴러.
+VISUAL:@The_monster@이(가) 이리저리 굴러다녀.
+VISUAL:@The_monster@이(가) 팽이처럼 빙글빙글 돌아.
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+@The_monster@이(가) 사악하게 웃어.
+@The_monster_possessive@ 이빨이 요란하게 딱딱거려.
+@The_monster@이(가) 낄낄대며 외쳐. "내가 세상을 지배하겠다!"
+%%%%
+_Murray_rare_
+
+@The_monster@이(가) 말해. "넌 내가 만난 사람 중 2번째로 멍청해!"
+@The_monster@이(가) 소리쳐. "나한테 다리만 있었다면 넌 벌써 20번은 죽었을걸!"
+@The_monster@이(가) 소리쳐. "네 머리를 줘! 장대 끝에 꽂아 두게!"
+@The_monster@이(가) 소리쳐. "사악한 힘과 부두술이 널 덮치리라!"
+@The_monster@이(가) 외쳐. "난 강대한 악마의 권능이다!"
+@The_monster@이(가) 외쳐. "내 얼굴은 던전 전역에 유명하다고!"
+%%%%
+Nellie
+
+@_Nellie_common_@
+w:2
+@_Nellie_rare_@
+%%%%
+_Nellie_common_
+
+@The_monster@이(가) 말해. "해변용 공 위에서 균형 잡을 수 있어? 난 할 수 있는데!"
+@The_monster@이(가) 말해. "서커스란 사실 감옥과 다를 게 없어."
+@The_monster@이(가) 말해. "다시는 돌아가지 않을 거야. 절대로!"
+@The_monster@이(가) 말해. "다시는 외줄 타기를 하지 않겠어!"
+@The_monster@이(가) 말해. "사자 밥이 될 걱정은 하지 마. 내 밥이 될 걸 걱정하라고."
+VISUAL:@The_monster@이(가) 땅을 쿵쿵 밟아.
+VISUAL:@The_monster@이(가) 너를 의심스러운 눈으로 노려봐.
+VISUAL:@The_monster@이(가) 날아오르려는 듯 귀를 펄럭여.
+%%%%
+_Nellie_rare_
+
+w:2
+@The_monster@이(가) 말해. "로미를 알아? 좋은 친구지!"
+@The_monster@이(가) 말해. "한번은 대상단을 짓밟은 적도 있어."
+@The_monster@이(가) 말해. "아니, 난 쥐를 무서워하지 않아."
+@The_monster@이(가) 말해. "너를 기억하는 것 같은데…"
+%%%%
+Nergalle
+
+@The_monster@이(가) 말해. "진정 아무것도 없다는 게 어떤 뜻인지 넌 몰라. 우리가 가르쳐 주지."
+@The_monster@이(가) 말해. "너 같은 자들이 수백 명이나 실패하는 걸 볼 만큼 오래 살았어."
+VISUAL:@The_monster@이(가) 커다란 양피지를 확인하고 고개를 끄덕여.
+VISUAL:@The_monster@이(가) @objective@ 옆의 허공과 열띤 대화를 나눠.
+@The_monster@이(가) 말해. "오크의 충성심은 죽음 따위도 초월하지."
+@The_monster@이(가) 말해. "이 늙은 여자의 충고를 듣거라. 네 시간은 다 됐어."
+@The_monster@이(가) 말해. "넌 이곳 돌바닥에 남은 핏자국 하나가 될 뿐이야."
+%%%%
+Nikola
+
+@The_monster@이(가) 외쳐. "위험! 위험! 고전압!"
+@The_monster@이(가) 말해. "네 눈에도 마법의 불꽃이 튀는군."
+@The_monster@이(가) 열변을 토해. "느껴져? 느껴져? 느껴지냐고!"
+@The_monster@이(가) 경고해. "내 골렘을 보거든 조심해서 다가가. 무니까."
+@The_monster@이(가) 물어. "절연 처리는 했나?"
+@The_monster@이(가) 말해. "넌 훌륭한 절연체처럼 보이진 않는군."
+@The_monster@이(가) 중얼거려. "흠, 네가 전기가 통할지 궁금하군."
