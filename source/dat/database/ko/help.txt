@@ -328,3 +328,171 @@ autopickup_search 옵션이 켜져 있으면 <w>autopickup</w>으로 자동 줍�
 <w>/</w>와 <w>=</w>은 검색어 전체가 아니라 개별 조건에만 적용됩니다.
 따라서 <w>armour && /r(C|F|Pois|Elec)</w>를 사용해야 하며,
 <w>/armour && r(C|F|Pois|Elec)</w>는 올바르지 않습니다.
+%%%%
+wiz-monster
+
+<h>지정한 몬스터 생성</h>
+종족의 기본 장비를 가진 몬스터를 만들려면 종족 이름을 입력합니다.
+예를 들어 <w>kobold</w> 또는 <w>Yiuf</w>를 입력할 수 있습니다.
+히드라와 슬라임드라는 머리 수를 지정할 수 있습니다.
+n<w>-headed</w> <w>hydra</w> 또는 n<w>-headed</w> <w>slymdra</w> 형식이며 최대 20개입니다.
+<w>four-headed hydra</w>
+아주 못생긴 것의 생성 시 색을 지정하는 예:
+<w>white very ugly thing</w>
+사용 가능한 색은 <w>brown</w>, <w>cyan</w>, <w>green</w>, <w>purple</w>, <w>red</w>, <w>white</w>입니다.
+돌연변이 짐승의 성장 단계와 특성을 이름 앞에 붙여 지정할 수 있습니다.
+특성이 여러 개라면 하이픈으로 연결합니다.
+<w>mature shock-weird mutant beast</w>
+성장 단계는 <w>larval</w>, <w>juvenile</w>, <w>mature</w>, <w>elder</w>, <w>primal</w>입니다.
+특성은 <w>sting</w>, <w>bat</w>, <w>fire</w>, <w>weird</w>, <w>shock</w>, <w>ox</w>입니다.
+슬라임 생물의 크기는 다음 접두어로 변경할 수 있습니다.
+<w>large</w>, <w>very large</w>, <w>enormous</w>, <w>titanic</w>:
+<w>very large slime creature</w>
+무리의 일원으로 생성될 수 있는 몬스터는 이름에 <w>band</w>를 추가합니다.
+<w>orc warlord band</w>
+<w>band</w>는 무리 생성을 강제하지 않고 일반적인 무리 생성 확률을 적용합니다.
+주변에 공간이 충분할 때만 무리가 배치됩니다.
+몬스터 이름 뒤에 세미콜론과 아이템 목록을 붙여 특정 장비를 줄 수 있습니다.
+예를 들어 다음과 같이 입력합니다.
+<w>orc ; rapier | quick blade . chain mail | plate armour</w>
+레이피어나 퀵 블레이드를 들고 사슬 갑옷이나 판금 갑옷을 입은 오크가 생성됩니다.
+무작위 아티팩트나 장비 속성은 명시적으로 요청한 경우에만 생성됩니다.
+원래 장비로 생성되었을 아이템은 모두 제거되고 파괴됩니다.
+아무 장비도 없는 몬스터도 만들 수 있습니다.
+<w>orc; nothing</w>
+자세한 내용은 <cyan>docs/develop/levels/syntax.txt</cyan>의 <cyan>ITEMS</cyan> 절을 참조하세요.
+슬래시(<w>/</w>)는 파이프(<w>|</w>)로, 쉼표(<w>,</w>)는 마침표(<w>.</w>)로 바꿔야 합니다.
+춤추는 무기의 구체적인 종류도 같은 형식으로 지정할 수 있습니다.
+<w>dancing weapon; rapier</w>
+제약: 무작위 발사 무기를 몬스터에게 주면 탄약 종류까지 맞추도록 강제할 수 없습니다.
+다만 춤추는 발사 무기는 알맞은 탄약을 함께 생성합니다.
+시체 생성을 보장하려면 <w>always_corpse</w>, 금지하려면 <w>never_corpse</w>를 사용합니다.
+기본적으로 몬스터는 잠든 상태로 생성됩니다.
+이름 앞에 <w>generate_awake</w>를 붙이면 깨어 있는 상태로 생성됩니다.
+<w>generate_awake boulder beetle</w>
+<w>patrolling</w> 접두어는 생성 위치가 시야 밖으로 사라질 만큼 멀리 이동하는 것을 막습니다.
+몬스터가 섬길 신은 <w>god</w>: 지정자로 설정합니다.
+<w>orc god:the_shining_one</w>
+해당 신의 선물로 생성하려면 <w>god_gift</w>도 붙입니다.
+<w>orc god:the_shining_one god_gift</w>
+<w>god_gift</w>를 명시하지 않으면 신의 선물로 취급되지 않습니다.
+몬스터의 진영은 <w>att</w>: 지정자로 설정합니다.
+* <w>att:hostile</w> -- 적대적(기본값)
+* <w>att:friendly</w> -- 우호적이며 플레이어를 따라옴
+* <w>att:neutral</w> -- 플레이어와 적대적 몬스터 모두에게 적대적
+* <w>att:good_neutral</w> -- 적대적 몬스터에게만 적대적
+* <w>att:fellow_slime</w> -- 우호적이지만 플레이어를 따라오지 않음
+기본 색을 덮어쓸 수도 있습니다.
+<w>col:darkgrey fungus</w>
+<w>any</w>를 지정하면 무작위 색을 선택합니다.
+타일 화면에 표시할 몬스터 그림은 <w>tile</w>: 지정자로 덮어씁니다.
+<w>rat tile:mons_giant_bat</w>
+타일 모드에서는 <cyan>mons_giant_bat</cyan> 타일을 사용하는 쥐가 생성됩니다.
+그 밖의 특성은 쥐와 같습니다. ASCII 모드에서는 아무 효과가 없습니다.
+현재 층의 생성 수준에 알맞은 무작위 몬스터를 만들려면 다음을 입력합니다.
+<w>random</w>
+다른 구역에 알맞은 몬스터는 장소 지정자를 사용합니다.
+<w>place:Abyss</w>
+<w>place</w>:를 사용하면 무작위 몬스터를 요청하는 것으로 처리됩니다.
+다른 구역의 수준에 알맞은 몬스터로 좀비를 만들 수도 있습니다.
+<w>place:Elf:3 zombie</w>
+사용 가능한 변형은 <w>zombie</w>, <w>draugr</w>, <w>simulacrum</w>, <w>spectre</w>입니다.
+<h>몬스터 이름 변경</h>
+개별 몬스터에게 다음과 같이 이름을 지정할 수 있습니다.
+<w>kobold name:Durwent</w>
+몬스터 이름은 "<cyan>Durwent the kobold</cyan>"와 같이 표시됩니다.
+이름에 공백을 넣으려면 밑줄(_)을 대신 사용하세요.
+일반적으로 이름 뒤에 "<cyan>the <<race></cyan>"가 붙는 점에 주의하세요.
+이름에는 여러 가지 수정자를 사용할 수 있습니다.
+<w>name_adjective</w>, <w>name_suffix</w>, <w>name_replace</w>가 대표적입니다.
+<w>name_adjective</w>는 이름을 형용사처럼 적용합니다.
+<w>kobold name:ugly name_adjective</w>
+이 경우 "<cyan>An ugly kobold</cyan>", "<cyan>The ugly kobold hits you</cyan>"와 같이 표시됩니다.
+<w>name_suffix</w>는 기본 몬스터 이름 뒤에 이름을 붙입니다.
+<w>kobold name:wearing_mittens name_suffix</w>
+"<cyan>A kobold wearing mittens</cyan>" 같은 이름과 관련 메시지가 표시됩니다.
+<w>name_replace</w>는 고유 몬스터처럼 기본 이름을 지정한 이름으로 바꿉니다.
+<w>kobold name:Durwent name_replace</w>
+"<cyan>Durwent the kobold</cyan>" 대신 "<cyan>Durwent</cyan>"로 표시됩니다.
+시체는 여전히 "<cyan>kobold corpse of Durwent</cyan>" 형식을 사용합니다.
+<w>name_species</w>는 시체 이름에 별도의 종족 접두어를 붙이지 않습니다.
+또한 로컬 타일에서 고유 몬스터나 개명 몬스터 위에 나타나는 이름 표지를 숨깁니다.
+<w>name_replace</w>나 <w>name_species</w>와 함께 다음 수정자도 사용할 수 있습니다.
+<w>name_descriptor</w>, <w>name_definite</w>는 고유한 이름이 아닌 호칭에 사용합니다.
+예:
+<w>kobold name:goblin name_replace</w>
+이는 "<cyan>goblin hits you</cyan>"로 표시됩니다.
+여기에 <w>name_descriptor</w>를 추가하면
+"<cyan>The goblin hits you</cyan>"와 설명의 "<cyan>A goblin</cyan>"처럼 표시됩니다.
+<w>kobold name:goblin name_replace name_descriptor</w>
+<w>name_definite</w>는 부정관사 a 또는 an 대신 항상 정관사를 사용합니다.
+따라서 "<cyan>The goblin</cyan>"이라는 설명이 표시됩니다.
+<w>name_definite</w>는 <w>name_descriptor</w>도 자동으로 활성화합니다.
+<w>kobold name:goblin name_replace name_definite</w>
+다음과 완전히 같은 뜻입니다.
+<w>kobold name:goblin name_replace name_descriptor name_definite</w>
+<w>name_zombie</w>는 이미 좀비가 된 몬스터의 이름도 바꿀 수 있습니다.
+드라우그르, 시뮬라크럼, 유령 형태도 포함됩니다.
+<w>name_nocorpse</w>는 시체 이름에 별칭을 전혀 적용하지 않습니다.
+<w>wizard name:sad name_adjective name_nocorpse</w>
+"<cyan>a sad wizard</cyan>"가 생성되고 시체는 "<cyan>a wizard corpse</cyan>"가 됩니다.
+공간이 부족한 정의에서는 아래의 축약형을 사용할 수 있습니다.
+* <w>name_suffix</w> -> <w>n_suf</w>
+* <w>name_adjective</w> -> <w>n_adj</w>
+* <w>name_replace</w> -> <w>n_rpl</w>
+* <w>name_species</w> -> <w>n_spe</w>
+* <w>name_descriptor</w> -> <w>n_des</w>
+* <w>name_definite</w> -> <w>n_the</w>
+* <w>name_zombie</w> -> <w>n_zom</w>
+* <w>name_nocorpse</w> -> <w>n_noc</w>
+<h>몬스터 능력치 덮어쓰기</h>
+<w>hd</w>와 <w>hp</w>로 몬스터의 기본 HD와 HP를 덮어쓸 수 있습니다.
+<w>kobold hd:20</w>
+HD가 20인 코볼드를 만듭니다. HD에 따라 무작위로 정해지는 HP도 다시 계산됩니다.
+원래 고정된 HP를 가진 몬스터의 HP는 바뀌지 않습니다.
+<w>kobold hp:20</w>
+HP가 20인 코볼드를 만듭니다. 석상처럼 HP가 고정된 몬스터에도 유용합니다.
+<w>dur</w>와 <w>sum</w> 태그로 몬스터를 소환물로 지정할 수 있습니다.
+<w>dur</w>은 1~6 사이의 정수를 받습니다.
+<w>sum</w>에는 주문 이름 또는 다음 소환 출처를 지정할 수 있습니다.
+<w>clone</w>(락샤사), <w>animate</w>(망자 일으키기), <w>chaos</w>(순수 혼돈),
+<w>miscast</w>(주문 시전 실패), <w>zot</w>(조트 함정), <w>wrath</w>(신의 징벌),
+<w>aid</w>(신의 도움).
+주문 이름은 아래의 <w>spells</w> 태그와 같은 방식으로 해석됩니다.
+<w>shadow_creatures</w>는 소환물이 연기 대신 그림자 속으로 사라지게 합니다.
+소환 주문이 아닌 주문을 지정해도 효과가 없습니다.
+<w>seen</w> 태그를 지정하면 처음부터 본 적 있는 몬스터로 처리합니다.
+따라서 "<cyan>A kobold comes into view</cyan>" 같은 발견 메시지가 생성되지 않습니다.
+<h>몬스터 주문 덮어쓰기</h>
+몬스터가 사용할 주문은 <w>spells</w>: 지정자로 변경합니다.
+*<w>goblin spells:throw_flame.50.wizard</w>
+*<w>ancient lich spells:symbol_of_torment.26.wizard; glaciate.51.wizard</w>
+주문 칸에는 밑줄로 연결한 주문 이름, 시전 빈도, 주문 플래그를 점으로 구분해 적습니다.
+주문 칸 사이는 세미콜론으로 나눕니다. 세미콜론 앞뒤에 공백을 넣지 마세요.
+<w>spells</w>: 접두어 뒤에도 공백을 넣지 않습니다.
+주문 이름은 <cyan>spl-data.h</cyan>의 이름과 정확히 같아야 하며 공백은 밑줄로 바꿉니다.
+주문 빈도는 200번 중 시전할 확률을 의미합니다.
+주문 플래그:
+* <w>natural</w>, <w>magical</w>, <w>demonic</w>, <w>wizard</w>, <w>priest</w>는 시전 방식입니다.
+마법사와 사제는 침묵으로 주문이 막힐 수 있으며 관련 신앙 행위에도 영향을 줍니다.
+트로그는 마법사 처치, 베오그는 사제 처치를 좋아합니다.
+마법, 악마, 마법사 주문은 반마법 효과의 영향을 받습니다.
+자연 능력은 소음을 발생시키지 않습니다.
+* <w>emergency</w> : 체력이 낮을 때만 주문을 시전합니다.
+* <w>breath</w> : 숨결 무기로, 사용 후 다시 사용할 때까지 대기 시간이 생깁니다.
+* <w>no_silent</w> : 원래 침묵에 영향받지 않는 능력도 침묵 상태에서 사용할 수 없습니다.
+* <w>instant</w> : 에너지를 소모하지 않아 같은 턴에 다른 행동도 할 수 있습니다.
+* <w>noisy</w> : 자연 능력이라도 강제로 소음을 발생시킵니다.
+<w>none</w>으로 빈 주문 칸을 지정할 수 있습니다.
+주문을 전혀 사용하지 않는 몬스터:
+<w>orc wizard spells:none</w>
+<h>인챈트 설정</h>
+몬스터에게 원하는 수의 인챈트를 부여할 수 있습니다.
+가속, 실명, 영구 투사체 방어 등 여러 상태를 시작부터 적용할 수 있습니다.
+형식은 <w>ench:<<name>:<<duration>:<<degree></w> 또는
+<w>perm_ench:<<name>:<<degree></w>입니다.
+<w><<degree></w>와 <w><<duration></w>은 생략할 수 있습니다.
+예:
+* <w>orc perm_ench:blind perm_ench:mad</w>
+* <w>dream sheep ench:sticky_flame</w>
+* <w>stone giant dur:1 ench:berserk</w>
