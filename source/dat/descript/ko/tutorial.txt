@@ -17,15 +17,13 @@ tutorial1 go_on
 tutorial1 diagonal
 
 :nowrap
-<input>숫자 패드</input>, 또는 <input>hjkl 이동방식</input>을 이용해서 대각선 방향으로 이동할 수도 있습니다. (제대로 안되면 Numlock 기능이 제대로 켜져있는지 확인해보세요.)
+대각선으로 이동하려면 <input>숫자 키패드</input>를 사용하세요(Num Lock을 켜거나 꺼 보세요)<localtiles>,</localtiles> <console>또는 </console><input>vi 키</input><console>를 사용하세요.</console><localtiles> <input>마우스</input>로도 이동할 수 있습니다.</localtiles>
 
-  숫자 패드 :    <w>7 8 9</w>          hjkl 식 : <w>$cmd[CMD_MOVE_UP_LEFT] $cmd[CMD_MOVE_UP] $cmd[CMD_MOVE_UP_RIGHT]</w>
-                  \|/                      \|/
-                 <w>4</w>-<w>.</w>-<w>6</w>                    <w>$cmd[CMD_MOVE_LEFT]</w>-<w>.</w>-<w>$cmd[CMD_MOVE_RIGHT]</w>
-                  /|\                      /|\
-                 <w>1 2 3</w>                    <w>$cmd[CMD_MOVE_DOWN_LEFT] $cmd[CMD_MOVE_DOWN] $cmd[CMD_MOVE_DOWN_RIGHT]</w>
-
-<localtiles>물론, <input>마우스</input>를 이용할 수도 있습니다.</localtiles>
+  숫자 키패드: <w>7 8 9</w>       vi 키: <w>   $cmd[CMD_MOVE_UP_LEFT] $cmd[CMD_MOVE_UP] $cmd[CMD_MOVE_UP_RIGHT]</w><localtiles>    마우스: <w>클릭</w>해서 이동</localtiles>
+               \|/                     \|/
+              <w>4</w>-<w>.</w>-<w>6</w> <w>                  $cmd[CMD_MOVE_LEFT]</w>-<w>.</w>-<w>$cmd[CMD_MOVE_RIGHT]</w>
+               /|\                     /|\
+              <w>1 2 3</w> <w>                  $cmd[CMD_MOVE_DOWN_LEFT] $cmd[CMD_MOVE_DOWN] $cmd[CMD_MOVE_DOWN_RIGHT]</w>
 %%%%
 tutorial1 shiftmove
 
@@ -95,8 +93,7 @@ tutorial1 newlevel
 %%%%
 tutorial1 door
 
-닫힌 문이 있는 방향으로 이동하면 문을 열 수 있습니다. 문을 다시 닫으려면,
-<input>$cmd[CMD_CLOSE_DOOR]</input> 키를 누르세요.
+닫힌 문을 향해 이동하면 문을 열 수 있습니다.
 %%%%
 tutorial1 close_door
 
@@ -237,25 +234,28 @@ tutorial2 tutorial_end
 tutorial2 exit
 
 :nowrap
-<yellow>무기<console> <cyan>)</cyan></console></yellow>
-  <input>$cmd[CMD_PICKUP]</input>  땅에 있는 물건을 줍습니다.
-  <input>$cmd[CMD_WIELD_WEAPON]</input> 손에 무기를 듭니다.<localtiles>
-  소지품 창에서 해당 무기에<input>왼쪽 마우스버튼</input>을 클릭해서 들 수도 있습니다.</localtiles>
+<white>튜토리얼 2 요약: 전투</white>
 
-<yellow>괴물</yellow><localtiles>
-  <input>마우스 커서</input>  괴물의 간략한 상태를 봅니다.
-  <input>오른쪽 마우스버튼</input>  괴물의 자세한 설명을 봅니다.</localtiles><nomouse>
-  <input>$cmd[CMD_LOOK_AROUND]</input>  괴물의 간략한 상태를 봅니다.
-  <input>$cmd[CMD_LOOK_AROUND]$cmd[CMD_TARGET_DESCRIBE]</input> 괴물의 자세한 설명을 봅니다.</nomouse>
-  <input>$cmd[CMD_FIRE]$cmd[CMD_TARGET_SELECT]</input> 전에 조준했던 적에게 다시 탄환을 발사합니다.
-  <input>$cmd[CMD_FIRE]$cmd[CMD_TARGET_CYCLE_FORWARD]</input> 다른 적 조준<localtiles>
-  발사하고 싶은 탄환에 <input>왼쪽 마우스버튼</input> 을 클릭해서 적을 조준하고, <input>엔터</input> 키로 발사할 수 있습니다.</localtiles>
+<yellow>무기<console> <cyan>)</cyan></console></yellow>
+  <input>$cmd[CMD_PICKUP]</input>  아이템 줍기
+  <input>$cmd[CMD_EQUIP]</input>  아이템 장착하기<localtiles>
+  소지품에서 무기를 <input>클릭</input>해 장착할 수도 있습니다.</localtiles>
+  <input>$cmd[CMD_QUIVER_ITEM]</input>  발사·투척 장비 설정
+
+<yellow>몬스터</yellow><localtiles>
+  <input>마우스 올리기</input>  몬스터 조사
+  <input>오른쪽 클릭</input>  자세한 설명 보기</localtiles><nomouse>
+  <input>$cmd[CMD_LOOK_AROUND]</input>  몬스터 조사
+  <input>$cmd[CMD_LOOK_AROUND]$cmd[CMD_TARGET_DESCRIBE]</input>  자세한 설명 보기</nomouse>
+  <input>$cmd[CMD_PRIMARY_ATTACK]</input>  손에 든 무기로 공격
+  <input>$cmd[CMD_FIRE]$cmd[CMD_TARGET_SELECT]</input>  이전에 지정한 몬스터를 겨냥해 발사
+  <input>shift-tab</input>, <input>p</input>  가장 가까운 몬스터에게 발사
+  <input>$cmd[CMD_FIRE]$cmd[CMD_TARGET_CYCLE_FORWARD]</input>  다른 몬스터 선택<localtiles>
+  투사체를 <input>클릭</input>한 뒤 <input>Enter</input>로 목표를 확정해 발사할 수도 있습니다.</localtiles>
 
 <yellow>휴식</yellow>
-  <input>$cmd[CMD_WAIT]</input>  1턴동안 휴식하면서 주변을 살핍니다.
-  <input>$cmd[CMD_REST]</input>  100턴동안 휴식하면서 주변을 살핍니다.
-
-                                 <cyan><input>아무 버튼</input>이나 누르세요...</cyan>
+  <input>$cmd[CMD_WAIT]</input>  1턴 대기 및 휴식
+  <input>$cmd[CMD_REST]</input>  최대 100턴 동안 대기 및 휴식
 %%%%
 tutorial3 start
 
