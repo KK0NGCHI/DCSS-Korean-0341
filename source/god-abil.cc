@@ -2900,9 +2900,8 @@ spret dithmenos_shadowslip(bool fail)
                 mi->foe = shadow->mindex();
                 mi->behaviour = BEH_SEEK;
 
-                mprf("%s turns %s attention towards your shadow.",
-                        mi->name(DESC_THE).c_str(),
-                        mi->pronoun(PRONOUN_POSSESSIVE).c_str());
+                mprf("%s이(가) 당신의 그림자로 시선을 돌린다.",
+                        mi->name(DESC_THE).c_str());
             }
         }
     }
@@ -6165,9 +6164,8 @@ spret hepliaklqana_transference(bool fail)
     else
         ancestor->swap_with(victim->as_monster(), MV_TRANSLOCATION, true);
 
-    mprf("%s swap%s with %s!",
+    mprf("%s이(가) %s와(과) 위치를 맞바꾼다!",
          victim->name(DESC_THE).c_str(),
-         victim->is_player() ? "" : "s",
          ancestor->name(DESC_YOUR).c_str());
 
     place_cloud(CLOUD_MIST, target, random_range(10,20), ancestor);
@@ -7013,7 +7011,7 @@ void makhleb_infernal_servant()
         {
             mprf("%s이(가) 당신의 %s에 이끌려 나타난다!",
                     demon->name(DESC_A).c_str(),
-                    you.has_blood() ? "blood" : "suffering");
+                    you.has_blood() ? "피" : "고통");
         }
 
         // Top-tier demons are more costly to summon.
