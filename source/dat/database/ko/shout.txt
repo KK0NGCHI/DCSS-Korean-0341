@@ -1,0 +1,6 @@
+# Korean overlay: previously English Polyphemus shout.
+%%%%
+
+Polyphemus
+
+SOUND:@The_monster@ 외쳐. "공격해라, 내 애완동물들아! 공격해라!"
