@@ -1631,7 +1631,7 @@ static void _print_talent_description(const talent& tal)
 
 void no_ability_msg()
 {
-    mpr("Sorry, you're not good enough to have a special ability.");
+    mpr("미안하지만 아직 특수 능력을 사용할 만큼 숙련되지 않았어.");
 }
 
 // Prompts the user for an ability to use, first checking the lua hook
@@ -1726,7 +1726,7 @@ bool activate_ability()
                 // If we can't, cancel out.
                 if (selected < 0)
                 {
-                    mpr("You can't do that.");
+                    mpr("그렇게 할 수 없어.");
                     crawl_state.zero_turns_taken();
                     return false;
                 }
@@ -1751,7 +1751,7 @@ static bool _can_hop(bool quiet)
     if (you.duration[DUR_NO_HOP])
     {
         if (!quiet)
-            mpr("Your legs are too worn out to hop.");
+            mpr("다리가 너무 지쳐서 뛰어오를 수 없어.");
         return false;
     }
     return _can_movement_ability(quiet);
@@ -1774,7 +1774,7 @@ static bool _can_rising_flame(bool quiet)
     if (you.duration[DUR_RISING_FLAME])
     {
         if (!quiet)
-            mpr("You're already rising!");
+            mpr("이미 상승하고 있어!");
         return false;
     }
     if (you.where_are_you == BRANCH_DUNGEON && you.depth == 1)
@@ -1784,14 +1784,14 @@ static bool _can_rising_flame(bool quiet)
         else
         {
             if (!quiet)
-                mpr("You can't rise from this level without the Orb!");
+                mpr("오브가 없으면 이 층에서 올라갈 수 없어!");
             return false;
         }
     }
     if (!level_above().is_valid())
     {
         if (!quiet)
-            mpr("You can't rise from this level!");
+            mpr("이 층에서는 올라갈 수 없어!");
         return false;
     }
     return true;
@@ -1865,7 +1865,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
     if (testbits(abil.flags, abflag::card) && !deck_cards(ability_deck(abil.ability)))
     {
         if (!quiet)
-            mpr("That deck is empty!");
+            mpr("그 카드 덱은 비어 있어!");
         return false;
     }
 
@@ -1914,9 +1914,9 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
             if (!quiet)
             {
                 if (result == 0)
-                    mpr("There's no appreciative audience!");
+                    mpr("당신의 공연을 반겨 줄 관객이 없어!");
                 else if (result == -1)
-                    mpr("You are not zealous enough to affect this audience!");
+                    mpr("이 관객에게 영향을 미칠 만큼 신앙심이 높지 않아!");
             }
             return false;
         }
@@ -1927,7 +1927,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (env.sanctuary_time)
         {
             if (!quiet)
-                mpr("There's already a sanctuary in place on this level.");
+                mpr("이 층에는 이미 성역이 있어.");
             return false;
         }
         return true;
@@ -1936,7 +1936,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (!you.gold)
         {
             if (!quiet)
-                mpr("You have nothing to donate!");
+                mpr("기부할 것이 없어!");
             return false;
         }
         return true;
@@ -1945,7 +1945,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (okawaru_duel_active() || player_in_branch(BRANCH_ARENA))
         {
             if (!quiet)
-                mpr("You are already engaged in single combat!");
+                mpr("이미 일대일 결투 중이야!");
             return false;
         }
         return true;
@@ -1955,7 +1955,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (feat_eliminates_items(env.grid(you.pos())))
         {
             if (!quiet)
-                mpr("Any gift you received here would fall and be lost!");
+                mpr("여기서 선물을 받으면 떨어져서 잃어버릴 거야!");
             return false;
         }
         return true;
@@ -1970,7 +1970,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_DEATHS_DOOR])
         {
             if (!quiet)
-                mpr("You can't heal while in death's door.");
+                mpr("죽음의 문턱 상태에서는 회복할 수 없어.");
             return false;
         }
         return true;
@@ -1984,7 +1984,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
             && !you.duration[DUR_WEAK])
         {
             if (!quiet)
-                mpr("Nothing ails you!");
+                mpr("몸에 이상이 없어!");
             return false;
         }
         return true;
@@ -1993,7 +1993,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_DIVINE_VIGOUR])
         {
             if (!quiet)
-                mpr("You have already been granted divine vigour!");
+                mpr("이미 신성한 활력을 부여받았어!");
             return false;
         }
         return true;
@@ -2002,7 +2002,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_OOZEMANCY])
         {
             if (!quiet)
-                mpr("You are already calling forth ooze!");
+                mpr("이미 점액을 불러내고 있어!");
             return false;
         }
         return true;
@@ -2011,7 +2011,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (!player_in_branch(BRANCH_ABYSS))
         {
             if (!quiet)
-                mpr("You aren't in the Abyss!");
+                mpr("여기는 심연이 아니야!");
             return false;
         }
         return true;
@@ -2023,7 +2023,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (player_in_branch(BRANCH_ABYSS))
         {
             if (!quiet)
-                mpr("You're already here!");
+                mpr("이미 이곳에 있어!");
             return false;
         }
         return true;
@@ -2046,7 +2046,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (spaces.empty())
         {
             if (!quiet)
-                mpr("There isn't enough space to grow briars here.");
+                mpr("여기에는 가시덤불을 키울 공간이 부족해.");
             return false;
         }
         return true;
@@ -2056,7 +2056,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_EXHAUSTED])
         {
             if (!quiet)
-                mpr("You're too exhausted to draw out your power.");
+                mpr("너무 지쳐서 힘을 끌어낼 수 없어.");
             return false;
         }
         if (you.hp == you.hp_max && you.magic_points == you.max_magic_points
@@ -2069,7 +2069,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
             && !you.is_constricted())
         {
             if (!quiet)
-                mpr("You have no need to draw out power.");
+                mpr("힘을 끌어낼 필요가 없어.");
             return false;
         }
         return true;
@@ -2078,7 +2078,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_EXHAUSTED])
         {
             if (!quiet)
-                mpr("You're too exhausted to power leap.");
+                mpr("너무 지쳐서 힘차게 도약할 수 없어.");
             return false;
         }
         return true;
@@ -2087,7 +2087,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_EXHAUSTED])
         {
             if (!quiet)
-                mpr("You're too exhausted to unleash your apocalyptic power.");
+                mpr("너무 지쳐서 종말의 힘을 발휘할 수 없어.");
             return false;
         }
         return true;
@@ -2098,7 +2098,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (clouds.empty())
         {
             if (!quiet)
-                mpr("You can't see any clouds you can empower.");
+                mpr("강화할 수 있는 구름이 보이지 않아.");
             return false;
         }
         return true;
@@ -2116,7 +2116,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (draconian_breath_uses_available() <= 0)
         {
             if (!quiet)
-                mpr("You have exhausted your breath weapon. Slay more foes!");
+                mpr("숨결 공격을 모두 소진했어. 적을 더 처치해!");
             return false;
         }
         return true;
@@ -2142,13 +2142,13 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_DEATHS_DOOR])
         {
             if (!quiet)
-                mpr("You can't heal while in death's door.");
+                mpr("죽음의 문턱 상태에서는 회복할 수 없어.");
             return false;
         }
         if (get_real_mp(false) < 1)
         {
             if (!quiet)
-                mpr("You don't have enough innate magic capacity.");
+                mpr("타고난 마력 용량이 부족해.");
             return false;
         }
         return true;
@@ -2181,19 +2181,19 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_CACOPHONY])
         {
             if (!quiet)
-                mpr("You are already making a cacophony!");
+                mpr("이미 요란한 소음을 내고 있어!");
             return false;
         }
         else if (you.props.exists(CACOPHONY_XP_KEY))
         {
             if (!quiet)
-                mpr("You must recover your energy before unleashing another cacophony.");
+                mpr("다시 소음을 내기 전에 기력을 회복해야 해.");
             return false;
         }
         else if (!you.equipment.get_first_slot_item(SLOT_HAUNTED_AUX))
         {
             if (!quiet)
-                mpr("You aren't haunting any armour at the moment!");
+                mpr("지금은 어떤 갑옷에도 빙의하지 않았어!");
             return false;
         }
 
@@ -2204,7 +2204,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.props.exists(BATFORM_XP_KEY))
         {
             if (!quiet)
-                mpr("You must recover your energy before scattering into bats again.");
+                mpr("다시 박쥐 떼로 흩어지려면 기력을 회복해야 해.");
             return false;
         }
         const string reason = cant_transform_reason(transformation::bat_swarm);
@@ -2222,14 +2222,14 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_ENKINDLED])
         {
             if (!quiet)
-                mpr("You are already burning your memories away!");
+                mpr("이미 기억을 불태우고 있어!");
 
             return false;
         }
         else if (you.props[ENKINDLE_CHARGES_KEY].get_int() == 0)
         {
             if (!quiet)
-                mpr("You don't have any memories left to burn.");
+                mpr("더는 불태울 기억이 없어.");
 
             return false;
         }
@@ -2279,7 +2279,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.props.exists(WATERY_GRAVE_XP_KEY))
         {
             if (!quiet)
-                mpr("You must recover your energy before doing this again.");
+                mpr("다시 시도하려면 기력을 회복해야 해.");
             return false;
         }
         for (radius_iterator ri(you.pos(), 4, C_SQUARE, LOS_NO_TRANS, false); ri; ++ri)
@@ -2289,7 +2289,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         }
 
         if (!quiet)
-            mpr("There is no water in range!");
+            mpr("사거리 안에 물이 없어!");
 
         return false;
 
@@ -2301,7 +2301,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_INVIS])
         {
             if (!quiet)
-                mpr("You are already invisible!");
+                mpr("이미 투명해!");
             return false;
         }
         return true;
@@ -2319,7 +2319,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.experience_level <= RU_SAC_XP_LEVELS)
         {
             if (!quiet)
-                mpr("You don't have enough experience to sacrifice.");
+                mpr("희생할 경험치가 부족해.");
             return false;
         }
         return true;
@@ -2343,13 +2343,13 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.attribute[ATTR_SERPENTS_LASH])
         {
             if (!quiet)
-                mpr("You are already lashing out.");
+                mpr("이미 채찍질하고 있어.");
             return false;
         }
         if (you.duration[DUR_EXHAUSTED])
         {
             if (!quiet)
-                mpr("You are too exhausted to lash out.");
+                mpr("너무 지쳐서 채찍질할 수 없어.");
             return false;
         }
         return true;
@@ -2358,7 +2358,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.props.exists(WU_JIAN_HEAVENLY_STORM_KEY))
         {
             if (!quiet)
-                mpr("You are already engulfed in a heavenly storm!");
+                mpr("이미 천상의 폭풍에 휩싸여 있어!");
             return false;
         }
         return true;
@@ -2369,7 +2369,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.is_nervous())
         {
             if (!quiet)
-                mpr("You are too terrified to wall jump!");
+                mpr("너무 겁에 질려서 벽을 박차고 뛰어오를 수 없어.");
             return false;
         }
         if (you.attribute[ATTR_HELD])
@@ -2393,7 +2393,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (!has_targets)
         {
             if (!quiet)
-                mpr("There is nothing to wall jump against here.");
+                mpr("여기에는 도약할 때 박찰 벽이 없어.");
             return false;
         }
         return true;
@@ -2419,7 +2419,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (yred_torch_is_raised())
         {
             if (!quiet)
-                mpr("The black torch is already ablaze!");
+                mpr("검은 횃불이 이미 타오르고 있어!");
             return false;
         }
         const string reason = yred_cannot_light_torch_reason();
