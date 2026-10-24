@@ -268,7 +268,7 @@ bool zin_donate_gold()
 {
     if (you.gold == 0)
     {
-        mpr("You have nothing to donate!");
+        mpr("기부할 것이 없어!");
         return false;
     }
 
@@ -308,9 +308,9 @@ bool zin_donate_gold()
     if (player_under_penance())
     {
         if (estimated_piety >= you.penance[GOD_ZIN])
-            mpr("You feel that you will soon be absolved of all your sins.");
+            mpr("곧 모든 죄를 용서받을 것 같아.");
         else
-            mpr("You feel that your burden of sins will soon be lighter.");
+            mpr("죄의 짐이 곧 가벼워질 것 같아.");
     }
     else
     {
@@ -767,14 +767,14 @@ bool zin_check_able_to_recite(bool quiet)
     if (you.duration[DUR_RECITE])
     {
         if (!quiet)
-            mpr("Finish your current sermon first, please.");
+            mpr("지금 진행 중인 설교부터 끝내.");
         return false;
     }
 
     if (you.duration[DUR_RECITE_COOLDOWN])
     {
         if (!quiet)
-            mpr("You're not ready to recite again yet.");
+            mpr("아직 다시 낭송할 준비가 되지 않았어.");
         return false;
     }
 
@@ -1269,7 +1269,7 @@ bool zin_vitalisation()
 
 void zin_remove_divine_stamina()
 {
-    mprf(MSGCH_DURATION, "Your divine stamina fades away.");
+    mprf(MSGCH_DURATION, "신성한 활력이 사라진다.");
     notify_stat_change(STAT_STR, -you.attribute[ATTR_DIVINE_STAMINA], true);
     notify_stat_change(STAT_INT, -you.attribute[ATTR_DIVINE_STAMINA], true);
     notify_stat_change(STAT_DEX, -you.attribute[ATTR_DIVINE_STAMINA], true);
@@ -1282,19 +1282,19 @@ spret zin_imprison(const coord_def& target, bool fail)
     monster* mons = monster_at(target);
     if (mons == nullptr || !you.can_see(*mons))
     {
-        mpr("You can see no monster there to imprison!");
+        mpr("그곳에는 가둘 몬스터가 보이지 않아!");
         return spret::abort;
     }
 
     if (mons->is_peripheral())
     {
-        mpr("You cannot imprison that!");
+        mpr("그 대상은 가둘 수 없어!");
         return spret::abort;
     }
 
     if (mons->friendly() || mons->good_neutral())
     {
-        mpr("You cannot imprison a law-abiding creature!");
+        mpr("법을 준수하는 생명체는 가둘 수 없어!");
         return spret::abort;
     }
 
@@ -1309,9 +1309,9 @@ void zin_sanctuary()
 
     // Yes, shamelessly stolen from NetHack...
     if (!silenced(you.pos())) // How did you manage that?
-        mprf(MSGCH_SOUND, "You hear a choir sing!");
+        mprf(MSGCH_SOUND, "합창 소리가 들려!");
     else
-        mpr("You are suddenly bathed in radiance!");
+        mpr("갑자기 눈부신 광휘가 당신을 감싼다!");
 
     flash_view(UA_PLAYER, WHITE);
     // Allow extra time for the flash to linger.
@@ -1325,9 +1325,9 @@ void zin_sanctuary()
 void tso_divine_shield()
 {
     if (!you.duration[DUR_DIVINE_SHIELD])
-        mpr("A divine shield manifests in front of you!");
+        mpr("눈앞에 신성한 방패가 나타났다!");
     else
-        mpr("Your divine shield is renewed.");
+        mpr("신성한 방패가 다시 강화됐다.");
 
     const int charges = 3 + you.skill_rdiv(SK_INVOCATIONS, 2, 5);
     you.duration[DUR_DIVINE_SHIELD] = max(you.duration[DUR_DIVINE_SHIELD], charges);
@@ -1337,14 +1337,14 @@ void tso_expend_divine_shield_charge()
 {
     if (you.duration[DUR_DIVINE_SHIELD] && --you.duration[DUR_DIVINE_SHIELD] <= 0)
     {
-        mprf(MSGCH_DURATION, "Your divine shield fades away.");
+        mprf(MSGCH_DURATION, "신성한 방패가 사라진다.");
         you.duration[DUR_DIVINE_SHIELD] = 0;
     }
 }
 
 void elyvilon_purification()
 {
-    mpr("You feel purified!");
+    mpr("몸과 마음이 정화된 것 같아!");
 
     you.duration[DUR_SICKNESS] = 0;
     you.duration[DUR_POISONING] = 0;
@@ -1384,7 +1384,7 @@ void elyvilon_divine_vigour()
 
 void elyvilon_remove_divine_vigour()
 {
-    mprf(MSGCH_DURATION, "Your divine vigour fades away.");
+    mprf(MSGCH_DURATION, "신성한 원기가 사라진다.");
     you.duration[DUR_DIVINE_VIGOUR] = 0;
     you.attribute[ATTR_DIVINE_VIGOUR] = 0;
     calc_hp();
@@ -1406,13 +1406,13 @@ void trog_do_trogs_hand(int pow)
     you.increase_duration(DUR_TROGS_HAND,
                           5 + roll_dice(2, pow / 3 + 1), 100,
                           "Your skin crawls.");
-    mprf(MSGCH_DURATION, "You feel strong-willed.");
+    mprf(MSGCH_DURATION, "의지가 강해진 것 같아.");
 }
 
 void trog_remove_trogs_hand()
 {
-    mprf(MSGCH_DURATION, "Your skin stops crawling.");
-    mprf(MSGCH_DURATION, "You feel less strong-willed.");
+    mprf(MSGCH_DURATION, "피부에서 느껴지던 불쾌한 감각이 사라진다.");
+    mprf(MSGCH_DURATION, "의지가 약해진 것 같아.");
     you.duration[DUR_TROGS_HAND] = 0;
 }
 
@@ -1486,7 +1486,7 @@ bool yred_light_the_torch()
     }
 
     if (aid)
-        mpr("Yredelemnul sends servants to aid you!");
+        mpr("이레데렘눌이 당신을 돕기 위해 종복을 보냈다!");
 
     return true;
 }
@@ -1571,7 +1571,7 @@ void yred_feed_torch(const monster* mons)
         return;
 
     // Gain one torchlight charge for each unique killed
-    mprf(MSGCH_GOD, "The black torch howls with new intensity!");
+    mprf(MSGCH_GOD, "검은 횃불이 더욱 거세게 울부짖는다!");
     you.props[YRED_TORCH_POWER_KEY].get_int() += 1;
 }
 
@@ -1861,7 +1861,7 @@ bool fedhas_passthrough(const monster_info* target)
 
 void cheibriados_time_bend(int pow)
 {
-    mpr("The flow of time bends around you.");
+    mpr("주변의 시간 흐름이 휘어진다.");
 
     for (adjacent_iterator ai(you.pos()); ai; ++ai)
     {
