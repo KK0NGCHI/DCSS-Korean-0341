@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'tools/dcss-extractor/scripts/full_inventory_v1.py'
+      - 'tools/dcss-extractor/scripts/triage_visible_v1.py'
+      - 'tools/dcss-extractor/scripts/test_triage_visible_v1.py'
       - '.github/workflows/translation-inventory.yml'
 jobs:
   inventory:
@@ -17,6 +19,13 @@ jobs:
           python-version: '3.12'
       - name: Run repository-wide lexical inventory
         run: python tools/dcss-extractor/scripts/full_inventory_v1.py --source source --output tools/dcss-extractor/output/FULL-INVENTORY-001
+      - name: Validate candidate triage rules
+        run: python -m unittest discover -s tools/dcss-extractor/scripts -p 'test_triage_visible_v1.py' -v
+      - name: Deduplicate and prioritize output review candidates
+        run: |
+          python tools/dcss-extractor/scripts/triage_visible_v1.py \
+            --inventory tools/dcss-extractor/output/FULL-INVENTORY-001/strings.csv \
+            --output tools/dcss-extractor/output/FULL-INVENTORY-001/triage
       - name: Display summary
         if: always()
         run: |
