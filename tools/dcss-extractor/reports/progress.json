@@ -31,7 +31,7 @@
     },
     "03": {
       "status": "in_progress",
-      "detail": "23 description file pairs and 23 gameplay database originals audited. godname 23/23, monspell 245/262 text-bearing complete (12 aliases, 5 __NONE), monspeak 65/731; other DB and Lua require translation."
+      "detail": "Description pairs + 23 gameplay text DB files. 3 ko overlays: godname 23, monspell 245, monspeak 216 localized keys; other databases and Lua still need review."
     },
     "04": {
       "status": "in_progress",
@@ -43,7 +43,7 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "P0 C++ gameplay output integrated. monspell all text-bearing keys structurally translated; monspeak 65 key overlay, further named/general speech and weapon noises outstanding."
+      "detail": "P0 C++ gameplay output integrated; monspell 245/262 keys (17 alias/__NONE); monspeak 216/731 keys with 127/379 additional key/variants in PR11. Dynamic particle handling and game runtime unverified."
     },
     "07": {
       "status": "in_progress",
@@ -135,13 +135,13 @@
       "note": "Direct literal callsite heuristics only. English review candidates were 202 at first audit and 46 at final PR4 audit. Not complete untranslated count or game translation rate."
     },
     "gameplay_database_audit": {
-      "source_ref": "a137d9921eda7fe185fdc4aa8c0752fcb24a2f10",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40084216618",
+      "source_ref": "ccb53ddde06b462dd2eec2d4b6157089a55bed84",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40088380643",
       "status": "passed",
       "top_level_files": 23,
       "original_unique_keys_sum": 2022,
       "localized_files": 3,
-      "localized_matched_keys": 333,
+      "localized_matched_keys": 484,
       "top_level_korean_lines": 301,
       "top_level_latin_only_lines": 13242,
       "godname_localized_entries": 23,
@@ -151,9 +151,9 @@
       "monspell_remaining_entries": 17,
       "monspeak_source_unique_keys": 731,
       "monspeak_source_duplicate_occurrences": 1,
-      "monspeak_localized_entries": 65,
-      "monspeak_remaining_entries": 666,
-      "notes": "Game DB key matches only, not game translation rate. Original contains Korean already. 17 monspell nonlocalized keys = 12 alias-only and 5 intentional __NONE."
+      "monspeak_localized_entries": 216,
+      "monspeak_remaining_entries": 515,
+      "notes": "Database overlay key matches (23 godname, 245 monspell, 216 monspeak) do not measure game-wide translation rate. Remaining monspell 17 keys are aliases or __NONE. Other source DB files may already contain Korean."
     },
     "monspell_korean_translation": {
       "source_ref": "f37e093223b844291a7203c78b514f6c0585166b",
@@ -177,20 +177,22 @@
       "note": "Every independent text-bearing monspell key has a Korean body. Does not certify runtime output or Korean particles."
     },
     "monspeak_korean_translation": {
-      "source_ref": "a137d9921eda7fe185fdc4aa8c0752fcb24a2f10",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40084216618",
-      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/9",
+      "source_ref": "ccb53ddde06b462dd2eec2d4b6157089a55bed84",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40088380643",
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/11",
       "source_entries": 732,
       "source_unique_keys": 731,
       "source_duplicate_key_occurrences": 1,
-      "localized_keys": 65,
-      "matching_keys": 65,
-      "remaining_keys": 666,
+      "localized_keys": 216,
+      "matching_keys": 216,
+      "remaining_keys": 515,
+      "added_keys_in_pr11": 127,
+      "new_translated_variants_in_pr11": 379,
       "issues": 0,
-      "unit_tests_passed": 4,
+      "unit_tests_passed": 5,
       "runtime_checked": false,
-      "scope": "Basic animals, insects, humanoid confused/fleeing/silenced responses, priests, mercenaries, imps and player ghosts.",
-      "note": "Markup and structural checks pass. 65/731 key coverage is not full game translation percentage."
+      "scope": "Deity player ghosts, 26 Frederick god-specific victory taunts, unique monster reactions, common/rare ghost and fleeing humanoid speech, ambient visual/sound descriptions.",
+      "note": "Structural validator passes, including w: selection weights and English-only grammar tag replacements; real Windows Tiles language rendering and name particles remain unchecked. Original _laughs_ is duplicated."
     }
   },
   "current_qa_work": {
@@ -232,11 +234,16 @@
     },
     "monspeak_database": {
       "status": "merged",
-      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/9",
-      "matched_keys": 65,
-      "source_keys": 731,
-      "remaining_keys": 666,
-      "next": "Continue translating speech families and specific unique monsters; audit scope should expand to Lua embedded in monspeak."
+      "pr9": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/9",
+      "pr10": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/10",
+      "pr11": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/11",
+      "source_unique_keys": 731,
+      "localized_keys": 216,
+      "remaining_keys": 515,
+      "added_keys_in_pr11": 127,
+      "variants_added_in_pr11": 379,
+      "report": "docs/translation-review/monspeak-batch-20261024.md",
+      "next": "Translate unhandled common humanoid statuses and unique monster Lua-dependent dialogues; audit wpnnoise and mixed-language godspeak."
     }
   },
   "runtime_verification": {
