@@ -744,3 +744,133 @@ w:20
 장어 한 마리가 네 @head@에 머리를 비벼.
 조용한 전기 진동음이 공기를 채워.
 장어 한 마리가 네 몸에 꿈틀대며 스치자 @skin@에 찌릿한 감각이 남아.
+%%%%
+singing sword no_tension
+
+w:400
+@_singing_no_tension_@
+w:100
+@_singing_no-low_tension_@
+w:200
+@_speaking_no_tension_@
+w:10
+@_real_song_no_tension_@
+w:120
+@_instrumental_noises_@
+w:70
+@weapon_noises@
+w:100
+@_weapon_chatter_@
+%%%%
+singing sword low_tension
+
+w:400
+@_singing_no-low_tension_@
+w:100
+@_speaking_low_tension_@
+w:100
+@_speaking_low-high_tension_@
+w:7
+@_real_song_low_tension_@
+w:3
+@_real_song_low-high_tension_@
+w:160
+@_instrumental_noises_@
+w:70
+@weapon_noises@
+w:160
+@_weapon_noises_low-high_tension_@
+%%%%
+singing sword high_tension
+
+w:300
+@_speaking_low-high_tension_@
+w:3
+@_real_song_low-high_tension_@
+w:7
+@_real_song_high_tension_@
+w:150
+@_speaking_high_tension_@
+w:200
+@_instrumental_noises_@
+w:30
+@weapon_noises@
+w:360
+@_weapon_noises_low-high_tension_@
+%%%%
+singing sword SCREAM
+
+@_SCREAM_@
+%%%%
+_singing_no_tension_
+
+@The_weapon@이(가) 음계 연습을 해.
+@The_weapon@이(가) 귀를 찌르는 높은 삑 소리를 내.
+w:30
+@The_weapon@이(가) [갑작스럽게 끊어지는|길게 떨리는|귀가 아플 만큼 높은] 음을 노래해.
+@The_weapon@이(가) @_kind_of_scales_@ 음계를 연습해.
+@The_weapon@이(가) 악절 몇 마디를 연주해.
+@The_weapon@이(가) [간신히|정확히|아슬아슬하게] 기준 음높이를 [맞춰|놓쳐].
+@The_weapon@이(가) 높은 음을 반복해서 연습해.
+@The_weapon@이(가) [여러 개의|3~4개의|수많은] 화음을 한꺼번에 노래해.
+@The_weapon@이(가) 대위 선율을 반복해서 연습해.
+%%%%
+_singing_no-low_tension_
+
+@The_weapon@이(가) 화려하게 노래를 시작해!
+@The_weapon@이(가) [노래해|음정이 나간 채 노래해].
+@The_weapon@이(가) [노래해|휘파람 불어] [우렁차게|신나게].
+@The_weapon@이(가) 애처롭게 칭얼거려.
+@The_weapon@이(가) 구슬프게 울부짖어.
+@The_weapon@이(가) 선율에 맞춰 흥얼거려.
+@The_weapon@이(가) 요들송을 불러.
+@The_weapon@이(가) 음정도 없이 흥얼거려.
+@The_weapon@이(가) 날카롭게 곡성을 내.
+@The_weapon@이(가) "딴딴딴딴" 하고 노래해.
+@The_weapon@이(가) 차분하게 읊조려.
+@The_weapon@이(가) 신나게 트릴을 넣어.
+@The_weapon@이(가) 또다시 독창을 시작해.
+@The_weapon@이(가) 높은 음의 트릴을 연달아 내.
+@The_weapon@이(가) 혼자서 화음을 맞춰 노래하려 애써.
+@The_weapon@이(가) 네 행동 하나하나에 반주를 붙여.
+@The_weapon@이(가) 새 노래를 작곡해.
+@The_weapon@이(가) 요란하게 노래를 시작해.
+@The_weapon@이(가) 즐겁게 휘파람으로 선율을 불어.
+@The_weapon@이(가) [볼레로|보사노바|칼립소|판당고|마주르카|미뉴에트|파소도블레|왈츠]를 연주하기 시작해.
+@The_weapon@이(가) [아리아|푸가]를 장중하게 연주해.
+@The_weapon@이(가) 너만을 위한 [오디션|협주곡]을 선보여.
+@The_weapon@이(가) 혼자서 [노래를 부르며|흥얼거리며] 신나 해.
+@The_weapon@이(가) 새 울음소리를 연달아 흉내 내.
+@The_weapon@이(가) 아름다운 음악을 만들어 내.
+@The_weapon@이(가) 웅장한 관현악 화음을 울려.
+@The_weapon@이(가) 불협화음을 길게 끌어.
+@The_weapon@이(가) 스스로 조율해.
+@The_weapon@이(가) 박자를 맞춰.
+@The_weapon@이(가) 모든 음역을 쏟아 내.
+@The_weapon@이(가) 온 힘을 다해 연주해.
+@The_weapon@이(가) 격렬하게 크레셴도를 쌓아 올려.
+@the_weapon@이(가) 흥분에 찬 목소리로 행진곡을 시작해.
+@The_weapon@이(가) [짧은|귀에 쏙 들어오는|경쾌한] [가락|선율]을 [노래해|흥얼거려|휘파람으로 불어].
+@The_weapon@이(가) 으스스한 [가락|선율]을 [노래해|흥얼거려].
+w:5
+@The_weapon@이(가) 느리고 구슬픈 곡을 [노래해|흥얼거려].
+w:25
+@The_weapon@이(가) @_strikes_up_what_@을(를) 연주하기 시작해.
+@The_weapon@이(가) 노래해. "트랄랄라…"
+w:40
+@The_weapon@이(가) [자장가|민요|심금을 울리는 노래|짧은 징글]을 불러.
+@The_weapon@이(가) 느린 왈츠를 흥얼거려.
+@The_weapon@이(가) 짤막한 선율을 읊조려.
+@The_weapon@이(가) 이름 모를 검을 위한 진혼곡을 연주해.
+@The_weapon@이(가) 서곡을 연주해.
+@The_weapon@이(가) @_song_theme_@에 관한 [찬가|노래]를 시작해.
+@The_weapon@이(가) @_song_theme_@에 관한 [찬가|노래]를 [작곡해|불러].
+@The_weapon@이(가) @player_god@을(를) 찬양하는 찬가를 [작곡해|불러].
+@The_weapon@이(가) 네 모험을 노래하는 발라드를 [작곡해|불러].
+@The_weapon@이(가) 네 부고를 미리 작곡해.
+%%%%
+_speaking_no_tension_
+
+@_common_speaking_no_tension_@
+w:1
+@_rare_speaking_no_tension_@
