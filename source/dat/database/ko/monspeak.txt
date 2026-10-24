@@ -150,3 +150,137 @@ VISUAL:@The_monster_possessive@ 눈이 빛나기 시작한다.
 
 @The_monster@이(가) 외친다. "넌 이제 끝이야!"
 %%%%
+_high_priest_common_
+
+@The_monster@이(가) 기도한다.
+
+@The_monster@이(가) 낯선 기도문을 중얼거린다.
+
+@The_monster@이(가) 끔찍한 기도를 읊는다.
+
+@The_monster@이(가) 기도문을 노래하기 시작한다.
+%%%%
+_high_priest_medium_
+
+VISUAL:@The_monster@이(가) 기묘한 손짓을 한다.
+
+@The_monster@이(가) 외친다. "넌 이단자야! 죽어 마땅해!"
+
+@The_monster@이(가) 말한다. "훌륭한 제물이 되겠군."
+
+@The_monster@이(가) 외친다. "벌을 받아야 해!"
+
+@The_monster@이(가) 말한다. "죄인은 모두 죽어야 해."
+
+@The_monster@이(가) 말한다. "불신자에게는 망각뿐이야."
+%%%%
+_high_priest_rare_
+
+@The_monster@이(가) 말한다. "설교 한창인데 방해하다니."
+
+@The_monster@이(가) 말한다. "죄의 대가는 죽음인 거 알지?"
+
+@The_monster@이(가) 속삭인다. "내 일을 대신하면 살려 줄게."
+
+@The_monster@이(가) 속삭인다. "가끔 마음 깊은 곳이 너무 공허해."
+
+@The_monster@이(가) 말한다. "@my_God@의 분노가 널 덮칠 거야."
+
+@The_monster@이(가) 말한다. "신성한 힘을 맛봐라, 멍청아."
+
+@The_monster@이(가) 말한다. "고통이 네 이단의 죄를 씻어 줄 거야."
+%%%%
+_mercenary_guard_common_
+
+VISUAL:@The_monster@이(가) 몹시 적대적인 표정을 짓는다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+@The_monster@이(가) 소리친다. "한 발짝만 잘못 디뎌 봐. 죽여 버릴 테니까."
+
+@The_monster@이(가) 소리친다. "지금 당장 죽여 주마!"
+
+@The_monster@이(가) 외친다. "네가 오브를 손에 넣을 일은 절대 없어!" @player_only@
+
+@The_monster@이(가) 말한다. "이곳은 출입 금지야."
+
+@The_monster@이(가) 말한다. "여기서 찾은 물건을 전부 내려놓고 집으로 돌아가."
+
+@The_monster@이(가) 말한다. "훔친 물건을 전부 돌려놔!"
+
+@The_monster@이(가) 외친다. "침입자다!"
+
+@The_monster@이(가) 소리친다. "벌을 받아야 해!"
+%%%%
+_mercenary_guard_medium_
+
+@The_monster@이(가) 말한다. "네 여정도 여기까지야."
+
+@The_monster@이(가) 말한다. "개인적인 감정은 없어."
+
+@The_monster@이(가) 말한다. "여기 온 게 마지막 실수였어."
+
+@The_monster@이(가) 말한다. "최선의 공격은 더 강한 공격이지."
+
+@The_monster@이(가) 외친다. "당장 돌아가! 안 그러면 죽여 버린다!"
+%%%%
+_mercenary_guard_rare_
+
+@The_monster@이(가) 말한다. "죽은 모험가가 좋은 모험가지." @player_only@
+
+@The_monster@이(가) 외친다. "잔치는 이제 끝이야!"
+
+@The_monster@이(가) 외친다. "항복하고 죽어라!"
+%%%%
+_friendly_imp_common_
+
+VISUAL:@The_monster@이(가) 신이 나서 펄쩍펄쩍 뛴다.
+
+VISUAL:@The_monster@이(가) 장난스러운 미소를 짓는다.
+
+VISUAL:@The_monster@이(가) 땅바닥에서 딱정벌레 몇 마리를 주워 당신에게 내민다.
+
+VISUAL:@The_monster@이(가) 연기로 고리를 만든다.
+
+@The_monster@이(가) 말한다. "알겠어, 대장!"
+
+@The_monster@이(가) 말한다. "오브는 전부 대장 거야."
+
+@The_monster@이(가) 말한다. "친구들이랑 같이 있으니까 더 재밌지 않아?"
+%%%%
+_friendly_imp_rare_
+
+@The_monster@이(가) 말한다. "어어? 잠깐. 아, 됐어."
+
+@The_monster@이(가) 말한다. "대장은 지난번 주인보다 훨씬 착해."
+
+@The_monster@이(가) 외친다. "물러서! 이건 [속임수|함정|계략|덫]일지도 몰라!"
+
+@The_monster@이(가) 외친다. "여기야! 내가 찾았어!"
+
+@The_monster@이(가) 말한다. "죽이면 안 되는 놈이 누군지만 알려 줘."
+%%%%
+_hostile_imp_common_
+
+@The_monster@이(가) 미친 듯 웃는다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+VISUAL:@The_monster@이(가) 꼬리를 사납게 휘두른다.
+
+VISUAL:@The_monster@이(가) 이를 간다.
+
+VISUAL:@The_monster@이(가) @foe@에게 안개를 뿜는다.
+%%%%
+_hostile_imp_rare_
+
+VISUAL:@The_monster@이(가) @foe@에게 침을 뱉는다.
+
+VISUAL:@The_monster@이(가) 딱정벌레를 집어 먹는다.
+
+@The_monster@이(가) 푸르륵거린다.
+
+VISUAL:@The_monster@이(가) 잠깐 사라진다.
+
+VISUAL:@The_monster@이(가) 파리 떼를 불러낸다.
+%%%%
