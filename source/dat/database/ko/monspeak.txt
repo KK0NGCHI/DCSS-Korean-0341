@@ -1725,3 +1725,427 @@ VISUAL:@The_monster@이(가) 가까스로 평정심을 되찾으려 한다.
 @The_monster@이(가) @_mutters_@. "재수가 이렇게 없을 수가!"
 
 VISUAL:@The_monster@이(가) 잃어버린 용기를 다시 끌어모으려 한다.
+%%%%
+Fighting player ghost
+
+@The_monster@이(가) 자랑한다. "네가 본 적도 없는 괴물들을 내가 쓰러뜨렸지."
+
+VISUAL:@The_monster@이(가) 전투 자세를 취한다.
+
+@The_monster@이(가) 말한다. "내 필승 전술 앞에 넌 패배할 수밖에 없어."
+
+@The_monster@이(가) 말한다. "싸우다 죽을 각오가 됐나? 난 그랬지!"
+
+@The_monster@이(가) 비웃는다. "그걸 싸움이라고 하는 거야?"
+
+@The_monster@이(가) 웃는다. "네가 오브를 찾을 수 있을 것 같아? 난 이미 손에 넣었었지. 그러고는 다시 훔치려고 일부러 내줬다고!"
+%%%%
+Stealth player ghost
+
+VISUAL:@The_monster@이(가) 몰래 빠져나가려 한다.
+
+VISUAL:@The_monster@이(가) 주변 환경에 몸을 숨기려 한다.
+
+VISUAL:@The_monster@이(가) 너무 조용히 속삭여서 @objective@의 말이 전혀 들리지 않는다.
+
+VISUAL:잠시 @the_monster@의 위치를 놓친다.
+
+@The_monster@이(가) 속삭인다. "아주, 아주 조용히 해. 지금 @player_genus_plural@을(를) 사냥 중이거든." @player_only@
+
+VISUAL:잠시 @the_monster@이(가) 그림자에 섞여 사라진다.
+%%%%
+Unarmed Combat player ghost
+
+@The_monster@이(가) 비웃는다. "무기는 약한 자들이나 쓰는 거지."
+
+VISUAL:@The_monster@이(가) [왼쪽|오른쪽]으로 속임 동작을 취한다.
+
+VISUAL:@The_monster@이(가) 격투 자세를 취한다.
+
+@The_monster@이(가) 말한다. "난 맨손으로 뼈를 부러뜨리고 두개골을 깨부수지."
+
+VISUAL:@The_monster@이(가) 당신을 향해 주먹을 휘두른다. @player_only@
+
+VISUAL:@The_monster@이(가) 손가락을 구부렸다 편다.
+%%%%
+Spellcasting player ghost
+
+@The_monster@이(가) 말한다. "어떤 상황에든 알맞은 주문을 준비해 뒀지."
+
+@The_monster@이(가) 말한다. "지식이 곧 힘이라는 사실을 내가 증명하지."
+
+@The_monster@이(가) 말한다. "잘 보고 놀랄 준비나 해!"
+
+@The_monster@이(가) 말한다. "죽은 뒤로도 연습을 꽤 많이 했거든."
+
+VISUAL:@The_monster_possessive@ 손끝에서 빛이 나기 시작한다.
+
+VISUAL:@The_monster@이(가) 집중하며 눈살을 찌푸린다.
+
+@The_monster@이(가) 말한다. "내가 너보다 똑똑하다고!"
+%%%%
+Invocations player ghost
+
+@The_monster@이(가) 신들을 저주한다.
+
+@The_monster@이(가) 말한다. "신들을 믿었다가 결국 이런 꼴이 됐어."
+
+@The_monster@이(가) 상대를 비웃는다. "이제 네 신은 어디 있지?"
+
+@The_monster@이(가) 말한다. "쳇, 신들은 죄다 쓸모없어!"
+
+@The_monster@이(가) 중얼거린다. "약속한 사후 세계가 고작 이거라니."
+
+VISUAL:@The_monster@이(가) 기도한다.
+%%%%
+orb Crazy Yiuf
+
+@The_monster@이(가) 말한다. "나도 데려가!"
+
+@The_monster@이(가) 말한다. "찾아냈구나!"
+
+@The_monster@이(가) 말한다. "여기서 날 꺼내 줘."
+
+@The_monster@이(가) 말한다. "날 데리러 돌아왔구나."
+%%%%
+Donald banished
+
+w:100
+
+__NONE
+
+w:1
+
+@The_monster@이(가) 말한다. "심연으로 추방이라니. 정말 싫어."
+%%%%
+Erolcha banished
+
+__NONE
+
+w:1
+
+@The_monster@이(가) 소리친다. "잠깐! 그건 에롤차가 하려던 건데!"
+%%%%
+Louise banished
+
+__NONE
+
+w:1
+
+@The_monster@이(가) 말한다. "전에도 돌아왔잖아... 이번에도 돌아올 거야!"
+%%%%
+fleeing Dowan
+
+VISUAL:@The_monster@이(가) 공포에 질려 운다.
+%%%%
+Xtahua riddle
+
+@The_monster@이(가) 당신에게 포효한다. "그 작은 먹잇감 주제에 말은 거창하군!"
+%%%%
+Nobody triumph
+
+@The_monster@이(가) 쉰 목소리로 말한다. "이제... 너도... 아무도 아니야."
+%%%%
+orb spider charge
+
+@The_monster@이(가) 순수한 에너지로 이루어진 실을 뽑아낸다.
+
+@The_monster@이(가) 기묘한 에너지로 맥동한다.
+
+@The_monster@이(가) 실을 엮어 눈부시게 빛나는 구체를 만들기 시작한다.
+%%%%
+silenced cognitogaunt
+
+VISUAL:@The_monster@이(가) 오래전에 사라진 밤의 잔광으로 빛난다.
+%%%%
+death cob
+
+w:1
+
+죽음의 옥수수 속대가 썰렁한 농담을 한다.
+
+w:1999
+
+__NONE
+%%%%
+raven
+
+w:100
+
+__NONE
+
+w:2
+
+@The_monster@이(가) 까악거리며 외친다. "다시는!"
+%%%%
+obsidian bat
+
+VISUAL:@The_monster@이(가) 잠시 던전의 어둠 속으로 날아든다.
+
+w:40
+
+__NONE
+%%%%
+twin_died Dowan
+
+VISUAL:@The_monster@이(가) 슬픔에 몸을 떤다.
+
+@The_monster@이(가) 말한다. "마법이라면 무엇이든 극복할 수 있어!"
+
+@The_monster@이(가) 말한다. "누이의 죽음을 헛되게 두진 않겠어!"
+
+@The_monster@이(가) 말한다. "누이 없이 어떻게 살아가라는 거야?"
+
+@The_monster@이(가) 한숨처럼 중얼거린다. "내게 남은 유일한 가족이었는데..."
+%%%%
+twin_banished Dowan
+
+VISUAL:@The_monster@이(가) 슬픔에 몸을 떤다.
+
+@The_monster@이(가) 말한다. "꼭 찾아낼 거야! 반드시 데려오겠어!"
+
+@The_monster@이(가) 말한다. "영영 잃어버린 건 아닐 거야!"
+%%%%
+twin_slimified Dowan
+
+VISUAL:@The_monster@이(가) 슬픔에 몸을 떤다.
+
+@The_monster@이(가) 말한다. "이걸 되돌릴 방법을 꼭 찾겠어!"
+
+@The_monster@이(가) 말한다. "당장 원래대로 돌려놔!"
+%%%%
+Dowan_Duvessa_dies
+
+@The_monster@이(가) 외친다. "안 돼! 안 돼!"
+
+VISUAL:@The_monster@이(가) 슬픔에 잠긴 듯 보인다.
+
+@The_monster@이(가) 비명을 지른다. "안 돼! 이럴 수가!"
+
+@The_monster_possessive@ 눈빛이 어두워진다. "넌 돌이킬 수 없는 실수를 저질렀어."
+%%%%
+twin_banished Duvessa
+
+VISUAL:@The_monster@이(가) 분노와 슬픔에 몸을 떤다.
+
+VISUAL:@The_monster@이(가) 이를 악물고 마음을 다잡는다.
+
+@The_monster@이(가) 말한다. "내가 반드시 데려올 거야!"
+%%%%
+Duvessa_Dowan_dies
+
+@The_monster@이(가) 분노에 찬 비명을 지른다.
+
+@The_monster@이(가) 소리친다. "안 돼! 감히 네가!"
+
+VISUAL:@The_monster@이(가) 흐느끼며 무기를 상대에게 흔들어 보인다.
+%%%%
+Duvessa_Dowan_dies_invisible
+
+@The_monster@이(가) 분노에 찬 비명을 지른다.
+
+@The_monster@이(가) 분노에 떨리는 목소리로 외친다. "안 돼, 안 돼!"
+
+@The_monster@이(가) 분노하며 외친다. "안 돼!"
+%%%%
+Duvessa_Dowan_dies_bytwin
+
+@The_monster@이(가) 공포에 질려 비명을 지른다.
+
+w:1
+
+@The_monster@이(가) 외친다. "안 돼! 내가 무슨 짓을 한 거야?"
+%%%%
+fleeing Harold
+
+__NEXT
+
+w:5
+
+@The_monster@이(가) @_yells_@. "나도 이제 이러기엔 너무 늙었다고!"
+%%%%
+Harold killed
+
+__NONE
+
+w:4
+
+@The_monster@이(가) "내... 가족..." 하고 신음한 뒤 쓰러져 죽는다.
+
+w:3
+
+@The_monster@이(가) 치명상을 내려다보며 외친다. "하지만... 내일이면 은퇴인데..."
+
+w:2
+
+@The_monster@이(가) 마지막 숨을 내쉬며 말한다. "일을 좀 덜 할걸..."
+
+w:1
+
+@The_monster@이(가) 쓰러져 상처를 움켜쥔다. "그래도 은퇴하면 @_Harold_retirement_plan_@을(를) 하려고 했는데..."
+%%%%
+Harold triumphant
+
+@The_monster@이(가) 말한다. "이 이야기를 우리 꼬맹이들한테 들려줄 생각에 신이 나는군."
+
+@The_monster@이(가) 말한다. "이제 은퇴할 시간이야."
+
+@The_monster@이(가) 한숨 쉰다. "마침내 @_Harold_retirement_plan_@을(를) 하며 정착할 수 있겠군."
+
+@The_monster@이(가) 한숨 쉰다. "늙은 @the_monster@에게 남은 건 이제 @_Harold_ret_hobby_@뿐이야."
+%%%%
+Maurice nonstealing
+
+@The_monster@이(가) 투덜댄다. "젠장!"
+
+@The_monster@이(가) 중얼거린다. "대체 어디 숨겨 놓은 거지?"
+
+@The_monster@이(가) 신음한다. "넌 무슨 수도승이라도 돼?"
+%%%%
+Maurice confused nonstealing
+
+w:70
+
+__NONE
+
+@The_monster@이(가) 서투르게 당신의 소지품을 훔치려다 실패한다.
+
+@The_monster@이(가) 당신의 주머니를 더듬다가 헛손질한다.
+
+@The_monster@이(가) 당신의 주머니로 달려들다가 넘어진다.
+
+w:5
+
+@The_monster@이(가) 음정을 틀리며 노래한다. "나한테 줄 돈 없나?"
+%%%%
+silenced Murray
+
+VISUAL:@The_monster@이(가) 원을 그리며 굴러간다.
+
+VISUAL:@The_monster@이(가) 이리저리 굴러다닌다.
+
+VISUAL:@The_monster@이(가) 팽이처럼 빙빙 돈다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+VISUAL:@The_monster@이(가) 무언가 말하는 것 같다.
+
+VISUAL:@The_monster@이(가) 무언가 말하지만 들리지 않는다. 분명 칭찬은 아니었을 것이다. @player_only@
+%%%%
+confused Nergalle
+
+@The_monster@이(가) 중얼거린다. "그 깃펜을 어디에 뒀더라..."
+
+@The_monster@이(가) 중얼거린다. "@orc name@, 날 좀 내버려 둬. 바쁘다고 했잖아..."
+
+@The_monster@이(가) 중얼거린다. "@orc name@, 그 지긋지긋한 노래 좀 그만해. 넌 예전부터 노래를 못했어."
+%%%%
+holy_being_pacification_humanoid
+
+w:5
+
+@holy_being_pacification@
+
+VISUAL:@The_monster@이(가) 전투 자세를 풀고 긴장을 늦춘다.
+
+VISUAL:@The_monster@이(가) 당신에게 경례한다.
+%%%%
+holy_being_pacification_speech
+
+@The_monster@이(가) 당신에게 외친다. "필멸자여, 네 여정을 이어 가라!"
+
+@The_monster@이(가) 당신에게 말한다. "엘리빌론의 종이여, 계속 나아가라!"
+
+@The_monster@이(가) 당신에게 말한다. "계속 전진하라, 필멸자여."
+%%%%
+beogh_converted_orc_reaction_sight
+
+@The_monster@이(가) 놀란 눈으로 당신을 보다가 무릎을 꿇는다.
+
+@The_monster@이(가) 전투 자세를 풀고 당신에게 미소 짓는다.
+
+@The_monster@이(가) 당신 앞에 무릎을 꿇는다.
+%%%%
+beogh_converted_orc_speech_sight
+
+@Subjective@이(가) 외친다. "@player_name@도 우리 동족이야!"
+
+@Subjective@이(가) 외친다. "틀림없이 베오그께서 당신을 보내셨군!"
+
+@Subjective@이(가) 묻는다. "당신이 우리의 구원자입니까?"
+
+@Subjective@이(가) 말한다. "이제 와 주셔서 정말 다행입니다."
+%%%%
+beogh_converted_orc_reaction_battle
+
+@The_monster@이(가) 항복한다.
+
+@The_monster@이(가) 무릎을 꿇는다.
+
+@The_monster@이(가) 항복의 뜻으로 양손을 들어 올린다.
+%%%%
+beogh_converted_orc_speech_battle
+
+@Subjective@이(가) 외친다. "당신을 따르겠습니다! 살려 주세요!"
+
+@Subjective@이(가) 말한다. "이제 알겠습니다. 당신이야말로 구세주이십니다!"
+
+@Subjective@이(가) 외친다. "베오그의 말씀을 따르겠습니다! 맹세합니다!"
+%%%%
+beogh_converted_orc_speech_vengeance
+
+@Subjective@이(가) 외친다. "이미 복수하셨잖아요! 절 놓아주세요!"
+
+@Subjective@이(가) 외친다. "살려 주시면 두 번 다시 눈앞에 나타나지 않겠습니다!"
+
+@Subjective@이(가) 말한다. "죽어 마땅한 몸이지만 베오그께서는 자비로우십니다!"
+%%%%
+beogh_converted_orc_resurrection
+
+@The_monster@이(가) 외친다. "저를 살려 주셨군요!"
+
+@The_monster@이(가) 말한다. "당신이야말로 진정한 구세주이십니다."
+
+@The_monster@이(가) @objective@을(를) 되살려 준 당신에게 감사를 표한다.
+
+@The_monster@이(가) 말한다. "당신이라면 믿을 수 있을 줄 알았습니다."
+
+@The_monster@이(가) 말한다. "이제 또 하루 싸울 수 있게 되었군요."
+%%%%
+orc_priest_apostate
+
+오크 사제가 외친다. "배신자 놈, 내 눈앞에서 썩 꺼져라!"
+
+오크 사제가 으르렁거린다. "당장 도망친다면 목숨만은 살려 주마! 꺼져라!"
+
+오크 사제가 저주한다. "믿음 없는 네 위선적인 경건함이 역겹구나!"
+
+오크 사제가 비웃는다. "베오그께서는 널 용서하실지 몰라도 난 못 한다!"
+
+오크 사제가 외친다. "네 기회는 이미 끝났다, 배교자 쓰레기야!"
+%%%%
+orc_priest_preaching
+
+@The_monster@이(가) 외친다. "베오그께서는 너 같은 자에게도 자비를 베푸신다. 우리와 함께하여 새로 태어나라!"
+
+@The_monster@이(가) 외친다. "다른 신들은 누구의 충성도 받을 자격이 없다. 진정한 길을 보여 주마!"
+
+@The_monster@이(가) 외친다. "베오그께 항복하면 목숨은 살려 주겠다!"
+
+@The_monster@이(가) 위협한다. "베오그의 분노는 자비만큼이나 크다. 선택해라!"
+%%%%
+orc_apostle_yield
+
+@The_monster@이(가) 외친다. "항복합니다! 당신이야말로 선택받은 분입니다!"
+
+@The_monster@이(가) 외친다. "항복합니다! 승리는 당신의 것입니다!"
+
+@The_monster@이(가) 무릎을 꿇고 복종한다.
+%%%%
+orc_apostle_dismissed
+
+@The_monster@이(가) 말한다. "당신을 결코 잊지 않겠습니다!"
+
+@The_monster@이(가) 지상에 베오그의 말씀을 전하러 떠난다.
+
+@The_monster@이(가) 떠나기 전에 당신에게 경례한다.

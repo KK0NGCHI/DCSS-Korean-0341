@@ -37,6 +37,17 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         self.assertEqual(check_variants(en, ko), [])
         self.assertIn("weight_list", check_variants(en, ko[1:]))
 
+    def test_weapon_noise_markup_and_weighting(self):
+        src = ("%%%%\nweapon_noise\n\nw:10\n"
+               "@Your_weapon@ [howls|laughs].\n\nw:3\n"
+               "SOUND:You hear @weapon_noise@.\n%%%%\n")
+        ko = ("%%%%\nweapon_noise\n\nw:10\n"
+              "@Your_weapon@이(가) [울부짖는다|웃는다].\n\nw:3\n"
+              "SOUND:@weapon_noise@ 소리가 들린다.\n%%%%\n")
+        self.assertEqual(audit(src, ko)["problems"], [])
+        self.assertTrue(audit(src, ko.replace("w:3", "w:4"))["problems"])
+        self.assertTrue(audit(src, ko.replace("SOUND:", ""))["problems"])
+
     def test_counts_and_duplicate_data(self):
         src = "%%%%\nthing\n\n@The_monster@ speaks.\n%%%%\nthing\n\n@The_monster@ shouts.\n%%%%\n"
         ko = "%%%%\nthing\n\n@The_monster@이(가) 말한다.\n%%%%\n"
