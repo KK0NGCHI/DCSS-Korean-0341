@@ -4199,3 +4199,23 @@ VISUAL:@The_monster@이(가) 허공의 냄새를 맡고 재빨리 주위를 둘�
 @The_monster@이(가) 적을 손가락으로 가리키며 소리쳐. "@_Grum_dog_name_@! 덤벼!"
 @The_monster@이(가) 주위를 둘러보며 외쳐. "@_Grum_dog_name_@! 이리 와!"
 @The_monster@이(가) 외쳐. "@_Grum_dog_name_@! 착하지!"
+%%%%
+_Grum_rare_
+
+VISUAL:@The_monster@이(가) 옷에 붙은 벼룩 때문에 잠시 한눈을 팔아.
+@The_monster@이(가) @_Grum_verb_@. "밤낮없이 널 쫓아다니겠어!"
+@The_monster@이(가) @_Grum_verb_@. "오늘 밤엔 개들과 함께 잔치를 벌이겠어…"
+@The_monster@이(가) @_Grum_verb_@. "꽤 맛있게 생겼군."
+@The_monster@이(가) @_Grum_verb_@. "강아지 다루듯 널 눌러 버리지."
+@The_monster@이(가) 역겹다는 듯 상대를 바라보며 @_Grum_verb_@. "넌 내 친구가 아니야."
+@The_monster@이(가) 즐겁게 말해. "오늘 밤 그룸은 개고기를 안 먹어도 되겠군!"
+@The_monster@이(가) @_Grum_verb_@. "넌 우리 개들 밥이다, @player_name@!"
+@The_monster@이(가) 물어. "@player_genus_plural@의 뼈는 어떻게 생겼지? 우리 개들도 궁금하다는데." @player_only@
+@The_monster@이(가) 말해. "내 비결? 개들에게 @player_genus_plural@을(를) 먹이는 거야. 털에 윤기가 나거든." @player_only@
+@The_monster@이(가) 상대를 바라보며 @_Grum_verb_@. "이제 이 무리의 약골을 내보낼 때군."
+@The_monster@이(가) @_Grum_verb_@. "나랑 @_Grum_dog_name_@이(가) 네 뼈로 공놀이할 거야!"
+@The_monster@이(가) @_Grum_verb_@. "누가 착한 강아지지? 그래, @_Grum_dog_name_@! 바로 너야!"
+@The_monster@이(가) @_Grum_verb_@. "나랑 싸우겠다고? 제법 짖는 녀석이군!"
+@The_monster@이(가) 소리쳐. "사냥개들을 풀어라!"
+@The_monster@이(가) 말해. "이 멋진 가죽들을 팔고 있어."
+@The_monster@이(가) 소리쳐. "더 빨리, @_Grum_dog_name_@! 공격해!"
