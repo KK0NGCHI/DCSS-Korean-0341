@@ -53,6 +53,12 @@ jobs:
             --original source/dat/database/monspeak.txt \
             --localized source/dat/database/ko/monspeak.txt \
             --output tools/dcss-extractor/output/DB-AUDIT-001/monspeak_ko.json
+      - name: Audit Korean weapon speech and sound message structures
+        run: |
+          python tools/dcss-extractor/scripts/audit_monspeak_ko.py \
+            --original source/dat/database/wpnnoise.txt \
+            --localized source/dat/database/ko/wpnnoise.txt \
+            --output tools/dcss-extractor/output/DB-AUDIT-001/wpnnoise_ko.json
       - name: Publish detailed database audit reports
         uses: actions/upload-artifact@v4
         with:
