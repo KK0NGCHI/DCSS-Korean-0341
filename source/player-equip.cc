@@ -794,7 +794,7 @@ void player_equip_set::find_removable_items_for_slot(equipment_slot base_slot,
     }
 
     if (!quiet && !found_item && cursed_item)
-        mprf(MSGCH_PROMPT, "%s is stuck to your body!", cursed_item->name(DESC_YOUR).c_str());
+        mprf(MSGCH_PROMPT, "%s 때문에 장비를 벗을 수 없어!", cursed_item->name(DESC_YOUR).c_str());
 }
 
 /**
@@ -1830,7 +1830,7 @@ void unequip_artefact_effect(item_def &item,  bool *show_msgs, bool meld)
 
     if (artefact_property(item, ARTP_FRAGILE) && !meld)
     {
-        mprf("%s crumbles to dust!", item.name(DESC_THE).c_str());
+        mprf("%s에서 먼지가 흩날리더니 산산이 부서진다!", item.name(DESC_THE).c_str());
 
         // Hide unwield messages for weapons that have already been destroyed.
         if (item.base_type == OBJ_WEAPONS)
@@ -1868,7 +1868,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
         switch (special)
         {
         case SPWPN_FLAMING:
-            mprf("%s bursts into flame!", item_name.c_str());
+            mprf("%s에서 불꽃이 솟구친다!", item_name.c_str());
             break;
 
         case SPWPN_FREEZING:
@@ -1881,12 +1881,12 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
         case SPWPN_HOLY_WRATH:
             if (you.undead_or_demonic())
             {
-                mprf("%s sits dull and lifeless in your grasp.",
+                mprf("손에 쥔 %s에는 아무런 기운도 느껴지지 않는다.",
                         item_name.c_str());
             }
             else
             {
-                mprf("%s softly glows with a divine radiance!",
+                mprf("%s에서 은은한 신성한 빛이 난다!",
                         item_name.c_str());
             }
             break;
@@ -1894,12 +1894,12 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
         case SPWPN_FOUL_FLAME:
             if (you.is_holy())
             {
-                mprf("%s sits dull and lifeless in your grasp.",
+                mprf("손에 쥔 %s에는 아무런 기운도 느껴지지 않는다.",
                         item_name.c_str());
             }
             else
             {
-                mprf("%s glows horrifically with a foul blackness!",
+                mprf("%s에서 섬뜩하고 불길한 검은빛이 난다!",
                         item_name.c_str());
             }
             break;
@@ -1915,11 +1915,11 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_VENOM:
-            mprf("%s begins to drip with poison!", item_name.c_str());
+            mprf("%s에서 독이 뚝뚝 떨어지기 시작한다!", item_name.c_str());
             break;
 
         case SPWPN_PROTECTION:
-            mprf("%s hums with potential!", item_name.c_str());
+            mprf("%s에서 잠재된 힘의 울림이 들린다!", item_name.c_str());
             break;
 
         case SPWPN_DRAINING:
@@ -1976,7 +1976,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
         }
 
         case SPWPN_REAPING:
-            mprf("%s is briefly surrounded by shifting shadows.",
+            mprf("%s 주위에 일렁이는 그림자가 잠시 드리운다.",
                     item_name.c_str());
             break;
 
@@ -1995,7 +1995,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_ACID:
-            mprf("%s begins to ooze corrosive slime!", item_name.c_str());
+            mprf("%s에서 부식성 점액이 배어 나오기 시작한다!", item_name.c_str());
             break;
 
         case SPWPN_SPECTRAL:
@@ -2003,14 +2003,14 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_REBUKE:
-            mprf("%s quivers in your %s.", item_name.c_str(), you.hand_name(true).c_str());
+            mprf("%s의 진동이 %s에 전해진다.", item_name.c_str(), you.hand_name(true).c_str());
             break;
 
         case SPWPN_VALOUR:
             if (you.hp > you.hp_max * 4 / 5)
                 mprf("무기가 전투를 갈망하듯 번뜩인다.");
             else
-                mprf("%s feels dull in your %s.", item_name.c_str(), you.hand_name(true).c_str());
+                mprf("%s의 기운이 %s 안에서 무뎌진다.", item_name.c_str(), you.hand_name(true).c_str());
             break;
 
         case SPWPN_ENTANGLING:
@@ -2018,11 +2018,11 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_SUNDERING:
-            mprf("%s gleams with a vicious edge.", item_name.c_str());
+            mprf("%s의 날이 사납게 번뜩인다.", item_name.c_str());
             break;
 
         case SPWPN_CONCUSSION:
-            mprf("%s radiates an overwhelming force.", item_name.c_str());
+            mprf("%s에서 압도적인 힘이 뿜어져 나온다.", item_name.c_str());
             break;
 
         case SPWPN_DEVIOUS:
@@ -2058,37 +2058,37 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
             {
             case SPWPN_FLAMING:
                 if (showMsgs)
-                    mprf("%s stops flaming.", msg.c_str());
+                    mprf("%s에서 불꽃이 사그라든다.", msg.c_str());
                 break;
 
             case SPWPN_HOLY_WRATH:
                 if (showMsgs && !you.undead_or_demonic())
-                    mprf("%s stops glowing.", msg.c_str());
+                    mprf("%s에서 빛이 사라진다.", msg.c_str());
                 break;
 
             case SPWPN_FOUL_FLAME:
                 if (showMsgs && !you.is_holy())
-                    mprf("%s stops glowing.", msg.c_str());
+                    mprf("%s에서 빛이 사라진다.", msg.c_str());
                 break;
 
             case SPWPN_FREEZING:
                 if (showMsgs)
-                    mprf("%s stops glowing.", msg.c_str());
+                    mprf("%s에서 빛이 사라진다.", msg.c_str());
                 break;
 
             case SPWPN_ELECTROCUTION:
                 if (showMsgs)
-                    mprf("%s stops crackling.", msg.c_str());
+                    mprf("%s에서 더는 지직거리는 소리가 나지 않는다.", msg.c_str());
                 break;
 
             case SPWPN_VENOM:
                 if (showMsgs)
-                    mprf("%s stops dripping with poison.", msg.c_str());
+                    mprf("%s에서 더는 독이 떨어지지 않는다.", msg.c_str());
                 break;
 
             case SPWPN_PROTECTION:
                 if (showMsgs)
-                    mprf("%s goes still.", msg.c_str());
+                    mprf("%s의 진동이 멎는다.", msg.c_str());
                 if (you.duration[DUR_SPWPN_PROTECTION])
                 {
                     you.duration[DUR_SPWPN_PROTECTION] = 0;
@@ -2125,12 +2125,12 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
                 // effect when reading brand weapon in read() in item-use.cc
 
             case SPWPN_ACID:
-                mprf("%s stops oozing corrosive slime.", msg.c_str());
+                mprf("%s에서 부식성 점액이 더는 나오지 않는다.", msg.c_str());
                 break;
 
             case SPWPN_REBUKE:
                 if (showMsgs)
-                    mprf("%s stops quivering.", msg.c_str());
+                    mprf("%s의 떨림이 멎는다.", msg.c_str());
                 break;
 
             case SPWPN_VALOUR:
@@ -2144,12 +2144,12 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
                 break;
 
             case SPWPN_SUNDERING:
-                mprf("%s goes dull.", msg.c_str());
+                mprf("%s에서 번뜩이던 빛이 사라진다.", msg.c_str());
                 break;
 
             case SPWPN_CONCUSSION:
                 if (showMsgs)
-                    mprf("%s stops radiating force.", msg.c_str());
+                    mprf("%s에서 더는 힘이 뿜어져 나오지 않는다.", msg.c_str());
                 break;
 
             case SPWPN_DEVIOUS:
