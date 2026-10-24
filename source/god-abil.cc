@@ -2468,7 +2468,7 @@ void announce_beogh_conversion_offer()
 
             ASSERT_RANGE(get_talent(ABIL_CONVERT_TO_BEOGH).hotkey,
                             'A', 'z' + 1);
-            mprf("(press <w>%c</w> on the <w>%s</w>bility menu to convert to Beogh)",
+            mprf("베오그로 개종하려면 능력 메뉴(<w>%s</w>)에서 <w>%c</w>를 누르세요.",
                     get_talent(ABIL_CONVERT_TO_BEOGH).hotkey,
                     command_to_string(CMD_USE_ABILITY).c_str());
             you.attribute[ATTR_SEEN_BEOGH] = 1;
@@ -2775,8 +2775,7 @@ bool beogh_cancel_leaving_floor()
 
     if (you.duration[DUR_BEOGH_DIVINE_CHALLENGE])
     {
-        if (!yesno("Are you sure you wish to flee a divine trial? This will "
-                   "place you under penance!", false, 'n'))
+        if (!yesno("정말 신성한 시련에서 도망칠까? 그러면 신의 징벌을 받게 돼!", false, 'n'))
         {
             mpr("베오그가 당신의 용기를 기꺼워한다.");
             return true;
@@ -3178,7 +3177,7 @@ spret dithmenos_marionette(monster& target, bool fail)
     }
 
     target.add_ench(ENCH_SHADOWLESS);
-    mprf("%s shadow slips away and your performance ends.",
+    mprf("%s의 그림자가 사라지며 공연도 끝난다.",
             target.name(DESC_ITS).c_str());
 
     // Let the monster complain about what you did to them, in their own way.
@@ -5675,8 +5674,7 @@ bool uskayaw_stomp()
     // XXX: this 'friendlies' wording feels a little odd, but we do use it in a
     // a few places already; see spl-vortex.cc, disaster area, etc.
     if (friendlies
-        && !yesno("There are friendlies around, "
-                  "are you sure you want to hurt them?",
+        && !yesno("주변에 아군이 있어. 정말 공격할까?",
                   true, 'n'))
     {
         canned_msg(MSG_OK);
@@ -5904,12 +5902,12 @@ spret uskayaw_grand_finale(bool fail)
     if (mons->type == MONS_ROYAL_JELLY && !mons->is_summoned())
     {
         // need to do this here, because react_to_damage is never called
-        mprf("%s explodes violently into a cloud of jellies%s",
+        mprf("%s이(가) 격렬하게 폭발하며 젤리 구름을 뿜어낸다%s",
                                         mons->name(DESC_THE, false).c_str(), attack_punctuation.c_str());
         schedule_trj_spawn_fineff(&you, mons, mons->pos(), mons->hit_points);
     }
     else
-        mprf("%s explodes violently%s", mons->name(DESC_THE, false).c_str(), attack_punctuation.c_str());
+        mprf("%s이(가) 격렬하게 폭발한다%s", mons->name(DESC_THE, false).c_str(), attack_punctuation.c_str());
     mons->flags |= MF_EXPLODE_KILL;
     if (!mons->is_insubstantial())
     {
@@ -5964,8 +5962,7 @@ bool hepliaklqana_choose_ancestor_type(int ancestor_choice)
     const auto ancestor_type = *ancestor_mapped;
     const string ancestor_type_name = mons_type_name(ancestor_type, DESC_A);
 
-    if (!yesno(make_stringf("Are you sure you want to remember your ancestor "
-                            "as %s?", ancestor_type_name.c_str()).c_str(),
+    if (!yesno(make_stringf("정말 조상을 %s의 모습으로 기억할까?", ancestor_type_name.c_str()).c_str(),
                false, 'n'))
     {
         canned_msg(MSG_OK);
@@ -6013,13 +6010,13 @@ spret hepliaklqana_idealise(bool fail)
     monster *ancestor = monster_by_mid(ancestor_mid);
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s is not nearby!", hepliaklqana_ally_name().c_str());
+        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
     fail_check();
 
-    simple_god_message(make_stringf(" grants %s healing and protection!",
+    simple_god_message(make_stringf("이(가) %s에게 치유와 보호를 내려준다!",
                                     ancestor->name(DESC_YOUR).c_str()).c_str());
 
     // 1/3 mhp healed at 0 skill, full at 27 invo
@@ -6100,7 +6097,7 @@ spret hepliaklqana_transference(bool fail)
     monster *ancestor = hepliaklqana_ancestor_mon();
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s is not nearby!", hepliaklqana_ally_name().c_str());
+        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
@@ -6263,7 +6260,7 @@ static void _hepliaklqana_choose_gender()
     }
 
     you.props[HEPLIAKLQANA_ALLY_GENDER_KEY] = new_gender;
-    mprf("%s was always %s, you're pretty sure.",
+    mprf("%s은(는) 원래부터 %s이었던 것 같아.",
          hepliaklqana_ally_name().c_str(),
          map_find(gender_map, new_gender)->c_str());
     upgrade_hepliaklqana_ancestor(true);
@@ -7003,19 +7000,19 @@ void makhleb_infernal_servant()
             beam.is_explosion = true;
             beam.ex_size = 2;
 
-            mprf("%s appears in a burst of %s!", demon->name(DESC_A).c_str(),
+            mprf("%s이(가) %s의 폭발 속에서 나타난다!", demon->name(DESC_A).c_str(),
                                         beam.get_short_name().c_str());
 
             beam.explode();
         }
         else if (tyrant)
         {
-            mprf("%s answers its master's command!",
+            mprf("%s이(가) 주인의 명령에 응한다!",
                     demon->name(DESC_A).c_str());
         }
         else
         {
-            mprf("%s answers the call of your %s!",
+            mprf("%s이(가) 당신의 %s에 이끌려 나타난다!",
                     demon->name(DESC_A).c_str(),
                     you.has_blood() ? "blood" : "suffering");
         }
@@ -7299,12 +7296,10 @@ void makhleb_enter_crucible_of_flesh(int debt)
     for (int i = 0; i < num_victims; ++i)
         _spawn_crucible_victim(true);
 
-    simple_god_message(" says: Flay and bleed and purify yourself, if you wish"
-                       " to be found worthy of leaving this place!", false,
+    simple_god_message("이(가) 명한다. 이곳을 떠날 자격을 얻고 싶다면 살을 벗기고 피를 흘려 스스로를 정화하라!", false,
                        GOD_MAKHLEB);
 
-    mpr("(Slaughtering mortal victims (and sometimes even demons) will "
-        "eventually satisfy Makhleb and create an exit.)");
+    mpr("(필멸자와 때때로 악마까지 제물로 바치면 마크레브를 만족시켜 출구를 만들 수 있다.)");
 
     you.props[MAKHLEB_CRUCIBLE_DEBT_KEY].get_int() = debt;
 }
@@ -7356,8 +7351,7 @@ void makhleb_crucible_kill(monster& victim)
         }
 
         dungeon_terrain_changed(pos, DNGN_EXIT_CRUCIBLE);
-        simple_god_message(" acknowledges your contrition and permits you to"
-                           " depart the Crucible.", false, GOD_MAKHLEB);
+        simple_god_message("이(가) 당신의 참회를 인정하고 도가니에서 떠나는 것을 허락한다.", false, GOD_MAKHLEB);
 
         env.map_knowledge(pos).set_feature(DNGN_EXIT_CRUCIBLE);
 #ifdef USE_TILE
