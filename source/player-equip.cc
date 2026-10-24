@@ -1958,8 +1958,8 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
         }
 
         case SPWPN_CHAOS:
-            mprf("%s is briefly surrounded by a scintillating aura of "
-                    "random colours.", item_name.c_str());
+            mprf("%s 주위에 반짝이는 빛의 기운이 잠시 감돈다. "
+                    "여러 색깔로 빛난다.", item_name.c_str());
             break;
 
         case SPWPN_PENETRATION:
