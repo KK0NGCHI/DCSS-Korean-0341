@@ -1650,3 +1650,57 @@ _player_ghost_rare_
 @The_monster@이(가) 속삭인다. "곧 시간이 넘쳐나게 될 거야. 아주 많이..."
 
 @The_monster@이(가) @_wails_@. "내가 성공한 일을 네가 실패해선 안 돼!"
+%%%%
+_fleeing_humanoid_common_
+
+VISUAL:@The_monster@이(가) 모든 것을 포기한 듯 보인다.
+
+@The_monster@이(가) @_yells_@. "도와줘!"
+
+VISUAL:@The_monster@이(가) 달아나다 [거의 넘어질 뻔한다|발을 헛디뎌 비틀거린다].
+
+@The_monster@이(가) 도움을 구하며 기도한다.
+
+@The_monster@이(가) 웅크렸다가 재빨리 달아난다.
+
+@The_monster@이(가) 울음을 터뜨린다.
+
+@The_monster@이(가) 당신에게 소리친다. "저리 가!"
+
+@The_monster@이(가) 뜻 모를 소리를 횡설수설한다.
+
+@The_monster@이(가) 두려움에 울부짖는다.
+
+@The_monster@이(가) [신음한다|울부짖는다|운다]. "아이고! 이 일을 어쩌나!"
+
+@The_monster@이(가) @_begs_@. "제발 날 죽이지 마!"
+
+@The_monster@이(가) 목숨만은 살려 달라고 빈다.
+
+@The_monster@이(가) 자비를 구하며 외친다. "살려 줘!"
+%%%%
+_fleeing_humanoid_rare_
+
+@The_monster@이(가) @_begs_@. "우리 그냥 사이좋게 지내면 안 될까?"
+
+@The_monster@이(가) @_mutters_@. "빌어먹을!"
+
+@The_monster@이(가) 상대에게 외친다. "안 돼! 다신 안 그럴게!"
+
+@The_monster@이(가) [훌쩍이며|울부짖으며] 외친다. "[엄마아아|아빠아아|메에에엑|살려 줘어어|꺄아아악|안 돼에에|으아아앙]!"
+
+@The_monster@이(가) @_begs_@. "제발! 내겐 아이들이 많다고!"
+
+VISUAL:@The_monster@이(가) [몹시 동요한|공포에 얼어붙은|겁에 질린] 표정을 짓는다.
+
+@The_monster@이(가) 조용히 흐느낀다.
+
+VISUAL:@The_monster@이(가) 필사적으로 탈출로를 찾는다.
+
+@The_monster@이(가) 진정하려 애쓰며 필사적으로 콧노래를 흥얼거린다.
+
+VISUAL:@The_monster@이(가) 가까스로 평정심을 되찾으려 한다.
+
+@The_monster@이(가) @_mutters_@. "재수가 이렇게 없을 수가!"
+
+VISUAL:@The_monster@이(가) 잃어버린 용기를 다시 끌어모으려 한다.
