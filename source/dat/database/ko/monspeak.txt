@@ -1572,3 +1572,81 @@ friendly bfb orc
 @The_monster@이(가) 외친다. "눈에는 눈! 이에는 이! 목숨에는 목숨!"
 
 @The_monster@이(가) 외친다. "저들의 고통을 100배로 되돌려 줘라!"
+%%%%
+_player_ghost_common_
+
+VISUAL:@The_monster@이(가) @foe@을(를) 노려본다.
+
+@The_monster@이(가) 애처롭게 울부짖는다.
+
+@The_monster@이(가) 위로할 길 없이 통곡한다.
+
+@The_monster@이(가) 길게 울부짖는다.
+
+VISUAL:@The_monster@의 모습이 물결치듯 일렁인다.
+
+@The_monster@이(가) @_wails_@. "나한테 없었던 걸 넌 뭘 가지고 있지?"
+
+@The_monster@이(가) 아주 천천히 말한다. "희망 따윈 없어."
+
+@The_monster@이(가) @_wails_@. "넌 절대 오브를 얻지 못할 거야!" @player_only@
+
+@The_monster@이(가) 속삭인다. "오브 같은 건 존재하지 않아." @player_only@
+
+@The_monster@이(가) @_wails_@. "놈들이 널 속였어. 던전은 끝없이 아래로만 이어진다고."
+
+@The_monster@이(가) @_wails_@. "너도 곧 나와 함께하게 될 거야!"
+
+@The_monster@이(가) @_wails_@. "내가 실패한 일을 네가 성공해선 안 돼!"
+
+@The_monster@이(가) 상대에게 속삭인다. "네게 미래는 없어."
+%%%%
+_player_ghost_medium_
+
+@The_monster@이(가) 미친 듯이 웃는다.
+
+VISUAL:@The_monster@이(가) 사악하게 씩 웃는다.
+
+@The_monster@이(가) 쇠사슬이 덜컥거리는 소리를 낸다.
+
+@The_monster@이(가) @_wails_@. "한때 나도 너와 같았지."
+
+@The_monster@이(가) @_wails_@. "대단하군. 그래 봐야 소용없어. 아무 소용도 없다고."
+
+@The_monster@이(가) @_wails_@. "네 미래를 봤어. 이미 다 써 버렸더군."
+
+@The_monster@이(가) @_wails_@. "신들이 널 보호해 줄 거라고 생각해?"
+
+@The_monster@이(가) 비명을 지른다. "오브를 원하는 놈들은 모두 죽여 버리겠어!" @player_only@
+
+@The_monster@이(가) 상대에게 비명을 지른다. "막아 보려고 하지 마! 넌 가망이 없어!"
+
+@The_monster@이(가) 외친다. "조트는 신화고 오브는 꾸며낸 이야기야. 너도 곧 옛이야기가 되겠지!" @player_only@
+
+@The_monster@이(가) 속삭인다. "죽음은 해방이야."
+
+@The_monster@이(가) @_wails_@. "네게 남은 미래는 죽음뿐이야!"
+
+@The_monster@이(가) 속삭인다. "죽음의 공허를 맞이해라!"
+
+@The_monster@이(가) @_wails_@. "나에겐 미래가 없어!"
+
+@The_monster@이(가) 속삭인다. "놈들이 널 잡으러 오고 있어..."
+
+@The_monster@이(가) 속삭인다. "내 말 믿어. 그냥 포기해."
+%%%%
+_player_ghost_rare_
+
+@The_monster@이(가) @_wails_@. "죽는다는 건 잠드는 것. 그뿐이지."
+
+@The_monster@이(가) 속삭인다. "영원한 침묵이 널 기다리고 있어..."
+
+@The_monster@이(가) 속삭인다. "죽음은 아프지 않아. 네가 느끼는 고통은 삶이지."
+
+@The_monster@이(가) 속삭인다. "조금만 있으면 내 마음을 더 잘 이해하게 될 거야."
+
+@The_monster@이(가) 속삭인다. "전부 꿈일 뿐이야. 기괴하고 어리석은 꿈..."
+
+@The_monster@이(가) 속삭인다. "곧 시간이 넘쳐나게 될 거야. 아주 많이..."
+
+@The_monster@이(가) @_wails_@. "내가 성공한 일을 네가 실패해선 안 돼!"
