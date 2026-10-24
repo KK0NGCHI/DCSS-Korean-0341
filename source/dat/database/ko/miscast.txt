@@ -1,0 +1,467 @@
+# Spell miscast Korean overlay; all source keys and placeholders retained.
+%%%%
+conjuration miscast player
+
+@hands@에서 불꽃이 튀어.
+
+어디선가 기이한 에너지의 파동이 너를 덮쳐.
+
+격렬한 에너지의 파도가 네 몸을 휩쓸어.
+
+에너지가 네 몸을 찢고 지나가.
+
+너는 격렬한 폭발에 휘말려.
+
+마력의 충격이 너를 강타해.
+%%%%
+conjuration miscast monster
+
+@the_monster_possessive@ @hands@에서 불꽃이 튀어.
+
+@The_monster@ 섬광을 내뿜어.
+
+@The_monster@ 거칠게 휘청거려.
+
+@The_monster@ 거칠게 경련해.
+
+@The_monster@ 격렬한 폭발에 휘말려.
+
+@The_monster@ 마력의 충격을 받아.
+%%%%
+conjuration miscast unseen
+
+허공에서 격렬한 폭발이 일어나.
+
+갑자기 마력의 폭발이 일어나.
+%%%%
+hexes miscast player
+
+형형색색의 빛이 눈앞에서 춤춰.
+
+조금 피곤해져.
+
+네 주위의 빛이 잠깐 어두워져.
+
+정신 속에서 알아들을 수 없는 불협화음의 속삭임이 들려.
+
+기이한 에너지가 솟구치는 느낌이 들어.
+
+@any_colour@ 빛의 물결이 네 몸을 타고 퍼져.
+
+몸에 힘이 빠져.
+
+마력이 네 몸에서 솟구쳐 나와.
+%%%%
+hexes miscast monster
+
+형형색색의 빛이 @the_monster@ 주위에서 춤춰.
+
+@The_monster@ 잠깐 졸린 듯 보여.
+
+@the_monster@ 주변의 빛이 잠깐 어두워져.
+
+@The_monster@ 움찔거려.
+
+@The_monster_possessive@ 몸이 잠깐 빛나.
+
+@any_colour@ 빛의 물결이 @the_monster_possessive@ 몸을 타고 퍼져.
+
+마력이 @the_monster@에게서 솟구쳐 나와.
+%%%%
+hexes miscast unseen
+
+형형색색의 빛이 공중에서 춤춰.
+
+한곳의 빛이 잠깐 어두워져.
+
+허공에서 마력이 솟구쳐 나와.
+%%%%
+summoning miscast player
+
+한 움큼의 눈알이 네 시야를 스쳐 지나가.
+
+정신 속에서 먼 곳의 목소리가 너를 불러.
+
+허공에서 무언가 형체를 갖춰.
+
+정신 속에서 신음 소리가 합창처럼 울려.
+
+필사적으로 뻗은 손들이 너를 할퀴려 해.
+%%%%
+summoning miscast monster
+
+필사적으로 뻗은 손들이 @the_monster@을 할퀴려 해.
+%%%%
+summoning miscast unseen
+
+필사적으로 뻗은 손들이 사방을 마구 할퀴어.
+%%%%
+necromancy miscast unseen
+
+공기가 잠시 검게 물들어.
+
+허공에서 그림자들이 깜빡거려.
+%%%%
+translocation miscast unseen
+
+무언가 주위의 공간이 불가능할 만큼 일그러져.
+
+텅 빈 공간의 한 조각이 뒤틀려.
+
+공간의 결에 균열이 잠시 열려.
+%%%%
+fire miscast unseen
+
+어디선가 불길이 소용돌이쳐 나와.
+
+허공에서 불꽃이 잠시 타올라.
+
+허공에서 불길이 폭발해.
+
+커다란 불꽃이 잠시 허공에서 맹렬히 타올라.
+%%%%
+ice miscast unseen
+
+응결된 수증기가 공중에 가늘게 떠다녀.
+
+허공에서 얼음과 서리가 폭발해.
+
+보이지 않는 형체가 [얼음|서리]에 갇혀.
+%%%%
+air miscast unseen
+
+어디선가 바람이 갑자기 휘몰아쳐.
+
+보이지 않는 무언가에서 전기 불꽃이 튀어.
+
+무언가 주위 공기가 에너지로 지직거려.
+
+허공에서 전기 방전이 폭발해.
+
+한 지점에서 공기가 미친 듯이 뒤틀려.
+%%%%
+earth miscast unseen
+
+허공에서 날아오는 돌이 나타나.
+
+작은 모래폭풍이 잠시 나타나.
+
+어디선가 돌이 떨어져.
+
+허공에서 날카로운 파편이 폭발해.
+%%%%
+alchemy miscast unseen
+
+공기가 잠깐 녹색으로 물들어.
+
+허공에서 유황 냄새가 나는 열기가 폭발해.
+
+보이지 않는 형체가 소금에 뒤덮여.
+%%%%
+forgecraft miscast player
+
+구조적 안정성을 잃어.
+
+몸이 약간 분해되는 느낌이 들어.
+
+머릿속에서 [윙윙|철컹|삐걱|위잉]거리는 소리가 울려.
+
+어디선가 금속 부스러기들이 네 위로 떨어져.
+
+금속 파편들이 너를 뒤덮어.
+
+금속 잔해의 폭발에 휘말려.
+%%%%
+forgecraft miscast monster
+
+@The_monster@ 구조적 안정성을 잃어.
+
+어디선가 금속 부스러기들이 @the_monster@ 위로 떨어져.
+
+@The_monster@ 금속 파편에 뒤덮여.
+
+@The_monster@ 금속 잔해의 폭발에 휘말려.
+%%%%
+forgecraft miscast unseen
+
+금속 부스러기들이 위에서 쏟아져.
+
+보이지 않는 형체가 금속 파편에 뒤덮여.
+
+허공에서 금속 잔해가 폭발해.
+%%%%
+necromancy miscast player
+
+기이하고 먼 목소리가 들려.
+
+주변 세상이 잠시 어두워지는 듯해.
+
+누군가 네 무덤 위를 걸어간 듯한 느낌이 들어.
+
+사악한 기운이 느껴져.
+
+몹시 불쾌한 느낌이 들어.
+
+고통이 온몸을 관통해.
+
+몸이 끔찍하게 무기력해져.
+
+살점이 썩어 들어가.
+
+깜빡이는 그림자들이 너를 둘러싸.
+
+음에너지가 너를 집어삼켜.
+
+고통이 몸을 찢는 동안 속수무책으로 경련해.
+%%%%
+necromancy miscast monster
+
+@The_monster@ 격렬하게 움찔거려.
+
+@The_monster@ 괴로워하며 멈칫해.
+
+@The_monster@ 잠시 어두워지는 듯해.
+
+@The_monster@ 누군가 @possessive@ 무덤 위를 걸어간 듯한 표정을 지어.
+
+@The_monster@ 잠시 검게 물들어.
+
+@The_monster@ 끔찍하게 얼굴을 찌푸려.
+
+@The_monster@ 고통에 경련해.
+
+@The_monster@ 몹시 무기력해 보여.
+
+@The_monster@ 썩어 들어가.
+
+깜빡이는 그림자들이 @the_monster@을 둘러싸.
+
+@The_monster@ 음에너지에 집어삼켜져.
+
+@The_monster@ 고통에 속수무책으로 경련해.
+
+@The_monster@ 잠시 겁먹은 듯해.
+%%%%
+translocation miscast player
+
+순간 자신의 뒤통수가 보여.
+
+몸이 거칠게 뒤틀리는 느낌이 들어.
+
+잠시 균형을 잃어.
+
+바닥과 천장이 잠시 자리를 바꿔.
+
+제자리에서 빙글 돌아.
+
+세상이 잠시 일그러져 보여.
+
+공간 왜곡의 장에 휘말려.
+
+공간이 스스로를 향해 뒤틀려.
+
+주위의 공간이 [휘어지고|일그러지고] [미친 듯이 |]뒤틀려.
+%%%%
+translocation miscast monster
+
+@The_monster@ 잠시 거칠게 몸을 떨어.
+
+@The_monster@ 잠시 균형을 잃은 듯해.
+
+@The_monster@ 빙글 돌아.
+
+@The_monster@ 잠시 일그러진 듯해.
+
+@The_monster_possessive@ 형체가 한동안 뒤바뀌어.
+
+@The_monster@ 공간 왜곡의 장에 휘말려.
+
+@the_monster@ 주위의 공간이 [휘어지고|일그러지고] [미친 듯이 |]뒤틀려.
+%%%%
+fire miscast player
+
+[불씨|잿가루]가 @hands@에서 흩날려.
+
+주변 공기가 에너지로 타올라.
+
+열기가 온몸을 타고 흘러.
+
+불쾌할 만큼 뜨거워져.
+
+@hands@에서 불길이 소용돌이쳐 나와.
+
+불꽃이 살갗을 그을려.
+
+[작열하는 |][불길|화염]에 휩쓸려.
+
+화염 폭발에 휘말려.
+
+갑작스럽고 격렬한 화염 폭발이 일어나.
+%%%%
+fire miscast monster
+
+[불씨|잿가루]가 @the_monster_possessive@ @hands@에서 흩날려.
+
+@the_monster@ 주위 공기가 에너지로 타올라.
+
+희미한 불꽃이 @the_monster_possessive@ 몸 위로 퍼져.
+
+@the_monster_possessive@ @hands@에서 불길이 소용돌이쳐 나와.
+
+불꽃이 @the_monster@을 그을려.
+
+@The_monster@ [작열하는 |][불길|화염]에 휩쓸려.
+
+@The_monster@ 화염 폭발에 휘말려.
+%%%%
+ice miscast player
+
+추위에 몸을 떨어.
+
+차가운 기운이 온몸을 타고 흘러.
+
+@hands@이@hand_conj@ 추위에 얼얼해져.
+
+[조금|불쾌할 만큼|극도로] 추워져.
+
+[얼음|서리]가 몸을 뒤덮어.
+
+[얼음|서리] 속에 갇혀.
+
+얇은 [얼음|서리] 층이 몸을 덮어.
+
+몸에서 열기가 빠져나가.
+
+얼음과 서리의 폭발에 휘말려.
+%%%%
+ice miscast monster
+
+@The_monster@ 추위에 몸을 떨어.
+
+서리가 @the_monster_possessive@ 몸을 뒤덮어.
+
+@The_monster@ 몸을 떨어.
+
+얇은 [얼음|서리] 층이 @The_monster@을 덮어.
+
+@the_monster@에게서 열기가 빠져나가.
+
+@The_monster@ 얼음과 서리의 폭발에 휘말려.
+
+@The_monster@ [얼음|서리] 속에 갇혀.
+%%%%
+air miscast player
+
+전기 불꽃이 주변에서 춤춰.
+
+주변 공기가 에너지로 지직거려.
+
+강한 바람이 너를 덮쳐.
+
+짧고 날카로운 불꽃이 빗발쳐.
+
+바람이 네 주위를 세차게 휘몰아쳐.
+
+갑자기 감전되는 느낌이 들어.
+
+전류가 온몸을 타고 흘러.
+
+방전 폭발에 휘말려.
+%%%%
+air miscast monster
+
+@The_monster@ 잠시 공중에서 위아래로 흔들려.
+
+전기 불꽃이 @the_monster_possessive@ @hands@ 사이에서 춤춰.
+
+@the_monster@ 주위 공기가 에너지로 지직거려.
+
+@The_monster@ 강한 바람에 얻어맞아.
+
+@The_monster@ 잠시 불꽃 세례를 받아.
+
+@the_monster@ 주위로 바람이 세차게 휘몰아쳐.
+
+@The_monster@ 전기에 움찔거려.
+
+@The_monster@ 방전 폭발에 휘말려.
+
+@The_monster@ 뒤틀리는 바람에 얻어맞아.
+%%%%
+earth miscast player
+
+[모래|자갈]가 @hands@에서 쏟아져.
+
+땅에서 에너지가 솟구치는 느낌이 들어.
+
+발밑의 바닥이 무섭게 [움직여|진동해|흔들려|우르릉거려].
+
+날아오는 돌에 맞아.
+
+모래가 너를 강타해.
+
+어디선가 돌이 네 위로 떨어져.
+
+날카로운 파편의 폭발에 휘말려.
+%%%%
+earth miscast monster
+
+[모래|자갈]가 @the_monster_possessive@ @hands@에서 쏟아져.
+
+@The_monster@ 날아오는 돌에 맞아.
+
+@The_monster@ 모래에 얻어맞아.
+
+어디선가 돌이 @the_monster@ 위로 떨어져.
+
+@The_monster@ 날카로운 파편의 폭발에 휘말려.
+%%%%
+alchemy miscast player
+
+유독한 연기가 너를 집어삼켜.
+
+주홍빛 섬광이 번쩍여.
+
+[수은|액체 수은|황철석|초석|유황|액체 금속]이 @hands@에서 흘러나와.
+
+몸 일부가 잠시 [금빛|은빛|금속성|납빛|수정 같은] 모습으로 변해.
+
+w:4
+
+@any_colour@ 연기 구름에 휩싸여.
+
+w:4
+
+입안에서 잠시 @any_colour@ 맛이 나.
+
+w:2
+
+피부가 @any_colour_pattern@ 무늬로 변해.
+
+w:2
+
+@any_glowing_colour@ 먼지 구름이 너를 둘러싸.
+%%%%
+alchemy miscast monster
+
+@The_monster@ 유독한 연기에 휩싸여.
+
+@The_monster@ [진사|유황] 가루를 [얻어맞아|뒤집어써].
+
+@The_monster@ 소금에 뒤덮여.
+
+@The_monster@ 심하게 기침하기 시작해.
+
+@The_monster@ 몹시 아파 보여.
+
+w:5
+
+@The_monster@ @any_colour@ 연기 구름에 휩싸여.
+
+w:5
+
+@The_monster_possessive@ 피부가 @any_colour_pattern@ 무늬로 변해.
+
+w:5
+
+@The_monster@ @any_glowing_colour@ 먼지 구름에 둘러싸여.
