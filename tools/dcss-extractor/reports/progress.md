@@ -162,3 +162,12 @@
 - 4개 번역 DB 오버레이 합계 **834개 원문 대응 키**(23+245+501+65).
 - [구조 검사 성공](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40102414471). Windows Tiles, 동적 조사 및 개별 출력은 미검증.
 - [번역 상세 기록](../../docs/translation-review/monspeak-live-text-batch-20261024.md).
+
+## 2026-10-24 몬스터 대사 61개 키 대량 번역 — PR #18
+
+- `monspeak.txt`: **501/731 → 562/731(76.9%)**, 남은 **169개**. 신규 **61개 키, 463개 변형(한글 포함 439줄)**.
+- 주요 범위: 임프·오크 공통 및 종교 대사, 아스테리온, 카산드라, 블로르쿨라, 척, 예레미야, 노리스, 성 로카, 스프로즈, 우루그, 도널드, 언데드와 변이형 대사.
+- 남은 키 잠정 분류: 본문 53, 참조 88, Lua 13, 무출력 15.
+- 신규 원문 대응 토큰·가중치·대안·접두부 불일치 **0건**. 실제 게임 렌더링 및 동적 한국어 조사 검사는 별도 필요.
+- 4개 KO DB 오버레이 원문 대응 합계 **895개**(godname 23 + monspell 245 + monspeak 562 + wpnnoise 65)이며 게임 전체 번역률은 아님.
+- 보고: [61개 키 번역 상세](../../docs/translation-review/monspeak-core-remaining-20261024.md), [PR #18](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/18).
