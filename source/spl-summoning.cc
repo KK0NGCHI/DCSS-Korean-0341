@@ -207,7 +207,7 @@ spret cast_summon_small_mammal(int pow, bool fail)
     if (monster* mons = create_monster(_pal_data(mon, summ_dur(3), SPELL_SUMMON_SMALL_MAMMAL)))
     {
         if (you.can_see(*mons))
-            mprf("%s appears in a puff of smoke.", mons->name(DESC_A).c_str());
+            mprf("연기와 함께 %s이(가) 나타난다.", mons->name(DESC_A).c_str());
     }
     else
         canned_msg(MSG_NOTHING_HAPPENS);
@@ -276,8 +276,7 @@ spret cast_call_canine_familiar(int pow, bool fail)
     {
         // Heal familiar and make its next attack (within the new few turns,
         // so that you don't just prebuff for this) an instant cleave.
-        mpr("You imbue your familiar with magical energy and its fangs glint"
-            " viciously.");
+        mpr("사역마에 마력을 불어넣자 송곳니가 날카롭게 번뜩인다.");
 
         old_dog->heal(random_range(5, 9) + div_rand_round(pow, 5));
         old_dog->del_ench(ENCH_POISON);
@@ -349,7 +348,7 @@ spret cast_awaken_armour(int pow, bool fail)
         return spret::success;
     }
 
-    mprf("You draw out an echo of %s.", armour->name(DESC_YOUR).c_str());
+    mprf("%s의 메아리를 끌어냈다.", armour->name(DESC_YOUR).c_str());
 
     item_def &fake_armour = env.item[mitm_slot];
     fake_armour.clear();
@@ -442,13 +441,13 @@ spret cast_sphinx_sisters(const actor& caster, int pow, bool fail)
 
     if (marauder && guardian && you.can_see(*marauder) && you.can_see(*guardian))
     {
-        mprf("A pair of sphinxes answers %s call!",
+        mprf("스핑크스 2마리가 %s의 부름에 응답한다!",
                     caster.name(DESC_ITS).c_str());
     }
     else if (marauder && you.can_see(*marauder) || guardian && you.can_see(*guardian))
     {
         const monster* sphinx = marauder ? marauder : guardian;
-        mprf("%s answers %s call!", sphinx->name(DESC_A).c_str(),
+        mprf("%s이(가) %s의 부름에 응답한다!", sphinx->name(DESC_A).c_str(),
                                     caster.name(DESC_ITS).c_str());
     }
     else if (you.can_see(caster))
@@ -474,7 +473,7 @@ spret cast_summon_hydra(actor *caster, int pow, bool fail)
     if (monster *hydra = create_monster(mg))
     {
         if (you.see_cell(hydra->pos()))
-            mprf("%s appears.", hydra->name(DESC_A).c_str());
+            mprf("%s이(가) 나타난다.", hydra->name(DESC_A).c_str());
     }
     else if (caster->is_player())
         canned_msg(MSG_NOTHING_HAPPENS);
@@ -930,7 +929,7 @@ static void _animate_weapon(int pow, actor* target)
 
     if (!mons)
     {
-        mprf("%s twitches for a moment.", wpn->name(DESC_THE).c_str());
+        mprf("%s이(가) 잠시 꿈틀거린다.", wpn->name(DESC_THE).c_str());
         return;
     }
 
@@ -938,7 +937,7 @@ static void _animate_weapon(int pow, actor* target)
     mons->foe = target->mindex();
 
     // We are successful. Unwield the weapon, removing any wield effects.
-    mprf("%s dances into the air!", wpn->name(DESC_THE).c_str());
+    mprf("%s이(가) 공중으로 날아올라 춤추듯 움직인다!", wpn->name(DESC_THE).c_str());
 
     monster * const montarget = target->as_monster();
     const int primary_weap = montarget->inv[MSLOT_WEAPON];
@@ -1361,8 +1360,7 @@ void create_malign_gateway(coord_def point, beh_type beh, string cause,
     set_terrain_changed(point);
 
     noisy(spell_effect_noise(SPELL_MALIGN_GATEWAY), point);
-    mprf(MSGCH_WARN, "The dungeon shakes, a horrible noise fills the air, "
-                     "and a portal to some otherworldly place is opened!");
+    mprf(MSGCH_WARN, "던전이 흔들리고 끔찍한 소리가 울려 퍼지며 이세계로 통하는 관문이 열린다!");
 }
 
 spret cast_malign_gateway(actor * caster, int pow, bool fail, bool test)
@@ -1660,7 +1658,7 @@ spret cast_martyrs_knell(const actor* caster, int pow, bool fail)
             mpr("아군을 지키기 위해 그림자를 불러냈다.");
         else if (you.can_see(*shade))
         {
-            mprf("%s calls forth a shade to shield themselves.",
+            mprf("%s이(가) 자신을 보호할 그림자를 불러낸다.",
                  caster->name(DESC_THE).c_str());
         }
 
@@ -1890,8 +1888,7 @@ spret cast_battlesphere(actor* agent, int pow, bool fail)
 
         if (recalled)
         {
-            mpr("You recall your battlesphere and imbue it with additional"
-                " charge.");
+            mpr("전투 구체를 다시 불러와 마력을 추가로 충전한다.");
         }
         else
             mpr("전투 구체에 에너지를 더 충전했다.");
@@ -1965,8 +1962,7 @@ void end_battlesphere(monster* mons, bool killed)
             {
                 if (mons->battlecharge == 0)
                 {
-                    mpr("Your battlesphere expends the last of its energy"
-                        " and dissipates.");
+                    mpr("전투 구체가 남은 에너지를 모두 소진하고 사라진다.");
                 }
                 else
                     mpr("전투 구체가 흔들리며 형태를 잃기 시작한다.");
@@ -2049,7 +2045,7 @@ static void _fire_battlesphere(monster* battlesphere, bolt& beam)
 
     if (you.can_see(*battlesphere))
     {
-        mprf("%s fires at %s!", battlesphere->name(DESC_THE).c_str(),
+        mprf("%s이(가) %s을(를) 향해 발사한다!", battlesphere->name(DESC_THE).c_str(),
                                 actor_at(beam.target)->name(DESC_THE).c_str());
     }
     beam.fire();
@@ -2737,7 +2733,7 @@ static void _overgrow_wall(const coord_def &pos)
                         summ_dur(min(3 + you.skill_rdiv(SK_INVOCATIONS, 1, 5), 6)));
     if (const monster* const plant = create_monster(mgen))
     {
-        mprf("%s is torn apart as %s grows in its place.", what.c_str(),
+        mprf("%s이(가) 찢어지고 그 자리에 %s이(가) 자란다.", what.c_str(),
                 plant->name(DESC_A).c_str());
     }
     // XXX: Maybe try to make this revert the terrain if a monster isn't placed.
@@ -3081,7 +3077,7 @@ bool summon_swarm_clone(const monster& agent, coord_def target_pos)
     if (monster* spawn = create_monster(mg))
     {
         if (you.can_see(*spawn))
-            mprf("Another %s is drawn to the feast!", spawn->name(DESC_PLAIN).c_str());
+            mprf("먹잇감을 찾아 또 다른 %s이(가) 몰려든다!", spawn->name(DESC_PLAIN).c_str());
         return true;
     }
 
@@ -3233,7 +3229,7 @@ spret cast_simulacrum(coord_def target, int pow, bool fail)
 
     fail_check();
 
-    mprf("You sublimate a sliver of %s essence and reconstitute it in ice.",
+    mprf("%s의 정수 일부를 승화시켜 얼음으로 다시 빚었다.",
          apostrophise(mons->name(DESC_THE)).c_str());
 
     int num_simulacra = 2;
@@ -3385,7 +3381,7 @@ spret cast_hellfire_mortar(const actor& agent, bolt& beam, int pow, bool fail)
         monster* mon = monster_at(beam.path_taken[0]);
         if (mon && you.can_see(*mon))
         {
-            mprf("%s is in the way!", mon->name(DESC_THE).c_str());
+            mprf("%s이(가) 길을 막고 있어!", mon->name(DESC_THE).c_str());
             return spret::abort;
         }
         else if (len == 0 && !mon)
@@ -3608,8 +3604,7 @@ void launch_clockwork_bee(const actor& agent)
                 // Unable to create inert bee, probably the player was flying
                 // over deep water / lava. Rather than try to work out what
                 // happened, just self destruct.
-                mprf("Without a target and with nowhere to land, your clockwork "
-                     "bee falls apart in a shower of cogs and coils.");
+                mprf("표적도 착지할 곳도 없자 태엽벌이 톱니바퀴와 태엽을 흩뿌리며 부서진다.");
 
                 for (fair_adjacent_iterator ai(you.pos()); ai; ++ai)
                 {
@@ -3676,7 +3671,7 @@ spret cast_clockwork_bee(coord_def target, bool fail)
 
     you.props[CLOCKWORK_BEE_TARGET].get_int() = targ->mid;
 
-    mprf("You lock target on %s and prepare to deploy your bee.", targ->name(DESC_THE).c_str());
+    mprf("%s을(를) 표적으로 지정하고 태엽벌을 내보낼 준비를 한다.", targ->name(DESC_THE).c_str());
     start_channelling_spell(SPELL_CLOCKWORK_BEE, "continue winding your bee", false);
 
     // Remove any existing bee
