@@ -5825,3 +5825,91 @@ _crazy_yiuf_wordlist2_
 아아
 럼피플럼프
 지글피즐
+%%%%
+_player_arms_
+
+{{
+if you.race() == "Felid" then
+    return "발"
+elseif you.race() == "Octopode" then
+    return "촉수"
+elseif you.race() == "Formicid" then
+    return "팔다리"
+else
+    return "팔"
+end
+}}
+%%%%
+_suck_up_noun_
+
+영주
+주인님
+통치자
+총독
+대귀족
+고귀한 {{ return you.genus() }}
+%%%%
+_suck_up_adj2_
+
+{{
+if you.race() == "Mummy" then
+    return "벨벳을 두르신"
+elseif you.mutation('beak') > 0 then
+    return "진주빛 부리를 가지신"
+elseif you.transform() == "death" then
+    return "완벽히 보존되신"
+elseif you.transform() == "statue" then
+    return "대리석 발가락을 가지신"
+elseif you.transform() == "dragon" then
+    return "오팔빛 비늘을 가지신"
+elseif you.race() == "Felid" then
+    return "폭신한 발을 가지신"
+elseif you.race() == "Octopode" then
+    return "부드러운 촉수를 가지신"
+elseif you.race() == "Formicid" then
+    return "거대한 턱을 가지신"
+elseif you.race() == "Poltergeist" then
+    return "기백 넘치시는"
+elseif you.race() == "Revenant" then
+    return "상아빛 뼈를 가지신"
+else
+    return "장밋빛 입술을 가지신"
+end
+}}
+경이로우신
+지극히 위대하신
+신과 같으신
+%%%%
+friendly hound
+
+VISUAL:@The_monster@이(가) @possessive@ 꼬리를 흔들어.
+VISUAL:@The_monster@이(가) [기쁘게|신나게] 짖어!
+VISUAL:@The_monster@이(가) 신나서 빙글빙글 뛰어다녀!
+VISUAL:@The_monster@이(가) 기대에 찬 눈으로 너를 {{
+  if you.race() == "Felid" then
+      return "내려다"
+  else
+     return "올려다"
+  end
+}}봐.
+VISUAL:@The_monster@이(가) @possessive@ 귀를 긁어.
+VISUAL:@The_monster@이(가) @possessive@ 고개를 갸웃하며 너를 바라봐.
+VISUAL:@The_monster@이(가) 벼룩 때문에 몸을 긁어.
+w:1
+VISUAL:@The_monster@이(가) 뼈를 갉아. 대체 어디서 구했지?
+@hound@
+%%%%
+friendly Shoals hound
+
+w:50
+@friendly hound@
+VISUAL:@The_monster@이(가) 파도 속에서 [놀아|신나게 뛰어다녀]!
+{{
+if you.can_smell() then
+    return "VISUAL:@the_monster@에게서 젖은 개 특유의 냄새가 나."
+else
+    return "VISUAL:@The_monster@이(가) 네 몸에 @reflexive@의 물기를 닦으려는 듯 움직여."
+end
+}}
+w:1
+VISUAL:@The_monster@이(가) 기대에 차 유목 조각을 물고 너를 바라봐.
