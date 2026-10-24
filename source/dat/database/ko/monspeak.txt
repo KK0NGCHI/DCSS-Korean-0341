@@ -5913,3 +5913,66 @@ end
 }}
 w:1
 VISUAL:@The_monster@이(가) 기대에 차 유목 조각을 물고 너를 바라봐.
+%%%%
+_Asterion_rare_
+
+@The_monster@이(가) 등골이 서늘해지는 포효를 내질러.
+@The_monster@이(가) 주문을 읊더니 잠시 불길에 감싸여.
+@The_monster_possessive@ 눈이 빛나.
+악마의 웃음소리가 들려.
+@The_monster@이(가) 말해. "{{
+    if you.skill("Spellcasting") >= 5 then
+      return "아, 마법사로군! 목숨을 구걸하는 소리를 즐겁게 들어 주지."
+    else
+      return "넌 전사가 아니야. 농부처럼 싸우는군!"
+    end }}" @player_only@
+@The_monster@이(가) 말해. "{{
+    if you.god() == "Makhleb" then
+      return "우리 신의 이름으로, 목숨을 바쳐라!"
+    else
+      return "불신자여, 마크레브 앞에 무릎 꿇어라!"
+    end }}" @player_only@
+@The_monster@이(가) @at_foe@ 외쳐. "오브가 뭐 어쨌다고?! 내겐 왕국 전체가 있어!" @player_only@
+@The_monster@이(가) @at_foe@ 외쳐. "왕 앞에 무릎 꿇어라! 꿇어! 어서!!" @player_only@
+%%%%
+_Ijyb_common_
+
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 멈춰 서서 @possessive@ 마법봉을 [살펴봐|점검해].
+@The_monster@이(가) @at_foe@ 외쳐. "이제 실험 계속한다!"
+@The_monster@이(가) @at_foe@ 외쳐. "내 마법봉이 너보다 세다!"
+@The_monster@이(가) @at_foe@ 외쳐. "전부 내 거다!"
+@The_monster@이(가) @at_foe@ 외쳐. "이 층 내 거다! 전부 내 거!"
+@The_monster@이(가) @at_foe@ 외쳐. "{{
+    if you.skill("Evocations") >= 2 then
+      return "다음엔 네 마법봉을 연구한다!"
+    else
+      return "너 좋은 실험 대상 같다!"
+    end }}" @player_only@
+%%%%
+_Saint Roka rival_
+
+@The_monster@이(가) @at_foe@ 외쳐. "감히 내 구세주 자격에 도전하느냐?"
+@The_monster@이(가) @at_foe@ 외쳐. "구세주는 단 한 명! 바로 나다!"
+@The_monster@이(가) @at_foe@ 탄식해. "거짓 예언자들이 온통 넘쳐 나는군!"
+@The_monster@이(가) 외쳐. "오크들이여, 똑똑히 봐라. 이 사기꾼은 고작 {{ return you.race() }}일 뿐이다!"
+%%%%
+Sprozz
+
+{{
+  if spells.memorised("launch clockwork bee") then
+    return '@_Sprozz_thief_@'
+  else
+    return '@_Sprozz_common_@'
+  end
+}} @player_only@
+%%%%
+Sprozz triumphant
+
+{{
+  if spells.memorised("launch clockwork bee") then
+    return '@The_monster@이(가) 외쳐. "내 발명품이 더 좋을 줄 알았어!"'
+  else
+    return '@The_monster@이(가) 말해. "이런 발전은 누구도 막지 못해!"'
+  end
+}}
