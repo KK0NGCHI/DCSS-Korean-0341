@@ -584,3 +584,15 @@ Forgecraft player ghost
 
 @The_monster@이(가) 말한다. "내 피조물들은 너보다 오래 남을 거야."
 %%%%
+%%%%
+Arachne triumphant
+
+@The_monster@이(가) 외친다. "이제 여긴 내 영역이다. 함부로 들어오는 자는 각오해라!"
+%%%%
+Agnes triumphant
+
+@The_monster@이(가) 말한다. "다음 생에는 평화의 길을 걷기를."
+%%%%
+Antaeus triumphant
+
+@The_monster@이(가) 말한다. "네 영혼은 1만 년 동안 얼음 속에 갇힐 것이다."
