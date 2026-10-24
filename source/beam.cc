@@ -2315,7 +2315,7 @@ static void _malign_offering_effect(actor* victim, const actor* agent, int damag
     coord_def c = victim->pos();
 
     if (you.see_cell(c) || you.see_cell(agent->pos()))
-        mprf("%s life force is offered up.", victim->name(DESC_ITS).c_str());
+        mprf("%s의 생명력이 제물로 바쳐진다.", victim->name(DESC_ITS).c_str());
     damage = victim->hurt(agent, damage, BEAM_MALIGN_OFFERING, KILLED_BY_BEAM,
                           "", "by a malign offering");
 
@@ -6534,8 +6534,8 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             if (simple_monster_message(*mon,
                                        (mon->body_size(PSIZE_BODY) > SIZE_LARGE)
-                                        ? " is filled with an intense inner flame!"
-                                        : " is filled with an inner flame."))
+                                        ? "의 몸에 강렬한 내면의 불꽃이 차오른다!"
+                                        : "의 몸에 내면의 불꽃이 차오른다."))
             {
                 obvious_effect = true;
             }
@@ -6595,7 +6595,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
                                          random_range(20, 30) * BASELINE_DELAY)))
         {
             if (simple_monster_message(*mon,
-                                       " grows more vulnerable to poison."))
+                                       "은(는) 독에 더욱 취약해진다."))
             {
                 obvious_effect = true;
             }
