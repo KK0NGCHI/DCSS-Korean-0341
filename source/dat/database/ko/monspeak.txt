@@ -3632,3 +3632,101 @@ cherub
 @The_monster_possessive@ 독수리 머리가 날카롭게 울어!
 @The_monster@이(가) 진을 찬양하는 노래를 불러.
 @The_monster@이(가) 엘리빌론을 찬양하는 노래를 불러.
+%%%%
+zin angel
+
+w:40
+@The_monster@이(가) @_axioms_of_law_@을(를) 낭송해.
+@The_monster@이(가) @_recite_subject_@에 관해 @_recite_what_@.
+@The_monster@이(가) @_recite_subject_@에 관해 설교해.
+@The_monster@이(가) @_recites_start_@. @_lecture_modifier_@ 강연의 주제는 @_recite_subject_@.
+@The_monster@이(가) @_recite_subject_@을(를) 자세하게 설명해.
+@The_monster@이(가) @_important_subject_@의 중요성을 설명해.
+@The_monster@이(가) @_recites_start_@. @_lecture_modifier_@ 설교의 주제는 @_recite_subject_@.
+@The_monster@이(가) @_recites_start_@. @_lecture_modifier_@ 연설의 주제는 @_recite_subject_@.
+w:5
+@The_monster@이(가) @_recite_subject_@에 관해 이야기해.
+%%%%
+_recites_start_
+
+운을 떼
+말문을 열어
+이야기를 시작해
+%%%%
+_recite_what_
+
+시를 읊어
+성스러운 경전을 인용해
+진의 가르침을 전해
+낭랑한 목소리로 설파해
+큰 소리로 외쳐
+%%%%
+_lecture_modifier_
+
+장황한
+열정적인
+정의로운
+엄격한
+%%%%
+_axioms_of_law_
+
+진의 율법 원칙
+율법의 원칙
+율법서
+진의 신성한 율법
+%%%%
+_important_subject_
+
+w:50
+@_axioms_of_law_@
+영원한 율법
+율법에 대한 복종
+유일하고 참된 길
+몸과 마음의 순결
+육체의 온전함을 지키는 일
+몸을 깨끗하고 순결하게 유지하는 일
+육체와 영혼의 올바른 돌봄
+돌연변이를 피하는 법
+돌연변이를 단호하게 거부하는 법
+올바른 장례법
+악마와 거래하지 않는 법
+악마의 봉사를 거절하는 법
+[부적|장신구]를 통해 육체를 변화시키지 않는 법
+모든 [부적|장신구]를 멀리하는 법
+%%%%
+_recite_subject_
+
+w:120
+@_important_subject_@
+w:80
+@_axioms_of_law_@
+율법과 예언자들
+율법의 중요성
+돌연변이를 피하는 방법
+돌연변이 물약이라는 악마의 음료
+네콕세크와 지크직슬의 소멸을 기원하는 일
+지성 있는 생명을 존중하는 식생활
+강령술의 악행
+도박의 무법성
+언데드가 사악한 이유
+이레데렘눌의 몰락
+루고누에 대한 규탄
+진과 빛나는 자의 동맹
+진과 엘리빌론의 동맹
+@random_god_chaotic@의 무질서
+@random_god_evil@의 사악함
+@random_god_good@의 선함
+%%%%
+confused zin angel
+
+@The_monster@이(가) 앞뒤 맞지 않는 말을 늘어놓아.
+@The_monster@이(가) 땅을 상대로 @_important_subject_@에 관한 긴 강의를 늘어놓아.
+@The_monster@이(가) 자기 발을 상대로 @_important_subject_@에 관한 긴 강의를 늘어놓아.
+VISUAL:@The_monster@이(가) 잠시 허공을 멍하니 바라봐.
+%%%%
+silenced zin angel
+
+VISUAL:@The_monster@이(가) 적을 향해 미친 듯이 손짓해.
+VISUAL:@The_monster@이(가) 분노에 차 하늘을 올려다봐.
+VISUAL:@The_monster@이(가) 사방으로 격렬하게 손짓해.
+VISUAL:@The_monster@이(가) 정의로운 분노로 얼굴을 찌푸려.
