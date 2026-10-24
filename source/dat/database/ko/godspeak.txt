@@ -1,0 +1,146 @@
+# Korean overlay of Xom speech. Original godspeak.txt is preserved.
+# All source keys, alternatives, weights, and substitution variables retained.
+%%%%
+
+Xom one eye
+
+잠깐 눈 위에 외알 안경이 나타나.
+
+잠깐 눈 위를 안대가 가려.
+
+눈에서 @any_colour@ 빛줄기가 잠깐 뿜어져 나와!
+%%%%
+
+Xom eyes
+
+잠깐 한쪽 눈 위에 외알 안경이 나타나.
+
+잠깐 한쪽 눈 위를 안대가 가려.
+
+두 눈에서 @any_colour@ 빛줄기가 잠깐 뿜어져 나와!
+%%%%
+
+Xom ears
+
+귀가 정신없이 펄럭여.
+
+귀가 움찔움찔 움직여.
+
+잠깐 귀에서 [연기|수증기]가 뿜어져 나와!
+%%%%
+
+Xom mouth
+
+입이 잠깐 완전히 사라져.
+
+입이 잠깐 얼굴 전체를 가로지를 만큼 벌어져.
+
+잠깐 입이 하나 더 생겨.
+
+잠깐 입에서 [연기|수증기]가 쏟아져 나와!
+%%%%
+
+Xom hair
+
+잠깐 눈썹이 믿기 어려울 만큼 덥수룩해진 느낌이 들어.
+
+눈썹이 꿈틀거려.
+
+잠깐 커다란 콧수염과 턱수염이 자라나.
+%%%%
+
+Xom tail
+
+꼬리가 잠깐 몸속으로 들어가.
+
+꼬리가 잠깐 믿기 어려울 만큼 길어져.
+
+잠깐 꼬리가 하나 더 자라나.
+%%%%
+
+Xom unarmed one hand
+
+@hand@에 화려한 지팡이가 잠깐 나타나.
+
+저도 모르게 허공에 주먹을 휘둘러.
+%%%%
+
+Xom cloak slot
+
+@Your_item@ 느껴지지 않는 바람에 펄럭여.
+
+@Your_item@ 잠깐 @head@을 감싸!
+
+@Your_item@ 잠깐 @any_glowing_colour_pattern@ 무늬로 뒤덮여!
+%%%%
+
+Xom helmet slot
+
+@Your_item@ 공중으로 튀어 올라 잠깐 빙글 돌더니 다시 @head@ 위에 내려앉아!
+%%%%
+
+Xom offhand slot
+
+@Your_item@ 빙글 돌아!
+
+@Your_item@ 잠깐 @any_glowing_colour@ 빛을 번쩍 내!
+%%%%
+
+Xom gloves slot
+
+@Your_item@ 잠깐 손가락이 @_xom_number_@개 더 자라나!
+%%%%
+
+Xom boots slot
+
+@Your_item@ 거대하게 부풀었다가 원래 크기로 돌아와!
+%%%%
+
+Xom amulet slot
+
+@Your_item@ 맥동해!
+
+@Your_item@ @any_glowing_colour@ 빛을 번쩍 내더니 원래대로 돌아와.
+
+@Your_item@ 잠깐 날아올라 @head@ 위에 떠 있어!
+%%%%
+
+Xom gizmo slot
+
+@Your_item@ 덜덜 흔들려!
+
+@Your_item@에서 @rainbow_colour@ 연기가 새어 나와!
+%%%%
+
+Xom ring slot
+
+@Your_item@ 움찔거려!
+
+@Your_item@ 잠깐 흐려졌다가 다시 밝아져!
+
+@Your_item@ 잠깐 밝아졌다가 다시 흐려져!
+%%%%
+
+Xom dragon armour
+
+@your_item@의 비늘이 잠깐 꿈틀거려.
+%%%%
+
+Xom animal skin
+
+@your_item@의 털이 무서울 만큼 빠르게 길어졌다가 원래대로 돌아와.
+%%%%
+
+Xom leather armour
+
+@Your_item@ 잠깐 털로 뒤덮였다가 원래대로 돌아와.
+%%%%
+
+Xom robe
+
+잠깐 @your_item@에 몸이 엉켜 버려.
+%%%%
+
+Xom metal armour
+
+@Your_item@ 잠깐 녹슨 것처럼 보여.
