@@ -5976,3 +5976,70 @@ Sprozz triumphant
     return '@The_monster@이(가) 말해. "이런 발전은 누구도 막지 못해!"'
   end
 }}
+%%%%
+_Terence_rare_
+
+@The_monster@이(가) @at_foe@ 외쳐. "네 {{
+if you.race() == "Armataur" then
+    return "두꺼운 가죽"
+else
+    return "잘난 실력"
+end
+}} 따위로 날 막지는 못해!" @player_only@
+@The_monster@이(가) @at_foe@ 외쳐. "네 {{
+if you.race() == "Armataur" then
+    return "코끼리"
+else
+    return "힘"
+end
+}}은(는) 어디 갔지?!" @player_only@
+@The_monster@이(가) @at_foe@ 외쳐. "서 있어라, 겁쟁아! 싸울 거면 명예롭게 싸워!"
+@The_monster@이(가) @to_foe@ 말해. "전쟁엔 질렸어. 하지만 네가 피를 원한다면 실컷 흘리게 해 주지!"
+@The_monster@이(가) @at_foe@ 외쳐. "내 손으로 쫓아내기 전에 나가!"
+@The_monster@이(가) @at_foe@ 외쳐. "침입자는 싫어!"
+@The_monster@이(가) @at_foe@ 외쳐. "'방해 금지'라고 써 붙였잖아! 글도 못 읽어?!"
+%%%%
+Xak'krixis
+
+@The_monster@이(가) 지역 생태계에서 @player_genus_plural@의 역할이 무엇인지 고민해.
+@The_monster@이(가) 말해. "이 전투도 반드시 보고서에 넣겠어!"
+@The_monster@이(가) 말해. "누구나 과학의 진보에 기여해야 해."
+@The_monster@이(가) @to_foe@ 외쳐. "정말 훌륭한 자료를 제공해 주는군!"
+VISUAL:@The_monster@이(가) 남는 팔다리 하나로 정신없이 기록해.
+VISUAL:@The_monster_possessive@ 큰턱이 생각에 잠긴 듯 딸깍거려.
+@The_monster@이(가) 말해. "{{
+    if you.skill("Alchemy") >= 10 then
+      return "아, 동료 연금술사로군! 내가 이곳에서 배운 것을 분명 이해하겠지."
+    else
+      return "내 발견을 직접 보여 주지."
+    end }}" @player_only@
+w:20
+@_Xak'krixis_monster_thoughts_@
+%%%%
+nekomata
+
+{{
+  if you.race() == "Felid" then
+    return '@The_monster@이(가) @to_foe@ 투덜거려. "어린 풋내기는 제 분수를 알아야지."'
+  else
+    return 'VISUAL:@The_monster@이(가) 네 모습을 살피더니 경멸에 차 으르렁거려.'
+  end
+}} @player_only@
+{{
+  if you.race() == "Felid" then
+    return [[@The_monster@이(가) 한숨 쉬며 말해. "넌 아직 두 번째 꼬리도 안 자랐잖아."]]
+  elseif you.skill("Spellcasting") >= 5 then
+    return 'VISUAL:@The_monster@이(가) 네 보잘것없는 마법을 비웃어.'
+  else
+    return 'VISUAL:@The_monster@이(가) 네 힘을 하찮게 여기며 경멸해.'
+  end
+}} @player_only@
+{{
+  if you.race() == "Felid" then
+    return '@The_monster@이(가) @to_foe@ 조언해. "우아함과 기만. 누구에게나 필요한 건 그 두 가지뿐이지."'
+  else
+    return 'VISUAL:@The_monster@이(가) 잠시 너를 무시하고 소환된 히토다마를 앞발로 툭툭 건드려.'
+  end
+}} @player_only@
+w:1
+@The_monster@이(가) 단언해. "갖지 못한 것을 모조리 망가뜨리는 건 악마들만이 아니야."
