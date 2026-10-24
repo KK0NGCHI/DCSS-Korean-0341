@@ -47,7 +47,7 @@
     },
     "07": {
       "status": "in_progress",
-      "detail": "Linux console C++ full overlay build passed for 11 edited source files via PR4. Windows Tiles and data load/runtime validation not run."
+      "detail": "Linux console build passed (11 edited C++ files) and genuine Korean database loading confirmed by executing crawl -builddb with integrated Korean C++/DB/description files; Windows Tiles rendering and gameplay paths still unverified."
     }
   },
   "verified_measurements": {
@@ -212,6 +212,26 @@
       "file": "source/dat/database/ko/wpnnoise.txt",
       "scope": "Shield of the gong, frostbite axe, Condemnation, weapon chatter and rare chatter, weapon noises, singing sword silence and battle screaming.",
       "note": "New database overlay and reusable Python/CI audit; 18/65 is file key match only."
+    },
+    "linux_korean_database_runtime": {
+      "source_ref": "9a79e93b12597448d0b4ff58ad2495367ce78ccf",
+      "merged_pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/13",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40095478475",
+      "status": "passed",
+      "platform": "ubuntu-24.04 Linux console (headless)",
+      "source": "SHA256-verified official DCSS 0.34.1 release, 11 KO C++ overlays, all repository gameplay database and description text",
+      "runtime_command": "./crawl -dir <isolated_home> -extra-opt-last language=ko -builddb -reset-cache",
+      "asserted_cache_files": [
+        "descriptions.ko.db",
+        "speak.ko.db",
+        "misc.ko.db"
+      ],
+      "asserted_localized_bodies": [
+        "대상에게 독침을 내뱉는다.",
+        "율법을 세우는 진",
+        "바람이 거세게 부는 소리가 들린다."
+      ],
+      "limits": "This demonstrates compiled binary startup and Korean localized cache regeneration; does not verify interactive newgame, Tiles UI, actual text display, font rendering, dynamic grammar, save/load, or Windows native binary."
     }
   },
   "current_qa_work": {
@@ -280,10 +300,11 @@
   },
   "runtime_verification": {
     "windows_tiles": "not_run",
-    "ko_locale_data_load": "not_run",
+    "ko_locale_data_load": "passed_linux_console_headless_database_cache",
     "korean_glyphs": "not_run",
     "dynamic_message_grammar": "not_run",
-    "saved_game_regression": "not_run"
+    "saved_game_regression": "not_run",
+    "linux_console_ko_loader": "passed_run_40095478475"
   },
   "coverage_policy": "Never infer whole-game translation percentage from description-key correspondence or lexical inventory counts."
 }
