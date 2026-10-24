@@ -2893,8 +2893,7 @@ static void _gain_innate_spells()
                                      oldspell);
                 if (oldindex != end(you.spells))
                 {
-                    mpr("외울 수 있는 주문 수가 가득 차서 이전 주문을 잊었어. "
-                        "access to an earlier spell.");
+                    mpr("외울 수 있는 주문 수가 가득 차서 이전 주문 하나를 잊었어.");
                     del_spell_from_memory(oldspell);
                     spell_vec[j].get_int() = SPELL_NO_SPELL;
                     break;
@@ -3156,8 +3155,7 @@ void level_change(bool skip_attribute_increase)
                         {
                             if (you.experience_level == level)
                             {
-                                mprf(MSGCH_MUTATION, "괴물 같은 기분이 들어. "
-                                     "your demonic heritage exerts itself.");
+                                mprf(MSGCH_MUTATION, "악마의 혈통이 발현되면서 괴물 같은 기분이 들어.");
                                 mark_milestone("monstrous", "discovered their "
                                                "monstrous ancestry!");
                                 take_note(Note(NOTE_MESSAGE, 0, 0,
@@ -3204,8 +3202,7 @@ void level_change(bool skip_attribute_increase)
 
                     case COGLIN_GIZMO_XL:
                     {
-                        mpr("갑자기 영감이 솟구친다! 드디어 "
-                            "ready to make a one-of-a-kind gizmo!");
+                        mpr("갑자기 영감이 솟구친다! 이제 독창적인 장치를 만들 수 있어!");
                         mprf("(press <w>%c</w> on the <w>%s</w>bility menu to create your gizmo)",
                                 get_talent(ABIL_INVENT_GIZMO).hotkey,
                                 command_to_string(CMD_USE_ABILITY).c_str());
