@@ -35,7 +35,7 @@
     },
     "04": {
       "status": "in_progress",
-      "detail": "Automated duplicate grouping and P0 review queue now available; contextual human review still pending"
+      "detail": "Deduplicated lexical triage plus direct P0 C++ callsite audit: 959 calls with literals, 202 English review candidates before beam follow-up; exact runtime reachability incomplete."
     },
     "05": {
       "status": "pending",
@@ -43,7 +43,7 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "Translations exist in source/data; reviewed unit catalog and formal format checks are incomplete"
+      "detail": "Direct-message batch 59 literal patterns/62 occurrences committed to PR #4; reviewed unit catalog and cross-file name/grammar checks incomplete."
     },
     "07": {
       "status": "in_progress",
@@ -122,6 +122,17 @@
       "p1_groups": 635,
       "p2_groups": 4169,
       "note": "Priority queue is heuristic; not confirmed untranslated count, not a completion percentage."
+    },
+    "p0_output_callsites": {
+      "source_ref": "74e2c3a75a7472c96ec7a7beaa5a7106f6509dbe",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40074747440",
+      "files_scanned": 11,
+      "direct_calls_with_literals": 959,
+      "contains_hangul": 729,
+      "english_output_review": 202,
+      "developer_or_error_review": 3,
+      "format_or_symbol_only": 25,
+      "note": "First successful run after initial P0 batch, before 21 additional beam translations. English candidates are not confirmed untranslated strings."
     }
   },
   "current_qa_work": {
@@ -132,7 +143,23 @@
       "HINT_SEEN_BRANCH has a source markup discrepancy (EN 3 vs KO 4 tags); requires loader-context validation.",
       "Original duplicate English keys must be evaluated against real loader precedence.",
       "260 extra KO keys require reachability/version classification and should not be auto-deleted."
-    ]
+    ],
+    "p0_translation_batch": {
+      "date": "2026-10-24",
+      "patterns": 59,
+      "occurrences": 62,
+      "smoke_markers_removed": 2,
+      "files": [
+        "ability.cc",
+        "beam.cc",
+        "invent.cc",
+        "mon-util.cc",
+        "newgame.cc",
+        "player-equip.cc",
+        "player.cc"
+      ],
+      "note": "User-facing C++ literal replacements; actual Windows Tiles runtime verification outstanding."
+    }
   },
   "runtime_verification": {
     "windows_tiles": "not_run",
