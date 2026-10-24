@@ -31,11 +31,11 @@
     },
     "03": {
       "status": "in_progress",
-      "detail": "23 description pairs covered; other database and script families not fully audited"
+      "detail": "23 description file pairs plus separate gameplay database audit (23 original text files; only godname overlay 23/23; originals partly Korean). Other Lua and data review incomplete."
     },
     "04": {
       "status": "in_progress",
-      "detail": "Deduplicated lexical triage plus direct P0 C++ callsite audit: 959 calls with literals, 202 English review candidates before beam follow-up; exact runtime reachability incomplete."
+      "detail": "Lexical triage 5,450 groups; direct P0 calls 959 with literal and 46 English/identifier review candidates. Further callsites and runtime context need verification."
     },
     "05": {
       "status": "pending",
@@ -43,11 +43,11 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "Direct-message batch 59 literal patterns/62 occurrences committed to PR #4; reviewed unit catalog and cross-file name/grammar checks incomplete."
+      "detail": "P0 direct source batch merged via PR4; source output candidate 202 to 46 after multiple batches; natural grammar and data translations remain."
     },
     "07": {
       "status": "in_progress",
-      "detail": "Linux console C++ overlay build verified; Windows Tiles and Korean runtime not verified"
+      "detail": "Linux console C++ full overlay build passed for 11 edited source files via PR4. Windows Tiles and data load/runtime validation not run."
     }
   },
   "verified_measurements": {
@@ -87,12 +87,12 @@
       "note": "Lexical records may contain duplicates, fragments, false positives and already translated strings."
     },
     "linux_console_build": {
-      "source_ref": "b940c05a1bf752ba2052865bb62b5c410b1458eb",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40072181195",
+      "source_ref": "18f08df42ed80ccdbec5e9d2a15e65ec36b75383",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076532601",
       "status": "passed",
-      "overlay_cpp_files": 10,
+      "overlay_cpp_files": 11,
       "artifact": "Linux x86-64 ELF crawl executable",
-      "limits": "Official 0.34.1 source with translated C++ overlay only; Windows Tiles, complete translated data load and actual game output not tested."
+      "limits": "Official 0.34.1 source with translated C++ overlay; Windows Tiles, localized DB data load and runtime Korean rendering not tested."
     },
     "description_audit_after_fix": {
       "source_ref": "db9b8c4018cc1f21301eab6786396f03c9768e8e",
@@ -124,15 +124,29 @@
       "note": "Priority queue is heuristic; not confirmed untranslated count, not a completion percentage."
     },
     "p0_output_callsites": {
-      "source_ref": "74e2c3a75a7472c96ec7a7beaa5a7106f6509dbe",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40074747440",
+      "source_ref": "18f08df42ed80ccdbec5e9d2a15e65ec36b75383",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076532595",
       "files_scanned": 11,
       "direct_calls_with_literals": 959,
-      "contains_hangul": 729,
-      "english_output_review": 202,
+      "contains_hangul": 885,
+      "english_output_review": 46,
       "developer_or_error_review": 3,
       "format_or_symbol_only": 25,
-      "note": "First successful run after initial P0 batch, before 21 additional beam translations. English candidates are not confirmed untranslated strings."
+      "note": "Direct literal callsite heuristics only. English review candidates were 202 at first audit and 46 at final PR4 audit. Not complete untranslated count or game translation rate."
+    },
+    "gameplay_database_audit": {
+      "source_ref": "6d82cf4969c03d9c514aba2be90befb6d41d00ff",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076997160",
+      "status": "passed",
+      "top_level_files": 23,
+      "original_unique_keys_sum": 2019,
+      "localized_files": 1,
+      "localized_matched_keys": 23,
+      "top_level_korean_lines": 301,
+      "top_level_latin_only_lines": 13245,
+      "godname_localized_entries": 23,
+      "godname_localized_body_variants": 50,
+      "note": "Original gameplay DB files themselves sometimes contain Korean. Latin-only lines include control markers and names; none of these are whole-game translation percentages."
     }
   },
   "current_qa_work": {
@@ -146,19 +160,19 @@
     ],
     "p0_translation_batch": {
       "date": "2026-10-24",
-      "patterns": 59,
-      "occurrences": 62,
-      "smoke_markers_removed": 2,
-      "files": [
-        "ability.cc",
-        "beam.cc",
-        "invent.cc",
-        "mon-util.cc",
-        "newgame.cc",
-        "player-equip.cc",
-        "player.cc"
-      ],
-      "note": "User-facing C++ literal replacements; actual Windows Tiles runtime verification outstanding."
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/4",
+      "merged_commit": "522d00b131147334be030c531a1be5b88125ddc4",
+      "status": "merged",
+      "description": "Initial 59 literal patterns/62 locations followed by further god, summoning, beam, player, inventory and monster messages; dynamic English conjugation removed at selected callsites.",
+      "note": "Complete translated-unit count unmeasured; direct-output candidate changes measure an audit class, not complete translation coverage."
+    },
+    "gameplay_database": {
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/5",
+      "merged_commit": "5d766a33b5273bf67b2052b4a0affa1cb18f0382",
+      "status": "merged",
+      "new_file": "source/dat/database/ko/godname.txt",
+      "reference_audit": "docs/translation-review/database-audit-20261024.md",
+      "next": "Character speech, monster spells and weapon noises: monspeak 730 keys, monspell 260 keys, wpnnoise 65 keys; other DB partial Korean must be preserved."
     }
   },
   "runtime_verification": {
