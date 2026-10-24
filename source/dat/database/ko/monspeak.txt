@@ -4778,3 +4778,38 @@ VISUAL:@the_monster_possessive@ 눈꺼풀 아래에 곪은 상처가 생겨.
 @The_monster@이(가) 너에게 @objective@을(를) 끝내 달라고 애원해.
 VISUAL:@The_monster@이(가) 제 몸을 바라보며 눈물도 없이 울어.
 @The_monster@이(가) 외쳐. "나는 그저 병들고 기괴하게 망가진 창조물일 뿐이야."
+%%%%
+_hostile_orc_beogh_unbeliever_speech_common_
+
+@The_monster@ @_orc_says_to_foe_@. "베오그가 내게 이래라저래라 할 수는 없어!"
+@The_monster@이(가) @_shouts_@. "네가 아니라 내가 구세주야!"
+%%%%
+_hostile_orc_beogh_unbeliever_speech_rare_
+
+@The_monster@ @_orc_says_to_foe_@. "오크에게 베오그 따위 필요 없어!"
+@The_monster@ @_orc_says_to_foe_@. "베오그의 구세주 이야기는 그저 동화일 뿐이지."
+@The_monster@이(가) 말해. "정말 구세주가 있다 해도 네가 될 리는 없어."
+%%%%
+_hostile_orc_beogh_believer_speech_rare_
+
+@The_monster@이(가) 웃어. "네가 우리 구원자라고!?"
+@The_monster@이(가) @_shouts_@. "오크들이여! @foe_name@의 말은 거짓이다!"
+@The_monster@ @_orc_says_to_foe_@. "구세주치곤 네 꼴이 [볼품없군|한심하군|처량하군]."
+@The_monster@ @_orc_says_to_foe_@. "네 [의상|변장|잔재주]로는 날 [속일|기만할] 수 없어."
+@The_monster@ @_orc_says_to_foe_@. "베오그께서 널 죽은 자 가운데서 되살려 주실까?"
+VISUAL:@The_monster@이(가) 고개를 저어.
+VISUAL:@The_monster@이(가) 의아한 눈으로 너를 바라봐. @player_only@
+%%%%
+_hostile_orc_beogh_believer_speech_common_
+
+@The_monster@이(가) 중얼거려. "넌 오크의 구원자가 아니야."
+@The_monster@이(가) 투덜거려. "제대로 된 오크도 아니면서…"
+@The_monster@ @_orc_says_to_foe_@. "베오그께서 어떻게 너를 택하시겠어?"
+@The_monster@이(가) 듣기 거북한 말을 중얼거려.
+@The_monster@ @_orc_says_to_foe_@. "그런 오만함은 베오그께서 벌하실 거야!"
+@The_monster@이(가) 투덜거려. "네가 구세주라고? 생김새부터 전혀 아닌데!"
+@The_monster@ @_orc_says_to_foe_@. "{{ return you.race() }}이(가) 구세주일 리 없어!"
+@The_monster@ @_orc_says_to_foe_@. "진정한 오크가 구세주가 될 거야!"
+@The_monster@이(가) @_shouts_@. "물러가라, @_orc_heathen_@!"
+@The_monster@이(가) @_shouts_@. "베오그의 이름을 더럽힌 대가를 치러라, @foe_name@!"
+VISUAL:@The_monster@이(가) 얼굴을 찌푸려.
