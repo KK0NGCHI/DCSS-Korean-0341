@@ -1020,10 +1020,9 @@ void discover_mimic(const coord_def& pos)
     const string name = feature_mimic ? "the " + string(feat_type_name(feat))
                                       : item->name(DESC_THE, false, false,
                                                              false, true);
-    const bool plural = feature_mimic ? false : item->quantity > 1;
 
     if (you.see_cell(pos))
-        mprf("%s %s a mimic!", name.c_str(), plural ? "are" : "is");
+        mprf("%s의 정체는 흉내쟁이였다!", name.c_str());
 
     const string shortname = feature_mimic ? feat_type_name(feat)
                                            : item->name(DESC_BASENAME);
@@ -5645,9 +5644,8 @@ void set_ancestor_spells(monster &ancestor, bool notify)
         if (find(old_spells.begin(), old_spells.end(), spellslot.spell)
             == old_spells.end())
         {
-            mprf("%s regains %s memory of %s.",
+            mprf("%s이(가) %s 주문에 대한 기억을 되찾는다.",
                  ancestor.name(DESC_YOUR, true).c_str(),
-                 ancestor.pronoun(PRONOUN_POSSESSIVE, true).c_str(),
                  spell_title(spellslot.spell));
         }
     }
