@@ -27,7 +27,8 @@ def lua_control_line(line):
     stripped = line.strip()
     # A closing delimiter may also end an interpolated sentence.
     if "}}" in stripped and not stripped.startswith("}}"):
-        return False
+        # An end-close quote with a player marker contains no displayed prose.
+        return bool(re.fullmatch(r'end\s+\}\}"(?:\s+@[^@\s]+@)?', stripped))
     return (stripped == "{{"
             or bool(re.fullmatch(r"\}\}(?:\s+@[^@\s]+@)?", stripped))
             or bool(LUA_CONTROL.match(stripped)))
