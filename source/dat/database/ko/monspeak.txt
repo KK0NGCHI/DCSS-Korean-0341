@@ -4671,3 +4671,34 @@ _Sprozz_common_
 @The_monster@이(가) 중얼거려. "다음에는 평기어를 써야겠어. 윙윙거림이 덜할 테니."
 @The_monster@이(가) 중얼거려. "꽃가루 채집 효율은 아직도 41% 떨어져. 개선해야 해."
 @The_monster@이(가) 중얼거려. "꿀 채집 효율도 아직 37% 떨어져. 개선해야 해."
+%%%%
+_Urug_common_
+
+@_generic_orc_speech_@
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 안대를 고쳐 써.
+VISUAL:@The_monster@이(가) 외눈으로 적을 뚫어지게 노려봐.
+@The_monster@이(가) 포효해.
+@The_monster@이(가) 전투의 열기에 휩싸여 울부짖어.
+@The_monster@이(가) 눈을 가늘게 뜨고 말해. "네가 지금까지 본 하피 중 가장 못생겼군."
+@The_monster@이(가) 눈을 가늘게 뜨고 말해. "외눈이라 잘 안 보여도 네가 하피라는 건 알아보겠어."
+@The_monster@이(가) 소리쳐. "하피라고? 이제 끝장이야, 이 망할 새야!"
+@The_monster@이(가) 소리쳐. "하피 정도는 알아본다고!"
+@The_monster@이(가) 눈을 가늘게 뜨다가 어깨를 으쓱하며 중얼거려. "뭐, 비슷하네."
+@The_monster@이(가) 씩 웃으며 말해. "칠면조 요리를 시작해 볼까."
+@The_monster@이(가) 소리쳐. "새대가리!"
+@The_monster@이(가) 소리쳐. "깃털 뽑힐 각오나 해!"
+@The_monster@이(가) 소리쳐. "복수다!"
+@The_monster@이(가) 소리쳐. "죽어라, 하피!"
+@The_monster@이(가) 소리쳐. "하피들은 모두 끝장내겠어!"
+@The_monster@이(가) 소리쳐. "내 눈의 복수다!"
+@The_monster@이(가) 소리쳐. "네 눈에 저주가 내리길!"
+@The_monster@이(가) 소리쳐. "당장 널 끝장내겠어!"
+%%%%
+_Urug_rare_
+
+VISUAL:@The_monster@이(가) 적에게 윙크해… 아니면 그냥 눈을 깜박인 걸지도.
+@The_monster@이(가) 소리쳐. "네 동족이 내 멀쩡한 눈을 빼앗았어. 이제 네 차례다, 하피!"
+@The_monster@이(가) 말해. "사람들은 날 외눈박이 우루그라 부르지. 너는 곧 머리 없는 @player_name@(으)로 불리게 될 거야." @player_only@
+@The_monster@이(가) 소리쳐. "넌 이미 죽은 목숨이야."
+@The_monster@이(가) 중얼거려. "가끔은 그놈들이 전부 진짜 하피인지 궁금하단 말이지."
