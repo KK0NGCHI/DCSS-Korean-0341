@@ -3805,3 +3805,145 @@ _deck_of_punishment_line_
 @The_monster@이(가) 고문 카드를 뽑아. "생명력이 반이나 없어졌다고? 으악!"
 @The_monster@이(가) 망령 카드를 뽑아. "기력을 빼앗기는 건 아프지!"
 @The_monster@이(가) 진노 카드를 뽑아. "신들이 벌주는 방법도 참 많다니까!"
+%%%%
+Nobody
+
+@The_monster@이(가) 쉰 목소리로 말해. "말해 다오… 우리가… 누구인지…"
+@The_monster@이(가) 으르렁거려. "우리의… 이름을… 돌려줘!"
+@The_monster@이(가) 쉰 목소리로 말해. "우리는… 기억될 거야!"
+@The_monster@이(가) 중얼거려. "왜… 기억이 안 나는 거지…?"
+@The_monster@이(가) 쉰 목소리로 말해. "한때 우리는… 수없이 많았는데…"
+@The_monster@이(가) 쉰 목소리로 말해. "불꽃이… 자꾸 꺼져 가…"
+w:50
+__NONE
+%%%%
+nobody_recollection fire
+
+끔찍한 가뭄
+목말라 죽어 가던 기억
+불타던 들판
+사방에… 연기
+%%%%
+nobody_recollection cold
+
+끝나지 않는 겨울
+추위에 떨던 기억
+얼어붙는… 손가락
+핏줄 속의 얼음
+%%%%
+nobody_recollection xxx
+
+빼앗기던 우리의 살
+끔찍한 실험
+무시무시한 죄
+%%%%
+nobody_recollection undead
+
+무덤
+우리를 아래로 끌어당기던 손
+죽은 자들의 울부짖음
+%%%%
+nobody_recollection soldiers
+
+부딪히는… 강철
+밀물처럼 몰려오던 군대
+철과 연기
+피와 불
+%%%%
+nobody_recollection rockslide
+
+우리를 짓누르던 산의 무게
+천둥처럼 쏟아지던 낙석
+바위 아래 부서지던 뼈
+%%%%
+nobody_recollection electricity
+
+끔찍한 마비
+멈춰 버린 우리의 심장
+갈라지는 하늘
+%%%%
+nobody_recollection poison
+
+녹아내리는… 우리의 살
+병독의 강물
+독에 오염된… 우물
+%%%%
+nobody_recollection fear
+
+달리다가… 넘어지던 기억
+공포에 질려 웅크리던 기억
+%%%%
+nobody_recollection vermin
+
+전염병과 역병
+쥐에게 뜯어 먹히던 기억
+기근
+%%%%
+nobody_recollection demons
+
+어둠의 마법
+악마들의 웃음
+고문과 저주
+%%%%
+alderking
+
+VISUAL:@The_monster@이(가) 보이지 않는 바람에 몸을 흔들며 손짓해.
+VISUAL:@The_monster_possessive@ 잎사귀가 빛을 내며 거품처럼 일렁여.
+@The_monster@이(가) 말해. "[춤출|고개 숙일] 생각이 없다면 나가 주시지." @player_only@
+w:20
+__NONE
+%%%%
+_Bennu_death_
+
+VISUAL:@The_monster@이(가) 불꽃이 폭발하는 가운데 새롭게 되살아나!
+%%%%
+brain worm
+
+VISUAL:@The_monster@이(가) 훔쳐 온 [복잡한|알 수 없는] 수식을 바닥에 뚝뚝 흘려.
+VISUAL:@The_monster@이(가) 잠시 머나먼 [별|땅|왕국]의 낯선 기억에 사로잡혀.
+VISUAL:@The_monster@이(가) 훔쳐 온 [날개|집게발|지느러미]의 본능으로 길쭉한 몸을 꿈틀거려.
+%%%%
+Sewer brain worm
+
+w:30
+@brain worm@
+VISUAL:@The_monster@이(가) 웅덩이에 비친 자기 모습을 [어리둥절하게|멍하니] 바라봐.
+%%%%
+bullfrog
+
+@The_monster@이(가) 몸을 부풀려.
+@The_monster@이(가) 낮고 굵은 울음소리를 내.
+@The_monster@이(가) 혀로 근처의 @_frog_food_@을(를) 낚아채.
+%%%%
+chaos spawn
+
+VISUAL:@The_monster@이(가) @foe@을(를) 자세히 보려는 듯 눈자루 수십 개를 만들어 내.
+VISUAL:@The_monster@이(가) 여러 색의 빛덩이로 흩어졌다가 다시 합쳐져.
+VISUAL:@The_monster@이(가) 잠시 네 얼굴과 섬뜩할 정도로 비슷한 얼굴을 만들어 내.
+@The_monster@이(가) 수많은 입으로 등골 서늘한 울음소리를 내.
+@The_monster@이(가) 여러 목소리를 한데 섞어 알아들을 수 없는 말을 지껄여.
+%%%%
+catoblepas
+
+@The_monster@이(가) 눈을 내리깔고 사납게 포효해.
+@The_monster@이(가) 바닥을 쾅쾅 밟아.
+VISUAL:@The_monster@이(가) 발로 바닥을 세차게 내려찍어.
+VISUAL:@The_monster@이(가) 머리로 바닥을 세차게 들이받아.
+@The_monster@이(가) 숨을 들이마셔.
+@The_monster@이(가) 도전하듯 콧김을 뿜어.
+%%%%
+cognitogaunt
+
+VISUAL:@The_monster@이(가) 오래전에 죽어 버린 밤의 백열광으로 빛나.
+w:20
+@The_monster@이(가) 별들이 아직 올바른 자리에 놓이지 않았다며 끊임없이 투덜거려.
+@The_monster@이(가) 필멸자의 별자리가 얼마나 어리석은지 중얼거려.
+@The_monster@이(가) 지금 하늘의 상태를 두고 불길한 소문을 속삭여.
+@The_monster@이(가) 필멸자에게 육체란 낭비라고 생각해.
+@The_monster@이(가) 필멸자의 마음이 얼마나 얄팍한지 혼자 감탄해.
+@The_monster@이(가) 다음 별들의 회합에서 다룰 안건들을 조롱해.
+w:1
+@The_monster@이(가) 초신성 문제의 해법을 찾지 못해 답답한 듯 몸부림쳐.
+@The_monster@이(가) 별들은 별들 외에는 누구의 것도 아니라며 으르렁거려.
+@The_monster@이(가) 자신의 몸이 부패와 별빛으로 이루어져 있다며 불평해.
+@The_monster@이(가) 살아 있는 자들에게 생명이 낭비되고 있다며 투덜거려.
