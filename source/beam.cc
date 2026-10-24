@@ -4183,8 +4183,7 @@ static const vector<pie_effect> pie_effects = {
                     mpr("화염에 취약한 상태가 더 오래 지속될 것 같아.");
                 }
                 else
-                    mpr("벚꽃빛 불길이 당신의 화염 "
-                        "resistance!");
+                    mpr("벚꽃빛 불길이 당신의 화염 저항을 태워 없앴다!");
 
                 you.increase_duration(DUR_FIRE_VULN, 15 + random2(11), 50);
             }
