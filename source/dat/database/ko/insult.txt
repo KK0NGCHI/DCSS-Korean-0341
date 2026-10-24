@@ -1,0 +1,79 @@
+# Korean demon insult overlay, partial.
+%%%%
+imp_taunt
+
+@run_or_give_up@, 이 @generic_insult@ 녀석아!
+%%%%
+demon_taunt_special
+
+네 @body_or_spiritual_part@은 내 @meal@이 될 거야!
+
+@give_up@, 맛있어 보이는 @meal@ 녀석아!
+
+@run_away@, @whilst_thou_can@!
+
+네 @body_or_spiritual_part@을 @will_or_shall@ @feast_or_devour@ 거야!
+%%%%
+will_or_shall
+
+반드시
+
+기필코
+%%%%
+feast_or_devour
+
+실컷 먹어치울
+
+통째로 삼킬
+%%%%
+important_body_part
+
+머리
+
+뇌
+
+심장
+
+내장
+
+눈
+
+폐
+
+간
+
+목구멍
+
+목
+
+모래주머니
+
+두개골
+
+척추
+%%%%
+important_spiritual_part
+
+영혼
+
+정신
+
+내면의 빛
+
+희망
+
+신앙
+
+의지
+
+마음
+
+정신
+
+이성
+
+불굴의 정신
+
+생명력
+
+활력
