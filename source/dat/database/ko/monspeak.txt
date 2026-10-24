@@ -1258,3 +1258,95 @@ frilled lizard
 @The_monster@이(가) 거대한 목도리를 펼친다.
 
 @The_monster@이(가) @at_foe@ 쉭쉭거린다.
+%%%%
+default silenced confused humanoid
+
+VISUAL:@The_monster@이(가) 정신없이 몸짓한다.
+
+VISUAL:@The_monster@이(가) 무언가 말하지만 아무 소리도 들리지 않는다.
+
+VISUAL:@The_monster@이(가) 혼란스러워 보인다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+VISUAL:@The_monster@이(가) 기쁘게 미소 짓는다.
+
+VISUAL:@The_monster@이(가) 울음을 터뜨린다.
+%%%%
+silenced player ghost
+
+VISUAL:@The_monster@이(가) @foe@을(를) 노려본다.
+
+VISUAL:@The_monster@이(가) 위협적으로 @foe@을(를) 가리킨다.
+
+VISUAL:@The_monster@이(가) @foe@을(를) 바라보며 손가락을 천천히 목에 긋는다.
+%%%%
+_generic_ranged_
+
+@The_monster@이(가) 조준한다.
+
+무언가 당신의 머리 바로 옆을 위험하게 스쳐 지나가는 느낌이 든다. @player_only@
+%%%%
+bennu
+
+VISUAL:@The_monster_possessive@ 깃털이 잠시 이계의 불꽃으로 타오른다.
+
+VISUAL:@The_monster@이(가) 기쁜 듯 이리저리 날아다닌다.
+%%%%
+crystal guardian
+
+VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 변함없이 차갑게 반짝인다.
+
+VISUAL:@the_monster@에 비친 당신의 일그러진 모습이 뒤틀리고 꿈틀거린다. @player_only@
+%%%%
+dream sheep
+
+@The_monster@이(가) 음산하게 "메에에" 하고 운다.
+
+@The_monster@이(가) 졸린 듯 "메에에" 하고 운다.
+%%%%
+erythrospite
+
+VISUAL:@The_monster@이(가) 당신의 심장 박동에 맞춰 맥동한다.
+%%%%
+laughing skull triumphant
+
+@The_monster@이(가) 기쁨을 주체하지 못하고 산산이 부서진다.
+%%%%
+moth of wrath
+
+VISUAL:@The_monster@이(가) 화가 난 듯 더듬이를 휘젓는다.
+%%%%
+default hoarfrost cannon
+
+VISUAL:@the_monster_possessive@ 포신에서 물방울이 떨어진다.
+
+VISUAL:@the_monster@에서 차가운 안개가 피어오른다.
+
+@The_monster@이(가) 희미하게 삐걱거리는 소리를 낸다.
+%%%%
+thermic dynamo
+
+VISUAL:@The_monster@이(가) 회전 속도를 높이며 변덕스럽게 빙빙 돈다.
+
+VISUAL:@The_monster@이(가) 쉭쉭거리며 반짝인다.
+%%%%
+weeping skull triumphant
+
+@The_monster@이(가) 죄책감에 못 이겨 산산이 부서진다.
+%%%%
+yak
+
+@The_monster@이(가) 콧김을 뿜으며 @surface@을(를) 발굽으로 긁는다.
+%%%%
+holy_being_pacification
+
+VISUAL:@The_monster@이(가) 당신의 신성한 기운에 진정된다.
+%%%%
+Gozag bribe
+
+@The_monster@이(가) @at_foe@ 쳐다보다 금화 주머니를 짤랑거리며 돌아선다.
+%%%%
+Gozag permabribe
+
+@The_monster@이(가) @at_foe@ 탐욕스럽게 웃으며 금화 주머니를 짤랑거린다.
