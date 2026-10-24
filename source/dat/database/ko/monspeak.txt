@@ -596,3 +596,33 @@ Agnes triumphant
 Antaeus triumphant
 
 @The_monster@이(가) 말한다. "네 영혼은 1만 년 동안 얼음 속에 갇힐 것이다."
+%%%%
+Cheibriados player ghost
+
+@The_monster@이(가) @to_foe@ 말한다. "뭘 그리 서두르지? 어차피 죽을 텐데."
+
+@The_monster@이(가) @to_foe@ 말한다. "도망은 칠 수 있어도 숨을 수는 없지!"
+%%%%
+Nemelex Xobeh player ghost
+
+@The_monster@이(가) 말한다. "카드에는 네게 좋은 미래가 보이지 않는군."
+
+@The_monster@이(가) @to_foe@ 말한다. "네 죽음을 내가 뽑아 주마!"
+%%%%
+Okawaru player ghost
+
+@The_monster@이(가) 말한다. "나는 위대한 전사였고, 지금도 그렇다!"
+
+@The_monster@이(가) 말한다. "아, 전장에서 나를 증명할 기회가 또 생기다니!"
+%%%%
+Sif Muna player ghost
+
+@The_monster@이(가) 말한다. "죽음도 지식에 이르는 길의 또 다른 단계일 뿐."
+
+@The_monster@이(가) 말한다. "이제 공부할 시간은 얼마든지 있군."
+%%%%
+Trog player ghost
+
+@The_monster@이(가) 외친다. "죽어서도 베어 넘기는 즐거움을 누리게 될 줄이야!"
+
+@The_monster@이(가) 기쁨에 차 비명을 지른다. "살아서도, 죽어서도 죽여라! 죽여! 모두 죽여라!"
