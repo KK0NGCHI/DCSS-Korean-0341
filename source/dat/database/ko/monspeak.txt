@@ -2637,3 +2637,219 @@ VISUAL:@The_monster@이(가) 발톱에 힘을 줘.
 @The_monster@이(가) 쉭쉭거리며 말해. "물어 버린다!"
 @The_monster@이(가) 애원해. "때리지 마!"
 VISUAL:@The_monster@이(가) 잠시 몹시 슬퍼 보여.
+%%%%
+Jorgrun
+
+@_Jorgrun_common_@
+w:5
+@_Jorgrun_rare_@
+%%%%
+_Jorgrun_common_
+
+@The_monster@이(가) 말해. "대지가 네놈을 삼켜 버릴 게다!"
+@The_monster@이(가) 말해. "여기가 네 무덤이 될 게다!"
+@The_monster@이(가) 혼자서 주문을 중얼거려.
+%%%%
+_Jorgrun_rare_
+
+@The_monster@이(가) 말해. "대지는 내 집이여. 네놈은 무단 침입자고!"
+@The_monster@이(가) 말해. "네놈은 영 땅에 발을 붙이고 살질 못하는군."
+@The_monster@이(가) 말해. "이런 바위층은 평생 처음 보는구먼."
+@The_monster@이(가) 말해. "여기저기 벽을 몇 개만 더 허물면 이곳이 통째로 무너지겠구먼."
+%%%%
+Joseph
+
+@_Joseph_common_@
+w:2
+@_Joseph_rare_@
+%%%%
+_Joseph_common_
+
+w:20
+@_mercenary_guard_@
+VISUAL:@The_monster@이(가) 기쁘게 미소 지어.
+VISUAL:@The_monster@이(가) 사악한 미소를 지으려 애써.
+@The_monster@이(가) 말해. "널 보니 반갑네. 죽일 생각을 하니 더 반갑고."
+@The_monster@이(가) 말해. "이 순간을 정말 오래 기다렸어."
+@The_monster@이(가) 말해. "개인적인 감정은 없지만 널 죽여야겠어."
+@The_monster@이(가) 말해. "안됐지만 넌 절대로 오브를 얻지 못해." @player_only@
+@The_monster@이(가) 소리쳐. "싸우는 게 좋아! 죽이는 건 더 좋아!"
+@The_monster@이(가) 말해. "침입자를 죽이는 게 내 일이야. 마음에 드는 일이지."
+@The_monster@이(가) 말해. "넌 벌을 받아야 해! 아니… 내가 벌주고 싶어!"
+%%%%
+_Joseph_rare_
+
+@The_monster@이(가) 소리쳐. "드디어 한바탕 놀아 볼 시간이군!"
+@The_monster@이(가) 한숨 쉬어. "경비 일은 평소엔 너무 지루해…"
+@The_monster@이(가) 소리쳐. "우와!"
+%%%%
+Josephina
+
+@_Josephina_common_@
+w:5
+@_Josephina_rare_@
+%%%%
+_Josephina_common_
+
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 악의에 차서 웃어.
+@The_monster@이(가) 미친 듯이 웃어.
+@The_monster@이(가) 길게 낄낄대.
+VISUAL:@The_monster@이(가) 차가운 서리 빛으로 반짝여.
+@The_monster@이(가) 소리쳐. "죽어!"
+%%%%
+_Josephina_rare_
+
+VISUAL:@The_monster@이(가) 이를 갈아.
+VISUAL:@the_monster_possessive@ 얼어붙은 손가락 하나가 떨어져 나가.
+@The_monster@이(가) 말해. "네 가죽으로 양탄자를 만들겠어."
+@The_monster@이(가) 울부짖어. "지옥은 내게 비밀을 숨기지 못해!"
+@The_monster@이(가) 소리쳐. "넌 날 해칠 수 없어! 얼음은 다시 얼어붙거든…"
+@The_monster@이(가) 소리쳐. "난 절대 죽지 않아! 불멸이라고!"
+@The_monster@이(가) 소리쳐. "네 머리를 지옥의 장식품으로 쓰겠어!"
+%%%%
+Josephine
+
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 악의에 차서 웃어.
+VISUAL:@The_monster@이(가) 이를 갈아.
+@The_monster@이(가) 미친 듯이 웃어.
+@The_monster@이(가) 말해. "네 가죽으로 양탄자를 만들겠어."
+@The_monster@이(가) 말해. "목을 좀 잘라 볼까?"
+@The_monster@이(가) 소리쳐. "죽어!"
+@The_monster@이(가) 소리쳐. "널 위해 특별히 준비한 게 있어."
+@The_monster@이(가) 소리쳐. "네 머리를 내 오두막 장식품으로 쓰겠어!"
+%%%%
+Khufu
+
+@The_monster@이(가) 우렁차게 말해. "너만 빼고 모두 쿠푸를 숭배하게 될 것이다!"
+@The_monster@이(가) 선언해. "너를 끝장내고 나면 신들에게도 맞서리라!"
+@The_monster@이(가) 물어. "내 백성은 나를 위해 피라미드를 지었다. 네 백성은 무엇을 지었느냐?"
+@The_monster@이(가) 말해. "이런 치고 빠지기는 내 격에 맞지 않는다."
+@The_monster@이(가) 말해. "나는 초월이고, 너는 증발일 뿐이다."
+@The_monster@이(가) 말해. "네 시체는 어느 영묘에 두어도 오점이 되겠군."
+@The_monster@이(가) 말해. "너는 역사상 가장 추한 미라가 되리라."
+@The_monster@이(가) 말해. "나는 북극성을 따른다."
+@The_monster@이(가) 소리쳐. "나일강에 던져 버려라!"
+%%%%
+Kirke
+
+VISUAL:@The_monster@이(가) 상대에게 물약을 뿌려.
+VISUAL:@The_monster@이(가) 상대에게 [기묘한|이상한|수수께끼 같은] 가루를 던져.
+@The_monster@이(가) 말해. "오디스는 좋은 남자였는데, 넌 형편없네."
+@The_monster@이(가) 옆구리를 움켜쥐고 말해. "넌 내 발밑에서 흙이나 먹게 될 거야."
+@The_monster@이(가) 속삭여. "그 어떤 신성한 주문도 널 구하지 못해."
+@The_monster@이(가) 말해. "싸움은 그만두면 안 될까? 너한테 줄 좋은 포도주가 있는데…" @player_only@
+@The_monster@이(가) 소리쳐. "이 돼지야! 네 본성에 어울리는 모습으로 만들어 주겠어."
+@The_monster@이(가) 속삭여. "작고 동그랗게 말린 꼬리가 있으면 귀엽겠는데."
+@The_monster@이(가) 속삭여. "어떤 @player_genus@도 나를 거역할 수 없어…"
+@_wizard_common_spell_@
+@_fake_spell_effect_@
+%%%%
+Lodul
+
+@_Lodul_common_@
+w:5
+@_Lodul_rare_@
+%%%%
+_Lodul_common_
+
+@The_monster@이(가) 우렁찬 함성을 질러.
+VISUAL:@The_monster@이(가) 묵직한 돈주머니를 짤랑거리며 윙크해.
+@The_monster@이(가) 소리쳐. "침입자!"
+@The_monster@이(가) 말해. "나 금고 잘 지킨다! 넌 못 들어와!"
+VISUAL:@The_monster@이(가) 발을 쾅 굴러.
+%%%%
+_Lodul_rare_
+
+@The_monster@이(가) 말해. "나 위해 일할래? 돈 많이 준다."
+@The_monster@이(가) 소리쳐. "천둥 맛 좀 봐라!"
+VISUAL:@The_monster@이(가) 몸에 단 장치를 고쳐 매.
+@The_monster@이(가) 소리쳐. "찌릿! 하하하, 깜짝 놀랐지?"
+@The_monster@이(가) 포효해. "나 철벽! 너 놋쇠… 쓰레기!"
+@The_monster@이(가) 사악하게 웃으며 말해. "돈이 세상을 돌린다."
+@The_monster@이(가) 윙크하며 말해. "모든 것에는 값이 있다."
+@The_monster@이(가) 말해. "모든 부는 노동의 산물이다."
+@The_monster@이(가) 말해. "일 잘하는 오거가 행복한 오거다."
+@The_monster@이(가) 말해. "나 직원들 자랑스럽다."
+@The_monster@이(가) 말해. "로둘의 좌우명! 금고 안전? 내 책임!"
+@The_monster@이(가) 인상을 쓰며 말해. "너 여기 보안 규칙 어겼다."
+%%%%
+Louise
+
+@_Louise_common_@
+w:2
+@_Louise_rare_@
+%%%%
+_Louise_common_
+
+@The_monster@이(가) 말해. "여행 한번 갈래?"
+@The_monster@이(가) 말해. "심연도 날 죽이지 못했어! 네가 뭘 할 수 있다고 생각해?"
+@The_monster@이(가) 말해. "현실 너머의 힘도 내 부름에 응하지!"
+@The_monster@이(가) 말해. "오브까지 지름길이 필요해? 자, 내가 도와줄게!"
+@The_monster@이(가) 앞뒤가 맞지 않는 소리를 지껄여.
+@The_monster@이(가) 비명을 질러!
+@The_monster@이(가) 주체할 수 없이 웃어.
+@The_monster@이(가) 흐느끼기 시작해.
+@The_monster@이(가) 물어. "왜 내 친구가 되어 주지 않는 거야?"
+@_wizard_common_spell_@
+@_fake_spell_effect_@
+%%%%
+_Louise_rare_
+
+@The_monster@이(가) 말해. "몸이 영 안 좋아…"
+@The_monster@이(가) 말해. "날 뭐로 보는 거야? 평범한 용병인 줄 알아?"
+@The_monster@이(가) 말해. "휴가 가기 딱 좋은 계절인데!"
+%%%%
+Maggie
+
+@_Maggie_common_@
+w:5
+@_Maggie_rare_@
+%%%%
+_Maggie_common_
+
+VISUAL:@The_monster@이(가) 멋진 자세를 연습해.
+VISUAL:@The_monster@이(가) 웃지만, 억지웃음인 게 빤히 보여.
+@The_monster@이(가) 말해. "지금 떠나. 그리고 모두에게 매기의 자비를 전해!"
+@The_monster@이(가) 말해. "두려워 마. 널 내 첫 살인의 전설 속에 영원히 남겨 주겠어."
+VISUAL:@The_monster@이(가) 자기 몸에 마법의 후광을 두르지만 곧 꺼져 버려.
+@The_monster@이(가) 주문 구절을 순서도 틀리게 중얼거려.
+%%%%
+_Maggie_rare_
+
+@The_monster@이(가) 말해. "던전에서 죽어도 아무도 보지 못했다면, 그 죽음이 의미가 있을까?"
+@The_monster@이(가) 말해. "랜스 스승님이 널 보냈어?"
+@The_monster@이(가) 말해. "드래곤 못 봤어?"
+@The_monster@이(가) 말해. "여기 사는 사람들은 어떻게 이런 고립을 견디지?"
+@The_monster@이(가) 소리쳐. "날 좀 내버려 둬!"
+@The_monster@이(가) 혼잣말해. "랜스 스승님은 날 다시 받아 주지 않을 거야. 이 길밖에 없어."
+%%%%
+Mara
+
+@_Mara_common_@
+w:5
+@_Mara_rare_@
+%%%%
+_Mara_common_
+
+VISUAL:@The_monster_possessive@ 얼굴이 두 번이나 변해.
+@The_monster@이(가) 말해. "나는 사람의 마음을 그릇된 길로 이끈다!"
+@The_monster@이(가) 말해. "내 환영 앞에서 강철과 마법이 무슨 소용이 있겠느냐?"
+@The_monster@이(가) 말해. "그럴듯한 시구에 넋이라도 빼앗겼느냐?"
+@The_monster@이(가) 말해. "네 몸은 온갖 올가미에 묶였도다!"
+@The_monster@이(가) 으르렁거려.
+VISUAL:@The_monster@이(가) 손짓해.
+VISUAL:@The_monster@이(가) 과장되게 손가락질해.
+VISUAL:@The_monster@이(가) 환영을 만들어 내.
+%%%%
+_Mara_rare_
+
+@The_monster@이(가) 소리쳐. "열 배의 저주가 네게 내리리라!"
+@The_monster_possessive@ 모습이 잠시 너와 똑같아져. "스스로를 죽일 셈이냐?"
+@The_monster@이(가) 말해. "바다 밑바닥 위에 뜬 별처럼 나는 너보다 아득히 높다."
+@The_monster@이(가) 비웃어. "나는 올바른 길과 진리를 찾는 자다."
+@The_monster@이(가) 말해. "너는 앙상하고 추하니, 죽음이 네 곁에 머무는구나!"
+@The_monster@이(가) 말해. "정진의 길은 험하고, 지나기도 들어서기도 어렵다."
+@The_monster@이(가) 외쳐. "멈추어라! 7일 뒤면 제국의 수레바퀴가 나타나리라!"
+@The_monster@이(가) 자랑해. "나는 4개 대륙과 그에 딸린 2,000개 섬의 주인이다."
