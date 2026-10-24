@@ -3564,3 +3564,71 @@ VISUAL:@The_monster@이(가) 너에게 무례한 손짓을 해. @player_only@
 VISUAL:@The_monster@이(가) 번쩍이는 송곳니를 드러내며 웃어.
 VISUAL:@The_monster@이(가) 목덜미를 드러내는 시늉을 해.
 VISUAL:@The_monster@이(가) 소리 없이 쉭쉭거려.
+%%%%
+kobold blastminer
+
+VISUAL:@The_monster@이(가) 대포를 감싼 옅은 연기를 손으로 휘저어 쫓아내.
+VISUAL:@The_monster_possessive@ 대포가 흔들리며 붉은빛을 뿜어.
+w:20
+__NONE
+%%%%
+Killer Klown
+
+@_Killer_Klown_common_@
+w:5
+@_Killer_Klown_rare_@
+%%%%
+_Killer_Klown_common_
+
+@The_monster@이(가) 미친 듯이 낄낄거려.
+@The_monster@이(가) 즐겁게 웃어.
+VISUAL:@The_monster@이(가) @foe@에게 이리 오라고 손짓해.
+VISUAL:@The_monster@이(가) 공중제비를 돌아.
+VISUAL:@The_monster@이(가) 재주넘기를 해.
+VISUAL:@The_monster@이(가) @foe@에게 미소 지어.
+VISUAL:@The_monster@이(가) 걱정 하나 없는 듯 환하게 웃어.
+VISUAL:@The_monster@이(가) 모자에서 횃불 10개를 꺼내 저글링을 시작해.
+VISUAL:@The_monster@이(가) 상대에게 물을 뿌려.
+@The_monster@이(가) 전투의 열기에 휩싸여 울부짖어!
+%%%%
+_Killer_Klown_rare_
+
+@The_monster@이(가) 빵빵 소리를 내.
+VISUAL:@The_monster@이(가) @foe_possessive@ 마지막 순간을 몸짓으로 연기해.
+VISUAL:@The_monster@이(가) 혀를 쑥 내밀어.
+VISUAL:@The_monster@이(가) 머리를 4개 더 자라나게 하더니 떼어 내서 저글링해!
+VISUAL:@The_monster@이(가) 잠시 깡충깡충 뛰어.
+@The_monster@이(가) 말해. "나랑 놀자!"
+@The_monster@이(가) 말해. "날 믿어. 난 의사라고."
+%%%%
+protean progenitor
+
+VISUAL:@The_monster_possessive@ 형체가 깊은 피로 탓에 [잠시 |][일렁여|흔들려].
+VISUAL:@The_monster_possessive@ [겹겹이 포개진 눈 3개|송곳니가 달린 눈 6개|연기를 내뿜는 눈 9개]가 느리게 깜박여.
+VISUAL:@The_monster@이(가) [번쩍이고|파직거리며], [한숨 쉬고|투덜거린] 뒤 [손짓해|발을 굴러].
+VISUAL:@The_monster@이(가) 숨겨 둔 [더듬이|실젖|위족]을 펼쳤다 오므려.
+w:20
+__NONE
+%%%%
+silenced silent spectre
+
+VISUAL:@The_monster@이(가) 너에게 조용히 하라는 손짓을 해.
+VISUAL:@The_monster@이(가) 바람에 날리는 듯 흔들려.
+VISUAL:@The_monster@이(가) 유령 같은 눈으로 너를 노려봐.
+VISUAL:@The_monster@이(가) 나타났다 사라지기를 반복해.
+VISUAL:@The_monster@이(가) 어둠 속에서 깜박이다 사라져.
+VISUAL:@The_monster@이(가) 천천히 너를 향해 웃어.
+%%%%
+_good_god_
+
+진
+빛나는 자
+엘리빌론
+%%%%
+cherub
+
+@The_monster@이(가) 4성부 화음으로 빛나는 자를 찬양해.
+@The_monster_possessive@ 사자 머리가 포효해!
+@The_monster_possessive@ 독수리 머리가 날카롭게 울어!
+@The_monster@이(가) 진을 찬양하는 노래를 불러.
+@The_monster@이(가) 엘리빌론을 찬양하는 노래를 불러.
