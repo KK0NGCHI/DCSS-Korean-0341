@@ -3022,3 +3022,80 @@ __NONE
 @The_monster@이(가) 말해. "부탁이야, 내 손 좀 잡아 줄래?"
 w:5
 @The_monster@이(가) 말해. "멀뚱히 서 있지 마! 움직일 수는 있잖아!"
+%%%%
+Rupert
+
+@_Rupert_common_@
+w:5
+@_Rupert_rare_@
+%%%%
+_Rupert_common_
+
+VISUAL:@The_monster@이(가) 근육을 불끈거려.
+VISUAL:@The_monster@이(가) 주먹으로 가슴을 쾅쾅 두드려.
+VISUAL:@the_monster_possessive@ 가슴을 타고 땀이 흘러내려.
+@The_monster@이(가) 말해. "힘이 이 세상을 지배한다!"
+@The_monster@이(가) 말해. "넌 약해."
+@The_monster@이(가) 말해. "벌레처럼 짓뭉개 주지!"
+@The_monster@이(가) 말해. "네 팔다리를 갈기갈기 찢어 주마!"
+@The_monster@이(가) 말해. "널 죽일 생각을 하니 식욕이 도는군."
+%%%%
+_Rupert_rare_
+
+VISUAL:@The_monster@이(가) 짧게 호흡 운동을 해.
+@The_monster@이(가) 물어. "나 같은 몸이면 옷을 왜 입겠어?"
+@The_monster@이(가) 우렁차게 웃자 바위와 잔해가 와르르 무너져.
+w:3
+@The_monster@이(가) 근육을 불끈거리며 말해. "공짜 근육 구경이다!"
+@The_monster@이(가) 말해. "수분 보충은 철저히 하지… 적들의 피로!"
+@The_monster@이(가) 말해. "넌 내가 아주 작고 약했던 꼬마 시절을 닮았군."
+@The_monster@이(가) 말해. "네 두개골은 훌륭한 술잔이 되겠어."
+%%%%
+Snorg
+
+@_Snorg_common_@
+w:2
+@_Snorg_rare_@
+%%%%
+_Snorg_common_
+
+VISUAL:@The_monster@이(가) 큼직한 배를 쓰다듬어.
+VISUAL:@The_monster@이(가) 부드럽게 손짓해.
+VISUAL:@The_monster@이(가) 인자하게 미소 지어.
+VISUAL:@the_monster_possessive@ 얼굴에 잠시 분노가 스쳐 지나가.
+VISUAL:@The_monster@이(가) 긴 발톱으로 배를 조심스럽게 긁어.
+%%%%
+_Snorg_rare_
+
+@The_monster@이(가) 말해. "아, 배가 너무 고프군!"
+@The_monster@이(가) 말해. "아, 켄타우로스 한 마리도 통째로 먹겠어!"
+%%%%
+Sonja
+
+@_Sonja_common_@
+w:5
+@_Sonja_rare_@
+%%%%
+_Sonja_common_
+
+@The_monster@이(가) 말해. "나도 정식 교육을 받은 몸이라고."
+@The_monster@이(가) 소리쳐. "너무 느려!"
+VISUAL:@The_monster@이(가) 망토를 빙글 돌려.
+VISUAL:@The_monster@이(가) 우아하게 인사해.
+VISUAL:@The_monster@이(가) 발을 발레의 플리에 자세로 딛어.
+@The_monster@이(가) 말해. "죽음의 춤을 함께 춰 볼까."
+%%%%
+_Sonja_rare_
+
+@The_monster@이(가) 소리쳐. "하! 또 빗나갔지!"
+w:1
+@The_monster@이(가) 말해. "왕립 발레단은 코볼드를 받아 주지 않아. 그래서 사람을 죽이게 됐지."
+@The_monster@이(가) 말해. "브르제비트 부인이 지금의 날 볼 수 있다면!"
+@The_monster@이(가) 소리쳐. "춤 상대가 영 시원찮은걸!"
+@The_monster@이(가) 말해. "누군가 널 죽여 달라고 고용했지만, 누구인지는 말하면 안 돼."
+%%%%
+Sonja triumphant
+
+VISUAL:@The_monster@이(가) 무대 인사를 하듯 고개 숙여.
+VISUAL:@The_monster@이(가) 혼자 박수를 쳐.
+@The_monster@이(가) 말해. "공연 끝."
