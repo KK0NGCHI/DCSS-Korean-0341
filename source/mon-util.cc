@@ -5748,7 +5748,7 @@ bool shoot_through_actor(const actor* agent, const actor* target, bool announce)
             // TODO: this message does not work very well for all sorts of attacks
             // should this be a god message?
             if (announce && you.can_see(*target))
-                mprf("%s avoids your attack.", target->name(DESC_THE).c_str());
+                mprf("%s: 당신의 공격을 피한다.", target->name(DESC_THE).c_str());
             return true;
         }
 
@@ -5762,7 +5762,7 @@ bool shoot_through_actor(const actor* agent, const actor* target, bool announce)
         if (agent->is_player() && testbits(mon->flags, MF_DEMONIC_GUARDIAN))
         {
             if (announce && you.can_see(*mon))
-                mpr("Your demonic guardian avoids your attack.");
+                mpr("악마 수호자가 당신의 공격을 피한다.");
             return true;
         }
 
@@ -5826,7 +5826,7 @@ bool could_harm(const actor* agent, const actor* target, bool announce_important
     {
         if (announce_important && you.see_cell(target->pos()))
         {
-            string msg = make_stringf("The Sanctuary protects %s from harm.",
+            string msg = make_stringf("성역의 가호로 %s에 피해가 미치지 않는다.",
                                         target->name(DESC_THE).c_str());
             god_speaks(GOD_ZIN, msg.c_str());
         }
