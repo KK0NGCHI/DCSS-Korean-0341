@@ -7,6 +7,7 @@ and possessives can be integrated into the Korean sentence.
 """
 import argparse
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -14,6 +15,32 @@ from audit_monspell_ko import parse, visible_lines, MARKER, ALT, WEIGHT, HANGUL
 
 OMITTABLE = {"possessive", "at_foe", "to_foe", "surface", "reflexive"}
 PREFIXES = ("VISUAL:", "SOUND:", "SILENT:")
+
+
+LUA_CONTROL = re.compile(r"^(?:if|elseif|else|end)\b")
+LUA_REFERENCE_RETURN = re.compile(r"""^return\s+(['"])(@[^@\n]+@)\1$""")
+LUA_DYNAMIC_RETURN = re.compile(r"^return\s+you\.[a-zA-Z_]\w*\(")
+
+
+def lua_non_display_line(source_line, localized_line, in_lua):
+    """Permit unchanged Lua syntax, not untranslated string literals."""
+    if not in_lua:
+        return False
+    en, ko = source_line.strip(), localized_line.strip()
+    if en.startswith(("{{", "}}")) or LUA_CONTROL.match(en):
+        return en == ko
+    if LUA_REFERENCE_RETURN.fullmatch(en) or LUA_DYNAMIC_RETURN.match(en):
+        return en == ko
+    return False
+
+
+def lua_control_changed(source_line, localized_line, in_lua):
+    if not in_lua:
+        return False
+    en, ko = source_line.strip(), localized_line.strip()
+    if en.startswith(("{{", "}}")) or LUA_CONTROL.match(en):
+        return en != ko
+    return False
 
 
 def check_variants(source, korean):
@@ -27,7 +54,9 @@ def check_variants(source, korean):
     kw = [line for line in korean if WEIGHT.fullmatch(line)]
     if ew != kw:
         issues.append("weight_list")
+    in_lua = False
     for i, (en, ko) in enumerate(zip(src, dst), 1):
+        lua_here = in_lua or "{{" in en
         required = Counter(tag for tag in MARKER.findall(en)
                            if tag not in OMITTABLE)
         actual = Counter(tag for tag in MARKER.findall(ko)
@@ -41,9 +70,16 @@ def check_variants(source, korean):
             issues.append(f"line_{i}_directive_prefix")
         if en.count("{{") != ko.count("{{") or en.count("}}") != ko.count("}}"):
             issues.append(f"line_{i}_lua_fence")
+        if lua_control_changed(en, ko, lua_here):
+            issues.append(f"line_{i}_lua_control_modified")
         if not HANGUL.search(ko) and ko not in {"__NONE", "__NEXT"} \
-                and not ko.startswith("@"):
+                and not ko.startswith("@") \
+                and not lua_non_display_line(en, ko, lua_here):
             issues.append(f"line_{i}_no_hangul")
+        if "}}" in en:
+            in_lua = False
+        elif "{{" in en:
+            in_lua = True
     return issues
 
 
