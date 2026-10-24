@@ -1155,3 +1155,84 @@ w:1
 @The_weapon@이(가) @_screams_@. "나는 신발도 안 신은 섹시한 전쟁의 신이다!"
 @The_weapon@이(가) @_screams_@. "빌어먹을, 천년의 손과 새우라니!"
 @The_weapon@이(가) @_screams_@. "나는 죽음의 강철이다! 어떤 피 앞에서도 물러서지 않는다!"
+%%%%
+_real_song_low_tension_
+
+@The_weapon@이(가) 노래해. "그냥 두어라, 그냥 두어라…"
+@The_weapon@이(가) 노래해. "썰어 버리는 노래를 부르며 달리는 오늘 밤이 얼마나 즐거운지!"
+@The_weapon@이(가) 노래해. "이 노래로 나를 부드럽게 죽여 줘…"
+@The_weapon@이(가) [노래해|휘파람 불어]. "언제나 죽음의 밝은 면을 보자…"
+@The_weapon@이(가) 노래해. "오늘이 내가 죽는 날이겠지…"
+@The_weapon@이(가) 쉰 목소리로 말해. "@player_name@, 죽음 속에서 나와 함께하자!"
+@The_weapon@이(가) 노래해. "내게는 영웅이 필요해!"
+@The_weapon@이(가) 애처롭게 물어. "@player_name@, 오늘 밤 나가서 좀 죽여도 될까?"
+w:1
+@The_weapon@이(가) 노래해. "…끔찍한 방법으로, 아주아주 끔찍하게 죽임당하는 게 조금도 두렵지 않았네…"
+@The_weapon@이(가) 노래해. "나는 연인 아닌 투사라네."
+@The_weapon@이(가) 노래해. "던전에서 사람 하나를 찔렀네, 그저 죽는 모습을 보려고."
+@The_weapon@이(가) 노래해. in a lilting soprano, "[헤이야야헤이야! 헤이야야헤이야!|바갈라 베이아! 발랄라, 베이알라 베이아!|발랄라! 랄라레이아! 레이알랄라!|헤이아! 헤이아! 하헤이!]"
+w:1
+@The_weapon@이(가) 노래해. in a lilting soprano, "너는 잠든 황금을… 제대로 지키지 못했구나. 잠든 자의 침상을… 더 철저히 지켜라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "축축한 공기가 콧구멍에 들어오네. 빌어먹을 재채기 같으니!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "…내 말을 들어라, 파도여. 나는 이처럼 사랑을 저주하노라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "고맙다, 멍청아! 네 일이 시련을 견뎌 냈군."
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "온 세상을 정복하리라… 오직 나 자신을 위하여!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "모든 신을 움켜쥐리라… 내 황금빛 손아귀로!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "내가 사랑을 버렸듯… 살아 있는 모든 것도 사랑을 버리리라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "조심하라! 조심하라! 너희 인간이 한번… 내 힘을 섬기게 되면…"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "밤의 군대를 조심하라… 심연의 군세가 일어날 때… 침묵의 깊은 곳에서… 햇빛을 향해!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "어리석은 자가 지혜를 얻고… 자만으로 터질 듯 부풀었구나! 이제 질투가 널 집어삼키리라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "교만한 신이여, 명심하라! 내가 죄를 지었다면 오직 나 자신에게 지었을 뿐이다!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "그러나 불멸의 너는… 과거와 현재와 미래의 모든 것에 죄를 짓는구나!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "그것은 어느 행복한 사람도… 기쁘게 하지 못하리라. 찬란한 빛도… 행운아를 비추지 못하리라!"
+w:1
+@The_weapon@이(가) 노래해. in a thundering basso, "몇 번이고 나는… 거인들에게 합당한 대가를 치렀지."
+w:1
+@The_weapon@이(가) 노래해. in a thundering basso, "후텁지근한 안개가… 공중에 떠 있네. 그 무거운 기운이… 나를 짓누른다."
+@The_weapon@이(가) 노래해. in a thundering basso, "헤다! 헤다! 헤도!"
+w:1
+@The_weapon@이(가) 노래해. in a rumbling basso, "…찬란한 빛이 감추는 것은… 부의 룬들이라…"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "명령만 내리면 기꺼이 안내해 드리지. 가파른 아래쪽으로… 오브를 찾으러 가실까?"
+w:1
+@The_weapon@이(가) 노래해. in a rumbling basso, "하지만 온 세상을 준다 해도… 오브는 포기하지 않으리!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "그러면 유황 냄새 나는 틈새를 통해… 아래로 내려가 볼까?"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "아! 아! 무서운 뱀이여, 제발 날 삼키지 마!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "집으로 기어가라! 널 묶은 매듭도 없으니 자유롭게 가거라!"
+w:1
+@The_weapon@이(가) 노래해. in a piercing soprano, "아아! 아아, 불쌍한 나여!"
+w:1
+@The_weapon@이(가) 노래해. in a squeaky tenor, "아아! 아야! 아야! 아야!"
+w:1
+@The_weapon@이(가) 노래해. in a melting tenor, "다시 우리를 스치는 바람은… 얼마나 부드러운지!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "네 힘이 네게… 드높은 용기를 주는구나. 음산하고 거대한… 네 힘이 자라났구나."
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "달도 별도 빛나는 태양도… 결국 다른 길 없이… 너를 섬기게 되리라!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "원하는 모습이 무엇이든 취해라… 경이로움으로 내 말문을 막아라!"
+w:1
+@The_weapon@이(가) 노래해. in a cavernous basso, "아, 그녀의 눈길이… 아직도 나를 향해 빛나네. 그 눈 속의 별들이… 아직도 나를 비추네!"
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "그것을 손에 넣는 자는… 돌이킬 수 없는… 어둠의 파멸을 맞으리라."
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "내 말을 들어라! 들어라! 들어라! 존재하는 모든 것이 끝나리라."
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "어두운 날이… 신들에게 밝아 오는구나."
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "지난 일은 모두 알고 있네. 지금과 앞으로 일어날 일도… 모두 보이네."
