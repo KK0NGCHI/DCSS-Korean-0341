@@ -2853,3 +2853,172 @@ _Mara_rare_
 @The_monster@이(가) 말해. "정진의 길은 험하고, 지나기도 들어서기도 어렵다."
 @The_monster@이(가) 외쳐. "멈추어라! 7일 뒤면 제국의 수레바퀴가 나타나리라!"
 @The_monster@이(가) 자랑해. "나는 4개 대륙과 그에 딸린 2,000개 섬의 주인이다."
+%%%%
+Pikel
+
+@_Pikel_common_@
+w:5
+@_Pikel_rare_@
+%%%%
+_Pikel_common_
+
+@The_monster@이(가) 채찍을 탁 소리 나게 휘둘러.
+@The_monster@이(가) 말해. "지옥도 그렇게 나쁘진 않아."
+@The_monster@이(가) 말해. "넌 훌륭한 레무레가 되겠는걸." @player_only@
+@The_monster@이(가) 말해. "내 채찍 맛을 보게 될 거야!"
+VISUAL:@The_monster@이(가) 너를 향해 채찍을 휘둘러.
+%%%%
+_Pikel_rare_
+
+@The_monster@이(가) 말해. "타르타로스에서 썩어 문드러져라!" @player_only@
+@The_monster@이(가) 말해. "게헨나에서 불타 버려라!" @player_only@
+@The_monster@이(가) 말해. "코키투스에서 얼어붙어라!" @player_only@
+@The_monster@이(가) 말해. "디스에서 녹슬어라!" @player_only@
+VISUAL:@The_monster@이(가) 돈주머니를 확인하고 눈살을 찌푸려.
+@The_monster@이(가) 말해. "시간은 돈이야. 너 때문에 너무 손해 보고 있다고!"
+@The_monster@이(가) 말해. "결국 중요한 건 금이지."
+@The_monster@이(가) 말해. "난 그저 돈을 받고 싶다고!"
+@The_monster@이(가) 말해. "뭐, 그놈들도 좋은 대접을 받을 거야. 아마도."
+@The_monster@이(가) 말해. "이 근처 어디에 오크 광산이 있을 텐데…"
+@The_monster@이(가) 말해. "지도를 챙겼어야 했는데."
+VISUAL:@The_monster@이(가) 인상을 찌푸리며 옷에 손을 닦아.
+@The_monster@이(가) 말해. "지옥의 군주라면 모두 내 이름을 알지!"
+@The_monster@이(가) 말해. "악마들은 모두 날 알아. 날 존경한다고."
+@The_monster@이(가) 말해. "아스모데우스는 내 친구야. 이 채찍도 그가 줬지."
+@The_monster@이(가) 말해. "아무한테도 말하지 마. 에레슈키갈이 날 좋아하는 것 같아."
+@The_monster@이(가) 말해. "안타이오스가 날 가장 좋아하는 코볼드라고 했어. 나를!"
+@The_monster@이(가) 말해. "디스파테르는 말수가 적지만 날 마음에 들어 한다는 건 알아."
+@The_monster@이(가) 말해. "게리온의 뿔을 만져 본 적도 있어."
+w:1
+@The_monster@이(가) 말해. "충고 하나 하지. 머레이는 말이 정말 많아."
+%%%%
+Polyphemus
+
+@_Polyphemus_common_@
+w:5
+@_Polyphemus_rare_@
+%%%%
+_Polyphemus_common_
+
+VISUAL:@The_monster@이(가) 외눈으로 @foe@을(를) 노려봐.
+VISUAL:@The_monster@이(가) 외눈을 사납게 굴리며 @foe@을(를) 쳐다봐.
+@The_monster@이(가) 자신의 애완동물들에게 공격하라며 큰소리로 @_shouts_@!
+@The_monster@이(가) @_shouts_@. "넌 훌륭한 간식이 되겠구나!"
+@The_monster@이(가) @_shouts_@. "공격해라, 내 귀염둥이들아! 공격해!"
+@The_monster@이(가) 말해. "나한테서 도망쳐 봐야 @_pointless_@일 뿐이야!"
+%%%%
+_Polyphemus_rare_
+
+VISUAL:@The_monster@이(가) @foe@을(를) 다음 식사로 삼을 만한지 가늠하는 것 같아.
+VISUAL:@The_monster@이(가) 화가 나서 발을 굴러.
+VISUAL:@The_monster@이(가) @foe@에게 던질 묵직한 물건을 찾아 주위를 둘러봐.
+@The_monster@이(가) 말해. "받아먹기 놀이 좋아하나?"
+@The_monster@이(가) 말해. "저녁은 @Foe_genus@ 요리인가? 맛있겠군!"
+%%%%
+_pointless_
+
+헛수고
+무의미
+소용없는 짓
+%%%%
+Prince Ribbit
+
+@_Prince_Ribbit_common_@
+w:2
+@_Prince_Ribbit_rare_@
+%%%%
+_Prince_Ribbit_common_
+
+@The_monster@이(가) 위엄 있게 개굴거려.
+@The_monster@이(가) 구슬프게 개굴거려.
+VISUAL:@The_monster@이(가) 서툴게 폴짝폴짝 뛰어다녀.
+VISUAL:@The_monster@이(가) 혀로 @_frog_food_@을(를) 낚아채.
+%%%%
+_Prince_Ribbit_rare_
+
+@The_monster@이(가) @foe,@에게 물어. "살짝 입 맞춰 주면 안 될까?"
+@The_monster@이(가) 한숨 쉬어. "초록색으로 산다는 건 참 쉽지 않네!"
+@The_monster@이(가) 말해. "넌 내게 그저 파리 한 마리일 뿐이야."
+VISUAL:@The_monster@이(가) 상대에게 윙크하며 입술을 쭉 내밀어.
+%%%%
+_frog_food_
+
+파리
+w:5
+나비
+나방
+모기
+w:2
+거미
+지네
+노래기
+w:1
+말벌
+작은 새
+쥐
+아기 박쥐
+푸른꼬리도마뱀
+%%%%
+Parghit
+
+@_Parghit_common_@
+w:5
+@_Parghit_rare_@
+%%%%
+_Parghit_common_
+
+@The_monster@이(가) 으르렁거려. "저리! 가!"
+VISUAL:@The_monster@이(가) 조심스럽게 주위를 살펴봐.
+@The_monster@이(가) 위협적으로 쉭쉭거려.
+@The_monster@이(가) 으르렁거려. "내 던전이야! 나가!"
+%%%%
+_Parghit_rare_
+
+VISUAL:@The_monster@이(가) 이를 악물어.
+VISUAL:@The_monster@이(가) 발톱에 힘을 줘.
+@The_monster@이(가) 쉭쉭거려. "나 문다!"
+@The_monster@이(가) 으르렁거려. "네놈 목걸이에 매달아 버린다!"
+@The_monster@이(가) @foe@에게 경고해. "나 괴롭히는 놈 먹어!"
+@The_monster@이(가) 으르렁거려. "너 드래곤보다 세냐?"
+%%%%
+Roxanne
+
+@_Roxanne_common_@
+w:5
+@_Roxanne_medium_@
+w:1
+@_Roxanne_rare_@
+%%%%
+_Roxanne_common_
+
+@The_monster@이(가) 중얼거려. "영원히 살고 싶다고 하긴 했지만… 이런 식은 아니었는데."
+@The_monster@이(가) 말해. "그래도 이야기할 사람이 아무도 없는 곳은 아니잖아."
+@The_monster@이(가) 울부짖어. "안 돼애애!"
+@The_monster@이(가) 말해. "이리 와, 자기. 내 마음까지 돌처럼 굳은 건 아니거든."
+w:20
+__NONE
+%%%%
+_Roxanne_medium_
+
+@The_monster@이(가) @foe,@에게 물어. "부탁인데, 저 부적 좀 주워 줄래?"
+@The_monster@이(가) @foe,@에게 물어. "저기, 내 등을 좀 긁어 줄 수 있겠어?"
+@The_monster@이(가) 한숨 쉬며 말해. "새똥만 아니면 이 지경도 참을 만할 텐데."
+%%%%
+_Roxanne_rare_
+
+@The_monster@이(가) 소리쳐. "거기 갈 수만 있다면 당장 네 엉덩이를 걷어찰 텐데!"
+@The_monster@이(가) 석화 해제 주문을 내려 달라고 기도해.
+@The_monster@이(가) 생각에 잠겨. "기름을 바르면 될까? 아마 안 되겠지."
+@The_monster@이(가) 말해. "넌 몇 분 뒤면 벌레 밥이겠지만, 난 [수천 년|영겁의 세월]을 버틸 거야."
+@The_monster@이(가) 말해. "네가 강한 전사일 수는 있어도 석공은 영 아닌걸!"
+@The_monster@이(가) 말해. "내 새 부적이 미친 짓이라더니… 다들 옳았어."
+%%%%
+Roxanne blink_other_closer
+
+w:20
+__NONE
+@The_monster@이(가) 말해. "조금만 더 가까이 와 줄래?"
+@The_monster@이(가) 말해. "친구는 가까이, 적은 더 가까이 두는 법이지."
+@The_monster@이(가) 말해. "부탁이야, 내 손 좀 잡아 줄래?"
+w:5
+@The_monster@이(가) 말해. "멀뚱히 서 있지 마! 움직일 수는 있잖아!"
