@@ -243,7 +243,7 @@ spret cast_call_canine_familiar(int pow, bool fail)
 
     if (old_dog && !you.can_see(*old_dog))
     {
-        mprf(MSGCH_PROMPT, "Your familiar is too far away to imbue with magic.");
+        mprf(MSGCH_PROMPT, "사역마가 너무 멀리 있어 마력을 불어넣을 수 없어.");
         return spret::abort;
     }
 
@@ -268,7 +268,7 @@ spret cast_call_canine_familiar(int pow, bool fail)
         dog->ghost->init_inugami_from_player(pow);
         dog->ghost_demon_init();
 
-        mpr("You call for your canine familiar and it appears with a howl!");
+        mpr("개 사역마를 부르자 울부짖으며 나타났다!");
         you.props[CANINE_FAMILIAR_MID].get_int() = dog->mid;
     }
     // If it's active, instead heal and boost its next attack.
@@ -307,7 +307,7 @@ spret cast_summon_cactus(int pow, bool fail)
     if (monster* mons = create_monster(mg))
     {
         if (you.can_see(*mons))
-            mpr("A prickly colossus appears in a rush of desert wind.");
+            mpr("사막의 바람을 타고 가시투성이 거인이 나타났다.");
     }
 
     else
@@ -322,7 +322,7 @@ spret cast_awaken_armour(int pow, bool fail)
     if (armour == nullptr)
     {
         // I don't think we can ever reach this line, but let's be safe.
-        mpr("You aren't wearing any armour!");
+        mpr("갑옷을 입고 있지 않아!");
         return spret::abort;
     }
 
@@ -372,7 +372,7 @@ spret cast_summon_ice_beast(int pow, bool fail)
     ice_beast.hd = (3 + div_rand_round(pow, 13));
 
     if (create_monster(ice_beast))
-        mpr("A chill wind blows around you.");
+        mpr("차가운 바람이 주위를 휘감는다.");
     else
         canned_msg(MSG_NOTHING_HAPPENS);
 
@@ -509,7 +509,7 @@ spret cast_dragon_call(int pow, bool fail)
 
     fail_check();
 
-    mpr("You call out to the draconic realm, and the dragon horde roars back!");
+    mpr("용들의 세계를 향해 외치자 용 무리가 포효로 응답한다!");
     noisy(spell_effect_noise(SPELL_DRAGON_CALL), you.pos());
 
     you.duration[DUR_DRAGON_CALL] = (15 + div_rand_round(pow, 5) + random2(15))
@@ -551,7 +551,7 @@ static void _place_dragon()
         // remains, as the player might soon have enough again.
         if (!enough_mp(mp_cost, true))
         {
-            mpr("A dragon tries to answer your call, but you don't have enough "
+            mpr("용 한 마리가 부름에 응답하려 하지만 마력이 부족해 "
                 "magical power!");
             return;
         }
@@ -564,7 +564,7 @@ static void _place_dragon()
 
         pay_mp(mp_cost);
         if (you.see_cell(dragon->pos()))
-            mpr("A dragon arrives to answer your call!");
+            mpr("당신의 부름에 응답하여 용 한 마리가 도착했다!");
         finalize_mp_cost();
 
         // The dragon is allowed to act immediately here
@@ -663,7 +663,7 @@ spret cast_summon_dragon(actor *caster, int pow, bool fail)
                 _summon_data(*caster, mon, summ_dur(6), SPELL_SUMMON_DRAGON)))
         {
             if (you.see_cell(dragon->pos()))
-                mpr("A dragon appears.");
+                mpr("용 한 마리가 나타났다.");
             success = true;
         }
     }
@@ -685,7 +685,7 @@ spret cast_summon_mana_viper(int pow, bool fail)
     viper.hd = (7 + div_rand_round(pow, 12));
 
     if (create_monster(viper))
-        mpr("A mana viper appears with a sibilant hiss.");
+        mpr("마나 살무사가 쉭쉭 소리를 내며 나타났다.");
     else
         canned_msg(MSG_NOTHING_HAPPENS);
 
@@ -808,7 +808,7 @@ bool summon_holy_warrior(int pow, bool punish)
     summon->flags |= MF_ATT_CHANGE_ATTEMPT;
 
     if (!punish)
-        mpr("You are momentarily dazzled by a brilliant light.");
+        mpr("눈부신 빛에 순간적으로 시야가 흐려진다.");
 
     return true;
 }
@@ -833,7 +833,7 @@ spret cast_summon_holy_warrior(int pow, bool fail)
  **/
 static bool _fail_tukimas()
 {
-    mpr("You can't see a target there!");
+    mpr("그곳의 대상을 볼 수 없어!");
     return false; // Waste the turn - no anti-invis tech
 }
 
@@ -1021,7 +1021,7 @@ spret cast_conjure_ball_lightning(int pow, bool fail)
     }
 
     if (success)
-        mpr("You create some ball lightning!");
+        mpr("구체 번개 몇 개를 만들어 냈다!");
     else
         canned_msg(MSG_NOTHING_HAPPENS);
 
@@ -1055,7 +1055,7 @@ spret cast_forge_lightning_spire(int pow, bool fail)
     monster* mons = create_monster(spire);
 
     if (mons && !silenced(mons->pos()))
-        mpr("An electric hum fills the air.");
+        mpr("공기 중에 전기 울림이 퍼진다.");
     else
         canned_msg(MSG_NOTHING_HAPPENS);
 
@@ -1077,7 +1077,7 @@ spret cast_forge_blazeheart_golem(int pow, bool fail)
 
     if (mons)
     {
-        mpr("You bind the heart of a blast furnace in slag iron.");
+        mpr("용광로의 심장을 쇳덩이에 묶어 넣었다.");
 
         // Give an extra turn of grace period on the turn it is summoned.
         mons->blazeheart_heat = 4;
@@ -1105,7 +1105,7 @@ spret cast_call_imp(int pow, bool fail)
     mgen_data imp_data = _pal_data(MONS_CERULEAN_IMP, summ_dur(3), SPELL_CALL_IMP);
     if (monster *imp = create_monster(imp_data))
     {
-        mpr("A tiny devil pulls itself out of the air.");
+        mpr("작은 악마 한 마리가 허공에서 모습을 드러낸다.");
         imp->weapon()->plus = pow/10 - 4;
         _monster_greeting(imp, "_friendly_imp_greeting");
     }
@@ -1142,9 +1142,9 @@ spret summon_butterflies()
         return spret::abort;
 
     if (silenced(you.pos()))
-        mpr("Somewhere, a butterfly flaps its wings.");
+        mpr("어딘가에서 나비 한 마리가 날갯짓한다.");
     else
-        mpr("You hear the flapping of tiny wings.");
+        mpr("작은 날개들이 파닥이는 소리가 들린다.");
 
     bool success = false;
     // push away further-away things first, so middle ones don't get stuck
@@ -1202,7 +1202,7 @@ spret summon_shadow_creatures()
     if (stop_summoning_prompt())
         return spret::abort;
 
-    mpr("Wisps of shadow whirl around you...");
+    mpr("그림자 자락들이 주위를 맴돈다...");
 
     int num = roll_dice(2, 2);
     int num_created = 0;
@@ -1245,7 +1245,7 @@ spret summon_shadow_creatures()
     }
 
     if (!num_created)
-        mpr("The shadows disperse without effect.");
+        mpr("그림자들이 아무런 효과 없이 흩어진다.");
 
     return spret::success;
 }
@@ -1445,7 +1445,7 @@ spret cast_summon_horrible_things(int pow, bool fail)
     if (!count)
         canned_msg(MSG_NOTHING_HAPPENS);
     else
-        mpr("You open a gateway and unleash terrible monstrosities upon the world.");
+        mpr("관문을 열어 끔찍한 괴물들을 세상에 풀어놓았다.");
 
     return spret::success;
 }
@@ -1544,7 +1544,7 @@ spret cast_summon_forest(actor* caster, int pow, bool fail, bool test)
         }
     }
 
-    mpr("A forested plane collides here with a resounding crunch!");
+    mpr("숲으로 뒤덮인 차원이 요란한 소리와 함께 이곳에 충돌한다!");
     noisy(spell_effect_noise(SPELL_SUMMON_FOREST), caster->pos());
 
     mgen_data dryad_data = _pal_data(MONS_DRYAD, 1, SPELL_SUMMON_FOREST);
@@ -1589,12 +1589,12 @@ spret cast_haunt(int pow, const coord_def& where, bool fail)
     if (m == nullptr)
     {
         fail_check();
-        mpr("An evil force gathers, but it quickly dissipates.");
+        mpr("사악한 기운이 모여들지만 곧 흩어진다.");
         return spret::success; // still losing a turn
     }
     else if (m->wont_attack())
     {
-        mpr("You cannot haunt those who bear you no hostility.");
+        mpr("당신에게 적의를 품지 않은 대상에게는 원혼을 보낼 수 없어.");
         return spret::abort;
     }
 
@@ -1626,13 +1626,13 @@ spret cast_haunt(int pow, const coord_def& where, bool fail)
 
     if (success > 1)
     {
-        mpr(friendly ? "Insubstantial figures form in the air."
-                     : "You sense hostile presences.");
+        mpr(friendly ? "실체 없는 형상들이 허공에 나타난다."
+                     : "적대적인 존재들의 기척이 느껴진다.");
     }
     else if (success)
     {
-        mpr(friendly ? "An insubstantial figure forms in the air."
-                     : "You sense a hostile presence.");
+        mpr(friendly ? "실체 없는 형상 하나가 허공에 나타난다."
+                     : "적대적인 존재의 기척이 느껴진다.");
     }
     else
     {
@@ -1658,7 +1658,7 @@ spret cast_martyrs_knell(const actor* caster, int pow, bool fail)
     if (shade)
     {
         if (caster->is_player())
-            mpr("You call forth a shade to shield your allies.");
+            mpr("아군을 지키기 위해 그림자를 불러냈다.");
         else if (you.can_see(*shade))
         {
             mprf("%s calls forth a shade to shield themselves.",
