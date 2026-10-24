@@ -913,9 +913,9 @@ bool zin_recite_to_single_monster(const coord_def& where)
     if (mon->can_speak() && one_chance_in(5))
     {
         if (check < -10)
-            simple_monster_message(*mon, " guffaws at your puny god.");
+            simple_monster_message(*mon, "이(가) 당신이 섬기는 하찮은 신을 비웃는다.");
         else if (check < -5)
-            simple_monster_message(*mon, " sneers at your recitation.");
+            simple_monster_message(*mon, "이(가) 당신의 낭송을 비웃는다.");
     }
 
     if (check <= 0)
@@ -1067,7 +1067,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
 
     case zin_eff::daze:
         mon->daze(degree + random2avg(spellpower / 10, 2));
-        simple_monster_message(*mon, " is dazed by your recitation.");
+        simple_monster_message(*mon, "이(가) 낭송에 정신이 멍해졌다.");
         affected = true;
         break;
 
@@ -1077,9 +1077,9 @@ bool zin_recite_to_single_monster(const coord_def& where)
                              (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
             if (prayertype == RECITE_HERETIC)
-                simple_monster_message(*mon, " is confused by your recitation.");
+                simple_monster_message(*mon, "이(가) 낭송에 혼란에 빠졌다.");
             else
-                simple_monster_message(*mon, " stumbles about in disarray.");
+                simple_monster_message(*mon, "이(가) 갈팡질팡하며 비틀거린다.");
             affected = true;
         }
         break;
@@ -1089,17 +1089,17 @@ bool zin_recite_to_single_monster(const coord_def& where)
                           (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
             simple_monster_message(*mon,
-                minor ? " is awed by your recitation."
-                      : " is aghast at the heresy of your recitation.");
+                minor ? "이(가) 당신의 낭송에 압도됐다."
+                      : "이(가) 당신의 이단적인 낭송에 경악한다.");
             affected = true;
         }
         break;
 
     case zin_eff::smite:
         if (minor)
-            simple_monster_message(*mon, " is smitten by the wrath of Zin.");
+            simple_monster_message(*mon, "이(가) 진의 분노에 응징당한다.");
         else
-            simple_monster_message(*mon, " is blasted by the fury of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 격노에 강타당한다!");
         // XXX: This duplicates code in cast_smiting().
         mon->hurt(&you, 7 + (random2(spellpower) * 33 / 191));
         if (mon->alive())
@@ -1110,7 +1110,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::blind:
         if (mon->add_ench(mon_enchant(ENCH_BLIND, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is struck blind by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 눈이 멀었다!");
             affected = true;
         }
         break;
@@ -1119,7 +1119,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
         if (mon->add_ench(mon_enchant(ENCH_SILVER_CORONA, &you,
                           (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
-            simple_monster_message(*mon, " is limned with silver light.");
+            simple_monster_message(*mon, "이(가) 은빛 광채에 휩싸인다.");
             affected = true;
         }
         break;
@@ -1130,8 +1130,8 @@ bool zin_recite_to_single_monster(const coord_def& where)
                           (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
             simple_monster_message(*mon,
-                minor ? " quails at your recitation."
-                      : " looks feeble and powerless before your recitation.");
+                minor ? "이(가) 당신의 낭송에 겁을 먹는다."
+                      : "이(가) 당신의 낭송 앞에서 무력해 보인다.");
             affected = true;
         }
         break;
@@ -1139,7 +1139,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::mute:
         if (mon->add_ench(mon_enchant(ENCH_MUTE, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is struck mute by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 말을 잃었다!");
             affected = true;
         }
         break;
@@ -1147,7 +1147,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::mad:
         if (mon->add_ench(mon_enchant(ENCH_MAD, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is driven mad by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 미쳐 버렸다!");
             affected = true;
         }
         break;
@@ -1155,7 +1155,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::dumb:
         if (mon->add_ench(mon_enchant(ENCH_DUMB, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is left stupefied by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 멍해졌다!");
             affected = true;
         }
         break;
@@ -1176,8 +1176,8 @@ bool zin_recite_to_single_monster(const coord_def& where)
                 if (mon->alive())
                 {
                     simple_monster_message(*mon,
-                      (damage < 25) ? " chaotic flesh sizzles and spatters!" :
-                      (damage < 50) ? " chaotic flesh bubbles and boils."
+                      (damage < 25) ? "의 혼돈의 살점이 지글거리며 튀어 오른다!" :
+                      (damage < 50) ? "의 혼돈의 살점이 부글부글 끓는다."
                                     : " chaotic flesh runs like molten wax.",
                       true);
 
@@ -1188,7 +1188,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
                 else
                 {
                     simple_monster_message(*mon,
-                        " melts away into a sizzling puddle of chaotic flesh.");
+                        "이(가) 지글거리는 혼돈의 살점 웅덩이로 녹아내린다.");
                     monster_die(*mon, KILL_YOU, NON_MONSTER);
                 }
             }
@@ -1228,7 +1228,7 @@ static void _zin_saltify(monster* mon)
     const monster_type pillar_type = mons_species(mons_base_type(*mon));
     const int hd = mon->get_hit_dice();
 
-    simple_monster_message(*mon, " is turned into a pillar of salt by the wrath of Zin!");
+    simple_monster_message(*mon, "이(가) 진의 분노로 소금 기둥이 됐다!");
 
     // If the monster leaves a corpse when it dies, destroy the corpse.
     item_def* corpse = monster_die(*mon, KILL_YOU, NON_MONSTER);
@@ -6035,9 +6035,9 @@ spret hepliaklqana_idealise(bool fail)
     if (ancestor->heal(healing))
     {
         if (ancestor->hit_points == ancestor->max_hit_points)
-            simple_monster_message(*ancestor, " is fully restored!");
+            simple_monster_message(*ancestor, "이(가) 완전히 회복됐다!");
         else
-            simple_monster_message(*ancestor, " is healed somewhat.");
+            simple_monster_message(*ancestor, "이(가) 어느 정도 회복됐다.");
     }
 
     const int dur = random_range(50, 80)
@@ -6089,7 +6089,7 @@ static void _transfer_drain_nearby(coord_def destination)
             = random_range(1 + you.skill_rdiv(SK_INVOCATIONS, 1, 27),
                            2 + you.skill_rdiv(SK_INVOCATIONS, 4, 27));
         if (mon->add_ench(mon_enchant(ENCH_DRAINED, &you, dur, degree)))
-            simple_monster_message(*mon, " is drained by nostalgia.");
+            simple_monster_message(*mon, "이(가) 향수에 생명력을 빼앗긴다.");
     }
 }
 
@@ -6533,7 +6533,7 @@ spret okawaru_duel(const coord_def& target, bool fail)
 
     if (mons_threat_level(*mons) < MTHRT_TOUGH)
     {
-        simple_monster_message(*mons, " is not worthy to be dueled!");
+        simple_monster_message(*mons, "은(는) 결투할 가치가 없어!");
         return spret::abort;
     }
 
