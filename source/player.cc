@@ -8886,7 +8886,7 @@ void player_open_door(coord_def doorpos)
                 mprf(berserk_open.c_str(), adj, noun);
             }
             else
-                mprf("The %s%s flies open!", adj, noun);
+                mprf("%s%s이(가) 활짝 열렸다!", adj, noun);
         }
         else
         {
@@ -8899,7 +8899,7 @@ void player_open_door(coord_def doorpos)
                 mprf(MSGCH_SOUND, berserk_open.c_str(), adj, noun);
             }
             else
-                mprf(MSGCH_SOUND, "The %s%s flies open with a bang!", adj, noun);
+                mprf(MSGCH_SOUND, "%s%s이(가) 쾅 소리를 내며 열렸다!", adj, noun);
             noisy(15, you.pos());
         }
     }
@@ -8909,7 +8909,7 @@ void player_open_door(coord_def doorpos)
             mprf(MSGCH_SOUND, door_open_creak.c_str(), adj, noun);
         else
         {
-            mprf(MSGCH_SOUND, "As you open the %s%s, it creaks loudly!",
+            mprf(MSGCH_SOUND, "%s%s을(를) 열자 요란한 삐걱거림이 들린다!",
                  adj, noun);
         }
         noisy(10, you.pos());
@@ -9056,7 +9056,7 @@ void player_close_door(coord_def doorpos)
                 mprf(berserk_close.c_str(), adj, noun);
             }
             else
-                mprf("You slam the %s%s shut%s!", adj, noun, items_msg);
+                mprf("%s%s을(를) 세게 닫았다%s!", adj, noun, items_msg);
         }
         else
         {
@@ -9070,7 +9070,7 @@ void player_close_door(coord_def doorpos)
             }
             else
             {
-                mprf(MSGCH_SOUND, "You slam the %s%s shut with a bang%s!",
+                mprf(MSGCH_SOUND, "%s%s을(를) 쾅 소리를 내며 닫았다%s!",
                                   adj, noun, items_msg);
             }
 
@@ -9083,7 +9083,7 @@ void player_close_door(coord_def doorpos)
             mprf(MSGCH_SOUND, door_close_creak.c_str(), adj, noun);
         else
         {
-            mprf(MSGCH_SOUND, "As you close the %s%s%s, it creaks loudly!",
+            mprf(MSGCH_SOUND, "%s%s%s을(를) 닫자 요란하게 삐걱거린다!",
                               adj, noun, items_msg);
         }
 
@@ -9096,14 +9096,14 @@ void player_close_door(coord_def doorpos)
             if (!door_airborne.empty())
                 mprf(door_airborne.c_str(), adj, noun);
             else
-                mprf("You reach down and close the %s%s%s.", adj, noun, items_msg);
+                mprf("손을 뻗어 %s%s%s을(를) 닫았다.", adj, noun, items_msg);
         }
         else
         {
             if (!door_close_verb.empty())
                 mprf(door_close_verb.c_str(), adj, noun);
             else
-                mprf("You close the %s%s%s.", adj, noun, items_msg);
+                mprf("%s%s%s을(를) 닫았다.", adj, noun, items_msg);
         }
     }
 
