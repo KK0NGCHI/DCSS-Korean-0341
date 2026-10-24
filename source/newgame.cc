@@ -158,7 +158,7 @@ string newgame_char_description(const newgame_def& ng)
     else if (_is_random_species(ng.species))
     {
         const string s = (ng.species == SP_RANDOM ? "무작위 종족" : "추천 종족");
-        return get_job_name(ng.job) + " / " + s;
+        return string(get_job_name(ng.job)) + " / " + s;
     }
     else
         return species::name(ng.species) + " " + get_job_name(ng.job);
