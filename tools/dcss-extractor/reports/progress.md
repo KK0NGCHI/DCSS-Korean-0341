@@ -37,7 +37,7 @@
 ## 2026-10-24 후속 작업
 
 - PR #1의 87개 커밋을 `main`에 병합 (병합 커밋 `c59c4dd`).
-- `fix/ko-qa-progress-20261024`에서 `ability.txt`, `features.txt`, `monsters.txt`, `tutorial.txt`의 한국어 설명 항목 8개 교정. 실제 CI 전체 재검사 후 수치 갱신 예정.
+- `fix/ko-qa-progress-20261024`에서 `ability.txt`, `features.txt`, `monsters.txt`, `tutorial.txt`의 한국어 설명 항목 8개 교정. [후속 설명 감사 CI](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40073426356) 통과: 참조 차이 5→1, Lua 구분자 차이 4→0, 고유 키 대응 3,778/3,778 유지. 남은 참조 경고는 `HINT_SEEN_BRANCH`.
 - `HINT_SEEN_BRANCH`의 원문/번역 태그 개수 차이는 원문 자체의 `<nomouse` 표기 문제를 동반하므로 로더 동작 확인 전까지 임의로 삭제하지 않음.
 - 영어 중복 3개 키(`CMD_EXPLORE_NO_REST`, `damage-immune at range monstatus`, `+LOS mutation`)는 게임 로더의 중복 키 처리 순서를 확인하기 전 삭제하지 않음.
 - 한국어 추가 키 260개는 기존 버전의 번역 자산일 수 있어 참조 여부 조사 전 일괄 삭제 금지.
