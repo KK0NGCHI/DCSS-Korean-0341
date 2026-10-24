@@ -8,6 +8,9 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         en = ["@The_monster@ shouts @at_foe@, 'Be gone!'"]
         ko = ["@The_monster@이(가) 외친다. '꺼져!'"]
         self.assertEqual(check_variants(en, ko), [])
+        self.assertEqual(check_variants(
+            ["VISUAL:@The_monster@ sniffs @surface@."],
+            ["VISUAL:@The_monster@이(가) @surface@의 냄새를 맡는다."]), [])
         self.assertIn("line_1_markers", check_variants(
             ["@The_monster@ sees @foe@."],
             ["@The_monster@이(가) 바라본다."]))
