@@ -6494,7 +6494,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         if (mons_is_mons_class(mon, MONS_PIKEL))
             pikel_band_neutralise();
 
-        if (simple_monster_message(*mon, " is charmed."))
+        if (simple_monster_message(*mon, "은(는) 매혹되었다."))
             obvious_effect = true;
         mon->add_ench(mon_enchant(ENCH_CHARM, agent()));
         if (you.can_see(*mon))
@@ -6547,7 +6547,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
             && mon->add_ench(mon_enchant(ENCH_DIMENSION_ANCHOR, agent(),
                                          random_range(20, 30) * BASELINE_DELAY)))
         {
-            if (simple_monster_message(*mon, " is firmly anchored in space."))
+            if (simple_monster_message(*mon, "은(는) 공간에 단단히 고정되었다."))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6607,7 +6607,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
             && !mon->is_stationary()
             && mon->add_ench(ENCH_AGILE))
         {
-            if (simple_monster_message(*mon, " suddenly seems more agile."))
+            if (simple_monster_message(*mon, "은(는) 갑자기 더 민첩해진 것 같다."))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6618,7 +6618,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             if (you.can_see(*mon))
             {
-                mprf("%s seems less certain of %s magic.",
+                mprf("%s의 마법이 %s에게 더 불안정하게 느껴지는 모양이다.",
                      mon->name(DESC_THE).c_str(), mon->pronoun(PRONOUN_POSSESSIVE).c_str());
                 obvious_effect = true;
             }
@@ -6639,7 +6639,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         if (!mon->has_ench(ENCH_RESISTANCE)
             && mon->add_ench(ENCH_RESISTANCE))
         {
-            if (simple_monster_message(*mon, " suddenly seems more resistant."))
+            if (simple_monster_message(*mon, "은(는) 갑자기 더 강한 저항력을 갖게 된 것 같다."))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6664,7 +6664,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         const int dur = (5 + random2avg(div_rand_round(ench_power,2), 2))
                             * BASELINE_DELAY;
         mon->add_ench(mon_enchant(ENCH_INFESTATION, &you, dur));
-        if (simple_monster_message(*mon, " is infested!"))
+        if (simple_monster_message(*mon, "은(는) 벌레에 감염되었다!"))
             obvious_effect = true;
         return MON_AFFECTED;
     }
@@ -6691,7 +6691,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         if (!mon->has_ench(ENCH_CONCENTRATE_VENOM)
             && mon->add_ench(ENCH_CONCENTRATE_VENOM))
         {
-            if (simple_monster_message(*mon, " venom grows more potent.", true))
+            if (simple_monster_message(*mon, "의 독성이 더욱 강해진다.", true))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6723,7 +6723,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
 
     case BEAM_WARP_BODY:
         obvious_effect = true;
-        simple_monster_message(*mon, " body is warped painfully!", true);
+        simple_monster_message(*mon, "의 몸이 고통스럽게 뒤틀린다!", true);
         if (mon->has_ench(ENCH_WRETCHED))
             mon->vitrify(agent(), random_range(8, 12), true);
         else
