@@ -49,3 +49,33 @@ Divine Armament cast
 
 @The_monster@이(가) @My_God@에게 무기를 내려 달라고 간청한다.
 %%%%
+Cantrip cast
+
+@The_monster@이(가) 간단한 주문을 시전하지만 아무 일도 일어나지 않는다.
+
+@The_monster@이(가) 간단한 주문을 외우려다 주문을 잊어버린다!
+
+@The_monster@이(가) 간단한 주문을 잘못 시전한다.
+
+@The_monster@이(가) 잠시 더 용감해진 듯 보인다.
+
+@The_monster@이(가) 잠시 자신감을 얻은 듯 보인다.
+
+@The_monster@이(가) 잠시 만족스러운 표정을 짓는다.
+%%%%
+Druid's Call cast
+
+@The_monster@이(가) 야생의 짐승들을 불러낸다!
+%%%%
+Eruption cast
+
+@The_monster@이(가) @target@의 발밑 땅을 갈라 버린다!
+%%%%
+Grasping Roots cast
+
+@The_monster@이(가) 땅속의 뿌리들을 움직이게 한다.
+%%%%
+Grasping Roots natural cast
+
+@The_monster@이(가) @target@ 아래로 뿌리를 뻗는다!
+%%%%
