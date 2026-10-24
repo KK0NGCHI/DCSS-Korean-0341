@@ -40,5 +40,19 @@ class MonsterSpellKoreanAuditTests(unittest.TestCase):
         self.assertEqual(set(parse(source)[0]), {"first cast", "second cast"})
 
 
+    def test_untranslated_references_are_not_mistranslated_messages(self):
+        original = (
+            "%%%%\nfirst cast\n\n@The_monster@ speaks.\n"
+            "%%%%\nalias cast\n\n@first cast@\n"
+            "%%%%\nsilent cast\n\n__NONE\n"
+            "%%%%\nuntranslated cast\n\nYou hear strange words.\n"
+        )
+        korean = "%%%%\nfirst cast\n\n@The_monster@이(가) 말한다.\n"
+        result = audit(original, korean)
+        self.assertEqual(result["remaining_alias_only_keys"], ["alias cast"])
+        self.assertEqual(result["remaining_silent_keys"], ["silent cast"])
+        self.assertEqual(result["remaining_text_keys"], ["untranslated cast"])
+
+
 if __name__ == "__main__":
     unittest.main()
