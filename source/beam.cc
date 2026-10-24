@@ -3562,7 +3562,7 @@ bool bolt::misses_player()
             {
                 if (shield && shield_reflects(*shield))
                 {
-                    mprf("Your %s blocks the %s... and reflects it back!",
+                    mprf("%s이(가) %s을(를) 막고 되돌려 보냈다!",
                             shield->name(DESC_PLAIN).c_str(),
                             refl_name.c_str());
                 }
@@ -4183,7 +4183,7 @@ static const vector<pie_effect> pie_effects = {
                     mpr("화염에 취약한 상태가 더 오래 지속될 것 같아.");
                 }
                 else
-                    mpr("Cherry-coloured flames burn away your fire "
+                    mpr("벚꽃빛 불길이 당신의 화염 "
                         "resistance!");
 
                 you.increase_duration(DUR_FIRE_VULN, 15 + random2(11), 50);
@@ -5458,7 +5458,7 @@ bool bolt::attempt_block(monster* mon)
             }
             else
             {
-                mprf("The %s reflects off an invisible shield around %s!",
+                mprf("%s이(가) %s 주위의 보이지 않는 방패에 반사됐다!",
                      name.c_str(),
                      mon->name(DESC_THE).c_str());
             }
