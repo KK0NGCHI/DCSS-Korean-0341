@@ -4470,7 +4470,7 @@ bool confuse_player(int amount, bool quiet, bool force)
 
         if (!quiet)
         {
-            mprf(MSGCH_WARN, "You are %sconfused.",
+            mprf(MSGCH_WARN, "%s혼란에 빠졌다.",
                  old_value > 0 ? "more " : "");
         }
 
@@ -4522,7 +4522,7 @@ bool poison_player(int amount, string source, string source_aux, bool force)
             mprf(MSGCH_DANGER, "치명적인 독에 중독됐어!");
         else
         {
-            mprf(MSGCH_WARN, "You are %spoisoned.",
+            mprf(MSGCH_WARN, "%s중독됐다.",
                 old_value > 0 ? "more " : "");
         }
 
@@ -4660,7 +4660,7 @@ void handle_player_poison(int delay)
         int oldhp = you.hp;
         ouch(dmg, KILLED_BY_POISON);
         if (you.hp < oldhp)
-            mprf(channel, "You feel %ssick.", adj);
+            mprf(channel, "%s몸이 아픈 것 같아.", adj);
     }
 
     // Now decrease the poison in our system
@@ -4831,12 +4831,12 @@ bool sticky_flame_player(int intensity, int duration, string source, string sour
 
     if (you.duration[DUR_STICKY_FLAME] > 0)
     {
-        mprf(MSGCH_WARN, "You are even more covered in %sliquid fire!",
+        mprf(MSGCH_WARN, "몸에 %s액체 불꽃이 더욱 두껍게 들러붙었다!",
                           intensity_str.c_str());
     }
     else
     {
-        mprf(MSGCH_WARN, "You are covered in %sliquid fire! Move or burn!",
+        mprf(MSGCH_WARN, "몸에 %s액체 불꽃이 들러붙었다! 움직이지 않으면 불타게 돼!",
                          intensity_str.c_str());
     }
 
@@ -4860,7 +4860,7 @@ void dec_sticky_flame_player(int delay)
     int base_damage = roll_dice(2, you.props[STICKY_FLAME_POWER_KEY].get_int());
     int damage = resist_adjust_damage(&you, BEAM_FIRE, base_damage);
 
-    mprf(MSGCH_WARN, "The liquid fire burns you%s!",
+    mprf(MSGCH_WARN, "액체 불꽃이 당신을 태운다%s!",
          damage > base_damage ? " terribly" : "");
 
     damage = div_rand_round(damage * delay, BASELINE_DELAY);
@@ -7369,7 +7369,7 @@ bool player::resists_dislodge(string event) const
     if (!you.unrand_equipped(UNRAND_MOUNTAIN_BOOTS))
         return false;
     if (!event.empty())
-        mprf("Your boots keep you from %s.", event.c_str());
+        mprf("장화 덕분에 %s을(를) 피했다.", event.c_str());
     return true;
 }
 
@@ -7408,7 +7408,7 @@ void player::splash_with_acid(actor* evildoer)
     const int dam = roll_dice(4, 3);
     const int post_res_dam = resist_adjust_damage(&you, BEAM_ACID, dam);
 
-    mprf("You are splashed with acid%s%s",
+    mprf("산성 액체가 몸에 튀었다%s%s",
          post_res_dam > 0 ? "" : " but take no damage",
          attack_strength_punctuation(post_res_dam).c_str());
     if (post_res_dam > 0)
@@ -8223,7 +8223,7 @@ bool player::can_do_shaft_ability(bool quiet) const
     if (attribute[ATTR_HELD])
     {
         if (!quiet)
-            mprf("You can't shaft yourself while %s.", held_status());
+            mprf("%s 상태에서는 수직 통로에 몸을 던질 수 없어.", held_status());
         return false;
     }
 
@@ -8374,7 +8374,7 @@ bool player::attempt_escape()
 
     if (x_chance_in_y(_constriction_escape_chance(escape_attempts), 100))
     {
-        mprf("You escape %s grasp.", object.c_str());
+        mprf("%s의 손아귀에서 벗어났다.", object.c_str());
 
         // Stun the monster we struggled again and prevent the player from being
         // constricted for several turns (so that they are guaranteed to be able
@@ -9020,7 +9020,7 @@ void player_close_door(coord_def doorpos)
         {
             if (!has_push_spaces(dc, false, &door_vec))
             {
-                mprf("There's something jamming the %s.", waynoun);
+                mprf("무언가가 %s을(를) 걸리게 하고 있어.", waynoun);
                 return;
             }
         }
@@ -9028,7 +9028,7 @@ void player_close_door(coord_def doorpos)
         // messaging with gateways will be inconsistent if this isn't last
         if (you.pos() == dc)
         {
-            mprf("There's a thick-headed creature in the %s!", waynoun);
+            mprf("%s에 꿈쩍도 하지 않는 생명체가 있어!", waynoun);
             return;
         }
     }
@@ -9361,7 +9361,7 @@ void trickster_trigger(const monster& victim, enchant_type ench)
     if (!you.props.exists(TRICKSTER_POW_KEY))
     {
         you.props[TRICKSTER_POW_KEY].get_int() = 0;
-        mprf(MSGCH_DURATION, "You feel bolstered by spreading misfortune.");
+        mprf(MSGCH_DURATION, "불행을 퍼뜨리자 힘이 솟아난다.");
     }
 
     // Start the bonus off at meaningful level, but give less for each effect
@@ -9418,7 +9418,7 @@ void maybe_harvest_memory(const monster& victim)
     if (progress < ENKINDLE_CHARGE_COST)
         return;
 
-    mprf("You devour the vestiges of %s's existence in your flames.",
+    mprf("불길 속에서 %s의 존재가 남긴 흔적을 삼킨다.",
             victim.name(DESC_THE).c_str());
 
     you.props[ENKINDLE_CHARGES_KEY].get_int() += 1;
@@ -9478,7 +9478,7 @@ bool player::immune_to_hex(const spell_type hex) const
 void player::be_agile(int pow)
 {
     const bool were_agile = you.duration[DUR_AGILITY] > 0;
-    mprf(MSGCH_DURATION, "You feel %sagile all of a sudden.",
+    mprf(MSGCH_DURATION, "갑자기 몸이 %s날렵해진 것 같아.",
          were_agile ? "more " : "");
 
     you.increase_duration(DUR_AGILITY, 35 + random2(pow), 80);
