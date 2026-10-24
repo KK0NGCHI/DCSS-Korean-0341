@@ -331,3 +331,169 @@ w:2
 w:20
 
 SOUND:무언가 들린다. @weapon_noise@
+%%%%
+singing sword silenced
+
+VISUAL:@The_weapon@이(가) 버둥거리며 몸을 비튼다.
+
+VISUAL:@The_weapon@이(가) @_exasperated_@ 표정을 짓는 듯하다.
+
+VISUAL:@The_weapon@이(가) [슬퍼 보이는|어리둥절한|쓸쓸한|절망한] 모습이다.
+
+w:5
+
+VISUAL:@The_weapon@이(가) 토라진 듯 잠잠해진다.
+
+w:1
+
+VISUAL:@The_weapon@이(가) 김을 내뿜는 듯하다.
+
+w:1
+
+VISUAL:@The_weapon@이(가) @_crimson_@ 빛으로 변한다.
+%%%%
+_weapon_noises_low-high_tension_
+
+w:100
+
+@The_weapon@이(가) @_screams_how_@ @_screams_@.
+
+@The_weapon@이(가) @_screams_@.
+
+@The_weapon@이(가) 미친 듯 웃으며 울부짖는다!
+
+@The_weapon@이(가) 광기 어린 웃음을 터뜨린다!
+
+@The_weapon@이(가) 갑자기 살의에 찬 웃음을 터뜨린다!
+
+@The_weapon@이(가) 미친 듯 웃는다.
+
+@The_weapon@이(가) 끔찍한 소리를 낸다.
+%%%%
+_screams_
+
+비명을 지른다
+
+우렁차게 울린다
+
+포효한다
+
+고함친다
+
+길게 울부짖는다
+
+소리친다
+
+외친다
+
+새된 비명을 지른다
+
+w:5
+
+천둥처럼 외친다
+
+w:3
+
+요란하게 떠든다
+
+w:3
+
+큰 소리로 외친다
+
+w:1
+
+목청껏 소리친다
+%%%%
+_screams_how_
+
+w:120
+
+@_beastly_adjective_@ @_beast_@처럼
+
+광적으로
+
+화가 나서
+
+w:60
+
+@_loudly_@
+%%%%
+_loudly_
+
+큰 소리로
+
+귀가 먹먹할 만큼
+
+귀를 찌를 듯
+
+고막이 터질 듯
+%%%%
+_beastly_adjective_
+
+굶주린
+
+분노한
+
+사납게 날뛰는
+
+격노한
+
+화가 난
+%%%%
+_beast_
+
+용
+
+개구리
+
+사자
+
+황소
+
+짐승
+
+w:1
+
+사냥감에 굶주린 맹수
+
+포식자
+
+육식동물
+%%%%
+_exasperated_
+
+짜증 난 듯한
+
+어이가 없는
+
+신경이 곤두선
+
+성마른
+
+불안한
+
+걷잡을 수 없는
+
+험악한
+
+고집스러운
+
+완강한
+%%%%
+_crimson_
+
+진홍색
+
+핏빛 붉은색
+
+w:1
+
+자주색
+
+w:1
+
+피로 물든 색
+
+w:1
+
+보라색
