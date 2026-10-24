@@ -2436,13 +2436,13 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (!yred_torch_is_raised())
         {
             if (!quiet)
-                mpr("The black torch is unlit!");
+                mpr("검은 횃불이 꺼져 있어!");
             return false;
         }
         if (yred_get_torch_power() < 1)
         {
             if (!quiet)
-                mpr("You must stoke the torch's fire more first.");
+                mpr("먼저 횃불의 불길을 더 키워야 해.");
             return false;
         }
         return true;
@@ -2451,7 +2451,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_FATHOMLESS_SHACKLES])
         {
             if (!quiet)
-                mpr("You are already invoking Yredulemnul's grip!");
+                mpr("이미 이레데렘눌의 손아귀를 불러내고 있어!");
             return false;
         }
         return true;
@@ -2460,7 +2460,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (get_num_apostles() == 3)
         {
             if (!quiet)
-                mpr("You already have the maximum number of followers. Dismiss one first.");
+                mpr("이미 추종자가 최대치야. 먼저 1명을 해산해.");
             return false;
         }
         return true;
@@ -2469,7 +2469,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_BLOOD_FOR_BLOOD])
         {
             if (!quiet)
-                mpr("You have already called for blood!");
+                mpr("이미 피를 요구했어!");
             return false;
         }
         else if (!you.props.exists(BEOGH_RES_PIETY_NEEDED_KEY))
@@ -3185,7 +3185,7 @@ static spret _do_cacophony()
 
     you.duration[DUR_CACOPHONY] = random_range(300, 400);
     you.props[CACOPHONY_XP_KEY] = 150;
-    mpr("You send your armour flying and begin to make an unholy cacophony!");
+    mpr("갑옷을 날려 보내고 불경한 소음을 내기 시작한다!");
 
     return spret::success;
 }
@@ -3550,7 +3550,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
 
     case ABIL_YRED_FATHOMLESS_SHACKLES:
         fail_check();
-        mprf(MSGCH_DURATION, "You call down Yredelemnul's inexorable grip.");
+        mprf(MSGCH_DURATION, "이레데렘눌의 벗어날 수 없는 손아귀를 불러낸다.");
         // XXX: Some invo formula
         you.duration[DUR_FATHOMLESS_SHACKLES] = random_range(15, 25) * BASELINE_DELAY;
         yred_make_blasphemy();
