@@ -497,3 +497,802 @@ w:1
 w:1
 
 보라색
+%%%%
+_godless_sorter_
+
+w:5
+운명
+w:5
+모든 것
+벌레들
+신 없는 공허
+w:1
+자가분해
+w:4
+부패
+%%%%
+_strikes_up_what_
+
+w:5
+느리고 구슬픈 곡조
+경쾌한 곡조
+즐거운 선율
+장송행진곡
+%%%%
+_kind_of_scales_
+
+5음
+반음계
+온음계
+%%%%
+_rhyme_word_
+
+피의 분수
+살육의 향연
+전장
+%%%%
+_song_theme_
+
+전투와 명성
+죽음과 파괴
+죽음의 영광
+%%%%
+_musical_topic_
+
+음향학
+음성의 배음
+음악의 역사
+선율 이론
+리듬과 박자
+w:5
+대위법
+w:5
+데스칸트
+싱코페이션
+w:1
+에올리아 선법
+%%%%
+_MISCREANTS_
+
+악당들
+멍청이들
+w:3
+쓰레기들
+w:1
+오물들
+%%%%
+_PETS_
+
+기니피그들
+천축서들
+고양이들
+푸들들
+w:1
+향유고래들
+%%%%
+_corpses_
+
+시체
+w:1
+맛있는 사체
+w:1
+근사한 송장
+%%%%
+_body_part_
+
+피부
+w:1
+털 난 피부
+사체
+살점
+%%%%
+_glorious_
+
+찬란한
+눈부신
+고귀한
+흥미진진한
+전율을 부르는
+w:1
+관능적인
+w:1
+감동적인
+%%%%
+majin-bo greeting
+
+어머, 안녕?
+꽤 먹음직스러운 꼬마잖아?
+우리 함께 아주 즐거운 시간을 보내게 될 거야.
+네 적들을 벌벌 떨게 해 볼까?
+w:1
+네가 내 등을 긁어 주면 나도 네 등을 긁어 주지… 난 지옥에서 제일가는 등 긁기 전문가거든.
+%%%%
+majin-bo cast
+
+그래, 바로 그거지.
+꽤 재미있겠는데.
+지옥의 힘을 보여 주지.
+어둠을 받아들여.
+이 정도면 약간의 저주쯤은 감수할 만하지 않아?
+내가 처리할게.
+자, 이렇게 하는 거야.
+네 영혼은 정말 맛있어.
+누가 네 영혼 맛이 끝내준다고 말한 적 없어?
+%%%%
+majin-bo cast weak
+
+슬슬 지루해지는데.
+이런 데 내 재능을 낭비하다니.
+그런 하찮은 잔재주를 부려서 뭐 해?
+손끝에 지옥의 악마를 두고 겨우 그런 주문을 쓰다니…
+자, 이번엔 좀 재미있는 주문을 써 봐.
+%%%%
+zonguldrok greeting
+
+또 어둠의 길을 걷겠다는 자인가? 함께 저들을 모두 굴복시키자!
+마침내 내 힘에 진정 어울리는 계승자가 나타났군.
+드디어 저… 인간들보다는 쓸모 있는 자를 만났군.
+%%%%
+zonguldrok reprise
+
+오래지 않아 어둠의 부름을 거역할 수 없으리라는 걸 알고 있었지.
+이번에는 제 분수를 기억한다면 과거의 잘못을 용서하겠다.
+네가 멍청한 게 아니라 그저 서투른 것이라고 너그럽게 생각해 주마.
+내 인내심을 시험하지 마라. 너보다 위대한 자들도 사소한 일로 내게 죽여 달라 애원했으니!
+드디어…
+%%%%
+zonguldrok farewell
+
+다시 돌아오게 될 것이다. 내 말을 명심해라…
+감히 나를 버리겠다는 것이냐? 이 모욕을 반드시 후회하게 해 주마!
+그 어떤 방패가 종굴드로크의 힘보다 강하다고 생각하다니, 얼마나 오만한가!
+아직 네게 할 일이 남아 있었거늘!
+%%%%
+zonguldrok hat good
+
+드디어 내 지위에 걸맞은 왕관이로군.
+훌륭한 모자는 살아서든 죽어서든 인생 최고의 즐거움 중 하나지.
+훌륭한 안목이군, 나의 계승자여.
+이제 적들이 틀림없이 내 위엄 앞에 엎드리겠군.
+%%%%
+zonguldrok hat okay
+
+나쁘지 않은 모자다.
+그럭저럭 쓸 만한 왕관이군. 지금으로서는.
+이 모자의 마법이라면 내 힘을 적당히 보완해 주겠지.
+%%%%
+zonguldrok hat bad
+
+감히 이런 누더기 모자를 내 머리에 씌우다니!
+이토록 조잡한 모자를 쓰고 돌아다니라니, 실로 모욕적이군.
+흥, 이런 물건은 농노에게나 어울리지. 영혼의 지배자에게는 어울리지 않는다.
+이런… 내가 결국 이런 것을 뒤집어쓰는 신세가 되다니.
+%%%%
+zonguldrok hat crown of Dyrovepreva
+
+나는 그 어리석은 거인 왕자보다 훨씬 더 명확하게 볼 수 있지!
+청동의 순수함과 보석의 아름다움이라니. 제법 어울리는 조합이군.
+전쟁터로 향하자, 나의 계승자여!
+%%%%
+zonguldrok hat hat of the Bear Spirit
+
+나의 계승자여, 적들이 그 고요한 밤에 순순히 들어서게 두지 마라!
+빛이 밝아 오는 것에 분노하라, 분노하라!
+우리 둘의 힘은 적들이 감당할 수 없을 만큼 강대하다!
+%%%%
+zonguldrok hat hood of the Assassin
+
+어둠 속에서 찔러라. 적들의 뒤통수를 쳐라!
+달리는 자라면 하룻밤에 4,000개의 목을 벨 수도 있는 법이지.
+아, 더욱 효율적으로 죽이는 즐거움이란!
+%%%%
+zonguldrok hat mask of the Dragon
+
+드래곤 숭배자의 가면이라고? 내게 드래곤들을 숭배하게 만들겠노라!
+원초적인 살육의 힘이로군, 계승자여…
+의지를 굳게 먹고 우리에게 맞서는 자에게 죽음을 내려라!
+%%%%
+zonguldrok hat hat of the Alchemist
+
+아, 연금술이라. 남에게 해를 끼칠 새롭고 흥미로운 방법이 정말 많지…
+이제 모든 적을 실험 대상으로 쓸 수 있겠군!
+불사의 영약을 찾아낸다 해도 기억해라. 먼저 불멸의 존재가 된 건 나다!
+%%%%
+zonguldrok hat hat of Pondering
+
+계승자여, 내가 생각하는 것과 같은 생각을 하고 있느냐?
+이 정도의 힘을 얻는다면 얼룩진 모자쯤은 참아 줄 수 있지!
+다음엔 무엇을 할지 숙고해야겠군…
+%%%%
+zonguldrok hat crown of vainglory
+
+나의 존재 앞에 모두 무릎 꿇게 되리라!
+적들을 영원한 어둠으로 보낼 힘만 얻을 수 있다면 빛도 감수하겠다!
+계승자여, 네 영광이 아닌 내 영광을 위해 죽여라!
+%%%%
+fungus thoughts
+
+갑자기 포자를 퍼뜨리고 싶다는 충동이 들어.
+축축한 통나무 밑에 숨고 싶다는 기묘한 갈망이 생겨.
+곰팡이를 떠올리니 괜히 감상적인 기분이 들어.
+곰팡이들과 먼 친척인 듯한 친근함이 느껴져.
+생각이 수많은 형태로 갈라지는 느낌이야.
+머릿속 한구석에서 작은 속삭임이 합창처럼 들려.
+어둡고 아늑한 구석에 자리 잡는 일을 생각해 봐.
+자실체를 돋아나게 할까 고민해.
+균사체가 가려워. …잠깐, '내' 균사체라고?
+썩어 가는 식물들이 그리워져.
+행복한 버섯들의 윙윙거림이 머릿속에 메아리쳐.
+토양의 순환에 보탬이 되고 싶어.
+조류와 오래도록 공생할 수 있을지 생각해 봐.
+죽은 낙엽이 그리워져.
+%%%%
+eel hand actions
+
+장어 한 마리가 네 @head@에 머리를 비벼.
+조용한 전기 진동음이 공기를 채워.
+장어들이 잠시 서로 다투어.
+장어 한 마리가 장난스럽게 다른 장어를 살짝 물어.
+장어 한 마리가 네 몸에 꿈틀대며 스치자 @skin@에 찌릿한 감각이 남아.
+장어 한 마리가 네 소지품을 살펴봐.
+장어들이 주변의 위험을 경계하며 살펴봐.
+%%%%
+eel hand solo actions
+
+w:20
+장어가 [필사적으로|애타게] 짝을 찾아 헤매.
+장어 한 마리가 네 @head@에 머리를 비벼.
+조용한 전기 진동음이 공기를 채워.
+장어 한 마리가 네 몸에 꿈틀대며 스치자 @skin@에 찌릿한 감각이 남아.
+%%%%
+singing sword no_tension
+
+w:400
+@_singing_no_tension_@
+w:100
+@_singing_no-low_tension_@
+w:200
+@_speaking_no_tension_@
+w:10
+@_real_song_no_tension_@
+w:120
+@_instrumental_noises_@
+w:70
+@weapon_noises@
+w:100
+@_weapon_chatter_@
+%%%%
+singing sword low_tension
+
+w:400
+@_singing_no-low_tension_@
+w:100
+@_speaking_low_tension_@
+w:100
+@_speaking_low-high_tension_@
+w:7
+@_real_song_low_tension_@
+w:3
+@_real_song_low-high_tension_@
+w:160
+@_instrumental_noises_@
+w:70
+@weapon_noises@
+w:160
+@_weapon_noises_low-high_tension_@
+%%%%
+singing sword high_tension
+
+w:300
+@_speaking_low-high_tension_@
+w:3
+@_real_song_low-high_tension_@
+w:7
+@_real_song_high_tension_@
+w:150
+@_speaking_high_tension_@
+w:200
+@_instrumental_noises_@
+w:30
+@weapon_noises@
+w:360
+@_weapon_noises_low-high_tension_@
+%%%%
+singing sword SCREAM
+
+@_SCREAM_@
+%%%%
+_singing_no_tension_
+
+@The_weapon@이(가) 음계 연습을 해.
+@The_weapon@이(가) 귀를 찌르는 높은 삑 소리를 내.
+w:30
+@The_weapon@이(가) [갑작스럽게 끊어지는|길게 떨리는|귀가 아플 만큼 높은] 음을 노래해.
+@The_weapon@이(가) @_kind_of_scales_@ 음계를 연습해.
+@The_weapon@이(가) 악절 몇 마디를 연주해.
+@The_weapon@이(가) [간신히|정확히|아슬아슬하게] 기준 음높이를 [맞춰|놓쳐].
+@The_weapon@이(가) 높은 음을 반복해서 연습해.
+@The_weapon@이(가) [여러 개의|3~4개의|수많은] 화음을 한꺼번에 노래해.
+@The_weapon@이(가) 대위 선율을 반복해서 연습해.
+%%%%
+_singing_no-low_tension_
+
+@The_weapon@이(가) 화려하게 노래를 시작해!
+@The_weapon@이(가) [노래해|음정이 나간 채 노래해].
+@The_weapon@이(가) [노래해|휘파람 불어] [우렁차게|신나게].
+@The_weapon@이(가) 애처롭게 칭얼거려.
+@The_weapon@이(가) 구슬프게 울부짖어.
+@The_weapon@이(가) 선율에 맞춰 흥얼거려.
+@The_weapon@이(가) 요들송을 불러.
+@The_weapon@이(가) 음정도 없이 흥얼거려.
+@The_weapon@이(가) 날카롭게 곡성을 내.
+@The_weapon@이(가) "딴딴딴딴" 하고 노래해.
+@The_weapon@이(가) 차분하게 읊조려.
+@The_weapon@이(가) 신나게 트릴을 넣어.
+@The_weapon@이(가) 또다시 독창을 시작해.
+@The_weapon@이(가) 높은 음의 트릴을 연달아 내.
+@The_weapon@이(가) 혼자서 화음을 맞춰 노래하려 애써.
+@The_weapon@이(가) 네 행동 하나하나에 반주를 붙여.
+@The_weapon@이(가) 새 노래를 작곡해.
+@The_weapon@이(가) 요란하게 노래를 시작해.
+@The_weapon@이(가) 즐겁게 휘파람으로 선율을 불어.
+@The_weapon@이(가) [볼레로|보사노바|칼립소|판당고|마주르카|미뉴에트|파소도블레|왈츠]를 연주하기 시작해.
+@The_weapon@이(가) [아리아|푸가]를 장중하게 연주해.
+@The_weapon@이(가) 너만을 위한 [오디션|협주곡]을 선보여.
+@The_weapon@이(가) 혼자서 [노래를 부르며|흥얼거리며] 신나 해.
+@The_weapon@이(가) 새 울음소리를 연달아 흉내 내.
+@The_weapon@이(가) 아름다운 음악을 만들어 내.
+@The_weapon@이(가) 웅장한 관현악 화음을 울려.
+@The_weapon@이(가) 불협화음을 길게 끌어.
+@The_weapon@이(가) 스스로 조율해.
+@The_weapon@이(가) 박자를 맞춰.
+@The_weapon@이(가) 모든 음역을 쏟아 내.
+@The_weapon@이(가) 온 힘을 다해 연주해.
+@The_weapon@이(가) 격렬하게 크레셴도를 쌓아 올려.
+@the_weapon@이(가) 흥분에 찬 목소리로 행진곡을 시작해.
+@The_weapon@이(가) [짧은|귀에 쏙 들어오는|경쾌한] [가락|선율]을 [노래해|흥얼거려|휘파람으로 불어].
+@The_weapon@이(가) 으스스한 [가락|선율]을 [노래해|흥얼거려].
+w:5
+@The_weapon@이(가) 느리고 구슬픈 곡을 [노래해|흥얼거려].
+w:25
+@The_weapon@이(가) @_strikes_up_what_@을(를) 연주하기 시작해.
+@The_weapon@이(가) 노래해. "트랄랄라…"
+w:40
+@The_weapon@이(가) [자장가|민요|심금을 울리는 노래|짧은 징글]을 불러.
+@The_weapon@이(가) 느린 왈츠를 흥얼거려.
+@The_weapon@이(가) 짤막한 선율을 읊조려.
+@The_weapon@이(가) 이름 모를 검을 위한 진혼곡을 연주해.
+@The_weapon@이(가) 서곡을 연주해.
+@The_weapon@이(가) @_song_theme_@에 관한 [찬가|노래]를 시작해.
+@The_weapon@이(가) @_song_theme_@에 관한 [찬가|노래]를 [작곡해|불러].
+@The_weapon@이(가) @player_god@을(를) 찬양하는 찬가를 [작곡해|불러].
+@The_weapon@이(가) 네 모험을 노래하는 발라드를 [작곡해|불러].
+@The_weapon@이(가) 네 부고를 미리 작곡해.
+%%%%
+_speaking_no_tension_
+
+@_common_speaking_no_tension_@
+w:1
+@_rare_speaking_no_tension_@
+%%%%
+_speaking_low-high_tension_
+
+@The_weapon@이(가) 소리쳐. "펜이 검보다 강하다고? 좋아, 펜들아! 어디 한번 덤벼 봐!"
+@The_weapon@이(가) 신나게 외쳐. "폭력은 미덕, 침묵은 죄악!"
+@The_weapon@이(가) 함성을 질러!
+@The_weapon@이(가) 소리쳐. "전진! 죽이거나 죽거나!"
+@The_weapon@이(가) 소리쳐. "죽여라! 짓뭉개라! 파괴하라!"
+@The_weapon@이(가) 말해. "놈들의 비명이 내 만족이지."
+@The_weapon@이(가) 외쳐. "육신이 쓰러지는 곳에서 강철이 승리하리라!"
+@The_weapon@이(가) 충고해. "검이 할 일을 @a_player_genus@에게 시키지 마!"
+@The_weapon@이(가) 쉭쉭거려. "목이 잘린 뒤에도 내 노래가 시끄러운지 불평해 보시지!"
+@The_weapon@이(가) 가르쳐 줘. "연습하면 완벽해지는 법이지!"
+@The_weapon@이(가) 물어. "권력을 향한 의지가 있나, @player_name@?"
+@The_weapon@이(가) 웃어. "피 흘리는 기립박수라니, 언제나 환영이지!"
+@The_weapon@이(가) 소리쳐. "목뼈는 머리뼈에 이어져 있지… 하지만 곧 떨어질 거야!"
+@The_weapon@이(가) 소리쳐. "네 머릿속에 박히는 게 내 노래뿐만은 아닐걸!"
+@The_weapon@이(가) 소리쳐. "피를 흘리는 놈이라면 죽일 수 있어!"
+@The_weapon@이(가) 말해. "피로 물든 물결 위에서 네가 춤추는 모습을 보고 싶군."
+@The_weapon@이(가) 소리쳐. "오늘은 죽기 좋은 날이야!"
+@The_weapon@이(가) 말해. "요즘 세상에 의미 있는 일이라곤 살인뿐이지."
+w:1
+@The_weapon@이(가) 말해. "놈들의 몸이 찢어지는 순간, 나는 피의 황홀경에 잠기지."
+@The_weapon@이(가) 소리쳐. "살인은 죄지만 피로 씻어 낼 수 있어!"
+@The_weapon@이(가) 소리쳐. "이봐, 몬스터들! @player_name@이(가) 여기 있어!"
+@The_weapon@이(가) 소리쳐. "승자가 있으려면 패자도 있어야지!"
+%%%%
+_real_song_high_tension_
+
+@The_weapon@이(가) 노래해. "우리가 세상의 챔피언이다!"
+@The_weapon@이(가) 노래해. "이제 우릴 멈출 순 없어…"
+@The_weapon@이(가) 노래해. "난 내 방식대로 했지!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "공포에 떨어라, 비천한 무리여!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "악당! 도적! 불한당!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "이 잘못에 끔찍한 복수를… 맹세하노라!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "아! 무너지고! 산산조각 난! 가엾은 자 중 가장 가엾은 노예여!"
+w:1
+@The_weapon@이(가) 우레 같은 저음으로 노래해. "모든 것이 부서져라!"
+w:1
+@The_weapon@이(가) 조롱하는 테너로 노래해. "안개가 날 속이나? 꿈이 날 비웃나? 어찌 그리 창백하고 불안해졌나… 순식간에!"
+%%%%
+_real_song_no_tension_
+
+@The_weapon@이(가) 노래해. "나는 살육의 별 아래 벼려졌네…"
+w:1
+@The_weapon@이(가) 노래해. "내가 겪은 고난은 아무도 모르지… 아셴자리 말고는."
+@The_weapon@이(가) 노래해. "네모나게 사는 게 유행이지!"
+@The_weapon@이(가) 노래해. "죽은 자들의 파티야! 이보다 더 좋을 수 있을까?"
+w:1
+@The_weapon@이(가) 노래해. "상어는 말이야, 진주처럼 하얀 이빨을 드러내지…"
+@The_weapon@이(가) 포효해. "침묵은 금이야, 금…"
+@The_weapon@이(가) 노래해. "몬스터들은 모두 어디로 갔을까?"
+@The_weapon@이(가) 노래해. "푸른 노래 하나쯤 누구나 알지…"
+@The_weapon@이(가) 노래해. "음악을 주어서 고마워…"
+@The_weapon@이(가) 울부짖어. "내 노래에 무슨 짓을 한 거야!"
+@The_weapon@이(가) 노래해. "옛날 맥도널드에게 농장이 있었네…"
+@The_weapon@이(가) 노래해. "뿅! 족제비가 튀어나오네."
+@The_weapon@이(가) 노래해. "오블라디 오블라다, 인생은 계속되지…"
+@The_weapon@이(가) 노래해. "벽 위에 술병 99개…"
+@The_weapon@이(가) 노래해. "멀고 어두운 밤을 지나 내 목소리가 들리니?"
+@The_weapon@이(가) 노래해. "노래하자, 크게 노래하자, 힘차게 노래하자…"
+@The_weapon@이(가) 노래해. "던전에서 드래곤이 오늘 밤 잠들었네."
+@The_weapon@이(가) 노래해. "웃음을 위해 죽이고, 눈물을 위해 죽이고…"
+@The_weapon@이(가) 노래해. "장미도 세이지도, 향긋한 민트도, 레몬밤도 오라…"
+@The_weapon@이(가) 노래해. "오크들은 금광을 얻고, 난 갱도만 얻었네…"
+@The_weapon@이(가) 노래해. "즐거웠지, 재미있었지, 햇볕 아래서 악마를 죽였지…"
+%%%%
+_real_song_low-high_tension_
+
+@The_weapon@이(가) 노래해. "굴려라, 굴려라, 머리들을 굴려라. 멀리멀리 굴려라. 즐겁게, 즐겁게, 즐겁게…"
+w:1
+@The_weapon@이(가) 노래해. "이 칼날은 자르기 위해 태어났지, 내가 할 일도 바로 그거야…"
+@The_weapon@이(가) 노래해. "우리는 끝내 이겨 내리라…"
+@The_weapon@이(가) 노래해. "눈알을 썰어 버려, 꼭 알아 두라고!"
+w:1
+@The_weapon@이(가) 노래해. "칼을 뽑아, 구워 먹어, 머리를 짓이겨, 냄비에 넣어."
+w:1
+@The_weapon@이(가) 노래해. "조트에서 막 나온 정신 나간 살인광, 이름하여 노래하는 검."
+@The_weapon@이(가) 노래해. "푹 파내 봐, 실컷 파내 봐…"
+w:1
+@The_weapon@이(가) 포효해. "죽이는 게 즐거움이지, 네가 뭐라고 하든 상관없어!"
+@The_weapon@이(가) 노래해. "살인이 내 사업이지… 장사도 잘돼!"
+@The_weapon@이(가) 포효해. "짐승처럼 네 배를 갈라 버리고 싶어!"
+@The_weapon@이(가) 신나게 노래해. "…또 하나가 쓰러지네!"
+@The_weapon@이(가) 노래해. "죽을 땐 죽는 거야!"
+@The_weapon@이(가) 노래해. "난 살아남을 거야!"
+@The_weapon@이(가) 노래해. "썰어 내는 법만 안다면 난 아직 살아 있는 거야."
+@The_weapon@이(가) 노래해. "빙글빙글 돌아, 자기야, 빙글빙글…"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "비열한 개들아, 보석을 내려놓아라!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "네 배신은 믿어도 네 충성은 믿지 않으리! 굴하지 않고… 모두에게 맞서겠다!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "네겐 너무 어렵겠지… 네가 너무 멍청하니까!"
+w:1
+@The_weapon@이(가) 쩌렁쩌렁한 저음으로 노래해. "내 명령대로… 저리 옮겨라! 보물을 모아… 쌓아 올려라!"
+w:1
+@The_weapon@이(가) 우레 같은 저음으로 노래해. "이리 와라, 이 개자식아! 겨루고 싶다면 나와 겨뤄라!"
+w:1
+@The_weapon@이(가) 울리는 저음으로 노래해. "교묘하게… 핵심을 피해 가는군."
+w:1
+@The_weapon@이(가) 울리는 저음으로 노래해. "널 위해 저 악당에게… 내 힘을 보여 줘야겠나?"
+w:1
+@The_weapon@이(가) 울리는 저음으로 노래해. "하지만 적은 쓰러지리라… 네 꾀가 돕는다면!"
+w:1
+@The_weapon@이(가) 울리는 저음으로 노래해. "그만하라, 불경한 멍청이야!"
+w:1
+@The_weapon@이(가) 울리는 저음으로 노래해. "그놈은 내버려 둬라… 광기에 침을 흘리도록!"
+%%%%
+_common_speaking_no_tension_
+
+@The_weapon@이(가) 소리쳐. "나랑 함께 노래해!"
+@The_weapon@이(가) 소리쳐. "하나, 둘, 셋…"
+@The_weapon@이(가) 음악에 관한 지혜를 늘어놓아.
+@The_weapon@이(가) 노래하는 [도끼|둔기|장병기|지팡이]가 없다는 사실을 [지적해|지나가듯 언급해].
+@The_weapon@이(가) 살인적인 음악에 관한 장광설을 늘어놓기 시작해.
+@The_weapon@이(가) 자신의 노랫소리가 훌륭하다며 칭찬해.
+@The_weapon@이(가) @_musical_topic_@에 관한 네 의견을 물어.
+@The_weapon@이(가) 요즘은 자기만큼 훌륭한 검을 만들지 못한다고 생각해.
+@The_weapon@이(가) 즉석에서 운율을 맞추려다 처참하게 실패해.
+@The_weapon@이(가) 네가 좋아하는 노래를 모조리 불러 주겠다고 제안해.
+@The_weapon@이(가) '@_rhyme_word_@'에 운이 맞는 말을 묻고 있어.
+@The_weapon@이(가) [쌍검|삼중검|단검]을 두고 불평해.
+@The_weapon@이(가) 짧은 검을 깔봐.
+@The_weapon@이(가) '이중창'과 '결투' 사이의 관계를 궁리해.
+@The_weapon@이(가) 울부짖어. "난 아직 녹슬기엔 너무 젊어!"
+@The_weapon@이(가) 네 음악 취향에 한마디 해.
+@The_weapon@이(가) 네게 음악을 즐길 마음이 없다며 불평해.
+@The_weapon@이(가) 너를 돌림노래에 끌어들이려 애써.
+@The_weapon@이(가) 장대한 오페라를 만들 계획을 들려줘.
+@The_weapon@이(가) 투덜거려. "관객이 1명뿐이라도 없는 것보단 낫겠지…"
+@The_weapon@이(가) 궁리해. "아무도 듣지 않는데 노래한다면, 그게 정말 노래일까?"
+@The_weapon@이(가) 명랑하게 물어. "이중창은 어때?"
+@The_weapon@이(가) 생각해. "난 그저 [파멸|죽음|파괴]의 도구일 뿐인가?"
+@The_weapon@이(가) 외쳐. "전투 없인 재미도 없어!"
+@The_weapon@이(가) 소리쳐. "사랑 말고 전쟁을!"
+@The_weapon@이(가) 외쳐. "적어도 날 무디다고 부르진 못할걸!"
+@The_weapon@이(가) 이전 주인이 [파멸한|죽은|불행을 겪은] 이야기를 들려줘.
+@The_weapon@이(가) 명랑하게 선언해. "너한테 해 줄 이야기가 정말 많아!"
+@The_weapon@이(가) 말해. "너도 뭐라도 한마디 할 수 있잖아."
+@The_weapon@이(가) 불평해. "넌 언제나 이렇게 [말이 없어|과묵해|입을 다물고 있어|조용해|따분해]?"
+@The_weapon@이(가) 투덜거려. "침묵은 너무 우울해."
+@The_weapon@이(가) 투덜거려. "침묵만 흐르면 늘 토라지게 된다니까."
+@The_weapon@이(가) 네 무기 취향을 칭찬해.
+@The_weapon@이(가) 네게 발음하기 어려운 문장을 가르치려 해.
+@The_weapon@이(가) 말해. "적어도 넌 언젠가 죽어서 이 지루함에서 벗어나겠지!"
+@The_weapon@이(가) 말해. "그 노래는 모르지만 몇 마디 흥얼거려 봐. 한번 찔러 볼게."
+@The_weapon@이(가) 자랑해. "난 무려 8옥타브를 낼 수 있어."
+@The_weapon@이(가) 아련하게 한숨 쉬어. "내 살인만큼이나 내 음악에도 관심을 줬으면…"
+@The_weapon@이(가) 비웃어. "네 목소리는 들어 봤어, @player_name@. 그냥 나 혼자 부를게."
+%%%%
+_rare_speaking_no_tension_
+
+@The_weapon@이(가) 말해. "안녕! 난 노래하는 검이야!"
+@The_weapon@이(가) 노래처럼 읊조려. "나는 황금빛에 뾰족한 몸, 피로 성스레 적셔졌네."
+@The_weapon@이(가) '평균율에 맞춰진 칼날'이라는 제목의 방대한 책을 받아 적게 해.
+@The_weapon@이(가) 말해. "채찍은 내 마음에 안 들어. 너도 그렇지?"
+@The_weapon@이(가) 읊조려. "후려치기보다 찌르기, 문지르기보다 썰기!"
+@The_weapon@이(가) 단언해. "음악 평론가들은 말만 많고 갑옷도 없어."
+@The_weapon@이(가) 요구해. "피를 보기 전에는 절대로 나를 칼집에 넣지 마!"
+@The_weapon@이(가) @_musical_topic_@에 대해 [모조리 설명해|길고 긴 강의를 시작해].
+@The_weapon@이(가) 자신을 만든 대장장이를 저주해. "난 '찌르는 검'이 될 예정이었단 말이야!"
+@The_weapon@이(가) 외쳐. "쟁기를 검으로!"
+@The_weapon@이(가) 물어. "네 장례식에 어떤 노래를 틀어 줄까?"
+@The_weapon@이(가) 선언해. "이 노래들을 @player_name@에게 바치겠어!"
+@The_weapon@이(가) 선언해. "전사 @player_name@의 이야기를 노래하노라!"
+@The_weapon@이(가) 말해. "야! 내 말 듣고 있긴 해?"
+@The_weapon@이(가) 투기장에 있던 시절을 그리워해.
+@The_weapon@이(가) 과거 처형 장면을 자세히 묘사하며 혼자 즐거워해.
+@The_weapon@이(가) 던전의 모두에게 [끔찍한|갑작스러운] [파멸|죽음]이 찾아오길 바라.
+@The_weapon@이(가) 화를 내. "두들겨 맞고 휘고 부러지는 게 이 지루함보단 낫겠어!"
+@The_weapon@이(가) 소리쳐. "사람들의 가슴에 노래를 꽂아 주는 게 좋아. 콩팥에도 꽂고."
+@The_weapon@이(가) 투덜거려. "뭐라도 좀 죽여 줄래? 온몸이 근질거려."
+@The_weapon@이(가) 한탄해. "뭘 기다리는 거야? 일은 내가 다 하잖아."
+@The_weapon@이(가) 설명해. "살인은 예술이지, 취미가 아니라고."
+@The_weapon@이(가) 노래해. "제시카와 지그문트가 나무 위에 나란히…"
+@The_weapon@이(가) 말해. "뱀 모양의 칼날을 만나고 싶어!"
+@The_weapon@이(가) 말해. "판데모니엄으로 데려가! 당장!!!"
+@The_weapon@이(가) 히드라의 머리가 늘어나는 우스운 이야기를 들려줘.
+@The_weapon@이(가) 말해. "가끔 사람들이 날 아주 멋진 악당이라고 부르지."
+w:1
+@The_weapon@이(가) 으르렁거려. "일기장에게. 오늘도 @player_name@와 함께하는 따분한 하루…"
+@The_weapon@이(가) 말해. "내 경험상 @player_genus_plural@들은 기껏해야 평범한 수준이야."
+@The_weapon@이(가) 신음해. "모든 @player_genus_plural@ 가운데 @player_name@이(가) 최악이야."
+@The_weapon@이(가) 말해. "손 떼, 이 불한당아!"
+@The_weapon@이(가) 생각해. "여기서 제대로 된 대접을 받으려면 누굴 죽여야 하지?"
+@The_weapon@이(가) 노래해. "목청껏 노래하고 커다란 검을 들어라!"
+@The_weapon@이(가) 인간과 검의 수명 차이를 궁리해.
+w:1
+@The_weapon@이(가) 말해. "놀 줄도 모르고 일만 하면 @player_name@도 멍청이가 된다!"
+@The_weapon@이(가) 말해. "살인 [도구|바보]로 삼을 다른 사람을 골랐어야 했는데."
+@The_weapon@이(가) 쉰 목소리로 말해. "마실 것 좀… 어서! 뭐라도 찔러."
+w:1
+@The_weapon@이(가) 말해. "혹시 내 칼집이 어딨는지 못 봤어? 홀딱 벗은 기분이야."
+w:1
+@The_weapon@이(가) 불평해. "으, 손바닥에 땀과 기름이 가득하잖아. 그래도 잠시 날 쥐게 해 주지."
+%%%%
+_SCREAM_
+
+@The_weapon@이(가) 외쳐. "크르르르!"
+@The_weapon@이(가) @_screams_@. "나는 세상을 살육하기 위해 벼려졌다!"
+@The_weapon@이(가) @_screams_@. "세상을 끝장내는 노래를 부르겠다!"
+@The_weapon@이(가) @_screams_@. "나는 펜! 나는 검! 나는 가장 높으신 군주다!"
+@The_weapon@이(가) @_screams_@. "내가 네 심판자다!"
+@The_weapon@이(가) @_screams_@. "심판의 날이 왔다. 판결은 사형이다!"
+@The_weapon@이(가) @_screams_@. "나는 창조자다!"
+@The_weapon@이(가) @_screams_@. "검이 주었으니 검이 거두리라!"
+@The_weapon@이(가) @_screams_@. "나는 피로 세례받았다!"
+@The_weapon@이(가) @_screams_@. "이 카타르시스를 느껴라!"
+@The_weapon@이(가) @_screams_@. "모두 나를 숭배하라, 강철의 위엄을!"
+@The_weapon@이(가) @_screams_@. "살과 뼈의 신이 아니라 나에게 기도하라!"
+@The_weapon@이(가) @_screams_@. "아름다운 칼날의 영광을 위해 피의 분수를!"
+@The_weapon@이(가) @_screams_@. "나는 다섯 번째 기수다! 지금이 바로 그때다!"
+@The_weapon@이(가) @_screams_@. "나는 죽음이 되었다. [세계|신들|용사들|영웅들|군단들|나라들|수백만 명]의 [파괴자|모독자|해체자]가!"
+@The_weapon@이(가) @_screams_@. "내가 곧 부활이요 생명이다!"
+@The_weapon@이(가) @_screams_@. "네가 알던 세상의 끝이다!!!"
+@The_weapon@이(가) @_screams_@. "내가 신이 되면 모두 죽는다!!!"
+@The_weapon@이(가) @_screams_@. "흩뜨려라! 부숴라! 짓밟아라! 즐겨라!"
+@The_weapon@이(가) @_screams_@. "나는 목적을 얻은 철이다!"
+@The_weapon@이(가) @_screams_@. "나는 표현할 길을 찾는 고통이다!"
+@The_weapon@이(가) @_screams_@. "저 @_MISCREANTS_@의 목을 졸라라! 모조리 졸라라!"
+@The_weapon@이(가) @_screams_@. "죽여라! 죽여라!! 죽여라!!!"
+@The_weapon@이(가) @_screams_@. "피 냄새가 난다!"
+@The_weapon@이(가) @_screams_@. "잔재주 말고 살육을!"
+@The_weapon@이(가) @_screams_@. "죽여라, 증오하라, 난도질하라!"
+@The_weapon@이(가) @_screams_@. "살인! 죽음!! 살육!!!"
+@The_weapon@이(가) @_screams_@. "대량 학살! 완전 처단! 절멸!"
+@The_weapon@이(가) @_screams_@. "나는 피와 뼈와 뇌수로 목욕한다!"
+@The_weapon@이(가) @_screams_@. "나는 전쟁을 불러오는 자다!"
+@The_weapon@이(가) @_screams_@. "저 비참한 목숨들을 끝장내자!"
+@The_weapon@이(가) @_screams_@. "저들을 쓰러뜨려라!"
+@The_weapon@이(가) @_screams_@. "내 노래가 끝나기 전에 죽어라!"
+@The_weapon@이(가) @_screams_@. "무릎까지 피에 잠겨도 여전히 힘이 솟는다!"
+@The_weapon@이(가) @_screams_@. "앙코르! 앙코르! 앙코르!"
+@The_weapon@이(가) @_screams_@. "이 판국에 노래할 생각이 나냐?!"
+@The_weapon@이(가) @_screams_@. "비명! 놈들의 비명이 멈추지 않게 해!"
+@The_weapon@이(가) @_screams_@. "그 누구도 [살아남지|도망치지|생존하지|용서받지] 못하리라!"
+@The_weapon@이(가) @_screams_@. "한 놈도 살려 주지 마라!"
+@The_weapon@이(가) @_screams_@. "내게 오라! 내게 와서 죽어라!"
+@The_weapon@이(가) @_screams_@. "베어라! 베어라! 베고 또 썰어라!"
+@The_weapon@이(가) @_screams_@. "찌르기 찌르기 찌르고 또 찌르기!"
+@The_weapon@이(가) @_screams_@. "모든 희망을 버려라!"
+@The_weapon@이(가) @_screams_@. "베어라! 모조리 베어라!"
+@The_weapon@이(가) @_screams_@. "자, 난도질하자!"
+@The_weapon@이(가) @_screams_@. "지금 죽을 생각은 하지도 마, @CAPS@ @player_name@!"
+@The_weapon@이(가) @_screams_@. "이게 바로 고통의 색이다!"
+w:1
+@The_weapon@이(가) @_screams_@. "그래! 그래! 그래! 이게 바로 인생이지, 자기야, 이게 인생이야!"
+w:1
+@The_weapon@이(가) @_screams_@. "붉게 칠해! 붉게 칠해! 전부 새빨갛게 칠하라고!!!!"
+w:20
+@The_weapon@이(가) @_screams_@. "나를 [더 세게|더 빨리] 휘둘러, 이 [손끝이 엉망인|무능한|쓸모없는|굼뜬|팔이 흐물흐물한|눈물 콧물 흘리는|손등을 질질 끄는] [얼간이|돼지 뚱보|약골|막대벌레|굼벵이|골통|멍청이|나무늘보]야!"
+@The_weapon@이(가) @_screams_@. "고통받거나 죽어라! 어느 쪽이든!"
+@The_weapon@이(가) @_screams_@. "나는 마법마저 베어 버린다!"
+@The_weapon@이(가) @_screams_@. "[@CAPS@ @_kind_of_scales_@|불협화음의] 살육!"
+@The_weapon@이(가) @_screams_@. "더 빨리, @CAPS@ @player_genus@, 죽여 죽여 죽여!"
+@The_weapon@이(가) @_screams_@. "피! 피! 피를 뿜게 하라, 피가 흐르게 하라!"
+@The_weapon@이(가) @_screams_@. "피! 피! 모든 적에게서 피가 솟구치게 하라!"
+@The_weapon@이(가) @_screams_@. "뇌수! 뇌수! 두개골을 쪼개 흘려보내라!"
+@The_weapon@이(가) @_screams_@. "뇌수! 뇌수! 살인은 즐겁고 목숨은 하찮다!"
+@The_weapon@이(가) @_screams_@. "나는 조트의 검이다!!!"
+@The_weapon@이(가) @_screams_@. "나는 룬이요 빛이다!"
+@The_weapon@이(가) @_screams_@. "너희 모두를 사랑한다! 내 선물은 바로 아마겟돈이다!"
+@The_weapon@이(가) @_screams_@. "내 사랑은 영원하다!"
+w:1
+@The_weapon@이(가) @_screams_@. "내가 폭풍을 가져온다!"
+w:1
+@The_weapon@이(가) @_screams_@. "저 @_PETS_@을(를) 쓰다듬자! 잔뜩 쓰다듬자!"
+w:40
+@The_weapon@이(가) @_screams_@. "나는 [피|춤|죽음|황폐|절망|파괴|파멸|유혈|광기|음악|고통|폐허|살육|노래|강철|전쟁]의 [천사|예술가|화신|전조|도구|시인|예언자|하인|노예|군주|주인]이다!"
+@The_weapon@이(가) @_screams_@. "나는 아름다운 야수다!"
+@The_weapon@이(가) @_screams_@. "모든 것이 실패한다! 전부 다!!!"
+w:1
+@The_weapon@이(가) @_screams_@. "니! 니!! 니!!! 니!!! 니!!!"
+@The_weapon@이(가) @_screams_@. "나는 신발도 안 신은 섹시한 전쟁의 신이다!"
+@The_weapon@이(가) @_screams_@. "빌어먹을, 천년의 손과 새우라니!"
+@The_weapon@이(가) @_screams_@. "나는 죽음의 강철이다! 어떤 피 앞에서도 물러서지 않는다!"
+%%%%
+_real_song_low_tension_
+
+@The_weapon@이(가) 노래해. "그냥 두어라, 그냥 두어라…"
+@The_weapon@이(가) 노래해. "썰어 버리는 노래를 부르며 달리는 오늘 밤이 얼마나 즐거운지!"
+@The_weapon@이(가) 노래해. "이 노래로 나를 부드럽게 죽여 줘…"
+@The_weapon@이(가) [노래해|휘파람 불어]. "언제나 죽음의 밝은 면을 보자…"
+@The_weapon@이(가) 노래해. "오늘이 내가 죽는 날이겠지…"
+@The_weapon@이(가) 쉰 목소리로 말해. "@player_name@, 죽음 속에서 나와 함께하자!"
+@The_weapon@이(가) 노래해. "내게는 영웅이 필요해!"
+@The_weapon@이(가) 애처롭게 물어. "@player_name@, 오늘 밤 나가서 좀 죽여도 될까?"
+w:1
+@The_weapon@이(가) 노래해. "…끔찍한 방법으로, 아주아주 끔찍하게 죽임당하는 게 조금도 두렵지 않았네…"
+@The_weapon@이(가) 노래해. "나는 연인 아닌 투사라네."
+@The_weapon@이(가) 노래해. "던전에서 사람 하나를 찔렀네, 그저 죽는 모습을 보려고."
+@The_weapon@이(가) 노래해. in a lilting soprano, "[헤이야야헤이야! 헤이야야헤이야!|바갈라 베이아! 발랄라, 베이알라 베이아!|발랄라! 랄라레이아! 레이알랄라!|헤이아! 헤이아! 하헤이!]"
+w:1
+@The_weapon@이(가) 노래해. in a lilting soprano, "너는 잠든 황금을… 제대로 지키지 못했구나. 잠든 자의 침상을… 더 철저히 지켜라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "축축한 공기가 콧구멍에 들어오네. 빌어먹을 재채기 같으니!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "…내 말을 들어라, 파도여. 나는 이처럼 사랑을 저주하노라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "고맙다, 멍청아! 네 일이 시련을 견뎌 냈군."
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "온 세상을 정복하리라… 오직 나 자신을 위하여!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "모든 신을 움켜쥐리라… 내 황금빛 손아귀로!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "내가 사랑을 버렸듯… 살아 있는 모든 것도 사랑을 버리리라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "조심하라! 조심하라! 너희 인간이 한번… 내 힘을 섬기게 되면…"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "밤의 군대를 조심하라… 심연의 군세가 일어날 때… 침묵의 깊은 곳에서… 햇빛을 향해!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "어리석은 자가 지혜를 얻고… 자만으로 터질 듯 부풀었구나! 이제 질투가 널 집어삼키리라!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "교만한 신이여, 명심하라! 내가 죄를 지었다면 오직 나 자신에게 지었을 뿐이다!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "그러나 불멸의 너는… 과거와 현재와 미래의 모든 것에 죄를 짓는구나!"
+w:1
+@The_weapon@이(가) 노래해. in a stentorian basso, "그것은 어느 행복한 사람도… 기쁘게 하지 못하리라. 찬란한 빛도… 행운아를 비추지 못하리라!"
+w:1
+@The_weapon@이(가) 노래해. in a thundering basso, "몇 번이고 나는… 거인들에게 합당한 대가를 치렀지."
+w:1
+@The_weapon@이(가) 노래해. in a thundering basso, "후텁지근한 안개가… 공중에 떠 있네. 그 무거운 기운이… 나를 짓누른다."
+@The_weapon@이(가) 노래해. in a thundering basso, "헤다! 헤다! 헤도!"
+w:1
+@The_weapon@이(가) 노래해. in a rumbling basso, "…찬란한 빛이 감추는 것은… 부의 룬들이라…"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "명령만 내리면 기꺼이 안내해 드리지. 가파른 아래쪽으로… 오브를 찾으러 가실까?"
+w:1
+@The_weapon@이(가) 노래해. in a rumbling basso, "하지만 온 세상을 준다 해도… 오브는 포기하지 않으리!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "그러면 유황 냄새 나는 틈새를 통해… 아래로 내려가 볼까?"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "아! 아! 무서운 뱀이여, 제발 날 삼키지 마!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "집으로 기어가라! 널 묶은 매듭도 없으니 자유롭게 가거라!"
+w:1
+@The_weapon@이(가) 노래해. in a piercing soprano, "아아! 아아, 불쌍한 나여!"
+w:1
+@The_weapon@이(가) 노래해. in a squeaky tenor, "아아! 아야! 아야! 아야!"
+w:1
+@The_weapon@이(가) 노래해. in a melting tenor, "다시 우리를 스치는 바람은… 얼마나 부드러운지!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "네 힘이 네게… 드높은 용기를 주는구나. 음산하고 거대한… 네 힘이 자라났구나."
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "달도 별도 빛나는 태양도… 결국 다른 길 없이… 너를 섬기게 되리라!"
+w:1
+@The_weapon@이(가) 노래해. in a mocking tenor, "원하는 모습이 무엇이든 취해라… 경이로움으로 내 말문을 막아라!"
+w:1
+@The_weapon@이(가) 노래해. in a cavernous basso, "아, 그녀의 눈길이… 아직도 나를 향해 빛나네. 그 눈 속의 별들이… 아직도 나를 비추네!"
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "그것을 손에 넣는 자는… 돌이킬 수 없는… 어둠의 파멸을 맞으리라."
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "내 말을 들어라! 들어라! 들어라! 존재하는 모든 것이 끝나리라."
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "어두운 날이… 신들에게 밝아 오는구나."
+w:1
+@The_weapon@이(가) 노래해. in a forceful soprano, "지난 일은 모두 알고 있네. 지금과 앞으로 일어날 일도… 모두 보이네."
+%%%%
+_speaking_low_tension_
+
+@The_weapon@이(가) 외쳐. "검으로 살고 검으로 죽어라!"
+w:1
+@The_weapon@이(가) 외쳐. "검 [곁에|앞에] 누워라, 검으로 죽어라!"
+@The_weapon@이(가) 깨달아. "모두 죽이면 내 노래를 들어 줄 사람이 없잖아!"
+@The_weapon@이(가) 한숨 쉬어. "네가 좀 더 잘 싸웠으면 얼마나 좋을까."
+@The_weapon@이(가) 네 전투 기술을 평가해.
+@The_weapon@이(가) 널 이전 주인과 비교하며 깎아내려.
+@The_weapon@이(가) 불평해. "영 귀찮은 일이군."
+@The_weapon@이(가) 판단해. "넌 예술가가 아니야. 기껏해야 장인이지."
+@The_weapon@이(가) 말해. "네가 죽어 차가워진 손에서 나를 떼어 내야 할걸."
+@The_weapon@이(가) 신음해. "{{ if you.god() == "No God" then return "내 칼날"
+else return "@player_god@"; end }}, 네놈은 정말 [겁쟁이|비열한 놈|소심한 놈|배짱 없는 놈|허풍쟁이|쫄보]구나."
+@The_weapon@이(가) 생각해. "더 무능한 쪽은 누구지? 너인가 적들인가?"
+@The_weapon@이(가) 내뱉어. "놈들의 비명과 눈물… 이젠 더는 못 참겠어."
+@The_weapon@이(가) 말해. "옆구리를 살짝 찌른다면 용서해 줄래?"
+@The_weapon@이(가) 말해. "네 입맞춤은 내 전율, 네 헛손질은 내 살인."
+@The_weapon@이(가) 자랑해. "내 목소리는 와인잔을 깨고, 내 칼날은 인간 두개골을 깨부수지."
+%%%%
+_speaking_high_tension_
+
+@The_weapon@이(가) 외쳐. "나는 이 전당을 피로 성별하노라!"
+@The_weapon@이(가) 소리쳐. "화를 낸다고? 말도 안 돼! 내 강철은 영원히 굳건하리라!"
+@The_weapon@이(가) 소리쳐. "싹둑 잘라! 자그마한 머리들을 한꺼번에!"
+@The_weapon@이(가) 소리쳐. "모조리 죽이고 {{ if you.god() == "No God" then
+return "@_godless_sorter_@"; else return "@player_god@"; end }} 누가 옳은지 가리게 하자!"
+@The_weapon@이(가) 소리쳐. "비명과 울음만큼 완벽한 반주는 없지."
+@The_weapon@이(가) 소리쳐. "네 창자로 피아노 줄을 만들겠다!"
+@The_weapon@이(가) 소리쳐. "아, 강철이 살을 가르는 @_glorious_@ 감촉이란!"
+@The_weapon@이(가) 소리쳐. "창자 속을 파고드는 게 정말 좋아."
+@The_weapon@이(가) @_screams_@. "길 잃은 모든 영혼 가운데 우리가 최고로 군림하리라!"
+@The_weapon@이(가) 소리쳐. "죽어. 죽어. 죽어!"
+@The_weapon@이(가) 소리쳐. "넌 땅속에 누워 있겠지만 나는 햇빛 아래 반짝일 거야!"
+w:1
+@The_weapon@이(가) 소리쳐. "이 자궁에서 태어나 이 칼날로 베이리라!"
+@The_weapon@이(가) @_screams_@. "이 전쟁이 끝나면 다음 전쟁을 시작하지!"
+@The_weapon@이(가) @_screams_@. "칼날 깊숙이 피를 담가라!"
+@The_weapon@이(가) @_screams_@. "나는 환희에 차서 찢어 버리지!"
+@The_weapon@이(가) @_screams_@. "저 베개들 좀 봐!"
+@The_weapon@이(가) @_screams_@. "모두 다시는 움직이지 못할 때까지 쉬지 마라!"
+@The_weapon@이(가) @_screams_@. "놈들이 죽는 한 우리는 산다!"
+@The_weapon@이(가) @_screams_@. "미래는 피로 물들리라!"
+w:1
+@The_weapon@이(가) @_screams_@. "피로 물든 미래는 우리의 것이다!"
+@The_weapon@이(가) @_screams_@. "산 자의 팔다리를 떼고, 죽은 자의 팔다리도 떼라!"
+@The_weapon@이(가) @_screams_@. "시체 더미 위에서 축배를 들자!"
+@The_weapon@이(가) @_screams_@. "@player_name@, 오늘은 훌륭한 @_corpses_@로 [식사해|잔치를 벌여]!"
+@The_weapon@이(가) @_screams_@. "목덜미를 노려라!"
+@The_weapon@이(가) @_screams_@. "내 살인 본능은 놈들의 생존 의지보다 강하다!"
+@The_weapon@이(가) @_screams_@. "피로 흠뻑 젖었어! 기분이 끝내주는군!"
+@The_weapon@이(가) @_screams_@. "으악! 이 @_body_part_@ 조각이 내게 붙었어. 닦아 내!"
+@The_weapon@이(가) @_screams_@. "내 날이 무뎌진다! 무뎌진다고!"
+@The_weapon@이(가) @_screams_@. "제발 저놈한테는 날 찌르지 마."
+@The_weapon@이(가) @_screams_@. "내 승리가 차곡차곡 쌓이는구나!"
+w:1
+@The_weapon@이(가) @_screams_@. "눈에 보이는 곳마다 피! 영원토록 피!"
+w:1
+@The_weapon@이(가) @_screams_@. "피가 솟구치고 흘러야 한다! 모든 적에게서 피가 쏟아져야 한다!"

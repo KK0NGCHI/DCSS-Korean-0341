@@ -144,3 +144,13 @@
 - [구조 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40098709326) 성공. [Linux 런타임 DB 재검증](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40098709301)은 별도 확인. 실제 고유 몬스터 출력 및 Windows Tiles와 한글 조사는 여전히 미검증.
 - 누적 4개 데이터 오버레이 원문 대응 합계 **699개** = godname 23 + monspell 245 + monspeak 413 + wpnnoise 18. 이는 게임 전체 한국어화율과 무관.
 - 상세 기록: [고유 몬스터 대사 71키 추가 보고](../../docs/translation-review/monspeak-named-20261024-batch2.md).
+
+## 2026-10-24 무기 대사 원문 키 100% 대응 · 몬스터 대사 추가 — PR #16
+
+- `wpnnoise.txt` 한국어 원문 키 대응: **18/65 → 65/65(100%)**, **47개 신규 키**. 신규 출력·참조 변형 **541줄**, 그중 **516줄**에 한국어 포함. **5개는 원문 참조 라우팅을 그대로 유지**한 키임.
+- `monspeak.txt` 한국어 원문 키 대응: **413/731 → 429/731(58.7%)**, **16개 신규 키**. 신규 출력·참조 변형 **58줄**, 그중 **46줄**에 한국어 포함. 미대응 **302개**.
+- 누적 4개 KO DB 오버레이의 원문 고유 키 대응 합계: **762**(godname 23 + monspell 245 + monspeak 429 + wpnnoise 65).
+- 주요 번역: 노래하는 검의 일상/전투/비명/노래, 마진보, 종굴드로크 모자·왕관 반응, 균류/장어 손, 다우안·듀베사·조리의 대사.
+- [무기·몬스터 대사 구조 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207409) 성공. [Linux 한국어 DB 로더 검사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207364)의 완료 결과는 링크에서 별도 확인.
+- **100%는 `wpnnoise.txt`의 키 대응률**이며 게임 전체 번역률이나 동적 한국어 출력 품질을 보증하지 않음. Lua 변환과 실제 이름·조사 결합, Windows Tiles UI 및 폰트는 게임 내 재검토 필요.
+- 상세 보고서: [무기 대사 전수 키 대응 및 남은 검증](../../docs/translation-review/wpnnoise-complete-20261024.md).

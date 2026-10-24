@@ -31,7 +31,7 @@
     },
     "03": {
       "status": "in_progress",
-      "detail": "23 description pairs plus 23 source text databases. 4 Korean overlays: godname 23, monspell 245, monspeak 413, wpnnoise 18 original-source keys; remaining database originals contain mixed Korean."
+      "detail": "23 description pairs plus 23 source text databases. Four Korean overlays: godname 23, monspell 245, monspeak 429, wpnnoise 65 matched unique source keys. Top-level source databases still contain mixed Korean/English."
     },
     "04": {
       "status": "in_progress",
@@ -43,7 +43,7 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "P0 C++ messages integrated; monspell 245 text-bearing entries covered (17 alias/__NONE); monspeak 413/731 and wpnnoise 18/65 original-source keys. Windows Tiles, Lua and dynamic grammar not fully verified."
+      "detail": "P0 C++ messages integrated; monspell 245 text-bearing entries translated (17 alias/__NONE); monspeak 429/731; wpnnoise 65/65 unique source keys matched. Windows Tiles, Lua emitted dialogue and dynamic grammar not fully tested."
     },
     "07": {
       "status": "in_progress",
@@ -141,7 +141,7 @@
       "top_level_files": 23,
       "original_unique_keys_sum": 2022,
       "localized_files": 4,
-      "localized_matched_keys": 699,
+      "localized_matched_keys": 762,
       "top_level_korean_lines": 301,
       "top_level_latin_only_lines": 13242,
       "godname_localized_entries": 23,
@@ -151,12 +151,12 @@
       "monspell_remaining_entries": 17,
       "monspeak_source_unique_keys": 731,
       "monspeak_source_duplicate_occurrences": 1,
-      "monspeak_localized_entries": 413,
-      "monspeak_remaining_entries": 318,
-      "notes": "699 matched source keys = 23 godname + 245 monspell + 413 monspeak + 18 wpnnoise; includes PR15 71-key named monster dialogue batch. Not whole-game translation percentage.",
+      "monspeak_localized_entries": 429,
+      "monspeak_remaining_entries": 302,
+      "notes": "762 source-matched overlay keys: 23 godname + 245 monspell + 429 monspeak + 65 wpnnoise. Wpnnoise unique-key coverage 100%, not entire game translation or per-phrase runtime correctness.",
       "wpnnoise_source_unique_keys": 65,
-      "wpnnoise_localized_entries": 18,
-      "wpnnoise_remaining_entries": 47
+      "wpnnoise_localized_entries": 65,
+      "wpnnoise_remaining_entries": 0
     },
     "monspell_korean_translation": {
       "source_ref": "f37e093223b844291a7203c78b514f6c0585166b",
@@ -186,9 +186,9 @@
       "source_entries": 732,
       "source_unique_keys": 731,
       "source_duplicate_key_occurrences": 1,
-      "localized_keys": 413,
-      "matching_keys": 413,
-      "remaining_keys": 318,
+      "localized_keys": 429,
+      "matching_keys": 429,
+      "remaining_keys": 302,
       "added_keys_in_pr11": 127,
       "new_translated_variants_in_pr11": 379,
       "issues": 0,
@@ -203,7 +203,7 @@
       "new_lines_or_alias_variants_in_pr14": 418,
       "new_lines_containing_hangul_in_pr14": 361,
       "audit_run_pr14": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40097262348",
-      "notes": "PR15 adds 71 source keys, 350 text/reference variants incl. 305 Korean lines. 20 of 71 keys are alias-only or source-equivalent references. Structural audit passes; Windows Tiles, true rendered speech and particle grammar remain unverified.",
+      "notes": "After PR16, monspeak 429/731 matched source keys. 16 added (58 non-weight variants, 46 Hangul lines), pending rendered dialogue and grammar tests.",
       "pr15": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/15",
       "added_keys_in_pr15": 71,
       "new_lines_or_alias_variants_in_pr15": 350,
@@ -214,7 +214,12 @@
         "lua": 14,
         "no_output": 15
       },
-      "audit_run_pr15": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40098709326"
+      "audit_run_pr15": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40098709326",
+      "pr16": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/16",
+      "added_keys_in_pr16": 16,
+      "variants_added_in_pr16": 58,
+      "korean_lines_added_in_pr16": 46,
+      "audit_run_pr16": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207409"
     },
     "wpnnoise_korean_translation": {
       "source_ref": "f98869c9271522bd2a80e4229756a5a7625c14f2",
@@ -249,6 +254,24 @@
         "바람이 거세게 부는 소리가 들린다."
       ],
       "limits": "This demonstrates compiled binary startup and Korean localized cache regeneration; does not verify interactive newgame, Tiles UI, actual text display, font rendering, dynamic grammar, save/load, or Windows native binary."
+    },
+    "weapon_speech_korean_translation": {
+      "source_file": "source/dat/database/wpnnoise.txt",
+      "localized_file": "source/dat/database/ko/wpnnoise.txt",
+      "source_unique_keys": 65,
+      "localized_matched_keys": 65,
+      "remaining_keys": 0,
+      "source_key_coverage_percent": 100,
+      "added_keys_in_pr16": 47,
+      "new_variants_in_pr16": 541,
+      "new_variants_containing_hangul_in_pr16": 516,
+      "source_equivalent_reference_keys_in_pr16": 5,
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/16",
+      "structural_audit_run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207409",
+      "linux_database_runtime_run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207364",
+      "report": "docs/translation-review/wpnnoise-complete-20261024.md",
+      "quality_status": "all_source_keys_present_structural_audit_passed",
+      "limitations": "Coverage tracks source-key presence, not all actual composed Korean weapon speeches. Inline Lua, mixed dynamic phrases, Windows Tiles font and full in-game playback require separate tests."
     }
   },
   "current_qa_work": {
@@ -294,19 +317,21 @@
       "pr10": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/10",
       "pr11": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/11",
       "source_unique_keys": 731,
-      "localized_keys": 413,
-      "remaining_keys": 318,
+      "localized_keys": 429,
+      "remaining_keys": 302,
       "added_keys_in_pr11": 127,
       "variants_added_in_pr11": 379,
       "report": "docs/translation-review/monspeak-named-20261024-batch2.md",
-      "next": "Translate remaining 190 text/mixed, 14 Lua and inspect 99 reference-only + 15 no-output keys; then wpnnoise 47. Test actual name particle grammar and Windows Tiles.",
+      "next": "Translate 302 remaining monspeak original unique keys; classify reference-only and __NONE against source before claiming prose completion. Weapon wpnnoise now 65/65 source keys but needs dynamic playback QA.",
       "pr12": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/12",
       "added_keys_in_pr12": 44,
       "variants_added_in_pr12": 150,
       "pr14": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/14",
       "added_keys_in_pr14": 82,
       "pr15": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/15",
-      "added_keys_in_pr15": 71
+      "added_keys_in_pr15": 71,
+      "pr16": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/16",
+      "added_keys_in_pr16": 16
     },
     "wpnnoise_database": {
       "status": "merged",
@@ -317,6 +342,14 @@
       "translated_variants": 192,
       "report": "docs/translation-review/monspeak-wpnnoise-batch-20261024.md",
       "next": "Translate longer singing sword songs and special item chatter."
+    },
+    "weapon_speech_database": {
+      "status": "fully_key_matched_requires_runtime_quality_review",
+      "localized_keys": 65,
+      "source_unique_keys": 65,
+      "remaining_keys": 0,
+      "report": "docs/translation-review/wpnnoise-complete-20261024.md",
+      "pr": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/16"
     }
   },
   "runtime_verification": {
