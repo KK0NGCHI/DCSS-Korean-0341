@@ -12,7 +12,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
-ENTRY = re.compile(r"^%%%%\s*$", re.M)
+ENTRY = re.compile(r"^%%%%[^\r\n]*$", re.M)
 HANGUL = re.compile(r"[가-힣]")
 LATIN = re.compile(r"[A-Za-z]{3,}")
 
