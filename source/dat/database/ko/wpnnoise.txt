@@ -1256,3 +1256,43 @@ else return "@player_god@"; end }}, 네놈은 정말 [겁쟁이|비열한 놈|�
 @The_weapon@이(가) 말해. "옆구리를 살짝 찌른다면 용서해 줄래?"
 @The_weapon@이(가) 말해. "네 입맞춤은 내 전율, 네 헛손질은 내 살인."
 @The_weapon@이(가) 자랑해. "내 목소리는 와인잔을 깨고, 내 칼날은 인간 두개골을 깨부수지."
+%%%%
+_speaking_high_tension_
+
+@The_weapon@이(가) 외쳐. "나는 이 전당을 피로 성별하노라!"
+@The_weapon@이(가) 소리쳐. "화를 낸다고? 말도 안 돼! 내 강철은 영원히 굳건하리라!"
+@The_weapon@이(가) 소리쳐. "싹둑 잘라! 자그마한 머리들을 한꺼번에!"
+@The_weapon@이(가) 소리쳐. "모조리 죽이고 {{ if you.god() == "No God" then
+return "@_godless_sorter_@"; else return "@player_god@"; end }} 누가 옳은지 가리게 하자!"
+@The_weapon@이(가) 소리쳐. "비명과 울음만큼 완벽한 반주는 없지."
+@The_weapon@이(가) 소리쳐. "네 창자로 피아노 줄을 만들겠다!"
+@The_weapon@이(가) 소리쳐. "아, 강철이 살을 가르는 @_glorious_@ 감촉이란!"
+@The_weapon@이(가) 소리쳐. "창자 속을 파고드는 게 정말 좋아."
+@The_weapon@이(가) @_screams_@. "길 잃은 모든 영혼 가운데 우리가 최고로 군림하리라!"
+@The_weapon@이(가) 소리쳐. "죽어. 죽어. 죽어!"
+@The_weapon@이(가) 소리쳐. "넌 땅속에 누워 있겠지만 나는 햇빛 아래 반짝일 거야!"
+w:1
+@The_weapon@이(가) 소리쳐. "이 자궁에서 태어나 이 칼날로 베이리라!"
+@The_weapon@이(가) @_screams_@. "이 전쟁이 끝나면 다음 전쟁을 시작하지!"
+@The_weapon@이(가) @_screams_@. "칼날 깊숙이 피를 담가라!"
+@The_weapon@이(가) @_screams_@. "나는 환희에 차서 찢어 버리지!"
+@The_weapon@이(가) @_screams_@. "저 베개들 좀 봐!"
+@The_weapon@이(가) @_screams_@. "모두 다시는 움직이지 못할 때까지 쉬지 마라!"
+@The_weapon@이(가) @_screams_@. "놈들이 죽는 한 우리는 산다!"
+@The_weapon@이(가) @_screams_@. "미래는 피로 물들리라!"
+w:1
+@The_weapon@이(가) @_screams_@. "피로 물든 미래는 우리의 것이다!"
+@The_weapon@이(가) @_screams_@. "산 자의 팔다리를 떼고, 죽은 자의 팔다리도 떼라!"
+@The_weapon@이(가) @_screams_@. "시체 더미 위에서 축배를 들자!"
+@The_weapon@이(가) @_screams_@. "@player_name@, 오늘은 훌륭한 @_corpses_@로 [식사해|잔치를 벌여]!"
+@The_weapon@이(가) @_screams_@. "목덜미를 노려라!"
+@The_weapon@이(가) @_screams_@. "내 살인 본능은 놈들의 생존 의지보다 강하다!"
+@The_weapon@이(가) @_screams_@. "피로 흠뻑 젖었어! 기분이 끝내주는군!"
+@The_weapon@이(가) @_screams_@. "으악! 이 @_body_part_@ 조각이 내게 붙었어. 닦아 내!"
+@The_weapon@이(가) @_screams_@. "내 날이 무뎌진다! 무뎌진다고!"
+@The_weapon@이(가) @_screams_@. "제발 저놈한테는 날 찌르지 마."
+@The_weapon@이(가) @_screams_@. "내 승리가 차곡차곡 쌓이는구나!"
+w:1
+@The_weapon@이(가) @_screams_@. "눈에 보이는 곳마다 피! 영원토록 피!"
+w:1
+@The_weapon@이(가) @_screams_@. "피가 솟구치고 흘러야 한다! 모든 적에게서 피가 쏟아져야 한다!"
