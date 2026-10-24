@@ -2475,13 +2475,13 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         else if (!you.props.exists(BEOGH_RES_PIETY_NEEDED_KEY))
         {
             if (!quiet)
-                mpr("Your apostles are all alive!");
+                mpr("사도들이 모두 살아 있어!");
             return false;
         }
         else if (!tile_has_valid_bfb_corpse(you.pos()))
         {
             if (!quiet)
-                mpr("You must be standing atop the corpse of a fallen apostle!");
+                mpr("죽은 사도의 시체 위에 서 있어야 해!");
             return false;
         }
         return true;
@@ -2514,7 +2514,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (you.duration[DUR_PRIMORDIAL_NIGHTFALL])
         {
             if (!quiet)
-                mpr("Night has already fallen.");
+                mpr("이미 밤이 찾아왔어.");
             return false;
         }
         return true;
@@ -2523,13 +2523,13 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (player_in_branch(BRANCH_CRUCIBLE))
         {
             if (!quiet)
-                mpr("Makhleb denies you. Endure the Crucible first!");
+                mpr("마크레브가 거절했다. 먼저 시련의 도가니를 견뎌 내!");
             return false;
         }
         else if (you.form == transformation::slaughter)
         {
             if (!quiet)
-                mpr("You are already a vessel of slaughter!");
+                mpr("이미 학살의 그릇이 되었어!");
             return false;
         }
         return true;
@@ -2796,7 +2796,7 @@ static bool _invoke_dragons()
     if (create_monster(mg))
         {
             made_mons = true;
-            mpr("A dragon answers your prayer!");
+            mpr("기도에 응답해 용 한 마리가 나타났다!");
         }
     return made_mons;
 }
@@ -2962,7 +2962,7 @@ bool activate_talent(const talent& tal, dist *target)
         }
         case spret::fail:
             if (!testbits(abil.flags, abflag::quiet_fail))
-                mpr("You fail to use your ability.");
+                mpr("능력을 사용하는 데 실패했어.");
             you.turn_is_over = true;
             if (mp_cost)
                 refund_mp(mp_cost);
@@ -3009,7 +3009,7 @@ static bool _evoke_orb_of_dispater(dist *target)
     {
         return false;
     }
-    mpr("You feel the orb feeding on your energy!");
+    mpr("오브가 당신의 에너지를 빨아들이는 것 같아!");
     return true;
 }
 
@@ -3076,9 +3076,9 @@ static spret _siphon_essence(bool fail)
     }
 
     if (seen)
-        mpr("You feel stolen life flooding into you!");
+        mpr("빼앗은 생명력이 몸속으로 밀려든다!");
     else
-        mpr("You feel stolen life flooding into you from an unseen source!");
+        mpr("보이지 않는 곳에서 빼앗은 생명력이 몸속으로 밀려든다!");
 
     if (you.hp == you.hp_max)
         return spret::success;
@@ -3225,7 +3225,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         fail_check();
         if (one_chance_in(4))
         {
-            mpr("Your magical essence is drained by the effort!");
+            mpr("힘을 쓰느라 마력의 정수가 소진됐다!");
             rot_mp(1);
         }
         potionlike_effect(POT_HEAL_WOUNDS, 40);
@@ -3236,12 +3236,12 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         if (!you.digging)
         {
             you.digging = true;
-            mpr("You extend your mandibles.");
+            mpr("큰턱을 펼쳤다.");
         }
         else
         {
             you.digging = false;
-            mpr("You retract your mandibles.");
+            mpr("큰턱을 접었다.");
         }
         break;
 
@@ -3417,7 +3417,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
     case ABIL_BAT_SWARM:
     {
         you.props[BATFORM_XP_KEY] = div_rand_round(11000, get_form()->get_effect_size());
-        mpr("You scatter into a swarm of vampire bats!");
+        mpr("흡혈박쥐 떼로 흩어진다!");
         transform(random_range(12, 20), transformation::bat_swarm);
         big_cloud(CLOUD_BATS, &you, you.pos(), 15, 15, 1);
         break;
@@ -3426,7 +3426,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
     case ABIL_ENKINDLE:
     {
         draw_ring_animation(you.pos(), 3, LIGHTCYAN, CYAN, true);
-        mprf(MSGCH_DURATION, "Your flames flare with remembrance!");
+        mprf(MSGCH_DURATION, "기억의 불꽃이 거세게 타오른다!");
         you.duration[DUR_ENKINDLED] = (random_range(12, 20)
                                        + (you.props[ENKINDLE_CHARGES_KEY].get_int() * 3))
                                             * BASELINE_DELAY;
@@ -3444,7 +3444,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
                 (recite_type) random2(NUM_RECITE_TYPES); // This is just flavor
             you.attribute[ATTR_RECITE_SEED] = random2(2187); // 3^7
             you.duration[DUR_RECITE] = 3 * BASELINE_DELAY;
-            mpr("You clear your throat and prepare to recite.");
+            mpr("목을 가다듬고 낭송할 준비를 한다.");
         }
         else
         {
@@ -3510,7 +3510,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
 
     case ABIL_KIKU_SIGN_OF_RUIN:
         fail_check();
-        mpr("You invoke the name of Kikubaaqudgha!");
+        mpr("키쿠바쿠드하의 이름을 외친다!");
         cast_sign_of_ruin(you, beam.target,
                           (4 + you.skill_rdiv(SK_NECROMANCY, 4, 7)) * BASELINE_DELAY);
         break;
@@ -3603,7 +3603,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
                  you.hands_act("get", "new energy.").c_str());
         }
         else
-            mprf(MSGCH_DURATION, "You can now deal lightning-fast blows.");
+            mprf(MSGCH_DURATION, "이제 번개처럼 빠르게 공격할 수 있어.");
 
         you.increase_duration(DUR_FINESSE,
                               10 + random2avg(you.skill(SK_INVOCATIONS, 6), 2),
@@ -3636,7 +3636,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         if (you.has_mutation(MUT_MAKHLEB_MARK_CARNAGE)
             && get_dist_to_nearest_monster() > you.current_vision)
         {
-            mprf("You can't see any nearby targets.");
+            mprf("근처에 보이는 대상이 없어.");
             return spret::abort;
         }
 
@@ -3698,7 +3698,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
 
     case ABIL_SIF_MUNA_CHANNEL_ENERGY:
         fail_check();
-        mpr("You channel some magical energy.");
+        mpr("마법 에너지를 끌어모은다.");
         you.increase_duration(DUR_CHANNEL_ENERGY,
             4 + random2avg(you.skill_rdiv(SK_INVOCATIONS, 2, 3), 2), 100);
         break;
@@ -3711,7 +3711,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         fail_check();
         const int pow = min(50, 10 + you.skill_rdiv(SK_INVOCATIONS, 1, 3));
         const int healed = pow + roll_dice(2, pow) - 2;
-        mpr("You are healed.");
+        mpr("상처가 회복됐다.");
         inc_hp(healed);
         break;
     }
@@ -3755,7 +3755,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
 
         if (beam.target == you.pos())
         {
-            mpr("You cannot banish yourself!");
+            mpr("자기 자신을 추방할 수는 없어!");
             return spret::abort;
         }
 
@@ -4025,7 +4025,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         break;
 
     case ABIL_WU_JIAN_SERPENTS_LASH:
-        mprf(MSGCH_GOD, "Your muscles tense, ready for explosive movement...");
+        mprf(MSGCH_GOD, "근육이 긴장하며 폭발적으로 움직일 준비를 한다...");
         you.attribute[ATTR_SERPENTS_LASH] = 2;
         you.redraw_status_lights = true;
         return spret::success;
@@ -4048,7 +4048,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
     case ABIL_IGNIS_RISING_FLAME:
         if (!_can_rising_flame(false))
             return spret::abort;
-        mpr("You begin to rise into the air.");
+        mpr("몸이 공중으로 떠오르기 시작한다.");
         // slightly faster than teleport
         you.set_duration(DUR_RISING_FLAME, 2 + random2(3));
         you.one_time_ability_used.set(GOD_IGNIS);
@@ -4103,7 +4103,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
     }
 #endif
     case ABIL_NON_ABILITY:
-        mpr("Sorry, you can't do that.");
+        mpr("미안하지만 그렇게 할 수 없어.");
         break;
 
     default:
