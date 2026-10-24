@@ -3060,7 +3060,7 @@ static spret _siphon_essence(bool fail)
         damage += dam;
         if (damage && mon->observable())
         {
-            simple_monster_message(*mon, " convulses!");
+            simple_monster_message(*mon, "이(가) 경련한다!");
             behaviour_event(mon, ME_ANNOY);
             seen = true;
         }
@@ -3498,7 +3498,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         return cast_summon_holy_warrior(you.skill(SK_INVOCATIONS, 4), fail);
 
     case ABIL_TSO_BLESS_WEAPON:
-        simple_god_message(" will bless one of your weapons.");
+        simple_god_message("이(가) 당신의 무기 하나를 축복할 것이다.");
         // included in default force_more_message
         if (!bless_weapon(GOD_SHINING_ONE, SPWPN_HOLY_WRATH, YELLOW))
             return spret::abort;
@@ -3515,7 +3515,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         break;
 
     case ABIL_KIKU_BLESS_WEAPON:
-        simple_god_message(" will bloody one of your weapons with pain.");
+        simple_god_message("이(가) 당신의 무기 하나에 고통의 힘을 부여할 것이다.");
         // included in default force_more_message
         if (!bless_weapon(GOD_KIKUBAAQUDGHA, SPWPN_PAIN, RED))
             return spret::abort;
@@ -3563,7 +3563,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         if (mons && you.can_see(*mons) && mons->is_illusion())
         {
             fail_check();
-            mprf("You attempt to bind %s soul, but %s is merely a clone!",
+            mprf("%s의 영혼을 묶으려 하지만, %s은(는) 그저 복제품일 뿐이다!",
                  mons->name(DESC_ITS).c_str(),
                  mons->pronoun(PRONOUN_SUBJECTIVE).c_str());
             // Still costs a turn to gain the information.
@@ -4056,7 +4056,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
     case ABIL_RENOUNCE_RELIGION:
         if (yesno("정말 신앙을 버리고 그 혜택도 모두 포기할까?",
                   false, 'n')
-            && yesno("Are you sure?", false, 'n'))
+            && yesno("정말 그렇게 할까?", false, 'n'))
         {
             excommunication(true);
         }
