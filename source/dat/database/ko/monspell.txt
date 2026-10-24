@@ -79,3 +79,39 @@ Grasping Roots natural cast
 
 @The_monster@이(가) @target@ 아래로 뿌리를 뻗는다!
 %%%%
+Harpoon Shot cast
+
+@The_monster@이(가) @target@에게 작살을 쏜다.
+%%%%
+Hellfire Court cast
+
+@The_monster@이(가) 자신의 하수인들을 불러낸다.
+%%%%
+Hellfire Mortar cast
+
+@The_monster@이(가) @target@에게 용암의 격류를 쏟아 낸다.
+%%%%
+Hoarfrost Bullet cast
+
+@The_monster@이(가) 얼음 파편을 연달아 쏘아 댄다.
+%%%%
+Hoarfrost Bullet cast finale
+
+@The_monster@이(가) 날카로운 굉음을 내며 마지막 얼음탄을 @target@에게 발사한다.
+%%%%
+Holy Flames cast
+
+@The_monster@이(가) 축복받은 불꽃을 불러낸다!
+%%%%
+unseen Holy Flames cast
+
+축복받은 불꽃이 피어오른다!
+%%%%
+Launch Bomblet cast
+
+@The_monster@이(가) 소형 폭탄을 발사한다.
+%%%%
+Major Destruction cast
+
+@The_monster@이(가) @possessive_God@의 이름으로 파괴의 힘을 불러낸다!
+%%%%
