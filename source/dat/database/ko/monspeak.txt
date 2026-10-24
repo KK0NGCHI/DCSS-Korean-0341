@@ -5503,3 +5503,44 @@ w:50
 @The_monster@이(가) 말해. "그렇게 돌고 뒤집지 말고 그냥 때리면 안 돼?"
 @The_monster@이(가) 말해. "저 늙은이들이 이래라저래라 하는 게 지겹지도 않아?"
 @The_monster@이(가) 말해. "무위가 길이라고? 헛소리 같아."
+%%%%
+friendly Yredelemnul Donald
+
+@_yredelemnul_Donald_@
+__NEXT
+%%%%
+_Grunn_rare_
+
+VISUAL:@the_monster_possessive@ 발톱 하나가 떨어져 나가.
+VISUAL:@The_monster@이(가) 털이 빠진 곳을 두드리며 한숨 쉬어.
+@The_monster@이(가) @_Grum_verb_@. "오늘 밤엔 개들과 함께 잔치를 벌이겠어…"
+@The_monster@이(가) @_Grum_verb_@. "더는 먹을 필요가 없지만 넌 예외로 하지."
+@The_monster@이(가) 물어. "@player_genus_plural@의 뼈는 어떻게 생겼지? 우리 개들이 궁금해 죽겠대." @player_only@
+@The_monster@이(가) 적을 바라보며 @_Grum_verb_@. "이제 이 무리의 약골을 처리할 때군."
+@The_monster@이(가) @_Grum_verb_@. "나와 @_Grum_dog_name_@이(가) 네 뼈로 공놀이할 거야!"
+@The_monster@이(가) 소리쳐. "더 빨리, @_Grum_dog_name_@! 물어! 물어!"
+@The_monster@이(가) 길고 슬픈 신음소리를 내.
+@The_monster@이(가) 말해. "영혼을 팔아도 그렇게 나쁘진 않아. 뭐, 어때?"
+@The_monster@이(가) 신음해. "추워… 너무 추워."
+%%%%
+_Natasha_death_common_
+
+@The_monster@이(가) @subjective@의 죽음과 함께 애처롭게 울부짖어!
+@The_monster@이(가) @subjective@의 죽음과 함께 분노에 차 비명을 질러!
+@The_monster@이(가) @subjective@의 죽음과 함께 고통에 차 비명을 질러!
+@The_monster@이(가) 고통스럽게 으르렁거려!
+%%%%
+_Natasha_death_rare_
+
+갑자기 @the_monster_possessive@ 영혼이 @possessive@ 생기 없는 몸에서 솟아올라.
+@the_monster_possessive@ 영혼이 애처롭게 신음하다 땅속으로 가라앉아.
+증오와 비탄으로 가득 찬 희미한 포효가 메아리쳐!
+%%%%
+_Xak'krixis_monster_thoughts_
+
+@The_monster@이(가) 생각에 잠겨. "점핑 스파이더처럼 자유롭게 뛰어오를 수 있다면…"
+@The_monster@이(가) 생각에 잠겨. "유령나방처럼 은밀하게 날 수 있다면…"
+@The_monster@이(가) 생각에 잠겨. "태양나방처럼 밝게 빛날 수 있다면…"
+@The_monster@이(가) 생각에 잠겨. "황제전갈처럼 단단할 수 있다면…"
+@The_monster@이(가) 생각에 잠겨. "분노나방처럼 격렬한 열정을 불러일으킬 수 있다면…"
+@The_monster@이(가) 투덜거려. "빌어먹을 파라오개미처럼 내 표본을 몽땅 망칠 수 있다면…"
