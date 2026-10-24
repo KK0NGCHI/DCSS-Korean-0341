@@ -107,3 +107,13 @@
 - [최종 GitHub Actions 데이터베이스 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40088380643) 성공: 누락 필수 치환 토큰, 무작위 표현 수, 지시 접두부, `w:` 가중치, 번역 키 중복 등 구조 오류 **0건**. 검사기와 회귀 테스트도 통과.
 - 세부 보고서: [몬스터 대사 번역 배치](../../docs/translation-review/monspeak-batch-20261024.md). 실제 Tiles 로그 표시, 이름 뒤 조사, Lua 대사 및 시각 표현은 추가 검증 필요.
 - 다음 검토 대상: 나머지 `monspeak.txt`의 515개 키(참조 별칭·빈 출력 혼합), `wpnnoise.txt`의 무기 소음, `godspeak.txt` 내 기존 한글·영어 혼합.
+
+## 2026-10-24 몬스터·무기 대사 추가 대량 번역
+
+- [PR #12](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/12) 병합: `23cd0ca`. `monspeak.txt` **44개 키·150개 문장 변형** 추가, `wpnnoise.txt` **신규 한국어 파일 18개 키·192개 문장/효과음 변형** 추가. 총 **62개 키·342개 변형**.
+- `monspeak.txt`: 원문 고유 키 731개 중 한국어 대응 260개(35.6%), 미대응 471개. 원문 중복 `_laughs_` 1건은 그대로 유지.
+- `wpnnoise.txt`: 원문 고유 키 65개 중 한국어 대응 18개(27.7%), 미대응 47개. 노래하는 검과 특수 유물, 자아가 있는 무기의 소리·대사를 번역.
+- 별도 한국어 DB 파일 합계 4개(`godname` 23, `monspell` 245, `monspeak` 260, `wpnnoise` 18): 대응 원문 키 **546개**.
+- [Korean gameplay database audit — 성공](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40090108540): 모든 번역 키/가중치/`@...@` 마커/`[선택지|...]`/`VISUAL:`·`SOUND:` 검사 통과. 무기 대사 전용 검사와 회귀 테스트를 추가.
+- 상세: [몬스터·무기 음성 배치 검증 문서](../../docs/translation-review/monspeak-wpnnoise-batch-20261024.md).
+- 이 수치는 **파일별 키 대응률**이지 전체 게임 한국어화율이 아니다. Windows Tiles 실사용, Lua 동적 문구, 조사 결합, 음성 문장 자연스러움은 별도 테스트가 필요하다.
