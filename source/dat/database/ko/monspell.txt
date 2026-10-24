@@ -714,3 +714,11 @@ golden eye cast targeted
 
 @The_monster@이(가) @target@에게 눈을 깜박인다.
 %%%%
+Electrical Bolt cast
+
+@The_monster@이(가) @target@에게 @beam@의 번개 줄기를 쏜다!
+%%%%
+Spit Lava cast
+
+@The_monster@이(가) @target@에게 용암을 뱉는다.
+%%%%

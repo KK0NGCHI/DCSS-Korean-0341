@@ -11,7 +11,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
-SEPARATOR = re.compile(r"^%%%%[ \t]*$", re.M)
+SEPARATOR = re.compile(r"^%%%%[^\r\n]*$", re.M)
 MARKER = re.compile(r"@([^@\n]+)@")
 ALT = re.compile(r"\[[^\[\]\n]*\|[^\[\]\n]*\]")
 OMITTABLE_GRAMMAR = {"at", "possessive", "reflexive", "arms", "subjective"}
@@ -94,7 +94,7 @@ def audit(original, localized):
         "limitations": [
             "Matching keys and tokens are not an evaluation of translation style.",
             "Korean particles and translated dynamic names need runtime verification.",
-            "The original source contains unusual five-percent separator lines.",
+            "The engine accepts five-percent delimiters by checking the first four percent signs.",
             "No localized entry is required for __NONE or untouched legacy text.",
         ],
     }
