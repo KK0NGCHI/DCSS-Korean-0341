@@ -117,3 +117,11 @@
 - [Korean gameplay database audit — 성공](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40090108540): 모든 번역 키/가중치/`@...@` 마커/`[선택지|...]`/`VISUAL:`·`SOUND:` 검사 통과. 무기 대사 전용 검사와 회귀 테스트를 추가.
 - 상세: [몬스터·무기 음성 배치 검증 문서](../../docs/translation-review/monspeak-wpnnoise-batch-20261024.md).
 - 이 수치는 **파일별 키 대응률**이지 전체 게임 한국어화율이 아니다. Windows Tiles 실사용, Lua 동적 문구, 조사 결합, 음성 문장 자연스러움은 별도 테스트가 필요하다.
+
+## 2026-10-24 실제 한국어 데이터 로더 런타임 검증 — 성공
+
+- [PR #13](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/13) 병합. [실행 결과](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40095478475): Linux 콘솔에서 실제 게임 실행 파일 빌드, `language=ko -builddb -reset-cache` 실행 및 캐시 검사가 모두 성공.
+- 공식 0.34.1 원본 아카이브의 SHA-256 확인 후 번역 C++ 파일 **11개**와 저장소의 **게임 대사 DB/설명 데이터 전체**를 합쳐 컴파일.
+- 게임 실행 파일이 생성한 `descriptions.ko.db`, `speak.ko.db`, `misc.ko.db`에서 한국어 UTF-8 본문 **3종**을 직접 확인. 검사값은 `대상에게 독침을 내뱉는다.`, `바람이 거세게 부는 소리가 들린다.`, `율법을 세우는 진`임.
+- **검증 범위의 한계:** 이 테스트는 한국어 데이터베이스를 실제 런타임에서 생성할 수 있음을 입증함. Windows Tiles 빌드, 게임 내 UI·전투 출력, 실제 글꼴 표시, 조사·변수 결합, 세이브 로드 정상성은 **여전히 미검증**.
+- 재검사 자동화: `.github/workflows/korean-runtime-smoke.yml`. GitHub Actions에서 수동 실행 또는 해당 소스·데이터 변경 PR로 다시 검사 가능.
