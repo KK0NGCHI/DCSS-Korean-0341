@@ -4065,3 +4065,54 @@ VISUAL:@The_monster@이(가) 짜증 난 얼굴을 해.
 @The_monster@이(가) 말해. "난 이 던전으로 은퇴했어. 넌 사후세계로 은퇴하고 싶나?"
 @The_monster@이(가) 소리쳐. "은퇴했다니까! 저리 가!"
 @The_monster@이(가) 소리쳐. "혼자 있게 내버려 둬!"
+%%%%
+_Vashnia_common_
+
+VISUAL:@The_monster@이(가) 수수께끼 같은 손짓을 하더니 상대를 가리켜.
+VISUAL:@The_monster@이(가) 적을 겨눠.
+VISUAL:@the_monster@의 주위 공간이 기묘하게 뒤틀리는 것 같아.
+VISUAL:@The_monster@이(가) 다음 공격을 계획하듯 @foe@을(를) 살펴봐.
+VISUAL:@The_monster@이(가) 부대를 노려보며 조용히 하라고 손짓해.
+%%%%
+_Vashnia_rare_
+
+@The_monster@이(가) 중얼거려. "눈 사이 정중앙에…"
+@The_monster@이(가) 말해. "넌 훌륭한 바늘꽂이가 되겠군."
+@The_monster@이(가) 말해. "잠깐 가만히 있어. 자꾸 움직이니 맞히기 어렵잖아."
+%%%%
+_Vashnia_naga_
+
+@The_monster@이(가) 말해. "넌 우리 종족의 배신자야!"
+@The_monster@이(가) 비웃어. "이단자!"
+@The_monster@이(가) 말해. "여왕께 충성을 맹세하면 살려 줄지도 모르지!"
+%%%%
+_Vashnia_nonnaga_
+
+@The_monster@이(가) 말해. "@foe_genus@을(를) 당장 물리쳐라!" @player_only@
+@The_monster@이(가) 말해. "침입자는 달갑지 않다!"
+@The_monster@이(가) 부대에 명령해. "@foe_genus@이(가) 도망치지 못하게 해라!"
+%%%%
+_Wiglaf_common_
+
+@The_monster@이(가) 말해. "마그마로 제대로 목욕시켜 주지!"
+@The_monster@이(가) 소리쳐. "조상님들의 수염을 걸고 맹세하지! 넌 아침 해를 못 볼 거야!"
+@The_monster@이(가) 말해. "찾으러 온 건 손에 넣었지만, 좋은 싸움은 그냥 못 지나치지!"
+@The_monster@이(가) 말해. "드워프의 물건을 멋대로 가져가선 안 되지!"
+@The_monster@이(가) 말해. "진심으로 때려 보라고, 이 얼간아!"
+@The_monster@이(가) 말해. "아이고, 이젠 네가 자초한 일이야."
+VISUAL:@The_monster@이(가) 모자의 주름을 펴.
+%%%%
+_Wiglaf_rare_
+
+@The_monster@이(가) 중얼거려. "그 조그만 코볼드 놈들이 대포에 대해 뭘 안다고."
+@The_monster@이(가) 으르렁거려. "실밥을 하나 뜯을 때마다 뼈 하나씩 갚아 주지."
+@The_monster@이(가) 웅얼거려. "그게 궁금하면 말해 주지. 우리 할머니가 꿰매 주셨어."
+@The_monster@이(가) 드워프 광부들의 뱃노래를 몇 마디 불러. 아주 서툴게.
+@The_monster@이(가) 말해. "이쪽 길로는 정말 오랜만이군. 장식을 싹 바꿨네."
+@The_monster@이(가) 말해. "요즘 오크들이 제법 맛있는 음식을 만든다던데."
+%%%%
+_Wiglaf_nondwarf_
+
+w:5
+@The_monster@이(가) 말해. "드워프의 포격술은 네가 당해 낼 수 없어."
+@The_monster@이(가) 말해. "드워프와 싸워 본 적도 없어?"
