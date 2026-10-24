@@ -3020,7 +3020,7 @@ void level_change(bool skip_attribute_increase)
             update_screen();
 
             if (new_exp == 27)
-                mprf(MSGCH_INTRINSIC_GAIN, "You have reached level 27, the final one!");
+                mprf(MSGCH_INTRINSIC_GAIN, "마지막 단계인 27레벨에 도달했어!");
             else if (new_exp == you.get_max_xl())
                 mprf(MSGCH_INTRINSIC_GAIN, "You have reached level %d, the highest you will ever reach!",
                         you.get_max_xl());
