@@ -537,9 +537,9 @@ static void _enter_water(dungeon_feature_type old_feat,
     if (!stepped)
     {
         if (you.can_swim())
-            noisy(4, you.pos(), "Floosh!");
+            noisy(4, you.pos(), "철벅!");
         else
-            noisy(8, you.pos(), "Splash!");
+            noisy(8, you.pos(), "첨벙!");
     }
 
     // Merfolk special-case most relevant messages.
@@ -551,12 +551,12 @@ static void _enter_water(dungeon_feature_type old_feat,
         return;
 
     if (new_grid == DNGN_TOXIC_BOG)
-        mprf("You %s the toxic bog.", stepped ? "enter" : "fall into");
+        mprf("독성 늪에 %s.", stepped ? "들어갔다" : "빠졌다");
     else
     {
-        mprf("You %s the %s water.",
-             stepped ? "enter" : "fall into",
-             new_grid == DNGN_SHALLOW_WATER ? "shallow" : "deep");
+        mprf("%s 물에 %s.",
+             new_grid == DNGN_SHALLOW_WATER ? "얕은" : "깊은",
+             stepped ? "들어갔다" : "빠졌다");
     }
 
     if (you.slow_in_water())
@@ -3107,10 +3107,10 @@ void level_change(bool skip_attribute_increase)
                         const int newapt = species_apt(sk, you.species);
                         if (oldapt != newapt)
                         {
-                            mprf(MSGCH_INTRINSIC_GAIN, "You learn %s %s%s.",
+                            mprf(MSGCH_INTRINSIC_GAIN, "이제 %s 스킬을 %s%s 배우게 된다.",
                                  skill_name(sk),
-                                 abs(oldapt - newapt) > 1 ? "much " : "",
-                                 oldapt > newapt ? "slower" : "quicker");
+                                 abs(oldapt - newapt) > 1 ? "훨씬 " : "",
+                                 oldapt > newapt ? "느리게" : "빠르게");
                         }
 
                         you.skills[sk] = saved_skills[sk];
