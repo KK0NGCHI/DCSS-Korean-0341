@@ -2,7 +2,7 @@
 %%%%
 imp_taunt
 
-@run_or_give_up@, 이 @generic_insult@ 녀석아!
+@run_or_give_up@, 이 @generic_insult@!
 %%%%
 demon_taunt_special
 
@@ -1158,11 +1158,11 @@ demon_taunt
 
 w:1
 
-@run_away@, 이 @generic_insult@ 녀석아!
+@run_away@, 이 @generic_insult@!
 
 w:2
 
-@give_up@, 이 @generic_insult@ 녀석아!
+@give_up@, 이 @generic_insult@!
 
 w:3
 
