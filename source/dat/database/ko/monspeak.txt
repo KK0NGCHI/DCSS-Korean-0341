@@ -3564,3 +3564,658 @@ VISUAL:@The_monster@이(가) 너에게 무례한 손짓을 해. @player_only@
 VISUAL:@The_monster@이(가) 번쩍이는 송곳니를 드러내며 웃어.
 VISUAL:@The_monster@이(가) 목덜미를 드러내는 시늉을 해.
 VISUAL:@The_monster@이(가) 소리 없이 쉭쉭거려.
+%%%%
+kobold blastminer
+
+VISUAL:@The_monster@이(가) 대포를 감싼 옅은 연기를 손으로 휘저어 쫓아내.
+VISUAL:@The_monster_possessive@ 대포가 흔들리며 붉은빛을 뿜어.
+w:20
+__NONE
+%%%%
+Killer Klown
+
+@_Killer_Klown_common_@
+w:5
+@_Killer_Klown_rare_@
+%%%%
+_Killer_Klown_common_
+
+@The_monster@이(가) 미친 듯이 낄낄거려.
+@The_monster@이(가) 즐겁게 웃어.
+VISUAL:@The_monster@이(가) @foe@에게 이리 오라고 손짓해.
+VISUAL:@The_monster@이(가) 공중제비를 돌아.
+VISUAL:@The_monster@이(가) 재주넘기를 해.
+VISUAL:@The_monster@이(가) @foe@에게 미소 지어.
+VISUAL:@The_monster@이(가) 걱정 하나 없는 듯 환하게 웃어.
+VISUAL:@The_monster@이(가) 모자에서 횃불 10개를 꺼내 저글링을 시작해.
+VISUAL:@The_monster@이(가) 상대에게 물을 뿌려.
+@The_monster@이(가) 전투의 열기에 휩싸여 울부짖어!
+%%%%
+_Killer_Klown_rare_
+
+@The_monster@이(가) 빵빵 소리를 내.
+VISUAL:@The_monster@이(가) @foe_possessive@ 마지막 순간을 몸짓으로 연기해.
+VISUAL:@The_monster@이(가) 혀를 쑥 내밀어.
+VISUAL:@The_monster@이(가) 머리를 4개 더 자라나게 하더니 떼어 내서 저글링해!
+VISUAL:@The_monster@이(가) 잠시 깡충깡충 뛰어.
+@The_monster@이(가) 말해. "나랑 놀자!"
+@The_monster@이(가) 말해. "날 믿어. 난 의사라고."
+%%%%
+protean progenitor
+
+VISUAL:@The_monster_possessive@ 형체가 깊은 피로 탓에 [잠시 |][일렁여|흔들려].
+VISUAL:@The_monster_possessive@ [겹겹이 포개진 눈 3개|송곳니가 달린 눈 6개|연기를 내뿜는 눈 9개]가 느리게 깜박여.
+VISUAL:@The_monster@이(가) [번쩍이고|파직거리며], [한숨 쉬고|투덜거린] 뒤 [손짓해|발을 굴러].
+VISUAL:@The_monster@이(가) 숨겨 둔 [더듬이|실젖|위족]을 펼쳤다 오므려.
+w:20
+__NONE
+%%%%
+silenced silent spectre
+
+VISUAL:@The_monster@이(가) 너에게 조용히 하라는 손짓을 해.
+VISUAL:@The_monster@이(가) 바람에 날리는 듯 흔들려.
+VISUAL:@The_monster@이(가) 유령 같은 눈으로 너를 노려봐.
+VISUAL:@The_monster@이(가) 나타났다 사라지기를 반복해.
+VISUAL:@The_monster@이(가) 어둠 속에서 깜박이다 사라져.
+VISUAL:@The_monster@이(가) 천천히 너를 향해 웃어.
+%%%%
+_good_god_
+
+진
+빛나는 자
+엘리빌론
+%%%%
+cherub
+
+@The_monster@이(가) 4성부 화음으로 빛나는 자를 찬양해.
+@The_monster_possessive@ 사자 머리가 포효해!
+@The_monster_possessive@ 독수리 머리가 날카롭게 울어!
+@The_monster@이(가) 진을 찬양하는 노래를 불러.
+@The_monster@이(가) 엘리빌론을 찬양하는 노래를 불러.
+%%%%
+zin angel
+
+w:40
+@The_monster@이(가) @_axioms_of_law_@을(를) 낭송해.
+@The_monster@이(가) @_recite_subject_@에 관해 @_recite_what_@.
+@The_monster@이(가) @_recite_subject_@에 관해 설교해.
+@The_monster@이(가) @_recites_start_@. @_lecture_modifier_@ 강연의 주제는 @_recite_subject_@.
+@The_monster@이(가) @_recite_subject_@을(를) 자세하게 설명해.
+@The_monster@이(가) @_important_subject_@의 중요성을 설명해.
+@The_monster@이(가) @_recites_start_@. @_lecture_modifier_@ 설교의 주제는 @_recite_subject_@.
+@The_monster@이(가) @_recites_start_@. @_lecture_modifier_@ 연설의 주제는 @_recite_subject_@.
+w:5
+@The_monster@이(가) @_recite_subject_@에 관해 이야기해.
+%%%%
+_recites_start_
+
+운을 떼
+말문을 열어
+이야기를 시작해
+%%%%
+_recite_what_
+
+시를 읊어
+성스러운 경전을 인용해
+진의 가르침을 전해
+낭랑한 목소리로 설파해
+큰 소리로 외쳐
+%%%%
+_lecture_modifier_
+
+장황한
+열정적인
+정의로운
+엄격한
+%%%%
+_axioms_of_law_
+
+진의 율법 원칙
+율법의 원칙
+율법서
+진의 신성한 율법
+%%%%
+_important_subject_
+
+w:50
+@_axioms_of_law_@
+영원한 율법
+율법에 대한 복종
+유일하고 참된 길
+몸과 마음의 순결
+육체의 온전함을 지키는 일
+몸을 깨끗하고 순결하게 유지하는 일
+육체와 영혼의 올바른 돌봄
+돌연변이를 피하는 법
+돌연변이를 단호하게 거부하는 법
+올바른 장례법
+악마와 거래하지 않는 법
+악마의 봉사를 거절하는 법
+[부적|장신구]를 통해 육체를 변화시키지 않는 법
+모든 [부적|장신구]를 멀리하는 법
+%%%%
+_recite_subject_
+
+w:120
+@_important_subject_@
+w:80
+@_axioms_of_law_@
+율법과 예언자들
+율법의 중요성
+돌연변이를 피하는 방법
+돌연변이 물약이라는 악마의 음료
+네콕세크와 지크직슬의 소멸을 기원하는 일
+지성 있는 생명을 존중하는 식생활
+강령술의 악행
+도박의 무법성
+언데드가 사악한 이유
+이레데렘눌의 몰락
+루고누에 대한 규탄
+진과 빛나는 자의 동맹
+진과 엘리빌론의 동맹
+@random_god_chaotic@의 무질서
+@random_god_evil@의 사악함
+@random_god_good@의 선함
+%%%%
+confused zin angel
+
+@The_monster@이(가) 앞뒤 맞지 않는 말을 늘어놓아.
+@The_monster@이(가) 땅을 상대로 @_important_subject_@에 관한 긴 강의를 늘어놓아.
+@The_monster@이(가) 자기 발을 상대로 @_important_subject_@에 관한 긴 강의를 늘어놓아.
+VISUAL:@The_monster@이(가) 잠시 허공을 멍하니 바라봐.
+%%%%
+silenced zin angel
+
+VISUAL:@The_monster@이(가) 적을 향해 미친 듯이 손짓해.
+VISUAL:@The_monster@이(가) 분노에 차 하늘을 올려다봐.
+VISUAL:@The_monster@이(가) 사방으로 격렬하게 손짓해.
+VISUAL:@The_monster@이(가) 정의로운 분노로 얼굴을 찌푸려.
+%%%%
+spectator
+
+@_spectator_speech_@
+w:70
+__NONE
+%%%%
+_spectator_speech_
+
+@The_monster@이(가) 너를 향해 @_loudly_or_repeatedly_@ 야유해.
+@The_monster@이(가) @_loudly_or_repeatedly_@ 환호해.
+@The_monster@이(가) 찬성한다며 @_shouts_@.
+@The_monster@이(가) 다른 관전자에게 @_mutters_@.
+VISUAL:@The_monster@이(가) 신나게 손을 흔들어.
+w:5
+VISUAL:@The_monster@이(가) 네 이름이 적힌 깃발을 흔들어.
+w:5
+VISUAL:@The_monster@이(가) 네 적을 응원하는 깃발을 흔들어!
+w:5
+VISUAL:횃불빛에 @The_monster_possessive@ 갑옷이 반짝여.
+w:1
+VISUAL:오카와루의 선택을 받은 @The_monster@이(가) 찬란한 축복의 빛을 발해.
+%%%%
+_deck_of_oddities_card_
+
+거래
+저주
+기근
+집중
+연회
+지니
+나선
+좀
+%%%%
+_misplaced_card_
+
+스페이드 에이스
+조커
+올드 메이드
+매달린 사람
+행복한 다람쥐
+와일드 드로 포
+%%%%
+_deck_of_destruction_line_
+
+@The_monster@이(가) 퇴화 카드를 뽑아. "변이를 일으키는 방법이 이렇게 많다니!"
+@The_monster@이(가) 파괴의 구체 카드를 뽑아. "파괴의 구체는 아프지!"
+@The_monster@이(가) 고통 카드를 뽑아. "강령술은 아프다고!"
+@The_monster@이(가) 폭풍 카드를 뽑아. "천둥 번개가 사방에!"
+@The_monster@이(가) 부식 카드를 뽑아. "산은 아프지!"
+@The_monster@이(가) 폭주 마법 카드를 뽑아. "마법이 잘못될 방법이 이렇게나 많다니!"
+%%%%
+_deck_of_escape_line_
+
+@The_monster@이(가) 구름 카드를 뽑아. "적에게 신선한 공기는 없어!"
+@The_monster@이(가) 영약 카드를 뽑아. "치유와 마법이라니, 신난다!"
+@The_monster@이(가) 추방 카드를 뽑아. "심연은 끔찍한 곳이야!"
+@The_monster@이(가) 무덤 카드를 뽑아. "창문 없는 곳에 갇히긴 싫어!"
+@The_monster@이(가) 속도 카드를 뽑아. "물러설 때와 달릴 때를 구분해야지."
+%%%%
+_deck_of_summoning_line_
+
+@The_monster@이(가) 춤 카드를 뽑아. "무기가 정확히 맞혀 주면 좋겠네!"
+@The_monster@이(가) 원소 카드를 뽑아. "원소 짐승들이 사방에!"
+@The_monster@이(가) 환영 카드를 뽑아. "이제 나도 쌍둥이가 생겼어!"
+@The_monster@이(가) 오망성 카드를 뽑아. "친절한 악마가 나왔으면!"
+@The_monster@이(가) 사수들 카드를 뽑아. "활 쏘는 친구들이 생겼어!"
+@The_monster@이(가) 무리 카드를 뽑아. "벌이다, 벌이 사방에!"
+%%%%
+_deck_of_punishment_line_
+
+@The_monster@이(가) 돼지 카드를 뽑아. "이젠 내가 돼지네!"
+@The_monster@이(가) 고문 카드를 뽑아. "생명력이 반이나 없어졌다고? 으악!"
+@The_monster@이(가) 망령 카드를 뽑아. "기력을 빼앗기는 건 아프지!"
+@The_monster@이(가) 진노 카드를 뽑아. "신들이 벌주는 방법도 참 많다니까!"
+%%%%
+Nobody
+
+@The_monster@이(가) 쉰 목소리로 말해. "말해 다오… 우리가… 누구인지…"
+@The_monster@이(가) 으르렁거려. "우리의… 이름을… 돌려줘!"
+@The_monster@이(가) 쉰 목소리로 말해. "우리는… 기억될 거야!"
+@The_monster@이(가) 중얼거려. "왜… 기억이 안 나는 거지…?"
+@The_monster@이(가) 쉰 목소리로 말해. "한때 우리는… 수없이 많았는데…"
+@The_monster@이(가) 쉰 목소리로 말해. "불꽃이… 자꾸 꺼져 가…"
+w:50
+__NONE
+%%%%
+nobody_recollection fire
+
+끔찍한 가뭄
+목말라 죽어 가던 기억
+불타던 들판
+사방에… 연기
+%%%%
+nobody_recollection cold
+
+끝나지 않는 겨울
+추위에 떨던 기억
+얼어붙는… 손가락
+핏줄 속의 얼음
+%%%%
+nobody_recollection xxx
+
+빼앗기던 우리의 살
+끔찍한 실험
+무시무시한 죄
+%%%%
+nobody_recollection undead
+
+무덤
+우리를 아래로 끌어당기던 손
+죽은 자들의 울부짖음
+%%%%
+nobody_recollection soldiers
+
+부딪히는… 강철
+밀물처럼 몰려오던 군대
+철과 연기
+피와 불
+%%%%
+nobody_recollection rockslide
+
+우리를 짓누르던 산의 무게
+천둥처럼 쏟아지던 낙석
+바위 아래 부서지던 뼈
+%%%%
+nobody_recollection electricity
+
+끔찍한 마비
+멈춰 버린 우리의 심장
+갈라지는 하늘
+%%%%
+nobody_recollection poison
+
+녹아내리는… 우리의 살
+병독의 강물
+독에 오염된… 우물
+%%%%
+nobody_recollection fear
+
+달리다가… 넘어지던 기억
+공포에 질려 웅크리던 기억
+%%%%
+nobody_recollection vermin
+
+전염병과 역병
+쥐에게 뜯어 먹히던 기억
+기근
+%%%%
+nobody_recollection demons
+
+어둠의 마법
+악마들의 웃음
+고문과 저주
+%%%%
+alderking
+
+VISUAL:@The_monster@이(가) 보이지 않는 바람에 몸을 흔들며 손짓해.
+VISUAL:@The_monster_possessive@ 잎사귀가 빛을 내며 거품처럼 일렁여.
+@The_monster@이(가) 말해. "[춤출|고개 숙일] 생각이 없다면 나가 주시지." @player_only@
+w:20
+__NONE
+%%%%
+_Bennu_death_
+
+VISUAL:@The_monster@이(가) 불꽃이 폭발하는 가운데 새롭게 되살아나!
+%%%%
+brain worm
+
+VISUAL:@The_monster@이(가) 훔쳐 온 [복잡한|알 수 없는] 수식을 바닥에 뚝뚝 흘려.
+VISUAL:@The_monster@이(가) 잠시 머나먼 [별|땅|왕국]의 낯선 기억에 사로잡혀.
+VISUAL:@The_monster@이(가) 훔쳐 온 [날개|집게발|지느러미]의 본능으로 길쭉한 몸을 꿈틀거려.
+%%%%
+Sewer brain worm
+
+w:30
+@brain worm@
+VISUAL:@The_monster@이(가) 웅덩이에 비친 자기 모습을 [어리둥절하게|멍하니] 바라봐.
+%%%%
+bullfrog
+
+@The_monster@이(가) 몸을 부풀려.
+@The_monster@이(가) 낮고 굵은 울음소리를 내.
+@The_monster@이(가) 혀로 근처의 @_frog_food_@을(를) 낚아채.
+%%%%
+chaos spawn
+
+VISUAL:@The_monster@이(가) @foe@을(를) 자세히 보려는 듯 눈자루 수십 개를 만들어 내.
+VISUAL:@The_monster@이(가) 여러 색의 빛덩이로 흩어졌다가 다시 합쳐져.
+VISUAL:@The_monster@이(가) 잠시 네 얼굴과 섬뜩할 정도로 비슷한 얼굴을 만들어 내.
+@The_monster@이(가) 수많은 입으로 등골 서늘한 울음소리를 내.
+@The_monster@이(가) 여러 목소리를 한데 섞어 알아들을 수 없는 말을 지껄여.
+%%%%
+catoblepas
+
+@The_monster@이(가) 눈을 내리깔고 사납게 포효해.
+@The_monster@이(가) 바닥을 쾅쾅 밟아.
+VISUAL:@The_monster@이(가) 발로 바닥을 세차게 내려찍어.
+VISUAL:@The_monster@이(가) 머리로 바닥을 세차게 들이받아.
+@The_monster@이(가) 숨을 들이마셔.
+@The_monster@이(가) 도전하듯 콧김을 뿜어.
+%%%%
+cognitogaunt
+
+VISUAL:@The_monster@이(가) 오래전에 죽어 버린 밤의 백열광으로 빛나.
+w:20
+@The_monster@이(가) 별들이 아직 올바른 자리에 놓이지 않았다며 끊임없이 투덜거려.
+@The_monster@이(가) 필멸자의 별자리가 얼마나 어리석은지 중얼거려.
+@The_monster@이(가) 지금 하늘의 상태를 두고 불길한 소문을 속삭여.
+@The_monster@이(가) 필멸자에게 육체란 낭비라고 생각해.
+@The_monster@이(가) 필멸자의 마음이 얼마나 얄팍한지 혼자 감탄해.
+@The_monster@이(가) 다음 별들의 회합에서 다룰 안건들을 조롱해.
+w:1
+@The_monster@이(가) 초신성 문제의 해법을 찾지 못해 답답한 듯 몸부림쳐.
+@The_monster@이(가) 별들은 별들 외에는 누구의 것도 아니라며 으르렁거려.
+@The_monster@이(가) 자신의 몸이 부패와 별빛으로 이루어져 있다며 불평해.
+@The_monster@이(가) 살아 있는 자들에게 생명이 낭비되고 있다며 투덜거려.
+%%%%
+_Boris_common_
+
+VISUAL:@The_monster@이(가) 상대를 노려봐.
+@_wizard_common_spell_@
+@_fake_spell_effect_@
+%%%%
+_Boris_medium_
+
+@The_monster@이(가) 웃어.
+@The_monster@이(가) 말해. "넌 내 힘을 상상조차 못 해."
+@The_monster@이(가) 말해. "오브를 원한다고? 넌 절대로 얻지 못해." @player_only@
+@The_monster@이(가) 메아리치는 목소리로 자랑해. "내 힘에는 한계가 없어."
+@The_monster@이(가) 단언해. "필멸자들은 누구나 무너지는 방식만 다를 뿐이지."
+@The_monster@이(가) 말해. "아무리 해도 날 진정으로 끝장낼 순 없어."
+@The_monster@이(가) 말해. "영생의 비밀을 알고 있어. 너도 알고 있나?"
+@The_monster@이(가) 말해. "네 미래를 알아. 네 미래는 죽음이지."
+@The_monster@이(가) 말해. "누가 영원히 살고 싶겠어? 바로 나지."
+@The_monster@이(가) 말해. "너희에게 남은 해결책은 하나뿐이야. 죽는 거지."
+@The_monster@이(가) 말해. "넌 절대로 이기지 못해."
+%%%%
+_Boris_rare_
+
+@The_monster@이(가) 말해. "널 초대한 적은 없는데."
+@The_monster@이(가) 말해. "세상과 육신과 악마라."
+@The_monster@이(가) 말해. "선악 따위 없어. 힘과 의지만 있을 뿐."
+@The_monster@이(가) 말해. "너희는 모두 죽음의 맛을 잊었군."
+@The_monster@이(가) 단언해. "시간이나 죽음처럼 하찮은 힘에는 관심 없어."
+@The_monster@이(가) 말해. "마법이라. 넌 아무것도 몰라."
+@The_monster@이(가) 말해. "쓰러지고 굴복한 자들로 이루어진 내 군단에 합류해."
+%%%%
+_Boris_return_common_
+
+@The_monster@이(가) 말해. "내가 마지막인 줄 알지 마!"
+@The_monster@이(가) 말해. "다음번에는 너를 잡겠어!"
+@The_monster@이(가) 말해. "아직 끝난 게 아니야!"
+@The_monster@이(가) 말해. "난 돌아올 거야!"
+@The_monster@이(가) 말해. "끝이 아니라 이제 시작이야!"
+%%%%
+_Boris_return_rare_
+
+@The_monster@이(가) 말해. "날 죽인다고? 어림도 없지!"
+@The_monster@이(가) 말해. "그렇게 쉽게 날 꺾을 순 없어!"
+@The_monster@이(가) 말해. "우린 다시 만날 거야!"
+w:5
+@The_monster@이(가) 물어. "내가 죽을 것처럼 보여?"
+%%%%
+_Sojobo_common_
+
+VISUAL:@The_monster@이(가) 검술 자세를 취해.
+@The_monster@이(가) 부하들에게 호령해.
+VISUAL:@The_monster@이(가) 악마처럼 씨익 웃어.
+@the_monster@의 주위 공기가 잠시 파직거려.
+VISUAL:@the_monster_possessive@ 발톱에서 불꽃이 잠깐 튀어.
+%%%%
+_Sojobo_rare_
+
+@The_monster@이(가) 말해. "이 싸움은 도전 축에도 못 끼는군!"
+@The_monster@이(가) 호통쳐. "자세가 형편없어!"
+@The_monster@이(가) 비웃어. "네 전략에는 허점이 1,001개나 있어!"
+w:2
+@The_monster@이(가) 말해. "청천벽력처럼 네게 최후를 안겨 주지."
+%%%%
+_Sojobo_advice_
+
+@The_monster@이(가) 말해. "강할 때는 약하게 보이고, 약할 때는 강하게 보여라."
+@The_monster@이(가) 말해. "적을 알고 나를 알아야 한다."
+@The_monster@이(가) 말해. "계획은 밤처럼 어둡고 꿰뚫어 볼 수 없어야 한다."
+@The_monster@이(가) 말해. "모든 전쟁의 바탕에는 기만이 있다."
+@The_monster@이(가) 말해. "현명한 장수는 불필요한 전투를 피한다."
+@The_monster@이(가) 말해. "비결은 적을 혼란에 빠뜨리는 데 있다."
+@The_monster@이(가) 말해. "강한 곳을 피하고 약한 곳을 쳐라."
+@The_monster@이(가) 말해. "공격이야말로 최고의 방어다."
+@The_monster@이(가) 말해. "전투의 달인은 적을 움직이게 하지만 적에게 휘둘리지 않는다."
+@The_monster@이(가) 말해. "적이 예상하지 못한 곳에 나타나라."
+@The_monster@이(가) 말해. "행동에 앞서 신중하게 생각하고 숙고하라."
+%%%%
+_Sigmund_common_
+
+w:20
+@The_monster@이(가) 음산하게 웃어.
+VISUAL:@The_monster@이(가) 분노에 차 너를 노려봐.
+@The_monster@이(가) 실체가 없는 듯 깜박거려.
+@The_monster@이(가) 말해. "너 같은 자들이 이전에도 왔지. 이제 이유를 알겠어. 죽음을 바라서군…"
+@The_monster@이(가) 말해. "보이다가, 이젠 안 보이지…"
+@The_monster@이(가) 말해. "걱정 마. 금방 끝내 줄게."
+@The_monster@이(가) 말해. "곧 모든 걸 잊게 될 거야."
+@The_monster@이(가) 말해. "내 눈을 들여다봐."
+@The_monster@이(가) 말해. "내가 네 운명이야."
+@The_monster@이(가) 비명을 질러. "죽어라, 괴물아!"
+@The_monster@이(가) 비명을 질러. "저항할 생각 마!"
+@The_monster@이(가) 낄낄거려. "뿌린 대로 거둘 때야."
+VISUAL:@The_monster_possessive@ 눈이 붉게 빛나기 시작해.
+@The_monster@이(가) 몇 마디 말을 내뱉어.
+VISUAL:@The_monster_possessive@ 손이 미친 듯이 깜박거리기 시작해.
+VISUAL:@The_monster@이(가) 갑자기 창백한 @_spell_colour_@ 빛에 감싸여.
+%%%%
+_Sigmund_rare_
+
+@The_monster@이(가) @foe,@에게 물어. "내가 마음에 들어?"
+@The_monster@이(가) 비명을 질러. "넌 절대… 절대로!!!"
+@The_monster@이(가) 비명을 질러. "나는 조트의 천사다!!!"
+@The_monster@이(가) 비명을 질러. "오직 죽음만이 너를 해방하리라!"
+@The_monster@이(가) 속삭여. "곧 영원을 알게 될 거야."
+VISUAL:@The_monster@이(가) 섬뜩한 미소를 지어.
+%%%%
+_Terence_common_
+
+VISUAL:@The_monster@이(가) @foe@을(를) 경멸스럽게 바라봐.
+VISUAL:@The_monster@이(가) 이를 드러내.
+VISUAL:@The_monster@이(가) 짜증 난 얼굴을 해.
+@The_monster@이(가) 소리쳐. "난 강한 코끼리 기수들과 싸워 봤어! 넌 강하지도 않잖아!"
+@The_monster@이(가) @foe@을(를) 위아래로 훑어봐. "넌 진짜 전사가 아니야! 진짜 전사가 뭔지 보여 주지!"
+@The_monster@이(가) 말해. "아르마타우르 군단을 모조리 죽음으로 보냈지. 코끼리까지 전부."
+@The_monster@이(가) 소리쳐. "난 아르마타우르들이 싫어! 그놈들은 명예도 몰라!"
+@The_monster@이(가) 말해. "난 이 던전으로 은퇴했어. 넌 사후세계로 은퇴하고 싶나?"
+@The_monster@이(가) 소리쳐. "은퇴했다니까! 저리 가!"
+@The_monster@이(가) 소리쳐. "혼자 있게 내버려 둬!"
+%%%%
+_Vashnia_common_
+
+VISUAL:@The_monster@이(가) 수수께끼 같은 손짓을 하더니 상대를 가리켜.
+VISUAL:@The_monster@이(가) 적을 겨눠.
+VISUAL:@the_monster@의 주위 공간이 기묘하게 뒤틀리는 것 같아.
+VISUAL:@The_monster@이(가) 다음 공격을 계획하듯 @foe@을(를) 살펴봐.
+VISUAL:@The_monster@이(가) 부대를 노려보며 조용히 하라고 손짓해.
+%%%%
+_Vashnia_rare_
+
+@The_monster@이(가) 중얼거려. "눈 사이 정중앙에…"
+@The_monster@이(가) 말해. "넌 훌륭한 바늘꽂이가 되겠군."
+@The_monster@이(가) 말해. "잠깐 가만히 있어. 자꾸 움직이니 맞히기 어렵잖아."
+%%%%
+_Vashnia_naga_
+
+@The_monster@이(가) 말해. "넌 우리 종족의 배신자야!"
+@The_monster@이(가) 비웃어. "이단자!"
+@The_monster@이(가) 말해. "여왕께 충성을 맹세하면 살려 줄지도 모르지!"
+%%%%
+_Vashnia_nonnaga_
+
+@The_monster@이(가) 말해. "@foe_genus@을(를) 당장 물리쳐라!" @player_only@
+@The_monster@이(가) 말해. "침입자는 달갑지 않다!"
+@The_monster@이(가) 부대에 명령해. "@foe_genus@이(가) 도망치지 못하게 해라!"
+%%%%
+_Wiglaf_common_
+
+@The_monster@이(가) 말해. "마그마로 제대로 목욕시켜 주지!"
+@The_monster@이(가) 소리쳐. "조상님들의 수염을 걸고 맹세하지! 넌 아침 해를 못 볼 거야!"
+@The_monster@이(가) 말해. "찾으러 온 건 손에 넣었지만, 좋은 싸움은 그냥 못 지나치지!"
+@The_monster@이(가) 말해. "드워프의 물건을 멋대로 가져가선 안 되지!"
+@The_monster@이(가) 말해. "진심으로 때려 보라고, 이 얼간아!"
+@The_monster@이(가) 말해. "아이고, 이젠 네가 자초한 일이야."
+VISUAL:@The_monster@이(가) 모자의 주름을 펴.
+%%%%
+_Wiglaf_rare_
+
+@The_monster@이(가) 중얼거려. "그 조그만 코볼드 놈들이 대포에 대해 뭘 안다고."
+@The_monster@이(가) 으르렁거려. "실밥을 하나 뜯을 때마다 뼈 하나씩 갚아 주지."
+@The_monster@이(가) 웅얼거려. "그게 궁금하면 말해 주지. 우리 할머니가 꿰매 주셨어."
+@The_monster@이(가) 드워프 광부들의 뱃노래를 몇 마디 불러. 아주 서툴게.
+@The_monster@이(가) 말해. "이쪽 길로는 정말 오랜만이군. 장식을 싹 바꿨네."
+@The_monster@이(가) 말해. "요즘 오크들이 제법 맛있는 음식을 만든다던데."
+%%%%
+_Wiglaf_nondwarf_
+
+w:5
+@The_monster@이(가) 말해. "드워프의 포격술은 네가 당해 낼 수 없어."
+@The_monster@이(가) 말해. "드워프와 싸워 본 적도 없어?"
+%%%%
+_spell_colour_
+
+붉은
+푸른
+초록색
+%%%%
+_Margery_spell_results_
+
+VISUAL:@The_monster@이(가) 강력한 기운에 감싸여.
+VISUAL:@The_monster@이(가) 잠시 투명해져.
+VISUAL:@The_monster_possessive@ 손이 빛나기 시작해.
+%%%%
+_Margery_common_
+
+VISUAL:@The_monster@이(가) 손짓해.
+@_Margery_spell_results_@
+VISUAL:@The_monster_possessive@ 눈이 @_spell_colour_@ 빛으로 빛나기 시작해.
+VISUAL:@The_monster@이(가) 손짓해.
+VISUAL:너는 [저주받은|파멸을 앞둔] 기분이 들어.
+w:5
+VISUAL:@The_monster@이(가) 너를 향해 보라색 가루를 뿌려.
+@The_monster@이(가) 말해. "물러서라!"
+@The_monster@이(가) 비명을 질러. "벌을 받아야 해!"
+@The_monster@이(가) 비명을 질러. "넌 내 힘을 견디지 못할 거야!"
+@The_monster@이(가) 비명을 질러. "침입자는 모두 사라져야 해!"
+%%%%
+_Margery_rare_
+
+@The_monster@이(가) 소리쳐. "에르기찬테그 레즈타하우!"
+VISUAL:@The_monster@이(가) 자신감에 넘쳐 보여.
+@The_monster@이(가) 말해. "넌 이미 끝났어."
+@The_monster@이(가) 비명을 질러. "날 지나쳐야 할걸!"
+@The_monster@이(가) 비명을 질러. "너는 파멸할 거야!"
+@The_monster@이(가) 비명을 질러. "아무것도 널 도울 수 없어."
+@The_monster@이(가) 비명을 질러. "내 별명은 죽음이야!"
+@The_monster@이(가) 비명을 질러. "셀 수도 없이 많은 드래곤을 쓰러뜨렸어!"
+@The_monster@이(가) 소리쳐. "오브는 전설일 뿐이지만 널 그냥 보내진 않겠어!" @player_only@
+%%%%
+_Ijyb_rare_
+
+@The_monster@이(가) 소리쳐. "발전 방해하지 마!"
+@The_monster@이(가) 소리쳐. "나 신 흉내 낸다!"
+@The_monster@이(가) 소리쳐. "다들 나 미쳤대!"
+w:5
+@The_monster@이(가) 소리쳐. "마법봉보다 똑똑한 놈 아직 못 봤다!"
+@The_monster@이(가) 소리쳐. "나 너 싫다!"
+%%%%
+_Grum_verb_
+
+으르렁거려
+험악하게 으르렁거려
+끙끙거려
+컹컹 짖어
+%%%%
+_Grum_dog_name_
+
+바우저
+쿠조
+듀크
+파이도
+플러피
+주니어
+킹
+레이디
+플루토
+렉스
+로버
+스파키
+스팟
+스파이크
+%%%%
+_Grum_common_
+
+VISUAL:@The_monster@이(가) 이를 드러내.
+@The_monster@이(가) @_Grum_verb_@.
+@The_monster@이(가) 적을 뚫어지게 노려보며 @_Grum_verb_@.
+@The_monster@이(가) 위협적인 울음소리를 내.
+VISUAL:@The_monster@이(가) 허공의 냄새를 맡고 재빨리 주위를 둘러봐.
+@The_monster@이(가) 적을 손가락으로 가리키며 @_Grum_verb_@. "공격!"
+@The_monster@이(가) 적을 손가락으로 가리키며 소리쳐. "@_Grum_dog_name_@! 덤벼!"
+@The_monster@이(가) 주위를 둘러보며 외쳐. "@_Grum_dog_name_@! 이리 와!"
+@The_monster@이(가) 외쳐. "@_Grum_dog_name_@! 착하지!"
+%%%%
+_Grum_rare_
+
+VISUAL:@The_monster@이(가) 옷에 붙은 벼룩 때문에 잠시 한눈을 팔아.
+@The_monster@이(가) @_Grum_verb_@. "밤낮없이 널 쫓아다니겠어!"
+@The_monster@이(가) @_Grum_verb_@. "오늘 밤엔 개들과 함께 잔치를 벌이겠어…"
+@The_monster@이(가) @_Grum_verb_@. "꽤 맛있게 생겼군."
+@The_monster@이(가) @_Grum_verb_@. "강아지 다루듯 널 눌러 버리지."
+@The_monster@이(가) 역겹다는 듯 상대를 바라보며 @_Grum_verb_@. "넌 내 친구가 아니야."
+@The_monster@이(가) 즐겁게 말해. "오늘 밤 그룸은 개고기를 안 먹어도 되겠군!"
+@The_monster@이(가) @_Grum_verb_@. "넌 우리 개들 밥이다, @player_name@!"
+@The_monster@이(가) 물어. "@player_genus_plural@의 뼈는 어떻게 생겼지? 우리 개들도 궁금하다는데." @player_only@
+@The_monster@이(가) 말해. "내 비결? 개들에게 @player_genus_plural@을(를) 먹이는 거야. 털에 윤기가 나거든." @player_only@
+@The_monster@이(가) 상대를 바라보며 @_Grum_verb_@. "이제 이 무리의 약골을 내보낼 때군."
+@The_monster@이(가) @_Grum_verb_@. "나랑 @_Grum_dog_name_@이(가) 네 뼈로 공놀이할 거야!"
+@The_monster@이(가) @_Grum_verb_@. "누가 착한 강아지지? 그래, @_Grum_dog_name_@! 바로 너야!"
+@The_monster@이(가) @_Grum_verb_@. "나랑 싸우겠다고? 제법 짖는 녀석이군!"
+@The_monster@이(가) 소리쳐. "사냥개들을 풀어라!"
+@The_monster@이(가) 말해. "이 멋진 가죽들을 팔고 있어."
+@The_monster@이(가) 소리쳐. "더 빨리, @_Grum_dog_name_@! 공격해!"
