@@ -2039,3 +2039,113 @@ confused Nergalle
 @The_monster@이(가) 중얼거린다. "@orc name@, 날 좀 내버려 둬. 바쁘다고 했잖아..."
 
 @The_monster@이(가) 중얼거린다. "@orc name@, 그 지긋지긋한 노래 좀 그만해. 넌 예전부터 노래를 못했어."
+%%%%
+holy_being_pacification_humanoid
+
+w:5
+
+@holy_being_pacification@
+
+VISUAL:@The_monster@이(가) 전투 자세를 풀고 긴장을 늦춘다.
+
+VISUAL:@The_monster@이(가) 당신에게 경례한다.
+%%%%
+holy_being_pacification_speech
+
+@The_monster@이(가) 당신에게 외친다. "필멸자여, 네 여정을 이어 가라!"
+
+@The_monster@이(가) 당신에게 말한다. "엘리빌론의 종이여, 계속 나아가라!"
+
+@The_monster@이(가) 당신에게 말한다. "계속 전진하라, 필멸자여."
+%%%%
+beogh_converted_orc_reaction_sight
+
+@The_monster@이(가) 놀란 눈으로 당신을 보다가 무릎을 꿇는다.
+
+@The_monster@이(가) 전투 자세를 풀고 당신에게 미소 짓는다.
+
+@The_monster@이(가) 당신 앞에 무릎을 꿇는다.
+%%%%
+beogh_converted_orc_speech_sight
+
+@Subjective@이(가) 외친다. "@player_name@도 우리 동족이야!"
+
+@Subjective@이(가) 외친다. "틀림없이 베오그께서 당신을 보내셨군!"
+
+@Subjective@이(가) 묻는다. "당신이 우리의 구원자입니까?"
+
+@Subjective@이(가) 말한다. "이제 와 주셔서 정말 다행입니다."
+%%%%
+beogh_converted_orc_reaction_battle
+
+@The_monster@이(가) 항복한다.
+
+@The_monster@이(가) 무릎을 꿇는다.
+
+@The_monster@이(가) 항복의 뜻으로 양손을 들어 올린다.
+%%%%
+beogh_converted_orc_speech_battle
+
+@Subjective@이(가) 외친다. "당신을 따르겠습니다! 살려 주세요!"
+
+@Subjective@이(가) 말한다. "이제 알겠습니다. 당신이야말로 구세주이십니다!"
+
+@Subjective@이(가) 외친다. "베오그의 말씀을 따르겠습니다! 맹세합니다!"
+%%%%
+beogh_converted_orc_speech_vengeance
+
+@Subjective@이(가) 외친다. "이미 복수하셨잖아요! 절 놓아주세요!"
+
+@Subjective@이(가) 외친다. "살려 주시면 두 번 다시 눈앞에 나타나지 않겠습니다!"
+
+@Subjective@이(가) 말한다. "죽어 마땅한 몸이지만 베오그께서는 자비로우십니다!"
+%%%%
+beogh_converted_orc_resurrection
+
+@The_monster@이(가) 외친다. "저를 살려 주셨군요!"
+
+@The_monster@이(가) 말한다. "당신이야말로 진정한 구세주이십니다."
+
+@The_monster@이(가) @objective@을(를) 되살려 준 당신에게 감사를 표한다.
+
+@The_monster@이(가) 말한다. "당신이라면 믿을 수 있을 줄 알았습니다."
+
+@The_monster@이(가) 말한다. "이제 또 하루 싸울 수 있게 되었군요."
+%%%%
+orc_priest_apostate
+
+오크 사제가 외친다. "배신자 놈, 내 눈앞에서 썩 꺼져라!"
+
+오크 사제가 으르렁거린다. "당장 도망친다면 목숨만은 살려 주마! 꺼져라!"
+
+오크 사제가 저주한다. "믿음 없는 네 위선적인 경건함이 역겹구나!"
+
+오크 사제가 비웃는다. "베오그께서는 널 용서하실지 몰라도 난 못 한다!"
+
+오크 사제가 외친다. "네 기회는 이미 끝났다, 배교자 쓰레기야!"
+%%%%
+orc_priest_preaching
+
+@The_monster@이(가) 외친다. "베오그께서는 너 같은 자에게도 자비를 베푸신다. 우리와 함께하여 새로 태어나라!"
+
+@The_monster@이(가) 외친다. "다른 신들은 누구의 충성도 받을 자격이 없다. 진정한 길을 보여 주마!"
+
+@The_monster@이(가) 외친다. "베오그께 항복하면 목숨은 살려 주겠다!"
+
+@The_monster@이(가) 위협한다. "베오그의 분노는 자비만큼이나 크다. 선택해라!"
+%%%%
+orc_apostle_yield
+
+@The_monster@이(가) 외친다. "항복합니다! 당신이야말로 선택받은 분입니다!"
+
+@The_monster@이(가) 외친다. "항복합니다! 승리는 당신의 것입니다!"
+
+@The_monster@이(가) 무릎을 꿇고 복종한다.
+%%%%
+orc_apostle_dismissed
+
+@The_monster@이(가) 말한다. "당신을 결코 잊지 않겠습니다!"
+
+@The_monster@이(가) 지상에 베오그의 말씀을 전하러 떠난다.
+
+@The_monster@이(가) 떠나기 전에 당신에게 경례한다.
