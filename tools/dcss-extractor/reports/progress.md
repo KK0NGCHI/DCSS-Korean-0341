@@ -98,3 +98,12 @@
 - 전용 몬스터 대사 정적 검사(`audit_monspeak_ko.py`)는 필수 치환 변수·`VISUAL:`/`SOUND:`·`w:` 가중치·랜덤 대사 선택·변형 문장 수를 확인한다. 최신 구조 검사 오류 **0건**.
 - 남은 주요 번역 대상: `monspeak.txt` 추가 일반/고유 대사, `wpnnoise.txt` 무기 소음, `godspeak.txt` 영어 잔존, Lua와 동적 조사 등. Windows Tiles 실제 렌더링은 미검증.
 - 최신 자세한 기록: [monspell 완료 현황](../../docs/translation-review/monspell-audit-20261024.md).
+
+## 2026-10-24 몬스터 대사 127개 키 대량 번역 완료
+
+- [PR #11](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/11) 병합: `59ee951` — `monspeak.txt`에 한국어 대응 키 **127개**, 새 대사 변형 **379개**를 추가.
+- `monspeak.txt` 고유 원문 키 **731개** 중 한국어 대응 **216개** (이전 89개), 미대응 **515개**. 원문의 `_laughs_` 중복 키 **1건**은 그대로 보존하고, 번역 오버레이는 첫 번째 정의 기준 6개 웃음 표현으로 구성.
+- `godname.txt` 23개, `monspell.txt` 245개, `monspeak.txt` 216개를 합산한 별도 KO 오버레이 원문 키 대응 합계 **484개**. 이 합계는 전체 게임 번역률로 사용하지 않는다.
+- [최종 GitHub Actions 데이터베이스 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40088380643) 성공: 누락 필수 치환 토큰, 무작위 표현 수, 지시 접두부, `w:` 가중치, 번역 키 중복 등 구조 오류 **0건**. 검사기와 회귀 테스트도 통과.
+- 세부 보고서: [몬스터 대사 번역 배치](../../docs/translation-review/monspeak-batch-20261024.md). 실제 Tiles 로그 표시, 이름 뒤 조사, Lua 대사 및 시각 표현은 추가 검증 필요.
+- 다음 검토 대상: 나머지 `monspeak.txt`의 515개 키(참조 별칭·빈 출력 혼합), `wpnnoise.txt`의 무기 소음, `godspeak.txt` 내 기존 한글·영어 혼합.
