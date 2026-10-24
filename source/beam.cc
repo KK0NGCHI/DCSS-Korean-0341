@@ -3637,7 +3637,7 @@ void bolt::affect_player_enchantment(bool resistible)
             const monster* mon = monster_by_mid(source_id);
             if (mon && !mon->observable())
             {
-                mprf("Something tries to affect you, but you %s.",
+                mprf("무언가 당신에게 영향을 미치려 하지만 당신은 %s.",
                      you.willpower() == WILL_INVULN ? "are unaffected"
                                                    : "resist");
                 need_msg = false;
@@ -3662,7 +3662,7 @@ void bolt::affect_player_enchantment(bool resistible)
             if (mon && mon->alive())
             {
                 const int dam = 3 + random2(1 + div_rand_round(ench_power, 10));
-                mprf("Your will lashes out at %s%s",
+                mprf("당신의 의지가 %s을(를) 강타한다%s",
                      mon->name(DESC_THE).c_str(),
                      attack_strength_punctuation(dam).c_str());
                 mon->hurt(&you, dam);
@@ -3894,8 +3894,8 @@ void bolt::affect_player_enchantment(bool resistible)
         break;
 
     case BEAM_DIMENSION_ANCHOR:
-        mprf("You feel %sfirmly anchored in space.",
-             you.duration[DUR_DIMENSION_ANCHOR] ? "more " : "");
+        mprf("몸이 공간에 %s단단히 고정된 것 같아.",
+             you.duration[DUR_DIMENSION_ANCHOR] ? "더욱 " : "");
         you.increase_duration(DUR_DIMENSION_ANCHOR, 12 + random2(15), 50);
         if (you.duration[DUR_TELEPORT])
         {
@@ -3991,8 +3991,8 @@ void bolt::affect_player_enchantment(bool resistible)
         break;
 
     case BEAM_SAP_MAGIC:
-        mprf(MSGCH_WARN, "Your magic feels %stainted.",
-             you.duration[DUR_SAP_MAGIC] ? "more " : "");
+        mprf(MSGCH_WARN, "마력이 %s오염된 것 같아.",
+             you.duration[DUR_SAP_MAGIC] ? "더욱 " : "");
         flash_tile(you.pos(), GREEN, 120, TILE_BOLT_SAP_MAGIC);
         you.increase_duration(DUR_SAP_MAGIC, random_range(20, 30), 50);
         break;
@@ -5261,7 +5261,7 @@ void bolt::monster_post_hit(monster* mon, int dmg)
         const int dur = 3 + div_rand_round(dmg, 3);
         if (!mon->has_ench(ENCH_FIRE_VULN))
         {
-            mprf("%s fire resistance burns away.",
+            mprf("%s의 화염 저항이 불타 사라진다.",
                 mon->name(DESC_ITS).c_str());
             mon->add_ench(mon_enchant(ENCH_FIRE_VULN, agent(),
                                       dur * BASELINE_DELAY));
@@ -5469,7 +5469,7 @@ bool bolt::attempt_block(monster* mon)
     }
     else if (you.see_cell(pos()))
     {
-        mprf("%s blocks the %s.",
+        mprf("%s이(가) %s을(를) 막아낸다.",
              mon->name(DESC_THE).c_str(), name.c_str());
         finish_beam();
     }
@@ -5533,7 +5533,7 @@ void bolt::affect_monster(monster* mon)
         if (!is_tracer() && you.see_cell(mon->pos()))
         {
             mprf(MSGCH_GOD, GOD_JIYVA,
-                 "%s absorbs the %s as it strikes your slime.",
+                 "%s이(가) 당신의 점액에 날아온 %s을(를) 흡수한다.",
                  god_speaker(GOD_JIYVA).c_str(), !name.empty() ? name.c_str()
                  : _beam_type_name(flavour).c_str());
         }
@@ -6204,7 +6204,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         const int dam = damage.roll();
         if (you.see_cell(mon->pos()))
         {
-            mprf("%s is dispelled%s",
+            mprf("%s이(가) 소멸한다%s",
                  mon->name(DESC_THE).c_str(),
                  attack_strength_punctuation(dam).c_str());
             obvious_effect = true;
@@ -6233,7 +6233,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
             return MON_UNAFFECTED;
         if (you.see_cell(mon->pos()))
         {
-            mprf("%s writhes in agony%s",
+            mprf("%s이(가) 고통에 몸부림친다%s",
                  mon->name(DESC_THE).c_str(),
                  attack_strength_punctuation(dam).c_str());
             obvious_effect = true;
@@ -6278,7 +6278,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             if (mon->type == MONS_GLOWING_ORANGE_BRAIN)
             {
-                mprf("%s is blasted smooth%s",
+                mprf("%s의 표면이 폭발로 매끈해진다%s",
                      mon->name(DESC_THE).c_str(),
                      attack_strength_punctuation(dam).c_str());
             } else {
