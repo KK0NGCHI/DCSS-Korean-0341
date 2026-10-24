@@ -1,0 +1,169 @@
+# DESC-AUDIT-001 — 설명 데이터 전수 감사 (준비)
+
+기준: `main`에서 2026-10-24 확인한 파일 구성.
+
+## 확인 완료
+- `source/dat/descript/*.txt`: 영어 파일 **23개**
+- `source/dat/descript/ko/*.txt`: 한국어 파일 **23개**
+- 같은 파일명 쌍 **23개**, 대응 파일명 누락 **0개**
+- 2026-10-23 기록: `quotes.txt` 유효 원문 키 465/465 대응, 본문 품질 및 런타임은 미검증
+
+## 이번 변경
+- `scripts/audit_descriptions.py`: 23개 파일 쌍을 대상으로 영어·한국어 키 누락, 추가 키, 중복 키, 빈 본문, 한글 없는 본문 후보, 참조 수·printf 지정자 수·Lua 구분자 차이를 CSV와 JSON에 기록.
+- 결과는 번역 완료 증명이 아니며, 구조 점검에서 의심 항목을 **검토 후보**로만 표시.
+- 외부 의존성이 없는 Python 표준 라이브러리 사용. **GitHub 환경에서 실행 결과는 아직 생산하지 않음**.
+
+## 실행
+저장소 루트에서:
+
+```powershell
+python tools/dcss-extractor/scripts/audit_descriptions.py --source source --output tools/dcss-extractor/output/DESC-AUDIT-001
+```
+
+생성 결과:
+- `issues.csv`: 실제 키와 문제 분류
+- `summary.json`: 파일별 키·문제 개수와 총합
+
+## 판단 기준
+- `missing_korean_key`: 우선 번역
+- `empty_korean_body`: 우선 복구
+- `duplicate_*_key`: 파일 구조 문제 검토
+- `review_no_hangul`: 영어 미번역일 수도 있으나 참조/고유명/코드일 수 있음
+- `review_reference_count`, `review_printf_count`, `review_lua_delimiter`: 문법 파손 가능성만 표시; 원문과 동일해야 한다는 보장은 없음
+- `extra_korean_key`: 버전 간 잔재일 수 있으므로 임의 삭제 금지
+
+## 후속 순서
+1. 스크립트 실제 실행 및 출력 검증; 발견된 파서 오탐은 보정.
+2. 원문에서 누락된 한국어 키 중 화면에 쓰이는 것 우선 번역.
+3. 참조·서식·Lua 항목 수동 검토.
+4. 기존 `quotes.txt` 기록과 자동 결과 교차 검증.
+5. 확인된 수치를 `reports/progress.json`에 통합; 추출 coverage와 실제 번역/출력 coverage를 분리.
+
+## GitHub Actions 실측 결과 (2026-10-24)
+
+- Workflow run: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39977428592 — 성공.
+- 영어 파일 23개 / 한국어 파일 23개.
+- 영어 원문 항목 3,781개, 영어 중복 키 3건 ⇒ **고유 영어 키 3,778개**.
+- 한국어 대응 고유 키 3,778개 ⇒ **원문 고유 키 대응 100%(3,778/3,778), 누락 0개**.
+- 한국어 항목 4,038개; 원문에 없는 한국어 키 260개. 기존 번역 자산 가능성이 있어 삭제하지 않음.
+- 검토 후보: 한글 미포함 69개, 서식 지정자 개수 차이 29개, 참조 구문 개수 차이 20개, Lua 구분자 차이 6개. 이들 숫자는 문제의 확정 건수가 아니라 규칙 기반 후보 수임.
+- 설명 키 대응률과 번역 품질·실제 게임 출력 검증률은 다름.
+- 후속: 보고서 `issues.csv`의 항목별 근거를 읽고 원문 중복 키와 서식 경고를 검증. 이후 C++·Lua 문자열 감사로 전환.
+
+## 2026-10-24 경고 오탐 표본 검증
+- 영어/한국어 `egos.txt` 직접 비교: 각각 고유 키 80개, 누락 키 0개, 추가 키 0개, 영어 잔존 후보 0개.
+- `quotes.txt` 직접 비교: 원문 고유 키 465개, 한국어 475개, 누락 0개, 추가 10개. 추가 키는 `Terence`, `apple`, `big fish`, `bow`, `giant frog`, `ooze`, `phoenix`, `strawberry`, `sultana`, `wizard`.
+- `quotes.txt`의 `Agony spell`, `chain mail`, `large abomination`, `dreamdust necklace`은 한글 없는 문장이 아니라 각각 `<Curse of Agony spell>`, `<leather armour>`, `<small abomination>`, `<dreamshard necklace>` 참조 별칭. 원문 대응 참조이므로 미번역으로 오분류하지 않아야 함.
+- 감사 스크립트에 순수 참조문 예외 및 고유 키 대응 통계 추가. 수정 이후 전체 경고 수는 재실행 후 산정하며 이전 69개 한글 미포함 후보를 그대로 확정 수치로 사용하지 않음.
+- 별칭의 실제 대상 키 존재·순환 여부와 번역 품질은 추가 검증 과제.
+
+## 2026-10-24 후속 검수 — #10 성공
+- 검사기에서 `<key>`뿐 아니라 `[[key]]` 참조 별칭을 인식하도록 보정.
+- 순수 참조문을 영어 잔존 오탐으로 잡던 69건이 **0건**으로 감소. 이는 한글 미포함 후보의 규칙상 감소이지 전체 문장 품질 보증이 아님.
+- `hints.txt / HINT_CONVERT`: 원문과 달리 파문·징벌을 단정하고, 부정확한 안내 및 불필요한 `()`가 존재해 원문 의미에 맞춰 다시 번역. 게임 화면 출력은 별도 확인 필요.
+- `unrand.txt / skin of Zhor`: 원문에 있는 `you.can_smell()` 조건부 분기를 복원하고 후각 관련 설명 및 원문 의미를 보정.
+- 검사 결과: 원문 고유 키 **3,778/3,778 (100%)**, `review_no_hangul` **0**, Lua 구분자 차이 **6→4**, `review_printf_count` 29, `review_reference_count` 20, 원문 중복 키 3, 추가 한국어 키 260.
+- GitHub Actions: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39984680062
+- 잔여 Lua 경고 4개는 한국어 번역에서 조건문을 추가한 경우로, 삭제보다 원문 충실도·게임 로더 지원 여부를 검토해야 함.
+
+## 2026-10-24 중복 원문 및 서식 검사 보정
+- 중복 영어 키 3개 실물 확인: `commands.txt/CMD_EXPLORE_NO_REST`, `monstatus.txt/damage-immune at range monstatus`, `mutations.txt/+LOS mutation`. 각각 짧은/상세 설명이 중복됨. 자동 파서의 최종 항목 선택은 실제 게임 로더 의미와 별도로 검증 필요.
+- 한국어 `damage-immune at range monstatus`가 더 짧은 설명에만 대응하므로 상세 원문의 비피해 부가효과·피해 발생원 정의를 반영하여 보정.
+- `printf` 검사에서 `80% of`, `20% chance` 같은 일반 영문 백분율 뒤의 문자 `o/c`를 잘못 서식 지정자로 판정한 사례 확인. 정규식의 공백 플래그 허용을 제거한 뒤 전체 재검사.
+- 재검사: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39986332516 (성공). `review_printf_count` **29→0건**, `review_reference_count` 20건, `review_lua_delimiter` 4건, 중복 키 3건, 추가 한국어 키 260건.
+- 29건 감소는 서식 지정자 오탐 수정 결과이며, 실제 게임 출력 검증은 아직 하지 않음. 남은 20건의 참조 태그 차이는 원문과 한국어의 정확한 토큰 위치/유형 및 게임 내 해석을 조사해야 함.
+
+## 2026-10-24 튜토리얼 원문 충실도 교정
+- `tutorial2 resting`: 오래된 100턴·비밀문 탐색 설명을 제거하고, 체력 회복까지 휴식·중요 이벤트 중단 및 타일 휴식 버튼을 반영.
+- `tutorial4 spell_success`: 원문은 반지의 착용 전후 주문 실패율 비교인데 기존 번역은 지팡이로 잘못 안내하여 수정.
+- `tutorial4 memorise2`: 원문은 기존 주문을 잊고 새 주문을 배운 후 악마 아군 소환인데 기존 번역은 해골 군단을 안내하여 수정.
+- `tutorial5 exit`: 오래된 `CMD_PRAY`를 원문의 `CMD_GO_DOWNSTAIRS`로 바꾸고 전체 요약을 0.34.1 기준으로 갱신.
+- CI: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39987043048 — 성공.
+- 참조 태그 개수 차이 20→17건. 잔여는 단순 개수 불일치와 실제 의미/태그 파손을 분리하여 검토할 것.
+- 모든 수정은 정적 원문 대조이며 게임 내 튜토리얼 흐름 실행 검증은 별도.
+
+## 2026-10-24 튜토리얼 번역 교정 추가
+- 원문과 대조하여 `tutorial2 throwing`(다트→부메랑), `tutorial3 ego_weapon`(무기 휘둘러 식별→바닥에 올라가면 식별), `tutorial4 resting_reminder`(해골→독 저항 임프), `tutorial4 undead`(불필요한 정보 교정), `tutorial1 autoexplore`(타일 버튼 안내), `tutorial2 wait`(타일 대기 조작), `tutorial3 go_shopping`(영어 잔존·검색 절차)의 7개 항목을 수정했다.
+- Actions: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39988155421 성공. 참조 구문 개수 차이 **17→11건**. 설명 고유 키 대응 3,778/3,778 유지.
+- 본문 내용은 정적 원문 대조만 완료했으며 튜토리얼 런타임 실행 여부는 아직 검증하지 않았다.
+
+## 2026-10-24 안내·튜토리얼 4건 보정
+- `hints.txt/welcome`: 최신 원문의 3개 참고 문서(quickstart, crawl_manual, options_guide) 링크 표기를 복구하고 명령 안내를 정돈.
+- `tutorial.txt/tutorial intro`: 타일 모드에서 클릭으로 다음 메시지 진행 안내 복구.
+- `tutorial.txt/tutorial2 downstairs`: 타일 모드 캐릭터 클릭 동작 복구.
+- `tutorial.txt/tutorial4 meph_reminder`: 현재 주문 암기 탭에 맞춰 구버전 마법서/소지품 창 조작법 제거.
+- 검사 실행 https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39988582819 성공. 참조 구문 경고 11→7건. 고유 영어 키 대응 3,778/3,778 유지. 미해결: 참조 경고 7, Lua 차이 4, 중복 원문 키 3, 추가 한국어 키 260.
+- 검사는 키·표시 태그의 정적 검사이며 실제 게임 실행 확인이 아님.
+
+## 2026-10-24 일괄 처리: 설명 감사에서 전체 문자열 조사로 확대
+- 힌트 3개 항목 직접 수정: `HINT_SEEN_FIRST_OBJECT` (중첩 태그 오류·구버전 줍기 조작 안내), `HINT_SEEN_BRANCH` (마우스/키보드별 설명 정리), `finished random 3` (구버전 커뮤니티 주소 목록 제거).
+- 설명 감사 CI 성공: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39989209855. 키 대응 3,778/3,778(100%), 참조 경고 7→5, Lua 차이 4, 원문 중복 3, 한국어 추가 키 260.
+- 기존 `full_inventory_v1.py`를 재사용하는 전체 인벤토리 CI를 추가. 첫 실행에서 설명 파일 하위 폴더를 정상 원문과 혼합하여 140개 누락이라는 오탐이 발생해, 실제 23개 원문 가족만 설명 키로 취급하도록 수정.
+- 교정한 전체 조사 CI 성공: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39989209866.
+- 전체 조사 결과: 읽은 파일 **1,341**, 추출 레코드 **55,619**, 파일 읽기 오류 **0**. 분류: C++/Lua/DES 등 `visible_candidate` 3,033, `review_dynamic` 1,591, `review_unknown` 35,439, `internal_candidate` 8,126, `comment_candidate` 3,626, `test_marker` 23, 설명 원문 레코드 `review_translation_present` 3,781. `translation_missing_key` 0.
+- 모든 분류는 **문자열의 어휘적 후보**이며 실제 화면 출력, 정확한 번역 단위 수, 누락 번역 0건을 입증하는 검사는 아님. 특히 `review_unknown`은 미번역 확정이 아니다.
+- 다음 우선순위: `visible_candidate`와 `review_dynamic`의 실제 C++/Lua 출력 근거 확인, `[KO TEST]` 스모크 잔재 조사, 원문과 한국어 런타임 연결 확인.
+
+## 2026-10-24 C++ 출력부 초기 정리 (다음 단계 착수)
+
+### 실제 소스 변경
+- `source/invent.cc`: 표시 문자열을 강제 접두하는 `[KO TEST]` 코드를 삭제하고, 장비 칸(`%d/%d`), 소지품 카테고리 제목, 카테고리 전환 및 버리기 목록 제목을 한국어 문구로 교체. 기존 포맷 인자는 유지.
+- `source/message.cc`: `_mpr()`에서 모든 `You kill ...` 메시지를 하나의 `[KO TEST]` 문구로 덮어쓰는 조건문을 제거. 이 조치는 올바른 몬스터별 메시지를 복구하지만 **영어 원문을 자동으로 번역하지는 않음**.
+- `source/describe.cc`: 아이템·몬스터 설명창에 강제로 표시하던 `[KO TEST]` 문구 3개 제거, 설명/인용문 탭 제목을 한국어로 변경.
+- `.github/workflows/korean-smoke-guard.yml`: 위 세 파일에 시험 마커가 다시 나타나지 않도록 CI에서 확인.
+
+### 검증 수준과 남은 작업
+- 연결을 통해 실제 코드의 변경 내용·시험 마커 제거 여부를 재확인.
+- 신규 CI 실행: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39995348343
+- Windows 타일 빌드, 설명창 렌더링, 아이템 분류 전환, 캐릭터 처치 로그는 **아직 직접 실행 검증하지 않음**. 검사 통과는 컴파일/런타임 통과와 별도.
+- `full_inventory_v1.py`의 55,619개는 어휘적 문자열 레코드로, 인게임 미번역 항목 개수가 아님. `visible_candidate` 3,033과 `review_dynamic` 1,591부터 문맥/콜사이트 검증 후 번역.
+
+## 출력 가능 문자열 파일 우선순위 — 정적 스캐너 기준
+- `full_inventory_v1.py`에 `priority_files.csv` 및 `priority_files.json` 생성 기능 추가. 레코드를 실제 게임 출력으로 확정하지 않고, 파일별 `visible_candidate`, `review_dynamic`, `test_marker` 빈도로 정렬.
+- CI https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/39995470835 성공.
+- 상위 파일 표본: `player.cc` (visible 160/dynamic 11), `god-abil.cc` (140/22), `spl-summoning.cc` (119/1), `player-equip.cc` (85/12), `beam.cc` (77/10), `ability.cc` (75/7). *이 수치는 번역 누락 수가 아니다.*
+- 표본에서 C++의 작은따옴표(축약형의 apostrophe 포함)가 비정상적으로 긴 문자열로 포획되는 **정규식 오탐 사례 발견**. 예를 들어 문자열 샘플에 코드를 길게 끌고 들어온 항목이 있으므로 파서·문맥 판정을 추가 개선한 뒤 실제 번역 분모로 사용할 것.
+- 새 CI와 기존 설명 감사 및 smoke guard가 성공했으며, C++ 컴파일/게임 실행 검증은 아직 시행되지 않았다.
+
+## 2026-10-24 C++ 1차 실번역 묶음
+- 코드의 단순 화면 출력 문구를 직접 번역하고 커밋: `player.cc` 22개, `god-abil.cc` 22개, `spl-summoning.cc` 73개 항목의 영문 리터럴 교체 시도/적용(합계 **117개 고유 영문 리터럴**). 이는 실제 런타임 출력 검증이나 고유 게임 문장 수와는 다름. 중복 영문 문자열은 replaceAll 방식으로 같은 파일의 모든 발생 위치에 함께 적용.
+- `mpr`, `mprf` 메시지와 일부 출력 형식을 우선 작업. `%s`, `%d` 등 포맷 문자열은 변경하지 않고 유지하는 방식.
+- 한글+영어가 결합되는 다중 리터럴 4곳은 문장 연결까지 수정. 임의의 런타임 값, 문자열 결합 연산자, 코드 식별자는 번역하지 않음.
+- `spl-summoning.cc`의 사역마·용 소환·소환물·식물·태엽벌·파라곤 관련 문구, `god-abil.cc`의 신앙 능력 실패/발동/지속 문구, `player.cc`의 이동·상태·레벨 문구를 주로 처리.
+- 실제 C++ 컴파일 및 타일 게임 실행은 **이 세션에서 수행하지 못했음**. 추가 정적·빌드 검증 전까지 번역 완료로 판정하지 않음.
+- 이후 단계에서 동적 조사와 복수형·변수 삽입·메시지 조사를 위해 사용자의 Windows MSYS2 테스트 빌드가 필요할 수 있음. 현 시점에 별도 사용자 작업 요청 없음.
+
+## 2026-10-24 C++ 2차 일괄 실번역
+- `source/player-equip.cc`: 장비 변경으로 생기는 상태 변화, 저항·은신·보호·정령 관련 출력 리터럴 **58종** 번역.
+- `source/beam.cc`: 광선·구름·상태 이상·저항 효과 관련 출력 리터럴 **29종** 번역.
+- `source/ability.cc`: 신앙 권능·특수 능력 사용 실패와 상태 관련 출력 리터럴 **68종** 번역.
+- 합계 **155종**의 영문 리터럴 교체. 영어와 한글 텍스트가 동일 파일에 혼재하므로 파일 전체 번역 완료를 의미하지 않음. 단순 리터럴을 우선 작업하고, 복잡한 `%s` 서식 조합·동적 문장은 별도 조사 대상으로 유지함.
+- 플레이어가 보는 문자열의 자연스러운 어순·조사와 능력별 고유 명칭의 일관성은 게임 실행 중 추가 검수 필요. C++ 컴파일과 런타임 테스트는 아직 미실시.
+
+## 2026-10-24 C++ 3차 후속 실번역
+- `source/beam.cc`: 광선 방어·올가미·생명력 흡수·상태 지속 등 **9종** 추가 수정.
+- `source/player-equip.cc`: 장비 고유 속성, 유대, 마력, 저항성, 연금술 등 **22종** 추가 수정.
+- 합계 **31종** 영문 출력 리터럴 교체(중복 발생 지점의 변경은 별도 계수하지 않음).
+- 연결된 C++ 복수 리터럴로 번역이 일부만 적용된 구절을 한 번 더 바로잡음.
+- 마찬가지로 정적 편집이며 실제 C++ 컴파일 및 게임 실행은 확인되지 않음.
+
+## 2026-10-24 Linux 콘솔 C++ 빌드 검증 결과
+
+- 실제 C++ 전체 컴파일을 수행하는 `.github/workflows/cpp-build-verification.yml` 추가. 저장소 `source/Makefile.obj` 부재로 직접 빌드가 불가능하여 공식 DCSS 0.34.1 전체 릴리스 소스에 번역 C++ 파일을 덮어씌우는 방식으로 실행.
+- 첫 실제 C++ 컴파일에서 `source/newgame.cc:161`의 `const char* + const char[]` 표현식 오류 발견. `string(get_job_name(ng.job)) + " / " + s`로 수정, 커밋 `204508f5c213edcefab37f41287a3a4761c58f9a`.
+- **재빌드 성공**: https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40069066496 (`C++ Korean build verification` #3). `make -j2` 성공, `crawl` 실행 파일 존재·실행 권한 확인, `file` 결과 Linux x86-64 ELF.
+- 확인 범위: Linux 콘솔 전체 컴파일/링크. **미확인**: Windows 11 MSYS2 타일 빌드, 실제 실행 시 한국어 출력·폰트·텍스트 조합, 사용자의 Windows 환경에서의 동작. 원본 릴리스에 대한 파일 덮어쓰기 빌드이므로 현재 저장소 자체의 완전한 소스 체크아웃을 검증하는 것은 아님.
+
+## 2026-10-24 C++ 4차 묶음: 몬스터 반응 및 소환
+- `source/god-abil.cc`: 낭송·진의 징벌·몬스터 반응 등 영문 메시지 패턴 24종 번역.
+- `source/beam.cc`: 몬스터의 저항·화상·냉기·감전·석화·마비 등 메시지 패턴 21종 번역. 공통 메시지의 동일 문자열 발생 위치는 함께 교체됨.
+- `source/spl-summoning.cc`: 소환·소환수·태엽벌 관련 출력 19종(연결된 C++ 문자열 5건 포함) 번역.
+- **이번 일괄 작업에서 문자열 패턴 64종을 추가 번역**. `simple_monster_message`에 이름이 먼저 출력되는 구조를 유지했으나, 한국어 조사(`이(가)`, `은(는)` 등)는 일단 임시 중립 표기로 남아 있다. 실제 한국어 조사 선택·용어 통일은 별도 후속 과제.
+- 전체 번역 완료 아님. 코드의 문자열 변수를 조합하는 동적 출력은 계속 검토해야 하며, 이 변경까지 반영한 신규 C++ Linux 빌드의 결과는 https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40070150620 에서 확인 가능.
+
+## 2026-10-24 C++ 추가 일괄 번역 (상태 로그 중심)
+- `ability.cc` 7종: 이레데렘눌 권능과 추종자·검은 횃불 관련 명령 실패 및 발동 문구.
+- `beam.cc` 5종: 광선의 튕김·회피·신성한 봉쇄 등 동적 이름 결합 문구.
+- `player.cc` 82종: 독·석화·침묵·가속·둔화·비행·수면·질병·화상·마력·신성한 후광 등의 플레이어 상태 메시지.
+- 이번 수정의 C++ 영어 리터럴 교체 기준 **94종**. 일부 문자열은 파일 내 여러 곳에 등장하므로 발생 횟수와는 다름. 한국어의 이름 뒤 조사 표기 `이(가)` 등은 후속 동적 조사 처리 과제로 유지.
+- Linux C++ 컴파일은 다음 커밋 기준 재실행하여 확인해야 하며, 결과를 확인하기 전에는 성공으로 기록하지 않음.

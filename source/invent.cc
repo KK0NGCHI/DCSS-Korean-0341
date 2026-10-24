@@ -63,10 +63,9 @@ InvTitle::InvTitle(Menu *mn, const string &title, invtitle_annotator tfn)
 
 string InvTitle::get_text() const
 {
-    // Temporary Korean UI test at the final inventory title text accessor.
     const string rendered = titlefn ? titlefn(m, MenuEntry::get_text())
                                     : MenuEntry::get_text();
-    return "[KO TEST] 목록 제목: " + rendered;
+    return rendered;
 }
 
 InvEntry::InvEntry(const item_def &i)
@@ -327,7 +326,7 @@ void InvMenu::set_preselect(const vector<SelItem> *pre)
 
 string slot_description()
 {
-    return make_stringf("%d/%d gear slots", inv_count(INVENT_GEAR), MAX_GEAR);
+    return make_stringf("장비 칸 %d/%d", inv_count(INVENT_GEAR), MAX_GEAR);
 }
 
 void InvMenu::set_title(const string &s)
@@ -337,17 +336,17 @@ void InvMenu::set_title(const string &s)
         string str;
         switch (cur_osel)
         {
-            case 0: str = "[KO TEST] 장비: " + slot_description(); break;
-            case 1: str = "[KO TEST] 물약: "; break;
-            case 2: str = "[KO TEST] 두루마리: "; break;
-            case 3: str = "[KO TEST] 발동 아이템: "; break;
+            case 0: str = "장비: " + slot_description(); break;
+            case 1: str = "물약: "; break;
+            case 2: str = "두루마리: "; break;
+            case 3: str = "발동 아이템: "; break;
         }
-        str += "    (Left/Right to switch category)";
+        str += "    (좌/우: 분류 전환)";
         set_title(new InvTitle(this, str, title_annotate));
         return;
     }
 
-    set_title(new InvTitle(this, s.empty() ? "[KO TEST] 소지품: " + slot_description()
+    set_title(new InvTitle(this, s.empty() ? "소지품: " + slot_description()
                                            : s,
                            title_annotate));
 }
@@ -1491,7 +1490,7 @@ void display_inventory()
 
 static string _drop_menu_titlefn(const Menu*, const string &)
 {
-    return "[KO TEST] 버릴 아이템 선택 (좌/우: 분류 전환) " + slot_description() + " (_ for help)";
+    return "버릴 아이템 선택 (좌/우: 분류 전환) " + slot_description() + " (_: 도움말)";
 }
 
 /**

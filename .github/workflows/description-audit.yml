@@ -1,0 +1,50 @@
+name: Korean description audit
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/dat/descript/**'
+      - 'tools/dcss-extractor/scripts/audit_descriptions.py'
+      - '.github/workflows/description-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'source/dat/descript/**'
+      - 'tools/dcss-extractor/scripts/audit_descriptions.py'
+      - '.github/workflows/description-audit.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect all 23 English/Korean description pairs
+        run: python tools/dcss-extractor/scripts/audit_descriptions.py --source source --output tools/dcss-extractor/output/DESC-AUDIT-001
+      - name: Summarize results
+        if: always()
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          p = Path("tools/dcss-extractor/output/DESC-AUDIT-001/summary.json")
+          if p.exists():
+              x = json.loads(p.read_text(encoding="utf-8"))
+              with open(__import__("os").environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+                  f.write("# Korean description audit\n\n")
+                  f.write(f"Files: EN {x['english_file_count']}, KO {x['korean_file_count']}\n\n")
+                  f.write(f"Entries: {x['totals']}\n\n")
+                  f.write(f"Issues: {x['issue_totals']}\n\n")
+                  f.write("| File | EN keys | KO keys | Matched | Issues |\n|---|---:|---:|---:|---:|\n")
+                  for row in x["files"]:
+                      f.write(f"| {row['file']} | {row['english_unique_keys']} | {row['korean_unique_keys']} | {row['matched_keys']} | {sum(row['issues'].values())} |\n")
+      - name: Upload detailed reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desc-audit-report
+          path: tools/dcss-extractor/output/DESC-AUDIT-001/
+          if-no-files-found: warn

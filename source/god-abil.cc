@@ -223,7 +223,7 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
     wpn.flags |= ISFLAG_NOTED_ID;
     wpn.props[FORCED_ITEM_COLOUR_KEY] = colour;
 
-    mprf(MSGCH_GOD, "Your %s shines brightly!", wpn.name(DESC_QUALNAME).c_str());
+    mprf(MSGCH_GOD, "%s이(가) 밝게 빛난다!", wpn.name(DESC_QUALNAME).c_str());
     flash_view(UA_PLAYER, colour);
     simple_god_message(" booms: Use this gift wisely!");
     you.one_time_ability_used.set(you.religion);
@@ -268,7 +268,7 @@ bool zin_donate_gold()
 {
     if (you.gold == 0)
     {
-        mpr("You have nothing to donate!");
+        mpr("기부할 것이 없어!");
         return false;
     }
 
@@ -308,9 +308,9 @@ bool zin_donate_gold()
     if (player_under_penance())
     {
         if (estimated_piety >= you.penance[GOD_ZIN])
-            mpr("You feel that you will soon be absolved of all your sins.");
+            mpr("곧 모든 죄를 용서받을 것 같아.");
         else
-            mpr("You feel that your burden of sins will soon be lighter.");
+            mpr("죄의 짐이 곧 가벼워질 것 같아.");
     }
     else
     {
@@ -767,14 +767,14 @@ bool zin_check_able_to_recite(bool quiet)
     if (you.duration[DUR_RECITE])
     {
         if (!quiet)
-            mpr("Finish your current sermon first, please.");
+            mpr("지금 진행 중인 설교부터 끝내.");
         return false;
     }
 
     if (you.duration[DUR_RECITE_COOLDOWN])
     {
         if (!quiet)
-            mpr("You're not ready to recite again yet.");
+            mpr("아직 다시 낭송할 준비가 되지 않았어.");
         return false;
     }
 
@@ -913,9 +913,9 @@ bool zin_recite_to_single_monster(const coord_def& where)
     if (mon->can_speak() && one_chance_in(5))
     {
         if (check < -10)
-            simple_monster_message(*mon, " guffaws at your puny god.");
+            simple_monster_message(*mon, "이(가) 당신이 섬기는 하찮은 신을 비웃는다.");
         else if (check < -5)
-            simple_monster_message(*mon, " sneers at your recitation.");
+            simple_monster_message(*mon, "이(가) 당신의 낭송을 비웃는다.");
     }
 
     if (check <= 0)
@@ -1067,7 +1067,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
 
     case zin_eff::daze:
         mon->daze(degree + random2avg(spellpower / 10, 2));
-        simple_monster_message(*mon, " is dazed by your recitation.");
+        simple_monster_message(*mon, "이(가) 낭송에 정신이 멍해졌다.");
         affected = true;
         break;
 
@@ -1077,9 +1077,9 @@ bool zin_recite_to_single_monster(const coord_def& where)
                              (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
             if (prayertype == RECITE_HERETIC)
-                simple_monster_message(*mon, " is confused by your recitation.");
+                simple_monster_message(*mon, "이(가) 낭송에 혼란에 빠졌다.");
             else
-                simple_monster_message(*mon, " stumbles about in disarray.");
+                simple_monster_message(*mon, "이(가) 갈팡질팡하며 비틀거린다.");
             affected = true;
         }
         break;
@@ -1089,17 +1089,17 @@ bool zin_recite_to_single_monster(const coord_def& where)
                           (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
             simple_monster_message(*mon,
-                minor ? " is awed by your recitation."
-                      : " is aghast at the heresy of your recitation.");
+                minor ? "이(가) 당신의 낭송에 압도됐다."
+                      : "이(가) 당신의 이단적인 낭송에 경악한다.");
             affected = true;
         }
         break;
 
     case zin_eff::smite:
         if (minor)
-            simple_monster_message(*mon, " is smitten by the wrath of Zin.");
+            simple_monster_message(*mon, "이(가) 진의 분노에 응징당한다.");
         else
-            simple_monster_message(*mon, " is blasted by the fury of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 격노에 강타당한다!");
         // XXX: This duplicates code in cast_smiting().
         mon->hurt(&you, 7 + (random2(spellpower) * 33 / 191));
         if (mon->alive())
@@ -1110,7 +1110,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::blind:
         if (mon->add_ench(mon_enchant(ENCH_BLIND, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is struck blind by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 눈이 멀었다!");
             affected = true;
         }
         break;
@@ -1119,7 +1119,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
         if (mon->add_ench(mon_enchant(ENCH_SILVER_CORONA, &you,
                           (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
-            simple_monster_message(*mon, " is limned with silver light.");
+            simple_monster_message(*mon, "이(가) 은빛 광채에 휩싸인다.");
             affected = true;
         }
         break;
@@ -1130,8 +1130,8 @@ bool zin_recite_to_single_monster(const coord_def& where)
                           (degree + random2(spellpower)) * BASELINE_DELAY)))
         {
             simple_monster_message(*mon,
-                minor ? " quails at your recitation."
-                      : " looks feeble and powerless before your recitation.");
+                minor ? "이(가) 당신의 낭송에 겁을 먹는다."
+                      : "이(가) 당신의 낭송 앞에서 무력해 보인다.");
             affected = true;
         }
         break;
@@ -1139,7 +1139,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::mute:
         if (mon->add_ench(mon_enchant(ENCH_MUTE, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is struck mute by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 말을 잃었다!");
             affected = true;
         }
         break;
@@ -1147,7 +1147,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::mad:
         if (mon->add_ench(mon_enchant(ENCH_MAD, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is driven mad by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 미쳐 버렸다!");
             affected = true;
         }
         break;
@@ -1155,7 +1155,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
     case zin_eff::dumb:
         if (mon->add_ench(mon_enchant(ENCH_DUMB, &you, INFINITE_DURATION)))
         {
-            simple_monster_message(*mon, " is left stupefied by the wrath of Zin!");
+            simple_monster_message(*mon, "이(가) 진의 분노로 멍해졌다!");
             affected = true;
         }
         break;
@@ -1176,8 +1176,8 @@ bool zin_recite_to_single_monster(const coord_def& where)
                 if (mon->alive())
                 {
                     simple_monster_message(*mon,
-                      (damage < 25) ? " chaotic flesh sizzles and spatters!" :
-                      (damage < 50) ? " chaotic flesh bubbles and boils."
+                      (damage < 25) ? "의 혼돈의 살점이 지글거리며 튀어 오른다!" :
+                      (damage < 50) ? "의 혼돈의 살점이 부글부글 끓는다."
                                     : " chaotic flesh runs like molten wax.",
                       true);
 
@@ -1188,7 +1188,7 @@ bool zin_recite_to_single_monster(const coord_def& where)
                 else
                 {
                     simple_monster_message(*mon,
-                        " melts away into a sizzling puddle of chaotic flesh.");
+                        "이(가) 지글거리는 혼돈의 살점 웅덩이로 녹아내린다.");
                     monster_die(*mon, KILL_YOU, NON_MONSTER);
                 }
             }
@@ -1228,7 +1228,7 @@ static void _zin_saltify(monster* mon)
     const monster_type pillar_type = mons_species(mons_base_type(*mon));
     const int hd = mon->get_hit_dice();
 
-    simple_monster_message(*mon, " is turned into a pillar of salt by the wrath of Zin!");
+    simple_monster_message(*mon, "이(가) 진의 분노로 소금 기둥이 됐다!");
 
     // If the monster leaves a corpse when it dies, destroy the corpse.
     item_def* corpse = monster_die(*mon, KILL_YOU, NON_MONSTER);
@@ -1269,7 +1269,7 @@ bool zin_vitalisation()
 
 void zin_remove_divine_stamina()
 {
-    mprf(MSGCH_DURATION, "Your divine stamina fades away.");
+    mprf(MSGCH_DURATION, "신성한 활력이 사라진다.");
     notify_stat_change(STAT_STR, -you.attribute[ATTR_DIVINE_STAMINA], true);
     notify_stat_change(STAT_INT, -you.attribute[ATTR_DIVINE_STAMINA], true);
     notify_stat_change(STAT_DEX, -you.attribute[ATTR_DIVINE_STAMINA], true);
@@ -1282,19 +1282,19 @@ spret zin_imprison(const coord_def& target, bool fail)
     monster* mons = monster_at(target);
     if (mons == nullptr || !you.can_see(*mons))
     {
-        mpr("You can see no monster there to imprison!");
+        mpr("그곳에는 가둘 몬스터가 보이지 않아!");
         return spret::abort;
     }
 
     if (mons->is_peripheral())
     {
-        mpr("You cannot imprison that!");
+        mpr("그 대상은 가둘 수 없어!");
         return spret::abort;
     }
 
     if (mons->friendly() || mons->good_neutral())
     {
-        mpr("You cannot imprison a law-abiding creature!");
+        mpr("법을 준수하는 생명체는 가둘 수 없어!");
         return spret::abort;
     }
 
@@ -1309,9 +1309,9 @@ void zin_sanctuary()
 
     // Yes, shamelessly stolen from NetHack...
     if (!silenced(you.pos())) // How did you manage that?
-        mprf(MSGCH_SOUND, "You hear a choir sing!");
+        mprf(MSGCH_SOUND, "합창 소리가 들려!");
     else
-        mpr("You are suddenly bathed in radiance!");
+        mpr("갑자기 눈부신 광휘가 당신을 감싼다!");
 
     flash_view(UA_PLAYER, WHITE);
     // Allow extra time for the flash to linger.
@@ -1325,9 +1325,9 @@ void zin_sanctuary()
 void tso_divine_shield()
 {
     if (!you.duration[DUR_DIVINE_SHIELD])
-        mpr("A divine shield manifests in front of you!");
+        mpr("눈앞에 신성한 방패가 나타났다!");
     else
-        mpr("Your divine shield is renewed.");
+        mpr("신성한 방패가 다시 강화됐다.");
 
     const int charges = 3 + you.skill_rdiv(SK_INVOCATIONS, 2, 5);
     you.duration[DUR_DIVINE_SHIELD] = max(you.duration[DUR_DIVINE_SHIELD], charges);
@@ -1337,14 +1337,14 @@ void tso_expend_divine_shield_charge()
 {
     if (you.duration[DUR_DIVINE_SHIELD] && --you.duration[DUR_DIVINE_SHIELD] <= 0)
     {
-        mprf(MSGCH_DURATION, "Your divine shield fades away.");
+        mprf(MSGCH_DURATION, "신성한 방패가 사라진다.");
         you.duration[DUR_DIVINE_SHIELD] = 0;
     }
 }
 
 void elyvilon_purification()
 {
-    mpr("You feel purified!");
+    mpr("몸과 마음이 정화된 것 같아!");
 
     you.duration[DUR_SICKNESS] = 0;
     you.duration[DUR_POISONING] = 0;
@@ -1384,7 +1384,7 @@ void elyvilon_divine_vigour()
 
 void elyvilon_remove_divine_vigour()
 {
-    mprf(MSGCH_DURATION, "Your divine vigour fades away.");
+    mprf(MSGCH_DURATION, "신성한 원기가 사라진다.");
     you.duration[DUR_DIVINE_VIGOUR] = 0;
     you.attribute[ATTR_DIVINE_VIGOUR] = 0;
     calc_hp();
@@ -1406,13 +1406,13 @@ void trog_do_trogs_hand(int pow)
     you.increase_duration(DUR_TROGS_HAND,
                           5 + roll_dice(2, pow / 3 + 1), 100,
                           "Your skin crawls.");
-    mprf(MSGCH_DURATION, "You feel strong-willed.");
+    mprf(MSGCH_DURATION, "의지가 강해진 것 같아.");
 }
 
 void trog_remove_trogs_hand()
 {
-    mprf(MSGCH_DURATION, "Your skin stops crawling.");
-    mprf(MSGCH_DURATION, "You feel less strong-willed.");
+    mprf(MSGCH_DURATION, "피부에서 느껴지던 불쾌한 감각이 사라진다.");
+    mprf(MSGCH_DURATION, "의지가 약해진 것 같아.");
     you.duration[DUR_TROGS_HAND] = 0;
 }
 
@@ -1446,8 +1446,7 @@ string yred_cannot_light_torch_reason()
 
 bool yred_light_the_torch()
 {
-    mprf("You lift the black torch aloft and begin your conquest of %s in "
-         "Yredelemnul's name!",
+    mprf("검은 횃불을 높이 들어 이레데렘눌의 이름으로 %s 정복을 시작한다!",
             level_id::current().describe(true, true).c_str());
 
     // Determine number of torch charges based on piety stars.
@@ -1486,7 +1485,7 @@ bool yred_light_the_torch()
     }
 
     if (aid)
-        mpr("Yredelemnul sends servants to aid you!");
+        mpr("이레데렘눌이 당신을 돕기 위해 종복을 보냈다!");
 
     return true;
 }
@@ -1571,7 +1570,7 @@ void yred_feed_torch(const monster* mons)
         return;
 
     // Gain one torchlight charge for each unique killed
-    mprf(MSGCH_GOD, "The black torch howls with new intensity!");
+    mprf(MSGCH_GOD, "검은 횃불이 더욱 거세게 울부짖는다!");
     you.props[YRED_TORCH_POWER_KEY].get_int() += 1;
 }
 
@@ -1861,7 +1860,7 @@ bool fedhas_passthrough(const monster_info* target)
 
 void cheibriados_time_bend(int pow)
 {
-    mpr("The flow of time bends around you.");
+    mpr("주변의 시간 흐름이 휘어진다.");
 
     for (adjacent_iterator ai(you.pos()); ai; ++ai)
     {
@@ -1967,7 +1966,7 @@ spret cheibriados_slouch(bool fail)
 
     fail_check();
 
-    mpr("You can feel time thicken for a moment.");
+    mpr("잠시 시간의 흐름이 느려지는 것이 느껴진다.");
     dprf("your speed is %d", player_movement_speed());
 
     apply_area_visible(_slouch_monsters, you.pos());
@@ -2016,7 +2015,7 @@ void cheibriados_temporal_distortion()
 
     _cleanup_time_steps();
 
-    mpr("You warp the flow of time around you!");
+    mpr("주변 시간의 흐름을 뒤틀었다!");
 }
 
 static coord_def _find_displace_space(const monster* mon, coord_def start_pos)
@@ -2065,7 +2064,7 @@ static void _cheibriados_displace_monster(monster* mon)
 
 void cheibriados_time_step(int pow)
 {
-    mpr("You step out of the flow of time.");
+    mpr("시간의 흐름에서 벗어난다.");
     flash_view(UA_PLAYER, LIGHTBLUE);
 
     // Simulate 100 turns of 'real' time passing (so poison and other timed
@@ -2130,7 +2129,7 @@ void cheibriados_time_step(int pow)
     }
 
     flash_view(UA_PLAYER, 0);
-    mpr("You return to the normal time flow.");
+    mpr("정상적인 시간의 흐름으로 돌아온다.");
 }
 
 struct curse_data
@@ -2306,13 +2305,12 @@ void ashenzari_offer_new_curse()
     const string offer_string = curse_names.empty() ? "" :
                                 (" of " + curse_names);
 
-    mprf(MSGCH_GOD, "Ashenzari invites you to partake of a vision"
-                    " and a curse%s.", offer_string.c_str());
+    mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있다%s.", offer_string.c_str());
 }
 
 static void _do_curse_item(item_def &item)
 {
-    mprf("Your %s glows black for a moment.", item.name(DESC_PLAIN).c_str());
+    mprf("%s이(가) 잠시 검게 빛난다.", item.name(DESC_PLAIN).c_str());
     item.flags |= ISFLAG_CURSED;
 
     if (item.base_type == OBJ_WEAPONS)
@@ -2352,7 +2350,7 @@ bool ashenzari_curse_item()
 
     if (!item_is_selected(item, OSEL_CURSABLE))
     {
-        mprf(MSGCH_PROMPT, "You cannot curse that!");
+        mprf(MSGCH_PROMPT, "그것에는 저주를 걸 수 없어!");
         return false;
     }
 
@@ -2386,14 +2384,13 @@ bool ashenzari_uncurse_item()
 
     if (!item_is_selected(item, OSEL_CURSED_WORN))
     {
-        mprf(MSGCH_PROMPT, "You cannot uncurse and destroy that!");
+        mprf(MSGCH_PROMPT, "그것의 저주를 풀고 파괴할 수는 없어!");
         return false;
     }
 
     if (item_is_melded(item))
     {
-        mprf(MSGCH_PROMPT, "You cannot shatter the curse on %s while it is "
-                           "melded with your body!",
+        mprf(MSGCH_PROMPT, "몸과 융합된 %s에 걸린 저주는 깨뜨릴 수 없어!",
              item.name(DESC_THE).c_str());
         return false;
     }
@@ -2414,7 +2411,7 @@ bool ashenzari_uncurse_item()
     if (!handle_chain_removal(to_remove, true))
         return false;
 
-    mprf("You shatter the curse binding %s!", item.name(DESC_THE).c_str());
+    mprf("%s을(를) 속박하던 저주를 깨뜨렸다!", item.name(DESC_THE).c_str());
     item_skills(item, you.skills_to_hide);
 
     for (item_def* _item : to_remove)
@@ -2528,9 +2525,9 @@ void spare_beogh_convert()
     you.heal(random_range(10, 20));
     you.duration[DUR_CONF] = 0;
 
-    mpr("The priest grants you succour and welcomes you into the fold.");
+    mpr("사제가 당신을 도와주며 신도들 사이로 맞아들인다.");
     if (witnesses.size() > 1)
-        mpr("The other orcs roar their approval!");
+        mpr("다른 오크들이 찬성의 함성을 지른다!");
 
     for (auto wit : witnesses)
     {
@@ -2582,7 +2579,7 @@ void beogh_blood_for_blood()
         }
     }
 
-    mprf("You place your %s atop %s's lifeless body and utter a vengeful prayer.",
+    mprf("%s을(를) 죽은 %s의 몸 위에 올려놓고 복수의 기도를 올린다.",
          you.hand_name(false).c_str(), apostle_name.c_str());
 
     you.duration[DUR_BLOOD_FOR_BLOOD] = random_range(130, 180) * BASELINE_DELAY;
@@ -2781,7 +2778,7 @@ bool beogh_cancel_leaving_floor()
         if (!yesno("Are you sure you wish to flee a divine trial? This will "
                    "place you under penance!", false, 'n'))
         {
-            mpr("Beogh appreciates your bravery.");
+            mpr("베오그가 당신의 용기를 기꺼워한다.");
             return true;
         }
     }
@@ -2806,7 +2803,7 @@ void beogh_increase_orcification()
     if (you.props.exists(ORCIFICATION_LEVEL_KEY))
     {
         you.props[ORCIFICATION_LEVEL_KEY] = 2;
-        mprf(MSGCH_MUTATION, "Your orcish features manifest fully.");
+        mprf(MSGCH_MUTATION, "오크의 특징이 완전히 드러났다.");
         return;
     }
 
@@ -2860,7 +2857,7 @@ spret dithmenos_shadowslip(bool fail)
 
     const coord_def shadow_pos = shadow->pos();
 
-    mpr("You swap places with your shadow and weave the vestiges of your form into it.");
+    mpr("그림자와 자리를 바꾸며 자신의 형체를 그림자 속으로 엮어 넣는다.");
 
     shadow->move_to(you.pos(), MV_ALLOW_OVERLAP | MV_TRANSLOCATION, true);
     you.move_to(shadow_pos, MV_ALLOW_OVERLAP | MV_TRANSLOCATION, true);
@@ -2929,7 +2926,7 @@ spret dithmenos_nightfall(bool fail)
 {
     fail_check();
 
-    mpr("The world around you is engulfed in lightless night!");
+    mpr("주위 세계가 빛 한 점 없는 밤에 잠긴다!");
 
     const int dur = (random_range(16, 24) + you.skill_rdiv(SK_INVOCATIONS, 2, 3))
                         * BASELINE_DELAY;
@@ -3120,7 +3117,7 @@ spret dithmenos_marionette(monster& target, bool fail)
 
     fail_check();
 
-    mprf("You grasp %s shadow with your own and put on a performance!",
+    mprf("자신의 그림자로 %s의 그림자를 붙잡고 공연을 시작한다!",
           target.name(DESC_ITS).c_str());
 
     behaviour_event(&target, ME_WHACK, &you);
@@ -3176,7 +3173,7 @@ spret dithmenos_marionette(monster& target, bool fail)
 
     if (!target.alive())
     {
-        mpr("Your performance comes to an abrupt end.");
+        mpr("공연이 갑자기 끝났다.");
         return spret::success;
     }
 
@@ -3256,7 +3253,7 @@ bool gozag_setup_potion_petition(bool quiet)
     {
         if (!quiet)
         {
-            mprf("You need at least %d gold to purchase potions right now!",
+            mprf("지금 물약을 구매하려면 금화가 최소 %d개 필요해!",
                  GOZAG_POTION_PETITION_AMOUNT);
         }
         return false;
@@ -3345,14 +3342,14 @@ bool gozag_potion_petition()
             line += comma_separated_line(pot_names.begin(), pot_names.end());
             mpr_nojoin(MSGCH_PLAIN, line);
         }
-        mprf(MSGCH_PROMPT, "Purchase which effect?");
+        mprf(MSGCH_PROMPT, "어떤 효과를 구매할까?");
         keyin = toalower(get_ch()) - 'a';
         if (keyin < 0 || keyin > GOZAG_MAX_POTIONS - 1)
             continue;
 
         if (you.gold < prices[keyin])
         {
-            mpr("You don't have enough gold for that!");
+            mpr("그것을 살 금화가 부족해!");
             more();
             continue;
         }
@@ -3406,21 +3403,20 @@ bool gozag_setup_call_merchant(bool quiet)
     {
         if (!quiet)
         {
-            mprf("You currently need %d gold to open negotiations with a "
-                 "merchant.", gold_min);
+            mprf("상인과 협상하려면 현재 금화가 %d개 필요해.", gold_min);
         }
         return false;
     }
     if (!is_connected_branch(level_id::current().branch))
     {
         if (!quiet)
-            mpr("No merchants are willing to come to this location.");
+            mpr("이 장소로 오겠다는 상인이 없어.");
         return false;
     }
     if (env.grid(you.pos()) != DNGN_FLOOR)
     {
         if (!quiet)
-            mpr("You need to be standing on open floor to call a merchant.");
+            mpr("상인을 부르려면 탁 트인 바닥에 서 있어야 해.");
         return false;
     }
 
@@ -3536,14 +3532,14 @@ static int _gozag_choose_shop()
     for (int i = 0; i < GOZAG_MAX_SHOPS; i++)
         mpr_nojoin(MSGCH_PLAIN, _describe_gozag_shop(i).c_str());
 
-    mprf(MSGCH_PROMPT, "Fund which merchant?");
+    mprf(MSGCH_PROMPT, "어느 상인에게 자금을 댈까?");
     const int shop_index = toalower(get_ch()) - 'a';
     if (shop_index < 0 || shop_index > GOZAG_MAX_SHOPS - 1)
         return _gozag_choose_shop(); // tail recurse
 
     if (you.gold < _gozag_shop_price(shop_index))
     {
-        mpr("You don't have enough gold to fund that merchant!");
+        mpr("그 상인에게 자금을 댈 금화가 부족해!");
         more();
         return _gozag_choose_shop(); // tail recurse
     }
@@ -3750,7 +3746,7 @@ void gozag_deduct_bribe(branch_type br, int amount)
     branch_bribe[br] = max(0, branch_bribe[br] - amount);
     if (branch_bribe[br] <= 0)
     {
-        mprf(MSGCH_DURATION, "Your bribe of %s has been exhausted.",
+        mprf(MSGCH_DURATION, "%s에게 준 뇌물이 다 떨어졌다.",
              branches[br].longname);
         add_daction(DACT_BRIBE_TIMEOUT);
     }
@@ -3762,7 +3758,7 @@ bool gozag_check_bribe_branch(bool quiet)
     if (you.gold < bribe_amount)
     {
         if (!quiet)
-            mprf("You need at least %d gold to offer a bribe.", bribe_amount);
+            mprf("뇌물을 주려면 금화가 최소 %d개 필요해.", bribe_amount);
         return false;
     }
     branch_type branch = you.where_are_you;
@@ -3790,9 +3786,9 @@ bool gozag_check_bribe_branch(bool quiet)
         if (!quiet)
         {
             if (branch2 != NUM_BRANCHES)
-                mprf("You can't bribe %s or %s.", who.c_str(), who2.c_str());
+                mprf("%s이나(나) %s에게 뇌물을 줄 수 없어.", who.c_str(), who2.c_str());
             else
-                mprf("You can't bribe %s.", who.c_str());
+                mprf("%s에게 뇌물을 줄 수 없어.", who.c_str());
         }
         return false;
     }
@@ -3835,7 +3831,7 @@ bool gozag_bribe_branch()
                               branches[branch].longname);
     if (!gozag_branch_bribable(branch))
     {
-        mprf("You can't bribe %s.", who.c_str());
+        mprf("%s에게 뇌물을 줄 수 없어.", who.c_str());
         return false;
     }
 
@@ -3936,7 +3932,7 @@ spret qazlal_upheaval(coord_def target, bool quiet, bool fail, dist *player_targ
 
         if (cell_is_invalid_target(beam.target))
         {
-            mprf("There is %s there.",
+            mprf("그곳에 %s이(가) 있어.",
                  article_a(feat_type_name(env.grid(beam.target))).c_str());
             return spret::abort;
         }
@@ -4110,7 +4106,7 @@ spret qazlal_elemental_force(bool fail)
     vector<coord_def> targets = find_elemental_targets();
     if (targets.empty())
     {
-        mpr("You can't see any clouds you can empower.");
+        mpr("강화할 수 있는 구름이 보이지 않아.");
         return spret::abort;
     }
 
@@ -4146,7 +4142,7 @@ spret qazlal_elemental_force(bool fail)
     }
 
     if (placed)
-        mprf(MSGCH_GOD, "Clouds arounds you coalesce and take form!");
+        mprf(MSGCH_GOD, "주위의 구름이 뭉쳐 형태를 갖춘다!");
     else
         canned_msg(MSG_NOTHING_HAPPENS); // can this ever happen?
 
@@ -4193,7 +4189,7 @@ spret qazlal_disaster_area(bool fail)
 
     if (targets.empty())
     {
-        mpr("There isn't enough space here!");
+        mpr("여기에는 공간이 부족해!");
         return spret::abort;
     }
 
@@ -4207,7 +4203,7 @@ spret qazlal_disaster_area(bool fail)
 
     fail_check();
 
-    mprf(MSGCH_GOD, "Nature churns violently around you!");
+    mprf(MSGCH_GOD, "주변의 자연이 격렬하게 요동친다!");
 
     // TODO: should count get a cap proportional to targets.size()?
     int count = max(1, min((int)targets.size(),
@@ -4956,7 +4952,7 @@ static void _apply_ru_sacrifice(mutation_type sacrifice)
 
 static bool _execute_sacrifice(ability_type sac, const char* message)
 {
-    mprf("Ru asks you to %s.", message);
+    mprf("루가 당신에게 %s을(를) 요구한다.", message);
     mpr(ru_sacrifice_description(sac));
     if (!yesno("Do you really want to make this sacrifice?",
                false, 'n'))
@@ -5316,31 +5312,30 @@ void ru_do_retribution(monster* mons, int damage)
 
     if (power > 50 && (mons->antimagic_susceptible()))
     {
-        mprf(MSGCH_GOD, "You focus your inner power and drain %s's magic in "
-                "retribution!", mons->name(DESC_THE).c_str());
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s의 마력을 빼앗았다!", mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_ANTIMAGIC, act, power+random2(320)));
     }
     else if (power > 35)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and paralyse %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s을(를) 마비시켰다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_PARALYSIS, act, power+random2(60)));
     }
     else if (power > 25)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and slow %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s을(를) 둔화시켰다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_SLOW, act, power+random2(100)));
     }
     else if (power > 10)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and blind %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s의 눈을 멀게 했다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_BLIND, act, power+random2(100)));
     }
     else if (power > 0)
     {
-        mprf(MSGCH_GOD, "You focus your inner power and illuminate %s in retribution!",
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s을(를) 빛나게 했다!",
                 mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_CORONA, act, power+random2(150)));
     }
@@ -5348,15 +5343,15 @@ void ru_do_retribution(monster* mons, int damage)
 
 void ru_draw_out_power()
 {
-    mpr("You are restored by drawing out deep reserves of power within.");
+    mpr("내면 깊숙한 곳에 비축된 힘을 끌어내 회복한다.");
 
     //Escape nets and webs
     if (you.caught())
     {
         if (you.caught_by() == CAUGHT_WEB)
-            mpr("You burst free from the webs!");
+            mpr("거미줄을 찢고 빠져나왔다!");
         else
-            mpr("You burst free from the net!");
+            mpr("그물을 찢고 빠져나왔다!");
         you.stop_being_caught();
     }
 
@@ -5404,7 +5399,7 @@ bool ru_power_leap()
     }
     if (you.is_nervous())
     {
-        mpr("You are too terrified to leap around!");
+        mpr("너무 겁에 질려 도약할 수 없어!");
         return false;
     }
 
@@ -5428,7 +5423,7 @@ bool ru_power_leap()
         if (crawl_state.seen_hups)
         {
             clear_messages();
-            mpr("Cancelling leap due to HUP.");
+            mpr("연결 끊김으로 도약을 취소한다.");
             return false;
         }
 
@@ -5442,7 +5437,7 @@ bool ru_power_leap()
         if (beholder)
         {
             clear_messages();
-            mprf("You cannot leap away from %s!",
+            mprf("%s에게서 멀어지는 방향으로 도약할 수 없어!",
                  beholder->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5451,7 +5446,7 @@ bool ru_power_leap()
         if (fearmonger)
         {
             clear_messages();
-            mprf("You cannot leap closer to %s!",
+            mprf("%s에게 가까워지는 방향으로 도약할 수 없어!",
                  fearmonger->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5460,20 +5455,20 @@ bool ru_power_leap()
         if (mons && you.can_see(*mons))
         {
             clear_messages();
-            mpr("You can't leap on top of the monster!");
+            mpr("몬스터가 있는 자리로 뛰어오를 수 없어!");
             continue;
         }
 
         if (env.grid(beam.target) == DNGN_OPEN_SEA)
         {
             clear_messages();
-            mpr("You can't leap into the sea!");
+            mpr("바다로 뛰어들 수 없어!");
             continue;
         }
         else if (env.grid(beam.target) == DNGN_LAVA_SEA)
         {
             clear_messages();
-            mpr("You can't leap into the sea of lava!");
+            mpr("용암 바다로 뛰어들 수 없어!");
             continue;
         }
         else if (!check_moveto(beam.target, "leap", false))
@@ -5502,7 +5497,7 @@ bool ru_power_leap()
     if (cell_is_solid(beam.target) || monster_at(beam.target))
     {
         // XXX: try to jump somewhere nearby?
-        mpr("Something unexpectedly blocks you, preventing you from leaping!");
+        mpr("예상치 못한 무언가가 가로막아 도약하지 못했다!");
         return true;
     }
 
@@ -5634,7 +5629,7 @@ bool ru_apocalypse()
             return false;
         }
     }
-    mpr("You reveal the great annihilating truth to your foes!");
+    mpr("적들에게 위대한 절멸의 진실을 드러낸다!");
     noisy(30, you.pos());
     apply_area_visible(_apply_apocalypse, you.pos());
     drain_player(100, false, true);
@@ -5688,8 +5683,7 @@ bool uskayaw_stomp()
         return false;
     }
 
-    mpr("You stomp with the beat, sending a shockwave through the revellers "
-            "around you!");
+    mpr("박자에 맞춰 발을 구르자 주변의 흥겨운 무리에게 충격파가 퍼진다!");
     apply_monsters_around_square(_get_stomped, you.pos());
     return true;
 }
@@ -5741,7 +5735,7 @@ bool uskayaw_line_pass()
         if (crawl_state.seen_hups)
         {
             clear_messages();
-            mpr("Cancelling line pass due to HUP.");
+            mpr("연결 끊김으로 통과 이동을 취소한다.");
             return false;
         }
 
@@ -5752,7 +5746,7 @@ bool uskayaw_line_pass()
         if (beholder)
         {
             clear_messages();
-            mprf("You cannot move away from %s!",
+            mprf("%s에게서 멀어질 수 없어!",
                  beholder->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5761,7 +5755,7 @@ bool uskayaw_line_pass()
         if (fearmonger)
         {
             clear_messages();
-            mprf("You cannot move closer to %s!",
+            mprf("%s에게 다가갈 수 없어!",
                  fearmonger->name(DESC_THE, true).c_str());
             continue;
         }
@@ -5770,26 +5764,26 @@ bool uskayaw_line_pass()
         if (mons && you.can_see(*mons))
         {
             clear_messages();
-            mpr("You can't stand on top of the monster!");
+            mpr("몬스터가 있는 자리에 설 수 없어!");
             continue;
         }
 
         if (env.grid(beam.target) == DNGN_OPEN_SEA)
         {
             clear_messages();
-            mpr("You can't line pass into the sea!");
+            mpr("바다로 통과 이동할 수 없어!");
             continue;
         }
         else if (env.grid(beam.target) == DNGN_LAVA_SEA)
         {
             clear_messages();
-            mpr("You can't line pass into the sea of lava!");
+            mpr("용암 바다로 통과 이동할 수 없어!");
             continue;
         }
         else if (cell_is_solid(beam.target))
         {
             clear_messages();
-            mpr("You can't walk through walls!");
+            mpr("벽을 통과해서 걸을 수 없어!");
             continue;
         }
         else if (!check_moveto(beam.target, "line pass", false))
@@ -5814,7 +5808,7 @@ bool uskayaw_line_pass()
     }
 
     if (monster_at(beam.target))
-        mpr("Something unexpectedly blocks you, preventing you from passing!");
+        mpr("예상치 못한 무언가에 막혀 통과하지 못했다!");
     else
     {
         you.stop_being_constricted(false, "dance");
@@ -5856,7 +5850,7 @@ spret uskayaw_grand_finale(bool fail)
         if (crawl_state.seen_hups)
         {
             clear_messages();
-            mpr("Cancelling grand finale due to HUP.");
+            mpr("연결 끊김으로 대단원의 막을 취소한다.");
             return spret::abort;
         }
 
@@ -5870,7 +5864,7 @@ spret uskayaw_grand_finale(bool fail)
         if (!mons || !you.can_see(*mons))
         {
             clear_messages();
-            mpr("You can't perceive a target there!");
+            mpr("그곳의 대상을 감지할 수 없어!");
             continue;
         }
 
@@ -5881,7 +5875,7 @@ spret uskayaw_grand_finale(bool fail)
         else if (cell_is_solid(beam.target))
         {
             clear_messages();
-            mprf("You cannot occupy %s.", article_a(feat_type_name(env.grid(beam.target))).c_str());
+            mprf("%s에는 자리 잡을 수 없어.", article_a(feat_type_name(env.grid(beam.target))).c_str());
         }
         else if (you.see_cell_no_trans(beam.target))
         {
@@ -5932,7 +5926,7 @@ spret uskayaw_grand_finale(bool fail)
     if (!mons->alive() && !monster_at(beam.target))
         you.move_to(beam.target, MV_TRANSLOCATION | MV_DELIBERATE);
     else
-        mpr("You spring back to your original position.");
+        mpr("원래 자리로 튕겨 돌아온다.");
 
     crawl_state.cancel_cmd_again();
     crawl_state.cancel_cmd_repeat();
@@ -5955,7 +5949,7 @@ bool hepliaklqana_choose_ancestor_type(int ancestor_choice)
         && companion_is_elsewhere(hepliaklqana_ancestor()))
     {
         // ugly hack to avoid dealing with upgrading offlevel ancestors
-        mpr("You can't make this choice while your ancestor is elsewhere.");
+        mpr("조상이 다른 곳에 있는 동안에는 선택할 수 없어.");
         return false;
     }
 
@@ -6012,7 +6006,7 @@ spret hepliaklqana_idealise(bool fail)
     const mid_t ancestor_mid = hepliaklqana_ancestor();
     if (ancestor_mid == MID_NOBODY)
     {
-        mpr("You have no ancestor to preserve!");
+        mpr("보존할 조상이 없어!");
         return spret::abort;
     }
 
@@ -6035,9 +6029,9 @@ spret hepliaklqana_idealise(bool fail)
     if (ancestor->heal(healing))
     {
         if (ancestor->hit_points == ancestor->max_hit_points)
-            simple_monster_message(*ancestor, " is fully restored!");
+            simple_monster_message(*ancestor, "이(가) 완전히 회복됐다!");
         else
-            simple_monster_message(*ancestor, " is healed somewhat.");
+            simple_monster_message(*ancestor, "이(가) 어느 정도 회복됐다.");
     }
 
     const int dur = random_range(50, 80)
@@ -6089,7 +6083,7 @@ static void _transfer_drain_nearby(coord_def destination)
             = random_range(1 + you.skill_rdiv(SK_INVOCATIONS, 1, 27),
                            2 + you.skill_rdiv(SK_INVOCATIONS, 4, 27));
         if (mon->add_ench(mon_enchant(ENCH_DRAINED, &you, dur, degree)))
-            simple_monster_message(*mon, " is drained by nostalgia.");
+            simple_monster_message(*mon, "이(가) 향수에 생명력을 빼앗긴다.");
     }
 }
 
@@ -6129,7 +6123,7 @@ spret hepliaklqana_transference(bool fail)
 
     if (victim == ancestor)
     {
-        mprf("You can't transfer your ancestor with %s.",
+        mprf("%s을(를) 이용해 조상을 옮길 수 없어.",
              ancestor->pronoun(PRONOUN_REFLEXIVE).c_str());
         return spret::abort;
     }
@@ -6140,7 +6134,7 @@ spret hepliaklqana_transference(bool fail)
                      || mons_is_projectile(victim->type));
     if (victim_visible && victim_immovable)
     {
-        mpr("You can't transfer that.");
+        mpr("그건 옮길 수 없어.");
         return spret::abort;
     }
 
@@ -6219,7 +6213,7 @@ static void _hepliaklqana_choose_name()
     }
 
     you.props[HEPLIAKLQANA_ALLY_NAME_KEY] = new_name;
-    mprf("Yes, %s is definitely a better name.", new_name.c_str());
+    mprf("그래, %s이(가) 확실히 더 좋은 이름이야.", new_name.c_str());
     upgrade_hepliaklqana_ancestor(true);
 }
 
@@ -6424,19 +6418,19 @@ spret wu_jian_wall_jump_ability()
 
     if (!has_targets)
     {
-        mpr("There is nothing to wall jump against here.");
+        mpr("이곳에는 벽을 박차고 뛸 만한 곳이 없어.");
         return spret::abort;
     }
 
     if (you.is_nervous())
     {
-        mpr("You are too terrified to wall jump!");
+        mpr("너무 두려워서 벽을 박차고 뛰지 못하겠어!");
         return spret::abort;
     }
 
     if (you.attribute[ATTR_HELD])
     {
-        mprf("You cannot wall jump while caught in a %s.",
+        mprf("%s에 붙잡힌 상태에서는 벽 도약을 할 수 없어.",
              you.caught_by() == CAUGHT_WEB ? "web" : "net");
         return spret::abort;
     }
@@ -6465,7 +6459,7 @@ spret wu_jian_wall_jump_ability()
         if (crawl_state.seen_hups)
         {
             clear_messages();
-            mpr("Cancelling wall jump due to HUP.");
+            mpr("연결 끊김으로 벽 도약을 취소한다.");
             return spret::abort;
         }
 
@@ -6490,7 +6484,7 @@ spret wu_jian_wall_jump_ability()
 
 void wu_jian_heavenly_storm()
 {
-    mprf(MSGCH_GOD, "The air is filled with shimmering golden clouds!");
+    mprf(MSGCH_GOD, "공기가 반짝이는 황금빛 구름으로 가득 찬다!");
     wu_jian_sifu_message(" says: The storm will not cease as long as you "
                          "keep fighting, disciple!");
 
@@ -6518,7 +6512,7 @@ spret okawaru_duel(const coord_def& target, bool fail)
     monster* mons = monster_at(target);
     if (!mons || !you.can_see(*mons))
     {
-        mpr("You can see no monster there to duel!");
+        mpr("그곳에는 결투할 몬스터가 보이지 않아!");
         return spret::abort;
     }
 
@@ -6527,20 +6521,20 @@ spret okawaru_duel(const coord_def& target, bool fail)
         || mons->wont_attack()
         || mons->type == MONS_BOUNDLESS_TESSERACT)
     {
-        mpr("You cannot duel that!");
+        mpr("그 대상과는 결투할 수 없어!");
         return spret::abort;
     }
 
     if (mons_threat_level(*mons) < MTHRT_TOUGH)
     {
-        simple_monster_message(*mons, " is not worthy to be dueled!");
+        simple_monster_message(*mons, "은(는) 결투할 가치가 없어!");
         return spret::abort;
     }
 
     if (mons->is_illusion())
     {
         fail_check();
-        mprf("You challenge %s to single combat, but %s is merely a clone!",
+        mprf("%s에게 일대일 결투를 신청하지만 %s은(는) 단순한 복제체일 뿐이다!",
              mons->name(DESC_THE).c_str(),
              mons->pronoun(PRONOUN_SUBJECTIVE).c_str());
         // Still costs a turn to gain the information.
@@ -6550,13 +6544,13 @@ spret okawaru_duel(const coord_def& target, bool fail)
     // to duel a clone that's already invalid to be dueled for other reasons.
     else if (mons->is_summoned())
     {
-        mpr("You cannot duel that!");
+        mpr("그 대상과는 결투할 수 없어!");
         return spret::abort;
     }
 
     fail_check();
 
-    mprf("You enter into single combat with %s!",
+    mprf("%s와(과) 일대일 결투를 시작한다!",
          mons->name(DESC_THE).c_str());
 
     behaviour_event(mons, ME_ALERT, &you);
@@ -6581,12 +6575,12 @@ spret okawaru_duel(const coord_def& target, bool fail)
 void okawaru_duel_healing()
 {
     if (you.heal((you.hp_max - you.hp) / 2))
-        mpr("You feel invigorated by the roar of the crowd!");
+        mpr("군중의 함성에 활력이 솟아난다!");
 }
 
 void okawaru_remove_heroism()
 {
-    mprf(MSGCH_DURATION, "You feel like a meek peon again.");
+    mprf(MSGCH_DURATION, "다시 나약한 졸개가 된 것 같아.");
     you.duration[DUR_HEROISM] = 0;
     you.redraw_evasion      = true;
     you.redraw_armour_class = true;
@@ -6672,7 +6666,7 @@ spret jiyva_oozemancy(bool fail)
 
     if (walls.empty())
     {
-        mpr("There are no walls around you to affect.");
+        mpr("영향을 줄 수 있는 벽이 주위에 없어.");
         return spret::abort;
     }
 
@@ -6687,7 +6681,7 @@ spret jiyva_oozemancy(bool fail)
     }
 
     you.increase_duration(DUR_OOZEMANCY, dur);
-    mpr("Slime begins to ooze from the nearby walls!");
+    mpr("근처 벽에서 점액이 흘러나오기 시작한다!");
 
     return spret::success;
 }
@@ -6811,11 +6805,11 @@ static void _makhleb_atrocity_trigger(int power)
 
     if (targs.empty())
     {
-        mprf("Your accumulated destruction dissipates without a target.");
+        mprf("쌓아 둔 파괴의 힘이 표적을 찾지 못해 흩어진다.");
         return;
     }
 
-    mpr("Your destruction surges wildly!");
+    mpr("파괴의 힘이 격렬하게 솟구친다!");
 
     bolt beam;
     beam.range = you.current_vision;
@@ -7075,7 +7069,7 @@ void makhleb_inscribe_mark(mutation_type mark)
         return;
     }
 
-    mprf("You utter a prayer to Makhleb and carve the %s into yourself.",
+    mprf("마크레브에게 기도하며 자기 몸에 %s을(를) 새긴다.",
          mutation_name(mark));
 
     const int hploss = min(you.hp - 1, you.hp * 2 / 3);
@@ -7108,7 +7102,7 @@ spret makhleb_infernal_legion(bool fail)
 {
     if (you.duration[DUR_INFERNAL_LEGION])
     {
-        mpr("You are already unleashing the legions of chaos!");
+        mpr("이미 혼돈의 군단을 풀어놓고 있어!");
         return spret::abort;
     }
 
@@ -7116,7 +7110,7 @@ spret makhleb_infernal_legion(bool fail)
         return spret::abort;
 
     fail_check();
-    mpr("You carve a gateway into yourself and beckon forth the legions of chaos!");
+    mpr("자기 몸에 관문을 새겨 혼돈의 군단을 불러낸다!");
     bleed_for_makhleb(you);
     you.duration[DUR_INFERNAL_LEGION] = (you.skill_rdiv(SK_INVOCATIONS, 5, 4)
                                             + random_range(10, 20)) * BASELINE_DELAY;
@@ -7155,8 +7149,7 @@ void makhleb_vessel_of_slaughter()
     const int boost = div_rand_round((100 - (you.hp * 100 / you.hp_max)) * 2, 3);
     you.props[MAKHLEB_SLAUGHTER_BOOST_KEY] = boost;
 
-    mpr("You offer yourself as an instrument of Makhleb's will and feel "
-        "overwhelming power flowing through you!");
+    mpr("마크레브의 뜻을 실현할 도구로 자신을 바치자 압도적인 힘이 온몸에 흐른다!");
 
     transform(random_range(70, 110), transformation::slaughter);
     you.transform_uncancellable = true;

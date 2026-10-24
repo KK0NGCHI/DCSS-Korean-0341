@@ -1,0 +1,32 @@
+name: Translation source inventory
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tools/dcss-extractor/scripts/full_inventory_v1.py'
+      - '.github/workflows/translation-inventory.yml'
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run repository-wide lexical inventory
+        run: python tools/dcss-extractor/scripts/full_inventory_v1.py --source source --output tools/dcss-extractor/output/FULL-INVENTORY-001
+      - name: Display summary
+        if: always()
+        run: |
+          if [ -f tools/dcss-extractor/output/FULL-INVENTORY-001/summary.json ]; then
+            cat tools/dcss-extractor/output/FULL-INVENTORY-001/summary.json
+          fi
+      - name: Publish inventory artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-inventory-001
+          path: tools/dcss-extractor/output/FULL-INVENTORY-001/
+          if-no-files-found: warn

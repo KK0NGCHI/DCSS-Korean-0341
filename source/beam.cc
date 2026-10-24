@@ -866,7 +866,7 @@ void bolt::digging_wall_effect()
             {
                 if (!silenced(you.pos()))
                 {
-                    mprf(MSGCH_SOUND, "You hear a grinding noise.");
+                    mprf(MSGCH_SOUND, "무언가 갈리는 소리가 들린다.");
                     obvious_effect = true; // You may still see the caster.
                     msg_generated = true;
                 }
@@ -880,7 +880,7 @@ void bolt::digging_wall_effect()
             if (feat == DNGN_GRATE)
             {
                 // XXX: should this change for monsters?
-                mpr("The damaged grate falls apart.");
+                mpr("손상된 쇠창살이 무너져 내린다.");
                 return;
             }
             else if (feat == DNGN_SLIMY_WALL)
@@ -994,7 +994,7 @@ void bolt::sporangium_wall_effect()
     mg.set_summoned(orig_plasmodium, SPELL_LAUNCH_SPORANGIUM, INFINITE_DURATION, false);
 
     if (monster* plasm = create_monster(mg))
-        simple_monster_message(*plasm, " begins to grow on the wall!", false, MSGCH_PLAIN, 0, DESC_A);
+        simple_monster_message(*plasm, "이(가) 벽에서 자라기 시작한다!", false, MSGCH_PLAIN, 0, DESC_A);
 }
 
 int bolt::range_used(bool leg_only) const
@@ -1502,33 +1502,33 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (!hurted)
         {
             if (original > 0 && doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
         }
         else if (original > hurted)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " resists.");
+                simple_monster_message(*mons, "이(가) 저항했다.");
         }
         else if (original < hurted && doFlavouredEffects)
         {
             if (mons->is_icy())
-                simple_monster_message(*mons, " melts!");
+                simple_monster_message(*mons, "이(가) 녹아내린다!");
             else if (mons_species(mons->type) == MONS_BUSH
                      && mons->res_fire() < 0)
             {
-                simple_monster_message(*mons, " is on fire!");
+                simple_monster_message(*mons, "이(가) 불타고 있다!");
             }
             else if (pbolt.flavour == BEAM_FIRE)
-                simple_monster_message(*mons, " is burned terribly!");
+                simple_monster_message(*mons, "이(가) 심하게 불탄다!");
             else
-                simple_monster_message(*mons, " is scalded terribly!");
+                simple_monster_message(*mons, "이(가) 심하게 데었다!");
         }
         break;
 
     case BEAM_WATER:
         hurted = resist_adjust_damage(mons, pbolt.flavour, hurted);
         if (hurted > original && doFlavouredEffects)
-            simple_monster_message(*mons, " is doused terribly!");
+            simple_monster_message(*mons, "이(가) 흠뻑 젖었다!");
         break;
 
     case BEAM_COLD:
@@ -1536,17 +1536,17 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (!hurted)
         {
             if (original > 0 && doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
         }
         else if (original > hurted)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " resists.");
+                simple_monster_message(*mons, "이(가) 저항했다.");
         }
         else if (original < hurted)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " is chilled terribly!");
+                simple_monster_message(*mons, "이(가) 극심한 냉기에 시달린다!");
         }
         break;
 
@@ -1557,17 +1557,17 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (!hurted)
         {
             if (original > 0 && doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
         }
         else if (original > hurted)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " resists.");
+                simple_monster_message(*mons, "이(가) 저항했다.");
         }
         else if (original < hurted)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " is electrocuted!");
+                simple_monster_message(*mons, "이(가) 감전됐다!");
         }
         break;
 
@@ -1577,7 +1577,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (!hurted)
         {
             if (original > 0 && doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
         }
         else if (doFlavouredEffects && !one_chance_in(3))
             mons->corrode(pbolt.agent());
@@ -1589,7 +1589,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         hurted = resist_adjust_damage(mons, pbolt.flavour, hurted);
 
         if (!hurted && doFlavouredEffects && original > 0)
-            simple_monster_message(*mons, " completely resists.");
+            simple_monster_message(*mons, "이(가) 완전히 저항했다.");
         else if (doFlavouredEffects && !one_chance_in(3))
         {
             if (pbolt.origin_spell == SPELL_SPIT_POISON &&
@@ -1619,7 +1619,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         {
             if (doFlavouredEffects)
             {
-                simple_monster_message(*mons, " partially resists.");
+                simple_monster_message(*mons, "이(가) 부분적으로 저항했다.");
                 poison_monster(mons, pbolt.agent(), div_rand_round(stacks, 2),
                                true);
             }
@@ -1651,7 +1651,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
                     if (!did_splash_msg)
                     {
                         if (you.see_cell(mons->pos()))
-                            mprf("The mercury splashes!");
+                            mprf("수은이 사방으로 튄다!");
                         did_splash_msg = true;
                     }
 
@@ -1668,7 +1668,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (mons->res_negative_energy() == 3)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
 
             hurted = 0;
         }
@@ -1681,9 +1681,9 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
                 return hurted;
 
             if (original > hurted)
-                simple_monster_message(*mons, " resists.");
+                simple_monster_message(*mons, "이(가) 저항했다.");
             else if (original < hurted)
-                simple_monster_message(*mons, " is drained terribly!");
+                simple_monster_message(*mons, "이(가) 생명력을 크게 빼앗겼다!");
 
             if (mons->observable())
                 pbolt.obvious_effect = true;
@@ -1699,7 +1699,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (mons->res_miasma())
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
 
             hurted = 0;
         }
@@ -1723,8 +1723,8 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (doFlavouredEffects && original > 0
             && (!hurted || hurted != original))
         {
-            simple_monster_message(*mons, hurted == 0 ? " completely resists." :
-                                    hurted < original ? " resists." :
+            simple_monster_message(*mons, hurted == 0 ? "이(가) 완전히 저항했다." :
+                                    hurted < original ? "이(가) 저항했다." :
                                     " writhes in agony!");
         }
         break;
@@ -1737,12 +1737,12 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (hurted < original)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " partially resists.");
+                simple_monster_message(*mons, "이(가) 부분적으로 저항했다.");
         }
         else if (hurted > original)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " is chilled terribly!");
+                simple_monster_message(*mons, "이(가) 극심한 냉기에 시달린다!");
         }
         break;
 
@@ -1752,19 +1752,19 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (hurted < original)
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " partially resists.");
+                simple_monster_message(*mons, "이(가) 부분적으로 저항했다.");
         }
         else if (hurted > original)
         {
             if (mons->is_icy())
             {
                 if (doFlavouredEffects)
-                    simple_monster_message(*mons, " melts!");
+                    simple_monster_message(*mons, "이(가) 녹아내린다!");
             }
             else
             {
                 if (doFlavouredEffects)
-                    simple_monster_message(*mons, " is burned terribly!");
+                    simple_monster_message(*mons, "이(가) 심하게 불탄다!");
             }
         }
         break;
@@ -1773,7 +1773,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (mons->res_damnation())
         {
             if (doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
 
             hurted = 0;
         }
@@ -1783,7 +1783,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         if (mons->res_poison() > 0)
         {
             if (original > 0 && doFlavouredEffects)
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
 
             hurted = 0;
         }
@@ -1809,7 +1809,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
             || mons->holiness() & ~(MH_NATURAL | MH_DEMONIC | MH_HOLY))
         {
             if (doFlavouredEffects && !mons_aligned(mons, pbolt.agent(true)))
-                simple_monster_message(*mons, " completely resists.");
+                simple_monster_message(*mons, "이(가) 완전히 저항했다.");
 
             hurted = 0;
         }
@@ -1833,14 +1833,14 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         {
             if (mons->is_insubstantial() || mons->is_amorphous())
             {
-                mprf("The bolas passes through %s!",
+                mprf("올가미가 %s을(를) 통과한다!",
                       mons->name(DESC_THE).c_str());
             }
             else
             {
                 mons->add_ench(mon_enchant(ENCH_BOUND, pbolt.agent(),
                                            random_range(4, 8)));
-                mprf("The bolas warps around %s and binds %s in place!",
+                mprf("올가미가 %s 주위를 휘감아 %s을(를) 묶었다!",
                      mons->name(DESC_THE).c_str(),
                      mons->pronoun(PRONOUN_OBJECTIVE).c_str());
             }
@@ -1883,7 +1883,7 @@ static bool _monster_resists_mass_enchantment(monster* mons,
 
         if (!mons->can_feel_fear(true))
         {
-            if (simple_monster_message(*mons, " is unaffected."))
+            if (simple_monster_message(*mons, "은(는) 아무런 영향을 받지 않았다."))
                 *did_msg = true;
             return true;
         }
@@ -1891,7 +1891,7 @@ static bool _monster_resists_mass_enchantment(monster* mons,
     case ENCH_FRENZIED:
         if (!mons->can_go_frenzy())
         {
-            if (simple_monster_message(*mons, " is unaffected."))
+            if (simple_monster_message(*mons, "은(는) 아무런 영향을 받지 않았다."))
                 *did_msg = true;
             return true;
         }
@@ -1901,7 +1901,7 @@ static bool _monster_resists_mass_enchantment(monster* mons,
             return true;
         if (mons_intel(*mons) <= I_BRAINLESS)
         {
-            if (simple_monster_message(*mons, " is unaffected."))
+            if (simple_monster_message(*mons, "은(는) 아무런 영향을 받지 않았다."))
                 *did_msg = true;
             return true;
         }
@@ -1993,7 +1993,7 @@ void bolt::apply_bolt_paralysis(monster* mons)
         return;
 
     if (!mons->is_firewood()
-        && simple_monster_message(*mons, " becomes paralysed!"))
+        && simple_monster_message(*mons, "이(가) 마비됐다!"))
     {
         obvious_effect = true;
     }
@@ -2013,7 +2013,7 @@ void bolt::apply_bolt_petrify(monster* mons)
 
     if (mons->add_ench(mon_enchant(ENCH_PETRIFYING, agent())))
     {
-        simple_monster_message(*mons, " begins to petrify.");
+        simple_monster_message(*mons, "이(가) 석화되기 시작한다.");
         obvious_effect = true;
     }
 }
@@ -2028,7 +2028,7 @@ static bool _curare_hits_monster(actor *agent, monster* mons, int bonus_poison)
 
     poison_monster(mons, agent, 2 + (bonus_poison / 7), true);
 
-    simple_monster_message(*mons, " struggles to breathe.");
+    simple_monster_message(*mons, "이(가) 숨을 쉬기 힘들어한다.");
     mons->hurt(agent, roll_dice(2, 6), BEAM_POISON);
 
     if (mons->alive() && !mons->stasis())
@@ -2118,7 +2118,7 @@ bool sticky_flame_monster(monster* mons, const actor *who, int dur, bool verbose
     const bool had_sticky_flame = mons->has_ench(ENCH_STICKY_FLAME);
 
     if (!had_sticky_flame && verbose)
-        simple_monster_message(*mons, " is covered in liquid fire!");
+        simple_monster_message(*mons, "이(가) 액체 불꽃에 뒤덮였다!");
 
     mons->add_ench(mon_enchant(ENCH_STICKY_FLAME, who, dur * BASELINE_DELAY));
 
@@ -2140,7 +2140,7 @@ static bool _curare_hits_player(actor* agent, string name,
     // We force apply this poison, since the 1-in-3 chance was already passed
     poison_player(roll_dice(2, 12) + bonus_poison + 1, source_name, name, true);
 
-    mpr("You have difficulty breathing.");
+    mpr("숨쉬기가 힘들어.");
     ouch(roll_dice(2, 6), KILLED_BY_CURARE, agent->mid, "curare-induced apnoea");
     slow_player(10 + random2(2 + random2(6)));
 
@@ -2372,7 +2372,7 @@ static void _vampiric_draining_effect(actor& victim, actor& agent, int damage)
         const int hp_gain = div_rand_round(drain_amount, 2);
         if (hp_gain)
         {
-            mprf("You feel life coursing into your body%s",
+            mprf("생명력이 몸속으로 흘러드는 게 느껴져%s",
                  attack_strength_punctuation(hp_gain).c_str());
             inc_hp(hp_gain);
         }
@@ -2635,7 +2635,7 @@ void bolt::affect_endpoint()
     if (use_bullseye && you.duration[DUR_DIMENSIONAL_BULLSEYE] > 0)
     {
         monster* bullseye_targ = monster_by_mid(you.props[BULLSEYE_TARGET_KEY].get_int());
-        mpr("Your projectile teleports!");
+        mpr("발사체가 순간이동한다!");
         use_target_as_pos = true;
         target = bullseye_targ->pos();
         affect_monster(bullseye_targ);
@@ -2657,9 +2657,9 @@ void bolt::affect_endpoint()
     case SPELL_PRIMAL_WAVE:
     {
         if (you.see_cell(pos()))
-            mpr("The wave splashes down.");
+            mpr("파도가 철썩이며 가라앉는다.");
         else
-            mpr("You hear a splash.");
+            mpr("물에 무언가 첨벙 빠지는 소리가 들린다.");
 
         const bool is_player = agent(true) && agent(true)->is_player();
         const int num = is_player ? div_rand_round(ench_power * 3, 20) + 3 + random2(7)
@@ -2722,7 +2722,7 @@ void bolt::affect_endpoint()
 
     case SPELL_MUD_BREATH:
     {
-        mpr("The mud splashes down.");
+        mpr("진흙이 철썩이며 가라앉는다.");
         const int num = 3 + div_rand_round(ench_power * 3, 7) + random2(4);
         const int dur = (div_rand_round(ench_power * 1, 3) + 15) * BASELINE_DELAY;
         const int rad = (num > 20) ? 3 : (num > 9) ? 2 : 1;
@@ -3002,7 +3002,7 @@ void bolt::affect_place_clouds()
             || (cloud->type == CLOUD_FIRE && flavour == BEAM_COLD))
         {
             if (player_can_hear(p))
-                mprf(MSGCH_SOUND, "You hear a sizzling sound!");
+                mprf(MSGCH_SOUND, "지글거리는 소리가 들린다!");
 
             delete_cloud(p);
             extra_range_used += 5;
@@ -3562,20 +3562,20 @@ bool bolt::misses_player()
             {
                 if (shield && shield_reflects(*shield))
                 {
-                    mprf("Your %s blocks the %s... and reflects it back!",
+                    mprf("%s이(가) %s을(를) 막고 되돌려 보냈다!",
                             shield->name(DESC_PLAIN).c_str(),
                             refl_name.c_str());
                 }
                 else
                 {
-                    mprf("You block the %s... and reflect it back!",
+                    mprf("%s을(를) 막아 반사했다!",
                             refl_name.c_str());
                 }
                 reflect();
             }
             else
             {
-                mprf("You block the %s.", name.c_str());
+                mprf("%s을(를) 막았다.", name.c_str());
                 finish_beam();
             }
             you.shield_block_succeeded(agent());
@@ -3607,12 +3607,12 @@ bool bolt::misses_player()
     {
         if (hit_margin > -repel)
         {
-            mprf("The %s is repelled.", name.c_str());
+            mprf("%s이(가) 튕겨 나갔다.", name.c_str());
             count_action(CACT_DODGE, DODGE_REPEL);
         }
         else
         {
-            mprf("The %s misses you.", name.c_str());
+            mprf("%s이(가) 당신을 빗나갔다.", name.c_str());
             count_action(CACT_DODGE, DODGE_EVASION);
         }
     }
@@ -3709,7 +3709,7 @@ void bolt::affect_player_enchantment(bool resistible)
 
     case BEAM_MALMUTATE:
     case BEAM_UNRAVELLED_MAGIC:
-        mpr("Strange energies course through your body.");
+        mpr("기이한 에너지가 온몸을 흐른다.");
         you.malmutate(agent(), aux_source.empty() ? get_source_name() :
                       (get_source_name() + "/" + aux_source));
         obvious_effect = true;
@@ -3802,7 +3802,7 @@ void bolt::affect_player_enchantment(bool resistible)
         break;
 
     case BEAM_CHARM:
-        mprf(MSGCH_WARN, "Your will is overpowered!");
+        mprf(MSGCH_WARN, "의지가 압도당했다!");
         confuse_player(5 + random2(3));
         obvious_effect = true;
         break;     // charming - confusion?
@@ -3810,7 +3810,7 @@ void bolt::affect_player_enchantment(bool resistible)
     case BEAM_BANISH:
         if (YOU_KILL(thrower))
         {
-            mpr("This spell isn't strong enough to banish yourself.");
+            mpr("이 주문은 당신 자신을 추방할 만큼 강력하지 않아.");
             break;
         }
         you.banish(agent(), get_source_name());
@@ -3825,7 +3825,7 @@ void bolt::affect_player_enchantment(bool resistible)
         const int dam = resist_adjust_damage(&you, flavour, damage.roll());
         if (dam)
         {
-            mpr("Pain shoots through your body!");
+            mpr("온몸에 격렬한 통증이 퍼진다!");
             internal_ouch(dam);
             obvious_effect = true;
         }
@@ -3846,7 +3846,7 @@ void bolt::affect_player_enchantment(bool resistible)
             break;
         }
 
-        mpr("You convulse!");
+        mpr("몸에 경련이 일어난다!");
 
         if (aux_source.empty())
             aux_source = "by dispel undead";
@@ -3856,7 +3856,7 @@ void bolt::affect_player_enchantment(bool resistible)
         break;
 
     case BEAM_MINDBURST:
-        mpr("Your mind is blasted!");
+        mpr("정신이 강렬한 충격을 받았다!");
 
         if (aux_source.empty())
             aux_source = "mindburst bolt";
@@ -3875,7 +3875,7 @@ void bolt::affect_player_enchantment(bool resistible)
     case BEAM_PORKALATOR:
         if (!transform(20 + roll_dice(3, 10), transformation::pig, true))
         {
-            mpr("You feel a momentary urge to oink.");
+            mpr("순간 꿀꿀거리고 싶은 충동이 든다.");
             break;
         }
 
@@ -3900,7 +3900,7 @@ void bolt::affect_player_enchantment(bool resistible)
         if (you.duration[DUR_TELEPORT])
         {
             you.duration[DUR_TELEPORT] = 0;
-            mpr("Your teleport is interrupted.");
+            mpr("순간이동이 방해받았다.");
         }
         you.redraw_evasion = true;
         obvious_effect = true;
@@ -3973,7 +3973,7 @@ void bolt::affect_player_enchantment(bool resistible)
             break;
         }
 
-        mpr("You feel yourself grow more vulnerable to poison.");
+        mpr("독에 더욱 취약해진 것 같아.");
         you.increase_duration(DUR_POISON_VULN, 12 + random2(18), 50);
         obvious_effect = true;
         break;
@@ -4030,7 +4030,7 @@ void bolt::affect_player_enchantment(bool resistible)
     case BEAM_ILL_OMEN:
         obvious_effect = true;
         if (!you.doom(random_range(16, 30) + ench_power / 20))
-            mpr("You feel an ill-omen....");
+            mpr("불길한 예감이 든다....");
         break;
 
     case BEAM_ENFEEBLE:
@@ -4040,7 +4040,7 @@ void bolt::affect_player_enchantment(bool resistible)
 
     case BEAM_WARP_BODY:
         obvious_effect = true;
-        mpr("Your body is warped painfully!");
+        mpr("몸이 고통스럽게 뒤틀린다!");
         if (temp_mutation_count() >= 3)
             you.vitrify(agent(), random_range(12, 22));
         else
@@ -4050,7 +4050,7 @@ void bolt::affect_player_enchantment(bool resistible)
 
     default:
         // _All_ enchantments should be enumerated here!
-        mpr("Software bugs nibble your toes!");
+        mpr("소프트웨어 버그가 발가락을 갉아먹는다!");
         break;
     }
 
@@ -4116,9 +4116,9 @@ static const vector<pie_effect> pie_effects = {
         },
         [](actor &/*defender*/, const bolt &/*beam*/) {
             if (you.duration[DUR_VERTIGO])
-                mpr("You feel your light-headedness will last longer.");
+                mpr("어지러움이 더 오래 지속될 것 같아.");
             else
-                mpr("You feel light-headed.");
+                mpr("머리가 어질어질해.");
 
             you.increase_duration(DUR_VERTIGO, 10 + random2(11), 50);
         },
@@ -4132,9 +4132,9 @@ static const vector<pie_effect> pie_effects = {
         },
         [](actor &/*defender*/, const bolt &/*beam*/) {
             if (you.duration[DUR_NO_POTIONS])
-                mpr("You feel your inability to drink will last longer.");
+                mpr("물약을 마시지 못하는 상태가 더 오래 지속될 것 같아.");
             else
-                mpr("You feel unable to drink.");
+                mpr("물약을 마실 수 없을 것 같아.");
 
             you.increase_duration(DUR_NO_POTIONS, 10 + random2(11), 50);
         },
@@ -4152,9 +4152,9 @@ static const vector<pie_effect> pie_effects = {
             else
             {
                 if (you.duration[DUR_SILENCE])
-                    mpr("You feel your silence will last longer.");
+                    mpr("침묵 상태가 더 오래 지속될 것 같아.");
                 else
-                    mpr("An unnatural silence engulfs you.");
+                    mpr("부자연스러운 침묵이 당신을 감싼다.");
 
                 silence_player(4 + random2(7));
 
@@ -4180,12 +4180,10 @@ static const vector<pie_effect> pie_effects = {
             {
                 if (you.duration[DUR_FIRE_VULN])
                 {
-                    mpr("You feel your vulnerability to fire will last "
-                        "longer.");
+                    mpr("화염에 취약한 상태가 더 오래 지속될 것 같아.");
                 }
                 else
-                    mpr("Cherry-coloured flames burn away your fire "
-                        "resistance!");
+                    mpr("벚꽃빛 불길이 당신의 화염 저항을 태워 없앴다!");
 
                 you.increase_duration(DUR_FIRE_VULN, 15 + random2(11), 50);
             }
@@ -4425,7 +4423,7 @@ void bolt::affect_player()
 
     if (origin_spell == SPELL_GRAVE_CLAW && !you.unrand_equipped(UNRAND_SLICK_SLIPPERS))
     {
-        mpr("You are skewered in place!");
+        mpr("몸이 꿰뚫려 움직일 수 없게 됐다!");
         you.increase_duration(DUR_NO_MOMENTUM, random_range(2, 4));
     }
 
@@ -4510,7 +4508,7 @@ void bolt::affect_player()
     {
         if (!you.duration[DUR_FROZEN])
         {
-            mprf(MSGCH_WARN, "You are encased in ice.");
+            mprf(MSGCH_WARN, "얼음에 갇혔다.");
             you.duration[DUR_FROZEN] = (random_range(3, 5)) * BASELINE_DELAY;
         }
     }
@@ -4519,7 +4517,7 @@ void bolt::affect_player()
         && is_fiery() && x_chance_in_y(final_dam, you.hp_max * 2 / 3))
     {
         const int pow = div_rand_round(final_dam * 100 / you.hp_max, 10);
-        mpr("A part of your body evaporates into steam!");
+        mpr("몸의 일부가 증기로 증발한다!");
         big_cloud(CLOUD_STEAM, monster_by_mid(MID_YOU_FAULTLESS), you.pos(),
                   random_range(1, 4) + pow, random_range(2, 7));
     }
@@ -4961,7 +4959,7 @@ void bolt::enchantment_affect_monster(monster* mon)
             }
             break;
         case MON_UNAFFECTED:
-            if (simple_monster_message(*mon, " is unaffected."))
+            if (simple_monster_message(*mon, "은(는) 아무런 영향을 받지 않았다."))
                 msg_generated = true;
             break;
         case MON_AFFECTED:
@@ -5096,9 +5094,9 @@ static void _print_pre_death_message(const monster &mon, bool goldify,
         return;
     }
     if (goldify)
-        simple_monster_message(mon, " shatters and turns to gold!");
+        simple_monster_message(mon, "이(가) 산산이 부서져 금으로 변했다!");
     else
-        simple_monster_message(mon, " is frozen into a solid block of ice!");
+        simple_monster_message(mon, "이(가) 단단한 얼음 덩어리로 얼어붙었다!");
 }
 
 void bolt::kill_monster(monster &mon)
@@ -5251,7 +5249,7 @@ void bolt::monster_post_hit(monster* mon, int dmg)
     {
         if (!mon->has_ench(ENCH_FROZEN))
         {
-            simple_monster_message(*mon, " is flash-frozen.");
+            simple_monster_message(*mon, "이(가) 순식간에 얼어붙었다.");
             mon->add_ench(mon_enchant(ENCH_FROZEN, agent()));
         }
     }
@@ -5290,7 +5288,7 @@ void bolt::monster_post_hit(monster* mon, int dmg)
         && mon->res_elec() <= 0
         && !mon->stasis())
     {
-        simple_monster_message(*mon, " is paralysed.");
+        simple_monster_message(*mon, "이(가) 마비됐다.");
         mon->add_ench(mon_enchant(ENCH_PARALYSIS, agent(), BASELINE_DELAY));
     }
 
@@ -5459,13 +5457,13 @@ bool bolt::attempt_block(monster* mon)
             }
             else
             {
-                mprf("The %s reflects off an invisible shield around %s!",
+                mprf("%s이(가) %s 주위의 보이지 않는 방패에 반사됐다!",
                      name.c_str(),
                      mon->name(DESC_THE).c_str());
             }
         }
         else if (you.see_cell(pos()))
-            mprf("The %s bounces off of thin air!", name.c_str());
+            mprf("%s이(가) 허공에 부딪혀 튕겨 나갔다!", name.c_str());
 
         reflect();
     }
@@ -5552,7 +5550,7 @@ void bolt::affect_monster(monster* mon)
     if (flavour == BEAM_WATER && mon->type == MONS_WATER_ELEMENTAL && !is_tracer())
     {
         if (you.see_cell(mon->pos()))
-            mprf("The %s passes through %s.", name.c_str(), mon->name(DESC_THE).c_str());
+            mprf("%s이(가) %s을(를) 통과한다.", name.c_str(), mon->name(DESC_THE).c_str());
     }
 
     if (ignores_monster(mon) || should_skip)
@@ -6586,7 +6584,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         }
         else
         {
-            simple_monster_message(*mon, " is unaffected.");
+            simple_monster_message(*mon, "은(는) 아무런 영향을 받지 않았다.");
             return MON_UNAFFECTED;
         }
     }
@@ -6652,7 +6650,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
 
         if (mon->is_abjurable())
         {
-            mprf("The magic binding %s to this plane unravels!",
+            mprf("%s을(를) 이 세계에 붙잡아 두던 마법이 풀렸다!",
                  mon->name(DESC_THE).c_str());
             monster_die(*mon, KILL_RESET, actor_to_death_source(agent()));
         }
@@ -6706,7 +6704,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
     case BEAM_RIMEBLIGHT:
         if (apply_rimeblight(*mon, ench_power, true))
         {
-            mprf("A stygian plague fills %s body.",
+            mprf("어둠의 역병이 %s의 몸을 가득 채운다.",
                  apostrophise(mon->name(DESC_THE)).c_str());
             obvious_effect = true;
         }
@@ -6991,7 +6989,7 @@ bool bolt::explode(bool show_more, bool hole_in_the_middle)
     {
         if (!is_tracer() && you.see_cell(pos()) && !name.empty())
         {
-            mprf(MSGCH_GOD, "By Zin's power, the %s is contained.",
+            mprf(MSGCH_GOD, "진의 힘으로 %s을(를) 막아 냈다.",
                  name.c_str());
             return true;
         }

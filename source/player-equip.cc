@@ -1509,7 +1509,7 @@ static void _calc_hp_artefact()
 static void _flight_equip()
 {
     if (you.airborne()) // already aloft
-        mpr("You feel rather light.");
+        mpr("몸이 한결 가벼워진 것 같아.");
     else
         float_player();
     you.attribute[ATTR_PERM_FLIGHT] = 1;
@@ -1734,27 +1734,27 @@ void equip_artefact_effect(item_def &item, bool *show_msgs, bool unmeld)
         _flight_equip();
 
     if (proprt[ARTP_CONTAM] && msg && !unmeld)
-        mpr("You feel a build-up of mutagenic energy.");
+        mpr("변이 에너지가 몸속에 쌓이는 것이 느껴진다.");
 
     if (proprt[ARTP_BANE] && !unmeld)
     {
         if (msg)
-            mpr("You feel a malign power afflict you.");
+            mpr("사악한 힘이 당신을 괴롭히는 것 같아.");
         add_bane(NUM_BANES, "Equipping an artefact");
     }
 
     if (proprt[ARTP_RAMPAGING] && msg && !unmeld
         && !you.has_mutation(MUT_ROLLPAGE))
     {
-        mpr("You feel ready to rampage towards enemies.");
+        mpr("적을 향해 돌진할 준비가 됐어.");
     }
 
     if (proprt[ARTP_ARCHMAGI] && msg && !unmeld)
     {
         if (!you.skill(SK_SPELLCASTING))
-            mpr("You feel strangely lacking in power.");
+            mpr("이상하게 힘이 빠지는 것 같아.");
         else
-            mpr("You feel powerful.");
+            mpr("힘이 넘치는 것 같아.");
     }
 
     if (proprt[ARTP_HP])
@@ -1801,18 +1801,18 @@ void unequip_artefact_effect(item_def &item,  bool *show_msgs, bool meld)
 
     if (proprt[ARTP_CONTAM] && !meld)
     {
-        mpr("Mutagenic energies flood into your body!");
+        mpr("변이 에너지가 몸속으로 밀려든다!");
         contaminate_player(1200, true);
     }
 
     if (proprt[ARTP_RAMPAGING] && msg && !meld
         && !you.rampaging())
     {
-        mpr("You no longer feel able to rampage towards enemies.");
+        mpr("이제 적을 향해 돌진할 수 없을 것 같아.");
     }
 
     if (proprt[ARTP_ARCHMAGI] && msg && !meld)
-        mpr("You feel strangely numb.");
+        mpr("이상하게 감각이 무뎌진 것 같아.");
 
     if (proprt[ARTP_DRAIN] && !meld)
         drain_player(150, true, true);
@@ -1841,17 +1841,17 @@ void unequip_artefact_effect(item_def &item,  bool *show_msgs, bool meld)
 static void _equip_use_warning(const item_def& item)
 {
     if (is_holy_item(item) && you_worship(GOD_YREDELEMNUL))
-        mpr("You really shouldn't be using a holy item like this.");
+        mpr("이런 신성한 물건을 사용해서는 안 될 것 같아.");
     else if (is_evil_item(item) && is_good_god(you.religion))
-        mpr("You really shouldn't be using an evil item like this.");
+        mpr("이런 사악한 물건을 사용해서는 안 될 것 같아.");
     else if (is_unclean_item(item) && you_worship(GOD_ZIN))
-        mpr("You really shouldn't be using an unclean item like this.");
+        mpr("이런 불결한 물건을 사용해서는 안 될 것 같아.");
     else if (is_chaotic_item(item) && you_worship(GOD_ZIN))
-        mpr("You really shouldn't be using a chaotic item like this.");
+        mpr("이런 혼돈의 물건을 사용해서는 안 될 것 같아.");
     else if (is_hasty_item(item) && you_worship(GOD_CHEIBRIADOS))
-        mpr("You really shouldn't be using a hasty item like this.");
+        mpr("이런 성급함을 부추기는 물건을 사용해서는 안 될 것 같아.");
     else if (is_wizardly_item(item) && you_worship(GOD_TROG))
-        mpr("You really shouldn't be using a wizardly item like this.");
+        mpr("이런 마법 관련 물건을 사용해서는 안 될 것 같아.");
 }
 
 // Provide a function for handling initial wielding of 'special' weapons
@@ -1908,10 +1908,10 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             if (!silenced(you.pos()))
             {
                 mprf(MSGCH_SOUND,
-                        "You hear the crackle of electricity.");
+                        "전기가 튀는 소리가 들린다.");
             }
             else
-                mpr("You see sparks fly.");
+                mpr("불꽃이 튀는 것이 보인다.");
             break;
 
         case SPWPN_VENOM:
@@ -1923,7 +1923,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_DRAINING:
-            mpr("You sense an unholy aura.");
+            mpr("불경한 기운이 느껴진다.");
             break;
 
         case SPWPN_SPEED:
@@ -1931,7 +1931,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_VAMPIRISM:
-            mpr("You feel a sense of dread.");
+            mpr("불길한 예감이 든다.");
             break;
 
         case SPWPN_PAIN:
@@ -1939,19 +1939,19 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             const string your_arm = you.arm_name(false);
             if (you_worship(GOD_TROG))
             {
-                mprf(MSGCH_GOD, "Trog suppresses %s necromantic effect.",
+                mprf(MSGCH_GOD, "트로그가 %s의 강령술 효과를 억눌렀다.",
                         apostrophise(item_name).c_str());
             }
             else if (you.skill(SK_NECROMANCY) == 0)
-                mpr("You have a feeling of ineptitude.");
+                mpr("솜씨가 서툴러진 것 같아.");
             else if (you.skill(SK_NECROMANCY) <= 6)
             {
-                mprf("Pain shudders through your %s!",
+                mprf("%s에 고통이 몰아친다!",
                         your_arm.c_str());
             }
             else
             {
-                mprf("A searing pain shoots up your %s!",
+                mprf("%s을(를) 따라 타는 듯한 고통이 치솟는다!",
                         your_arm.c_str());
             }
             break;
@@ -1982,16 +1982,16 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
 
         case SPWPN_ANTIMAGIC:
             if (you.has_mutation(MUT_HP_CASTING))
-                mpr("You feel a force failing to suppress your magic.");
+                mpr("마법을 억누르던 힘이 약해지는 것 같아.");
             else
             {
                 // Even if your maxmp is 0.
-                mpr("You feel magic leave you.");
+                mpr("마력이 빠져나가는 것 같아.");
             }
             break;
 
         case SPWPN_DISTORTION:
-            mpr("Space warps around you for a moment!");
+            mpr("순간적으로 주변 공간이 뒤틀린다!");
             break;
 
         case SPWPN_ACID:
@@ -1999,7 +1999,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_SPECTRAL:
-            mprf("You feel a bond with %s.", item_name.c_str());
+            mprf("%s와(과) 유대감이 느껴져.", item_name.c_str());
             break;
 
         case SPWPN_REBUKE:
@@ -2008,13 +2008,13 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
 
         case SPWPN_VALOUR:
             if (you.hp > you.hp_max * 4 / 5)
-                mprf("Your weapon gleams with eagerness.");
+                mprf("무기가 전투를 갈망하듯 번뜩인다.");
             else
                 mprf("%s feels dull in your %s.", item_name.c_str(), you.hand_name(true).c_str());
             break;
 
         case SPWPN_ENTANGLING:
-            mprf("Vines begin sprouting from %s.", item_name.c_str());
+            mprf("%s에서 덩굴이 자라기 시작한다.", item_name.c_str());
             break;
 
         case SPWPN_SUNDERING:
@@ -2026,7 +2026,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_DEVIOUS:
-            mpr("You feel a baleful cunning.");
+            mpr("사악한 꾀가 솟아나는 것 같아.");
             break;
 
         default:
@@ -2098,7 +2098,7 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
 
             case SPWPN_VAMPIRISM:
                 if (showMsgs)
-                    mpr("You feel the dreadful sensation subside.");
+                    mpr("끔찍한 감각이 가라앉는다.");
                 break;
 
             case SPWPN_DISTORTION:
@@ -2110,7 +2110,7 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
             case SPWPN_ANTIMAGIC:
                 calc_mp();
                 if (!you.has_mutation(MUT_HP_CASTING))
-                    mpr("You feel magic returning to you.");
+                    mpr("마력이 돌아오는 것 같아.");
                 break;
 
             case SPWPN_SPECTRAL:
@@ -2134,12 +2134,12 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
                 break;
 
             case SPWPN_VALOUR:
-                mpr("You feel very meek.");
+                mpr("기세가 크게 꺾인 것 같아.");
                 you.weaken(&you, 10);
                 break;
 
             case SPWPN_ENTANGLING:
-                mprf("The vines retreat back into %s.", msg.c_str());
+                mprf("덩굴이 %s 안으로 되돌아간다.", msg.c_str());
                 you.stop_directly_constricting_all(true);
                 break;
 
@@ -2153,7 +2153,7 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
                 break;
 
             case SPWPN_DEVIOUS:
-                mpr("You feel guileless.");
+                mpr("교활한 기운이 사라진 것 같아.");
                 you.duration[DUR_DEVIOUS] = 0;
                 you.redraw_evasion = true;
                 break;
@@ -2166,22 +2166,22 @@ static void _spirit_shield_message(bool unmeld)
 {
     if (!unmeld && you.spirit_shield() < 2 && !you.has_mutation(MUT_HP_CASTING))
     {
-        mpr("You feel your power drawn to a protective spirit.");
+        mpr("당신의 힘이 수호령에게 흘러 들어가는 것 같아.");
 #if TAG_MAJOR_VERSION == 34
         if (you.species == SP_DEEP_DWARF)
         {
             drain_mp(you.magic_points, true);
-            mpr("Now linked to your health, your magic stops regenerating.");
+            mpr("마력이 생명력과 연결되어 마력 회복이 멈췄다.");
         }
 #endif
     }
     else if (!unmeld && (you.get_mutation_level(MUT_MANA_SHIELD)
                          || you.has_mutation(MUT_HP_CASTING)))
     {
-        mpr("You feel the presence of a powerless spirit.");
+        mpr("힘을 잃은 정령의 존재가 느껴진다.");
     }
     else if (!you.get_mutation_level(MUT_MANA_SHIELD))
-        mpr("You feel spirits watching over you.");
+        mpr("정령들이 당신을 지켜보는 것 같아.");
 }
 
 static void _zonguldrok_comment_on_hat(const item_def& hat)
@@ -2225,26 +2225,26 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
         switch (ego)
         {
         case SPARM_FIRE_RESISTANCE:
-            mpr("You feel resistant to fire.");
+            mpr("화염에 저항할 수 있을 것 같아.");
             break;
 
         case SPARM_COLD_RESISTANCE:
-            mpr("You feel resistant to cold.");
+            mpr("냉기에 저항할 수 있을 것 같아.");
             break;
 
         case SPARM_POISON_RESISTANCE:
             if (player_res_poison(false, false, false) < 3)
-                mpr("You feel resistant to poison.");
+                mpr("독에 저항할 수 있을 것 같아.");
             break;
 
         case SPARM_SEE_INVISIBLE:
-            mpr("You feel perceptive.");
+            mpr("감각이 예민해진 것 같아.");
             autotoggle_autopickup(false);
             break;
 
         case SPARM_INVISIBILITY:
             if (!you.duration[DUR_INVIS])
-                mpr("You become transparent for a moment.");
+                mpr("잠시 몸이 투명해진다.");
             break;
 
         case SPARM_STRENGTH:
@@ -2260,7 +2260,7 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             break;
 
         case SPARM_PONDEROUSNESS:
-            mpr("You feel rather ponderous.");
+            mpr("몸이 꽤 무거워진 것 같아.");
             break;
 
         case SPARM_FLYING:
@@ -2268,31 +2268,31 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             break;
 
         case SPARM_WILLPOWER:
-            mpr("You feel strong-willed.");
+            mpr("의지가 강해진 것 같아.");
             break;
 
         case SPARM_PROTECTION:
-            mpr("You feel protected.");
+            mpr("보호받고 있는 것 같아.");
             break;
 
         case SPARM_STEALTH:
             if (!you.get_mutation_level(MUT_NO_STEALTH))
-                mpr("You feel stealthy.");
+                mpr("은밀하게 움직일 수 있을 것 같아.");
             break;
 
         case SPARM_RESISTANCE:
-            mpr("You feel resistant to extremes of temperature.");
+            mpr("극심한 온도 변화에도 견딜 수 있을 것 같아.");
             break;
 
         case SPARM_POSITIVE_ENERGY:
-            mpr("You feel more protected from negative energy.");
+            mpr("음에너지에 더 잘 보호받는 것 같아.");
             break;
 
         case SPARM_ARCHMAGI:
             if (!you.skill(SK_SPELLCASTING))
-                mpr("You feel strangely lacking in power.");
+                mpr("이상하게 힘이 빠지는 것 같아.");
             else
-                mpr("You feel powerful.");
+                mpr("힘이 넘치는 것 같아.");
             break;
 
         case SPARM_SPIRIT_SHIELD:
@@ -2300,27 +2300,27 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             break;
 
         case SPARM_HURLING:
-            mpr("You feel that your aim is more steady.");
+            mpr("조준이 더 안정된 것 같아.");
             break;
 
         case SPARM_REPULSION:
-            mpr("You are surrounded by a repulsion field.");
+            mpr("반발장이 당신을 둘러싼다.");
             break;
 
         case SPARM_SHADOWS:
-            mpr("It gets dark.");
+            mpr("주위가 어두워진다.");
             update_vision_range();
             break;
 
         case SPARM_RAMPAGING:
             if (!you.has_mutation(MUT_ROLLPAGE))
-                mpr("You feel ready to rampage towards enemies.");
+                mpr("적을 향해 돌진할 준비가 됐어.");
             break;
 
         case SPARM_INFUSION:
             if (you.max_magic_points || you.has_mutation(MUT_HP_CASTING))
             {
-                mprf("You feel magic pooling in your %s.",
+                mprf("%s에 마력이 모이는 것 같아.",
                      you.hand_name(true).c_str());
             }
             else
@@ -2358,22 +2358,22 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     switch (get_armour_ego_type(item))
     {
     case SPARM_FIRE_RESISTANCE:
-        mpr("You feel less resistant to fire.");
+        mpr("화염 저항이 약해진 것 같아.");
         break;
 
     case SPARM_COLD_RESISTANCE:
-        mpr("You feel less resistant to cold.");
+        mpr("냉기 저항이 약해진 것 같아.");
         break;
 
     case SPARM_POISON_RESISTANCE:
         if (player_res_poison() <= 0)
-            mpr("You no longer feel resistant to poison.");
+            mpr("이제 독에 저항할 수 없을 것 같아.");
         break;
 
     case SPARM_SEE_INVISIBLE:
         if (!you.can_see_invisible())
         {
-            mpr("You feel less perceptive.");
+            mpr("감각이 둔해진 것 같아.");
             _mark_unseen_monsters();
         }
         break;
@@ -2394,7 +2394,7 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     {
         // XX can the noun here be derived from the species walking verb?
         const string noun = you.species == SP_NAGA ? "slither" : "step";
-        mprf("That put a bit of spring back into your %s.", noun.c_str());
+        mprf("덕분에 %s이(가) 다시 한결 가벼워진 것 같아.", noun.c_str());
         break;
     }
 
@@ -2405,62 +2405,62 @@ static void _unequip_armour_effect(item_def& item, bool meld)
         break;
 
     case SPARM_WILLPOWER:
-        mpr("You feel less strong-willed.");
+        mpr("의지가 약해진 것 같아.");
         break;
 
     case SPARM_PROTECTION:
-        mpr("You feel less protected.");
+        mpr("보호가 약해진 것 같아.");
         break;
 
     case SPARM_STEALTH:
         if (!you.get_mutation_level(MUT_NO_STEALTH))
-            mpr("You feel less stealthy.");
+            mpr("예전만큼 은밀하지 않은 것 같아.");
         break;
 
     case SPARM_RESISTANCE:
-        mpr("You feel hot and cold all over.");
+        mpr("온몸이 뜨거워졌다 차가워졌다 한다.");
         break;
 
     case SPARM_POSITIVE_ENERGY:
-        mpr("You feel less protected from negative energy.");
+        mpr("음에너지에 대한 보호가 약해진 것 같아.");
         break;
 
     case SPARM_ARCHMAGI:
-        mpr("You feel strangely numb.");
+        mpr("이상하게 감각이 무뎌진 것 같아.");
         break;
 
     case SPARM_SPIRIT_SHIELD:
         if (!you.spirit_shield())
         {
-            mpr("You feel strangely alone.");
+            mpr("이상하게 혼자가 된 것 같아.");
 #if TAG_MAJOR_VERSION == 34
             if (you.species == SP_DEEP_DWARF)
-                mpr("Your magic begins regenerating once more.");
+                mpr("마력이 다시 회복되기 시작한다.");
 #endif
         }
         break;
 
     case SPARM_HURLING:
-        mpr("Your aim is not that steady anymore.");
+        mpr("이제 조준이 예전만큼 안정되지 않아.");
         break;
 
     case SPARM_REPULSION:
-        mpr("The haze of the repulsion field disappears.");
+        mpr("반발장을 이루던 아지랑이가 사라진다.");
         break;
 
     case SPARM_SHADOWS:
-        mpr("The dungeon's light returns to normal.");
+        mpr("던전의 밝기가 원래대로 돌아온다.");
         update_vision_range();
         break;
 
     case SPARM_RAMPAGING:
         if (!you.rampaging())
-            mpr("You no longer feel able to rampage towards enemies.");
+            mpr("이제 적을 향해 돌진할 수 없을 것 같아.");
         break;
 
     case SPARM_INFUSION:
         if (you.max_magic_points || you.has_mutation(MUT_HP_CASTING))
-            mprf("You feel magic leave your %s.", you.hand_name(true).c_str());
+            mprf("%s에서 마력이 빠져나가는 것 같아.", you.hand_name(true).c_str());
         break;
 
     case SPARM_LIGHT:
@@ -2496,7 +2496,7 @@ static void _remove_amulet_of_faith(item_def &item)
 
     const int piety_loss = div_rand_round(you.raw_piety, 3);
     // Piety penalty for removing the Amulet of Faith.
-    mprf(MSGCH_GOD, "You feel less pious.");
+    mprf(MSGCH_GOD, "신앙심이 약해진 것 같아.");
     dprf("%s: piety drain: %d", item.name(DESC_PLAIN).c_str(), piety_loss);
     lose_piety(piety_loss);
 }
@@ -2578,7 +2578,7 @@ bool parrying_boost_active()
 static void _equip_amulet_of_reflection()
 {
     you.redraw_armour_class = true;
-    mpr("You feel a shielding aura gather around you.");
+    mpr("보호의 기운이 주위에 모여든다.");
 }
 
 static void _equip_jewellery_effect(item_def &item, bool unmeld)
@@ -2616,7 +2616,7 @@ static void _equip_jewellery_effect(item_def &item, bool unmeld)
     case RING_MAGICAL_POWER:
         if (you.has_mutation(MUT_HP_CASTING))
         {
-            mpr("You repel a surge of foreign magic.");
+            mpr("외부에서 밀려오는 마력을 밀어냈다.");
             break;
         }
         canned_msg(MSG_MANA_INCREASE);
@@ -2627,12 +2627,12 @@ static void _equip_jewellery_effect(item_def &item, bool unmeld)
     {
         if (you.has_mutation(MUT_FORLORN))
         {
-            mpr("You feel a surge of self-confidence.");
+            mpr("자신감이 솟아난다.");
             break;
         }
         if (you.has_mutation(MUT_FAITH))
         {
-            mpr("You already have all the faith you need.");
+            mpr("이미 필요한 만큼의 신앙을 갖고 있어.");
             break;
         }
 
@@ -2641,7 +2641,7 @@ static void _equip_jewellery_effect(item_def &item, bool unmeld)
             simple_god_message(ignore_reason.c_str());
         else
         {
-            mprf(MSGCH_GOD, "You feel a %ssurge of divine interest.",
+            mprf(MSGCH_GOD, "신의 관심이 %s몰려오는 것 같아.",
                             you_worship(GOD_NO_GOD) ? "strange " : "");
         }
     }
@@ -2650,9 +2650,9 @@ static void _equip_jewellery_effect(item_def &item, bool unmeld)
 
     case AMU_ACROBAT:
         if (you.has_mutation(MUT_TENGU_FLIGHT))
-            mpr("You feel no more acrobatic than usual.");
+            mpr("평소보다 몸놀림이 날렵해진 것 같지는 않아.");
         else
-            mpr("You feel ready to tumble and roll out of harm's way.");
+            mpr("몸을 굴려 위험을 피할 준비가 됐어.");
         break;
 
     case AMU_REFLECTION:
@@ -2660,16 +2660,16 @@ static void _equip_jewellery_effect(item_def &item, bool unmeld)
         break;
 
     case AMU_WILDSHAPE:
-        mpr("You feel a wild power.");
+        mpr("야성적인 힘이 느껴진다.");
         _change_wildshape_status();
         break;
 
     case AMU_CHEMISTRY:
-        mpr("You feel a deeper understanding of alchemy.");
+        mpr("연금술에 대한 이해가 깊어진 것 같아.");
         break;
 
     case AMU_DISSIPATION:
-        mpr("You feel as though your troubles will go away faster.");
+        mpr("성가신 상태가 더 빨리 사라질 것 같아.");
         break;
 
     case AMU_GUARDIAN_SPIRIT:
@@ -2752,7 +2752,7 @@ static void _unequip_jewellery_effect(item_def &item, bool meld)
 #if TAG_MAJOR_VERSION == 34
     case AMU_GUARDIAN_SPIRIT:
         if (you.species == SP_DEEP_DWARF && player_regenerates_mp())
-            mpr("Your magic begins regenerating once more.");
+            mpr("마력이 다시 회복되기 시작한다.");
         break;
 #endif
 
@@ -2805,7 +2805,7 @@ void unwield_distortion(bool brand)
     }
     else
     {
-        mpr("Space warps into you!");
+        mpr("뒤틀린 공간이 몸속으로 밀려든다!");
         contaminate_player(random2avg(3000, 3), true);
     }
 }

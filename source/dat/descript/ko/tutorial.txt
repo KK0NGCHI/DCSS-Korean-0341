@@ -1,9 +1,7 @@
 %%%%
 tutorial intro
 
-<input>$cmd[CMD_REPLAY_MESSAGES]</input>단축키를 눌러서 지금까지 나온
-메시지들을 다시 읽을 수 있습니다. 또한, <cyan>--다음장--</cyan> 이 화면에
-표시되면 <input>스페이스</input> 키를 눌러 다음 메시지를 볼 수 있습니다.
+<input>$cmd[CMD_REPLAY_MESSAGES]</input> 명령으로 이전 메시지를 언제든 다시 읽을 수 있습니다. <cyan>--more--</cyan> 메시지가 표시되면 <input>Space</input><localtiles> 또는 마우스 <input>왼쪽 클릭</input></localtiles>으로 다음 메시지로 넘어가세요.
 %%%%
 tutorial1 start
 
@@ -57,9 +55,7 @@ pointing by pressing <input>.</input> or <input>Enter</input>. Press
 %%%%
 tutorial1 autoexplore
 
-게임 내내 이렇게 직접 이동하는 것은 따분한 일입니다.
-<input>$cmd[CMD_EXPLORE]</input> 키를 눌러, 시선을 끌만한 일이 일어나기 전까지
-자동으로 여행하는 ‘자동이동 기능’을 써보세요!
+매번 직접 탐험하기 번거롭다면 자동 탐험을 이용하세요. <input>$cmd[CMD_EXPLORE]</input> 명령으로 시작할 수 있습니다.<localtiles> 미니맵 아래 명령 패널의 첫 번째 버튼인 '자동 탐험'을 클릭해도 됩니다.</localtiles>
 %%%%
 tutorial1 exclusion
 
@@ -172,18 +168,11 @@ tutorial2 melee
 %%%%
 tutorial2 resting
 
-잘하셨습니다! 전투 중에 잃어버린 체력을 보충하려면
-<input>$cmd[CMD_REST]</input> 키를 이용해서 휴식을 취하면 됩니다. 이 기능은
-100턴동안 휴식을 취하면서 주변에 숨겨진 함정이나 비밀문이 있나 탐색을
-시행합니다. 휴식을 멈춰야 할 정도의 일이 발생하면 100턴이 지나지 않았더라도
-도중에 휴식을 멈춥니다.
+좋습니다! <input>$cmd[CMD_REST]</input> 명령으로 휴식하면 체력을 회복할 수 있습니다.<localtiles> 미니맵 아래 명령 패널의 '휴식' 버튼을 클릭해도 됩니다.</localtiles> 체력이 모두 회복될 때까지 휴식하며, 중요한 일이 발생하면 중단됩니다.
 %%%%
 tutorial2 wait
 
-적진 한가운데로 무모하게 돌진하는 것은 자살행위입니다! 여기서는 뒤로 물러나서
-적들이 올 때까지 기다리세요. (<input>$cmd[CMD_WAIT]</input> 키로
-제자리에서 대기할 수 있습니다.) 1:1 상황을 만드는 것은 근접전에서 가장 중요한
-생존전략입니다.
+방으로 곧장 뛰어들어 몬스터들에게 포위당하기보다는 뒤로 물러나 적들이 다가오기를 기다릴 수도 있습니다. <input>$cmd[CMD_WAIT]</input> 명령으로 대기하세요.<localtiles> 자신의 캐릭터를 <input>클릭</input>해도 됩니다.</localtiles>
 %%%%
 tutorial2 resting_reminder
 
@@ -197,8 +186,7 @@ tutorial2 compare_monster_desc
 %%%%
 tutorial2 downstairs
 
-잘하셨습니다! 체력이 가득 찰 때까지 휴식을 취한 다음,
-<input>$cmd[CMD_GO_DOWNSTAIRS]</input> 키를 이용해서 다음 층으로 가세요.
+잘했습니다! 체력을 완전히 회복한 뒤 <input>$cmd[CMD_GO_DOWNSTAIRS]</input> 명령으로 다음 층으로 이동하세요.<localtiles> 자신의 캐릭터를 <input>클릭</input>해도 됩니다.</localtiles>
 %%%%
 tutorial2 newlevel
 
@@ -213,10 +201,7 @@ tutorial2 darts
 %%%%
 tutorial2 throwing
 
-<input>$cmd[CMD_FIRE]</input> 키<localtiles>혹은 소지품 창에 들어있는 다트에
-<input>마우스 왼쪽버튼</input>를 클릭하는 방법</localtiles>을(를) 이용해서
-적에게 다트를 조준할 수 있습니다. 자동적으로 조준된 적에게 다트를 발사하려면
-<input>$cmd[CMD_TARGET_SELECT]</input> 키나 <input>엔터</input> 키를 누르세요.
+<input>$cmd[CMD_FIRE]</input> 명령으로 몬스터에게 부메랑을 던질 수 있습니다.<localtiles> 소지품 패널에서 부메랑을 <input>클릭</input>해도 됩니다.</localtiles> 자동으로 지정된 대상을 공격하려면 <input>$cmd[CMD_TARGET_SELECT]</input> 또는 <input>Enter</input>를 누르세요. <input>Shift+Tab</input>이나 <input>p</input>를 누르면 가장 가까운 몬스터를 바로 공격할 수 있습니다.
 %%%%
 tutorial2 wield_bow
 
@@ -304,11 +289,7 @@ tutorial3 scroll_noautopickup
 %%%%
 tutorial3 ego_weapon
 
-<lightblue>룬</lightblue>이나 <lightblue>빛나는</lightblue> 이라고 이름이
-붙어있는 아이템들은 인챈트되어 있거나, 특수한 성질을 가지고 있거나 혹은 둘 다일
-수도 있습니다. 이 아이템이 어떤 것인지 알기 위해서는 이 시미터를
-(<input>$cmd[CMD_WIELD_WEAPON]</input><localtiles>키를 누르거나 인벤토리
-패널의 시미터를 <input>클릭</input>함으로써) 휘둘러 봐야 합니다.
+아이템의 이름에 <lightblue>룬이 새겨진</lightblue> 또는 <lightblue>빛나는</lightblue>이라는 수식어가 있으면 마법 강화나 특수 속성, 혹은 둘 다를 지니고 있습니다. 그러한 아이템이 놓인 칸에 들어서면 속성이 드러납니다.
 %%%%
 tutorial3 inventory
 
@@ -400,12 +381,7 @@ tutorial3 autoexplore_reminder
 %%%%
 tutorial3 go_shopping
 
-이제, 본격적으로 아이템을 구입할 수 있을 정도의 충분한 돈이 모였습니다!
-상점으로 되돌아가는 가장 빠른 방법은 Type
-<input>$cmd[CMD_SEARCH_STASHES]</input> 키를 누른 후, “<w>shop</w>”을
-입력하여 상점의 위치를 검색하는 것입니다. 또한, 명령어 패널에 있는
-‘찾기’버튼을 <input>click</input>하는 것으로도 가능합니다. 물론 미니맵에,
-상점이 있었던 지역을 클릭하는 것으로도 이동이 가능합니다.
+이제 본격적으로 쇼핑할 만큼 금화가 모였습니다! 상점으로 빠르게 돌아가려면 검색 기능을 이용하세요. <input>$cmd[CMD_SEARCH_STASHES]</input> 명령을 입력한 다음 “<w>shop</w>”을 검색하고, 결과를 선택해 이동하세요.<localtiles> 명령 패널의 검색 버튼을 <input>클릭</input>하거나 미니맵을 이용해 상점으로 돌아갈 수도 있습니다.</localtiles>
 %%%%
 tutorial3 optional_battle
 
@@ -471,20 +447,11 @@ tutorial4 ring_power
 %%%%
 tutorial4 undead
 
-대부분의 몬스터들과는 다르게, 언데드들은 자연적으로 그들이 입은 상처를
-치유하지는 못하지만, 언데드들이 얼마나 큰 피해를 입고 있는지, 얼마나 더 피해를
-줘야 처치할 수 있는지는 분간할 수 없습니다. 추가적으로, 몬스터에 마우스 커서를
-위치한 후, <input>Ctrl+마우스 왼쪽 클릭</input>하셔도 그 몬스터를 타겟으로
-주문을 외우는 것이 가능하죠.
+대부분의 몬스터와 달리 좀비와 해골은 체력을 자연 회복하지 않습니다.<localtiles> 몬스터를 <input>Ctrl+마우스 왼쪽 버튼</input>으로 클릭하면 마지막으로 사용한 주문을 다시 시전할 수도 있습니다.</localtiles>
 %%%%
 tutorial4 spell_success
 
-당신이 익힌 주문들의 세부사항을 확인하고 싶으시다면,
-<input>$cmd[CMD_DISPLAY_SPELLS]</input>키를 누르시거나, 혹은 우측 마법 아이콘에
-<input>마우스 커서를 올리는 것</input>으로, 해당 주문의 대략적인 소개와 만복도
-소모, 마법의 효율, 실패 확률 등을 알 수 있습니다. 이 ‘마법사의 지팡이’는 주문
-실패 확률을 감소시켜주는 기능을 가지고 있습니다. 지팡이를 착용해보시고, 실패
-확률이 낮아진 것을 확인해보세요.
+주문 숙련도와 실패 확률을 확인하려면 <input>$cmd[CMD_DISPLAY_SPELLS]</input> 명령을 사용하세요.<localtiles> 외운 주문 위에 마우스 커서를 올려 확인할 수도 있습니다.</localtiles> 이 반지를 착용하기 전과 후의 주문 실패 확률을 비교해 보세요.
 %%%%
 tutorial4 mephitic_cloud
 
@@ -497,9 +464,7 @@ tutorial4 mephitic_cloud
 %%%%
 tutorial4 meph_reminder
 
-새로 얻을 수 있게 된 주문을 익히는 것을 잊지 마세요!
-<input>$cmd[CMD_MEMORISE_SPELL]</input>키를 누르거나, 우측 소지품창의 마법서
-아이콘을 <input>마우스 왼쪽 클릭</input>한 후, 원하는 주문을 선택하면 됩니다.
+새로 사용할 수 있게 된 주문을 외우는 것을 잊지 마세요. <input>$cmd[CMD_MEMORISE_SPELL]</input> 명령을 이용하세요.<localtiles> 주문 암기 탭을 <input>클릭</input>한 뒤 주문을 선택해도 됩니다.</localtiles>
 %%%%
 tutorial4 aiming_clouds
 
@@ -519,10 +484,7 @@ tutorial4 forget_spell
 %%%%
 tutorial4 memorise2
 
-새로운 주문을 익히는 방법을 아직도 모르지는
-않으시겠죠?<input>$cmd[CMD_MEMORISE_SPELL]</input>키나 마법서 아이콘을 클릭한
-후, 새로 얻은 마법서에 들어 있는 주문을 익혀봅시다. 그리고 당신의 해골 군단을
-일으켜 보도록 합시다!
+새 주문을 외울 공간을 확보하려면 기존 주문 하나를 잊어야 합니다. 그런 다음 <input>$cmd[CMD_MEMORISE_SPELL]</input> 명령으로 새 주문을 외우세요.<localtiles> 주문 암기 탭에서 해당 주문을 클릭해도 됩니다.</localtiles> 새 주문을 사용해 악마 아군을 소환해 보세요!
 %%%%
 tutorial4 displace_allies
 
@@ -550,10 +512,9 @@ tutorial4 heavy_armour
 %%%%
 tutorial4 resting_reminder
 
-새로운 구역에 들어가기 전에는, 항상 체력(HP)과 마나(MP)를 완전히 회복한 후
-이동하도록 합시다. 필요에 따라, 휴식(<input>$cmd[CMD_REST]</input>키)를 눌러
-휴식을 취할 필요가 있겠죠. 언데드들은 숨을 쉬지 않습니다. 즉, 당신의 해골
-군단들은 당신의 악취 구름에 영향을 받지 않는다는 이야기죠.
+새로운 구역에 들어가기 전에는 체력과 마력을 모두 회복하세요. 필요하다면 <input>$cmd[CMD_REST]</input> 명령으로 휴식하세요.<localtiles> 명령 패널의 휴식 버튼을 <input>클릭</input>해도 됩니다.</localtiles>
+
+하나의 주문으로 동시에 소환할 수 있는 아군의 수에는 제한이 있으므로 다양한 주문을 활용하세요. 예를 들어 소환한 임프는 독에 저항하므로, 아군에게 해를 끼치지 않고도 메피틱 구름을 사용해 함께 싸울 수 있습니다.
 %%%%
 tutorial4 tutorial_end
 
@@ -655,21 +616,21 @@ tutorial5 tutorial_end
 tutorial5 exit
 
 :nowrap
-<yellow>신앙 관련 명령어</yellow>
-  <input>$cmd[CMD_PRAY]</input>  제단에서 사용하여 신을 믿거나, 시체를 바칠 때 사용합니다.
-  <input>$cmd[CMD_USE_ABILITY]</input>  권능을 사용할 때 사용합니다.
-  <input>$cmd[CMD_DISPLAY_RELIGION]</input>  현재 신앙도 등을 볼 때 사용합니다.<localtiles>
-  캐릭터에 <input>오른쪽 마우스버튼</input>을 클릭해서 볼 수도 있습니다.</localtiles>
+<white>튜토리얼 5 요약: 신앙</white>
+
+<yellow>신앙 관련 명령</yellow>
+  <input>$cmd[CMD_GO_DOWNSTAIRS]</input>  제단에서 신을 믿기 시작하기
+  <input>$cmd[CMD_USE_ABILITY]</input>  신성 능력 사용
+  <input>$cmd[CMD_DISPLAY_RELIGION]</input>  신앙 상태 확인<localtiles>
+  플레이어 칸을 <input>마우스 오른쪽 버튼으로 클릭</input>해도 신앙 화면을 열 수 있습니다.</localtiles>
 
 <yellow>휴식</yellow>
-  <input>$cmd[CMD_WAIT]</input>  1턴동안 휴식하면서 주변을 살핍니다.
-  <input>$cmd[CMD_REST]</input>  100턴동안 휴식하면서 주변을 살핍니다.
+  <input>$cmd[CMD_WAIT]</input>  1턴 대기하고 휴식
+  <input>$cmd[CMD_REST]</input>  최대 100턴 대기하고 휴식
 
-<yellow>기타 명령어</yellow>
-  <input>$cmd[CMD_DISPLAY_OVERMAP]</input>  던전의 전체적인 구성을 표시합니다.
-  <input>$cmd[CMD_DISPLAY_COMMANDS]/</input>  게임 내의 모든 요소에 대한 설명을 볼 수 있습니다.
-
-                                 <cyan><input>아무 버튼</input>이나 누르세요...</cyan>
+<yellow>기타 명령</yellow>
+  <input>$cmd[CMD_DISPLAY_OVERMAP]</input>  던전 전체 지도 보기
+  <input>$cmd[CMD_DISPLAY_COMMANDS]/</input>  설명 데이터베이스 검색
 %%%%
 tutorial death
 

@@ -18,6 +18,7 @@ EXT = {".cc", ".cpp", ".c", ".h", ".hpp", ".lua", ".des"}
 EXCLUDE_PARTS = {"contrib", "android-project", "rltiles", "build", ".git",
                  "node_modules", "__pycache__", "obj", "deps"}
 STRINGS = re.compile(r'(?:"(?:\\.|[^"\\])*"|\x27(?:\\.|[^\x27\\])*\x27)', re.S)
+DOUBLE_STRINGS = re.compile(r'"(?:\\.|[^"\\])*"', re.S)
 SINKS = re.compile(r'\b(?:mprf?|cprintf|yesnoquit|yesno|crawl\.mpr|crawl\.tutorial_msg|print|text|add_child|set_text)\s*\(')
 FMT = re.compile(r'%(?:\d+\$)?[-+ #0]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hljztL])?[diuoxXfFeEgGaAcspn%]')
 
@@ -80,6 +81,10 @@ def main():
                 continue
             digest = hashlib.sha256(raw).hexdigest()
             is_desc = rel.startswith("dat/descript/") and file.suffix == ".txt"
+            # Only top-level English/Korean files use the description-key format.
+            # Other nested files must not inflate coverage statistics.
+            if is_desc and file.parent not in {args.source / "dat/descript", args.source / "dat/descript/ko"}:
+                continue
             if is_desc:
                 # English key coverage and translation body are separate properties.
                 is_ko = rel.startswith("dat/descript/ko/")
@@ -109,7 +114,8 @@ def main():
                 continue
             # This scanner is intentionally lexical: comments/char literals may
             # be false positives, and raw C++ strings may be missed.
-            for match in STRINGS.finditer(text):
+            pattern = STRINGS if file.suffix.lower() in {".lua", ".des"} else DOUBLE_STRINGS
+            for match in pattern.finditer(text):
                 literal = match.group()
                 if len(literal) < 5 or not re.search(r"[A-Za-z]{3}", literal):
                     continue
@@ -134,6 +140,35 @@ def main():
                      literal=literal[:4000], status=status, reason=reason,
                      source_sha256=digest)
                 units += 1
+    # Per-file candidate density and representative output strings for triage.
+    ranked = {}
+    with output.open(encoding="utf-8-sig", newline="") as inp:
+        for row in csv.DictReader(inp):
+            if row["status"] not in ("visible_candidate", "review_dynamic", "test_marker"):
+                continue
+            path = row["path"]
+            if path not in ranked:
+                ranked[path] = {"path": path, "visible_candidate": 0,
+                                "review_dynamic": 0, "test_marker": 0,
+                                "samples": []}
+            item = ranked[path]
+            item[row["status"]] += 1
+            if len(item["samples"]) < 4 and row["status"] in ("visible_candidate", "test_marker"):
+                item["samples"].append({"line": row["line"],
+                                        "status": row["status"],
+                                        "literal": row["literal"][:160]})
+    ranked_files = sorted(ranked.values(),
+                          key=lambda row: (-row["visible_candidate"], -row["review_dynamic"], row["path"]))
+    (args.output / "priority_files.json").write_text(
+        json.dumps(ranked_files, ensure_ascii=False, indent=2) + "\\n",
+        encoding="utf-8")
+    with (args.output / "priority_files.csv").open("w", newline="", encoding="utf-8-sig") as priority:
+        w = csv.DictWriter(priority, ["path", "visible_candidate", "review_dynamic", "test_marker"])
+        w.writeheader()
+        w.writerows({k: row[k] for k in w.fieldnames} for row in ranked_files)
+    print("TOP 25 CANDIDATE FILES:")
+    print(json.dumps(ranked_files[:25], ensure_ascii=False, indent=2))
+
     summary = {
         "batch": "FULL-INVENTORY-001", "source": str(args.source),
         "files_scanned": files, "rows": units, "status_counts": dict(counts),
