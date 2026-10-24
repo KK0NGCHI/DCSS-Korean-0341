@@ -51,3 +51,11 @@
 5. 재현 가능한 릴리스 제작, 설치 가이드, README, 번역 범위 고지.
 
 **기록 규칙:** C++ 후보 개수와 완성 번역 개수를 혼동하지 않는다. 0.24 자산의 재사용 가능성을 분석하되 현재 0.34.1의 사용 가능 키만 검증한다. 문서에 각 수치의 CI 링크 및 대상 커밋을 함께 기록한다.
+
+## 2026-10-24 출력 후보 분류 자동화
+
+- [실행 성공](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40073769987): 가시 출력 3,753 + 동적 2,286 = 6,039개 레코드를 5,450개 고유 리터럴 검토 그룹으로 정리.
+- P0 그룹 646개 중 영문/식별자 후보 642개, P1 635개, P2 4,169개. **미번역 확정·번역률 수치가 아님.**
+- 결과물: `triage/review_queue.csv`, `triage/p0_english_review.csv`, `triage/triage_summary.json` (GitHub Actions 아티팩트).
+- 상세 기준: [TRIAGE-001](../../docs/translation-review/visible-candidate-triage-20261024.md).
+- 다음: P0 642개에 대한 콜사이트 검증 및 실제 미번역 확인 후 일괄 번역.
