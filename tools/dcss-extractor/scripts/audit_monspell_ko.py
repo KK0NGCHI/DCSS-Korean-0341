@@ -92,7 +92,7 @@ def audit(original, localized):
         actual = visible_lines(body)
         if len(actual) == 1 and actual[0] == "__NONE":
             intentionally_silent.append(key)
-        elif len(actual) == 1 and re.fullmatch(r"@[^@\\n]+@", actual[0]):
+        elif len(actual) == 1 and re.fullmatch(r"@[^@]+@", actual[0]):
             alias_only.append(key)
         else:
             untranslated_text.append(key)
