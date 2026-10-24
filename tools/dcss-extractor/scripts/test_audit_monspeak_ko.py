@@ -15,6 +15,13 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
             ["@The_monster@ sees @foe@."],
             ["@The_monster@이(가) 바라본다."]))
 
+    def test_reflexive_grammar_is_optional_but_identity_is_not(self):
+        original = ["@The_monster@ hums to @reflexive@."]
+        translated = ["@The_monster@이(가) 스스로를 달래며 흥얼거린다."]
+        self.assertEqual(check_variants(original, translated), [])
+        self.assertIn("line_1_markers", check_variants(
+            original, ["스스로를 달래며 흥얼거린다."]))
+
     def test_directive_and_alternatives_must_survive(self):
         en = ["VISUAL:@The_monster@ [pauses|stops]."]
         ko = ["VISUAL:@The_monster@이(가) [멈칫한다|가만히 선다]."]
