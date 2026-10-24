@@ -91,6 +91,25 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         ]
         self.assertEqual(check_variants(src, ko), [])
 
+    def test_lua_end_quote_player_marker_is_control_syntax(self):
+        source = [
+            '@The_monster@ says, "{{',
+            'if you.god() == "Makhleb" then',
+            'return "Something."',
+            "else",
+            'return "Other."',
+            'end }}" @player_only@',
+        ]
+        translated = [
+            '@The_monster@이(가) 말해. "{{',
+            'if you.god() == "Makhleb" then',
+            'return "무언가."',
+            "else",
+            'return "다른 것."',
+            'end }}" @player_only@',
+        ]
+        self.assertEqual(check_variants(source, translated), [])
+
     def test_lua_dynamic_return_stays_program_code(self):
         src = ["{{", "return you.genus()", "}}"]
         self.assertEqual(check_variants(src, src), [])
