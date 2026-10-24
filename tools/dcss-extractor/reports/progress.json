@@ -35,7 +35,7 @@
     },
     "04": {
       "status": "in_progress",
-      "detail": "Classified candidates are not confirmed untranslated output units"
+      "detail": "Automated duplicate grouping and P0 review queue now available; contextual human review still pending"
     },
     "05": {
       "status": "pending",
@@ -106,6 +106,22 @@
       "duplicate_english_keys": 3,
       "extra_korean_keys": 260,
       "note": "8 Korean entries updated; remaining reference warning HINT_SEEN_BRANCH. Duplicates are in English reference files."
+    },
+    "candidate_triage": {
+      "source_ref": "78949a18b59cf426d5f0564c0361cdb54985c610",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40073769987",
+      "status": "passed",
+      "input_visible_candidates": 3753,
+      "input_dynamic_candidates": 2286,
+      "input_records": 6039,
+      "unique_literal_groups": 5450,
+      "english_or_identifier_review_groups": 5446,
+      "hangul_groups": 4,
+      "p0_total_groups": 646,
+      "p0_english_or_identifier_review_groups": 642,
+      "p1_groups": 635,
+      "p2_groups": 4169,
+      "note": "Priority queue is heuristic; not confirmed untranslated count, not a completion percentage."
     }
   },
   "current_qa_work": {
