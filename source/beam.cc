@@ -1833,7 +1833,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
         {
             if (mons->is_insubstantial() || mons->is_amorphous())
             {
-                mprf("The bolas passes through %s!",
+                mprf("올가미가 %s을(를) 통과한다!",
                       mons->name(DESC_THE).c_str());
             }
             else
@@ -2372,7 +2372,7 @@ static void _vampiric_draining_effect(actor& victim, actor& agent, int damage)
         const int hp_gain = div_rand_round(drain_amount, 2);
         if (hp_gain)
         {
-            mprf("You feel life coursing into your body%s",
+            mprf("생명력이 몸속으로 흘러드는 게 느껴져%s",
                  attack_strength_punctuation(hp_gain).c_str());
             inc_hp(hp_gain);
         }
@@ -2659,7 +2659,7 @@ void bolt::affect_endpoint()
         if (you.see_cell(pos()))
             mpr("파도가 철썩이며 가라앉는다.");
         else
-            mpr("You hear a splash.");
+            mpr("물에 무언가 첨벙 빠지는 소리가 들린다.");
 
         const bool is_player = agent(true) && agent(true)->is_player();
         const int num = is_player ? div_rand_round(ench_power * 3, 20) + 3 + random2(7)
@@ -3568,14 +3568,14 @@ bool bolt::misses_player()
                 }
                 else
                 {
-                    mprf("You block the %s... and reflect it back!",
+                    mprf("%s을(를) 막아 반사했다!",
                             refl_name.c_str());
                 }
                 reflect();
             }
             else
             {
-                mprf("You block the %s.", name.c_str());
+                mprf("%s을(를) 막았다.", name.c_str());
                 finish_beam();
             }
             you.shield_block_succeeded(agent());
@@ -4180,7 +4180,7 @@ static const vector<pie_effect> pie_effects = {
             {
                 if (you.duration[DUR_FIRE_VULN])
                 {
-                    mpr("You feel your vulnerability to fire will last "
+                    mpr("화염에 취약한 상태가 더 오래 지속될 것 같아 "
                         "longer.");
                 }
                 else
@@ -6652,7 +6652,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
 
         if (mon->is_abjurable())
         {
-            mprf("The magic binding %s to this plane unravels!",
+            mprf("%s을(를) 이 세계에 붙잡아 두던 마법이 풀렸다!",
                  mon->name(DESC_THE).c_str());
             monster_die(*mon, KILL_RESET, actor_to_death_source(agent()));
         }
