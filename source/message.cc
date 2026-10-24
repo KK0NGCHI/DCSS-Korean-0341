@@ -728,7 +728,7 @@ public:
                 cprintf(more_str.c_str());
             }
             else
-                cprintf("--more--");
+                cprintf("--계속--");
 
             readkey_more(user);
         }
