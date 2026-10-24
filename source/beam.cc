@@ -1840,7 +1840,7 @@ int mons_adjust_flavoured(monster* mons, bolt &pbolt, int hurted,
             {
                 mons->add_ench(mon_enchant(ENCH_BOUND, pbolt.agent(),
                                            random_range(4, 8)));
-                mprf("The bolas warps around %s and binds %s in place!",
+                mprf("올가미가 %s 주위를 휘감아 %s을(를) 묶었다!",
                      mons->name(DESC_THE).c_str(),
                      mons->pronoun(PRONOUN_OBJECTIVE).c_str());
             }
@@ -6705,7 +6705,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
     case BEAM_RIMEBLIGHT:
         if (apply_rimeblight(*mon, ench_power, true))
         {
-            mprf("A stygian plague fills %s body.",
+            mprf("어둠의 역병이 %s의 몸을 가득 채운다.",
                  apostrophise(mon->name(DESC_THE)).c_str());
             obvious_effect = true;
         }
