@@ -599,15 +599,15 @@ Antaeus triumphant
 %%%%
 Cheibriados player ghost
 
-@The_monster@이(가) @to_foe@ 말한다. "뭘 그리 서두르지? 어차피 죽을 텐데."
+@The_monster@이(가) 상대에게 말한다. "뭘 그리 서두르지? 어차피 죽을 텐데."
 
-@The_monster@이(가) @to_foe@ 말한다. "도망은 칠 수 있어도 숨을 수는 없지!"
+@The_monster@이(가) 상대에게 말한다. "도망은 칠 수 있어도 숨을 수는 없지!"
 %%%%
 Nemelex Xobeh player ghost
 
 @The_monster@이(가) 말한다. "카드에는 네게 좋은 미래가 보이지 않는군."
 
-@The_monster@이(가) @to_foe@ 말한다. "네 죽음을 내가 뽑아 주마!"
+@The_monster@이(가) 상대에게 말한다. "네 죽음을 내가 뽑아 주마!"
 %%%%
 Okawaru player ghost
 
@@ -629,15 +629,15 @@ Trog player ghost
 %%%%
 Yredelemnul player ghost
 
-@The_monster@이(가) @to_foe@ 말한다. "네 영혼은 내게 쓸모가 있을지도 모르겠군."
+@The_monster@이(가) 상대에게 말한다. "네 영혼은 내게 쓸모가 있을지도 모르겠군."
 
-@The_monster@이(가) @to_foe@ 말한다. "먼저 죽고, 그다음 고통받아라."
+@The_monster@이(가) 상대에게 말한다. "먼저 죽고, 그다음 고통받아라."
 %%%%
 Zin player ghost
 
-@The_monster@이(가) @to_foe@ 말한다. "나는 가난하고 헛되이 죽었지만, 괴물로 죽지는 않았지."
+@The_monster@이(가) 상대에게 말한다. "나는 가난하고 헛되이 죽었지만, 괴물로 죽지는 않았지."
 
-@The_monster@이(가) @to_foe@ 말한다. "그렇게 십일조를 냈는데 내세가 이 정도라니!"
+@The_monster@이(가) 상대에게 말한다. "그렇게 십일조를 냈는데 내세가 이 정도라니!"
 %%%%
 Asterion triumphant
 
@@ -698,3 +698,1030 @@ Jory triumphant
 Polyphemus triumphant
 
 @The_monster@이(가) 말한다. "넌 아무것도 아니야."
+%%%%
+Ashenzari player ghost
+
+@The_monster@이(가) 상대에게 말한다. "삶은 저주야. 너도 곧 알게 되겠지."
+
+@The_monster@이(가) 상대에게 말한다. "네 미래에는 암울함조차 남아 있지 않아."
+
+@The_monster@이(가) 상대에게 말한다. "넌 영원히 땅에 못 박힐 거야."
+
+@The_monster@이(가) 속삭인다. "죽고 나서야 내 잘못과 수많은 이들의 잘못을 볼 수 있었지..."
+
+@The_monster@이(가) 웃으며 말한다. "결국 이렇게 될 줄 알고 있었는데도 말이야..."
+
+@The_monster@이(가) 장담한다. "네 내장을 펼쳐 네 미래를 읽어 주마."
+%%%%
+Beogh player ghost
+
+@The_monster@이(가) 말한다. "죽은 구세주를 따르고 싶어 하는 자는 없지!"
+
+@The_monster@이(가) 말한다. "예전에는 물 위를 걸었는데, 이제는 그 위를 날아다니지."
+
+@The_monster@이(가) 상대에게 말한다. "널 죽이는 데 군대까지 필요하진 않아!"
+%%%%
+Dithmenos player ghost
+
+@The_monster@이(가) 상대에게 말한다. "널 그림자 속으로 보내 주마!"
+
+@The_monster@이(가) 상대에게 말한다. "그냥 어둠에 삼켜지도록 내버려 둬."
+
+@The_monster@이(가) 상대에게 말한다. "나는 그림자 속을 걷지. 곧 너도 그렇게 될 거야."
+%%%%
+Elyvilon player ghost
+
+@The_monster@이(가) 상대에게 말한다. "살아 있었다면 널 치유해 줬을지도 모르겠군."
+
+@The_monster@이(가) 말한다. "폭력으로는 아무것도 해결할 수 없다고 생각했는데, 내 문제는 해결했네."
+
+@The_monster@이(가) 중얼거린다. "살인이 이렇게 즐거운 줄은 미처 몰랐어."
+%%%%
+Fedhas player ghost
+
+@The_monster@이(가) 신음한다. "식물이 내 목숨을 구해 줄 거라고 왜 믿었던 걸까?"
+
+@The_monster@이(가) 상대에게 말한다. "이제 생명을 퍼뜨릴 수는 없지만, 네게 죽음을 안길 수는 있지!"
+
+@The_monster@이(가) 말한다. "넌 훌륭한 비료가 되겠어."
+
+@The_monster@이(가) 말한다. "생명은 돌고 도는 법이지. 조금 뒤면 넌 촌충으로 다시 태어날 거야."
+%%%%
+Gozag player ghost
+
+VISUAL:@The_monster@이(가) 불룩한 돈주머니를 당신 앞에서 흔든다.
+
+@The_monster@이(가) 말한다. "넌 금만큼이나 값어치가 있군."
+
+@The_monster@이(가) 말한다. "돈으로 좋은 사후 세계까지 살 수는 없는 모양이야."
+%%%%
+Hepliaklqana player ghost
+
+@The_monster@이(가) 상대에게 말한다. "지금 널 죽이지 못한다면 내 후손이 나중에 해치우도록 돕겠어."
+
+@The_monster@이(가) 상대에게 말한다. "평생 잊지 못할 싸움을 선사해 주지!"
+
+@The_monster@이(가) 상대에게 말한다. "네 공격을 하나하나 기억해 두겠어."
+%%%%
+Ignis player ghost
+
+@The_monster@이(가) 말한다. "남들보다 2배 밝게 불탔더니 결국 이 꼴이 됐군..."
+
+VISUAL:@The_monster@이(가) 녹아내린 양초처럼 축 늘어진다.
+
+@The_monster@이(가) 말한다. "재는 재로 돌아가는 법... 난 이미 그랬고, 다음은 너야!"
+%%%%
+Jiyva player ghost
+
+@The_monster@이(가) 상대에게 말한다. "아직도 반짝이는 물건에 그리 집착하나?"
+
+@The_monster@이(가) 상대에게 말한다. "전리품이나 탐내다니, 어리석은 녀석들."
+
+@The_monster@이(가) 상대에게 말한다. "살아서도 장신구 따윈 필요 없었어. 지금도 마찬가지지."
+%%%%
+Kikubaaqudgha player ghost
+
+@The_monster@이(가) 말한다. "리치가 되려고 했는데, 이 모습도 나쁘지 않군."
+
+@The_monster@이(가) @foe@에게 비명을 지른다. "앞으로 겪을 고통과 고문은 상상도 못 할걸!"
+
+@The_monster@이(가) @foe@에게 비명을 지른다. "넌 아직 진정한 파멸과 절망을 보지 못했어!"
+
+@The_monster@이(가) 상대에게 말한다. "죽음은 언제나 삶을 이기는 법이지."
+
+@The_monster@이(가) 상대에게 말한다. "넌 제법 괜찮은 좀비가 되겠군."
+%%%%
+Lugonu player ghost
+
+@The_monster@이(가) 아쉬워하며 말한다. "여기를 몽땅 타락시켰어야 했는데!"
+
+@The_monster@이(가) 말한다. "참 황량한 곳이군. 네가 심연에 가 볼 기회도 없을 거라니 아쉽네!"
+
+@The_monster@이(가) 자랑스럽게 말한다. "변절한 신에게는 변절한 유령이 어울리지."
+%%%%
+Makhleb player ghost
+
+@The_monster@이(가) 말한다. "널 상대하는 데 악마의 도움 따윈 필요 없어."
+
+@The_monster@이(가) 말한다. "너 같은 녀석들을 재미 삼아 파괴하려고 죽기까지 했지."
+
+@The_monster@이(가) 말한다. "파괴라는 일은 삶이 끝나도 계속되는 법이야."
+
+@The_monster@이(가) 상대에게 말한다. "먼저 고통받고, 그다음 죽게 될 거야."
+
+@The_monster@이(가) 뽐낸다. "나는 육체의 도가니에서 살아남았어! 이제 두려울 건 아무것도 없지!"
+%%%%
+Pakellas player ghost
+
+@The_monster@이(가) 말한다. "넌 내가 해결해야 할 또 하나의 문제일 뿐이지."
+
+@The_monster@이(가) 말한다. "이번엔 꽤 짜릿한 충격을 받게 될 거야."
+
+@The_monster@이(가) 말한다. "주문? 하! 진짜 마법이 뭔지 내 발명품들이 보여 주지!"
+%%%%
+Qazlal player ghost
+
+@The_monster@이(가) 말한다. "폭풍이 다가오고 있어..."
+
+@The_monster@이(가) 말한다. "자연이 알아서 널 처리하도록 내버려 두지!"
+
+@The_monster@이(가) 말한다. "대지가 널 파멸시킬 것이다!"
+%%%%
+Ru player ghost
+
+@The_monster@이(가) 말한다. "궁극의 힘을 얻기 위해 내 육체를 희생했지!"
+
+@The_monster@이(가) 말한다. "모든 것을 소멸시키는 위대한 진실을 보여 주마!"
+
+@The_monster@이(가) 당신에게 말한다. "이 모든 건 중요하지 않아. 진짜도 아니라고!"
+
+@The_monster@이(가) 상대에게 말한다. "먼저 고통받고, 그다음 죽게 될 거야."
+%%%%
+The Shining One player ghost
+
+@The_monster@이(가) 말한다. "신성한 보호를 약속받았는데, 결국 이 모양이지."
+
+@The_monster@이(가) 말한다. "살아 있을 때는 거대한 악과 싸웠어. 이제는 그저 싸울 뿐이지."
+
+@The_monster@이(가) 말한다. "기사도는 죽었다고들 하지. 나도 죽었고."
+
+@The_monster@이(가) 속삭인다. "나도 결국 놈들 중 하나가 되었어."
+
+@The_monster@이(가) 중얼거린다. "우린 악의 요새들을 쳐부쉈지. 이제는 나 혼자 걷는군."
+
+@The_monster@이(가) 읊조린다. "이제 내 길을 밝혀 줄 등불도 없어..."
+%%%%
+Uskayaw player ghost
+
+@The_monster@이(가) 상대에게 말한다. "이게 네 마지막 춤이야!"
+
+@The_monster@이(가) 상대에게 말한다. "진짜 리듬이 어떤 건지 보여 주마."
+
+@The_monster@이(가) 말한다. "박자에 맞춰 발을 굴러. 안 그러면 짓밟힐 테니."
+
+@The_monster@이(가) 말한다. "살아 있을 땐 춤추듯 떠돌아다녔지. 그런데 이 꼴이라니."
+
+@The_monster@이(가) 외친다. "드디어 제대로 된 관객이 나타났군!"
+%%%%
+Vehumet player ghost
+
+@The_monster@이(가) 위협한다. "지옥불은 다 써 버렸지만, 그래도 네 최후는 정해졌어."
+
+@The_monster@이(가) 말한다. "철저한 파괴의 사도는 죽음으로도 막을 수 없지."
+
+@The_monster@이(가) 호언장담한다. "널 처리하고 나면 세상을 통째로 집어삼키는 주문을 연구할 거야."
+
+@The_monster@이(가) 위협한다. "이스켄데룬의 불꽃이여, 나를 실망시키지 마라!"
+%%%%
+Wu Jian player ghost
+
+@The_monster@이(가) 상대에게 말한다. "그 정도 수련으로는 날 이길 수 없어."
+
+@The_monster@이(가) 상대에게 말한다. "얼마나 잘 움직이는지 한번 보자."
+
+@The_monster@이(가) 말한다. "이제 살점에 얽매이지 않으니 몸이 훨씬 유연해졌어."
+%%%%
+Xom player ghost
+
+@The_monster@이(가) @_laughs_@. "난 죽일 때 웃어. 그러니 죽을 때 웃어 봐. 웃으라고!"
+
+@The_monster@이(가) 투덜거린다. "널 죽이긴 쉽겠지만 재미는 없겠군."
+
+@The_monster@이(가) 추억에 잠긴다. "선물과 장난들이 그립군."
+
+@The_monster@이(가) 횡설수설한다. "살아 있을 때도 신났고, 죽은 지금도 신난단 말이지!"
+
+@The_monster@이(가) 낄낄거린다. "이봐, 죽은 머리통아. 네 머리가 떨어지는 걸 보니 즐겁겠네!"
+
+@The_monster@이(가) 말한다. "가위가 필요해! 어딘가에서 손톱이 깨진 것 같거든..."
+
+@The_monster@이(가) 우스꽝스러운 표정을 지으려 한다.
+%%%%
+Ashenzari Frederick triumphant
+
+@The_monster@이(가) 슬프게 고개를 흔든다. "스스로 신의 족쇄를 차다니... 가엾군."
+
+@Frederick@
+%%%%
+Beogh Frederick triumphant
+
+@The_monster@이(가) 한숨 쉰다. "@player_genus@ 동족들이 네 발목만 잡았군."
+
+@Frederick@
+%%%%
+Cheibriados Frederick triumphant
+
+@The_monster@이(가) 말한다. "기뻐해라. 죽은 것보다 더 느려질 수는 없으니까."
+
+@Frederick@
+%%%%
+Dithmenos Frederick triumphant
+
+@The_monster@이(가) 말한다. "이제 어둠 속으로 사라질 시간이군."
+
+@Frederick@
+%%%%
+Elyvilon Frederick triumphant
+
+@The_monster@이(가) 말한다. "치유사여, 스스로를 치유해 보시지."
+
+@Frederick@
+%%%%
+Fedhas Frederick triumphant
+
+@The_monster@이(가) 말한다. "필멸자여, 넌 한낱 풀잎에 불과해."
+
+@Frederick@
+%%%%
+Gozag Frederick triumphant
+
+@The_monster@이(가) 말한다. "네 탐욕이 결국 발목을 잡았군."
+
+@Frederick@
+%%%%
+Hepliaklqana Frederick triumphant
+
+@The_monster@이(가) 말한다. "조상들의 업적에 기댄다고 영광이 따라오진 않아."
+
+@Frederick@
+%%%%
+Ignis Frederick triumphant
+
+@The_monster@이(가) 말한다. "너보다도 불꽃이 희미한 신을 섬기다니, 어리석군."
+
+@Frederick@
+%%%%
+Jivya Frederick triumphant
+
+@The_monster@이(가) 말한다. "우리 싸움도 네 신처럼 따분하고 형체가 없었어."
+
+@Frederick@
+%%%%
+Kikubaaqudgha Frederick triumphant
+
+@The_monster@이(가) 한숨 쉰다. "네가 숭배하는 시체들 곁으로 가라, 필멸자여."
+
+@Frederick@
+%%%%
+Lugonu Frederick triumphant
+
+@The_monster@이(가) 말한다. "이번에는 좀 더 영구적인 추방을 선사하지."
+
+@Frederick@
+%%%%
+Makhleb Frederick triumphant
+
+@The_monster@이(가) 말한다. "네 악마들도 함께 데려가라."
+
+@Frederick@
+%%%%
+Nemelex Xobeh Frederick triumphant
+
+@The_monster@이(가) 말한다. "도박꾼 양반, 이번에는 패를 접는군."
+
+@Frederick@
+%%%%
+Okawaru Frederick triumphant
+
+@The_monster@이(가) 말한다. "이제 나를 상대할 가치가 있는 적으로 인정하겠나?"
+
+@Frederick@
+%%%%
+Qazlal Frederick triumphant
+
+@The_monster@이(가) 말한다. "드디어 조용하고 평화롭게 지낼 수 있겠군."
+
+@Frederick@
+%%%%
+Ru Frederick triumphant
+
+@The_monster@이(가) 말한다. "너 자신을 너무 많이 희생했어."
+
+@Frederick@
+%%%%
+Sif Muna Frederick triumphant
+
+@The_monster@이(가) 한숨 쉰다. "남의 지식에만 의지해 봐야 아무 데도 가지 못하지."
+
+@Frederick@
+%%%%
+Trog Frederick triumphant
+
+@The_monster@이(가) 말한다. "넌 분명 화를 잘 내는 유령이 되겠군."
+
+@Frederick@
+%%%%
+Uskayaw Frederick triumphant
+
+@The_monster@이(가) 말한다. "네 마지막 춤이 끝났어."
+
+@Frederick@
+%%%%
+Vehumet Frederick triumphant
+
+@The_monster@이(가) 말한다. "마법사는 오직 자신의 능력에 의존해야 하지."
+
+@Frederick@
+%%%%
+Wu Jian Frederick triumphant
+
+@The_monster@이(가) 말한다. "네가 직접 갈고닦은 기술만 믿었어야지."
+
+@Frederick@
+%%%%
+Xom Frederick triumphant
+
+@The_monster@이(가) 찡그린다. "스스로 좀의 장난감이 되기를 자처하다니... 별난 녀석이군."
+
+@Frederick@
+%%%%
+Yredelemnul Frederick triumphant
+
+@The_monster@이(가) 말한다. "네가 숭배하는 군단에 합류하는 걸 위안으로 삼아라."
+
+@Frederick@
+%%%%
+Zin Frederick triumphant
+
+@The_monster@이(가) 말한다. "신도보다 더 성가신 건 남에게 신앙을 강요하는 녀석이지."
+
+@Frederick@
+%%%%
+the Shining One Frederick triumphant
+
+@The_monster@이(가) 말한다. "2배 밝게 빛나는 모험가는 2배 빨리 타 버리는 법이지."
+
+@Frederick@
+%%%%
+Blorkula the orcula killed
+
+블로르큘라의 무너진 몸에서 옅은 무지갯빛 안개가 피어올랐다가 흩어진다.
+%%%%
+Boris triumphant
+
+@The_monster@이(가) 말한다. "이제 너와 마주칠 일도 없겠군."
+
+@The_monster@이(가) 말한다. "이번에도 되살아나는 꼴을 한번 보고 싶군."
+
+@The_monster@이(가) 말한다. "이번 일은 오래도록 기억해 두지."
+%%%%
+Cassandra killed
+
+@The_monster@이(가) 마지막 숨을 몰아쉬며 말한다. "내가... 경고했잖아..."
+
+@The_monster@이(가) 마지막 숨을 몰아쉬며 말한다. "아무도... 들어주지 않아..."
+
+@The_monster@이(가) 마지막 숨을 몰아쉬며 말한다. "네 운명은... 네가 자초한 거야..."
+%%%%
+friendly Cassandra
+
+@The_monster@이(가) 당신에게 모험을 다시 생각해 보라고 간청한다.
+
+@The_monster@이(가) 간청한다. "친구의 말조차 듣지 않고 이 일을 끝내지 않을 건가요?"
+
+@The_monster@이(가) 말한다. "계속 나아간다면 나조차 당신을 구할 수 없어요."
+%%%%
+Donald killed
+
+w:100
+__NONE
+
+w:1
+@The_monster@이(가) 말한다. "죽는군. 정말 싫어."
+%%%%
+Edmund triumphant
+
+@The_monster@이(가) 말한다. "이걸 보면 우리 형도 생각이 달라지겠지!"
+
+@The_monster@이(가) 말한다. "낫으로도 이런 일을 할 수 있나 어디 보자!"
+
+@The_monster@이(가) 투덜댄다. "이제는 나한테도 관심을 좀 가져 줘야 할 텐데!"
+%%%%
+Erica triumphant
+
+@The_monster@이(가) 즐거움을 참지 못하고 꿀렁거리며 웃기 시작한다.
+%%%%
+Eustachio triumphant
+
+VISUAL:@The_monster@이(가) 콧수염을 빙빙 만다.
+
+@The_monster@이(가) 말한다. "명예도 모르는 악당들의 최후란 이런 법이지."
+%%%%
+Gastronok triumphant
+
+@The_monster@이(가) 부글거리며 말한다. "이제 먹어 볼까!"
+
+@The_monster@이(가) 부글거리며 말한다. "드디어! 배고파 죽겠어!"
+
+@The_monster@이(가) 부글거리며 말한다. "저 마법사만큼 맛이 좋을지 궁금하군."
+%%%%
+Grinder triumphant
+
+@The_monster@이(가) 말한다. "이제부터가 진짜 재미인데!"
+
+@The_monster@이(가) 말한다. "이봐, 아직 고문이 안 끝났다고!"
+
+@The_monster@이(가) 한숨 쉰다. "벌써 죽었어? 돈 돌려줘."
+%%%%
+ijyb triumphant
+
+@The_monster@이(가) 소리친다. "다음 실험 시작할 시간!"
+
+@The_monster@이(가) 끙끙거린다. "쓸 만한 부하 구하기 정말 힘들어!"
+%%%%
+Jeremiah triumphant
+
+@The_monster@이(가) 묻는다. "무슨 일이야? 설마... 죽은 거야?"
+
+@The_monster@이(가) 울부짖는다. "누굴 죽이려던 게 아니야! 난 살인자가 아니라고!"
+
+@The_monster@이(가) 묻는다. "끝난 거야? 이제 깨어나도 돼?"
+
+@The_monster@이(가) 말한다. "오, 두려운 주인이여. 당신의 뜻이 이루어졌습니다."
+%%%%
+Jory killed
+
+@The_monster@이(가) "안 돼, 안 돼!" 하고 비명을 지른 뒤 피구름이 되어 폭발한다!
+%%%%
+silent Jory killed
+
+VISUAL:@The_monster@이(가) 잠시 공포에 질려 당신을 바라보다 피구름이 되어 폭발한다!
+%%%%
+Mara riddle
+
+@The_monster@이(가) 비웃는다. "네 눈앞에 그보다 훨씬 어려운 수수께끼를 펼쳐 보이마."
+%%%%
+friendly Natasha
+
+@The_monster@이(가) 야옹거린다.
+
+@The_monster@이(가) 가르랑거린다.
+%%%%
+Natasha permanently killed
+
+@the_monster_possessive@ 영혼이 마침내 안식을 얻은 것 같다.
+%%%%
+Natasha triumphant
+
+VISUAL:@The_monster@이(가) 몸을 동그랗게 말고 가르랑거리기 시작한다.
+
+VISUAL:@The_monster@이(가) 털을 깨끗하게 핥기 시작한다.
+%%%%
+Robin triumphant
+
+@The_monster@이(가) 으스대며 웃음을 터뜨린다.
+
+@The_monster@이(가) 외친다. "축하하자! 잔치 열 시간이야!"
+
+@The_monster@이(가) 말한다. "이래서 내가 대장이라니까."
+%%%%
+Nobody killed
+
+@The_monster@이(가) 재가 되어 무너지면서 속삭인다. "너도... 잊히게 될 거야..."
+%%%%
+Norris triumphant
+
+@The_monster@이(가) 말한다. "어라, 부러운데!"
+
+@The_monster@이(가) 말한다. "영원을 마음껏 즐겨."
+
+@The_monster@이(가) 말한다. "저편에서 다시 보자, 친구."
+%%%%
+Pikel triumphant
+
+@The_monster@이(가) 말한다. "시장에 팔 영혼이 하나 더 생겼군."
+
+@The_monster@이(가) 말한다. "지옥에서 보자!"
+%%%%
+Polyphemus killed
+
+w:50
+__NONE
+
+w:1
+@The_monster@이(가) 포효한다. "날 속였구나!"
+%%%%
+Sigmund triumphant
+
+VISUAL:@The_monster@이(가) 낫에 또 하나의 눈금을 새기기 시작한다.
+%%%%
+Terence triumphant
+
+@The_monster@이(가) 말한다. "드디어 조용하고 평화롭겠군."
+
+@The_monster@이(가) 말한다. "다시는 오지 마!"
+
+@The_monster@이(가) 말한다. "이기면 살고 지면 죽는다. 그게 인생의 법칙이지."
+
+@The_monster@이(가) 말한다. "명예를 지킨다고 전술적 우위를 포기할 이유는 없어."
+%%%%
+Vashnia triumphant
+
+@The_monster@이(가) 말한다. "머리 정중앙."
+
+@The_monster@이(가) 말한다. "침입자 제거 완료."
+
+@The_monster@이(가) 말한다. "이상 무. 다른 놈이 있나 찾아보자."
+%%%%
+Xtahua triumphant
+
+@The_monster@이(가) 승리의 포효를 터뜨린다.
+
+VISUAL:@The_monster@이(가) 승리에 도취해 길고 거대한 불길을 뿜는다.
+
+@The_monster@이(가) 으르렁거린다. "여기 온 게 네 마지막 실수였다."
+
+@The_monster@이(가) 낮게 울린다. "이제 한 입 먹어 볼까."
+%%%%
+alderking triumphant
+
+@The_monster@이(가) 시드는 잎사귀의 만족스러운 한숨과 함께 사라진다.
+%%%%
+Bennu permanently killed
+
+VISUAL:@The_monster@이(가) 영적 에너지를 모두 잃고 이 세계에서 서서히 사라진다.
+%%%%
+default electric golem
+
+SOUND:@The_monster@이(가) 지직거리며 치익 소리를 낸다.
+%%%%
+default ice statue
+
+VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 차갑게 반짝인다.
+%%%%
+default obsidian statue
+
+VISUAL:@The_monster@이(가) 잠시 던전의 어둠 속으로 스며든다.
+%%%%
+default orange crystal statue
+
+VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 황옥색으로 반짝인다.
+%%%%
+frilled lizard
+
+@The_monster@이(가) 거대한 목도리를 펼친다.
+
+@The_monster@이(가) 상대를 향해 쉭쉭거린다.
+%%%%
+default silenced confused humanoid
+
+w:40
+VISUAL:@The_monster@이(가) 정신없이 몸짓한다.
+
+w:20
+VISUAL:@The_monster@이(가) 무언가 말하지만 아무 소리도 들리지 않는다.
+
+VISUAL:@The_monster@이(가) 혼란스러워 보인다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+VISUAL:@The_monster@이(가) 기쁘게 미소 짓는다.
+
+VISUAL:@The_monster@이(가) 울음을 터뜨린다.
+%%%%
+silenced player ghost
+
+VISUAL:@The_monster@이(가) @foe@을(를) 노려본다.
+
+w:5
+VISUAL:@The_monster@이(가) 위협적으로 @foe@을(를) 가리킨다.
+
+w:5
+VISUAL:@The_monster@이(가) @foe@을(를) 바라보며 손가락을 천천히 목에 긋는다.
+%%%%
+_generic_ranged_
+
+@The_monster@이(가) 조준한다.
+
+무언가 당신의 머리 바로 옆을 위험하게 스쳐 지나가는 느낌이 든다. @player_only@
+%%%%
+bennu
+
+VISUAL:@The_monster_possessive@ 깃털이 잠시 이계의 불꽃으로 타오른다.
+
+VISUAL:@The_monster@이(가) 기쁜 듯 이리저리 날아다닌다.
+%%%%
+crystal guardian
+
+VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 변함없이 차갑게 반짝인다.
+
+w:5
+VISUAL:@the_monster@에 비친 당신의 일그러진 모습이 뒤틀리고 꿈틀거린다. @player_only@
+%%%%
+dream sheep
+
+@The_monster@이(가) 음산하게 "메에에" 하고 운다.
+
+@The_monster@이(가) 졸린 듯 "메에에" 하고 운다.
+%%%%
+erythrospite
+
+VISUAL:@The_monster@이(가) 당신의 심장 박동에 맞춰 맥동한다.
+%%%%
+laughing skull triumphant
+
+@The_monster@이(가) 기쁨을 주체하지 못하고 산산이 부서진다.
+%%%%
+moth of wrath
+
+VISUAL:@The_monster@이(가) 화가 난 듯 더듬이를 휘젓는다.
+%%%%
+default hoarfrost cannon
+
+VISUAL:@the_monster_possessive@ 포신에서 물방울이 떨어진다.
+
+VISUAL:@the_monster@에서 차가운 안개가 피어오른다.
+
+@The_monster@이(가) 희미하게 삐걱거리는 소리를 낸다.
+%%%%
+thermic dynamo
+
+VISUAL:@The_monster@이(가) 회전 속도를 높이며 변덕스럽게 빙빙 돈다.
+
+VISUAL:@The_monster@이(가) 쉭쉭거리며 반짝인다.
+%%%%
+weeping skull triumphant
+
+@The_monster@이(가) 죄책감에 못 이겨 산산이 부서진다.
+%%%%
+yak
+
+@The_monster@이(가) 콧김을 뿜으며 @surface@을(를) 발굽으로 긁는다.
+%%%%
+holy_being_pacification
+
+VISUAL:@The_monster@이(가) 당신의 신성한 기운에 진정된다.
+%%%%
+Gozag bribe
+
+@The_monster@이(가) 상대를 쳐다보다 금화 주머니를 짤랑거리며 돌아선다.
+%%%%
+Gozag permabribe
+
+@The_monster@이(가) 상대를 보며 탐욕스럽게 웃고 금화 주머니를 짤랑거린다.
+%%%%
+Rupert triumphant
+
+@The_monster@이(가) 승리의 포효를 지른다.
+%%%%
+Saint Roka triumphant
+
+@The_monster@이(가) 포효한다. "베오그를 찬양하라!"
+%%%%
+Sojobo triumphant
+
+@The_monster@이(가) 말한다. "결과는 처음부터 정해져 있었지."
+
+@The_monster@이(가) 말한다. "모두 계획대로군."
+%%%%
+Urug triumphant
+
+@The_monster@이(가) 외친다. "드디어 복수했다!"
+
+@The_monster@이(가) 말한다. "하피 한 놈을 더 해치웠군."
+%%%%
+Xak'krixis triumphant
+
+@The_monster@이(가) 말한다. "내 논문이 나오면 널 꼭 공동 저자로 올려 줄게!"
+%%%%
+Zenata triumphant
+
+@The_monster@이(가) 말한다. "불 속에 던질 찌꺼기가 또 늘었군."
+
+@The_monster@이(가) 말한다. "네 안에 뭐가 들었는지 볼까."
+%%%%
+Killer Klown triumphant
+
+VISUAL:@The_monster@이(가) 인사하려다 바나나 껍질에 미끄러진다.
+
+@The_monster@이(가) 기뻐하며 빵빵거리는 소리를 낸다.
+
+VISUAL:@The_monster@이(가) 당신을 풍선 동물 모양으로 묶으려 한다.
+%%%%
+Slings player ghost
+
+@The_monster@이(가) 말한다. "덩치가 클수록 넘어질 때도 요란하지!"
+
+VISUAL:@The_monster@이(가) 머리 위로 유령 같은 투석구를 빙빙 돌린다.
+
+@_generic_ranged_@
+%%%%
+Ranged Weapons player ghost
+
+@_generic_ranged_@
+
+@The_monster@이(가) 말한다. "사과 하나 없나? 시험해 보고 싶은 사격이 있거든."
+
+VISUAL:@The_monster@이(가) 머리 위로 유령 같은 투석구를 빙빙 돌린다.
+
+VISUAL:@The_monster@이(가) [힘겹게 재장전한다|능숙하게 재장전한다].
+%%%%
+Crossbows player ghost
+
+@_generic_ranged_@
+
+VISUAL:@The_monster@이(가) [힘겹게 재장전한다|능숙하게 재장전한다].
+%%%%
+Throwing player ghost
+
+VISUAL:@The_monster@이(가) 던질 만한 물건이 없나 주위를 둘러본다.
+
+@The_monster@이(가) 당신에게 재치 있는 모욕을 던진다. @player_only@
+
+@_generic_ranged_@
+%%%%
+Conjurations player ghost
+
+VISUAL:@The_monster@이(가) 조준한다.
+
+@The_monster@이(가) 말한다. "널 산산조각 내 주마."
+
+@The_monster@이(가) 알아듣기 어려운 주문을 [능숙하게 읊는다|엉터리로 외운다].
+
+VISUAL:@The_monster@이(가) 이스켄데룬의 눈부신 광휘에 휩싸인다.
+
+VISUAL:@the_monster@ 앞에 에너지가 응축되더니 금세 흩어진다.
+%%%%
+Alchemy player ghost
+
+@The_monster@이(가) 말한다. "그 정도 작은 긁힌 상처라면 분명 괜찮겠지."
+
+@The_monster@이(가) 상대에게 말한다. "어서 도망쳐 봐."
+
+@The_monster@이(가) 상대에게 말한다. "날 죽여도 소용없어. 너도 결국 죽을 테니까."
+
+@The_monster@이(가) 상대에게 말한다. "움직이지 마. 독이 더 빨리 퍼질 테니."
+
+@The_monster@이(가) 상대에게 말한다. "난 이제 숨 쉴 필요 없지만, 넌 다르지!"
+%%%%
+default Mennas
+
+VISUAL:@The_monster@이(가) 당신을 향해 몸짓한다. @player_only@
+
+VISUAL:@The_monster@이(가) 하늘을 올려다본다.
+
+VISUAL:@The_monster@이(가) 슬픈 듯 고개를 흔든다.
+
+VISUAL:@The_monster@이(가) 잠시 기도에 몰두한다.
+%%%%
+twin_ikilled Duvessa
+
+VISUAL:@The_monster@이(가) 슬픔과 공포로 몸을 떤다.
+
+@The_monster@이(가) 말한다. "내가 무슨 짓을 한 거야? 도대체 무슨 짓을..."
+
+@The_monster@이(가) 말한다. "이제 어떻게 살아가란 말이야?"
+
+@The_monster@이(가) 비명을 지른다.
+%%%%
+twin_ikilled Dowan
+
+VISUAL:@The_monster@이(가) 공포에 눈을 크게 뜬다.
+
+@The_monster@이(가) 비명을 지른다.
+
+@The_monster@이(가) 고개를 저으며 말한다. "안 돼, 안 돼, 안 된다고!"
+
+@The_monster@이(가) 외친다. "안 돼! 내가 무슨 짓을 한 거야?"
+%%%%
+_form_
+
+거미
+
+석상
+
+w:5
+용
+%%%%
+_laughs_
+
+킥킥거린다
+
+작게 웃는다
+
+낄낄거린다
+
+껄껄 웃는다
+
+조용히 미소 지으며 웃는다
+
+호탕하게 웃는다
+%%%%
+_says_or_shouts_
+
+말한다
+
+외친다
+%%%%
+_shouts_
+
+외친다
+
+고함친다
+
+포효한다
+%%%%
+_yells_
+
+소리친다
+
+울부짖는다
+
+절규한다
+
+비명을 지른다
+
+길게 울부짖는다
+%%%%
+_wails_
+
+통곡한다
+
+외친다
+
+말한다
+
+절규한다
+
+새된 비명을 지른다
+%%%%
+_begs_
+
+애원한다
+
+간청한다
+
+w:3
+빌고 또 빈다
+
+w:1
+애처롭게 매달린다
+%%%%
+_mutters_
+
+중얼거린다
+
+작게 웅얼거린다
+
+w:2
+나직이 속삭인다
+%%%%
+_friendly_fleeing_rare_
+
+@The_monster@이(가) @_shouts_@. "@player_name@, 기다려 줘! 좀 도와줄 수 없어?"
+
+@The_monster@이(가) 외친다. "친구를 잊으면 안 되지!"
+
+@The_monster@이(가) 외친다. "날 좀 보호해 줘!"
+%%%%
+friendly bfb orc
+
+@The_monster@이(가) 외친다. "쓰러진 전우들의 복수다!"
+
+@The_monster@이(가) 외친다. "피는 피를 부르는 법!"
+
+@The_monster@이(가) 외친다. "모조리 죽여라! 베오그께서 아군을 알아보실 것이다!"
+
+@The_monster@이(가) 무기로 가슴을 두드리며 포효한다.
+
+@The_monster@이(가) 외친다. "우리 동족을 위하여! 그 전에 죽어 간 모두를 위하여!"
+
+@The_monster@이(가) 무기에 주홍색을 칠하고 높이 들어 올린다.
+
+@The_monster@이(가) 외친다. "눈에는 눈! 이에는 이! 목숨에는 목숨!"
+
+@The_monster@이(가) 외친다. "저들의 고통을 100배로 되돌려 줘라!"
+%%%%
+_player_ghost_common_
+
+VISUAL:@The_monster@이(가) @foe@을(를) 노려본다.
+
+@The_monster@이(가) 애처롭게 울부짖는다.
+
+@The_monster@이(가) 위로할 길 없이 통곡한다.
+
+@The_monster@이(가) 길게 울부짖는다.
+
+VISUAL:@The_monster@의 모습이 물결치듯 일렁인다.
+
+@The_monster@이(가) @_wails_@. "나한테 없었던 걸 넌 뭘 가지고 있지?"
+
+@The_monster@이(가) 아주 천천히 말한다. "희망 따윈 없어."
+
+@The_monster@이(가) @_wails_@. "넌 절대 오브를 얻지 못할 거야!" @player_only@
+
+@The_monster@이(가) 속삭인다. "오브 같은 건 존재하지 않아." @player_only@
+
+@The_monster@이(가) @_wails_@. "놈들이 널 속였어. 던전은 끝없이 아래로만 이어진다고."
+
+@The_monster@이(가) @_wails_@. "너도 곧 나와 함께하게 될 거야!"
+
+@The_monster@이(가) @_wails_@. "내가 실패한 일을 네가 성공해선 안 돼!"
+
+@The_monster@이(가) 상대에게 속삭인다. "네게 미래는 없어."
+%%%%
+_player_ghost_medium_
+
+@The_monster@이(가) 미친 듯이 웃는다.
+
+VISUAL:@The_monster@이(가) 사악하게 씩 웃는다.
+
+@The_monster@이(가) 쇠사슬이 덜컥거리는 소리를 낸다.
+
+@The_monster@이(가) @_wails_@. "한때 나도 너와 같았지."
+
+@The_monster@이(가) @_wails_@. "대단하군. 그래 봐야 소용없어. 아무 소용도 없다고."
+
+@The_monster@이(가) @_wails_@. "네 미래를 봤어. 이미 다 써 버렸더군."
+
+@The_monster@이(가) @_wails_@. "신들이 널 보호해 줄 거라고 생각해?"
+
+@The_monster@이(가) 비명을 지른다. "오브를 원하는 놈들은 모두 죽여 버리겠어!" @player_only@
+
+@The_monster@이(가) 상대에게 비명을 지른다. "막아 보려고 하지 마! 넌 가망이 없어!"
+
+@The_monster@이(가) 외친다. "조트는 신화고 오브는 꾸며낸 이야기야. 너도 곧 옛이야기가 되겠지!" @player_only@
+
+@The_monster@이(가) 속삭인다. "죽음은 해방이야."
+
+@The_monster@이(가) @_wails_@. "네게 남은 미래는 죽음뿐이야!"
+
+@The_monster@이(가) 속삭인다. "죽음의 공허를 맞이해라!"
+
+@The_monster@이(가) @_wails_@. "나에겐 미래가 없어!"
+
+@The_monster@이(가) 속삭인다. "놈들이 널 잡으러 오고 있어..."
+
+@The_monster@이(가) 속삭인다. "내 말 믿어. 그냥 포기해."
+%%%%
+_player_ghost_rare_
+
+@The_monster@이(가) @_wails_@. "죽는다는 건 잠드는 것. 그뿐이지."
+
+@The_monster@이(가) 속삭인다. "영원한 침묵이 널 기다리고 있어..."
+
+@The_monster@이(가) 속삭인다. "죽음은 아프지 않아. 네가 느끼는 고통은 삶이지."
+
+@The_monster@이(가) 속삭인다. "조금만 있으면 내 마음을 더 잘 이해하게 될 거야."
+
+@The_monster@이(가) 속삭인다. "전부 꿈일 뿐이야. 기괴하고 어리석은 꿈..."
+
+@The_monster@이(가) 속삭인다. "곧 시간이 넘쳐나게 될 거야. 아주 많이..."
+
+@The_monster@이(가) @_wails_@. "내가 성공한 일을 네가 실패해선 안 돼!"
+%%%%
+_fleeing_humanoid_common_
+
+w:20
+VISUAL:@The_monster@이(가) 모든 것을 포기한 듯 보인다.
+
+w:20
+@The_monster@이(가) @_yells_@. "도와줘!"
+
+VISUAL:@The_monster@이(가) 달아나다 [거의 넘어질 뻔한다|발을 헛디뎌 비틀거린다].
+
+@The_monster@이(가) 도움을 구하며 기도한다.
+
+@The_monster@이(가) 웅크렸다가 재빨리 달아난다.
+
+@The_monster@이(가) 울음을 터뜨린다.
+
+@The_monster@이(가) 당신에게 소리친다. "저리 가!"
+
+@The_monster@이(가) 뜻 모를 소리를 횡설수설한다.
+
+@The_monster@이(가) 두려움에 울부짖는다.
+
+@The_monster@이(가) [신음한다|울부짖는다|운다]. "아이고! 이 일을 어쩌나!"
+
+@The_monster@이(가) @_begs_@. "제발 날 죽이지 마!"
+
+@The_monster@이(가) 목숨만은 살려 달라고 빈다.
+
+@The_monster@이(가) 자비를 구하며 외친다. "살려 줘!"
+%%%%
+_fleeing_humanoid_rare_
+
+@The_monster@이(가) @_begs_@. "우리 그냥 사이좋게 지내면 안 될까?"
+
+@The_monster@이(가) @_mutters_@. "빌어먹을!"
+
+@The_monster@이(가) 상대에게 외친다. "안 돼! 다신 안 그럴게!"
+
+@The_monster@이(가) [훌쩍이며|울부짖으며] 외친다. "[엄마아아|아빠아아|메에에엑|살려 줘어어|꺄아아악|안 돼에에|으아아앙]!"
+
+@The_monster@이(가) @_begs_@. "제발! 내겐 아이들이 많다고!"
+
+VISUAL:@The_monster@이(가) [몹시 동요한|공포에 얼어붙은|겁에 질린] 표정을 짓는다.
+
+@The_monster@이(가) 조용히 흐느낀다.
+
+VISUAL:@The_monster@이(가) 필사적으로 탈출로를 찾는다.
+
+@The_monster@이(가) 진정하려 애쓰며 필사적으로 콧노래를 흥얼거린다.
+
+VISUAL:@The_monster@이(가) 가까스로 평정심을 되찾으려 한다.
+
+@The_monster@이(가) @_mutters_@. "재수가 이렇게 없을 수가!"
+
+VISUAL:@The_monster@이(가) 잃어버린 용기를 다시 끌어모으려 한다.

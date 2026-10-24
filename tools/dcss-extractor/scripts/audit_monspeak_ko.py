@@ -12,7 +12,7 @@ from pathlib import Path
 
 from audit_monspell_ko import parse, visible_lines, MARKER, ALT, WEIGHT, HANGUL
 
-OMITTABLE = {"possessive", "at_foe", "to_foe", "surface"}
+OMITTABLE = {"possessive", "at_foe", "to_foe", "surface", "reflexive"}
 PREFIXES = ("VISUAL:", "SOUND:", "SILENT:")
 
 
