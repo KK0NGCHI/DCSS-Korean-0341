@@ -31,7 +31,7 @@
     },
     "03": {
       "status": "in_progress",
-      "detail": "23 description file pairs plus separate gameplay database audit (23 original text files; only godname overlay 23/23; originals partly Korean). Other Lua and data review incomplete."
+      "detail": "23 description file pairs, gameplay database 23 text files; KO godname 23 keys and monspell 156/262 keys; original DB contains mixed Korean, others not fully localized."
     },
     "04": {
       "status": "in_progress",
@@ -43,7 +43,7 @@
     },
     "06": {
       "status": "in_progress",
-      "detail": "P0 direct source batch merged via PR4; source output candidate 202 to 46 after multiple batches; natural grammar and data translations remain."
+      "detail": "P0 direct C++ messages integrated; Korean monster spell message database 156/262 keys structurally validated; natural Korean grammar, other speech sources and live output remain."
     },
     "07": {
       "status": "in_progress",
@@ -135,18 +135,40 @@
       "note": "Direct literal callsite heuristics only. English review candidates were 202 at first audit and 46 at final PR4 audit. Not complete untranslated count or game translation rate."
     },
     "gameplay_database_audit": {
-      "source_ref": "6d82cf4969c03d9c514aba2be90befb6d41d00ff",
-      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40076997160",
+      "source_ref": "417d5867694d9665ce8fef770c776e2732b749de",
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40081571286",
       "status": "passed",
       "top_level_files": 23,
-      "original_unique_keys_sum": 2019,
-      "localized_files": 1,
-      "localized_matched_keys": 23,
+      "original_unique_keys_sum": 2022,
+      "localized_files": 2,
+      "localized_matched_keys": 179,
       "top_level_korean_lines": 301,
-      "top_level_latin_only_lines": 13245,
+      "top_level_latin_only_lines": 13242,
       "godname_localized_entries": 23,
       "godname_localized_body_variants": 50,
-      "note": "Original gameplay DB files themselves sometimes contain Korean. Latin-only lines include control markers and names; none of these are whole-game translation percentages."
+      "monspell_source_entries": 262,
+      "monspell_localized_entries": 156,
+      "monspell_remaining_entries": 106,
+      "notes": "The parser now follows source/database.cc and treats %%%%% as a valid delimiter. Some top-level originals already contain Korean. Keyword/line metrics do not measure game-wide translation quality."
+    },
+    "monspell_korean_translation": {
+      "source_ref": "417d5867694d9665ce8fef770c776e2732b749de",
+      "merged_prs": [
+        "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/6",
+        "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/7"
+      ],
+      "run": "https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40081571286",
+      "source_keys": 262,
+      "translated_keys": 156,
+      "missing_ko_keys": 106,
+      "unknown_ko_keys": 0,
+      "duplicate_ko_keys": 0,
+      "empty_ko_entries": 0,
+      "structural_issues": 0,
+      "test_count_new": 5,
+      "layout": "source/dat/database/ko/monspell.txt",
+      "runtime_checked": false,
+      "note": "59.5% key correspondence only, not % of strings/game features translated. Aliases and __NONE keys may require no new rendered translation."
     }
   },
   "current_qa_work": {
@@ -173,6 +195,16 @@
       "new_file": "source/dat/database/ko/godname.txt",
       "reference_audit": "docs/translation-review/database-audit-20261024.md",
       "next": "Character speech, monster spells and weapon noises: monspeak 730 keys, monspell 260 keys, wpnnoise 65 keys; other DB partial Korean must be preserved."
+    },
+    "monspell_database": {
+      "status": "merged",
+      "pr6": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/6",
+      "pr7": "https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/7",
+      "matched_keys": 156,
+      "source_keys": 262,
+      "remaining_keys": 106,
+      "report": "docs/translation-review/monspell-audit-20261024.md",
+      "next": "Classify remaining aliases/no-output keys and translate named-monster speech database (monspeak) and weapon speech (wpnnoise)."
     }
   },
   "runtime_verification": {
