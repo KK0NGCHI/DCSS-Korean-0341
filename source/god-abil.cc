@@ -1878,7 +1878,7 @@ void cheibriados_time_bend(int pow)
             }
 
             simple_god_message(
-                make_stringf(" rebukes %s.",
+                make_stringf("이(가) %s을(를) 질책한다.",
                              mon->name(DESC_THE).c_str()).c_str(),
                              false, GOD_CHEIBRIADOS);
             do_slow_monster(*mon, &you);
@@ -2710,7 +2710,7 @@ void beogh_blood_for_blood_tick(int delay)
 void beogh_end_blood_for_blood()
 {
     mprf(MSGCH_DURATION,
-         "You reach the end of your prayer and your brethren are recalled.");
+         "기도가 끝나자 동료들이 소환에서 해제된다.");
     for (monster_iterator mi; mi; ++mi)
     {
         if (mons_is_blood_for_blood_orc(**mi))
@@ -6226,7 +6226,7 @@ static void _hepliaklqana_choose_gender()
     ASSERT(desc);
 
     mprf(MSGCH_PROMPT,
-         "Was %s a) male, b) female, or c) neither? (Currently %s.)",
+         "%s의 성별을 선택하세요. a) 남성, b) 여성, c) 어느 쪽도 아님 (현재: %s)",
          hepliaklqana_ally_name().c_str(),
          desc->c_str());
 
