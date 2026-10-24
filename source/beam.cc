@@ -3607,12 +3607,12 @@ bool bolt::misses_player()
     {
         if (hit_margin > -repel)
         {
-            mprf("The %s is repelled.", name.c_str());
+            mprf("%s이(가) 튕겨 나갔다.", name.c_str());
             count_action(CACT_DODGE, DODGE_REPEL);
         }
         else
         {
-            mprf("The %s misses you.", name.c_str());
+            mprf("%s이(가) 당신을 빗나갔다.", name.c_str());
             count_action(CACT_DODGE, DODGE_EVASION);
         }
     }
@@ -5464,7 +5464,7 @@ bool bolt::attempt_block(monster* mon)
             }
         }
         else if (you.see_cell(pos()))
-            mprf("The %s bounces off of thin air!", name.c_str());
+            mprf("%s이(가) 허공에 부딪혀 튕겨 나갔다!", name.c_str());
 
         reflect();
     }
@@ -5551,7 +5551,7 @@ void bolt::affect_monster(monster* mon)
     if (flavour == BEAM_WATER && mon->type == MONS_WATER_ELEMENTAL && !is_tracer())
     {
         if (you.see_cell(mon->pos()))
-            mprf("The %s passes through %s.", name.c_str(), mon->name(DESC_THE).c_str());
+            mprf("%s이(가) %s을(를) 통과한다.", name.c_str(), mon->name(DESC_THE).c_str());
     }
 
     if (ignores_monster(mon) || should_skip)
@@ -6990,7 +6990,7 @@ bool bolt::explode(bool show_more, bool hole_in_the_middle)
     {
         if (!is_tracer() && you.see_cell(pos()) && !name.empty())
         {
-            mprf(MSGCH_GOD, "By Zin's power, the %s is contained.",
+            mprf(MSGCH_GOD, "진의 힘으로 %s을(를) 막아 냈다.",
                  name.c_str());
             return true;
         }
