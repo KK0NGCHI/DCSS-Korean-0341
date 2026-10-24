@@ -459,7 +459,7 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
     if (mons->is_constricted())
     {
         if (!quiet)
-            simple_monster_message(*mons, " is being constricted!");
+            simple_monster_message(*mons, "이(가) 조여지고 있다!");
         return false;
     }
 
@@ -471,18 +471,18 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
         {
             if (is_valid_tempering_target(*mons, you))
             {
-                simple_monster_message(*mons, " cannot move out of your way! "
-                    "(Use ctrl+direction or * direction to deconstruct it instead.)");
+                simple_monster_message(*mons, "이(가) 길을 비켜 줄 수 없어! "
+                    "(대신 Ctrl+방향키 또는 * 방향키로 분해할 수 있다.)");
             }
             else
-                simple_monster_message(*mons, " cannot move out of your way!");
+                simple_monster_message(*mons, "이(가) 길을 비켜 줄 수 없어!");
         }
         return false;
     }
 
     // prompt when swapping into known zot traps
     if (!quiet && trap_at(loc) && trap_at(loc)->type == TRAP_ZOT
-        && !confirm_prompt("yes", "Do you really want to swap %s into the Zot trap?",
+        && !confirm_prompt("yes", "정말 %s을(를) 조트의 함정으로 밀어 넣을까?",
                            mons->name(DESC_YOUR).c_str()))
     {
         return false;
@@ -510,8 +510,8 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
     if (!swap && !quiet)
     {
         // Might not be ideal, but it's better than insta-killing the monster.
-        mprf("There is no room for %s to move out of your way! "
-             "(Try telling them to retreat with <w>%sr</w> instead.)",
+        mprf("%s이(가) 길을 비켜 설 공간이 없어! "
+             "(대신 <w>%sr</w>로 물러나라고 명령할 수 있다.)",
               mons->name(DESC_THE).c_str(),
               command_to_string(CMD_SHOUT).c_str());
         // FIXME: activity_interrupt::hit_monster isn't ideal.
@@ -627,7 +627,7 @@ static void _check_spatial_entanglement(const coord_def& oldpos)
     place_cloud(CLOUD_TLOC_ENERGY, mon->pos(), random_range(2, 3), &you);
     mon->move_to(spot, MV_TRANSLOCATION, true);
 
-    mprf("%s is dragged along with you!", mon->name(DESC_THE).c_str());
+    mprf("%s이(가) 당신과 함께 끌려간다!", mon->name(DESC_THE).c_str());
     mon->speed_increment -= you.time_taken;
     mon->finalise_movement();
     if (mon->alive())
@@ -2959,7 +2959,7 @@ static void _revenant_spell_gift()
     }
 
     mprf("%s을(를) 기억해 냈다.", msg.c_str());
-    mprf("(You can now cast %s.)", spell_title(spell));
+    mprf("(이제 %s 주문을 시전할 수 있다.)", spell_title(spell));
     library_add_spells({spell}, true);
     add_spell_to_memory(spell);
 }
@@ -3007,7 +3007,7 @@ void level_change(bool skip_attribute_increase)
         if (new_exp <= you.max_level)
         {
             mprf(MSGCH_INTRINSIC_GAIN,
-                 "Welcome back to level %d!", new_exp);
+                 "다시 %d레벨로 돌아왔다!", new_exp);
 
             // No more prompts for this XL past this point.
 
@@ -3203,7 +3203,7 @@ void level_change(bool skip_attribute_increase)
                     case COGLIN_GIZMO_XL:
                     {
                         mpr("갑자기 영감이 솟구친다! 이제 독창적인 장치를 만들 수 있어!");
-                        mprf("(press <w>%c</w> on the <w>%s</w>bility menu to create your gizmo)",
+                        mprf("장치를 만들려면 <w>%c</w>를 누르세요(능력 메뉴: <w>%s</w>).",
                                 get_talent(ABIL_INVENT_GIZMO).hotkey,
                                 command_to_string(CMD_USE_ABILITY).c_str());
                     }
@@ -4397,7 +4397,7 @@ void contaminate_player(int change, bool controlled, bool msg)
         if (!player_harmful_contamination() && was_glowing)
         {
             mprf(MSGCH_RECOVERY,
-                 "Your magical contamination has faded to a safe level.");
+                 "마법 오염도가 안전한 수준으로 낮아졌다.");
         }
 
         if (!player_harmful_contamination() && was_glowing && you.invisible())
