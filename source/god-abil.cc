@@ -1446,8 +1446,7 @@ string yred_cannot_light_torch_reason()
 
 bool yred_light_the_torch()
 {
-    mprf("You lift the black torch aloft and begin your conquest of %s in "
-         "Yredelemnul's name!",
+    mprf("검은 횃불을 높이 들어 이레데렘눌의 이름으로 %s 정복을 시작한다!",
             level_id::current().describe(true, true).c_str());
 
     // Determine number of torch charges based on piety stars.
@@ -2306,8 +2305,7 @@ void ashenzari_offer_new_curse()
     const string offer_string = curse_names.empty() ? "" :
                                 (" of " + curse_names);
 
-    mprf(MSGCH_GOD, "Ashenzari invites you to partake of a vision"
-                    " and a curse%s.", offer_string.c_str());
+    mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있다%s.", offer_string.c_str());
 }
 
 static void _do_curse_item(item_def &item)
@@ -2392,8 +2390,7 @@ bool ashenzari_uncurse_item()
 
     if (item_is_melded(item))
     {
-        mprf(MSGCH_PROMPT, "You cannot shatter the curse on %s while it is "
-                           "melded with your body!",
+        mprf(MSGCH_PROMPT, "몸과 융합된 %s에 걸린 저주는 깨뜨릴 수 없어!",
              item.name(DESC_THE).c_str());
         return false;
     }
@@ -2582,7 +2579,7 @@ void beogh_blood_for_blood()
         }
     }
 
-    mprf("You place your %s atop %s's lifeless body and utter a vengeful prayer.",
+    mprf("죽은 %s의 몸 위에 %s을(를) 올려놓고 복수의 기도를 올린다.",
          you.hand_name(false).c_str(), apostle_name.c_str());
 
     you.duration[DUR_BLOOD_FOR_BLOOD] = random_range(130, 180) * BASELINE_DELAY;
@@ -3120,7 +3117,7 @@ spret dithmenos_marionette(monster& target, bool fail)
 
     fail_check();
 
-    mprf("You grasp %s shadow with your own and put on a performance!",
+    mprf("자신의 그림자로 %s의 그림자를 붙잡고 공연을 시작한다!",
           target.name(DESC_ITS).c_str());
 
     behaviour_event(&target, ME_WHACK, &you);
@@ -3406,8 +3403,7 @@ bool gozag_setup_call_merchant(bool quiet)
     {
         if (!quiet)
         {
-            mprf("You currently need %d gold to open negotiations with a "
-                 "merchant.", gold_min);
+            mprf("상인과 협상하려면 현재 금화가 %d개 필요해.", gold_min);
         }
         return false;
     }
@@ -5316,8 +5312,7 @@ void ru_do_retribution(monster* mons, int damage)
 
     if (power > 50 && (mons->antimagic_susceptible()))
     {
-        mprf(MSGCH_GOD, "You focus your inner power and drain %s's magic in "
-                "retribution!", mons->name(DESC_THE).c_str());
+        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s의 마력을 빼앗았다!", mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_ANTIMAGIC, act, power+random2(320)));
     }
     else if (power > 35)
@@ -5688,8 +5683,7 @@ bool uskayaw_stomp()
         return false;
     }
 
-    mpr("You stomp with the beat, sending a shockwave through the revellers "
-            "around you!");
+    mpr("박자에 맞춰 발을 구르자 주변의 흥겨운 무리에게 충격파가 퍼진다!");
     apply_monsters_around_square(_get_stomped, you.pos());
     return true;
 }
@@ -6540,7 +6534,7 @@ spret okawaru_duel(const coord_def& target, bool fail)
     if (mons->is_illusion())
     {
         fail_check();
-        mprf("You challenge %s to single combat, but %s is merely a clone!",
+        mprf("%s에게 일대일 결투를 신청하지만 %s은(는) 단순한 복제체일 뿐이다!",
              mons->name(DESC_THE).c_str(),
              mons->pronoun(PRONOUN_SUBJECTIVE).c_str());
         // Still costs a turn to gain the information.
@@ -7155,8 +7149,7 @@ void makhleb_vessel_of_slaughter()
     const int boost = div_rand_round((100 - (you.hp * 100 / you.hp_max)) * 2, 3);
     you.props[MAKHLEB_SLAUGHTER_BOOST_KEY] = boost;
 
-    mpr("You offer yourself as an instrument of Makhleb's will and feel "
-        "overwhelming power flowing through you!");
+    mpr("마크레브의 뜻을 실현할 도구로 자신을 바치자 압도적인 힘이 온몸에 흐른다!");
 
     transform(random_range(70, 110), transformation::slaughter);
     you.transform_uncancellable = true;
