@@ -1885,3 +1885,157 @@ VISUAL:@The_monster@이(가) 잠시 던전의 어둠 속으로 날아든다.
 w:40
 
 __NONE
+%%%%
+twin_died Dowan
+
+VISUAL:@The_monster@이(가) 슬픔에 몸을 떤다.
+
+@The_monster@이(가) 말한다. "마법이라면 무엇이든 극복할 수 있어!"
+
+@The_monster@이(가) 말한다. "누이의 죽음을 헛되게 두진 않겠어!"
+
+@The_monster@이(가) 말한다. "누이 없이 어떻게 살아가라는 거야?"
+
+@The_monster@이(가) 한숨처럼 중얼거린다. "내게 남은 유일한 가족이었는데..."
+%%%%
+twin_banished Dowan
+
+VISUAL:@The_monster@이(가) 슬픔에 몸을 떤다.
+
+@The_monster@이(가) 말한다. "꼭 찾아낼 거야! 반드시 데려오겠어!"
+
+@The_monster@이(가) 말한다. "영영 잃어버린 건 아닐 거야!"
+%%%%
+twin_slimified Dowan
+
+VISUAL:@The_monster@이(가) 슬픔에 몸을 떤다.
+
+@The_monster@이(가) 말한다. "이걸 되돌릴 방법을 꼭 찾겠어!"
+
+@The_monster@이(가) 말한다. "당장 원래대로 돌려놔!"
+%%%%
+Dowan_Duvessa_dies
+
+@The_monster@이(가) 외친다. "안 돼! 안 돼!"
+
+VISUAL:@The_monster@이(가) 슬픔에 잠긴 듯 보인다.
+
+@The_monster@이(가) 비명을 지른다. "안 돼! 이럴 수가!"
+
+@The_monster_possessive@ 눈빛이 어두워진다. "넌 돌이킬 수 없는 실수를 저질렀어."
+%%%%
+twin_banished Duvessa
+
+VISUAL:@The_monster@이(가) 분노와 슬픔에 몸을 떤다.
+
+VISUAL:@The_monster@이(가) 이를 악물고 마음을 다잡는다.
+
+@The_monster@이(가) 말한다. "내가 반드시 데려올 거야!"
+%%%%
+Duvessa_Dowan_dies
+
+@The_monster@이(가) 분노에 찬 비명을 지른다.
+
+@The_monster@이(가) 소리친다. "안 돼! 감히 네가!"
+
+VISUAL:@The_monster@이(가) 흐느끼며 무기를 상대에게 흔들어 보인다.
+%%%%
+Duvessa_Dowan_dies_invisible
+
+@The_monster@이(가) 분노에 찬 비명을 지른다.
+
+@The_monster@이(가) 분노에 떨리는 목소리로 외친다. "안 돼, 안 돼!"
+
+@The_monster@이(가) 분노하며 외친다. "안 돼!"
+%%%%
+Duvessa_Dowan_dies_bytwin
+
+@The_monster@이(가) 공포에 질려 비명을 지른다.
+
+w:1
+
+@The_monster@이(가) 외친다. "안 돼! 내가 무슨 짓을 한 거야?"
+%%%%
+fleeing Harold
+
+__NEXT
+
+w:5
+
+@The_monster@이(가) @_yells_@. "나도 이제 이러기엔 너무 늙었다고!"
+%%%%
+Harold killed
+
+__NONE
+
+w:4
+
+@The_monster@이(가) "내... 가족..." 하고 신음한 뒤 쓰러져 죽는다.
+
+w:3
+
+@The_monster@이(가) 치명상을 내려다보며 외친다. "하지만... 내일이면 은퇴인데..."
+
+w:2
+
+@The_monster@이(가) 마지막 숨을 내쉬며 말한다. "일을 좀 덜 할걸..."
+
+w:1
+
+@The_monster@이(가) 쓰러져 상처를 움켜쥔다. "그래도 은퇴하면 @_Harold_retirement_plan_@을(를) 하려고 했는데..."
+%%%%
+Harold triumphant
+
+@The_monster@이(가) 말한다. "이 이야기를 우리 꼬맹이들한테 들려줄 생각에 신이 나는군."
+
+@The_monster@이(가) 말한다. "이제 은퇴할 시간이야."
+
+@The_monster@이(가) 한숨 쉰다. "마침내 @_Harold_retirement_plan_@을(를) 하며 정착할 수 있겠군."
+
+@The_monster@이(가) 한숨 쉰다. "늙은 @the_monster@에게 남은 건 이제 @_Harold_ret_hobby_@뿐이야."
+%%%%
+Maurice nonstealing
+
+@The_monster@이(가) 투덜댄다. "젠장!"
+
+@The_monster@이(가) 중얼거린다. "대체 어디 숨겨 놓은 거지?"
+
+@The_monster@이(가) 신음한다. "넌 무슨 수도승이라도 돼?"
+%%%%
+Maurice confused nonstealing
+
+w:70
+
+__NONE
+
+@The_monster@이(가) 서투르게 당신의 소지품을 훔치려다 실패한다.
+
+@The_monster@이(가) 당신의 주머니를 더듬다가 헛손질한다.
+
+@The_monster@이(가) 당신의 주머니로 달려들다가 넘어진다.
+
+w:5
+
+@The_monster@이(가) 음정을 틀리며 노래한다. "나한테 줄 돈 없나?"
+%%%%
+silenced Murray
+
+VISUAL:@The_monster@이(가) 원을 그리며 굴러간다.
+
+VISUAL:@The_monster@이(가) 이리저리 굴러다닌다.
+
+VISUAL:@The_monster@이(가) 팽이처럼 빙빙 돈다.
+
+VISUAL:@The_monster@이(가) 사악하게 웃는다.
+
+VISUAL:@The_monster@이(가) 무언가 말하는 것 같다.
+
+VISUAL:@The_monster@이(가) 무언가 말하지만 들리지 않는다. 분명 칭찬은 아니었을 것이다. @player_only@
+%%%%
+confused Nergalle
+
+@The_monster@이(가) 중얼거린다. "그 깃펜을 어디에 뒀더라..."
+
+@The_monster@이(가) 중얼거린다. "@orc name@, 날 좀 내버려 둬. 바쁘다고 했잖아..."
+
+@The_monster@이(가) 중얼거린다. "@orc name@, 그 지긋지긋한 노래 좀 그만해. 넌 예전부터 노래를 못했어."
