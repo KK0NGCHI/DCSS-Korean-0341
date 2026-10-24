@@ -698,3 +698,95 @@ Jory triumphant
 Polyphemus triumphant
 
 @The_monster@이(가) 말한다. "넌 아무것도 아니야."
+%%%%
+Ashenzari player ghost
+
+@The_monster@이(가) @to_foe@ 말한다. "삶은 저주야. 너도 곧 알게 되겠지."
+
+@The_monster@이(가) @to_foe@ 말한다. "네 미래에는 암울함조차 남아 있지 않아."
+
+@The_monster@이(가) @to_foe@ 말한다. "넌 영원히 땅에 못 박힐 거야."
+
+@The_monster@이(가) 속삭인다. "죽고 나서야 내 잘못과 수많은 이들의 잘못을 볼 수 있었지..."
+
+@The_monster@이(가) 웃으며 말한다. "결국 이렇게 될 줄 알고 있었는데도 말이야..."
+
+@The_monster@이(가) 장담한다. "네 내장을 펼쳐 네 미래를 읽어 주마."
+%%%%
+Beogh player ghost
+
+@The_monster@이(가) 말한다. "죽은 구세주를 따르고 싶어 하는 자는 없지!"
+
+@The_monster@이(가) 말한다. "예전에는 물 위를 걸었는데, 이제는 그 위를 날아다니지."
+
+@The_monster@이(가) @to_foe@ 말한다. "널 죽이는 데 군대까지 필요하진 않아!"
+%%%%
+Dithmenos player ghost
+
+@The_monster@이(가) @to_foe@ 말한다. "널 그림자 속으로 보내 주마!"
+
+@The_monster@이(가) @to_foe@ 말한다. "그냥 어둠에 삼켜지도록 내버려 둬."
+
+@The_monster@이(가) @to_foe@ 말한다. "나는 그림자 속을 걷지. 곧 너도 그렇게 될 거야."
+%%%%
+Elyvilon player ghost
+
+@The_monster@이(가) @to_foe@ 말한다. "살아 있었다면 널 치유해 줬을지도 모르겠군."
+
+@The_monster@이(가) 말한다. "폭력으로는 아무것도 해결할 수 없다고 생각했는데, 내 문제는 해결했네."
+
+@The_monster@이(가) 중얼거린다. "살인이 이렇게 즐거운 줄은 미처 몰랐어."
+%%%%
+Fedhas player ghost
+
+@The_monster@이(가) 신음한다. "식물이 내 목숨을 구해 줄 거라고 왜 믿었던 걸까?"
+
+@The_monster@이(가) @to_foe@ 말한다. "이제 생명을 퍼뜨릴 수는 없지만, 네게 죽음을 안길 수는 있지!"
+
+@The_monster@이(가) 말한다. "넌 훌륭한 비료가 되겠어."
+
+@The_monster@이(가) 말한다. "생명은 돌고 도는 법이지. 조금 뒤면 넌 촌충으로 다시 태어날 거야."
+%%%%
+Gozag player ghost
+
+VISUAL:@The_monster@이(가) 불룩한 돈주머니를 당신 앞에서 흔든다.
+
+@The_monster@이(가) 말한다. "넌 금만큼이나 값어치가 있군."
+
+@The_monster@이(가) 말한다. "돈으로 좋은 사후 세계까지 살 수는 없는 모양이야."
+%%%%
+Hepliaklqana player ghost
+
+@The_monster@이(가) @to_foe@ 말한다. "지금 널 죽이지 못한다면 내 후손이 나중에 해치우도록 돕겠어."
+
+@The_monster@이(가) @to_foe@ 말한다. "평생 잊지 못할 싸움을 선사해 주지!"
+
+@The_monster@이(가) @to_foe@ 말한다. "네 공격을 하나하나 기억해 두겠어."
+%%%%
+Ignis player ghost
+
+@The_monster@이(가) 말한다. "남들보다 2배 밝게 불탔더니 결국 이 꼴이 됐군..."
+
+VISUAL:@The_monster@이(가) 녹아내린 양초처럼 축 늘어진다.
+
+@The_monster@이(가) 말한다. "재는 재로 돌아가는 법... 난 이미 그랬고, 다음은 너야!"
+%%%%
+Jiyva player ghost
+
+@The_monster@이(가) @to_foe@ 말한다. "아직도 반짝이는 물건에 그리 집착하나?"
+
+@The_monster@이(가) @to_foe@ 말한다. "전리품이나 탐내다니, 어리석은 녀석들."
+
+@The_monster@이(가) @to_foe@ 말한다. "살아서도 장신구 따윈 필요 없었어. 지금도 마찬가지지."
+%%%%
+Kikubaaqudgha player ghost
+
+@The_monster@이(가) 말한다. "리치가 되려고 했는데, 이 모습도 나쁘지 않군."
+
+@The_monster@이(가) @foe@에게 비명을 지른다. "앞으로 겪을 고통과 고문은 상상도 못 할걸!"
+
+@The_monster@이(가) @foe@에게 비명을 지른다. "넌 아직 진정한 파멸과 절망을 보지 못했어!"
+
+@The_monster@이(가) @to_foe@ 말한다. "죽음은 언제나 삶을 이기는 법이지."
+
+@The_monster@이(가) @to_foe@ 말한다. "넌 제법 괜찮은 좀비가 되겠군."
