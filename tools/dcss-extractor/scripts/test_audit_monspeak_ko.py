@@ -80,6 +80,17 @@ class KoreanMonsterSpeechTests(unittest.TestCase):
         self.assertEqual(check_variants(src, ko), [])
         self.assertIn("line_3_no_hangul", check_variants(src, src))
 
+    def test_inline_lua_else_with_trailing_message(self):
+        src = [
+            '@The_weapon@ says, "{{ if you.god() == "No God" then return "my blade"',
+            'else return "@player_god@"; end }}, you are such a [wuss|coward]."',
+        ]
+        ko = [
+            '@The_weapon@이(가) 말해. "{{ if you.god() == "No God" then return "내 칼날"',
+            'else return "@player_god@"; end }}, 넌 정말 [겁쟁이|약골]야."',
+        ]
+        self.assertEqual(check_variants(src, ko), [])
+
     def test_lua_dynamic_return_stays_program_code(self):
         src = ["{{", "return you.genus()", "}}"]
         self.assertEqual(check_variants(src, src), [])
