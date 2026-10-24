@@ -1841,7 +1841,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         {
             if (!quiet)
             {
-                mprf("You cannot call out to %s while %s.",
+                mprf("%s에게 부름을 보내려 해도 %s 때문에 할 수 없어.",
                      god_name(you.religion).c_str(), player_silenced_reason());
             }
             return false;
@@ -1849,7 +1849,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         if (abil.ability == ABIL_WORD_OF_CHAOS)
         {
             if (!quiet)
-                mprf("You cannot speak a word of chaos while %s.", player_silenced_reason());
+                mprf("%s 동안에는 혼돈의 말을 내뱉을 수 없어.", player_silenced_reason());
             return false;
         }
     }
@@ -2376,7 +2376,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
         {
             if (!quiet)
             {
-                mprf("You cannot wall jump while caught in a %s.",
+                mprf("%s에 붙잡혀 있어 벽 도약을 할 수 없어.",
                      you.caught_by() == CAUGHT_WEB ? "web" : "net");
             }
             return false;
@@ -3576,7 +3576,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         int pain = you.hp / 3;
         dec_hp(pain, false);
         mons->add_ench(mon_enchant(ENCH_SOUL_RIPE, &you, INFINITE_DURATION, pain));
-        mprf("You wrap your dark will around %s soul!",
+        mprf("어두운 의지로 %s의 영혼을 휘감는다!",
               mons->name(DESC_ITS).c_str());
         break;
     }
@@ -4098,7 +4098,7 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         if (feat == DNGN_UNSEEN)
             return spret::abort;
         you.props[WIZ_LAST_FEATURE_TYPE_PROP] = static_cast<int>(feat);
-        mprf("Now building '%s'", dungeon_feature_name(feat));
+        mprf("'%s' 건설 중", dungeon_feature_name(feat));
         break;
     }
 #endif
