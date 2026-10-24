@@ -1,0 +1,113 @@
+name: Korean localized database runtime smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/dat/database/**'
+      - 'source/dat/descript/**'
+      - 'source/**/*.cc'
+      - 'source/**/*.h'
+      - '.github/workflows/korean-runtime-smoke.yml'
+
+jobs:
+  linux-console-ko-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install console build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config bison flex python3-yaml \
+            libncurses-dev libsqlite3-dev zlib1g-dev liblua5.1-0-dev \
+            libpcre3-dev libzstd-dev
+      - name: Download verified DCSS 0.34.1 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --output /tmp/stone_soup-0.34.1.tar.xz \
+            https://github.com/crawl/crawl/releases/download/0.34.1/stone_soup-0.34.1.tar.xz
+          echo '473b9cdc16be0b537ac11e43c6c77db4b290000e4a17f72a842eba59c6b7be2a  /tmp/stone_soup-0.34.1.tar.xz' | sha256sum -c -
+          mkdir -p /tmp/ko-runtime-build
+          tar -xJf /tmp/stone_soup-0.34.1.tar.xz -C /tmp/ko-runtime-build
+          upstream=$(find /tmp/ko-runtime-build -maxdepth 3 -name Makefile.obj -printf '%h\n' | head -n 1)
+          test -n "$upstream"
+          echo "CRAWL_SRC=$upstream" >> "$GITHUB_ENV"
+      - name: Overlay Korean C++ and all localized gameplay text
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in ability.cc beam.cc describe.cc god-abil.cc invent.cc message.cc mon-util.cc player-equip.cc player.cc spl-summoning.cc newgame.cc; do
+            cp "$GITHUB_WORKSPACE/source/$name" "$CRAWL_SRC/$name"
+          done
+          # Include BOTH ko/ overlays and Korean text already in top-level databases.
+          cp -a "$GITHUB_WORKSPACE/source/dat/database/." "$CRAWL_SRC/dat/database/"
+          cp -a "$GITHUB_WORKSPACE/source/dat/descript/." "$CRAWL_SRC/dat/descript/"
+          test -s "$CRAWL_SRC/dat/database/ko/godname.txt"
+          test -s "$CRAWL_SRC/dat/database/ko/monspell.txt"
+          test -s "$CRAWL_SRC/dat/database/ko/monspeak.txt"
+          test -s "$CRAWL_SRC/dat/database/ko/wpnnoise.txt"
+          test -s "$CRAWL_SRC/dat/descript/ko/ability.txt"
+      - name: Compile actual game executable
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$CRAWL_SRC"
+          make -j2
+          test -x ./crawl
+          ./crawl -version
+      - name: Execute Korean DB loader through game runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ko-runtime/home"
+          export HOME="$RUNNER_TEMP/ko-runtime/home"
+          export LANG=C.UTF-8
+          export LC_ALL=C.UTF-8
+          cd "$CRAWL_SRC"
+          timeout 180 ./crawl -dir "$HOME" -extra-opt-last language=ko -builddb -reset-cache \
+            > "$RUNNER_TEMP/ko-runtime/builddb.log" 2>&1 || {
+              cat "$RUNNER_TEMP/ko-runtime/builddb.log"
+              exit 1
+            }
+      - name: Check genuine Korean-language cache files and localized bodies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"]) / "ko-runtime"
+          source = Path(os.environ["CRAWL_SRC"])
+          caches = {p.name: p for base in (root, source)
+                    for p in base.rglob("*.ko.db")}
+          print("Discovered localized runtime cache files:")
+          for name, path in sorted(caches.items()):
+              print(f"  {name}: {path} ({path.stat().st_size} bytes)")
+          required = {"descriptions.ko.db", "speak.ko.db", "misc.ko.db"}
+          missing = required - caches.keys()
+          if missing:
+              raise SystemExit(f"Korean database initialization failed; missing: {sorted(missing)}")
+          checks = {
+              "descriptions.ko.db": "대상에게 독침을 내뱉는다.",
+              "misc.ko.db": "율법을 세우는 진",
+              "speak.ko.db": "바람이 거세게 부는 소리가 들린다.",
+          }
+          for name, korean_body in checks.items():
+              blob = caches[name].read_bytes()
+              if korean_body.encode("utf-8") not in blob:
+                  raise SystemExit(f"Missing Korean UTF-8 body in runtime cache: {name}: {korean_body}")
+              print(f"PASS: {name}: {korean_body}")
+          print("PASS: Actual crawl executable built Korean database caches.")
+          PY
+      - name: Upload headless startup log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ko-runtime-smoke-log
+          path: ${{ runner.temp }}/ko-runtime/builddb.log
+          if-no-files-found: ignore
