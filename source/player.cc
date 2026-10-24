@@ -2907,7 +2907,7 @@ static void _gain_innate_spells()
                 continue;
             }
         }
-        mprf("The power to cast %s wells up from within.", spell_title(spell));
+        mprf("몸속에서 %s 주문을 시전할 힘이 솟아난다.", spell_title(spell));
         add_spell_to_memory(spell);
     }
 }
@@ -2958,7 +2958,7 @@ static void _revenant_spell_gift()
         }
     }
 
-    mprf("You remember %s.", msg.c_str());
+    mprf("%s을(를) 기억해 냈다.", msg.c_str());
     mprf("(You can now cast %s.)", spell_title(spell));
     library_add_spells({spell}, true);
     add_spell_to_memory(spell);
@@ -3022,11 +3022,11 @@ void level_change(bool skip_attribute_increase)
             if (new_exp == 27)
                 mprf(MSGCH_INTRINSIC_GAIN, "마지막 단계인 27레벨에 도달했어!");
             else if (new_exp == you.get_max_xl())
-                mprf(MSGCH_INTRINSIC_GAIN, "You have reached level %d, the highest you will ever reach!",
+                mprf(MSGCH_INTRINSIC_GAIN, "도달할 수 있는 최고 레벨인 %d레벨에 도달했어!",
                         you.get_max_xl());
             else
             {
-                mprf(MSGCH_INTRINSIC_GAIN, "You have reached level %d!",
+                mprf(MSGCH_INTRINSIC_GAIN, "%d레벨에 도달했어!",
                      new_exp);
             }
 
@@ -3523,7 +3523,7 @@ static void _display_attack_delay(const item_def *offhand)
                          shield_penalty ? "shield" : "armour");
     }
 
-    mprf("Your attack delay is about %.1f%s%s.",
+    mprf("공격 지연 시간은 약 %.1f%s%s이야.",
          (float)delay / 10,
          at_min_delay ?
             " (and cannot be improved with additional weapon skill)" : "",
@@ -3546,7 +3546,7 @@ static void _display_damage_rating(const item_def *weapon)
         mpr(uppercase_first(damage_rating(weapon)));
     else
     {
-        mprf("Your damage rating with %s is about %s",
+        mprf("%s의 피해 평가는 약 %s",
              weapon_name.c_str(),
              damage_rating(weapon).c_str());
     }
@@ -3594,7 +3594,7 @@ void display_char_status()
         || innate_stat(STAT_INT) != you.intel()
         || innate_stat(STAT_DEX) != you.dex())
     {
-        mprf("Your base attributes are Str %d, Int %d, Dex %d.",
+        mprf("기본 능력치는 근력 %d, 지능 %d, 민첩 %d야.",
              innate_stat(STAT_STR),
              innate_stat(STAT_INT),
              innate_stat(STAT_DEX));
@@ -8112,7 +8112,7 @@ void player::put_to_sleep(actor* source, int dur, bool hibernate)
 
     if (duration[DUR_STUN_IMMUNITY])
     {
-        mpr("You shrug off repeated attempt to disable you.");
+        mpr("연이은 행동 불능 시도를 떨쳐 냈다.");
         return;
     }
 
@@ -9006,13 +9006,13 @@ void player_close_door(coord_def doorpos)
             const bool mons_unseen = !you.can_see(*mon);
             if (mons_unseen || (mon->holiness() & MH_NONLIVING))
             {
-                mprf("Something is blocking the %s!", waynoun);
+                mprf("무언가가 %s을(를) 막고 있어!", waynoun);
                 // No free detection!
                 if (mons_unseen)
                     you.turn_is_over = true;
             }
             else
-                mprf("There's a creature in the %s!", waynoun);
+                mprf("%s 안에 생명체가 있어!", waynoun);
             return;
         }
 
