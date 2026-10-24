@@ -3147,3 +3147,171 @@ _Zenata_rare_
 @The_monster@이(가) 생각해. "네 속을 열어 보면 어떤 비밀이 나올까?"
 @The_monster@이(가) 중얼거려. "그녀의 속삭임이 들려… 하지만 죽었는데. 분명 죽었는데!"
 @The_monster@이(가) 말해. "그들을 되살리겠어. 그러면 내게… 모든 걸 보여 주겠지…"
+%%%%
+Aizul
+
+@_Aizul_common_@
+w:5
+@_Aizul_rare_@
+%%%%
+_Aizul_common_
+
+VISUAL:@The_monster@이(가) 하품을 하더니 @subjective@은(는) 하품하지 않은 척해.
+@The_monster@이(가) 말해. "졸리지 않아?"
+@The_monster@이(가) 말해. "정말로 자고 있었던 건 아니야!"
+VISUAL:@The_monster@이(가) 위협적으로 쉭쉭거려.
+@The_monster@이(가) 소리쳐. "네 악몽에 나타나 주마!"
+%%%%
+_Aizul_rare_
+
+@The_monster@이(가) 말해. "좋은 꿈 꿔!"
+@The_monster@이(가) 자장가를 흥얼거려.
+VISUAL:@The_monster@이(가) 몸을 똬리 틀었다가 다시 풀어.
+@The_monster@이(가) 말해. "누구나 언젠가는 자야 하는 법이지."
+@The_monster@이(가) 말해. "한숨 잘래?"
+@The_monster@이(가) 말해. "나보다 나은 경비원을 구했다더군!"
+@The_monster@이(가) 말해. "교체당했다고! 교체당하는 기분이 어떤 줄 알아?"
+@The_monster@이(가) 신음해. "취직할 곳도 없어! 졸린 아이줄에게 보물을 맡길 사람이 어디 있겠어?"
+VISUAL:@The_monster@이(가) 상대에게 몇 번이나 윙크해.
+%%%%
+Agnes
+
+@_Agnes_common_@
+w:5
+@_Agnes_rare_@
+%%%%
+_Agnes_common_
+
+VISUAL:@The_monster@이(가) 고개 숙여 인사해.
+@The_monster@이(가) 말해. "넌 조상들의 명예를 더럽히고 있어."
+@The_monster@이(가) 말해. "명예도 모르는 상대라니, 경멸스럽군."
+@The_monster@이(가) 말해. "널 죽이는 건 내 의무이자 즐거움이지."
+@The_monster@이(가) 중얼거려. "이런 상황에 대비한 훈련은 못 받았는데."
+@The_monster@이(가) 말해. "죽으면 평화의 길을 따르기 쉬워질 거야."
+%%%%
+_Agnes_rare_
+
+@The_monster@이(가) 말해. "오브는 정당하게 내 것이어야 해."
+@The_monster@이(가) 소리쳐. "등나무 공 차듯 널 걷어차 주마!"
+@The_monster@이(가) 물어. "혹시 내 크리스를 못 봤어?"
+@The_monster@이(가) 중얼거려. "지금쯤 빵나무 열매 하나 먹었으면 좋겠는데."
+%%%%
+Amaemon
+
+@_Amaemon_common_@
+w:5
+@_Amaemon_rare_@
+%%%%
+_Amaemon_common_
+
+@The_monster@이(가) 쉭쉭거려.
+VISUAL:@the_monster_possessive@ 발톱에서 불결한 액체가 뚝뚝 떨어져.
+VISUAL:@The_monster_possessive@ 눈이 붉게 빛나.
+VISUAL:@The_monster_possessive@ 꼬리가 사납게 휘둘러져.
+@The_monster@이(가) 소리쳐. "네가 나보다 낫다고 생각해?"
+@The_monster@이(가) 말해. "침 한번 맞는 게 그렇게 무서워?"
+%%%%
+_Amaemon_rare_
+
+@The_monster@이(가) 징징거려. "다들 내가 특별하댔어. 지금 내 꼴 좀 봐!"
+@The_monster@이(가) 한숨 쉬어. "정말 믿을 만한 동료는 악마뿐이라니까."
+@The_monster@이(가) 말해. "해독제 필요해? 걱정 마, 날 믿어도 돼."
+@The_monster@이(가) 속삭여. "오브만 찾으면 치료될 거야. 다시 정상으로 돌아갈 수 있어!"
+@The_monster@이(가) 노래해. "눈 감고, 심장 멎고, 영원히 잘 자렴…"
+%%%%
+Arachne
+
+@The_monster@이(가) 말해. "얘들아, 나를 따라오렴."
+@The_monster@이(가) 말해. "한때는 이 몸을 원망했지. 하지만 인간이 내가 만든 걸 만들 수 있을까?"
+@The_monster@이(가) 으르렁거려. "다시는 쫓겨나지 않겠어."
+@The_monster@이(가) 말해. "더 가까이 오렴, 작은 파리야."
+@The_monster@이(가) 말해. "예술을 위해 고통받는 건 이제 끝이야. 이번엔 네가 고통받을 차례지."
+@The_monster@이(가) 말해. "내 거미줄은 강철과 마법에도 맞설 수 있어."
+@The_monster@이(가) 말해. "우리 모두를 위한 새 보금자리를 짜겠어."
+%%%%
+Azrael
+
+@_Azrael_common_@
+w:2
+@_Azrael_rare_@
+%%%%
+_Azrael_common_
+
+@The_monster@이(가) 미친 듯이 웃어.
+@The_monster@이(가) 분노에 차 울부짖어.
+@The_monster@이(가) 소리쳐. "불타라! 불타라! 전부 불태워야 해!"
+VISUAL:@The_monster@이(가) 담배 연기처럼 연기 고리를 뿜어.
+VISUAL:@The_monster_possessive@ 눈에 불길이 일렁여.
+VISUAL:@The_monster@이(가) 잠시 화염 구름에 가려져.
+%%%%
+_Azrael_rare_
+
+@The_monster@이(가) 씩 웃으며 @foe,@에게 물어. "너 [불이 잘 붙어|불이 안 붙어|좀 덥지 않아]?"
+@The_monster@이(가) 말해. "오늘 저녁은 맛있는 @foe_genus@ 꼬치구이야!"
+@The_monster@이(가) 소리쳐. "안 돼! 안 돼! 좋아! 아니!"
+VISUAL:@The_monster@이(가) 제자리에서 빙글빙글 돌아.
+@The_monster@이(가) 말해. "낙타 1,000마리의 벼룩이 네 겨드랑이에 들끓길 바라지."
+@The_monster@이(가) 생각에 잠겨. "아직도 스스로 제법 괜찮은 놈이라는 착각에 빠져 있나?"
+@The_monster@이(가) 말해. "네 엉덩이가 끊임없이 가렵고, @_player_arms_@은(는) 너무 짧아서 긁지도 못하길 바라지."
+@The_monster@이(가) 말해. "넌 어미 없는 염소의 자식이야."
+@The_monster@이(가) 말해. "광견병 걸린 개의 자식! 냄새나는 자칼의 손자! 털 뽑힌 독수리의 증손자!"
+@The_monster@이(가) 말해. "고슴도치가 네 바지 속에서 1,000일을 살고, 거기서 죽은 뒤 1,001일을 더 썩길 바라지."
+%%%%
+Bai Suzhen
+
+@_Bai_Suzhen_common_@
+w:6
+@_Bai_Suzhen_rare_@
+%%%%
+_Bai_Suzhen_common_
+
+@The_monster@이(가) 투덜거려. "망할 질투쟁이 거북 승려 같으니."
+@The_monster@이(가) 잃어버린 남편을 애타게 그리워해.
+@The_monster@이(가) 포효해. "하늘조차 우릴 영원히 갈라놓을 순 없어!"
+@The_monster@이(가) 모아 둔 약초 재료를 살펴봐.
+VISUAL:@The_monster@이(가) 폭풍 속에서 몸을 뒤틀며 빙글빙글 돌아.
+%%%%
+_Bai_Suzhen_rare_
+
+@The_monster@이(가) [불사 연금술사들의 장난|철없는 자매들]을(를) 두고 불평해.
+@The_monster@이(가) 쉭쉭거려. "이럴 때면 술 마시던 시절이 그립다니까."
+@The_monster@이(가) 혼자 다짐해. "우리 사랑은 이 시련도 이겨 낼 거야."
+@The_monster@이(가) 아련하게 생각해. "1,000년을 더 명상했어야 했을까?"
+w:5
+@The_monster@이(가) 혼잣말로 속삭여. "내가 구했던 모두가… 내가 파멸시킨 모두가…"
+w:5
+VISUAL:@The_monster_possessive@ 모습이 빗속에서 아른거려.
+%%%%
+Dissolution
+
+@_dissolution_common_@
+w:5
+@_dissolution_speech_@
+%%%%
+_dissolution_common_
+
+@The_monster@이(가) 꾸르륵거려.
+@The_monster@이(가) 요란하게 꾸르륵거려.
+@The_monster@이(가) 지글거리는 소리를 내.
+VISUAL:@The_monster@이(가) 출렁거려.
+VISUAL:@The_monster@이(가) 흐느적거려.
+%%%%
+_dissolution_speech_
+
+@The_monster@이(가) 말해. "나와 영원히 하나가 되자!"
+@The_monster@이(가) 말해. "내 슬픔과 하나가 되어라!"
+@The_monster@이(가) 말해. "슬라임 신을 위해 슬라임을!"
+@The_monster@이(가) 말해. "물보다 진한 건 산이지."
+@The_monster@이(가) 말해. "산에서 산으로, 슬라임에서 슬라임으로."
+w:5
+@_dissolution_rare_@
+%%%%
+_dissolution_rare_
+
+@The_monster@이(가) 말해. "우리는 슬라임에서 와서 슬라임으로 돌아가지."
+w:1
+@The_monster@이(가) 말해. "슬라임에서 나와 슬라임으로 돌아간다."
+@The_monster@이(가) 말해. "녹아 없어질 각오를 해!"
+@The_monster@이(가) 예언해. "산의 홍수가 모든 오물을 씻어 내리라!"
+w:2
+@The_monster@이(가) 말해. "어떤 문제든 녹여 버리는 해결사가 있어. 바로 디졸버야!"
