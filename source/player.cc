@@ -5086,7 +5086,7 @@ bool haste_player(int turns, bool rageext)
     }
     else if (have_passive(passive_t::no_haste))
     {
-        simple_god_message(" protects you from inadvertent hurry.");
+        simple_god_message("이(가) 당신이 뜻하지 않게 서두르지 않도록 보호한다.");
         return false;
     }
 
@@ -5272,7 +5272,7 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
         msg = "You are backlit; invisibility will do you no good right now";
         if (quiet)
             success = false;
-        else if (!quiet && !yesno((msg + "; use anyway?").c_str(), false, 'n'))
+        else if (!quiet && !yesno((msg + "; 그래도 사용할까?").c_str(), false, 'n'))
         {
             // XX this shouldn't be here. Currently used only for evoke invis.
             canned_msg(MSG_OK);
@@ -5943,14 +5943,14 @@ void player::banish(const actor* /*agent*/, const string &who, bool force)
 
     if (player_in_branch(BRANCH_ARENA))
     {
-        simple_god_message(" prevents your banishment from the Arena!",
+        simple_god_message("이(가) 당신이 투기장에서 추방되지 않도록 막는다!",
                            false, GOD_OKAWARU);
         return;
     }
 
     if (you.duration[DUR_BEOGH_DIVINE_CHALLENGE])
     {
-        simple_god_message(" refuses to let the Abyss claim you during a challenge!",
+        simple_god_message("이(가) 시련 도중 심연이 당신을 삼키지 못하게 한다!",
                            false, GOD_BEOGH);
 
         return;
@@ -8390,7 +8390,7 @@ bool player::attempt_escape()
     }
     else
     {
-        mprf("%s grasp on you weakens, but your attempt to escape fails.",
+        mprf("%s의 속박이 약해졌지만 탈출에 실패했다.",
              object.c_str());
         turn_is_over = true;
         return false;
@@ -8407,7 +8407,7 @@ void player::sentinel_mark(bool trap)
     }
     else
     {
-        mprf(MSGCH_WARN, "A sentinel's mark forms upon you.");
+        mprf(MSGCH_WARN, "감시자의 표식이 당신에게 새겨진다.");
         increase_duration(DUR_SENTINEL_MARK, trap ? random_range(25, 40)
                                                   : random_range(35, 60),
                           250);
@@ -8715,7 +8715,7 @@ void print_potion_heal_message()
     {
         if (you.unrand_equipped(UNRAND_KRYIAS))
         {
-            mprf("%s enhances the healing.",
+            mprf("%s이(가) 치유 효과를 강화한다.",
                  you.body_armour()->name(DESC_THE, false, false, false).c_str());
         }
         else if (you.has_mutation(MUT_DOUBLE_POTION_HEAL))
@@ -8834,7 +8834,7 @@ void player_open_door(coord_def doorpos)
                     canned_msg(MSG_OK);
                 else
                 {
-                    if (yesno("Put travel exclusion on door? (Y/n)",
+                    if (yesno("이 문을 자동 이동 제외 구역으로 지정할까? (Y/n)",
                               true, 'y'))
                     {
                         // Zero radius exclusion right on top of door.
