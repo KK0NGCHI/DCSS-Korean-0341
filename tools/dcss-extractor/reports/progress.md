@@ -154,3 +154,11 @@
 - [무기·몬스터 대사 구조 감사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207409) 성공. [Linux 한국어 DB 로더 검사](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40101207364)의 완료 결과는 링크에서 별도 확인.
 - **100%는 `wpnnoise.txt`의 키 대응률**이며 게임 전체 번역률이나 동적 한국어 출력 품질을 보증하지 않음. Lua 변환과 실제 이름·조사 결합, Windows Tiles UI 및 폰트는 게임 내 재검토 필요.
 - 상세 보고서: [무기 대사 전수 키 대응 및 남은 검증](../../docs/translation-review/wpnnoise-complete-20261024.md).
+
+## 2026-10-24 몬스터 대사 72개 키 추가 — PR #17
+
+- `monspeak.txt` 429/731 → **501/731(68.5%)**. 미대응 **230개**.
+- 추가 대사·참조 변형 **415줄**, 한글 포함 **400줄**. 참조 라우팅 2개는 원문과 동일.
+- 4개 번역 DB 오버레이 합계 **834개 원문 대응 키**(23+245+501+65).
+- [구조 검사 성공](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/40102414471). Windows Tiles, 동적 조사 및 개별 출력은 미검증.
+- [번역 상세 기록](../../docs/translation-review/monspeak-live-text-batch-20261024.md).
