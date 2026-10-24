@@ -2134,7 +2134,7 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
                 break;
 
             case SPWPN_VALOUR:
-                mpr("You feel very meek.");
+                mpr("기세가 크게 꺾인 것 같아.");
                 you.weaken(&you, 10);
                 break;
 
@@ -2153,7 +2153,7 @@ static void _unequip_weapon_effect(item_def& item, bool showMsgs, bool meld)
                 break;
 
             case SPWPN_DEVIOUS:
-                mpr("You feel guileless.");
+                mpr("교활한 기운이 사라진 것 같아.");
                 you.duration[DUR_DEVIOUS] = 0;
                 you.redraw_evasion = true;
                 break;
@@ -2166,22 +2166,22 @@ static void _spirit_shield_message(bool unmeld)
 {
     if (!unmeld && you.spirit_shield() < 2 && !you.has_mutation(MUT_HP_CASTING))
     {
-        mpr("You feel your power drawn to a protective spirit.");
+        mpr("당신의 힘이 수호령에게 흘러 들어가는 것 같아.");
 #if TAG_MAJOR_VERSION == 34
         if (you.species == SP_DEEP_DWARF)
         {
             drain_mp(you.magic_points, true);
-            mpr("Now linked to your health, your magic stops regenerating.");
+            mpr("마력이 생명력과 연결되어 마력 회복이 멈췄다.");
         }
 #endif
     }
     else if (!unmeld && (you.get_mutation_level(MUT_MANA_SHIELD)
                          || you.has_mutation(MUT_HP_CASTING)))
     {
-        mpr("You feel the presence of a powerless spirit.");
+        mpr("힘을 잃은 정령의 존재가 느껴진다.");
     }
     else if (!you.get_mutation_level(MUT_MANA_SHIELD))
-        mpr("You feel spirits watching over you.");
+        mpr("정령들이 당신을 지켜보는 것 같아.");
 }
 
 static void _zonguldrok_comment_on_hat(const item_def& hat)
@@ -2225,26 +2225,26 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
         switch (ego)
         {
         case SPARM_FIRE_RESISTANCE:
-            mpr("You feel resistant to fire.");
+            mpr("화염에 저항할 수 있을 것 같아.");
             break;
 
         case SPARM_COLD_RESISTANCE:
-            mpr("You feel resistant to cold.");
+            mpr("냉기에 저항할 수 있을 것 같아.");
             break;
 
         case SPARM_POISON_RESISTANCE:
             if (player_res_poison(false, false, false) < 3)
-                mpr("You feel resistant to poison.");
+                mpr("독에 저항할 수 있을 것 같아.");
             break;
 
         case SPARM_SEE_INVISIBLE:
-            mpr("You feel perceptive.");
+            mpr("감각이 예민해진 것 같아.");
             autotoggle_autopickup(false);
             break;
 
         case SPARM_INVISIBILITY:
             if (!you.duration[DUR_INVIS])
-                mpr("You become transparent for a moment.");
+                mpr("잠시 몸이 투명해진다.");
             break;
 
         case SPARM_STRENGTH:
@@ -2260,7 +2260,7 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             break;
 
         case SPARM_PONDEROUSNESS:
-            mpr("You feel rather ponderous.");
+            mpr("몸이 꽤 무거워진 것 같아.");
             break;
 
         case SPARM_FLYING:
@@ -2268,24 +2268,24 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             break;
 
         case SPARM_WILLPOWER:
-            mpr("You feel strong-willed.");
+            mpr("의지가 강해진 것 같아.");
             break;
 
         case SPARM_PROTECTION:
-            mpr("You feel protected.");
+            mpr("보호받고 있는 것 같아.");
             break;
 
         case SPARM_STEALTH:
             if (!you.get_mutation_level(MUT_NO_STEALTH))
-                mpr("You feel stealthy.");
+                mpr("은밀하게 움직일 수 있을 것 같아.");
             break;
 
         case SPARM_RESISTANCE:
-            mpr("You feel resistant to extremes of temperature.");
+            mpr("극심한 온도 변화에도 견딜 수 있을 것 같아.");
             break;
 
         case SPARM_POSITIVE_ENERGY:
-            mpr("You feel more protected from negative energy.");
+            mpr("음에너지에 더 잘 보호받는 것 같아.");
             break;
 
         case SPARM_ARCHMAGI:
@@ -2300,15 +2300,15 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             break;
 
         case SPARM_HURLING:
-            mpr("You feel that your aim is more steady.");
+            mpr("조준이 더 안정된 것 같아.");
             break;
 
         case SPARM_REPULSION:
-            mpr("You are surrounded by a repulsion field.");
+            mpr("반발장이 당신을 둘러싼다.");
             break;
 
         case SPARM_SHADOWS:
-            mpr("It gets dark.");
+            mpr("주위가 어두워진다.");
             update_vision_range();
             break;
 
@@ -2358,22 +2358,22 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     switch (get_armour_ego_type(item))
     {
     case SPARM_FIRE_RESISTANCE:
-        mpr("You feel less resistant to fire.");
+        mpr("화염 저항이 약해진 것 같아.");
         break;
 
     case SPARM_COLD_RESISTANCE:
-        mpr("You feel less resistant to cold.");
+        mpr("냉기 저항이 약해진 것 같아.");
         break;
 
     case SPARM_POISON_RESISTANCE:
         if (player_res_poison() <= 0)
-            mpr("You no longer feel resistant to poison.");
+            mpr("이제 독에 저항할 수 없을 것 같아.");
         break;
 
     case SPARM_SEE_INVISIBLE:
         if (!you.can_see_invisible())
         {
-            mpr("You feel less perceptive.");
+            mpr("감각이 둔해진 것 같아.");
             _mark_unseen_monsters();
         }
         break;
@@ -2405,24 +2405,24 @@ static void _unequip_armour_effect(item_def& item, bool meld)
         break;
 
     case SPARM_WILLPOWER:
-        mpr("You feel less strong-willed.");
+        mpr("의지가 약해진 것 같아.");
         break;
 
     case SPARM_PROTECTION:
-        mpr("You feel less protected.");
+        mpr("보호가 약해진 것 같아.");
         break;
 
     case SPARM_STEALTH:
         if (!you.get_mutation_level(MUT_NO_STEALTH))
-            mpr("You feel less stealthy.");
+            mpr("예전만큼 은밀하지 않은 것 같아.");
         break;
 
     case SPARM_RESISTANCE:
-        mpr("You feel hot and cold all over.");
+        mpr("온몸이 뜨거워졌다 차가워졌다 한다.");
         break;
 
     case SPARM_POSITIVE_ENERGY:
-        mpr("You feel less protected from negative energy.");
+        mpr("음에너지에 대한 보호가 약해진 것 같아.");
         break;
 
     case SPARM_ARCHMAGI:
@@ -2432,24 +2432,24 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     case SPARM_SPIRIT_SHIELD:
         if (!you.spirit_shield())
         {
-            mpr("You feel strangely alone.");
+            mpr("이상하게 혼자가 된 것 같아.");
 #if TAG_MAJOR_VERSION == 34
             if (you.species == SP_DEEP_DWARF)
-                mpr("Your magic begins regenerating once more.");
+                mpr("마력이 다시 회복되기 시작한다.");
 #endif
         }
         break;
 
     case SPARM_HURLING:
-        mpr("Your aim is not that steady anymore.");
+        mpr("이제 조준이 예전만큼 안정되지 않아.");
         break;
 
     case SPARM_REPULSION:
-        mpr("The haze of the repulsion field disappears.");
+        mpr("반발장을 이루던 아지랑이가 사라진다.");
         break;
 
     case SPARM_SHADOWS:
-        mpr("The dungeon's light returns to normal.");
+        mpr("던전의 밝기가 원래대로 돌아온다.");
         update_vision_range();
         break;
 
@@ -2752,7 +2752,7 @@ static void _unequip_jewellery_effect(item_def &item, bool meld)
 #if TAG_MAJOR_VERSION == 34
     case AMU_GUARDIAN_SPIRIT:
         if (you.species == SP_DEEP_DWARF && player_regenerates_mp())
-            mpr("Your magic begins regenerating once more.");
+            mpr("마력이 다시 회복되기 시작한다.");
         break;
 #endif
 
