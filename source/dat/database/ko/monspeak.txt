@@ -1154,3 +1154,107 @@ friendly Natasha
 @The_monster@이(가) 야옹거린다.
 
 @The_monster@이(가) 가르랑거린다.
+%%%%
+Natasha permanently killed
+
+@the_monster_possessive@ 영혼이 마침내 안식을 얻은 것 같다.
+%%%%
+Natasha triumphant
+
+VISUAL:@The_monster@이(가) 몸을 동그랗게 말고 가르랑거리기 시작한다.
+
+VISUAL:@The_monster@이(가) 털을 깨끗하게 핥기 시작한다.
+%%%%
+Robin triumphant
+
+@The_monster@이(가) 으스대며 웃음을 터뜨린다.
+
+@The_monster@이(가) 외친다. "축하하자! 잔치 열 시간이야!"
+
+@The_monster@이(가) 말한다. "이래서 내가 대장이라니까."
+%%%%
+Nobody killed
+
+@The_monster@이(가) 재가 되어 무너지면서 속삭인다. "너도... 잊히게 될 거야..."
+%%%%
+Norris triumphant
+
+@The_monster@이(가) 말한다. "어라, 부러운데!"
+
+@The_monster@이(가) 말한다. "영원을 마음껏 즐겨."
+
+@The_monster@이(가) 말한다. "저편에서 다시 보자, 친구."
+%%%%
+Pikel triumphant
+
+@The_monster@이(가) 말한다. "시장에 팔 영혼이 하나 더 생겼군."
+
+@The_monster@이(가) 말한다. "지옥에서 보자!"
+%%%%
+Polyphemus killed
+
+__NONE
+
+@The_monster@이(가) 포효한다. "날 속였구나!"
+%%%%
+Sigmund triumphant
+
+VISUAL:@The_monster@이(가) 낫에 또 하나의 눈금을 새기기 시작한다.
+%%%%
+Terence triumphant
+
+@The_monster@이(가) 말한다. "드디어 조용하고 평화롭겠군."
+
+@The_monster@이(가) 말한다. "다시는 오지 마!"
+
+@The_monster@이(가) 말한다. "이기면 살고 지면 죽는다. 그게 인생의 법칙이지."
+
+@The_monster@이(가) 말한다. "명예를 지킨다고 전술적 우위를 포기할 이유는 없어."
+%%%%
+Vashnia triumphant
+
+@The_monster@이(가) 말한다. "머리 정중앙."
+
+@The_monster@이(가) 말한다. "침입자 제거 완료."
+
+@The_monster@이(가) 말한다. "이상 무. 다른 놈이 있나 찾아보자."
+%%%%
+Xtahua triumphant
+
+@The_monster@이(가) 승리의 포효를 터뜨린다.
+
+VISUAL:@The_monster@이(가) 승리에 도취해 길고 거대한 불길을 뿜는다.
+
+@The_monster@이(가) 으르렁거린다. "여기 온 게 네 마지막 실수였다."
+
+@The_monster@이(가) 낮게 울린다. "이제 한 입 먹어 볼까."
+%%%%
+alderking triumphant
+
+@The_monster@이(가) 시드는 잎사귀의 만족스러운 한숨과 함께 사라진다.
+%%%%
+Bennu permanently killed
+
+VISUAL:@The_monster@이(가) 영적 에너지를 모두 잃고 이 세계에서 서서히 사라진다.
+%%%%
+default electric golem
+
+SOUND:@The_monster@이(가) 지직거리며 치익 소리를 낸다.
+%%%%
+default ice statue
+
+VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 차갑게 반짝인다.
+%%%%
+default obsidian statue
+
+VISUAL:@The_monster@이(가) 잠시 던전의 어둠 속으로 스며든다.
+%%%%
+default orange crystal statue
+
+VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 황옥색으로 반짝인다.
+%%%%
+frilled lizard
+
+@The_monster@이(가) 거대한 목도리를 펼친다.
+
+@The_monster@이(가) @at_foe@ 쉭쉭거린다.
