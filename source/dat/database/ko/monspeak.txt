@@ -4741,3 +4741,40 @@ VISUAL:@The_monster@이(가) 장화에서 잘린 촉수 하나를 꺼내며 깊�
 w:1
 @The_monster@이(가) 조용히 중얼거려. "나비 1마리였을 뿐인데…"
 VISUAL:@The_monster@이(가) 비틀거리면서도 너에게 엄지를 치켜세워.
+%%%%
+deformed humanoid
+
+VISUAL:@The_monster@이(가) 고통에 울부짖어.
+VISUAL:@The_monster@이(가) 괴로워하며 통곡해.
+VISUAL:@The_monster@이(가) 울어.
+VISUAL:@The_monster@이(가) 흐느껴.
+@The_monster@이(가) 소리쳐. "아파, 너무 아파!"
+VISUAL:@The_monster@이(가) 피를 토하며 기침하기 시작해.
+@The_monster@이(가) 외쳐. "제발 끝내 줘!"
+w:1
+VISUAL:@The_monster@이(가) 거칠게 숨을 몰아쉬기 시작해.
+VISUAL:@The_monster@이(가) 고통스럽게 몸을 비틀어.
+VISUAL:@The_monster@이(가) 기괴하게 변형된 손을 멍하니 바라봐.
+@The_monster@이(가) 물어. "나한테 무슨 일이 일어난 거야?"
+@The_monster@이(가) 물어. "대체 나한테 무슨 짓을 한 거야?"
+VISUAL:@The_monster@이(가) 도움을 구하며 기도해.
+@The_monster@이(가) 말해. "난 죽었던 것 같아… 이미 죽은 건지도 몰라…"
+w:3
+@The_monster@이(가) 울부짖어. "가려워! 가렵고, 가렵고, 또 가려워! 언제나 가려워!"
+VISUAL:@The_monster@이(가) 말을 제대로 하지 못한 채 꾸르륵거려.
+w:1
+@The_monster@이(가) 외쳐. "이런 꼴로 만든 괴물에게 반드시 복수하겠어!"
+@The_monster@이(가) 중얼거려. "피부가 전부 없어졌어, 전부, 모조리…"
+@The_monster@이(가) 말해. "나도 한때는 아름다웠어. 지금 내 모습을 봐."
+VISUAL:@The_monster@이(가) 촉수를 꿈틀거려.
+VISUAL:@the_monster_possessive@ 가슴에서 눈 12개가 번쩍 뜨여.
+VISUAL:@the_monster_possessive@ 등에서 기묘한 부속지가 솟아나.
+VISUAL:@The_monster@이(가) 꼬리를 세차게 휘둘러.
+VISUAL:@The_monster@이(가) 갑자기 커다란 뿔 2개를 돋아나게 해!
+w:3
+VISUAL:@The_monster_possessive@ 살에서 끈적한 점액이 흘러나와.
+VISUAL:@the_monster_possessive@ 머리에 속 빈 눈이 나타나.
+VISUAL:@the_monster_possessive@ 눈꺼풀 아래에 곪은 상처가 생겨.
+@The_monster@이(가) 너에게 @objective@을(를) 끝내 달라고 애원해.
+VISUAL:@The_monster@이(가) 제 몸을 바라보며 눈물도 없이 울어.
+@The_monster@이(가) 외쳐. "나는 그저 병들고 기괴하게 망가진 창조물일 뿐이야."
