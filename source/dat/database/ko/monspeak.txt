@@ -1083,8 +1083,10 @@ friendly Cassandra
 %%%%
 Donald killed
 
+w:100
 __NONE
 
+w:1
 @The_monster@이(가) 말한다. "죽는군. 정말 싫어."
 %%%%
 Edmund triumphant
@@ -1193,8 +1195,10 @@ Pikel triumphant
 %%%%
 Polyphemus killed
 
+w:50
 __NONE
 
+w:1
 @The_monster@이(가) 포효한다. "날 속였구나!"
 %%%%
 Sigmund triumphant
@@ -1261,8 +1265,10 @@ frilled lizard
 %%%%
 default silenced confused humanoid
 
+w:40
 VISUAL:@The_monster@이(가) 정신없이 몸짓한다.
 
+w:20
 VISUAL:@The_monster@이(가) 무언가 말하지만 아무 소리도 들리지 않는다.
 
 VISUAL:@The_monster@이(가) 혼란스러워 보인다.
@@ -1277,8 +1283,10 @@ silenced player ghost
 
 VISUAL:@The_monster@이(가) @foe@을(를) 노려본다.
 
+w:5
 VISUAL:@The_monster@이(가) 위협적으로 @foe@을(를) 가리킨다.
 
+w:5
 VISUAL:@The_monster@이(가) @foe@을(를) 바라보며 손가락을 천천히 목에 긋는다.
 %%%%
 _generic_ranged_
@@ -1297,6 +1305,7 @@ crystal guardian
 
 VISUAL:@The_monster@이(가) 어두운 던전의 빛 속에서 변함없이 차갑게 반짝인다.
 
+w:5
 VISUAL:@the_monster@에 비친 당신의 일그러진 모습이 뒤틀리고 꿈틀거린다. @player_only@
 %%%%
 dream sheep
@@ -1481,15 +1490,22 @@ _form_
 
 석상
 
+w:5
 용
 %%%%
 _laughs_
 
-미친 듯이 낄낄거린다
+킥킥거린다
 
-거칠게 킥킥거린다
+작게 웃는다
 
-음산하게 중얼거리며 웃는다
+낄낄거린다
+
+껄껄 웃는다
+
+조용히 미소 지으며 웃는다
+
+호탕하게 웃는다
 %%%%
 _says_or_shouts_
 
@@ -1535,8 +1551,10 @@ _begs_
 
 간청한다
 
+w:3
 빌고 또 빈다
 
+w:1
 애처롭게 매달린다
 %%%%
 _mutters_
@@ -1545,6 +1563,7 @@ _mutters_
 
 작게 웅얼거린다
 
+w:2
 나직이 속삭인다
 %%%%
 _friendly_fleeing_rare_
@@ -1653,8 +1672,10 @@ _player_ghost_rare_
 %%%%
 _fleeing_humanoid_common_
 
+w:20
 VISUAL:@The_monster@이(가) 모든 것을 포기한 듯 보인다.
 
+w:20
 @The_monster@이(가) @_yells_@. "도와줘!"
 
 VISUAL:@The_monster@이(가) 달아나다 [거의 넘어질 뻔한다|발을 헛디뎌 비틀거린다].
