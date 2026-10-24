@@ -4495,3 +4495,47 @@ w:1
 @The_monster@이(가) 외쳐. "필멸자여, @Foe_god@ 따위는 내게 성가실 뿐이야!"
 w:1
 @The_monster@이(가) 외쳐. "@Foe_god@도 네 최후를 보고 울게 될 거야!"
+%%%%
+laughing skull
+
+@The_monster@이(가) 피할 수 없는 망각의 운명을 비웃으며 @_laughs_@.
+@The_monster@이(가) 이 자리에 있는 모두가 역사에서 잊힐 거라며 @_laughs_@.
+@The_monster@이(가) 던전에는 자비도 존엄도 없다며 @_laughs_@.
+@The_monster@이(가) 폭력에서 벗어날 수는 없다며 @_laughs_@.
+__NONE
+%%%%
+reaper
+
+@The_monster@이(가) 속삭여. "시간이 다 됐어, @foe_name@!"
+VISUAL:@The_monster@이(가) @foe@에게 손짓해.
+VISUAL:@The_monster@이(가) 입술도 없이 미소 지어.
+@The_monster@이(가) 외쳐. "널 데리러 왔다, @foe_name@!"
+@The_monster@이(가) 외쳐. "죽음이 널 기다린다!"
+@The_monster@이(가) 말해. "누구나 언젠가 죽지. 그리고 지금은 네 차례야."
+VISUAL:@The_monster@이(가) 손가락으로 목을 긋는 시늉을 해.
+@The_monster@이(가) 외쳐. "지금 당장 죽어라!"
+@The_monster@이(가) 외쳐. "죽어라, @foe_name@!"
+%%%%
+_tormentor_common_
+
+w:15
+@The_monster@이(가) 말해. "네 뼈를 하나씩 으스러뜨리겠어."
+VISUAL:@The_monster@이(가) 사악하게 웃어.
+VISUAL:@The_monster@이(가) 광기 어린 미소를 지어.
+VISUAL:@The_monster@이(가) 악의에 찬 웃음을 지어.
+@The_monster@이(가) 말해. "고통이 무엇인지 알려 주지."
+@The_monster@이(가) 말해. "내 손에 잡히면 차라리 죽고 싶어질걸."
+@The_monster@이(가) 말해. "네 운명을 알아. 바로 고통이지."
+@The_monster@이(가) 비명을 질러. "넌 끔찍하게 죽을 거야!"
+%%%%
+_tormentor_rare_
+
+@The_monster@이(가) 미친 듯이 웃어.
+@The_monster@이(가) 말해. "나는 네 모든 악몽이 현실로 나타난 존재야."
+@The_monster@이(가) 말해. "네 피로 널 익사시키겠어."
+@The_monster@이(가) 말해. "네 간을 먹어 치우겠어."
+@The_monster@이(가) 말해. "널 죽이는 방법을 1,001가지나 알고 있지."
+@The_monster@이(가) 말해. "내 고문실을 보여 주지!"
+@The_monster@이(가) 말해. "각오해! 지독한 고통이 기다리고 있어."
+@The_monster@이(가) 외쳐. "수천 개의 바늘로 고문할 테니 각오해!"
+@The_monster@이(가) 외쳐. "갈기갈기 찢어 주마!"
