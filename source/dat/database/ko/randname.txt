@@ -168,9 +168,9 @@ w:3
 
 w:2
 
-@_gemstone_@이 박힌
+@_gemstone_@ 장식이 박힌
 
-@_gemstone_@으로 뒤덮인
+@_gemstone_@ 장식으로 뒤덮인
 
 w:200
 
