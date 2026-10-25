@@ -2161,10 +2161,12 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     {
         if (basename)
         {
+            const bool ko_display = Options.language == lang_t::KO
+                                    && !dbname && !qualname;
             if (jewellery_is_amulet(*this))
-                buff << "amulet";
+                buff << (ko_display ? "목걸이" : "amulet");
             else
-                buff << "ring";
+                buff << (ko_display ? "반지" : "ring");
 
             break;
         }
