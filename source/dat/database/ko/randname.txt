@@ -635,3 +635,159 @@ Xom robe
 Xom body armour
 
 @Xom armour@
+%%%%
+Ashenzari
+
+w:100
+
+· @_ashenzari_adjective_@ @_ashenzari_object_@
+
+w:100
+
+· @god_name_possessive@ @_ashenzari_object_@
+
+w:100
+
+"@_ashenzari_adjective_@ @_ashenzari_object_@"
+
+w:50
+
+"@_ashenzari_object_@ · @god_name@"
+
+w:100
+
+"@_ashenzari_object_@ · @_ashenzari_epithet_@"
+
+w:20
+
+"@_celestial_bodies_@ · @_ashenzari_epithet_@"
+
+w:20
+
+· @_ashenzari_epithet_@
+
+w:20
+
+· @_ashenzari_bound_adjective_@ @_celestial_bodies_@
+
+w:20
+
+· @_ashenzari_knowledge_adjective_@ @_celestial_bodies_@
+
+w:20
+
+· @god_name_possessive@ @_celestial_bodies_@
+
+w:20
+
+"나의 @_ashenzari_object_@을 함께 나누자"
+
+w:20
+
+"나와 함께 @_ashenzari_bound_adjective_@"
+
+w:20
+
+"함께 @_ashenzari_bound_adjective_@"
+
+· @_ashenzari_bound_adjective_@ @_ashenzari_heavens_@
+
+· @_ashenzari_knowledge_adjective_@ @_ashenzari_heavens_@
+
+· 운명에 묶인 @_ashenzari_object_@
+
+w:5
+
+· 아페이로술
+
+w:5
+
+"지식의 대가는 무엇인가?"
+
+w:5
+
+"영원을 보라"
+
+w:5
+
+· 크레마스토술
+
+w:5
+
+· 저주와 힘
+
+w:5
+
+· 데스모술
+
+w:5
+
+· 하늘의 눈
+
+w:5
+
+"무한을 응시하라"
+
+w:5
+
+"그럴 줄 알았어"
+
+w:5
+
+"이미 예견한 일이야"
+
+w:5
+
+· 천공 점술
+
+w:5
+
+"이해하기 위한 매달림"
+
+w:5
+
+"고난을 넘어 지식으로"
+
+w:5
+
+· 판옵티콘
+
+w:5
+
+· 별에 매인 지혜
+
+w:5
+
+· 초월적 영지
+
+w:5
+
+· 초월적 지식
+
+w:5
+
+· 초월적 이해
+
+w:5
+
+· 초월적 지혜
+
+w:5
+
+"천둥, 완전한 정신"
+
+w:5
+
+· 토트모스의 유산
+
+w:5
+
+· 흔들리지 않는 시선
+
+w:5
+
+· 끝없이 푸른 창공
+
+w:1
+
+"진동하는 부채"
