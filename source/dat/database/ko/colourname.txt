@@ -1,0 +1,149 @@
+# Colour/pattern Korean localization. Extended colour lexicon pending.
+%%%%
+rainbow_colour
+
+빨간색
+
+주황색
+
+노란색
+
+초록색
+
+파란색
+
+남색
+
+보라색
+%%%%
+mono_colour
+
+검은색
+
+흰색
+
+회색
+%%%%
+any_colour
+
+w:40
+
+@rainbow_colour@
+
+w:20
+
+@misc_colour@
+
+@mono_colour@
+%%%%
+any_pattern
+
+아라베스크 무늬
+
+화살 무늬
+
+체크무늬
+
+갈매기 무늬
+
+마름모 무늬
+
+불꽃 자수 무늬
+
+프랙털 무늬
+
+깅엄체크 무늬
+
+헤링본 무늬
+
+하운즈투스 무늬
+
+표범 얼룩무늬
+
+곡선 격자무늬
+
+그라데이션 무늬
+
+페이즐리 무늬
+
+가는 줄무늬
+
+격자무늬
+
+물방울무늬
+
+네잎 장식무늬
+
+줄무늬
+
+나선무늬
+
+얼룩무늬
+
+사각형 무늬
+
+별무늬
+
+타탄체크 무늬
+
+삼각형 무늬
+
+소용돌이 무늬
+%%%%
+glowing_adj
+
+밝은
+
+찬란한
+
+어두운
+
+칙칙한
+
+어스름한
+
+희미한
+
+번쩍이는
+
+윤기 나는
+
+강렬한
+
+빛나는
+
+섬뜩하게 빛나는
+
+광택 나는
+
+얼룩덜룩한
+
+탁한
+
+옅은
+
+일렁이는
+
+환하게 빛나는
+
+선명한
+%%%%
+any_glowing_colour
+
+@glowing_adj@ @any_colour@
+%%%%
+any_colour_pattern
+
+@any_colour@의 @any_pattern@
+
+@any_colour@ 바탕에 @any_colour@의 @any_pattern@
+%%%%
+any_glowing_colour_pattern
+
+@any_glowing_colour@의 @any_pattern@
+
+@any_colour@ 바탕에 @any_glowing_colour@의 @any_pattern@
+
+@any_glowing_colour@ 바탕에 @any_colour@의 @any_pattern@
+
+@any_glowing_colour@ 바탕에 @any_glowing_colour@의 @any_pattern@
