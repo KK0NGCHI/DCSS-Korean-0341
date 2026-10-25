@@ -1506,62 +1506,62 @@ string sub_type_string(const item_def &item, bool known)
         case BOOK_PARCHMENT:
             {
             if (item.plus == 0 || !known)
-                return Options.language == lang_t::KO ? "양피지" : "parchment";
+                return known && Options.language == lang_t::KO ? "양피지" : "parchment";
             string parchmentname = "parchment of ";
             parchmentname += spell_title(static_cast<spell_type>(item.plus));
             return parchmentname;
             }
         case BOOK_NECRONOMICON:
-            return Options.language == lang_t::KO ? "네크로노미콘" : "Necronomicon";
+            return known && Options.language == lang_t::KO ? "네크로노미콘" : "Necronomicon";
         case BOOK_GRAND_GRIMOIRE:
-            return Options.language == lang_t::KO ? "대마도서" : "Grand Grimoire";
+            return known && Options.language == lang_t::KO ? "대마도서" : "Grand Grimoire";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_BUGGY_DESTRUCTION:
             return "tome of obsoleteness";
 #endif
         case BOOK_EVERBURNING:
             // Aus. English apparently follows the US spelling, not UK.
-            return Options.language == lang_t::KO ? "영원히 타오르는 백과사전" : "Everburning Encyclopedia";
+            return known && Options.language == lang_t::KO ? "영원히 타오르는 백과사전" : "Everburning Encyclopedia";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_OZOCUBU:
-            return Options.language == lang_t::KO ? "오조쿠부의 자서전" : "Ozocubu's Autobiography";
+            return known && Options.language == lang_t::KO ? "오조쿠부의 자서전" : "Ozocubu's Autobiography";
 #endif
         case BOOK_MAXWELL:
-            return Options.language == lang_t::KO ? "맥스웰의 비망록" : "Maxwell's Memoranda";
+            return known && Options.language == lang_t::KO ? "맥스웰의 비망록" : "Maxwell's Memoranda";
         case BOOK_YOUNG_POISONERS:
-            return Options.language == lang_t::KO ? "젊은 독살자의 지침서" : "Young Poisoner's Handbook";
+            return known && Options.language == lang_t::KO ? "젊은 독살자의 지침서" : "Young Poisoner's Handbook";
         case BOOK_FEN:
-            return Options.language == lang_t::KO ? "늪지의 서책" : "Fen Folio";
+            return known && Options.language == lang_t::KO ? "늪지의 서책" : "Fen Folio";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_NEARBY:
-            return Options.language == lang_t::KO ? "벗어날 수 없는 지도책" : "Inescapable Atlas";
+            return known && Options.language == lang_t::KO ? "벗어날 수 없는 지도책" : "Inescapable Atlas";
 #endif
         case BOOK_THERE_AND_BACK:
-            return Options.language == lang_t::KO ? "왕복의 서" : "There-And-Back Book";
+            return known && Options.language == lang_t::KO ? "왕복의 서" : "There-And-Back Book";
         case BOOK_BIOGRAPHIES_II:
-            return Options.language == lang_t::KO ? "위대한 마법사들 제2권" : "Great Wizards, Vol. II";
+            return known && Options.language == lang_t::KO ? "위대한 마법사들 제2권" : "Great Wizards, Vol. II";
         case BOOK_BIOGRAPHIES_VII:
-            return Options.language == lang_t::KO ? "위대한 마법사들 제7권" : "Great Wizards, Vol. VII";
+            return known && Options.language == lang_t::KO ? "위대한 마법사들 제7권" : "Great Wizards, Vol. VII";
         case BOOK_TRISMEGISTUS:
-            return Options.language == lang_t::KO ? "트리스메기스투스의 법전" : "Trismegistus Codex";
+            return known && Options.language == lang_t::KO ? "트리스메기스투스의 법전" : "Trismegistus Codex";
         case BOOK_UNRESTRAINED:
-            return Options.language == lang_t::KO ? "무구속 논어" : "the Unrestrained Analects";
+            return known && Options.language == lang_t::KO ? "무구속 논어" : "the Unrestrained Analects";
         case BOOK_SIEGECRAFT:
-            return Options.language == lang_t::KO ? "공성술 개론" : "Compendium of Siegecraft";
+            return known && Options.language == lang_t::KO ? "공성술 개론" : "Compendium of Siegecraft";
         case BOOK_CONDUCTIVITY:
-            return Options.language == lang_t::KO ? "전도율의 서" : "Codex of Conductivity";
+            return known && Options.language == lang_t::KO ? "전도율의 서" : "Codex of Conductivity";
         case BOOK_CONSTRUCTION:
-            return Options.language == lang_t::KO ? "응용 건축 지침서" : "Handbook of Applied Construction";
+            return known && Options.language == lang_t::KO ? "응용 건축 지침서" : "Handbook of Applied Construction";
         case BOOK_TRAPS:
-            return Options.language == lang_t::KO ? "함정에 관한 논고" : "Treatise on Traps";
+            return known && Options.language == lang_t::KO ? "함정에 관한 논고" : "Treatise on Traps";
         case BOOK_SWAMP_SOJOURN:
-            return Options.language == lang_t::KO ? "나의 늪지 여행기" : "My Sojourn through Swampland";
+            return known && Options.language == lang_t::KO ? "나의 늪지 여행기" : "My Sojourn through Swampland";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_AKASHIC_RECORD:
-            return Options.language == lang_t::KO ? "아카식 레코드" : "Akashic Record";
+            return known && Options.language == lang_t::KO ? "아카식 레코드" : "Akashic Record";
 #endif
         default:
-            if (Options.language == lang_t::KO && _ko_book_theme_name(sub_type))
+            if (known && Options.language == lang_t::KO && _ko_book_theme_name(sub_type))
                 return string(_ko_book_theme_name(sub_type)) + " 마법서";
             return string("book of ") + _book_type_name(sub_type);
         }
