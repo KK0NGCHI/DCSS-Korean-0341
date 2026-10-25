@@ -653,3 +653,139 @@ _graffiti_unique_comment_
 이집이 마법봉 외에 무엇을 만들 수 있는지에 관한 의문
 
 예레미야의 주인이 누구인지에 관한 추측
+%%%%
+_graffiti_advertisement_
+
+@_graffiti_mass_meeting_ordinary_@ 모임 광고
+
+@_graffiti_mass_meeting_religious_@ 모임 광고
+
+던전의 [저렴한|독점|비싼|품질 좋은|희귀한|유용한] 물건 상점 광고
+
+w:2
+
+@_graffiti_class_any_@ 강좌 광고
+
+w:1
+
+던전에서 살아남는 법을 배우기 위한 @_graffiti_author_any_@과의 만남 광고
+
+w:1
+
+즐거운 시간을 보내기 위한 @_graffiti_author_any_@과의 만남 광고
+
+w:1
+
+이 낙서를 그린 바로 그 페인트의 광고
+%%%%
+_graffiti_changed_names_
+
+@_graffiti_author_any_changeable_@은 이름을 바꾸고 이제 @_graffiti_author_any_changeable_@으로 불린다
+
+w:2
+
+@_graffiti_author_orc_@은 이름을 바꾸고 이제 @_graffiti_author_orc_@으로 불린다
+
+w:2
+
+@_rare_graffiti_author_any_@은 이름을 물려받을 자격이 있는 다른 이에게 넘겼다
+
+w:1
+
+@_graffiti_author_any_changeable_non-randgen_@은 좀의 영향으로 이름을 바꾸고 이제 @RANDGEN@으로 불린다
+%%%%
+_graffiti_fight_
+
+@_graffiti_author_any_@과 @_graffiti_author_any_@의 말다툼을 그린
+
+@_graffiti_author_any_@, @_graffiti_author_any_@, @_graffiti_author_any_@ 사이의 삼자 논쟁을 그린
+
+w:2
+
+진정한 피의 광분이 무엇인지를 두고 [광전사|트로그 신도]와 적혈성 분노 증후군 환자가 싸우는 모습을 그린
+
+w:2
+
+무언가가 그림자인지 그림자 망령인지 두고 ["예술가"|예술가|디스메노스 신도]와 [죽음의 기사|죽음의 마법사|이레데렘눌 신도|강령술사]가 다투는 모습을 그린
+%%%%
+_graffiti_image_
+
+굴속에서 머리를 내민 [고블린|코볼드|스프리건]을 그린
+
+앞을 모조리 짓밟는 [용|코끼리|야크]를 그린
+
+위험해 보이는 무기를 치켜든 [놀|인간|오크]를 그린
+
+적을 반으로 찢는 [오우거|오니|트롤]을 그린
+
+마법 폭발을 발사하는 [딥 엘프|리치|텐구]를 그린
+
+나뭇가지에 매달린 펠리드를 그린
+
+사악하게 웃는 악마를 그린
+
+그냥 놓여 있는 가지를 그린
+
+아는 어떤 물체와도 닮지 않은
+%%%%
+_graffiti_vengeance_reason_
+
+@_graffiti_author_any_@을 버린 일
+
+그들을 버린 일
+
+@_graffiti_author_any_@을 배신한 일
+
+그들을 배신한 일
+
+@_graffiti_author_any_@을 죽인 일
+
+그들을 죽인 일
+
+@_graffiti_author_any_@의 물건을 훔친 일
+
+그들의 물건을 훔친 일
+
+@_graffiti_author_any_@에게 상처를 입힌 일
+
+그들에게 상처를 입힌 일
+%%%%
+any_graffiti
+
+@_pattern_type_@ 무늬의 낙서
+
+@_writing_type_@로 된 낙서
+
+@_graffiti_unreadable_@
+
+@_graffiti_type_with_signature_maybe_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_image_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_rumour_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_unique_comment_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_species_@
+
+@_graffiti_type_@ @_graffiti_fight_@
+
+@_graffiti_type_@ @_graffiti_advertisement_@
+
+@_graffiti_type_@에 적힌 말: @_graffiti_short_saying_@
+
+w:2
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_religion_not_non-orc_or_orc_@
+
+w:2
+
+@_graffiti_type_with_signature_maybe_non-orc_@ @_graffiti_religion_non-orc_@
+
+w:2
+
+@_graffiti_type_with_signature_maybe_orc_@ @_graffiti_religion_orc_@
+
+w:1
+
+@_graffiti_type_@ @_graffiti_obscenities_@
