@@ -2,13 +2,6 @@ name: Korean localized database runtime smoke
 
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'source/dat/database/**'
-      - 'source/dat/descript/**'
-      - 'source/**/*.cc'
-      - 'source/**/*.h'
-      - '.github/workflows/korean-runtime-smoke.yml'
 
 jobs:
   linux-console-ko-runtime:
