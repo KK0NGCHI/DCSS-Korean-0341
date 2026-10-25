@@ -720,11 +720,22 @@ public:
             textcolour(channel_to_colour(MSGCH_PROMPT));
             if (crawl_state.game_is_hints())
             {
-                string more_str = "--more-- Press Space ";
-                if (is_tiles())
-                    more_str += "or click ";
-                more_str += "to continue. You can later reread messages with "
-                            "Ctrl-P.";
+                string more_str;
+                if (Options.language == lang_t::KO)
+                {
+                    more_str = "--계속-- Space";
+                    if (is_tiles())
+                        more_str += " 또는 클릭";
+                    more_str += "으로 진행. Ctrl-P로 지난 메시지를 다시 볼 수 있어.";
+                }
+                else
+                {
+                    more_str = "--more-- Press Space ";
+                    if (is_tiles())
+                        more_str += "or click ";
+                    more_str += "to continue. You can later reread messages with "
+                                "Ctrl-P.";
+                }
                 cprintf(more_str.c_str());
             }
             else
@@ -2303,10 +2314,16 @@ void replay_messages_during_startup()
     formatted_scroller hist(FS_PREWRAPPED_TEXT);
     hist.set_more();
     hist.set_more(formatted_string::parse_string(
-            "<cyan>Press Esc to close, arrows/pgup/pgdn to scroll.</cyan>"));
+            Options.language == lang_t::KO
+                ? "<cyan>Esc로 닫고, 방향키/PgUp/PgDn으로 스크롤해.</cyan>"
+                : "<cyan>Press Esc to close, arrows/pgup/pgdn to scroll.</cyan>"));
     hist.set_title(formatted_string::parse_string(recent_error_messages()
-        ? "<yellow>Crawl encountered errors during initialization:</yellow>"
-        : "<yellow>Initialization log:</yellow>"));
+        ? (Options.language == lang_t::KO
+           ? "<yellow>Crawl 초기화 중 오류가 발생했어:</yellow>"
+           : "<yellow>Crawl encountered errors during initialization:</yellow>")
+        : (Options.language == lang_t::KO
+           ? "<yellow>초기화 기록:</yellow>"
+           : "<yellow>Initialization log:</yellow>")));
     _replay_messages_core(hist);
 }
 
