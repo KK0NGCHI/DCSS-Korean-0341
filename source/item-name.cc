@@ -1675,6 +1675,89 @@ static string _cosmetic_text(const item_def &weap)
  * Surrounds a given string with the weapon's brand-describing prefix/suffix
  * as appropriate.
  */
+static const char* _ko_weapon_brand_label(const string &english)
+{
+    if (english == "flaming") return "화염";
+    if (english == "freezing") return "냉기";
+    if (english == "holy wrath") return "신성한 분노";
+    if (english == "electrocution") return "전격";
+    if (english == "venom") return "독";
+    if (english == "protection") return "방호";
+    if (english == "draining") return "흡수";
+    if (english == "speed") return "신속";
+    if (english == "heavy") return "중량";
+    if (english == "vampirism") return "흡혈";
+    if (english == "pain") return "고통";
+    if (english == "antimagic") return "대마법";
+    if (english == "distortion") return "왜곡";
+    if (english == "chaos") return "혼돈";
+    if (english == "confusion") return "혼란";
+    if (english == "penetration") return "관통";
+    if (english == "reaping") return "수확";
+    if (english == "spectralising") return "유령화";
+    if (english == "rebuke") return "응징";
+    if (english == "valour") return "용맹";
+    if (english == "entangling") return "속박";
+    if (english == "sundering") return "분쇄";
+    if (english == "concussion") return "충격";
+    if (english == "devious") return "기습";
+    if (english == "acid") return "산성";
+    if (english == "weakness") return "약화";
+    if (english == "vulnerability") return "취약";
+    if (english == "foul flame") return "사악한 화염";
+    return nullptr;
+}
+
+static const char* _ko_armour_ego_label(const string &english)
+{
+    if (english == "fire resistance") return "화염 저항";
+    if (english == "cold resistance") return "냉기 저항";
+    if (english == "poison resistance") return "독 저항";
+    if (english == "see invisible") return "투명 감지";
+    if (english == "invisibility") return "투명화";
+    if (english == "strength") return "힘";
+    if (english == "dexterity") return "민첩";
+    if (english == "intelligence") return "지능";
+    if (english == "ponderousness") return "둔중";
+    if (english == "flying") return "비행";
+    if (english == "willpower") return "의지력";
+    if (english == "protection") return "방호";
+    if (english == "stealth") return "은밀";
+    if (english == "resistance") return "저항";
+    if (english == "positive energy") return "음에너지 저항";
+    if (english == "the Archmagi") return "대마도사";
+    if (english == "corrosion resistance") return "부식 저항";
+    if (english == "reflection") return "반사";
+    if (english == "spirit shield") return "수호 정령";
+    if (english == "hurling") return "투척";
+    if (english == "repulsion") return "반발";
+    if (english == "harm") return "가해";
+    if (english == "shadows") return "그림자";
+    if (english == "rampaging") return "돌진";
+    if (english == "infusion") return "주입";
+    if (english == "light") return "빛";
+    if (english == "wrath") return "분노";
+    if (english == "mayhem") return "난동";
+    if (english == "guile") return "계략";
+    if (english == "energy") return "에너지";
+    if (english == "sniping") return "저격";
+    if (english == "ice") return "얼음";
+    if (english == "fire") return "화염";
+    if (english == "air") return "공기";
+    if (english == "earth") return "대지";
+    if (english == "archery") return "궁술";
+    if (english == "command") return "지휘";
+    if (english == "death") return "죽음";
+    if (english == "resonance") return "공명";
+    if (english == "parrying") return "받아치기";
+    if (english == "glass") return "유리";
+    if (english == "pyromania") return "방화광";
+    if (english == "stardust") return "별가루";
+    if (english == "mesmerism") return "매혹";
+    if (english == "attunement") return "조율";
+    return nullptr;
+}
+
 string weapon_brand_desc(const char *body, const item_def &weap,
                          bool terse, brand_type override_brand)
 {
@@ -1689,7 +1772,8 @@ string weapon_brand_desc(const char *body, const item_def &weap,
         const brand_type brand = override_brand ? override_brand : get_weapon_brand(weap);
         if (brand == SPWPN_NORMAL)
             return body;
-        return make_stringf("%s (%s)", body, brand_name.c_str());
+        const char* ko_brand = _ko_weapon_brand_label(brand_type_name(brand, false));
+        return make_stringf("%s (%s)", body, ko_brand ? ko_brand : brand_name.c_str());
     }
     if (terse)
         return make_stringf("%s (%s)", body, brand_name.c_str());
@@ -1913,13 +1997,21 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
             if (sparm != SPARM_NORMAL)
             {
-                if (!terse)
-                    buff << " of ";
+                if (Options.language == lang_t::KO)
+                {
+                    const char* ko_ego = _ko_armour_ego_label(armour_ego_name(*this, false));
+                    buff << " (" << (ko_ego ? ko_ego : armour_ego_name(*this, false)) << ")";
+                }
                 else
-                    buff << " {";
-                buff << armour_ego_name(*this, terse);
-                if (terse)
-                    buff << "}";
+                {
+                    if (!terse)
+                        buff << " of ";
+                    else
+                        buff << " {";
+                    buff << armour_ego_name(*this, terse);
+                    if (terse)
+                        buff << "}";
+                }
             }
         }
 
