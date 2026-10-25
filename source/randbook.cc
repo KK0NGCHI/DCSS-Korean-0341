@@ -13,6 +13,7 @@
 #include "artefact.h"
 #include "database.h"
 #include "english.h"
+#include "game-options.h"
 #include "item-name.h"
 #include "item-status-flag-type.h"
 #include "items.h"
@@ -445,13 +446,16 @@ static string _gen_randlevel_name(int level, god_type god)
 {
     const string owner_name = _gen_randlevel_owner(god);
     const bool has_owner = !owner_name.empty();
+    const bool korean = Options.language == lang_t::KO;
     const string apostrophised_owner = owner_name.empty() ? "" :
-    apostrophise(owner_name) + " ";
+        korean ? owner_name + " · " : apostrophise(owner_name) + " ";
 
     if (god == GOD_XOM && coinflip())
     {
-        const string xomname = getRandNameString("book_noun") + " of "
-        + getRandNameString("Xom_book_title");
+        const string xomname = korean
+            ? getRandNameString("Xom_book_title") + " " + getRandNameString("book_noun")
+            : getRandNameString("book_noun") + " of "
+              + getRandNameString("Xom_book_title");
         return apostrophised_owner + xomname;
     }
 
@@ -479,7 +483,8 @@ static string _gen_randlevel_name(int level, god_type god)
 
     if (bookname.find("@level@", 0) != string::npos)
     {
-        const string level_name = uppercase_first(number_in_words(level));
+        const string level_name = korean ? std::to_string(level)
+                                         : uppercase_first(number_in_words(level));
         bookname = replace_all(bookname, "@level@", level_name);
     }
 
@@ -717,9 +722,9 @@ static string _gen_randbook_name(string subject, string owner,
                                  spschool disc1,
                                  spschool disc2)
 {
+    const bool korean = Options.language == lang_t::KO;
     const string apostrophised_owner = owner.empty() ?
-        "" :
-        apostrophise(owner) + " ";
+        "" : korean ? owner + " · " : apostrophise(owner) + " ";
 
     const string real_subject = subject.empty() ?
         _maybe_gen_book_subject(owner) :
@@ -727,6 +732,8 @@ static string _gen_randbook_name(string subject, string owner,
 
     if (!real_subject.empty())
     {
+        if (korean)
+            return apostrophised_owner + real_subject + " " + getRandNameString("book_noun");
         return make_stringf("%s%s of %s",
                             apostrophised_owner.c_str(),
                             getRandNameString("book_noun").c_str(),
@@ -737,7 +744,8 @@ static string _gen_randbook_name(string subject, string owner,
 
     // Give a name that reflects the primary and secondary
     // spell disciplines of the spells contained in the book.
-    name += getRandNameString("book_name") + " ";
+    if (!korean)
+        name += getRandNameString("book_name") + " ";
 
     // For the actual name there's a 66% chance of getting something like
     //  <book> of the Fiery Traveller (Translocation/Fire), else
@@ -760,7 +768,7 @@ static string _gen_randbook_name(string subject, string owner,
 
         if (disc1 != disc2)
         {
-            name += " and ";
+            name += korean ? " 및 " : " and ";
             type_name = getRandNameString(spelltype_long_name(disc2));
 
             if (type_name.empty())
@@ -789,6 +797,8 @@ static string _gen_randbook_name(string subject, string owner,
         name += bookname;
     }
 
+    if (korean)
+        name += " " + getRandNameString("book_name");
     return name;
 }
 
