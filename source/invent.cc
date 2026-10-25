@@ -566,70 +566,70 @@ string no_selectables_message(int item_selector)
     switch (item_selector)
     {
     case OSEL_ANY:
-        return "You aren't carrying anything.";
+        return Options.language == lang_t::KO ? "아무것도 가지고 있지 않아." : "You aren't carrying anything.";
     case OSEL_WIELD:
     case OBJ_WEAPONS:
-        return "You aren't carrying any weapons.";
+        return Options.language == lang_t::KO ? "가지고 있는 무기가 없어." : "You aren't carrying any weapons.";
     case OSEL_BLESSABLE_WEAPON:
-        return "You aren't carrying any weapons that can be blessed.";
+        return Options.language == lang_t::KO ? "축복할 수 있는 무기가 없어." : "You aren't carrying any weapons that can be blessed.";
     case OBJ_ARMOUR:
     {
         if (_has_temp_unwearable_armour())
-            return "You aren't carrying any currently wearable armour.";
+            return Options.language == lang_t::KO ? "지금 착용할 수 있는 방어구가 없어." : "You aren't carrying any currently wearable armour.";
         else
-            return "You aren't carrying any wearable armour.";
+            return Options.language == lang_t::KO ? "착용할 수 있는 방어구가 없어." : "You aren't carrying any wearable armour.";
     }
     case OSEL_UNIDENT:
-        return "You don't currently have any unidentified items.";
+        return Options.language == lang_t::KO ? "지금 미감정 아이템이 없어." : "You don't currently have any unidentified items.";
     case OSEL_ENCHANTABLE_ARMOUR:
-        return "You aren't carrying any armour which can be enchanted further.";
+        return Options.language == lang_t::KO ? "더 강화할 수 있는 방어구가 없어." : "You aren't carrying any armour which can be enchanted further.";
     case OBJ_CORPSES:
-        return "You don't have any corpses.";
+        return Options.language == lang_t::KO ? "시체가 없어." : "You don't have any corpses.";
     case OBJ_POTIONS:
-        return "You aren't carrying any potions.";
+        return Options.language == lang_t::KO ? "물약이 없어." : "You aren't carrying any potions.";
     case OBJ_SCROLLS:
-        return "You aren't carrying any scrolls.";
+        return Options.language == lang_t::KO ? "두루마리가 없어." : "You aren't carrying any scrolls.";
     case OBJ_BOOKS:
-        return "You don't have any books.";
+        return Options.language == lang_t::KO ? "책이 없어." : "You don't have any books.";
     case OBJ_WANDS:
-        return "You aren't carrying any wands.";
+        return Options.language == lang_t::KO ? "마법봉이 없어." : "You aren't carrying any wands.";
     case OBJ_JEWELLERY:
-        return "You aren't carrying any pieces of jewellery.";
+        return Options.language == lang_t::KO ? "장신구가 없어." : "You aren't carrying any pieces of jewellery.";
     case OSEL_AMULET:
-        return "You aren't carrying any amulets.";
+        return Options.language == lang_t::KO ? "목걸이가 없어." : "You aren't carrying any amulets.";
     case OSEL_JEWELLERY_OR_TALISMAN:
-        return "You aren't carrying any jewellery or talismans.";
+        return Options.language == lang_t::KO ? "장신구나 부적이 없어." : "You aren't carrying any jewellery or talismans.";
     case OSEL_LAUNCHING:
-        return "You aren't carrying any items that might be thrown or fired.";
+        return Options.language == lang_t::KO ? "던지거나 발사할 수 있는 아이템이 없어." : "You aren't carrying any items that might be thrown or fired.";
     case OSEL_EVOKABLE:
         if (you.get_mutation_level(MUT_NO_ARTIFICE)) // iffy
-            return "You cannot evoke magical items.";
-        return "You aren't carrying any items that you can evoke.";
+            return Options.language == lang_t::KO ? "마법 아이템을 발동할 수 없어." : "You cannot evoke magical items.";
+        return Options.language == lang_t::KO ? "발동할 수 있는 아이템이 없어." : "You aren't carrying any items that you can evoke.";
     case OSEL_CURSED_WORN:
-        return "None of your equipped items are cursed.";
+        return Options.language == lang_t::KO ? "장착 중인 아이템에는 저주가 없어." : "None of your equipped items are cursed.";
     case OSEL_WORN_ARMOUR:
-        return "You aren't wearing any pieces of armour.";
+        return Options.language == lang_t::KO ? "착용한 방어구가 없어." : "You aren't wearing any pieces of armour.";
     case OSEL_WORN_JEWELLERY_OR_TALISMAN:
-        return "You aren't wearing any rings, amulets, or talismans.";
+        return Options.language == lang_t::KO ? "착용한 반지나 목걸이, 부적이 없어." : "You aren't wearing any rings, amulets, or talismans.";
     case OSEL_WORN_EQUIPABLE:
-        return "You aren't wearing anything.";
+        return Options.language == lang_t::KO ? "아무것도 착용하지 않았어." : "You aren't wearing anything.";
     case OSEL_EQUIPABLE:
-        return "You aren't carrying anything that can be equipped.";
+        return Options.language == lang_t::KO ? "장착할 수 있는 아이템이 없어." : "You aren't carrying anything that can be equipped.";
     case OSEL_BRANDABLE_WEAPON:
-        return "You aren't carrying any weapons that can be branded.";
+        return Options.language == lang_t::KO ? "속성을 부여할 수 있는 무기가 없어." : "You aren't carrying any weapons that can be branded.";
     case OSEL_ENCHANTABLE_WEAPON:
-        return "You aren't carrying any weapons that can be enchanted.";
+        return Options.language == lang_t::KO ? "강화할 수 있는 무기가 없어." : "You aren't carrying any weapons that can be enchanted.";
     case OSEL_ARTEFACT_WEAPON:
-        return "You aren't carrying any artefact melee weapons.";
+        return Options.language == lang_t::KO ? "아티팩트 근접 무기가 없어." : "You aren't carrying any artefact melee weapons.";
     case OSEL_CURSABLE:
-        return "You aren't wearing any cursable items.";
+        return Options.language == lang_t::KO ? "저주할 수 있는 착용 아이템이 없어." : "You aren't wearing any cursable items.";
     case OSEL_UNCURSED_WORN_RINGS:
-        return "You aren't wearing any uncursed rings.";
+        return Options.language == lang_t::KO ? "착용 중인 저주받지 않은 반지가 없어." : "You aren't wearing any uncursed rings.";
     case OSEL_QUIVER_ACTION:
-        return "You don't have any quiverable items.";
+        return Options.language == lang_t::KO ? "투척·발사 장비로 지정할 아이템이 없어." : "You don't have any quiverable items.";
     }
 
-    return "You aren't carrying any such object.";
+    return Options.language == lang_t::KO ? "해당하는 아이템을 가지고 있지 않아." : "You aren't carrying any such object.";
 }
 
 void InvMenu::load_inv_items(int item_selector, int excluded_slot,
