@@ -1173,8 +1173,61 @@ const char* rune_type_name(short p)
     }
 }
 
+static const char* _ko_staff_type_label(stave_type type)
+{
+    switch (type)
+    {
+#if TAG_MAJOR_VERSION == 34
+    case STAFF_WIZARDRY: return "마법 숙련";
+    case STAFF_POWER: return "마력";
+    case STAFF_ENERGY: return "에너지";
+    case STAFF_ENCHANTMENT: return "부여술";
+    case STAFF_SUMMONING: return "소환술";
+    case STAFF_CHANNELLING: return "마력 전달";
+#endif
+    case STAFF_FIRE: return "화염";
+    case STAFF_COLD: return "냉기";
+    case STAFF_ALCHEMY: return "연금술";
+    case STAFF_NECROMANCY: return "강령술";
+    case STAFF_CONJURATION: return "파괴술";
+    case STAFF_AIR: return "공기";
+    case STAFF_EARTH: return "대지";
+    default: return nullptr;
+    }
+}
+
+static const char* _ko_gem_label(gem_type type)
+{
+    switch (type)
+    {
+    case GEM_DUNGEON: return "연기빛";
+#if TAG_MAJOR_VERSION == 34
+    case GEM_ORC: return "반짝이는";
+#endif
+    case GEM_ELF: return "아른거리는";
+    case GEM_LAIR: return "흙빛";
+    case GEM_SWAMP: return "이끼빛";
+    case GEM_SHOALS: return "푸른빛";
+    case GEM_SNAKE: return "옥빛";
+    case GEM_SPIDER: return "유백색";
+    case GEM_SLIME: return "별빛";
+    case GEM_VAULTS: return "빛나는";
+    case GEM_CRYPT: return "상아빛";
+    case GEM_TOMB: return "핏빛";
+    case GEM_DEPTHS: return "한밤의";
+    case GEM_ZOT: return "프리즘빛";
+    default: return nullptr;
+    }
+}
+
 static string gem_type_name(gem_type g)
 {
+    if (Options.language == lang_t::KO)
+    {
+        const char* name = _ko_gem_label(g);
+        if (name)
+            return string(name) + " 보석";
+    }
     return string(gem_adj(g)) + " gem";
 }
 
@@ -2402,8 +2455,11 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             if (identified)
             {
                 if (ko_display)
-                    buff << staff_type_name(static_cast<stave_type>(sub_type))
+                {
+                    const char* label = _ko_staff_type_label(static_cast<stave_type>(sub_type));
+                    buff << (label ? label : staff_type_name(static_cast<stave_type>(sub_type)))
                          << " 지팡이 ";
+                }
                 else
                     buff << staff_type_name(static_cast<stave_type>(sub_type))
                          << " staff";
@@ -2424,8 +2480,11 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             buff << (ko_display ? "지팡이" : "staff");
         }
         else if (ko_display)
-            buff << staff_type_name(static_cast<stave_type>(item_typ))
+        {
+            const char* label = _ko_staff_type_label(static_cast<stave_type>(item_typ));
+            buff << (label ? label : staff_type_name(static_cast<stave_type>(item_typ)))
                  << " 지팡이";
+        }
         else
             buff << "staff of " << staff_type_name(static_cast<stave_type>(item_typ));
 
@@ -2461,6 +2520,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         if (sub_type == NUM_GEM_TYPES)
             buff << (Options.language == lang_t::KO && !dbname && !qualname
                      ? "보석" : "gem");
+        else if (Options.language == lang_t::KO && (dbname || qualname))
+            buff << gem_adj(static_cast<gem_type>(sub_type)) << " gem";
         else
             buff << gem_type_name(static_cast<gem_type>(sub_type));
         break;
