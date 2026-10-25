@@ -221,3 +221,183 @@ _magic_name_
 현자
 
 전투 마법사
+%%%%
+_anger_possessive_
+
+극도로 분노한 자
+
+광인
+
+작열하는 자
+
+격노한 자
+
+울부짖는 자
+
+횡설수설하는 자
+
+증오받는 자
+
+멸시받는 자
+
+혐오받는 자
+%%%%
+_strategy_name_
+
+방어
+
+공격을 통한 방어
+
+편의
+
+계략
+
+공격
+
+최적화
+
+압도적인 전력
+
+증원
+
+전략적 우위
+
+기만
+%%%%
+_valour_name_
+
+행동
+
+자기 보존의 힘
+
+양심
+
+용기
+
+대담함
+
+저항
+
+의무
+
+영원한 경계
+
+인내
+
+용맹
+
+명예
+
+불굴
+
+강직
+
+신중함
+
+목적
+
+임기응변
+
+책임
+
+끈기
+
+진정한 근성
+
+용감함
+
+경계심
+%%%%
+_justice_name_
+
+사면
+
+우발적 처형
+
+눈먼 정의
+
+사형
+
+태형
+
+잔혹한 정의
+
+무죄 방면
+
+참작할 사정
+
+거짓 고발
+
+용서
+
+죄책
+
+무죄
+
+판결
+
+형벌
+
+자비로운 관용
+
+불법 행위
+
+시련에 의한 재판
+
+부당한 투옥
+%%%%
+_anger_name_
+
+@_anger_quality_@
+
+w:3
+
+@_anger_possessive_@
+%%%%
+_strategy_or_justice_
+
+w:2
+
+@_strategy_name_@
+
+w:4
+
+@_valour_name_@
+
+w:3
+
+@_justice_name_@
+%%%%
+_power_or_anger_
+
+@_power_name_@
+
+w:7
+
+@_conflict_name_@
+
+w:7
+
+@_anger_name_@
+%%%%
+_philosophy_or_science_
+
+@_philosophy_name_@
+
+@_science_name_@
+%%%%
+_weapon_animal_
+
+@_arachnid_name_@
+
+@_crustacean_name_@
+
+@_fish_name_@
+
+@_amphibian_name_@
+
+@_reptile_name_@
+
+@_bird_name_@
+
+@_mammal_name_@
