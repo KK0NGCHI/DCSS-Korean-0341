@@ -713,6 +713,15 @@ static const char* wand_secondary_string(uint32_t s)
     COMPILE_CHECK(ARRAYSZ(secondary_strings) == NDSC_WAND_SEC);
     return secondary_strings[s % NDSC_WAND_SEC];
 }
+static const char* _ko_wand_secondary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "", "보석이 박힌 ", "굽은 ", "긴 ", "짧은 ", "꼬인 ", "구부러진 ", "갈라진 ", "윤이 나는 ", "검게 그을린 ", "끝이 가늘어지는 ", "빛나는 ", "낡은 ", "광물이 붙은 ", "룬이 새겨진 ", "뾰족한 "
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_WAND_SEC);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 static const char* wand_primary_string(uint32_t p)
 {
@@ -723,6 +732,15 @@ static const char* wand_primary_string(uint32_t p)
     COMPILE_CHECK(ARRAYSZ(primary_strings) == NDSC_WAND_PRI);
     return primary_strings[p % NDSC_WAND_PRI];
 }
+static const char* _ko_wand_primary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "철제", "황동제", "뼈로 만든", "목제", "구리제", "금제", "은제", "청동제", "상아제", "유리제", "납제", "형광"
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_WAND_PRI);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 static const char* _ko_potion_name(int subtype)
 {
@@ -1050,6 +1068,15 @@ static const char* ring_secondary_string(uint32_t s)
     COMPILE_CHECK(ARRAYSZ(secondary_strings) == NDSC_JEWEL_SEC);
     return secondary_strings[s % NDSC_JEWEL_SEC];
 }
+static const char* _ko_ring_secondary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "", "보석이 박힌 ", "빛나는 ", "관 모양의 ", "룬이 새겨진 ", "검게 그을린 ", "긁힌 ", "작은 ", "큰 ", "꼬인 ", "윤이 나는 ", "홈이 파인 ", "울퉁불퉁한 "
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_JEWEL_SEC);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 static const char* ring_primary_string(uint32_t p)
 {
@@ -1063,6 +1090,15 @@ static const char* ring_primary_string(uint32_t p)
     COMPILE_CHECK(ARRAYSZ(primary_strings) == NDSC_JEWEL_PRI);
     return primary_strings[p % NDSC_JEWEL_PRI];
 }
+static const char* _ko_ring_primary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "목제", "은제", "금제", "철제", "강철제", "전기석", "황동제", "구리제", "화강암", "상아", "루비", "대리석", "옥", "유리", "마노", "뼈", "다이아몬드", "에메랄드", "감람석", "석류석", "오팔", "진주", "산호", "사파이어", "카보숑", "도금", "오닉스", "청동", "월장석"
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_JEWEL_PRI);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 static const char* amulet_secondary_string(uint32_t s)
 {
@@ -1074,6 +1110,15 @@ static const char* amulet_secondary_string(uint32_t s)
     COMPILE_CHECK(ARRAYSZ(secondary_strings) == NDSC_JEWEL_SEC);
     return secondary_strings[s % NDSC_JEWEL_SEC];
 }
+static const char* _ko_amulet_secondary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "움푹 팬 ", "네모난 ", "두꺼운 ", "얇은 ", "룬이 새겨진 ", "검게 그을린 ", "빛나는 ", "작은 ", "큰 ", "꼬인 ", "아주 작은 ", "삼각형의 ", "울퉁불퉁한 "
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_JEWEL_SEC);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 static const char* amulet_primary_string(uint32_t p)
 {
@@ -1087,6 +1132,15 @@ static const char* amulet_primary_string(uint32_t p)
     COMPILE_CHECK(ARRAYSZ(primary_strings) == NDSC_JEWEL_PRI);
     return primary_strings[p % NDSC_JEWEL_PRI];
 }
+static const char* _ko_amulet_primary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "사파이어", "지르코늄", "금제", "에메랄드", "석류석", "청동", "황동", "구리", "루비", "황수정", "뼈", "백금", "옥", "형광", "자수정", "카메오", "진주", "푸른색", "감람석", "벽옥", "다이아몬드", "공작석", "강철", "카보숑", "은", "동석", "청금석", "세공 장식", "녹주석"
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_JEWEL_PRI);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 const char* rune_type_name(short p)
 {
@@ -1476,6 +1530,15 @@ static const char* staff_secondary_string(uint32_t s)
     COMPILE_CHECK(NDSC_STAVE_SEC == ARRAYSZ(secondary_strings));
     return secondary_strings[s % ARRAYSZ(secondary_strings)];
 }
+static const char* _ko_staff_secondary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "구부러진 ", "울퉁불퉁한 ", "기묘한 ", "옹이진 ", "가느다란 ", "휘어진 ", "뒤틀린 ", "두꺼운 ", "긴 ", "짧은 "
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_STAVE_SEC);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 static const char* staff_primary_string(uint32_t p)
 {
@@ -1485,6 +1548,15 @@ static const char* staff_primary_string(uint32_t p)
     COMPILE_CHECK(NDSC_STAVE_PRI == ARRAYSZ(primary_strings));
     return primary_strings[p % ARRAYSZ(primary_strings)];
 }
+static const char* _ko_staff_primary_string(uint32_t n)
+{
+    static const char* const names[] = {
+        "빛나는 ", "보석이 박힌 ", "룬이 새겨진 ", "연기가 나는 "
+    };
+    COMPILE_CHECK(ARRAYSZ(names) == NDSC_STAVE_PRI);
+    return names[n % ARRAYSZ(names)];
+}
+
 
 const char *base_type_string(const item_def &item)
 {
@@ -2084,8 +2156,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
         else
         {
-            buff << wand_secondary_string(subtype_rnd / NDSC_WAND_PRI)
-                 << wand_primary_string(subtype_rnd % NDSC_WAND_PRI)
+            buff << (Options.language == lang_t::KO && !dbname && !qualname ? _ko_wand_secondary_string(subtype_rnd / NDSC_WAND_PRI) : wand_secondary_string(subtype_rnd / NDSC_WAND_PRI))
+                 << (Options.language == lang_t::KO && !dbname && !qualname ? _ko_wand_primary_string(subtype_rnd % NDSC_WAND_PRI) : wand_primary_string(subtype_rnd % NDSC_WAND_PRI))
                  << " wand";
         }
 
@@ -2248,14 +2320,14 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         {
             if (jewellery_is_amulet(*this))
             {
-                buff << amulet_secondary_string(subtype_rnd / NDSC_JEWEL_PRI)
-                     << amulet_primary_string(subtype_rnd % NDSC_JEWEL_PRI)
+                buff << (ko_display ? _ko_amulet_secondary_string(subtype_rnd / NDSC_JEWEL_PRI) : amulet_secondary_string(subtype_rnd / NDSC_JEWEL_PRI))
+                     << (ko_display ? _ko_amulet_primary_string(subtype_rnd % NDSC_JEWEL_PRI) : amulet_primary_string(subtype_rnd % NDSC_JEWEL_PRI))
                      << (ko_display ? " 목걸이" : " amulet");
             }
             else  // i.e., a ring
             {
-                buff << ring_secondary_string(subtype_rnd / NDSC_JEWEL_PRI)
-                     << ring_primary_string(subtype_rnd % NDSC_JEWEL_PRI)
+                buff << (ko_display ? _ko_ring_secondary_string(subtype_rnd / NDSC_JEWEL_PRI) : ring_secondary_string(subtype_rnd / NDSC_JEWEL_PRI))
+                     << (ko_display ? _ko_ring_primary_string(subtype_rnd % NDSC_JEWEL_PRI) : ring_primary_string(subtype_rnd % NDSC_JEWEL_PRI))
                      << (ko_display ? " 반지" : " ring");
             }
         }
@@ -2345,8 +2417,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         {
             if (!basename)
             {
-                buff << staff_secondary_string(subtype_rnd / NDSC_STAVE_PRI)
-                     << staff_primary_string(subtype_rnd % NDSC_STAVE_PRI);
+                buff << (ko_display ? _ko_staff_secondary_string(subtype_rnd / NDSC_STAVE_PRI) : staff_secondary_string(subtype_rnd / NDSC_STAVE_PRI))
+                     << (ko_display ? _ko_staff_primary_string(subtype_rnd % NDSC_STAVE_PRI) : staff_primary_string(subtype_rnd % NDSC_STAVE_PRI));
             }
 
             buff << (ko_display ? "지팡이" : "staff");
