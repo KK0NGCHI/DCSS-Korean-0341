@@ -740,7 +740,7 @@ w:2
 
 @_the_book_magic_@ 입문 101
 
-@_beginners_@을 위한 @_the_book_magic_@
+@_beginners_@ 대상 @_the_book_magic_@
 
 @_the_book_magic_@ 제@level@부
 
@@ -788,7 +788,7 @@ w:2
 
 w:2
 
-@_the_book_magic_@을 배우고 싶다면
+@_the_book_magic_@ 배우기 안내
 
 @_the_book_magic_@ 시작하기
 
@@ -940,4 +940,4 @@ w:5
 
 w:1
 
-@_the_powerful_caster_@이 @player_name@에게 보내는 @book_noun@
+@_the_powerful_caster_@ 명의로 @player_name@에게 전하는 @book_noun@
