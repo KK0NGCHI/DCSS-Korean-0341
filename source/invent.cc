@@ -1152,8 +1152,73 @@ bool in_inventory(const item_def &i)
     return i.pos == ITEM_IN_INVENTORY;
 }
 
+static const char* _ko_item_class_name(int type, bool terse)
+{
+    if (terse)
+    {
+        switch (type)
+        {
+        case OBJ_GOLD: return "금화";
+        case OBJ_WEAPONS: return "무기";
+        case OBJ_MISSILES: return "투사체";
+        case OBJ_ARMOUR: return "방어구";
+        case OBJ_WANDS: return "마법봉";
+        case OBJ_SCROLLS: return "두루마리";
+        case OBJ_JEWELLERY: return "장신구";
+        case OBJ_POTIONS: return "물약";
+        case OBJ_BOOKS: return "책";
+        case OBJ_STAVES: return "마법 지팡이";
+        case OBJ_MISCELLANY: return "기타";
+        case OBJ_ORBS: return "오브";
+        case OBJ_CORPSES: return "시체";
+        case OBJ_RUNES: return "룬";
+        case OBJ_GEMS: return "보석";
+        case OBJ_TALISMANS: return "부적";
+        case OBJ_GIZMOS: return "장치";
+        case OBJ_BAUBLES: return "장신품";
+#if TAG_MAJOR_VERSION == 34
+        case OBJ_FOOD: return "음식";
+        case OBJ_RODS: return "막대";
+#endif
+        default: return nullptr;
+        }
+    }
+    switch (type)
+    {
+    case OBJ_GOLD: return "금화";
+    case OBJ_WEAPONS: return "손에 드는 무기";
+    case OBJ_MISSILES: return "투사체";
+    case OBJ_ARMOUR: return "방어구";
+    case OBJ_WANDS: return "마법봉";
+    case OBJ_SCROLLS: return "두루마리";
+    case OBJ_JEWELLERY: return "장신구";
+    case OBJ_POTIONS: return "물약";
+    case OBJ_BOOKS: return "책";
+    case OBJ_STAVES: return "마법 지팡이";
+    case OBJ_ORBS: return "힘의 오브";
+    case OBJ_MISCELLANY: return "기타 아이템";
+    case OBJ_CORPSES: return "시체";
+    case OBJ_RUNES: return "조트의 룬";
+    case OBJ_GEMS: return "고대 보석";
+    case OBJ_TALISMANS: return "부적";
+    case OBJ_GIZMOS: return "장치";
+    case OBJ_BAUBLES: return "장신품";
+#if TAG_MAJOR_VERSION == 34
+    case OBJ_FOOD: return "음식";
+    case OBJ_RODS: return "막대";
+#endif
+    default: return nullptr;
+    }
+}
+
 const char *item_class_name(int type, bool terse)
 {
+    if (Options.language == lang_t::KO)
+    {
+        const char* label = _ko_item_class_name(type, terse);
+        if (label)
+            return label;
+    }
     if (terse)
     {
         switch (type)
@@ -1198,6 +1263,26 @@ const char *item_class_name(int type, bool terse)
 
 const char* equip_slot_name(equipment_slot type, bool terse)
 {
+    if (Options.language == lang_t::KO)
+    {
+        switch (type)
+        {
+        case SLOT_WEAPON: return "무기";
+        case SLOT_CLOAK: return "망토";
+        case SLOT_HELMET: return "투구";
+        case SLOT_GLOVES: return "장갑";
+        case SLOT_BOOTS: return "장화";
+        case SLOT_WEAPON_OR_OFFHAND:
+        case SLOT_OFFHAND: return "보조 손";
+        case SLOT_BODY_ARMOUR: return terse ? "방어구" : "몸통 방어구";
+        case SLOT_BARDING: return "마갑";
+        case SLOT_RING: return "반지";
+        case SLOT_AMULET: return "목걸이";
+        case SLOT_GIZMO: return "장치";
+        case SLOT_HAUNTED_AUX: return "방어구";
+        default: return "";
+        }
+    }
     switch (type)
     {
     case SLOT_WEAPON:      return "Weapon";
