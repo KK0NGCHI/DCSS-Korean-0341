@@ -744,7 +744,7 @@ static const char* _ko_potion_name(int subtype)
     case POT_BERSERK_RAGE: return "광폭화";
     case POT_MUTATION: return "돌연변이";
     case POT_RESISTANCE: return "저항";
-    case POT_LIGNIFY: return "목화";
+    case POT_LIGNIFY: return "목질화";
     default: return nullptr;
     }
 }
@@ -2133,7 +2133,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 #endif
 
     case OBJ_SCROLLS:
-        if (Options.language == lang_t::KO)
+        if (Options.language == lang_t::KO && !dbname && !qualname)
         {
             if (basename)
                 buff << "두루마리";
