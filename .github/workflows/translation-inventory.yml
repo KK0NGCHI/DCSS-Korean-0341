@@ -1,12 +1,7 @@
 name: Translation source inventory
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'tools/dcss-extractor/scripts/full_inventory_v1.py'
-      - 'tools/dcss-extractor/scripts/triage_visible_v1.py'
-      - 'tools/dcss-extractor/scripts/test_triage_visible_v1.py'
-      - '.github/workflows/translation-inventory.yml'
+
 jobs:
   inventory:
     runs-on: ubuntu-latest
