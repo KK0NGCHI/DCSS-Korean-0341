@@ -680,7 +680,7 @@ w:20
 
 w:20
 
-"나의 @_ashenzari_object_@을 함께 나누자"
+"함께 나누는 나의 @_ashenzari_object_@"
 
 w:20
 
