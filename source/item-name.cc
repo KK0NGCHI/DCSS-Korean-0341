@@ -998,6 +998,41 @@ static const char* _jewellery_class_name(int jeweltype)
  * @param jeweltype     The jewellery_type of the item in question.
  * @return              The full name of the jewellery type in question.
  */
+static const char* _ko_jewellery_name(int subtype)
+{
+    switch (static_cast<jewellery_type>(subtype))
+    {
+    case RING_PROTECTION: return "보호";
+    case RING_PROTECTION_FROM_FIRE: return "화염 저항";
+    case RING_POISON_RESISTANCE: return "독 저항";
+    case RING_PROTECTION_FROM_COLD: return "냉기 저항";
+    case RING_SLAYING: return "살육";
+    case RING_SEE_INVISIBLE: return "투명 감지";
+    case RING_RESIST_CORROSION: return "부식 저항";
+    case RING_EVASION: return "회피";
+    case RING_STEALTH: return "은밀";
+    case RING_STRENGTH: return "힘";
+    case RING_DEXTERITY: return "민첩";
+    case RING_INTELLIGENCE: return "지능";
+    case RING_WIZARDRY: return "마법 숙련";
+    case RING_MAGICAL_POWER: return "마력";
+    case RING_FLIGHT: return "비행";
+    case RING_POSITIVE_ENERGY: return "음에너지 저항";
+    case RING_WILLPOWER: return "의지력";
+    case AMU_MANA_REGENERATION: return "마력 재생";
+    case AMU_ACROBAT: return "곡예";
+    case AMU_GUARDIAN_SPIRIT: return "수호 정령";
+    case AMU_FAITH: return "신앙";
+    case AMU_REFLECTION: return "반사";
+    case AMU_REGENERATION: return "재생";
+    case AMU_WILDSHAPE: return "야생 변이";
+    case AMU_CHEMISTRY: return "연금술";
+    case AMU_DISSIPATION: return "소산";
+    case AMU_NOTHING: return "무효";
+    default: return nullptr;
+    }
+}
+
 static string jewellery_type_name(int jeweltype)
 {
     return make_stringf("%s %s", _jewellery_class_name(jeweltype),
@@ -1649,6 +1684,13 @@ string weapon_brand_desc(const char *body, const item_def &weap,
     if (brand_name.empty())
         return body;
 
+    if (Options.language == lang_t::KO)
+    {
+        const brand_type brand = override_brand ? override_brand : get_weapon_brand(weap);
+        if (brand == SPWPN_NORMAL)
+            return body;
+        return make_stringf("%s (%s)", body, brand_name.c_str());
+    }
     if (terse)
         return make_stringf("%s (%s)", body, brand_name.c_str());
 
@@ -2025,7 +2067,12 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             if (!dbname && jewellery_has_pluses(*this))
                 buff << make_stringf("%+d ", plus);
 
-            buff << jewellery_type_name(item_typ);
+            const char* ko_name = Options.language == lang_t::KO && !dbname && !qualname
+                ? _ko_jewellery_name(item_typ) : nullptr;
+            if (ko_name)
+                buff << ko_name << (jewellery_is_amulet(*this) ? " 목걸이" : " 반지");
+            else
+                buff << jewellery_type_name(item_typ);
         }
         else
         {
