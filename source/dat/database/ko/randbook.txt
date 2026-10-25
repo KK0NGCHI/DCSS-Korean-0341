@@ -2475,3 +2475,237 @@ forgecraft adj
 가공된
 
 제련된
+%%%%
+highlevel Conjuration Earth owner
+
+디스파테르
+
+@Conjuration Earth owner@
+%%%%
+Conjuration Earth owner
+
+레후딥
+
+__NONE
+%%%%
+highlevel Conjuration Fire owner
+
+아스모데우스
+
+세레보브
+
+__NONE
+%%%%
+highlevel Conjuration Necromancy owner
+
+에레슈키갈
+
+__NONE
+%%%%
+highlevel Conjuration Summoning owner
+
+아스모데우스
+
+디스파테르
+
+__NONE
+%%%%
+Alchemy Earth owner
+
+록산
+
+__NONE
+%%%%
+highlevel Earth Summoning owner
+
+디스파테르
+
+__NONE
+%%%%
+highlevel Fire Summoning owner
+
+아스모데우스
+
+__NONE
+%%%%
+Fire Ice owner
+
+브이브이
+
+__NONE
+%%%%
+highlevel Alchemy Necromancy owner
+
+글루르크스 블로크
+
+__NONE
+%%%%
+Alchemy Necromancy owner
+
+시고투비
+
+__NONE
+%%%%
+highlevel Conjuration owner
+
+아스모데우스
+
+에레슈키갈
+
+디스파테르
+
+세레보브
+
+롬 로본
+
+w:5
+
+베후메트
+
+w:20
+
+@Conjuration owner@
+%%%%
+Conjuration owner
+
+레후딥
+
+이스켄데룬
+
+__NONE
+%%%%
+highlevel Earth owner
+
+디스파테르
+
+w:50
+
+@Earth owner@
+%%%%
+Earth owner
+
+요르그룬
+
+레후딥
+
+리
+
+레다
+
+록산
+
+__NONE
+%%%%
+highlevel Fire owner
+
+아스모데우스
+
+세레보브
+
+__NONE
+%%%%
+Ice owner
+
+오조쿠부
+
+__NONE
+%%%%
+Air owner
+
+구름의 마법사
+
+맥스웰
+
+니콜라
+
+__NONE
+%%%%
+highlevel Necromancy owner
+
+에레슈키갈
+
+글루르크스 블로크
+
+w:5
+
+키쿠바쿠드하
+
+w:40
+
+@Necromancy owner@
+%%%%
+Necromancy owner
+
+보르그뇨르
+
+시고투비
+
+쿠푸
+
+종굴드로크
+
+__NONE
+%%%%
+highlevel Alchemy owner
+
+글루르크스 블로크
+
+w:30
+
+@Alchemy owner@
+%%%%
+Alchemy owner
+
+앨리스테어
+
+시고투비
+
+올그렙
+
+에링야
+
+__NONE
+%%%%
+highlevel Summoning owner
+
+아스모데우스
+
+디스파테르
+
+므놀레그
+
+@Summoning owner@
+%%%%
+Summoning owner
+
+마라
+
+__NONE
+%%%%
+highlevel Translocation owner
+
+롬 로본
+
+w:20
+
+@Translocation owner@
+%%%%
+Translocation owner
+
+겔
+
+골루브리아
+
+__NONE
+%%%%
+Hexes owner
+
+야라
+
+w:5
+
+테르프시코레
+
+투키마
+
+__NONE
