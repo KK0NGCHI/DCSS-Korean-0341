@@ -692,3 +692,123 @@ else
 return "잠시 멈춰 얼굴에 묻은 피를 씻어 낸다."
 end
 }}
+%%%%
+gargoyle fruit cache
+
+@stone fruit cache@
+%%%%
+gargoyle meat cache
+
+@stone meat cache@
+%%%%
+gargoyle baked goods cache
+
+@stone baked goods cache@
+%%%%
+kobold fruit cache
+
+@carnivore fruit cache@
+%%%%
+kobold meat cache
+
+@short meat cache@
+%%%%
+kobold baked goods cache
+
+@carnivore baked goods cache@
+%%%%
+mummy fruit cache
+
+@inediate fruit cache@
+%%%%
+mummy meat cache
+
+@inediate meat cache@
+%%%%
+mummy baked goods cache
+
+@inediate baked goods cache@
+%%%%
+poltergeist fruit cache
+
+@inediate fruit cache@
+%%%%
+poltergeist meat cache
+
+@inediate meat cache@
+%%%%
+poltergeist baked goods cache
+
+@inediate baked goods cache@
+%%%%
+revenant fruit cache
+
+@inediate fruit cache@
+%%%%
+revenant meat cache
+
+@inediate meat cache@
+%%%%
+revenant baked goods cache
+
+@inediate baked goods cache@
+%%%%
+spriggan fruit cache
+
+@short fruit cache@
+%%%%
+troll fruit cache
+
+@oni fruit cache@
+%%%%
+troll baked goods cache
+
+@oni baked goods cache@
+%%%%
+death fruit cache
+
+@inediate fruit cache@
+%%%%
+death meat cache
+
+@inediate meat cache@
+%%%%
+death baked goods cache
+
+@inediate baked goods cache@
+%%%%
+pig fruit cache
+
+@short fruit cache@
+%%%%
+pig meat cache
+
+@short meat cache@
+%%%%
+pig baked goods cache
+
+@short baked goods cache@
+%%%%
+statue fruit cache
+
+@stone fruit cache@
+%%%%
+statue meat cache
+
+@stone meat cache@
+%%%%
+statue baked goods cache
+
+@stone baked goods cache@
+%%%%
+tree fruit cache
+
+@short fruit cache@
+%%%%
+tree meat cache
+
+@short meat cache@
+%%%%
+tree baked goods cache
+
+@short baked goods cache@
