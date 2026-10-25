@@ -733,3 +733,211 @@ _testament_noun_
 지혜서
 
 저술집
+%%%%
+starting level book
+
+w:2
+
+@_the_book_magic_@ 입문 101
+
+@_beginners_@을 위한 @_the_book_magic_@
+
+@_the_book_magic_@ 제@level@부
+
+@_the_book_magic_@ 제@level@권
+
+기초 주문 @book_name@
+
+@_the_book_magic_@ 첫걸음
+
+@_the_book_magic_@ 서설
+
+@_the_book_magic_@ 따라 하기
+
+@_the_book_magic_@ 머리말
+
+@_the_book_magic_@ 입문 과정
+
+@_the_book_magic_@ 기초 강좌
+
+@_the_book_magic_@ 개론
+
+w:2
+
+누구나 배우는 @_the_book_magic_@
+
+처음 배우는 @_the_book_magic_@
+
+@_the_book_magic_@ 시작하기
+
+@_the_book_magic_@ 맛보기
+
+초보를 위한 @_book_magic_@
+
+w:2
+
+@_beginners_@도 배우는 @_the_book_magic_@!
+
+@_the_book_magic_@ 첫걸음
+
+@_the_book_magic_@ 연습
+
+@_the_book_magic_@ 준비 과정
+
+간단한 @_book_magic_@
+
+w:2
+
+@_the_book_magic_@을 배우고 싶다면
+
+@_the_book_magic_@ 시작하기
+
+@_the_book_magic_@ 기초
+%%%%
+easy level book
+
+@_book_magic_@ 활용법
+
+@_the_book_magic_@ 그리고 당신
+
+@_the_book_magic_@ 계속 배우기
+
+단계별로 배우는 @_the_book_magic_@
+
+@_the_book_magic_@ 제@level@부
+
+@_the_book_magic_@ 제@level@권
+
+보충 주문 @book_name@
+
+@_the_book_magic_@ 기초 지침서
+
+@_the_book_magic_@ 초급 안내서
+
+@_the_book_magic_@ 이어 배우기
+
+쉬운 @_book_magic_@
+
+일상 속 @_book_magic_@
+
+더 많은 @_book_magic_@
+
+@_the_book_magic_@ 심화 탐구
+
+성공적인 @_book_magic_@ 실습
+
+일상의 @_book_magic_@
+
+w:2
+
+@_the_book_magic_@ 안내서, 끝에서 세 번째
+
+@_the_book_magic_@ 토대
+
+@_the_book_magic_@ 기본 원리
+
+w:2
+
+@_book_magic_@의 즐거움
+
+@_the_book_magic_@ 핵심
+%%%%
+moderate level book
+
+@_the_book_magic_@ 제@level@부
+
+@_the_book_magic_@ 제@level@권
+
+주문 @book_name@
+
+고급 @_book_magic_@
+
+@_the_book_magic_@ 심화 과정
+
+한층 더 깊은 @_book_magic_@
+
+숙련자를 위한 @_book_magic_@
+
+@_the_book_magic_@ 발전 과정
+
+@_the_book_magic_@ 다음 단계
+
+@_book_magic_@ 실력 높이기
+
+실용 @_book_magic_@
+
+@_book_magic_@과 함께 발전하기
+
+정교한 @_book_magic_@
+
+@_the_book_magic_@ 고급 안내서
+
+@_the_book_magic_@으로 가는 길
+
+w:2
+
+@_the_book_magic_@ 끝에서 두 번째 안내서
+
+@_book_magic_@ 제2과정
+
+쓸모 있는 @_book_magic_@
+
+w:2
+
+@_the_book_magic_@에 관한 또 다른 @book_noun@
+%%%%
+_difficult level book owner_
+
+@_the_book_magic_@ 제@level@부
+
+@_the_book_magic_@ 제@level@권
+
+최상급 주문 @book_name@
+
+@_the_book_magic_@ 완전 안내서
+
+@_the_book_magic_@ 통달하기
+
+@_the_book_magic_@의 정수
+
+@_the_book_magic_@ 최후의 @book_noun@
+
+@_the_book_magic_@ 최후의 @_book_noun_on_@
+
+@_the_book_magic_@의 @_last_or_lost_@ 비밀
+
+최대의 위험과 효용에 관한 @book_noun@
+
+@_book_magic_@의 비전
+
+@_the_book_magic_@의 최고 경지
+
+@_the_book_magic_@의 복잡한 이치
+
+@_the_book_magic_@ 궁극의 안내서
+
+@_the_book_magic_@ 완전 이해
+%%%%
+difficult level book
+
+w:50
+
+@_difficult level book owner_@
+
+@_the_powerful_caster_@의 @_last_or_lost_@ @book_noun@
+
+w:5
+
+@_the_powerful_caster_@의 @_the_book_magic_@
+
+w:5
+
+@_the_powerful_caster_@의 @_last_or_lost_@ @_testament_noun_@
+
+w:5
+
+@_the_powerful_caster_@의 @_occult_adjective_@ @_testament_noun_@
+
+w:1
+
+@_the_powerful_caster_@이 @player_name@에게 보내는 @book_noun@
