@@ -6,13 +6,13 @@ imp_taunt
 %%%%
 demon_taunt_special
 
-네 @body_or_spiritual_part@은 내 @meal@이 될 거야!
+네 @body_or_spiritual_part@, 오늘 내 식탁의 @meal@!
 
-@give_up@, 맛있어 보이는 @meal@ 녀석아!
+@give_up@, 이 @meal@ 같은 녀석아!
 
-@run_away@, @whilst_thou_can@!
+@whilst_thou_can@, @run_away@!
 
-네 @body_or_spiritual_part@을 @will_or_shall@ @feast_or_devour@ 거야!
+네 @body_or_spiritual_part@, @will_or_shall@ @feast_or_devour@ 거야!
 %%%%
 will_or_shall
 
