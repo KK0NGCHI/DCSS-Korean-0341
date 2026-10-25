@@ -789,3 +789,155 @@ w:2
 w:1
 
 @_graffiti_type_@ @_graffiti_obscenities_@
+%%%%
+_graffiti_changed_or_compared_religions_
+
+@_graffiti_author_any_@은 @random_god@을 버렸다
+
+@_graffiti_author_any_@은 @random_god@ 신앙을 떠났다
+
+@_graffiti_author_any_@은 @random_god@에게 개종했다
+
+@_graffiti_author_any_@은 @_graffiti_author_any_@보다 @_graffiti_religion_better_or_worse_@
+
+@_graffiti_author_any_@은 사실 무신론자다
+
+@_graffiti_author_any_@은 사실 무신론자가 아니다
+
+@_graffiti_author_any_@은 사실 @random_god@이다
+
+@_graffiti_author_any_@은 몰래 진을 숭배한다
+
+@_graffiti_author_any_@은 @random_god_chaotic@ 대신 진을 몰래 숭배한다
+
+@_graffiti_author_any_@은 몰래 @random_god_chaotic@을 숭배한다
+
+@_graffiti_author_any_@은 진 대신 @random_god_chaotic@을 몰래 숭배한다
+
+@_graffiti_author_any_@은 몰래 @random_god_good@을 숭배한다
+
+@_graffiti_author_any_@은 @random_god_evil@ 대신 @random_god_good@을 몰래 숭배한다
+
+@_graffiti_author_any_@은 몰래 @random_god_evil@을 숭배한다
+
+@_graffiti_author_any_@은 @random_god_good@ 대신 @random_god_evil@을 몰래 숭배한다
+
+w:1
+
+@_graffiti_author_any_@의 정체는 사실 @_graffiti_hailed_god_@이다
+
+w:1
+
+@_graffiti_author_any_@은 몰래 @_graffiti_hailed_god_@을 숭배한다
+%%%%
+_graffiti_religion_not_non-orc_or_orc_
+
+신들을 [찬양|모독]하는 내용
+
+@random_god@을 찬양하고 @random_god@을 모독하는 내용
+
+좀과 만물의 무작위성을 숭배하는 내용
+
+네멜렉스 조베와 다음 카드 덱이 가져올 행운을 기뻐하는 내용
+
+이레데렘눌과 불경한 모든 것을 찬양하는 내용
+
+고자그를 찬양하며 충분한 돈으로 무엇이든 살 수 있다고 주장하는 내용
+
+트로그를 찬양하며 피의 광분으로 앞길의 모든 것을 없앨 수 있다는 내용
+
+오카와루를 찬양하며 전사에게 필요한 동료는 오카와루뿐이라는 내용
+
+시프 무나를 찬양하며 노력하면 모든 마법을 익힐 수 있다는 내용
+
+베후멧을 찬양하며 무기로 삼은 마법이 승리의 열쇠라는 내용
+
+키쿠바쿠드하를 찬양하며 강령술이 온갖 살과 피를 쓸모 있는 도구로 바꾼다는 내용
+
+체이브리아도스를 찬양하며 느리되 꾸준하면 무엇이든 이길 수 있다는 내용
+
+마크레브에게 경의를 표하며 그가 내리는 지옥의 힘을 이야기하는 내용
+
+페다스와 자연의 지속적인 힘을 찬양하는 내용
+
+헤플리아클카나를 기리며 타인의 기억에 남는 자는 진정으로 죽지 않는다는 내용
+
+우스카요를 숭배하며 삶 자체가 복잡한 춤이라는 내용
+
+디스메노스를 숭배하며 [그림자|밤]의 다양한 능력을 이야기하는 내용
+
+우 지안 의회에 감사하며 규율이 위대함의 열쇠라고 주장하는 내용
+
+콰즈랄을 찬양하며 원소가 얼마나 유용한지 말하는 내용
+
+엘리빌론을 전파하며 세상의 평화가 필수라고 주장하는 내용
+
+아셴자리에게 감탄하며 저주와 속박이 지식으로 이어진다면 축복이라고 말하는 내용
+
+루에게 경의를 표하며 현실은 보이는 그대로가 아니라고 주장하는 내용
+
+빛나는 자를 찬양하며 명예롭게 악을 없애는 것이 필수라는 내용
+
+루고누에게 아첨하며 곧 심연의 세력이 만물을 지배하리라는 내용
+
+w:1
+
+이름 모를 신을 찬양하는 내용
+
+w:1
+
+@_graffiti_hailed_god_@을 그저 칭송하는 데 그치지 않고 크게 찬양하는 내용
+%%%%
+_graffiti_short_saying_
+
+@_graffiti_author_any_@이 여기에 왔다
+
+@_graffiti_author_any_@은 @_graffiti_author_any_@을(를) @_graffiti_loves_or_hates_@
+
+@_graffiti_author_any_@은 @_graffiti_author_any_@의 @_graffiti_relative_or_quality_@을(를) @_graffiti_loves_or_hates_@
+
+@_graffiti_author_any_@은 @_graffiti_life_or_death_@
+
+@_graffiti_author_any_@은 @_graffiti_wares_quality_@ 물건을 판다
+
+@_graffiti_author_any_@은 @_graffiti_author_any_@의 물건을 훔친다
+
+@_graffiti_author_any_@에게 일어난 일은 @_graffiti_happened_reason_@
+
+@_graffiti_author_any_@은 @_graffiti_duplicate_@으로 대체되었다
+
+@_graffiti_vengeance_@
+
+@_graffiti_changed_or_compared_religions_@
+
+모든 삶은 '플로그'에서 시작해 '플로그'로 끝난다
+
+w:2
+
+@_graffiti_changed_names_@
+%%%%
+_graffiti_vengeance_
+
+@_graffiti_author_any_@은 @_graffiti_author_any_@의 복수를 했다
+
+@_graffiti_author_any_@은 @_graffiti_vengeance_reason_@ 때문에 @graffiti_author_any@을 대신해 복수했다
+
+@_graffiti_author_any_@은 @_graffiti_author_any_@에게 복수를 맹세했다
+
+@_graffiti_author_any_@은 @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
+
+@_graffiti_author_any_@의 유령은 아직도 @_graffiti_author_any_@을 따라다닌다
+
+@_graffiti_author_any_@의 유령은 @_graffiti_vengeance_reason_@ 때문에 아직도 @_graffiti_author_any_@을 따라다닌다
+
+@_graffiti_author_orc_@은 @_graffiti_author_any_@의 복수를 했다
+
+@_graffiti_author_orc_@은 @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@의 복수를 했다
+
+@_graffiti_author_orc_@은 @_graffiti_author_any_@에게 복수를 맹세했다
+
+@_graffiti_author_orc_@은 @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
+
+@_graffiti_author_orc_@의 유령은 아직도 @_graffiti_author_any_@을 따라다닌다
+
+@_graffiti_author_orc_@의 유령은 @_graffiti_vengeance_reason_@ 때문에 아직도 @_graffiti_author_any_@을 따라다닌다
