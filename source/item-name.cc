@@ -661,6 +661,26 @@ const char* armour_ego_name(const item_def& item, bool terse)
     return special_armour_type_name(get_armour_ego_type(item), terse);
 }
 
+static const char* _ko_wand_name(int subtype)
+{
+    switch (subtype)
+    {
+    case WAND_FLAME: return "화염";
+    case WAND_PARALYSIS: return "마비";
+    case WAND_DIGGING: return "굴착";
+    case WAND_ICEBLAST: return "냉기 폭발";
+    case WAND_POLYMORPH: return "변신";
+    case WAND_CHARMING: return "매혹";
+    case WAND_ACID: return "산성";
+    case WAND_MINDBURST: return "정신 폭발";
+    case WAND_LIGHT: return "빛";
+    case WAND_QUICKSILVER: return "수은";
+    case WAND_ROOTS: return "뿌리";
+    case WAND_WARPING: return "공간 왜곡";
+    default: return nullptr;
+    }
+}
+
 static const char* _wand_type_name(int wandtype)
 {
     switch (wandtype)
@@ -1873,7 +1893,13 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
 
         if (identified)
-            buff << "wand of " << _wand_type_name(item_typ);
+        {
+            const char* ko_name = Options.language == lang_t::KO ? _ko_wand_name(item_typ) : nullptr;
+            if (ko_name)
+                buff << ko_name << " 마법봉";
+            else
+                buff << "wand of " << _wand_type_name(item_typ);
+        }
         else
         {
             buff << wand_secondary_string(subtype_rnd / NDSC_WAND_PRI)
