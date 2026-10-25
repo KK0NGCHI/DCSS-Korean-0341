@@ -2262,17 +2262,27 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 #endif
 
     case OBJ_STAVES:
+    {
+        const bool ko_display = Options.language == lang_t::KO
+                                && !dbname && !qualname;
         if (!terse && cursed())
-            buff << "cursed ";
+            buff << (ko_display ? "저주받은 " : "cursed ");
 
         if (is_artefact(*this) && !dbname)
         {
             if (identified)
-                buff << staff_type_name(static_cast<stave_type>(sub_type)) << " staff";
+            {
+                if (ko_display)
+                    buff << staff_type_name(static_cast<stave_type>(sub_type))
+                         << " 지팡이 ";
+                else
+                    buff << staff_type_name(static_cast<stave_type>(sub_type))
+                         << " staff";
+            }
             // TODO: crop long artefact names when not controlled by webtiles
             buff << get_artefact_name(*this, ident);
             if (!identified)
-                buff << "staff";
+                buff << (ko_display ? "지팡이" : "staff");
         }
         else if (!identified)
         {
@@ -2282,14 +2292,18 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                      << staff_primary_string(subtype_rnd % NDSC_STAVE_PRI);
             }
 
-            buff << "staff";
+            buff << (ko_display ? "지팡이" : "staff");
         }
+        else if (ko_display)
+            buff << staff_type_name(static_cast<stave_type>(item_typ))
+                 << " 지팡이";
         else
             buff << "staff of " << staff_type_name(static_cast<stave_type>(item_typ));
 
         if (cursed() && terse && !dbname && !qualname)
-            buff << " (curse)";
+            buff << (ko_display ? " (저주)" : " (curse)");
         break;
+    }
 
     // rearranged 15 Apr 2000 {dlb}:
     case OBJ_ORBS:
