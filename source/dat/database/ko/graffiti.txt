@@ -285,3 +285,371 @@ w:1
 w:1
 
 @_graffiti_hailed_god_@ 찬양 문구와 @_graffiti_author_any_@의 서명만 읽을 수 있는 @_writing_type_@ 낙서
+%%%%
+_graffiti_author_any_
+
+w:50
+
+@ancestor name@
+
+@_graffiti_author_orc_@
+
+w:2
+
+@_graffiti_author_bland_@
+
+w:2
+
+@RANDGEN@
+
+w:1
+
+@_rare_graffiti_author_any_@
+%%%%
+_graffiti_author_any_changeable_
+
+w:50
+
+@ancestor name@
+
+w:2
+
+@_graffiti_author_bland_@
+
+w:2
+
+@RANDGEN@
+%%%%
+_graffiti_author_any_changeable_non-randgen_
+
+w:50
+
+@ancestor name@
+
+w:2
+
+@_graffiti_author_bland_@
+%%%%
+_graffiti_author_any_non-orc_
+
+w:50
+
+@ancestor name@
+
+w:2
+
+@_graffiti_author_bland_@
+
+w:2
+
+@RANDGEN@
+
+w:1
+
+@_rare_graffiti_author_any_non-orc_@
+%%%%
+_rare_graffiti_author_any_
+
+@_rare_graffiti_author_ordinary_@
+
+w:2
+
+@_rare_graffiti_author_orc_@
+
+w:2
+
+@_rare_graffiti_author_title_@
+
+w:1
+
+@_rare_graffiti_author_god_@
+%%%%
+_rare_graffiti_author_any_non-orc_
+
+@_rare_graffiti_author_ordinary_@
+
+w:2
+
+@_rare_graffiti_author_title_@
+
+w:1
+
+@_rare_graffiti_author_god_@
+%%%%
+_pattern_type_
+
+@any_colour_pattern@
+
+@any_glowing_colour_pattern@
+%%%%
+_graffiti_class_any_
+
+@_graffiti_class_remedial_@
+
+w:2
+
+@_graffiti_class_master_@
+%%%%
+_graffiti_class_master_
+
+포미시드가 가르치는 발굴 고급 강좌
+
+[악마|임프]가 가르치는 모욕 고급 강좌
+
+[오우거|오니]가 가르치는 거대 몽둥이 활용 고급 강좌
+
+펠리드가 가르치는 맨손 전투 고급 강좌
+
+w:1
+
+익명의 낙서꾼이 가르치는 [미술|서예] 고급 강좌
+%%%%
+_graffiti_class_remedial_
+
+@_graffiti_professor_@이 가르치는 @random_skill@ 기초 보충 강좌
+
+@_graffiti_professor_magic_type_@ @_graffiti_professor_@이 가르치는 @random_skill_magic@ 보충 강좌
+
+@_graffiti_professor_mundane_type_@ @_graffiti_professor_@이 가르치는 @random_skill_mundane@ 보충 강좌
+
+w:2
+
+@_graffiti_professor_evocations_type_@ @_graffiti_professor_@이 가르치는 발동술 보충 강좌
+
+w:2
+
+@_graffiti_professor_invocations_type_@ @_graffiti_professor_@이 가르치는 기도술 보충 강좌
+
+w:2
+
+@_graffiti_professor_shapeshifting_type_@ @_graffiti_professor_@이 가르치는 변신술 보충 강좌
+
+w:2
+
+@_graffiti_professor_necromancy_type_@ @_graffiti_professor_@이 가르치는 강령술 보충 강좌
+
+w:2
+
+@_graffiti_professor_necromancy_type_@ @_graffiti_professor_@이 가르치는 @random_skill_magic@ 보충 강좌
+%%%%
+_graffiti_hailed_god_
+
+좀
+
+w:2
+
+이름 모를 신
+
+w:1
+
+@_rare_graffiti_author_god_@
+
+w:1
+
+치즈의 힘
+
+w:1
+
+팬케이크로 가득한 수레
+%%%%
+_graffiti_happened_reason_
+
+사고였다
+
+우연이었다
+
+우연이지만 @_graffiti_author_any_@은 우연을 믿지 않는다
+
+은폐 공작이었다
+
+희극이었다
+
+누명이었다
+
+실수였다
+
+비극적인 촌극이었다
+
+다른 이들에게 주는 경고였다
+
+신들의 뜻을 거스른 일이었다
+
+완전히 무작위였다
+
+의도적인 일이었다
+
+마땅한 일이었다
+
+정당한 일이었다
+
+필요한 일이었다
+
+결코 사고가 아니었다
+
+결코 실수가 아니었다
+
+더 큰 음모의 일부였다
+
+'플로그' 음모단의 소행이었다
+
+스스로 초래한 일이었다
+
+신들의 뜻이었다
+
+부당한 일이었다
+
+합당하지 않은 일이었다
+
+정의롭지 못한 일이었다
+
+불필요한 일이었다
+
+상상조차 할 수 없는 일이었다
+%%%%
+_graffiti_professor_
+
+@_graffiti_author_any_changeable_@
+
+w:2
+
+@_graffiti_author_orc_@
+
+w:1
+
+@_rare_graffiti_author_any_@ (라는 소문)
+%%%%
+_graffiti_relative_or_quality_
+
+모든 동료
+
+혈통
+
+자식
+
+자녀들
+
+씨족
+
+민첩성
+
+종족 전체
+
+가족
+
+친구
+
+친구들
+
+신
+
+지능
+
+연인
+
+연인들
+
+짝
+
+짝들
+
+부모
+
+부모들
+
+성격
+
+배우자
+
+배우자들
+
+힘
+%%%%
+_graffiti_religion_non-orc_
+
+진과 진의 율법을 찬양하는 내용
+
+진을 찬양하며 율법을 따르는 중요성을 설파하는 내용
+
+진을 찬양하며 율법 위반자에게 벌이 마땅하다고 주장하는 내용
+
+진을 찬양하면서도 낙서가 불법일 수 있다고 경고하는 내용
+%%%%
+_graffiti_religion_orc_
+
+베오그와 참된 오크다움을 전파하는 내용
+
+베오그의 구세주가 곧 오리라고 선언하는 내용
+
+다른 신들이 외면할 때 구원을 준 베오그에게 감사하는 내용
+
+다른 신들이 등을 돌릴 때 베오그는 도와준다는 내용
+
+베오그는 자신들의 편이지 이단 오크들의 편이 아니라는 내용
+%%%%
+_graffiti_rumour_
+
+조트의 오브의 힘을 추측하는 내용
+
+조트의 오브가 모두를 [구할|파멸시킬] 것이라는 소문
+
+조트의 오브는 사실 조트의 [정육면체|알|피라미드]라는 주장
+
+여기에서 조트의 오브까지 바로 가는 비밀 통로가 있다는 소문
+
+세계가 끝나는 날까지 날짜를 세는 글
+
+[삶|언데드의 삶]의 의미를 안다는 주장
+
+전설 속 [동굴 예티|죽음의 쿼카|거대 겨울잠쥐]를 발견했다는 주장
+
+'플로그' 음모단이 곳곳에 그 단어를 숨기는 이유에 관한 암시
+%%%%
+_graffiti_species_
+
+코글린이 아닌 종족에게 코글린 공학이 얼마나 기이한지 한탄하는 내용
+
+한 번에 무기 3개를 쥘 수 있게 해 준 실종된 코글린 시제품 외골격 전설
+
+바라킴이 신들에게 반기를 든 이유에 관한 추측
+
+뼈 없는 종족에서도 망령이 생겨날 수 있는지 궁금해하는 내용
+
+트로그가 죽은 광전사의 망령 출현을 막는지 궁금해하는 내용
+
+고블린의 기원을 안다는 주장
+
+코볼드의 진짜 기원을 안다는 주장
+
+동굴 오크들의 조상이 받은 박해에 관한 기록
+
+어떤 신들은 사실 오니를 섬긴다는 주장
+
+언덕 드워프가 아직 살아 있다는 주장
+
+마지막 진흙 엘프에게 무슨 일이 있었는지에 관한 추측
+
+노움은 실존하지만 숨는 데 매우 능숙하다는 주장
+%%%%
+_graffiti_unique_comment_
+
+카산드라는 그만 부정적으로 굴어야 한다는 주장
+
+미친 이우프는 말이 [너무 안|너무 잘] 통하지 않도록 해야 한다는 주장
+
+도널드는 불평 좀 그만하고 입을 다물어야 한다는 주장
+
+지그문트는 낫을 내려놓아야 한다는 주장
+
+에드먼드는 자신을 너무 대단하게 여기지 말아야 한다는 주장
+
+스프로즈가 진짜 벌을 기계 벌로 대체하려다 지나쳤다는 주장
+
+로빈이 어떻게 그렇게 세게 던질 수 있는지에 관한 의문
+
+테런스가 왜 은퇴 생활을 던전에서 보내려는지에 관한 의문
+
+도완과 듀베사가 실은 세쌍둥이이고 형제가 하나 더 있는지에 관한 의문
+
+이집이 마법봉 외에 무엇을 만들 수 있는지에 관한 의문
+
+예레미야의 주인이 누구인지에 관한 추측
