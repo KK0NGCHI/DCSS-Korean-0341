@@ -1,0 +1,1039 @@
+# Partial Korean graffiti generator vocabulary. Composition requires Korean grammar QA.
+%%%%
+_writing_adj_
+
+각진
+
+네모난
+
+굵은
+
+굽이치는
+
+흐르는 듯한
+
+삐죽삐죽한
+
+맥동하는
+
+시시각각 바뀌는
+
+구불구불한
+
+비스듬한
+
+거미줄 같은
+
+소용돌이치는
+
+고동치는
+
+꿈틀거리는
+
+뒤틀리는
+%%%%
+_writing_noun_
+
+이진 코드
+
+문자
+
+설형문자
+
+도형
+
+상형 기호
+
+상형문자
+
+표의문자
+
+글자
+
+인쇄 문자
+
+룬 문자
+
+휘갈겨 쓴 글씨
+
+인장 기호
+
+상징
+
+텍스트
+
+글씨
+%%%%
+_graffiti_duplicate_
+
+복제체
+
+원본과 구별할 수 없는 복제체
+
+사칭꾼
+
+다른 현실에서 온 사칭꾼
+
+변신술사
+%%%%
+_graffiti_life_or_death_
+
+죽어 마땅하다
+
+언데드가 되어 마땅하다
+
+살아 마땅하다
+
+죽었다
+
+언데드가 되었다
+
+살아 있다
+%%%%
+_graffiti_loves_or_hates_
+
+저주한다
+
+옹호한다
+
+증오한다
+
+모욕한다
+
+사랑한다
+
+찬양한다
+%%%%
+_graffiti_obscenities_
+
+온갖 외설스러운 말이 적힌
+
+w:1
+
+처음 보는 기상천외한 외설스러운 말이 적힌
+%%%%
+_graffiti_professor_evocations_type_
+
+발명가
+
+공작가
+%%%%
+_graffiti_professor_invocations_type_
+
+성직자
+
+대사제
+
+사제
+
+신학자
+%%%%
+_graffiti_professor_magic_type_
+
+마법사
+
+주술사
+
+주문 시전자
+
+마도사
+%%%%
+_graffiti_professor_mundane_type_
+
+기사
+
+노련한 병사
+
+전쟁군주
+
+전사
+%%%%
+_graffiti_professor_necromancy_type_
+
+죽음의 마법사
+
+강령술사
+%%%%
+_graffiti_professor_shapeshifting_type_
+
+변신술사
+
+탈리스만술사
+%%%%
+_graffiti_religion_better_or_worse_
+
+신앙심이 덜 깊은
+
+신앙심이 더 깊은
+
+w:1
+
+더 철저한 무신론자
+
+w:1
+
+덜 철저한 무신론자
+%%%%
+_graffiti_wares_quality_
+
+저급한
+
+고품질의
+
+품질이 낮은
+
+평범한
+
+우수한
+%%%%
+_graffiti_author_bland_
+
+@bland name@
+
+w:2
+
+@bland name@ (그 사람이 아니라)
+
+w:2
+
+@bland name@ (다른 동명이인)
+
+w:2
+
+@bland name@ (그래, 바로 그 사람)
+%%%%
+_graffiti_author_orc_
+
+오크 @any orc name@
+%%%%
+_rare_graffiti_author_god_
+
+신 우그
+%%%%
+_rare_graffiti_author_orc_
+
+오크 스파르토르쿠스
+%%%%
+_rare_graffiti_author_ordinary_
+
+코볼드 더웬트
+
+고블린 즐라즈
+
+오니 프니브
+
+엘프 베시온
+
+임프 프로보프
+%%%%
+_rare_graffiti_author_title_
+
+킬로이
+
+위대한 가르크
+
+비할 데 없는 플로그
+
+죽은 웬델
+
+꿈의 비행 부인
+%%%%
+_writing_style_
+
+@any_colour@
+
+@_writing_adj_@ @any_colour@
+
+@any_glowing_colour@
+%%%%
+_writing_type_
+
+@_writing_style_@ @_writing_noun_@
+%%%%
+_graffiti_type_
+
+@_writing_style_@ 낙서
+%%%%
+_graffiti_type_with_signature_maybe_
+
+@_graffiti_type_@
+
+@_graffiti_author_any_@의 서명이 있는 @_graffiti_type_@
+%%%%
+_graffiti_type_with_signature_maybe_non-orc_
+
+@_graffiti_type_@
+
+@_graffiti_author_any_non-orc_@의 서명이 있는 @_graffiti_type_@
+%%%%
+_graffiti_type_with_signature_maybe_orc_
+
+@_graffiti_type_@
+
+@_graffiti_author_orc_@의 서명이 있는 @_graffiti_type_@
+%%%%
+_graffiti_unreadable_
+
+읽을 수 없는 @_writing_type_@ 낙서
+
+@_graffiti_author_any_@의 서명만 읽을 수 있는 @_writing_type_@ 낙서
+
+w:1
+
+@_graffiti_hailed_god_@ 찬양을 담은 부분만 읽을 수 있는 @_writing_type_@ 낙서
+
+w:1
+
+@_graffiti_hailed_god_@ 찬양 문구와 @_graffiti_author_any_@의 서명만 읽을 수 있는 @_writing_type_@ 낙서
+%%%%
+_graffiti_author_any_
+
+w:50
+
+@ancestor name@
+
+@_graffiti_author_orc_@
+
+w:2
+
+@_graffiti_author_bland_@
+
+w:2
+
+@RANDGEN@
+
+w:1
+
+@_rare_graffiti_author_any_@
+%%%%
+_graffiti_author_any_changeable_
+
+w:50
+
+@ancestor name@
+
+w:2
+
+@_graffiti_author_bland_@
+
+w:2
+
+@RANDGEN@
+%%%%
+_graffiti_author_any_changeable_non-randgen_
+
+w:50
+
+@ancestor name@
+
+w:2
+
+@_graffiti_author_bland_@
+%%%%
+_graffiti_author_any_non-orc_
+
+w:50
+
+@ancestor name@
+
+w:2
+
+@_graffiti_author_bland_@
+
+w:2
+
+@RANDGEN@
+
+w:1
+
+@_rare_graffiti_author_any_non-orc_@
+%%%%
+_rare_graffiti_author_any_
+
+@_rare_graffiti_author_ordinary_@
+
+w:2
+
+@_rare_graffiti_author_orc_@
+
+w:2
+
+@_rare_graffiti_author_title_@
+
+w:1
+
+@_rare_graffiti_author_god_@
+%%%%
+_rare_graffiti_author_any_non-orc_
+
+@_rare_graffiti_author_ordinary_@
+
+w:2
+
+@_rare_graffiti_author_title_@
+
+w:1
+
+@_rare_graffiti_author_god_@
+%%%%
+_pattern_type_
+
+@any_colour_pattern@
+
+@any_glowing_colour_pattern@
+%%%%
+_graffiti_class_any_
+
+@_graffiti_class_remedial_@
+
+w:2
+
+@_graffiti_class_master_@
+%%%%
+_graffiti_class_master_
+
+포미시드가 가르치는 발굴 고급 강좌
+
+[악마|임프]가 가르치는 모욕 고급 강좌
+
+[오우거|오니]가 가르치는 거대 몽둥이 활용 고급 강좌
+
+펠리드가 가르치는 맨손 전투 고급 강좌
+
+w:1
+
+익명의 낙서꾼이 가르치는 [미술|서예] 고급 강좌
+%%%%
+_graffiti_class_remedial_
+
+강사: @_graffiti_professor_@. 강좌: @random_skill@ 기초 보충 강좌
+
+@_graffiti_professor_magic_type_@ 강사: @_graffiti_professor_@. 강좌: @random_skill_magic@ 보충 강좌
+
+@_graffiti_professor_mundane_type_@ 강사: @_graffiti_professor_@. 강좌: @random_skill_mundane@ 보충 강좌
+
+w:2
+
+@_graffiti_professor_evocations_type_@ 강사: @_graffiti_professor_@. 강좌: 발동술 보충 강좌
+
+w:2
+
+@_graffiti_professor_invocations_type_@ 강사: @_graffiti_professor_@. 강좌: 기도술 보충 강좌
+
+w:2
+
+@_graffiti_professor_shapeshifting_type_@ 강사: @_graffiti_professor_@. 강좌: 변신술 보충 강좌
+
+w:2
+
+@_graffiti_professor_necromancy_type_@ 강사: @_graffiti_professor_@. 강좌: 강령술 보충 강좌
+
+w:2
+
+@_graffiti_professor_necromancy_type_@ 강사: @_graffiti_professor_@. 강좌: @random_skill_magic@ 보충 강좌
+%%%%
+_graffiti_hailed_god_
+
+좀
+
+w:2
+
+이름 모를 신
+
+w:1
+
+@_rare_graffiti_author_god_@
+
+w:1
+
+치즈의 힘
+
+w:1
+
+팬케이크로 가득한 수레
+%%%%
+_graffiti_happened_reason_
+
+사고였다
+
+우연이었다
+
+우연이지만 작성자 @_graffiti_author_any_@: 우연을 믿지 않는다
+
+은폐 공작이었다
+
+희극이었다
+
+누명이었다
+
+실수였다
+
+비극적인 촌극이었다
+
+다른 이들에게 주는 경고였다
+
+신들의 뜻을 거스른 일이었다
+
+완전히 무작위였다
+
+의도적인 일이었다
+
+마땅한 일이었다
+
+정당한 일이었다
+
+필요한 일이었다
+
+결코 사고가 아니었다
+
+결코 실수가 아니었다
+
+더 큰 음모의 일부였다
+
+'플로그' 음모단의 소행이었다
+
+스스로 초래한 일이었다
+
+신들의 뜻이었다
+
+부당한 일이었다
+
+합당하지 않은 일이었다
+
+정의롭지 못한 일이었다
+
+불필요한 일이었다
+
+상상조차 할 수 없는 일이었다
+%%%%
+_graffiti_professor_
+
+@_graffiti_author_any_changeable_@
+
+w:2
+
+@_graffiti_author_orc_@
+
+w:1
+
+@_rare_graffiti_author_any_@ (라는 소문)
+%%%%
+_graffiti_relative_or_quality_
+
+모든 동료
+
+혈통
+
+자식
+
+자녀들
+
+씨족
+
+민첩성
+
+종족 전체
+
+가족
+
+친구
+
+친구들
+
+신
+
+지능
+
+연인
+
+연인들
+
+짝
+
+짝들
+
+부모
+
+부모들
+
+성격
+
+배우자
+
+배우자들
+
+힘
+%%%%
+_graffiti_religion_non-orc_
+
+진과 진의 율법을 찬양하는 내용
+
+진을 찬양하며 율법을 따르는 중요성을 설파하는 내용
+
+진을 찬양하며 율법 위반자에게 벌이 마땅하다고 주장하는 내용
+
+진을 찬양하면서도 낙서가 불법일 수 있다고 경고하는 내용
+%%%%
+_graffiti_religion_orc_
+
+베오그와 참된 오크다움을 전파하는 내용
+
+베오그의 구세주가 곧 오리라고 선언하는 내용
+
+다른 신들이 외면할 때 구원을 준 베오그에게 감사하는 내용
+
+다른 신들이 등을 돌릴 때 베오그는 도와준다는 내용
+
+베오그는 자신들의 편이지 이단 오크들의 편이 아니라는 내용
+%%%%
+_graffiti_rumour_
+
+조트의 오브의 힘을 추측하는 내용
+
+조트의 오브가 모두를 [구할|파멸시킬] 것이라는 소문
+
+조트의 오브는 사실 조트의 [정육면체|알|피라미드]라는 주장
+
+여기에서 조트의 오브까지 바로 가는 비밀 통로가 있다는 소문
+
+세계가 끝나는 날까지 날짜를 세는 글
+
+[삶|언데드의 삶]의 의미를 안다는 주장
+
+전설 속 [동굴 예티|죽음의 쿼카|거대 겨울잠쥐]를 발견했다는 주장
+
+'플로그' 음모단이 곳곳에 그 단어를 숨기는 이유에 관한 암시
+%%%%
+_graffiti_species_
+
+코글린이 아닌 종족에게 코글린 공학이 얼마나 기이한지 한탄하는 내용
+
+한 번에 무기 3개를 쥘 수 있게 해 준 실종된 코글린 시제품 외골격 전설
+
+바라킴이 신들에게 반기를 든 이유에 관한 추측
+
+뼈 없는 종족에서도 망령이 생겨날 수 있는지 궁금해하는 내용
+
+트로그가 죽은 광전사의 망령 출현을 막는지 궁금해하는 내용
+
+고블린의 기원을 안다는 주장
+
+코볼드의 진짜 기원을 안다는 주장
+
+동굴 오크들의 조상이 받은 박해에 관한 기록
+
+어떤 신들은 사실 오니를 섬긴다는 주장
+
+언덕 드워프가 아직 살아 있다는 주장
+
+마지막 진흙 엘프에게 무슨 일이 있었는지에 관한 추측
+
+노움은 실존하지만 숨는 데 매우 능숙하다는 주장
+%%%%
+_graffiti_unique_comment_
+
+카산드라는 그만 부정적으로 굴어야 한다는 주장
+
+미친 이우프는 말이 [너무 안|너무 잘] 통하지 않도록 해야 한다는 주장
+
+도널드는 불평 좀 그만하고 입을 다물어야 한다는 주장
+
+지그문트는 낫을 내려놓아야 한다는 주장
+
+에드먼드는 자신을 너무 대단하게 여기지 말아야 한다는 주장
+
+스프로즈가 진짜 벌을 기계 벌로 대체하려다 지나쳤다는 주장
+
+로빈이 어떻게 그렇게 세게 던질 수 있는지에 관한 의문
+
+테런스가 왜 은퇴 생활을 던전에서 보내려는지에 관한 의문
+
+도완과 듀베사가 실은 세쌍둥이이고 형제가 하나 더 있는지에 관한 의문
+
+이집이 마법봉 외에 무엇을 만들 수 있는지에 관한 의문
+
+예레미야의 주인이 누구인지에 관한 추측
+%%%%
+_graffiti_advertisement_
+
+@_graffiti_mass_meeting_ordinary_@ 모임 광고
+
+@_graffiti_mass_meeting_religious_@ 모임 광고
+
+던전의 [저렴한|독점|비싼|품질 좋은|희귀한|유용한] 물건 상점 광고
+
+w:2
+
+@_graffiti_class_any_@ 강좌 광고
+
+w:1
+
+던전에서 살아남는 법을 배우기 위한 @_graffiti_author_any_@과의 만남 광고
+
+w:1
+
+즐거운 시간을 보내기 위한 @_graffiti_author_any_@과의 만남 광고
+
+w:1
+
+이 낙서를 그린 바로 그 페인트의 광고
+%%%%
+_graffiti_changed_names_
+
+작성자 @_graffiti_author_any_changeable_@: 이름을 바꾸고 이제 @_graffiti_author_any_changeable_@으로 불린다
+
+w:2
+
+작성자 @_graffiti_author_orc_@: 이름을 바꾸고 이제 @_graffiti_author_orc_@으로 불린다
+
+w:2
+
+작성자 @_rare_graffiti_author_any_@: 이름을 물려받을 자격이 있는 다른 이에게 넘겼다
+
+w:1
+
+작성자 @_graffiti_author_any_changeable_non-randgen_@: 좀의 영향으로 이름을 바꾸고 이제 @RANDGEN@으로 불린다
+%%%%
+_graffiti_fight_
+
+@_graffiti_author_any_@과 @_graffiti_author_any_@의 말다툼을 그린
+
+@_graffiti_author_any_@, @_graffiti_author_any_@, @_graffiti_author_any_@ 사이의 삼자 논쟁을 그린
+
+w:2
+
+진정한 피의 광분이 무엇인지를 두고 [광전사|트로그 신도]와 적혈성 분노 증후군 환자가 싸우는 모습을 그린
+
+w:2
+
+무언가가 그림자인지 그림자 망령인지 두고 ["예술가"|예술가|디스메노스 신도]와 [죽음의 기사|죽음의 마법사|이레데렘눌 신도|강령술사]가 다투는 모습을 그린
+%%%%
+_graffiti_image_
+
+굴속에서 머리를 내민 [고블린|코볼드|스프리건]을 그린
+
+앞을 모조리 짓밟는 [용|코끼리|야크]를 그린
+
+위험해 보이는 무기를 치켜든 [놀|인간|오크]를 그린
+
+적을 반으로 찢는 [오우거|오니|트롤]을 그린
+
+마법 폭발을 발사하는 [딥 엘프|리치|텐구]를 그린
+
+나뭇가지에 매달린 펠리드를 그린
+
+사악하게 웃는 악마를 그린
+
+그냥 놓여 있는 가지를 그린
+
+아는 어떤 물체와도 닮지 않은
+%%%%
+_graffiti_vengeance_reason_
+
+@_graffiti_author_any_@을 버렸다는 이유
+
+그들을 버린 일
+
+@_graffiti_author_any_@을 배신한 일
+
+그들을 배신한 일
+
+@_graffiti_author_any_@을 죽인 일
+
+그들을 죽인 일
+
+@_graffiti_author_any_@의 물건을 훔친 일
+
+그들의 물건을 훔친 일
+
+@_graffiti_author_any_@에게 상처를 입힌 일
+
+그들에게 상처를 입힌 일
+%%%%
+any_graffiti
+
+@_pattern_type_@ 무늬의 낙서
+
+@_writing_type_@로 된 낙서
+
+@_graffiti_unreadable_@
+
+@_graffiti_type_with_signature_maybe_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_image_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_rumour_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_unique_comment_@
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_species_@
+
+@_graffiti_type_@ @_graffiti_fight_@
+
+@_graffiti_type_@ @_graffiti_advertisement_@
+
+@_graffiti_type_@에 적힌 말: @_graffiti_short_saying_@
+
+w:2
+
+@_graffiti_type_with_signature_maybe_@ @_graffiti_religion_not_non-orc_or_orc_@
+
+w:2
+
+@_graffiti_type_with_signature_maybe_non-orc_@ @_graffiti_religion_non-orc_@
+
+w:2
+
+@_graffiti_type_with_signature_maybe_orc_@ @_graffiti_religion_orc_@
+
+w:1
+
+@_graffiti_type_@ @_graffiti_obscenities_@
+%%%%
+_graffiti_changed_or_compared_religions_
+
+작성자 @_graffiti_author_any_@: @random_god@을 버렸다
+
+작성자 @_graffiti_author_any_@: @random_god@ 신앙을 떠났다
+
+작성자 @_graffiti_author_any_@: @random_god@에게 개종했다
+
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@보다 @_graffiti_religion_better_or_worse_@
+
+작성자 @_graffiti_author_any_@: 사실 무신론자다
+
+작성자 @_graffiti_author_any_@: 사실 무신론자가 아니다
+
+작성자 @_graffiti_author_any_@: 사실 @random_god@이다
+
+작성자 @_graffiti_author_any_@: 몰래 진을 숭배한다
+
+작성자 @_graffiti_author_any_@: @random_god_chaotic@ 대신 진을 몰래 숭배한다
+
+작성자 @_graffiti_author_any_@: 몰래 @random_god_chaotic@을 숭배한다
+
+작성자 @_graffiti_author_any_@: 진 대신 @random_god_chaotic@을 몰래 숭배한다
+
+작성자 @_graffiti_author_any_@: 몰래 @random_god_good@을 숭배한다
+
+작성자 @_graffiti_author_any_@: @random_god_evil@ 대신 @random_god_good@을 몰래 숭배한다
+
+작성자 @_graffiti_author_any_@: 몰래 @random_god_evil@을 숭배한다
+
+작성자 @_graffiti_author_any_@: @random_god_good@ 대신 @random_god_evil@을 몰래 숭배한다
+
+w:1
+
+@_graffiti_author_any_@의 정체는 사실 @_graffiti_hailed_god_@이다
+
+w:1
+
+작성자 @_graffiti_author_any_@: 몰래 @_graffiti_hailed_god_@을 숭배한다
+%%%%
+_graffiti_religion_not_non-orc_or_orc_
+
+신들을 [찬양|모독]하는 내용
+
+@random_god@을 찬양하고 @random_god@을 모독하는 내용
+
+좀과 만물의 무작위성을 숭배하는 내용
+
+네멜렉스 조베와 다음 카드 덱이 가져올 행운을 기뻐하는 내용
+
+이레데렘눌과 불경한 모든 것을 찬양하는 내용
+
+고자그를 찬양하며 충분한 돈으로 무엇이든 살 수 있다고 주장하는 내용
+
+트로그를 찬양하며 피의 광분으로 앞길의 모든 것을 없앨 수 있다는 내용
+
+오카와루를 찬양하며 전사에게 필요한 동료는 오카와루뿐이라는 내용
+
+시프 무나를 찬양하며 노력하면 모든 마법을 익힐 수 있다는 내용
+
+베후멧을 찬양하며 무기로 삼은 마법이 승리의 열쇠라는 내용
+
+키쿠바쿠드하를 찬양하며 강령술이 온갖 살과 피를 쓸모 있는 도구로 바꾼다는 내용
+
+체이브리아도스를 찬양하며 느리되 꾸준하면 무엇이든 이길 수 있다는 내용
+
+마크레브에게 경의를 표하며 그가 내리는 지옥의 힘을 이야기하는 내용
+
+페다스와 자연의 지속적인 힘을 찬양하는 내용
+
+헤플리아클카나를 기리며 타인의 기억에 남는 자는 진정으로 죽지 않는다는 내용
+
+우스카요를 숭배하며 삶 자체가 복잡한 춤이라는 내용
+
+디스메노스를 숭배하며 [그림자|밤]의 다양한 능력을 이야기하는 내용
+
+우 지안 의회에 감사하며 규율이 위대함의 열쇠라고 주장하는 내용
+
+콰즈랄을 찬양하며 원소가 얼마나 유용한지 말하는 내용
+
+엘리빌론을 전파하며 세상의 평화가 필수라고 주장하는 내용
+
+아셴자리에게 감탄하며 저주와 속박이 지식으로 이어진다면 축복이라고 말하는 내용
+
+루에게 경의를 표하며 현실은 보이는 그대로가 아니라고 주장하는 내용
+
+빛나는 자를 찬양하며 명예롭게 악을 없애는 것이 필수라는 내용
+
+루고누에게 아첨하며 곧 심연의 세력이 만물을 지배하리라는 내용
+
+w:1
+
+이름 모를 신을 찬양하는 내용
+
+w:1
+
+@_graffiti_hailed_god_@을 그저 칭송하는 데 그치지 않고 크게 찬양하는 내용
+%%%%
+_graffiti_short_saying_
+
+@_graffiti_author_any_@이 여기에 왔다
+
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@을(를) @_graffiti_loves_or_hates_@
+
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@의 @_graffiti_relative_or_quality_@을(를) @_graffiti_loves_or_hates_@
+
+작성자 @_graffiti_author_any_@: @_graffiti_life_or_death_@
+
+작성자 @_graffiti_author_any_@: @_graffiti_wares_quality_@ 물건을 판다
+
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@의 물건을 훔친다
+
+@_graffiti_author_any_@에게 일어난 일은 @_graffiti_happened_reason_@
+
+작성자 @_graffiti_author_any_@: @_graffiti_duplicate_@으로 대체되었다
+
+@_graffiti_vengeance_@
+
+@_graffiti_changed_or_compared_religions_@
+
+모든 삶은 '플로그'에서 시작해 '플로그'로 끝난다
+
+w:2
+
+@_graffiti_changed_names_@
+%%%%
+_graffiti_vengeance_
+
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@의 복수를 했다
+
+작성자 @_graffiti_author_any_@: @_graffiti_vengeance_reason_@ 때문에 @graffiti_author_any@을 대신해 복수했다
+
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@에게 복수를 맹세했다
+
+작성자 @_graffiti_author_any_@: @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
+
+@_graffiti_author_any_@의 유령은 아직도 @_graffiti_author_any_@을 따라다닌다
+
+@_graffiti_author_any_@의 유령은 @_graffiti_vengeance_reason_@ 때문에 아직도 @_graffiti_author_any_@을 따라다닌다
+
+작성자 @_graffiti_author_orc_@: @_graffiti_author_any_@의 복수를 했다
+
+작성자 @_graffiti_author_orc_@: @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@의 복수를 했다
+
+작성자 @_graffiti_author_orc_@: @_graffiti_author_any_@에게 복수를 맹세했다
+
+작성자 @_graffiti_author_orc_@: @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
+
+@_graffiti_author_orc_@의 유령은 아직도 @_graffiti_author_any_@을 따라다닌다
+
+@_graffiti_author_orc_@의 유령은 @_graffiti_vengeance_reason_@ 때문에 아직도 @_graffiti_author_any_@을 따라다닌다
+%%%%
+_graffiti_mass_meeting_ordinary_
+
+[카드|다트|해머 던지기|투창|돌물고기 때리기]를 즐기는 운동 동호회 모임
+
+[장치|발동형 물품|마법봉]을 [시험|개조]하는 발명가 동호회 모임
+
+지상 전쟁 참전용사들의 지원 모임
+
+던전에서 물건을 파는 [제빵사|과일 상인|고기 상인|점주]들의 모임
+
+벌의 [장난|감정 상태|건강]을 논하는 [양봉가|벌집 탈리스만 사용자] 모임
+
+돈을 더 많이 버는 법을 논의하는 부자들의 모임
+
+절제하기 어려운 난투를 연습하는 [기사|참전용사|전쟁군주|전사]들의 모임
+
+일대일 전투를 연습하는 [기사|참전용사|전쟁군주|전사]들의 모임
+
+[다양한|난해한] 마법을 연습하는 [마법사|주술사|주문 시전자|마도사]들의 모임
+
+[대격변의|파괴적인] 마법을 연습하는 [마법사|주술사|주문 시전자|마도사]들의 모임
+
+[강령술|생물을 죽지 않는 존재로 만드는 법]을 연습하는 [죽음의 마법사|강령술사]들의 모임
+
+[완벽함|시간의 본질]을 끝도 없이 논하는 철학자들의 모임
+
+고통 견디기 대회를 여는 [피학주의자|가학주의자]들의 모임
+
+자신의 원예 솜씨를 뽐내는 정원사들의 모임
+
+조상의 영광스러운 이야기를 나누는 [음유시인|역사가|전승 수호자]들의 모임
+
+열광적인 춤 파티를 여는 흥청망청 노는 이들의 모임
+
+["그림자 연극"을 공연하는 "예술가"|그림자 연극을 공연하는 예술가]들의 모임
+
+무술 [공격|동작]을 연습하는 수도승들의 모임
+
+다른 이들을 치유하는 법을 연습하는 물약 제조자들의 모임
+
+육체를 혐오하며 희생을 논하는 고행자들의 모임
+
+세상의 악을 [논의|반대]하는 [십자군 전사|도덕주의자]들의 모임
+
+심연에서 겪은 경험을 나누는 여러 사람들의 모임
+%%%%
+_graffiti_mass_meeting_religious_
+
+네멜렉스 조베의 가르침대로 카드를 즐기는 [승부사 동호회|네멜렉스 조베 신도] 모임
+
+율법의 공리를 지지하는 진 신도들의 모임
+
+신성한 광기를 생각하는 [혼돈 기사|좀 신도]들의 모임
+
+피할 수 없는 손아귀를 받아들이는 [죽음의 기사|이레데렘눌 신도]들의 모임
+
+돈을 더 많이 버는 법을 논의하는 고자그 신도들의 모임
+
+절제하기 어려운 난투를 연습하는 [광전사|트로그 신도]들의 모임
+
+일대일 전투를 연습하는 오카와루 신도들의 모임
+
+[다양한|난해한] 마법을 연습하는 시프 무나 신도들의 모임
+
+[대격변의|파괴적인] 마법을 연습하는 베후멧 신도들의 모임
+
+[강령술|생물을 죽지 않는 존재로 만드는 법]을 연습하는 키쿠바쿠드하 신도들의 모임
+
+[완벽함|시간의 본질]을 끝없이 논하는 체이브리아도스 신도들의 모임
+
+고통 견디기 대회를 여는 마크레브 신도들의 모임
+
+원예 솜씨를 뽐내는 페다스 신도들의 모임
+
+조상의 영광스러운 이야기를 나누는 헤플리아클카나 신도들의 모임
+
+열광적인 춤 파티를 여는 우스카요 신도들의 모임
+
+["그림자 연극"|그림자 연극]을 공연하는 디스메노스 신도들의 모임
+
+무술 [공격|동작]을 연습하는 우 지안 의회 신도들의 모임
+
+실내 날씨를 바꾸는 콰즈랄 신도들의 모임
+
+다른 이들을 치유하는 법을 연습하는 엘리빌론 신도들의 모임
+
+사물의 미래를 점치는 아셴자리 신도들의 모임
+
+육체를 혐오하며 희생을 논하는 루 신도들의 모임
+
+세상의 악을 [논의|반대]하는 빛나는 자의 신도들의 모임
+
+심연에서 겪은 경험을 나누는 [루고누 신도|루고누의 미친 수행자]들의 모임
+
+베오그의 말씀을 전파하는 오크들의 모임

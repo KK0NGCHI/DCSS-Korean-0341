@@ -1,0 +1,814 @@
+# Korean decoration database overlay; source keys preserved.
+%%%%
+sparkling_message
+
+잠깐 몸이 가벼워진다.
+
+용기가 솟구친다.
+
+잠시 메스껍다.
+
+감정이 불편하게 뒤틀린다.
+%%%%
+default fountain_eyes
+
+분수의 눈들이 너를 멍하니 꿰뚫어 본다.
+
+분수의 눈들이 사방을 한가롭게 살핀다.
+
+분수의 눈들이 허공을 응시한다.
+%%%%
+Ashenzari peaceful fountain_blue
+
+분수 너머를 점치려 하지만 던전의 마력이 너를 거부한다.
+%%%%
+Ashenzari fountain_blue
+
+분수에 비친 모습에서 던전의 과거가 스쳐 간다.
+%%%%
+Beogh fountain_blue
+
+분수에 비친 네 모습은 자랑스러운 오크다.
+%%%%
+Beogh fountain_sparkling
+
+분수에 비친 [일렁이는|반짝이는] 네 모습은 자랑스러운 오크다.
+%%%%
+Cheibriados fountain_sparkling
+
+분수의 불규칙한 마법적 흐름이 잠시 못마땅하다.
+%%%%
+Cheibriados peaceful dry_fountain
+
+물이 마른 분수의 고요함을 잠시 음미한다.
+%%%%
+Dithmenos fountain_blood
+
+지나치게 비장한 이 분수에 코웃음을 친다.
+%%%%
+Fedhas peaceful fountain_blue
+
+분수 가장자리의 조류가 건강하게 자라고 있다.
+%%%%
+Fedhas peaceful fountain_sparkling
+
+분수 가장자리의 조류가 반짝이며 화답한다.
+%%%%
+Fedhas peaceful fountain_blood
+
+분수 가장자리의 곰팡이가... 걱정스럽다.
+%%%%
+Fedhas peaceful fountain_eyes
+
+분수 가장자리의 곰팡이도 너를 살피는 것 같다.
+%%%%
+Gozag peaceful fountain_blue
+
+분수 안의 동전은 줍기에는 너무 가치가 없다.
+%%%%
+Hepliaklqana fountain_blue
+
+분수의 잔물결에 덧없는 기억이 떠오른다.
+%%%%
+Hepliaklqana dry_fountain
+
+분수를 지은 이들이 잊혔어도 너의 유산은 잊지 않겠다고 다짐한다.
+%%%%
+Hepliaklqana peaceful fountain_blood
+
+분수에 흐르는 피의 주인을 위해 묵념한다.
+%%%%
+Ignis fountain_blood
+
+네가 다가가자 분수의 피가 잠시 끓어오른다.
+%%%%
+Jiyva fountain_eyes
+
+네 유전자가 분수의 눈들과 교감하려 하지만 실패한다.
+
+분수의 눈 몇 개가 잠시 당황한 듯 황금색으로 변한다.
+%%%%
+Kikubaaqudgha peaceful dry_fountain
+
+세상 전체가 이 분수와 같은 운명을 맞을 날을 생각한다.
+%%%%
+Lugonu peaceful fountain_eyes
+
+현실 전체를 뒤틀겠다는 루고누의 약속을 되새긴다.
+%%%%
+Nemelex Xobeh peaceful fountain_blue
+
+행운을 빌며 오래된 동전을 분수에 던진다.
+%%%%
+Nemelex Xobeh peaceful fountain_sparkling
+
+화려한 행운을 기대하며 오래된 동전을 분수에 던진다.
+%%%%
+Qazlal fountain_blue
+
+폭풍 속에서 분수의 물이 부글거리며 솟구친다.
+%%%%
+Qazlal fountain_sparkling
+
+폭풍 속에서 분수의 물이 격렬하게 솟구친다.
+%%%%
+Qazlal fountain_blood
+
+폭풍 속에서 분수의 피가 부글거리며 솟구친다.
+%%%%
+Ru peaceful fountain_blue
+
+분수의 물이 세상을 비춘다. 세상도 한낱 반영일 뿐이다.
+%%%%
+Sif Muna peaceful fountain_sparkling
+
+분수의 물약들이 어떻게 희석됐는지 알아보려 애쓴다.
+%%%%
+Sif Muna peaceful fountain_blood
+
+분수의 피가 어떤 생물의 것인지 알아내려 애쓴다.
+%%%%
+Sif Muna peaceful fountain_eyes
+
+분수에서 자라는 눈을 살피며 적어도 [5|6]종을 알아본다.
+%%%%
+Uskayaw peaceful fountain_blue
+
+옛 물의 님프처럼 물속에서 잠시 춤을 춘다.
+%%%%
+Uskayaw fountain_blood
+
+피의 분수가 삶과 죽음의 즐거운 박자로 맥동한다.
+%%%%
+Vehumet fountain_blood
+
+이 분수 안에 잠든 파괴의 힘을 감지한다.
+%%%%
+Yredelemnul fountain_blood
+
+이 분수의 피는 수확에 쓸모없다고 판단한다.
+%%%%
+Zin fountain_sparkling
+
+분수의 반짝임에 뒤섞인 마법에서 눈을 돌린다.
+%%%%
+Zin fountain_eyes
+
+분수의 불결한 눈들에서 시선을 돌린다.
+%%%%
+The Shining One fountain_blood
+
+분수를 위해 피 흘린 이들의 원수를 갚겠다고 맹세한다.
+%%%%
+carnivore fruit cache
+
+과일 더미를 둘러보고 어깨를 으쓱한다.
+%%%%
+inediate fruit cache
+
+과일 더미를 바라보다 한숨을 쉰다.
+%%%%
+inediate meat cache
+
+고기 더미를 바라보다 한숨을 쉰다.
+%%%%
+inediate baked goods cache
+
+빵 더미를 바라보다 한숨을 쉰다.
+%%%%
+felid fruit cache
+
+사과를 잘라 갉아먹는다. 밍밍하다.
+
+바나나를 잘라 갉아먹는다. 밍밍하다.
+
+열매를 골라 갉아먹는다. 밍밍하다.
+%%%%
+spriggan meat cache
+
+피자를 찾으려고 뒤적이지만 보이지 않는다.
+
+w:4
+
+마법으로 보존된 피자에서 고기를 떼어낸다. 맛있다!
+%%%%
+maw fruit cache
+
+과일 더미의 절반을 먹어치운다! 그래도 부족하다.
+%%%%
+maw meat cache
+
+고기 더미의 절반을 먹어치운다! 그래도 부족하다.
+%%%%
+maw baked goods cache
+
+빵 더미의 절반을 먹어치운다! 그래도 부족하다.
+%%%%
+vampire fruit cache
+
+블러드 오렌지를 찾지만 보이지 않는다.
+
+w:4
+
+블러드 오렌지를 발견한다. 맛있다.
+%%%%
+default fountain_blue
+
+네가 다가가자 분수에 잠깐 잔물결이 인다.
+
+w:1
+
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
+%%%%
+default fountain_sparkling
+
+반짝이는 분수에서 희미한 @any_colour@ 빛이 일렁인다.
+
+w:1
+
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
+%%%%
+default peaceful dry_fountain
+
+w:1
+
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
+%%%%
+default dry_fountain
+
+w:1
+
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
+%%%%
+Elyvilon peaceful fountain_blue
+
+이 식수대의 깨끗함과 실용성이 마음에 든다.
+
+@default peaceful fountain_blue@
+%%%%
+Gozag peaceful fountain_sparkling
+
+@Gozag peaceful fountain_blue@
+%%%%
+Gozag fountain_blood
+
+w:2
+
+이 분수를 유지하는 데 들어갈 터무니없는 비용에 움찔한다.
+
+@default fountain_blood@
+%%%%
+Ignis fountain_blue
+
+네가 다가가자 분수의 물이 가볍게 지글거린다.
+
+w:1
+
+분수에 비친 죽어가는 불꽃이 두려운 듯 흔들린다.
+%%%%
+Ignis fountain_sparkling
+
+네가 다가가자 반짝이는 분수의 물이 지글거리며 일렁인다.
+
+w:1
+
+분수에 비친 죽어가는 불꽃이 두려운 듯 흔들린다.
+%%%%
+Makhleb peaceful fountain_blood
+
+분수에 흐르는 피의 양을 감상한다.
+
+분수에서 목욕하는 상상이 잠깐 머릿속을 가득 채운다.
+
+분수의 피로 몸을 적셔 의식을 치른다.
+
+의식을 치르듯 분수의 피로 장비를 씻는다. (@your_weapon@)
+%%%%
+Okawaru peaceful fountain_blue
+
+익숙하고 절제된 동작으로 무기를 잠시 씻는다. (@your_weapon@)
+%%%%
+Qazlal peaceful fountain_blue
+
+w:5
+
+억누를 수 없는 원소들을 가두려는 시도에 코웃음 친다.
+
+@Qazlal fountain_blue@
+%%%%
+Ru peaceful fountain_eyes
+
+w:2
+
+분수의 눈들 역시 다른 물질과 마찬가지로 진실을 보지 못한다.
+
+@default fountain_eyes@
+%%%%
+Wu Jian peaceful fountain_blue
+
+분수의 물처럼 흘러야 한다는 가르침을 잠시 되새긴다.
+
+w:5
+
+분수는 고요하다. 물이 부드럽게 흐른다. 이곳에서 평화를 찾을 수 있다.
+%%%%
+Xom fountain_sparkling
+
+분수 안에서 무해한 나비고기들이 반짝이며 너를 노려본다.
+
+w:1
+
+순간 좀이 이곳에 형체 없는 해파리를 불러냈다고 확신한다.
+%%%%
+Xom fountain_blood
+
+무해한 흡혈 나비고기들이 분수 안에서 너를 노려본다.
+
+w:1
+
+끔찍한 순간, 좀이 이 분수에 흡혈 크라켄을 넣었다고 확신한다.
+%%%%
+Yredelemnul fountain_blue
+
+분수 가장자리의 죽은 [모기|나방]가 네 그림자 아래에서 잠시 꿈틀거린다.
+%%%%
+Yredelemnul fountain_sparkling
+
+@Yredelemnul fountain_blue@
+%%%%
+fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@
+%%%%
+meat cache
+
+손을 뻗어 @_meat_and_reaction_@
+%%%%
+baked goods cache
+
+손을 뻗어 @_baked_good_and_reaction_@
+%%%%
+carnivore baked goods cache
+
+빵 더미를 살피고 @_baked_good_and_reaction_@로 고기 샌드위치를 만든다.
+%%%%
+short fruit cache
+
+더미를 뒤적여 @_fruit_and_reaction_@
+%%%%
+short meat cache
+
+더미를 뒤적여 @_meat_and_reaction_@
+%%%%
+short baked goods cache
+
+더미를 뒤적여 @_baked_good_and_reaction_@
+%%%%
+stone fruit cache
+
+과일을 으깨 @_fruit_and_reaction_@
+%%%%
+stone meat cache
+
+고기를 으깨 @_meat_and_reaction_@
+%%%%
+stone baked goods cache
+
+빵을 갈아 @_baked_good_and_reaction_@
+%%%%
+draconian fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@
+
+w:1
+
+드래곤프루트를 맛본다. 어쩐지 불편해진다.
+%%%%
+felid meat cache
+
+조금씩 @_meat_and_reaction_@
+%%%%
+felid baked goods cache
+
+조금씩 @_baked_good_and_reaction_@
+%%%%
+oni fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@ 한 번 더 먹는다.
+%%%%
+oni baked goods cache
+
+손을 뻗어 @_baked_good_and_reaction_@ 한 번 더 먹는다.
+%%%%
+spriggan baked goods cache
+
+더미를 뒤적여 기쁜 마음으로 @_baked_good_and_reaction_@
+%%%%
+tengu baked goods cache
+
+부리로 @_baked_good_and_reaction_@
+%%%%
+amphisbaena fruit cache
+
+턱 한쪽을 크게 벌리고 @_fruit_and_reaction_@
+%%%%
+amphisbaena meat cache
+
+턱 한쪽을 크게 벌리고 @_meat_and_reaction_@
+%%%%
+amphisbaena baked goods cache
+
+턱 한쪽을 크게 벌리고 @_baked_good_and_reaction_@
+%%%%
+bat fruit cache
+
+후루룩 @_fruit_and_reaction_@
+%%%%
+bat baked goods cache
+
+날아 내려가 @_baked_good_and_reaction_@
+%%%%
+blade fruit cache
+
+칼날로 과일을 집으려 하지만 실패한다!
+
+w:4
+
+손을 젓가락처럼 사용해 조심스럽게 @_fruit_and_reaction_@
+%%%%
+blade meat cache
+
+칼날로 고기를 집으려 하지만 실패한다!
+
+고기를 꿰어 @_meat_and_reaction_@
+%%%%
+dragon fruit cache
+
+게걸스럽게 @_fruit_and_reaction_@
+
+w:1
+
+드래곤프루트를 먹어치운다. 어쩐지 불편해진다.
+%%%%
+storm fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@ 전기분해한다.
+%%%%
+storm meat cache
+
+손을 뻗어 @_meat_and_reaction_@ 전기분해한다.
+%%%%
+vampire baked goods cache
+
+손을 뻗어 @_baked_good_and_reaction_@ 하지만 배는 차지 않는다.
+%%%%
+Jiyva peaceful fountain_blue
+
+분수 가장자리에 천천히 자라는 점액을 감상한다.
+%%%%
+Xom fountain_blue
+
+분수 속에서 무해한 나비고기들이 너를 빤히 바라본다.
+
+w:1
+
+순간 좀이 이 분수에 장어를 소환한 것처럼 보인다.
+
+w:1
+
+끔찍한 순간, 좀이 이 분수에 크라켄을 소환했다고 확신한다.
+%%%%
+_fruit_and_reaction_
+
+사과를 먹는다. 아삭하다.
+
+살구를 먹는다. 맛있다.
+
+바나나를 먹는다. 맛있다.
+
+차요테를 먹는다. 밍밍하다.
+
+포도를 먹는다. 맛있다.
+
+리치를 먹는다. 은은하게 달다.
+
+오렌지를 먹는다. 맛있다.
+
+람부탄을 먹는다. 맛있다.
+
+딸기를 먹는다. 맛있다.
+
+기괴한 오이를 먹는다. 썩은 맛이다!
+
+토마토를 먹는다. 감칠맛이 난다.
+
+체리모야를 먹는다. 새콤하다!
+
+망고를 먹는다. 맛있다!
+
+타마린드를 먹는다. 과즙이 풍부하다!
+%%%%
+_meat_and_reaction_
+
+훈제 장어를 먹는다. 감칠맛이 난다!
+
+야크 소시지를 먹는다. 맛있다.
+
+염장한 돼지 뒷다리를 먹는다. 짜다.
+
+독사의 육포를 먹는다. 맛있다.
+
+마법으로 보존된 페퍼로니 피자를 먹는다. 맛있다.
+
+w:6
+
+훈제 달팽이를 먹는다. 맛있다.
+
+w:6
+
+죽음의 야크 해기스를 먹는다. 맛있다.
+
+w:6
+
+악어 육포를 먹는다. 맛있다.
+
+w:6
+
+꿈속 양의 절인 고기를 먹는다. 덧없는 맛이다.
+
+w:6
+
+마법으로 보존된 판데모니엄 피자를 먹는다. 진미다.
+
+w:2
+
+설탕을 입힌 전갈을 먹는다. 바삭하다.
+
+w:2
+
+절인 크라켄 촉수를 먹는다. 놀라운 맛이다!
+
+w:2
+
+지옥산 염장 햄을 먹는다. 맵다!
+
+w:2
+
+때까치 콩피를 먹는다. 새콤하다!
+
+w:2
+
+오래 숙성한 히드라 알을 먹는다. 취향을 타는 맛이다.
+%%%%
+_baked_good_and_reaction_
+
+w:24
+
+스프리건의 [빵|타르트|돌빵|스콘|비스킷|건빵]을 먹는다. 맛있다.
+
+w:14
+
+오크식 [피로그|파스텔 드 나타|비스코초]를 먹는다. 맛있다.
+
+w:14
+
+엘프의 [쇼트브레드|호밀빵]을 먹는다. 세련된 맛이다.
+
+머포크의 [바클라바|초우레키]를 먹는다. 달콤하고 진하다.
+
+속을 채운 나가식 파라타를 먹는다. 경이로운 맛이다.
+
+드라코니언의 바게트를 먹는다. 든든하고 따뜻하다.
+
+w:6
+
+[드워프|코볼드|코볼드]의 프레첼을 먹는다. 훌륭하다.
+
+w:6
+
+차요테 케이크를 먹는다. 생각보다 밍밍하지 않다!
+
+w:2
+
+[트롤|거인|거인]의 [비텐베르거|그로브브뢰드]를 먹는다. 고소하다.
+
+w:2
+
+텐구의 단팥빵을 먹는다. 즐겁다.
+
+w:2
+
+구울의 사워도우를 먹는다. 기묘한 맛이다.
+
+w:2
+
+금고 경비병들의 비상식량을 먹는다. 든든하다.
+
+w:2
+
+이상할 만큼 신선한 서커스 파이를 먹는다. 유쾌하다.
+
+w:2
+
+별꽃 잼 비스킷을 먹는다. 어쩐지 불안한 맛이다.
+%%%%
+default peaceful fountain_blue
+
+{{
+-- Wisps can drink potions, so no need for another message here.
+if you.transform() == "death" or you.race() == "Mummy" then
+if crawl.one_chance_in(3) then
+return "식수대를 잠시 바라보다 한숨을 쉰다."
+else
+return "__NONE"
+end
+elseif you.transform() == "storm" then
+return "발아래 분수에서 파직거리는 소리가 난다."
+else
+return "분수의 물을 조금 마신다. 상쾌하다.";
+end
+}}
+{{
+if you.transform() == "storm" then
+return "분수에 작은 전기 충격이 번진다."
+elseif you.transform() == "wisp" then
+return "물에 비친 네 모습이 기묘하게 깜박거린다."
+elseif crawl.coinflip() or you.god() == "Okawaru" then
+return "잠시 멈춰 손을 씻는다. (@your_hands@)"
+else
+return "잠시 멈춰 무기를 닦는다. (@your_weapon@)"
+end
+}}
+w:1
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
+%%%%
+default peaceful fountain_sparkling
+
+{{
+if you.transform() == "death" or you.race() == "Mummy" then
+if crawl.one_chance_in(3) then
+return "반짝이는 분수를 바라보다 한숨을 쉰다."
+else
+return "__NONE"
+end
+elseif you.transform() == "storm" then
+return "발아래 분수에서 기묘한 파직거림이 들린다."
+elseif crawl.coinflip() or you.god == "Zin" or you.god == "Cheibriados" then
+return "분수가 기묘한 @any_colour_pattern@으로 일렁여 물을 마시지 않기로 한다."
+else
+return "분수의 물을 조금 마신다. @sparkling_message@"
+end
+}}
+w:1
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
+%%%%
+default fountain_blood
+
+{{
+if you.can_smell() then
+return "끝없이 흐르는 분수의 피에서 썩은 쇳내가 난다."
+elseif you.god() == "Trog" then
+return "더는 몸에 피를 묻히지 않도록 조심한다."
+else
+return "몸에 피가 묻지 않도록 조심한다."
+end
+}}
+작디작은 모기들이 피에 취한 듯 분수의 표면에 들끓는다.
+w:3
+피의 분수에 비친 네 모습이 말없이 [심판하듯|공포에 질려] 너를 바라본다.
+w:3
+피의 분수에서 낮은 흐느낌 같은 맥동이 느껴진다.
+w:1
+피의 분수에서는 피가 솟구친다. 피의 분수란 대개 그런 법이다.
+%%%%
+Trog peaceful fountain_blue
+
+{{
+if you.transform() == "wisp" then
+return "분수에 비친 네 모습이 소리 없는 분노로 일그러진다."
+elseif you.transform() == "fungus" then
+return "잠시 멈춰 균사체에 묻은 피를 짜낸다."
+else
+return "잠시 멈춰 얼굴에 묻은 피를 씻어 낸다."
+end
+}}
+%%%%
+gargoyle fruit cache
+
+@stone fruit cache@
+%%%%
+gargoyle meat cache
+
+@stone meat cache@
+%%%%
+gargoyle baked goods cache
+
+@stone baked goods cache@
+%%%%
+kobold fruit cache
+
+@carnivore fruit cache@
+%%%%
+kobold meat cache
+
+@short meat cache@
+%%%%
+kobold baked goods cache
+
+@carnivore baked goods cache@
+%%%%
+mummy fruit cache
+
+@inediate fruit cache@
+%%%%
+mummy meat cache
+
+@inediate meat cache@
+%%%%
+mummy baked goods cache
+
+@inediate baked goods cache@
+%%%%
+poltergeist fruit cache
+
+@inediate fruit cache@
+%%%%
+poltergeist meat cache
+
+@inediate meat cache@
+%%%%
+poltergeist baked goods cache
+
+@inediate baked goods cache@
+%%%%
+revenant fruit cache
+
+@inediate fruit cache@
+%%%%
+revenant meat cache
+
+@inediate meat cache@
+%%%%
+revenant baked goods cache
+
+@inediate baked goods cache@
+%%%%
+spriggan fruit cache
+
+@short fruit cache@
+%%%%
+troll fruit cache
+
+@oni fruit cache@
+%%%%
+troll baked goods cache
+
+@oni baked goods cache@
+%%%%
+death fruit cache
+
+@inediate fruit cache@
+%%%%
+death meat cache
+
+@inediate meat cache@
+%%%%
+death baked goods cache
+
+@inediate baked goods cache@
+%%%%
+pig fruit cache
+
+@short fruit cache@
+%%%%
+pig meat cache
+
+@short meat cache@
+%%%%
+pig baked goods cache
+
+@short baked goods cache@
+%%%%
+statue fruit cache
+
+@stone fruit cache@
+%%%%
+statue meat cache
+
+@stone meat cache@
+%%%%
+statue baked goods cache
+
+@stone baked goods cache@
+%%%%
+tree fruit cache
+
+@short fruit cache@
+%%%%
+tree meat cache
+
+@short meat cache@
+%%%%
+tree baked goods cache
+
+@short baked goods cache@
