@@ -22,6 +22,7 @@
 #include "describe.h"
 #include "dgn-overview.h"
 #include "english.h"
+#include "game-options.h"
 #include "env.h" // LSTATE_STILL_WINDS
 #include "errors.h" // sysfail
 #include "evoke.h"
@@ -701,6 +702,64 @@ static const char* wand_primary_string(uint32_t p)
     };
     COMPILE_CHECK(ARRAYSZ(primary_strings) == NDSC_WAND_PRI);
     return primary_strings[p % NDSC_WAND_PRI];
+}
+
+static const char* _ko_potion_name(int subtype)
+{
+    switch (static_cast<potion_type>(subtype))
+    {
+    case POT_CURING: return "치료";
+    case POT_HEAL_WOUNDS: return "상처 치료";
+    case POT_HASTE: return "가속";
+    case POT_MIGHT: return "힘 강화";
+    case POT_ATTRACTION: return "끌어당김";
+    case POT_BRILLIANCE: return "총명";
+    case POT_ENLIGHTENMENT: return "깨달음";
+    case POT_CANCELLATION: return "해제";
+    case POT_AMBROSIA: return "암브로시아";
+    case POT_INVISIBILITY: return "투명화";
+    case POT_MOONSHINE: return "월광주";
+    case POT_EXPERIENCE: return "경험";
+    case POT_MAGIC: return "마력";
+    case POT_BERSERK_RAGE: return "광폭화";
+    case POT_MUTATION: return "돌연변이";
+    case POT_RESISTANCE: return "저항";
+    case POT_LIGNIFY: return "목화";
+    default: return nullptr;
+    }
+}
+
+static const char* _ko_scroll_name(int subtype)
+{
+    switch (static_cast<scroll_type>(subtype))
+    {
+    case SCR_IDENTIFY: return "감정";
+    case SCR_TELEPORTATION: return "순간이동";
+    case SCR_FEAR: return "공포";
+    case SCR_NOISE: return "소음";
+    case SCR_SUMMONING: return "소환";
+    case SCR_ENCHANT_WEAPON: return "무기 강화";
+    case SCR_ENCHANT_ARMOUR: return "방어구 강화";
+    case SCR_TORMENT: return "고통";
+    case SCR_IMMOLATION: return "내면의 불꽃";
+    case SCR_POISON: return "독";
+    case SCR_BUTTERFLIES: return "나비";
+    case SCR_BLINKING: return "점멸";
+    case SCR_REVELATION: return "계시";
+    case SCR_FOG: return "안개";
+    case SCR_ACQUIREMENT: return "획득";
+    case SCR_BRAND_WEAPON: return "무기 속성 부여";
+    case SCR_VULNERABILITY: return "취약";
+    case SCR_SILENCE: return "침묵";
+    case SCR_AMNESIA: return "기억 상실";
+#if TAG_MAJOR_VERSION == 34
+    case SCR_HOLY_WORD: return "신성한 언어";
+    case SCR_CURSE_WEAPON: return "무기 저주";
+    case SCR_CURSE_ARMOUR: return "방어구 저주";
+    case SCR_CURSE_JEWELLERY: return "장신구 저주";
+#endif
+    default: return nullptr;
+    }
 }
 
 const char* potion_type_name(int potiontype)
@@ -1688,7 +1747,13 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
 
         if (identified)
-            buff << "potion of " << potion_type_name(item_typ);
+        {
+            const char* name = Options.language == lang_t::KO ? _ko_potion_name(item_typ) : nullptr;
+            if (name)
+                buff << name << " 물약";
+            else
+                buff << "potion of " << potion_type_name(item_typ);
+        }
         else
         {
             const int pqual   = PQUAL(subtype_rnd);
@@ -1732,6 +1797,18 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 #endif
 
     case OBJ_SCROLLS:
+        if (Options.language == lang_t::KO)
+        {
+            if (basename)
+                buff << "두루마리";
+            else if (identified && _ko_scroll_name(item_typ))
+                buff << _ko_scroll_name(item_typ) << " 두루마리";
+            else if (identified)
+                buff << "scroll of " << scroll_type_name(item_typ);
+            else
+                buff << make_name(subtype_rnd, MNAME_SCROLL) << "라고 적힌 두루마리";
+            break;
+        }
         buff << "scroll";
         if (basename)
             break;
