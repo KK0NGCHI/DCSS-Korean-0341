@@ -1124,6 +1124,53 @@ static string gem_type_name(gem_type g)
     return string(gem_adj(g)) + " gem";
 }
 
+static const char* _ko_rune_label(short p)
+{
+    switch (static_cast<rune_type>(p))
+    {
+    case RUNE_DIS: return "철";
+    case RUNE_GEHENNA: return "흑요석";
+    case RUNE_COCYTUS: return "얼음";
+    case RUNE_TARTARUS: return "뼈";
+    case RUNE_SLIME: return "점액";
+    case RUNE_VAULTS: return "은";
+    case RUNE_SNAKE: return "뱀";
+    case RUNE_ELF: return "엘프";
+    case RUNE_TOMB: return "황금";
+    case RUNE_SWAMP: return "부패";
+    case RUNE_SHOALS: return "따개비";
+    case RUNE_SPIDER: return "거미줄";
+    case RUNE_FOREST: return "이끼";
+    case RUNE_DEMONIC: return "악마";
+    case RUNE_ABYSSAL: return "심연";
+    case RUNE_MNOLEG: return "빛";
+    case RUNE_LOM_LOBON: return "마력";
+    case RUNE_CEREBOV: return "화염";
+    case RUNE_GLOORX_VLOQ: return "어둠";
+    default: return nullptr;
+    }
+}
+
+static const char* _ko_misc_label(int p)
+{
+    switch (static_cast<misc_item_type>(p))
+    {
+    case MISC_BOX_OF_BEASTS: return "짐승의 상자";
+    case MISC_HORN_OF_GERYON: return "게리온의 뿔";
+    case MISC_LIGHTNING_ROD: return "번개 막대";
+    case MISC_QUAD_DAMAGE: return "4배 피해";
+    case MISC_PHIAL_OF_FLOODS: return "홍수의 유리병";
+    case MISC_SACK_OF_SPIDERS: return "거미 주머니";
+    case MISC_PHANTOM_MIRROR: return "환영의 거울";
+    case MISC_ZIGGURAT: return "지구라트 모형";
+    case MISC_TIN_OF_TREMORSTONES: return "진동석 통";
+    case MISC_CONDENSER_VANE: return "응축 날개";
+    case MISC_GRAVITAMBOURINE: return "겔의 중력 탬버린";
+    case MISC_SHOP_VOUCHER: return "상점 교환권";
+    default: return nullptr;
+    }
+}
+
 static string misc_type_name(int type)
 {
 #if TAG_MAJOR_VERSION == 34
@@ -2223,7 +2270,13 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         else if (!dbname && is_xp_evoker(*this) && in_inventory(*this))
             buff << "+" << evoker_plus(item_typ) << " ";
 
-        buff << misc_type_name(item_typ);
+        const char* ko_misc = Options.language == lang_t::KO
+                              && !dbname && !qualname
+                              ? _ko_misc_label(item_typ) : nullptr;
+        if (ko_misc)
+            buff << ko_misc;
+        else
+            buff << misc_type_name(item_typ);
 
         if (is_xp_evoker(*this) && !dbname && !evoker_charges(sub_type))
             buff << (Options.language == lang_t::KO && !qualname
@@ -2316,10 +2369,20 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         break;
 
     case OBJ_RUNES:
-        if (!dbname)
-            buff << rune_type_name(sub_type) << " ";
-        buff << (Options.language == lang_t::KO && !dbname && !qualname
-                 ? "조트의 룬" : "rune of Zot");
+        if (Options.language == lang_t::KO && !dbname && !qualname)
+        {
+            const char* ko_rune = _ko_rune_label(sub_type);
+            if (ko_rune)
+                buff << ko_rune << " 조트의 룬";
+            else
+                buff << rune_type_name(sub_type) << " 조트의 룬";
+        }
+        else
+        {
+            if (!dbname)
+                buff << rune_type_name(sub_type) << " ";
+            buff << "rune of Zot";
+        }
         break;
 
     case OBJ_GEMS:
