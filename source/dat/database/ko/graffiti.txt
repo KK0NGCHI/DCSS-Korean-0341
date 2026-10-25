@@ -1,0 +1,187 @@
+# Partial Korean graffiti generator vocabulary. Composition requires Korean grammar QA.
+%%%%
+_writing_adj_
+
+각진
+
+네모난
+
+굵은
+
+굽이치는
+
+흐르는 듯한
+
+삐죽삐죽한
+
+맥동하는
+
+시시각각 바뀌는
+
+구불구불한
+
+비스듬한
+
+거미줄 같은
+
+소용돌이치는
+
+고동치는
+
+꿈틀거리는
+
+뒤틀리는
+%%%%
+_writing_noun_
+
+이진 코드
+
+문자
+
+설형문자
+
+도형
+
+상형 기호
+
+상형문자
+
+표의문자
+
+글자
+
+인쇄 문자
+
+룬 문자
+
+휘갈겨 쓴 글씨
+
+인장 기호
+
+상징
+
+텍스트
+
+글씨
+%%%%
+_graffiti_duplicate_
+
+복제체
+
+원본과 구별할 수 없는 복제체
+
+사칭꾼
+
+다른 현실에서 온 사칭꾼
+
+변신술사
+%%%%
+_graffiti_life_or_death_
+
+죽어 마땅하다
+
+언데드가 되어 마땅하다
+
+살아 마땅하다
+
+죽었다
+
+언데드가 되었다
+
+살아 있다
+%%%%
+_graffiti_loves_or_hates_
+
+저주한다
+
+옹호한다
+
+증오한다
+
+모욕한다
+
+사랑한다
+
+찬양한다
+%%%%
+_graffiti_obscenities_
+
+온갖 외설스러운 말이 적힌
+
+w:1
+
+처음 보는 기상천외한 외설스러운 말이 적힌
+%%%%
+_graffiti_professor_evocations_type_
+
+발명가
+
+공작가
+%%%%
+_graffiti_professor_invocations_type_
+
+성직자
+
+대사제
+
+사제
+
+신학자
+%%%%
+_graffiti_professor_magic_type_
+
+마법사
+
+주술사
+
+주문 시전자
+
+마도사
+%%%%
+_graffiti_professor_mundane_type_
+
+기사
+
+노련한 병사
+
+전쟁군주
+
+전사
+%%%%
+_graffiti_professor_necromancy_type_
+
+죽음의 마법사
+
+강령술사
+%%%%
+_graffiti_professor_shapeshifting_type_
+
+변신술사
+
+탈리스만술사
+%%%%
+_graffiti_religion_better_or_worse_
+
+신앙심이 덜 깊은
+
+신앙심이 더 깊은
+
+w:1
+
+더 철저한 무신론자
+
+w:1
+
+덜 철저한 무신론자
+%%%%
+_graffiti_wares_quality_
+
+저급한
+
+고품질의
+
+품질이 낮은
+
+평범한
+
+우수한
