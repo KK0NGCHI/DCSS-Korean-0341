@@ -1,17 +1,7 @@
 name: Korean description audit
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'source/dat/descript/**'
-      - 'tools/dcss-extractor/scripts/audit_descriptions.py'
-      - '.github/workflows/description-audit.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'source/dat/descript/**'
-      - 'tools/dcss-extractor/scripts/audit_descriptions.py'
-      - '.github/workflows/description-audit.yml'
+
 jobs:
   audit:
     runs-on: ubuntu-latest
