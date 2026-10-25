@@ -211,3 +211,253 @@ vampire fruit cache
 w:4
 
 블러드 오렌지를 발견한다. 맛있다.
+%%%%
+default fountain_blue
+
+네가 다가가자 분수에 잠깐 잔물결이 인다.
+
+w:1
+
+분수에 @any_graffiti@이 보인다.
+%%%%
+default fountain_sparkling
+
+반짝이는 분수에서 희미한 @any_colour@ 빛이 일렁인다.
+
+w:1
+
+분수에 @any_graffiti@이 보인다.
+%%%%
+default peaceful dry_fountain
+
+w:1
+
+분수에 @any_graffiti@이 보인다.
+%%%%
+default dry_fountain
+
+w:1
+
+분수에 @any_graffiti@이 보인다.
+%%%%
+Elyvilon peaceful fountain_blue
+
+이 식수대의 깨끗함과 실용성이 마음에 든다.
+
+@default peaceful fountain_blue@
+%%%%
+Gozag peaceful fountain_sparkling
+
+@Gozag peaceful fountain_blue@
+%%%%
+Gozag fountain_blood
+
+w:2
+
+이 분수를 유지하는 데 들어갈 터무니없는 비용에 움찔한다.
+
+@default fountain_blood@
+%%%%
+Ignis fountain_blue
+
+네가 다가가자 분수의 물이 가볍게 지글거린다.
+
+w:1
+
+분수에 비친 죽어가는 불꽃이 두려운 듯 흔들린다.
+%%%%
+Ignis fountain_sparkling
+
+네가 다가가자 반짝이는 분수의 물이 지글거리며 일렁인다.
+
+w:1
+
+분수에 비친 죽어가는 불꽃이 두려운 듯 흔들린다.
+%%%%
+Makhleb peaceful fountain_blood
+
+분수에 흐르는 피의 양을 감상한다.
+
+분수에서 목욕하는 상상이 잠깐 머릿속을 가득 채운다.
+
+분수의 피로 몸을 적셔 의식을 치른다.
+
+의식을 치르듯 분수의 피로 @your_weapon@을 씻는다.
+%%%%
+Okawaru peaceful fountain_blue
+
+익숙하고 절제된 동작으로 @your_weapon@을 잠시 씻는다.
+%%%%
+Qazlal peaceful fountain_blue
+
+w:5
+
+억누를 수 없는 원소들을 가두려는 시도에 코웃음 친다.
+
+@Qazlal fountain_blue@
+%%%%
+Ru peaceful fountain_eyes
+
+w:2
+
+분수의 눈들 역시 다른 물질과 마찬가지로 진실을 보지 못한다.
+
+@default fountain_eyes@
+%%%%
+Wu Jian peaceful fountain_blue
+
+분수의 물처럼 흘러야 한다는 가르침을 잠시 되새긴다.
+
+w:5
+
+분수는 고요하다. 물이 부드럽게 흐른다. 이곳에서 평화를 찾을 수 있다.
+%%%%
+Xom fountain_sparkling
+
+분수 안에서 무해한 나비고기들이 반짝이며 너를 노려본다.
+
+w:1
+
+순간 좀이 이곳에 형체 없는 해파리를 불러냈다고 확신한다.
+%%%%
+Xom fountain_blood
+
+무해한 흡혈 나비고기들이 분수 안에서 너를 노려본다.
+
+w:1
+
+끔찍한 순간, 좀이 이 분수에 흡혈 크라켄을 넣었다고 확신한다.
+%%%%
+Yredelemnul fountain_blue
+
+분수 가장자리의 죽은 [모기|나방]가 네 그림자 아래에서 잠시 꿈틀거린다.
+%%%%
+Yredelemnul fountain_sparkling
+
+@Yredelemnul fountain_blue@
+%%%%
+fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@
+%%%%
+meat cache
+
+손을 뻗어 @_meat_and_reaction_@
+%%%%
+baked goods cache
+
+손을 뻗어 @_baked_good_and_reaction_@
+%%%%
+carnivore baked goods cache
+
+빵 더미를 살피고 @_baked_good_and_reaction_@로 고기 샌드위치를 만든다.
+%%%%
+short fruit cache
+
+더미를 뒤적여 @_fruit_and_reaction_@
+%%%%
+short meat cache
+
+더미를 뒤적여 @_meat_and_reaction_@
+%%%%
+short baked goods cache
+
+더미를 뒤적여 @_baked_good_and_reaction_@
+%%%%
+stone fruit cache
+
+과일을 으깨 @_fruit_and_reaction_@
+%%%%
+stone meat cache
+
+고기를 으깨 @_meat_and_reaction_@
+%%%%
+stone baked goods cache
+
+빵을 갈아 @_baked_good_and_reaction_@
+%%%%
+draconian fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@
+
+w:1
+
+드래곤프루트를 맛본다. 어쩐지 불편해진다.
+%%%%
+felid meat cache
+
+조금씩 @_meat_and_reaction_@
+%%%%
+felid baked goods cache
+
+조금씩 @_baked_good_and_reaction_@
+%%%%
+oni fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@ 한 번 더 먹는다.
+%%%%
+oni baked goods cache
+
+손을 뻗어 @_baked_good_and_reaction_@ 한 번 더 먹는다.
+%%%%
+spriggan baked goods cache
+
+더미를 뒤적여 기쁜 마음으로 @_baked_good_and_reaction_@
+%%%%
+tengu baked goods cache
+
+부리로 @_baked_good_and_reaction_@
+%%%%
+amphisbaena fruit cache
+
+턱 한쪽을 크게 벌리고 @_fruit_and_reaction_@
+%%%%
+amphisbaena meat cache
+
+턱 한쪽을 크게 벌리고 @_meat_and_reaction_@
+%%%%
+amphisbaena baked goods cache
+
+턱 한쪽을 크게 벌리고 @_baked_good_and_reaction_@
+%%%%
+bat fruit cache
+
+후루룩 @_fruit_and_reaction_@
+%%%%
+bat baked goods cache
+
+날아 내려가 @_baked_good_and_reaction_@
+%%%%
+blade fruit cache
+
+칼날로 과일을 집으려 하지만 실패한다!
+
+w:4
+
+손을 젓가락처럼 사용해 조심스럽게 @_fruit_and_reaction_@
+%%%%
+blade meat cache
+
+칼날로 고기를 집으려 하지만 실패한다!
+
+고기를 꿰어 @_meat_and_reaction_@
+%%%%
+dragon fruit cache
+
+게걸스럽게 @_fruit_and_reaction_@
+
+w:1
+
+드래곤프루트를 먹어치운다. 어쩐지 불편해진다.
+%%%%
+storm fruit cache
+
+손을 뻗어 @_fruit_and_reaction_@ 전기분해한다.
+%%%%
+storm meat cache
+
+손을 뻗어 @_meat_and_reaction_@ 전기분해한다.
+%%%%
+vampire baked goods cache
+
+손을 뻗어 @_baked_good_and_reaction_@ 하지만 배는 차지 않는다.
