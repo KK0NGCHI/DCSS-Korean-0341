@@ -218,7 +218,7 @@ default fountain_blue
 
 w:1
 
-분수에 @any_graffiti@이 보인다.
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
 %%%%
 default fountain_sparkling
 
@@ -226,19 +226,19 @@ default fountain_sparkling
 
 w:1
 
-분수에 @any_graffiti@이 보인다.
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
 %%%%
 default peaceful dry_fountain
 
 w:1
 
-분수에 @any_graffiti@이 보인다.
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
 %%%%
 default dry_fountain
 
 w:1
 
-분수에 @any_graffiti@이 보인다.
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
 %%%%
 Elyvilon peaceful fountain_blue
 
@@ -282,11 +282,11 @@ Makhleb peaceful fountain_blood
 
 분수의 피로 몸을 적셔 의식을 치른다.
 
-의식을 치르듯 분수의 피로 @your_weapon@을 씻는다.
+의식을 치르듯 분수의 피로 장비를 씻는다. (@your_weapon@)
 %%%%
 Okawaru peaceful fountain_blue
 
-익숙하고 절제된 동작으로 @your_weapon@을 잠시 씻는다.
+익숙하고 절제된 동작으로 무기를 잠시 씻는다. (@your_weapon@)
 %%%%
 Qazlal peaceful fountain_blue
 
@@ -634,13 +634,13 @@ return "분수에 작은 전기 충격이 번진다."
 elseif you.transform() == "wisp" then
 return "물에 비친 네 모습이 기묘하게 깜박거린다."
 elseif crawl.coinflip() or you.god() == "Okawaru" then
-return "잠시 멈춰 @your_hands@을 씻는다."
+return "잠시 멈춰 손을 씻는다. (@your_hands@)"
 else
-return "잠시 멈춰 @your_weapon@을 닦는다."
+return "잠시 멈춰 무기를 닦는다. (@your_weapon@)"
 end
 }}
 w:1
-분수에서 @any_graffiti@을 발견한다.
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
 %%%%
 default peaceful fountain_sparkling
 
@@ -660,7 +660,7 @@ return "분수의 물을 조금 마신다. @sparkling_message@"
 end
 }}
 w:1
-분수에서 @any_graffiti@을 발견한다.
+분수에 적힌 글이 눈에 띈다: @any_graffiti@
 %%%%
 default fountain_blood
 
