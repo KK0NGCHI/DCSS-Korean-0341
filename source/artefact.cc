@@ -19,6 +19,7 @@
 #include "colour.h"
 #include "database.h"
 #include "english.h"
+#include "game-options.h"
 #include "god-item.h"
 #include "item-name.h"
 #include "item-prop.h"
@@ -190,8 +191,10 @@ string replace_name_parts(const string &name_in, const item_def& item)
         else
         {
             // Simply overwrite the name with one of type "God's Favour".
-            name = "of ";
-            name += apostrophise(god_name(god_gift, false));
+            if (Options.language == lang_t::KO)
+                name = "· " + god_name(god_gift, false) + "의 ";
+            else
+                name = "of " + apostrophise(god_name(god_gift, false));
             name += getRandNameString("divine_esteem");
         }
     }
@@ -1671,7 +1674,7 @@ string make_artefact_name(const item_def &item, bool appearance)
         while (--tries > 0 && strwidth(name) > 25);
 
         if (name.empty()) // still nothing found?
-            result += "of Bugginess";
+            result += Options.language == lang_t::KO ? "· 오류" : "of Bugginess";
         else
             result += name;
     }
@@ -1683,7 +1686,7 @@ string make_artefact_name(const item_def &item, bool appearance)
 
         if (one_chance_in(3))
         {
-            result += " of ";
+            result += Options.language == lang_t::KO ? " · " : " of ";
             result += st_p;
         }
         else
