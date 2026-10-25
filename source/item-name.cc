@@ -22,6 +22,7 @@
 #include "describe.h"
 #include "dgn-overview.h"
 #include "english.h"
+#include "game-options.h"
 #include "env.h" // LSTATE_STILL_WINDS
 #include "errors.h" // sysfail
 #include "evoke.h"
@@ -660,6 +661,26 @@ const char* armour_ego_name(const item_def& item, bool terse)
     return special_armour_type_name(get_armour_ego_type(item), terse);
 }
 
+static const char* _ko_wand_name(int subtype)
+{
+    switch (subtype)
+    {
+    case WAND_FLAME: return "화염";
+    case WAND_PARALYSIS: return "마비";
+    case WAND_DIGGING: return "굴착";
+    case WAND_ICEBLAST: return "냉기 폭발";
+    case WAND_POLYMORPH: return "변신";
+    case WAND_CHARMING: return "매혹";
+    case WAND_ACID: return "산성";
+    case WAND_MINDBURST: return "정신 폭발";
+    case WAND_LIGHT: return "빛";
+    case WAND_QUICKSILVER: return "수은";
+    case WAND_ROOTS: return "뿌리";
+    case WAND_WARPING: return "공간 왜곡";
+    default: return nullptr;
+    }
+}
+
 static const char* _wand_type_name(int wandtype)
 {
     switch (wandtype)
@@ -701,6 +722,64 @@ static const char* wand_primary_string(uint32_t p)
     };
     COMPILE_CHECK(ARRAYSZ(primary_strings) == NDSC_WAND_PRI);
     return primary_strings[p % NDSC_WAND_PRI];
+}
+
+static const char* _ko_potion_name(int subtype)
+{
+    switch (static_cast<potion_type>(subtype))
+    {
+    case POT_CURING: return "치료";
+    case POT_HEAL_WOUNDS: return "상처 치료";
+    case POT_HASTE: return "가속";
+    case POT_MIGHT: return "힘 강화";
+    case POT_ATTRACTION: return "끌어당김";
+    case POT_BRILLIANCE: return "총명";
+    case POT_ENLIGHTENMENT: return "깨달음";
+    case POT_CANCELLATION: return "해제";
+    case POT_AMBROSIA: return "암브로시아";
+    case POT_INVISIBILITY: return "투명화";
+    case POT_MOONSHINE: return "월광주";
+    case POT_EXPERIENCE: return "경험";
+    case POT_MAGIC: return "마력";
+    case POT_BERSERK_RAGE: return "광폭화";
+    case POT_MUTATION: return "돌연변이";
+    case POT_RESISTANCE: return "저항";
+    case POT_LIGNIFY: return "목질화";
+    default: return nullptr;
+    }
+}
+
+static const char* _ko_scroll_name(int subtype)
+{
+    switch (static_cast<scroll_type>(subtype))
+    {
+    case SCR_IDENTIFY: return "감정";
+    case SCR_TELEPORTATION: return "순간이동";
+    case SCR_FEAR: return "공포";
+    case SCR_NOISE: return "소음";
+    case SCR_SUMMONING: return "소환";
+    case SCR_ENCHANT_WEAPON: return "무기 강화";
+    case SCR_ENCHANT_ARMOUR: return "방어구 강화";
+    case SCR_TORMENT: return "고통";
+    case SCR_IMMOLATION: return "내면의 불꽃";
+    case SCR_POISON: return "독";
+    case SCR_BUTTERFLIES: return "나비";
+    case SCR_BLINKING: return "점멸";
+    case SCR_REVELATION: return "계시";
+    case SCR_FOG: return "안개";
+    case SCR_ACQUIREMENT: return "획득";
+    case SCR_BRAND_WEAPON: return "무기 속성 부여";
+    case SCR_VULNERABILITY: return "취약";
+    case SCR_SILENCE: return "침묵";
+    case SCR_AMNESIA: return "기억 상실";
+#if TAG_MAJOR_VERSION == 34
+    case SCR_HOLY_WORD: return "신성한 언어";
+    case SCR_CURSE_WEAPON: return "무기 저주";
+    case SCR_CURSE_ARMOUR: return "방어구 저주";
+    case SCR_CURSE_JEWELLERY: return "장신구 저주";
+#endif
+    default: return nullptr;
+    }
 }
 
 const char* potion_type_name(int potiontype)
@@ -919,6 +998,41 @@ static const char* _jewellery_class_name(int jeweltype)
  * @param jeweltype     The jewellery_type of the item in question.
  * @return              The full name of the jewellery type in question.
  */
+static const char* _ko_jewellery_name(int subtype)
+{
+    switch (static_cast<jewellery_type>(subtype))
+    {
+    case RING_PROTECTION: return "보호";
+    case RING_PROTECTION_FROM_FIRE: return "화염 저항";
+    case RING_POISON_RESISTANCE: return "독 저항";
+    case RING_PROTECTION_FROM_COLD: return "냉기 저항";
+    case RING_SLAYING: return "살육";
+    case RING_SEE_INVISIBLE: return "투명 감지";
+    case RING_RESIST_CORROSION: return "부식 저항";
+    case RING_EVASION: return "회피";
+    case RING_STEALTH: return "은밀";
+    case RING_STRENGTH: return "힘";
+    case RING_DEXTERITY: return "민첩";
+    case RING_INTELLIGENCE: return "지능";
+    case RING_WIZARDRY: return "마법 숙련";
+    case RING_MAGICAL_POWER: return "마력";
+    case RING_FLIGHT: return "비행";
+    case RING_POSITIVE_ENERGY: return "음에너지 저항";
+    case RING_WILLPOWER: return "의지력";
+    case AMU_MANA_REGENERATION: return "마력 재생";
+    case AMU_ACROBAT: return "곡예";
+    case AMU_GUARDIAN_SPIRIT: return "수호 정령";
+    case AMU_FAITH: return "신앙";
+    case AMU_REFLECTION: return "반사";
+    case AMU_REGENERATION: return "재생";
+    case AMU_WILDSHAPE: return "야생 변이";
+    case AMU_CHEMISTRY: return "연금술";
+    case AMU_DISSIPATION: return "소산";
+    case AMU_NOTHING: return "무효";
+    default: return nullptr;
+    }
+}
+
 static string jewellery_type_name(int jeweltype)
 {
     return make_stringf("%s %s", _jewellery_class_name(jeweltype),
@@ -1065,6 +1179,149 @@ const char* gizmo_effect_name(int type)
 
         default:
         case SPGIZMO_NORMAL:        return "";
+    }
+}
+
+static string _ko_equipment_base_name(const string &name)
+{
+    if (Options.language != lang_t::KO)
+        return name;
+    if (name == "short sword") return "단검";
+    if (name == "long sword") return "장검";
+    if (name == "great sword") return "대검";
+    if (name == "double sword") return "쌍검";
+    if (name == "falchion") return "언월도";
+    if (name == "rapier") return "레이피어";
+    if (name == "dagger") return "단도";
+    if (name == "quick blade") return "속검";
+    if (name == "scimitar") return "시미터";
+    if (name == "demon blade") return "악마의 검";
+    if (name == "eudemon blade") return "축복받은 검";
+    if (name == "mace") return "철퇴";
+    if (name == "flail") return "도리깨";
+    if (name == "morningstar") return "모닝스타";
+    if (name == "eveningstar") return "이브닝스타";
+    if (name == "great mace") return "대형 철퇴";
+    if (name == "dire flail") return "대형 도리깨";
+    if (name == "whip") return "채찍";
+    if (name == "demon whip") return "악마의 채찍";
+    if (name == "sacred scourge") return "성스러운 채찍";
+    if (name == "club") return "곤봉";
+    if (name == "giant club") return "거대 곤봉";
+    if (name == "giant spiked club") return "거대 가시 곤봉";
+    if (name == "quarterstaff") return "육척봉";
+    if (name == "lajatang") return "라자탕";
+    if (name == "spear") return "창";
+    if (name == "trident") return "삼지창";
+    if (name == "halberd") return "할버드";
+    if (name == "glaive") return "글레이브";
+    if (name == "bardiche") return "바르디슈";
+    if (name == "demon trident") return "악마의 삼지창";
+    if (name == "trishula") return "트리슐라";
+    if (name == "hand axe") return "손도끼";
+    if (name == "war axe") return "전투도끼";
+    if (name == "broad axe") return "넓은 도끼";
+    if (name == "battleaxe") return "전투용 대도끼";
+    if (name == "executioner's axe") return "처형자의 도끼";
+    if (name == "shortbow") return "단궁";
+    if (name == "longbow") return "장궁";
+    if (name == "arbalest") return "아발레스트";
+    if (name == "triple crossbow") return "삼중 석궁";
+    if (name == "sling") return "투석구";
+    if (name == "hand cannon") return "핸드 캐넌";
+    if (name == "robe") return "로브";
+    if (name == "animal skin") return "짐승 가죽";
+    if (name == "leather armour") return "가죽 갑옷";
+    if (name == "ring mail") return "고리 갑옷";
+    if (name == "scale mail") return "비늘 갑옷";
+    if (name == "chain mail") return "사슬 갑옷";
+    if (name == "plate armour") return "판금 갑옷";
+    if (name == "crystal plate armour") return "수정 판금 갑옷";
+    if (name == "gold dragon scales") return "황금 용 비늘 갑옷";
+    if (name == "fire dragon scales") return "화염 용 비늘 갑옷";
+    if (name == "ice dragon scales") return "냉기 용 비늘 갑옷";
+    if (name == "storm dragon scales") return "폭풍 용 비늘 갑옷";
+    if (name == "shadow dragon scales") return "그림자 용 비늘 갑옷";
+    if (name == "swamp dragon scales") return "늪지 용 비늘 갑옷";
+    if (name == "acid dragon scales") return "산성 용 비늘 갑옷";
+    if (name == "steam dragon scales") return "증기 용 비늘 갑옷";
+    if (name == "troll leather armour") return "트롤 가죽 갑옷";
+    if (name == "hat") return "모자";
+    if (name == "helmet") return "투구";
+    if (name == "cloak") return "망토";
+    if (name == "scarf") return "목도리";
+    if (name == "gloves") return "장갑";
+    if (name == "boots") return "장화";
+    if (name == "barding") return "마갑";
+    if (name == "buckler") return "버클러";
+    if (name == "kite shield") return "카이트 방패";
+    if (name == "tower shield") return "타워 방패";
+    return name;
+}
+
+static const char* _ko_book_theme_name(int subtype)
+{
+    switch (static_cast<book_type>(subtype))
+    {
+    case BOOK_MINOR_MAGIC: return "초급 마법";
+    case BOOK_CONJURATIONS: return "파괴술";
+    case BOOK_FLAMES: return "불꽃";
+    case BOOK_FROST: return "서리";
+    case BOOK_WILDERNESS: return "황야";
+    case BOOK_FIRE: return "화염";
+    case BOOK_ICE: return "냉기";
+    case BOOK_SPATIAL_TRANSLOCATIONS: return "공간이동";
+    case BOOK_HEXES: return "주술";
+    case BOOK_LIGHTNING: return "번개";
+    case BOOK_DEATH: return "죽음";
+    case BOOK_MISFORTUNE: return "불운";
+    case BOOK_SPONTANEOUS_COMBUSTION: return "자연 발화";
+    case BOOK_BATTLE: return "전투";
+    case BOOK_NECROMANCY: return "강령술";
+    case BOOK_CALLINGS: return "소환";
+    case BOOK_AIR: return "공기";
+    case BOOK_WARP: return "공간 왜곡";
+    case BOOK_ANNIHILATIONS: return "섬멸";
+    case BOOK_UNLIFE: return "불사";
+    case BOOK_GEOMANCY: return "대지술";
+    case BOOK_EARTH: return "대지";
+    case BOOK_POWER: return "힘";
+    case BOOK_CANTRIPS: return "기초 주문";
+    case BOOK_PARTY_TRICKS: return "잔재주";
+    case BOOK_DEBILITATION: return "약화";
+    case BOOK_DRAGON: return "용";
+    case BOOK_BURGLARY: return "도둑질";
+    case BOOK_DREAMS: return "꿈";
+    case BOOK_TRANSMUTATION: return "변이술";
+    case BOOK_BEASTS: return "야수";
+    case BOOK_WINTER: return "겨울";
+    case BOOK_ARMAMENTS: return "무장";
+    case BOOK_DECAY: return "부패";
+    case BOOK_DISPLACEMENT: return "전위";
+    case BOOK_SENSES: return "감각";
+    case BOOK_BLASTING: return "폭발";
+    case BOOK_IRON: return "철";
+    case BOOK_TUNDRA: return "툰드라";
+    case BOOK_MOON: return "달";
+    case BOOK_STORMS: return "폭풍";
+    case BOOK_WEAPONS: return "무기";
+    case BOOK_SLOTH: return "나태";
+    case BOOK_BLOOD: return "피";
+    case BOOK_DANGEROUS_FRIENDS: return "위험한 친구들";
+    case BOOK_TOUCH: return "접촉";
+    case BOOK_CHAOS: return "혼돈";
+    case BOOK_HUNTER: return "사냥꾼";
+    case BOOK_SCORCHING: return "작열";
+    case BOOK_MOVEMENT: return "이동";
+    case BOOK_WICKED_CREATION: return "사악한 창조";
+    case BOOK_MALADIES: return "질병";
+    case BOOK_FORTRESS: return "요새";
+    case BOOK_CRYOFORMATION: return "빙결 형성";
+    case BOOK_GRAVE: return "무덤";
+    case BOOK_METALWORKING: return "금속 가공";
+    case BOOK_DUALITY: return "이중성";
+    case BOOK_CONTRAPTIONS: return "기계 장치";
+    default: return nullptr;
     }
 }
 
@@ -1240,6 +1497,8 @@ string sub_type_string(const item_def &item, bool known)
             {
             if (!known)
                 return "manual";
+            if (Options.language == lang_t::KO)
+                return string(skill_name(static_cast<skill_type>(item.plus))) + " 숙련 교본";
             string bookname = "manual of ";
             bookname += skill_name(static_cast<skill_type>(item.plus));
             return bookname;
@@ -1247,61 +1506,63 @@ string sub_type_string(const item_def &item, bool known)
         case BOOK_PARCHMENT:
             {
             if (item.plus == 0 || !known)
-                return "parchment";
+                return known && Options.language == lang_t::KO ? "양피지" : "parchment";
             string parchmentname = "parchment of ";
             parchmentname += spell_title(static_cast<spell_type>(item.plus));
             return parchmentname;
             }
         case BOOK_NECRONOMICON:
-            return "Necronomicon";
+            return known && Options.language == lang_t::KO ? "네크로노미콘" : "Necronomicon";
         case BOOK_GRAND_GRIMOIRE:
-            return "Grand Grimoire";
+            return known && Options.language == lang_t::KO ? "대마도서" : "Grand Grimoire";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_BUGGY_DESTRUCTION:
             return "tome of obsoleteness";
 #endif
         case BOOK_EVERBURNING:
             // Aus. English apparently follows the US spelling, not UK.
-            return "Everburning Encyclopedia";
+            return known && Options.language == lang_t::KO ? "영원히 타오르는 백과사전" : "Everburning Encyclopedia";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_OZOCUBU:
-            return "Ozocubu's Autobiography";
+            return known && Options.language == lang_t::KO ? "오조쿠부의 자서전" : "Ozocubu's Autobiography";
 #endif
         case BOOK_MAXWELL:
-            return "Maxwell's Memoranda";
+            return known && Options.language == lang_t::KO ? "맥스웰의 비망록" : "Maxwell's Memoranda";
         case BOOK_YOUNG_POISONERS:
-            return "Young Poisoner's Handbook";
+            return known && Options.language == lang_t::KO ? "젊은 독살자의 지침서" : "Young Poisoner's Handbook";
         case BOOK_FEN:
-            return "Fen Folio";
+            return known && Options.language == lang_t::KO ? "늪지의 서책" : "Fen Folio";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_NEARBY:
-            return "Inescapable Atlas";
+            return known && Options.language == lang_t::KO ? "벗어날 수 없는 지도책" : "Inescapable Atlas";
 #endif
         case BOOK_THERE_AND_BACK:
-            return "There-And-Back Book";
+            return known && Options.language == lang_t::KO ? "왕복의 서" : "There-And-Back Book";
         case BOOK_BIOGRAPHIES_II:
-            return "Great Wizards, Vol. II";
+            return known && Options.language == lang_t::KO ? "위대한 마법사들 제2권" : "Great Wizards, Vol. II";
         case BOOK_BIOGRAPHIES_VII:
-            return "Great Wizards, Vol. VII";
+            return known && Options.language == lang_t::KO ? "위대한 마법사들 제7권" : "Great Wizards, Vol. VII";
         case BOOK_TRISMEGISTUS:
-            return "Trismegistus Codex";
+            return known && Options.language == lang_t::KO ? "트리스메기스투스의 법전" : "Trismegistus Codex";
         case BOOK_UNRESTRAINED:
-            return "the Unrestrained Analects";
+            return known && Options.language == lang_t::KO ? "무구속 논어" : "the Unrestrained Analects";
         case BOOK_SIEGECRAFT:
-            return "Compendium of Siegecraft";
+            return known && Options.language == lang_t::KO ? "공성술 개론" : "Compendium of Siegecraft";
         case BOOK_CONDUCTIVITY:
-            return "Codex of Conductivity";
+            return known && Options.language == lang_t::KO ? "전도율의 서" : "Codex of Conductivity";
         case BOOK_CONSTRUCTION:
-            return "Handbook of Applied Construction";
+            return known && Options.language == lang_t::KO ? "응용 건축 지침서" : "Handbook of Applied Construction";
         case BOOK_TRAPS:
-            return "Treatise on Traps";
+            return known && Options.language == lang_t::KO ? "함정에 관한 논고" : "Treatise on Traps";
         case BOOK_SWAMP_SOJOURN:
-            return "My Sojourn through Swampland";
+            return known && Options.language == lang_t::KO ? "나의 늪지 여행기" : "My Sojourn through Swampland";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_AKASHIC_RECORD:
-            return "Akashic Record";
+            return known && Options.language == lang_t::KO ? "아카식 레코드" : "Akashic Record";
 #endif
         default:
+            if (known && Options.language == lang_t::KO && _ko_book_theme_name(sub_type))
+                return string(_ko_book_theme_name(sub_type)) + " 마법서";
             return string("book of ") + _book_type_name(sub_type);
         }
     }
@@ -1414,6 +1675,89 @@ static string _cosmetic_text(const item_def &weap)
  * Surrounds a given string with the weapon's brand-describing prefix/suffix
  * as appropriate.
  */
+static const char* _ko_weapon_brand_label(const string &english)
+{
+    if (english == "flaming") return "화염";
+    if (english == "freezing") return "냉기";
+    if (english == "holy wrath") return "신성한 분노";
+    if (english == "electrocution") return "전격";
+    if (english == "venom") return "독";
+    if (english == "protection") return "방호";
+    if (english == "draining") return "흡수";
+    if (english == "speed") return "신속";
+    if (english == "heavy") return "중량";
+    if (english == "vampirism") return "흡혈";
+    if (english == "pain") return "고통";
+    if (english == "antimagic") return "대마법";
+    if (english == "distortion") return "왜곡";
+    if (english == "chaos") return "혼돈";
+    if (english == "confusion") return "혼란";
+    if (english == "penetration") return "관통";
+    if (english == "reaping") return "수확";
+    if (english == "spectralising") return "유령화";
+    if (english == "rebuke") return "응징";
+    if (english == "valour") return "용맹";
+    if (english == "entangling") return "속박";
+    if (english == "sundering") return "분쇄";
+    if (english == "concussion") return "충격";
+    if (english == "devious") return "기습";
+    if (english == "acid") return "산성";
+    if (english == "weakness") return "약화";
+    if (english == "vulnerability") return "취약";
+    if (english == "foul flame") return "사악한 화염";
+    return nullptr;
+}
+
+static const char* _ko_armour_ego_label(const string &english)
+{
+    if (english == "fire resistance") return "화염 저항";
+    if (english == "cold resistance") return "냉기 저항";
+    if (english == "poison resistance") return "독 저항";
+    if (english == "see invisible") return "투명 감지";
+    if (english == "invisibility") return "투명화";
+    if (english == "strength") return "힘";
+    if (english == "dexterity") return "민첩";
+    if (english == "intelligence") return "지능";
+    if (english == "ponderousness") return "둔중";
+    if (english == "flying") return "비행";
+    if (english == "willpower") return "의지력";
+    if (english == "protection") return "방호";
+    if (english == "stealth") return "은밀";
+    if (english == "resistance") return "저항";
+    if (english == "positive energy") return "음에너지 저항";
+    if (english == "the Archmagi") return "대마도사";
+    if (english == "corrosion resistance") return "부식 저항";
+    if (english == "reflection") return "반사";
+    if (english == "spirit shield") return "수호 정령";
+    if (english == "hurling") return "투척";
+    if (english == "repulsion") return "반발";
+    if (english == "harm") return "가해";
+    if (english == "shadows") return "그림자";
+    if (english == "rampaging") return "돌진";
+    if (english == "infusion") return "주입";
+    if (english == "light") return "빛";
+    if (english == "wrath") return "분노";
+    if (english == "mayhem") return "난동";
+    if (english == "guile") return "계략";
+    if (english == "energy") return "에너지";
+    if (english == "sniping") return "저격";
+    if (english == "ice") return "얼음";
+    if (english == "fire") return "화염";
+    if (english == "air") return "공기";
+    if (english == "earth") return "대지";
+    if (english == "archery") return "궁술";
+    if (english == "command") return "지휘";
+    if (english == "death") return "죽음";
+    if (english == "resonance") return "공명";
+    if (english == "parrying") return "받아치기";
+    if (english == "glass") return "유리";
+    if (english == "pyromania") return "방화광";
+    if (english == "stardust") return "별가루";
+    if (english == "mesmerism") return "매혹";
+    if (english == "attunement") return "조율";
+    return nullptr;
+}
+
 string weapon_brand_desc(const char *body, const item_def &weap,
                          bool terse, brand_type override_brand)
 {
@@ -1423,6 +1767,14 @@ string weapon_brand_desc(const char *body, const item_def &weap,
     if (brand_name.empty())
         return body;
 
+    if (Options.language == lang_t::KO)
+    {
+        const brand_type brand = override_brand ? override_brand : get_weapon_brand(weap);
+        if (brand == SPWPN_NORMAL)
+            return body;
+        const char* ko_brand = _ko_weapon_brand_label(brand_type_name(brand, false));
+        return make_stringf("%s (%s)", body, ko_brand ? ko_brand : brand_name.c_str());
+    }
     if (terse)
         return make_stringf("%s (%s)", body, brand_name.c_str());
 
@@ -1520,7 +1872,9 @@ static string _name_weapon(const item_def &weap, description_level_type desc,
 
     const string cosmetic_text
         = show_cosmetic ? _cosmetic_text(weap) : "";
-    const string base_name = item_base_name(weap);
+    const string base_name = dbname || qualname
+        ? item_base_name(weap)
+        : _ko_equipment_base_name(item_base_name(weap));
     const string name_with_ego
         = identified && !dbname ? weapon_brand_desc(base_name.c_str(), weap, terse)
         : base_name;
@@ -1634,7 +1988,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             }
         }
 
-        buff << item_base_name(*this);
+        buff << (dbname || qualname ? item_base_name(*this)
+                                 : _ko_equipment_base_name(item_base_name(*this)));
 
         if (identified && !dbname && !qualname && !is_artefact(*this))
         {
@@ -1642,13 +1997,21 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
             if (sparm != SPARM_NORMAL)
             {
-                if (!terse)
-                    buff << " of ";
+                if (Options.language == lang_t::KO)
+                {
+                    const char* ko_ego = _ko_armour_ego_label(armour_ego_name(*this, false));
+                    buff << " (" << (ko_ego ? ko_ego : armour_ego_name(*this, false)) << ")";
+                }
                 else
-                    buff << " {";
-                buff << armour_ego_name(*this, terse);
-                if (terse)
-                    buff << "}";
+                {
+                    if (!terse)
+                        buff << " of ";
+                    else
+                        buff << " {";
+                    buff << armour_ego_name(*this, terse);
+                    if (terse)
+                        buff << "}";
+                }
             }
         }
 
@@ -1664,7 +2027,13 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
 
         if (identified)
-            buff << "wand of " << _wand_type_name(item_typ);
+        {
+            const char* ko_name = Options.language == lang_t::KO ? _ko_wand_name(item_typ) : nullptr;
+            if (ko_name)
+                buff << ko_name << " 마법봉";
+            else
+                buff << "wand of " << _wand_type_name(item_typ);
+        }
         else
         {
             buff << wand_secondary_string(subtype_rnd / NDSC_WAND_PRI)
@@ -1688,7 +2057,13 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
 
         if (identified)
-            buff << "potion of " << potion_type_name(item_typ);
+        {
+            const char* name = Options.language == lang_t::KO ? _ko_potion_name(item_typ) : nullptr;
+            if (name)
+                buff << name << " 물약";
+            else
+                buff << "potion of " << potion_type_name(item_typ);
+        }
         else
         {
             const int pqual   = PQUAL(subtype_rnd);
@@ -1721,7 +2096,33 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             const char *clr =  (pcolour < 0 || pcolour >= PDC_NCOLOURS) ?
                                    "bogus" : potion_colours[pcolour];
 
-            buff << qualifier << clr << " potion";
+            if (Options.language == lang_t::KO)
+            {
+                static const char* const ko_qualifiers[] = {
+                    "", "거품이 이는 ", "연기가 나는 ", "톡 쏘는 ", "걸쭉한 ",
+                    "덩어리가 진 ", "연무가 피어오르는 ", "빛나는 ",
+                    "침전물이 있는 ", "금속성의 ", "탁한 ", "출렁이는 ",
+                    "기름진 ", "미끈거리는 ", "유화된 "
+                };
+                static const char* const ko_colours[] = {
+#if TAG_MAJOR_VERSION == 34
+                    "투명한",
+#endif
+                    "파란", "검은", "은빛", "청록색", "보라색", "주황색",
+                    "먹빛", "붉은", "노란", "초록색", "갈색", "루비색",
+                    "흰", "에메랄드색", "회색", "분홍색", "구릿빛",
+                    "금빛", "어두운", "자줏빛", "자수정색", "사파이어색"
+                };
+                COMPILE_CHECK(ARRAYSZ(ko_qualifiers) == PDQ_NQUALS);
+                COMPILE_CHECK(ARRAYSZ(ko_colours) == PDC_NCOLOURS);
+                if (pqual >= 0 && pqual < PDQ_NQUALS
+                    && pcolour >= 0 && pcolour < PDC_NCOLOURS)
+                    buff << ko_qualifiers[pqual] << ko_colours[pcolour] << " 물약";
+                else
+                    buff << qualifier << clr << " potion";
+            }
+            else
+                buff << qualifier << clr << " potion";
         }
         break;
 
@@ -1732,6 +2133,18 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 #endif
 
     case OBJ_SCROLLS:
+        if (Options.language == lang_t::KO && !dbname && !qualname)
+        {
+            if (basename)
+                buff << "두루마리";
+            else if (identified && _ko_scroll_name(item_typ))
+                buff << _ko_scroll_name(item_typ) << " 두루마리";
+            else if (identified)
+                buff << "scroll of " << scroll_type_name(item_typ);
+            else
+                buff << make_name(subtype_rnd, MNAME_SCROLL) << "라고 적힌 두루마리";
+            break;
+        }
         buff << "scroll";
         if (basename)
             break;
@@ -1748,10 +2161,12 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     {
         if (basename)
         {
+            const bool ko_display = Options.language == lang_t::KO
+                                    && !dbname && !qualname;
             if (jewellery_is_amulet(*this))
-                buff << "amulet";
+                buff << (ko_display ? "목걸이" : "amulet");
             else
-                buff << "ring";
+                buff << (ko_display ? "반지" : "ring");
 
             break;
         }
@@ -1772,7 +2187,12 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             if (!dbname && jewellery_has_pluses(*this))
                 buff << make_stringf("%+d ", plus);
 
-            buff << jewellery_type_name(item_typ);
+            const char* ko_name = Options.language == lang_t::KO && !dbname && !qualname
+                ? _ko_jewellery_name(item_typ) : nullptr;
+            if (ko_name)
+                buff << ko_name << (jewellery_is_amulet(*this) ? " 목걸이" : " 반지");
+            else
+                buff << jewellery_type_name(item_typ);
         }
         else
         {
@@ -1828,7 +2248,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             break;
         }
         if (basename)
-            buff << (item_typ == BOOK_MANUAL ? "manual" : "book");
+            buff << (Options.language == lang_t::KO
+                     ? (item_typ == BOOK_MANUAL ? "교본" : "마법서")
+                     : (item_typ == BOOK_MANUAL ? "manual" : "book"));
         else
             buff << sub_type_string(*this, !dbname);
         break;
