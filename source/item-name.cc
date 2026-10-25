@@ -1498,7 +1498,7 @@ string sub_type_string(const item_def &item, bool known)
             if (!known)
                 return "manual";
             if (Options.language == lang_t::KO)
-                return skill_name(static_cast<skill_type>(item.plus)) + " 숙련 교본";
+                return string(skill_name(static_cast<skill_type>(item.plus))) + " 숙련 교본";
             string bookname = "manual of ";
             bookname += skill_name(static_cast<skill_type>(item.plus));
             return bookname;
@@ -1512,53 +1512,53 @@ string sub_type_string(const item_def &item, bool known)
             return parchmentname;
             }
         case BOOK_NECRONOMICON:
-            return "Necronomicon";
+            return Options.language == lang_t::KO ? "네크로노미콘" : "Necronomicon";
         case BOOK_GRAND_GRIMOIRE:
-            return "Grand Grimoire";
+            return Options.language == lang_t::KO ? "대마도서" : "Grand Grimoire";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_BUGGY_DESTRUCTION:
             return "tome of obsoleteness";
 #endif
         case BOOK_EVERBURNING:
             // Aus. English apparently follows the US spelling, not UK.
-            return "Everburning Encyclopedia";
+            return Options.language == lang_t::KO ? "영원히 타오르는 백과사전" : "Everburning Encyclopedia";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_OZOCUBU:
-            return "Ozocubu's Autobiography";
+            return Options.language == lang_t::KO ? "오조쿠부의 자서전" : "Ozocubu's Autobiography";
 #endif
         case BOOK_MAXWELL:
-            return "Maxwell's Memoranda";
+            return Options.language == lang_t::KO ? "맥스웰의 비망록" : "Maxwell's Memoranda";
         case BOOK_YOUNG_POISONERS:
-            return "Young Poisoner's Handbook";
+            return Options.language == lang_t::KO ? "젊은 독살자의 지침서" : "Young Poisoner's Handbook";
         case BOOK_FEN:
-            return "Fen Folio";
+            return Options.language == lang_t::KO ? "늪지의 서책" : "Fen Folio";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_NEARBY:
-            return "Inescapable Atlas";
+            return Options.language == lang_t::KO ? "벗어날 수 없는 지도책" : "Inescapable Atlas";
 #endif
         case BOOK_THERE_AND_BACK:
-            return "There-And-Back Book";
+            return Options.language == lang_t::KO ? "왕복의 서" : "There-And-Back Book";
         case BOOK_BIOGRAPHIES_II:
-            return "Great Wizards, Vol. II";
+            return Options.language == lang_t::KO ? "위대한 마법사들 제2권" : "Great Wizards, Vol. II";
         case BOOK_BIOGRAPHIES_VII:
-            return "Great Wizards, Vol. VII";
+            return Options.language == lang_t::KO ? "위대한 마법사들 제7권" : "Great Wizards, Vol. VII";
         case BOOK_TRISMEGISTUS:
-            return "Trismegistus Codex";
+            return Options.language == lang_t::KO ? "트리스메기스투스의 법전" : "Trismegistus Codex";
         case BOOK_UNRESTRAINED:
-            return "the Unrestrained Analects";
+            return Options.language == lang_t::KO ? "무구속 논어" : "the Unrestrained Analects";
         case BOOK_SIEGECRAFT:
-            return "Compendium of Siegecraft";
+            return Options.language == lang_t::KO ? "공성술 개론" : "Compendium of Siegecraft";
         case BOOK_CONDUCTIVITY:
-            return "Codex of Conductivity";
+            return Options.language == lang_t::KO ? "전도율의 서" : "Codex of Conductivity";
         case BOOK_CONSTRUCTION:
-            return "Handbook of Applied Construction";
+            return Options.language == lang_t::KO ? "응용 건축 지침서" : "Handbook of Applied Construction";
         case BOOK_TRAPS:
-            return "Treatise on Traps";
+            return Options.language == lang_t::KO ? "함정에 관한 논고" : "Treatise on Traps";
         case BOOK_SWAMP_SOJOURN:
-            return "My Sojourn through Swampland";
+            return Options.language == lang_t::KO ? "나의 늪지 여행기" : "My Sojourn through Swampland";
 #if TAG_MAJOR_VERSION == 34
         case BOOK_AKASHIC_RECORD:
-            return "Akashic Record";
+            return Options.language == lang_t::KO ? "아카식 레코드" : "Akashic Record";
 #endif
         default:
             if (Options.language == lang_t::KO && _ko_book_theme_name(sub_type))
@@ -2096,7 +2096,33 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             const char *clr =  (pcolour < 0 || pcolour >= PDC_NCOLOURS) ?
                                    "bogus" : potion_colours[pcolour];
 
-            buff << qualifier << clr << " potion";
+            if (Options.language == lang_t::KO)
+            {
+                static const char* const ko_qualifiers[] = {
+                    "", "거품이 이는 ", "연기가 나는 ", "톡 쏘는 ", "걸쭉한 ",
+                    "덩어리가 진 ", "연무가 피어오르는 ", "빛나는 ",
+                    "침전물이 있는 ", "금속성의 ", "탁한 ", "출렁이는 ",
+                    "기름진 ", "미끈거리는 ", "유화된 "
+                };
+                static const char* const ko_colours[] = {
+#if TAG_MAJOR_VERSION == 34
+                    "투명한",
+#endif
+                    "파란", "검은", "은빛", "청록색", "보라색", "주황색",
+                    "먹빛", "붉은", "노란", "초록색", "갈색", "루비색",
+                    "흰", "에메랄드색", "회색", "분홍색", "구릿빛",
+                    "금빛", "어두운", "자줏빛", "자수정색", "사파이어색"
+                };
+                COMPILE_CHECK(ARRAYSZ(ko_qualifiers) == PDQ_NQUALS);
+                COMPILE_CHECK(ARRAYSZ(ko_colours) == PDC_NCOLOURS);
+                if (pqual >= 0 && pqual < PDQ_NQUALS
+                    && pcolour >= 0 && pcolour < PDC_NCOLOURS)
+                    buff << ko_qualifiers[pqual] << ko_colours[pcolour] << " 물약";
+                else
+                    buff << qualifier << clr << " potion";
+            }
+            else
+                buff << qualifier << clr << " potion";
         }
         break;
 
