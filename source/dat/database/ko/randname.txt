@@ -615,3 +615,23 @@ w:40
 천구
 
 높은 하늘
+%%%%
+talisman
+
+@armour@
+%%%%
+Okawaru robe
+
+@Okawaru armour@
+%%%%
+Okawaru body armour
+
+@Okawaru armour@
+%%%%
+Xom robe
+
+@Xom armour@
+%%%%
+Xom body armour
+
+@Xom armour@
