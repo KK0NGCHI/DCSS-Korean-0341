@@ -611,3 +611,84 @@ w:2
 w:2
 
 별꽃 잼 비스킷을 먹는다. 어쩐지 불안한 맛이다.
+%%%%
+default peaceful fountain_blue
+
+{{
+-- Wisps can drink potions, so no need for another message here.
+if you.transform() == "death" or you.race() == "Mummy" then
+if crawl.one_chance_in(3) then
+return "식수대를 잠시 바라보다 한숨을 쉰다."
+else
+return "__NONE"
+end
+elseif you.transform() == "storm" then
+return "발아래 분수에서 파직거리는 소리가 난다."
+else
+return "분수의 물을 조금 마신다. 상쾌하다.";
+end
+}}
+{{
+if you.transform() == "storm" then
+return "분수에 작은 전기 충격이 번진다."
+elseif you.transform() == "wisp" then
+return "물에 비친 네 모습이 기묘하게 깜박거린다."
+elseif crawl.coinflip() or you.god() == "Okawaru" then
+return "잠시 멈춰 @your_hands@을 씻는다."
+else
+return "잠시 멈춰 @your_weapon@을 닦는다."
+end
+}}
+w:1
+분수에서 @any_graffiti@을 발견한다.
+%%%%
+default peaceful fountain_sparkling
+
+{{
+if you.transform() == "death" or you.race() == "Mummy" then
+if crawl.one_chance_in(3) then
+return "반짝이는 분수를 바라보다 한숨을 쉰다."
+else
+return "__NONE"
+end
+elseif you.transform() == "storm" then
+return "발아래 분수에서 기묘한 파직거림이 들린다."
+elseif crawl.coinflip() or you.god == "Zin" or you.god == "Cheibriados" then
+return "분수가 기묘한 @any_colour_pattern@으로 일렁여 물을 마시지 않기로 한다."
+else
+return "분수의 물을 조금 마신다. @sparkling_message@"
+end
+}}
+w:1
+분수에서 @any_graffiti@을 발견한다.
+%%%%
+default fountain_blood
+
+{{
+if you.can_smell() then
+return "끝없이 흐르는 분수의 피에서 썩은 쇳내가 난다."
+elseif you.god() == "Trog" then
+return "더는 몸에 피를 묻히지 않도록 조심한다."
+else
+return "몸에 피가 묻지 않도록 조심한다."
+end
+}}
+작디작은 모기들이 피에 취한 듯 분수의 표면에 들끓는다.
+w:3
+피의 분수에 비친 네 모습이 말없이 [심판하듯|공포에 질려] 너를 바라본다.
+w:3
+피의 분수에서 낮은 흐느낌 같은 맥동이 느껴진다.
+w:1
+피의 분수에서는 피가 솟구친다. 피의 분수란 대개 그런 법이다.
+%%%%
+Trog peaceful fountain_blue
+
+{{
+if you.transform() == "wisp" then
+return "분수에 비친 네 모습이 소리 없는 분노로 일그러진다."
+elseif you.transform() == "fungus" then
+return "잠시 멈춰 균사체에 묻은 피를 짜낸다."
+else
+return "잠시 멈춰 얼굴에 묻은 피를 씻어 낸다."
+end
+}}
