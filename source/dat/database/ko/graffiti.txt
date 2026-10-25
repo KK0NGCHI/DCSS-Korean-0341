@@ -280,7 +280,7 @@ _graffiti_unreadable_
 
 w:1
 
-@_graffiti_hailed_god_@을 찬양하는 부분만 읽을 수 있는 @_writing_type_@ 낙서
+@_graffiti_hailed_god_@ 찬양을 담은 부분만 읽을 수 있는 @_writing_type_@ 낙서
 
 w:1
 
@@ -406,31 +406,31 @@ w:1
 %%%%
 _graffiti_class_remedial_
 
-@_graffiti_professor_@이 가르치는 @random_skill@ 기초 보충 강좌
+강사: @_graffiti_professor_@. 강좌: @random_skill@ 기초 보충 강좌
 
-@_graffiti_professor_magic_type_@ @_graffiti_professor_@이 가르치는 @random_skill_magic@ 보충 강좌
+@_graffiti_professor_magic_type_@ 강사: @_graffiti_professor_@. 강좌: @random_skill_magic@ 보충 강좌
 
-@_graffiti_professor_mundane_type_@ @_graffiti_professor_@이 가르치는 @random_skill_mundane@ 보충 강좌
-
-w:2
-
-@_graffiti_professor_evocations_type_@ @_graffiti_professor_@이 가르치는 발동술 보충 강좌
+@_graffiti_professor_mundane_type_@ 강사: @_graffiti_professor_@. 강좌: @random_skill_mundane@ 보충 강좌
 
 w:2
 
-@_graffiti_professor_invocations_type_@ @_graffiti_professor_@이 가르치는 기도술 보충 강좌
+@_graffiti_professor_evocations_type_@ 강사: @_graffiti_professor_@. 강좌: 발동술 보충 강좌
 
 w:2
 
-@_graffiti_professor_shapeshifting_type_@ @_graffiti_professor_@이 가르치는 변신술 보충 강좌
+@_graffiti_professor_invocations_type_@ 강사: @_graffiti_professor_@. 강좌: 기도술 보충 강좌
 
 w:2
 
-@_graffiti_professor_necromancy_type_@ @_graffiti_professor_@이 가르치는 강령술 보충 강좌
+@_graffiti_professor_shapeshifting_type_@ 강사: @_graffiti_professor_@. 강좌: 변신술 보충 강좌
 
 w:2
 
-@_graffiti_professor_necromancy_type_@ @_graffiti_professor_@이 가르치는 @random_skill_magic@ 보충 강좌
+@_graffiti_professor_necromancy_type_@ 강사: @_graffiti_professor_@. 강좌: 강령술 보충 강좌
+
+w:2
+
+@_graffiti_professor_necromancy_type_@ 강사: @_graffiti_professor_@. 강좌: @random_skill_magic@ 보충 강좌
 %%%%
 _graffiti_hailed_god_
 
@@ -458,7 +458,7 @@ _graffiti_happened_reason_
 
 우연이었다
 
-우연이지만 @_graffiti_author_any_@은 우연을 믿지 않는다
+우연이지만 작성자 @_graffiti_author_any_@: 우연을 믿지 않는다
 
 은폐 공작이었다
 
@@ -680,19 +680,19 @@ w:1
 %%%%
 _graffiti_changed_names_
 
-@_graffiti_author_any_changeable_@은 이름을 바꾸고 이제 @_graffiti_author_any_changeable_@으로 불린다
+작성자 @_graffiti_author_any_changeable_@: 이름을 바꾸고 이제 @_graffiti_author_any_changeable_@으로 불린다
 
 w:2
 
-@_graffiti_author_orc_@은 이름을 바꾸고 이제 @_graffiti_author_orc_@으로 불린다
+작성자 @_graffiti_author_orc_@: 이름을 바꾸고 이제 @_graffiti_author_orc_@으로 불린다
 
 w:2
 
-@_rare_graffiti_author_any_@은 이름을 물려받을 자격이 있는 다른 이에게 넘겼다
+작성자 @_rare_graffiti_author_any_@: 이름을 물려받을 자격이 있는 다른 이에게 넘겼다
 
 w:1
 
-@_graffiti_author_any_changeable_non-randgen_@은 좀의 영향으로 이름을 바꾸고 이제 @RANDGEN@으로 불린다
+작성자 @_graffiti_author_any_changeable_non-randgen_@: 좀의 영향으로 이름을 바꾸고 이제 @RANDGEN@으로 불린다
 %%%%
 _graffiti_fight_
 
@@ -730,7 +730,7 @@ _graffiti_image_
 %%%%
 _graffiti_vengeance_reason_
 
-@_graffiti_author_any_@을 버린 일
+@_graffiti_author_any_@을 버렸다는 이유
 
 그들을 버린 일
 
@@ -792,35 +792,35 @@ w:1
 %%%%
 _graffiti_changed_or_compared_religions_
 
-@_graffiti_author_any_@은 @random_god@을 버렸다
+작성자 @_graffiti_author_any_@: @random_god@을 버렸다
 
-@_graffiti_author_any_@은 @random_god@ 신앙을 떠났다
+작성자 @_graffiti_author_any_@: @random_god@ 신앙을 떠났다
 
-@_graffiti_author_any_@은 @random_god@에게 개종했다
+작성자 @_graffiti_author_any_@: @random_god@에게 개종했다
 
-@_graffiti_author_any_@은 @_graffiti_author_any_@보다 @_graffiti_religion_better_or_worse_@
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@보다 @_graffiti_religion_better_or_worse_@
 
-@_graffiti_author_any_@은 사실 무신론자다
+작성자 @_graffiti_author_any_@: 사실 무신론자다
 
-@_graffiti_author_any_@은 사실 무신론자가 아니다
+작성자 @_graffiti_author_any_@: 사실 무신론자가 아니다
 
-@_graffiti_author_any_@은 사실 @random_god@이다
+작성자 @_graffiti_author_any_@: 사실 @random_god@이다
 
-@_graffiti_author_any_@은 몰래 진을 숭배한다
+작성자 @_graffiti_author_any_@: 몰래 진을 숭배한다
 
-@_graffiti_author_any_@은 @random_god_chaotic@ 대신 진을 몰래 숭배한다
+작성자 @_graffiti_author_any_@: @random_god_chaotic@ 대신 진을 몰래 숭배한다
 
-@_graffiti_author_any_@은 몰래 @random_god_chaotic@을 숭배한다
+작성자 @_graffiti_author_any_@: 몰래 @random_god_chaotic@을 숭배한다
 
-@_graffiti_author_any_@은 진 대신 @random_god_chaotic@을 몰래 숭배한다
+작성자 @_graffiti_author_any_@: 진 대신 @random_god_chaotic@을 몰래 숭배한다
 
-@_graffiti_author_any_@은 몰래 @random_god_good@을 숭배한다
+작성자 @_graffiti_author_any_@: 몰래 @random_god_good@을 숭배한다
 
-@_graffiti_author_any_@은 @random_god_evil@ 대신 @random_god_good@을 몰래 숭배한다
+작성자 @_graffiti_author_any_@: @random_god_evil@ 대신 @random_god_good@을 몰래 숭배한다
 
-@_graffiti_author_any_@은 몰래 @random_god_evil@을 숭배한다
+작성자 @_graffiti_author_any_@: 몰래 @random_god_evil@을 숭배한다
 
-@_graffiti_author_any_@은 @random_god_good@ 대신 @random_god_evil@을 몰래 숭배한다
+작성자 @_graffiti_author_any_@: @random_god_good@ 대신 @random_god_evil@을 몰래 숭배한다
 
 w:1
 
@@ -828,7 +828,7 @@ w:1
 
 w:1
 
-@_graffiti_author_any_@은 몰래 @_graffiti_hailed_god_@을 숭배한다
+작성자 @_graffiti_author_any_@: 몰래 @_graffiti_hailed_god_@을 숭배한다
 %%%%
 _graffiti_religion_not_non-orc_or_orc_
 
@@ -892,19 +892,19 @@ _graffiti_short_saying_
 
 @_graffiti_author_any_@이 여기에 왔다
 
-@_graffiti_author_any_@은 @_graffiti_author_any_@을(를) @_graffiti_loves_or_hates_@
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@을(를) @_graffiti_loves_or_hates_@
 
-@_graffiti_author_any_@은 @_graffiti_author_any_@의 @_graffiti_relative_or_quality_@을(를) @_graffiti_loves_or_hates_@
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@의 @_graffiti_relative_or_quality_@을(를) @_graffiti_loves_or_hates_@
 
-@_graffiti_author_any_@은 @_graffiti_life_or_death_@
+작성자 @_graffiti_author_any_@: @_graffiti_life_or_death_@
 
-@_graffiti_author_any_@은 @_graffiti_wares_quality_@ 물건을 판다
+작성자 @_graffiti_author_any_@: @_graffiti_wares_quality_@ 물건을 판다
 
-@_graffiti_author_any_@은 @_graffiti_author_any_@의 물건을 훔친다
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@의 물건을 훔친다
 
 @_graffiti_author_any_@에게 일어난 일은 @_graffiti_happened_reason_@
 
-@_graffiti_author_any_@은 @_graffiti_duplicate_@으로 대체되었다
+작성자 @_graffiti_author_any_@: @_graffiti_duplicate_@으로 대체되었다
 
 @_graffiti_vengeance_@
 
@@ -918,25 +918,25 @@ w:2
 %%%%
 _graffiti_vengeance_
 
-@_graffiti_author_any_@은 @_graffiti_author_any_@의 복수를 했다
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@의 복수를 했다
 
-@_graffiti_author_any_@은 @_graffiti_vengeance_reason_@ 때문에 @graffiti_author_any@을 대신해 복수했다
+작성자 @_graffiti_author_any_@: @_graffiti_vengeance_reason_@ 때문에 @graffiti_author_any@을 대신해 복수했다
 
-@_graffiti_author_any_@은 @_graffiti_author_any_@에게 복수를 맹세했다
+작성자 @_graffiti_author_any_@: @_graffiti_author_any_@에게 복수를 맹세했다
 
-@_graffiti_author_any_@은 @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
+작성자 @_graffiti_author_any_@: @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
 
 @_graffiti_author_any_@의 유령은 아직도 @_graffiti_author_any_@을 따라다닌다
 
 @_graffiti_author_any_@의 유령은 @_graffiti_vengeance_reason_@ 때문에 아직도 @_graffiti_author_any_@을 따라다닌다
 
-@_graffiti_author_orc_@은 @_graffiti_author_any_@의 복수를 했다
+작성자 @_graffiti_author_orc_@: @_graffiti_author_any_@의 복수를 했다
 
-@_graffiti_author_orc_@은 @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@의 복수를 했다
+작성자 @_graffiti_author_orc_@: @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@의 복수를 했다
 
-@_graffiti_author_orc_@은 @_graffiti_author_any_@에게 복수를 맹세했다
+작성자 @_graffiti_author_orc_@: @_graffiti_author_any_@에게 복수를 맹세했다
 
-@_graffiti_author_orc_@은 @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
+작성자 @_graffiti_author_orc_@: @_graffiti_vengeance_reason_@ 때문에 @_graffiti_author_any_@에게 복수를 맹세했다
 
 @_graffiti_author_orc_@의 유령은 아직도 @_graffiti_author_any_@을 따라다닌다
 
