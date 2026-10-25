@@ -2173,8 +2173,10 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         const bool is_randart = is_artefact(*this);
 
+        const bool ko_display = Options.language == lang_t::KO
+                                && !dbname && !qualname;
         if (!terse && cursed())
-            buff << "cursed ";
+            buff << (ko_display ? "저주받은 " : "cursed ");
 
         if (is_randart && !dbname)
         {
@@ -2200,17 +2202,17 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             {
                 buff << amulet_secondary_string(subtype_rnd / NDSC_JEWEL_PRI)
                      << amulet_primary_string(subtype_rnd % NDSC_JEWEL_PRI)
-                     << " amulet";
+                     << (ko_display ? " 목걸이" : " amulet");
             }
             else  // i.e., a ring
             {
                 buff << ring_secondary_string(subtype_rnd / NDSC_JEWEL_PRI)
                      << ring_primary_string(subtype_rnd % NDSC_JEWEL_PRI)
-                     << " ring";
+                     << (ko_display ? " 반지" : " ring");
             }
         }
         if (cursed() && terse && !dbname && !qualname)
-            buff << " (curse)";
+            buff << (ko_display ? " (저주)" : " (curse)");
         break;
     }
     case OBJ_MISCELLANY:
@@ -2223,7 +2225,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         buff << misc_type_name(item_typ);
 
         if (is_xp_evoker(*this) && !dbname && !evoker_charges(sub_type))
-            buff << " (inert)";
+            buff << (Options.language == lang_t::KO && !qualname
+                     ? " (비활성)" : " (inert)");
         else if (is_xp_evoker(*this) &&
                  !dbname && evoker_max_charges(sub_type) > 1)
         {
@@ -2248,7 +2251,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             break;
         }
         if (basename)
-            buff << (Options.language == lang_t::KO
+            buff << (Options.language == lang_t::KO && !dbname && !qualname
                      ? (item_typ == BOOK_MANUAL ? "교본" : "마법서")
                      : (item_typ == BOOK_MANUAL ? "manual" : "book"));
         else
