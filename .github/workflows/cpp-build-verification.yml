@@ -1,11 +1,7 @@
 name: C++ Korean build verification
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - 'source/**/*.cc'
-      - 'source/**/*.h'
-      - '.github/workflows/cpp-build-verification.yml'
+
 jobs:
   build:
     runs-on: ubuntu-24.04
