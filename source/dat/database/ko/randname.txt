@@ -403,3 +403,215 @@ ring appearance
 amulet appearance
 
 @_jewellery appearance_@ @_amulet material_@
+%%%%
+_ashenzari_object_
+
+역경
+
+고난
+
+짐
+
+족쇄
+
+영지
+
+상실
+
+징조
+
+시련
+
+전조
+
+감옥
+
+후회
+
+안식
+
+원한
+
+슬픔
+
+환시
+
+멍에
+
+w:100
+
+@_diviner_name_@
+
+w:150
+
+@_discomfort_weapon_@
+
+w:100
+
+@_philosophy_name_@
+
+w:100
+
+@_discomfort_and_inaction_@
+
+w:100
+
+@_suspicion_no_conflict_name_@
+%%%%
+_ashenzari_adjective_
+
+w:50
+
+@_ashenzari_bound_adjective_@
+
+w:50
+
+@_ashenzari_knowledge_adjective_@
+
+@_ashenzari_celestial_adjective_@
+%%%%
+_ashenzari_bound_adjective_
+
+속박된
+
+사슬에 묶인
+
+경계 지어진
+
+저주받은
+
+깊숙이 자리 잡은
+
+영원한
+
+휘감긴
+
+억제된
+
+망가진
+
+족쇄 찬
+
+산산이 부서진
+
+매인
+%%%%
+_ashenzari_celestial_adjective_
+
+성계의
+
+천상의
+
+우주의
+
+아득히 먼
+
+극락의
+
+항성의
+
+별빛의
+
+숭고한
+%%%%
+_ashenzari_knowledge_adjective_
+
+모든 것을 보는
+
+점성술의
+
+천리안을 지닌
+
+수수께끼 같은
+
+깨달음을 얻은
+
+불가해한
+
+심오한 비전의
+
+영지의
+
+드러난
+
+예언술의
+
+전지한
+
+신탁의
+
+만물을 아는
+
+통찰력 있는
+
+미래를 내다보는
+
+심원한
+
+예언하는
+
+진실을 드러내는
+
+신탁적인
+
+베일을 벗기는
+
+환시를 보는
+%%%%
+_ashenzari_epithet_
+
+w:100
+
+@_ashenzari_adjective_@ 신
+
+w:50
+
+@_ashenzari_bound_adjective_@ 예언자
+
+w:50
+
+@_ashenzari_celestial_adjective_@ 예언자
+
+w:50
+
+@_ashenzari_bound_adjective_@ 현자
+
+w:50
+
+@_ashenzari_celestial_adjective_@ 현자
+
+w:50
+
+@_ashenzari_bound_adjective_@ 선견자
+
+w:50
+
+@_ashenzari_celestial_adjective_@ 선견자
+
+모든 것을 아는 자
+
+저주를 짊어진 자
+
+점술가
+
+움직이지 않는 자
+%%%%
+_ashenzari_heavens_
+
+우주
+
+천상
+
+에테르
+
+창공
+
+하늘들
+
+w:40
+
+하늘
+
+천구
+
+높은 하늘
