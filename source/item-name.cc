@@ -2022,7 +2022,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     case OBJ_WANDS:
         if (basename)
         {
-            buff << "wand";
+            buff << (Options.language == lang_t::KO && !dbname && !qualname
+                     ? "마법봉" : "wand");
             break;
         }
 
@@ -2310,24 +2311,28 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
     // rearranged 15 Apr 2000 {dlb}:
     case OBJ_ORBS:
-        buff.str("Orb of Zot");
+        buff.str(Options.language == lang_t::KO && !dbname && !qualname
+                 ? "조트의 오브" : "Orb of Zot");
         break;
 
     case OBJ_RUNES:
         if (!dbname)
             buff << rune_type_name(sub_type) << " ";
-        buff << "rune of Zot";
+        buff << (Options.language == lang_t::KO && !dbname && !qualname
+                 ? "조트의 룬" : "rune of Zot");
         break;
 
     case OBJ_GEMS:
         if (sub_type == NUM_GEM_TYPES)
-            buff << "gem";
+            buff << (Options.language == lang_t::KO && !dbname && !qualname
+                     ? "보석" : "gem");
         else
             buff << gem_type_name(static_cast<gem_type>(sub_type));
         break;
 
     case OBJ_GOLD:
-        buff << "gold piece";
+        buff << (Options.language == lang_t::KO && !dbname && !qualname
+                 ? "금화" : "gold piece");
         break;
 
     case OBJ_CORPSES:
