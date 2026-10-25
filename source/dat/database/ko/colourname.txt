@@ -147,3 +147,745 @@ any_glowing_colour_pattern
 @any_glowing_colour@ 바탕에 @any_colour@의 @any_pattern@
 
 @any_glowing_colour@ 바탕에 @any_glowing_colour@의 @any_pattern@
+%%%%
+misc_colour
+
+하늘빛
+
+설화석고색
+
+알리자린 진홍색
+
+아몬드색
+
+아마란스색
+
+아마란스 분홍색
+
+아마란스 자주색
+
+자수정색
+
+아메트린색
+
+호박색
+
+아나토색
+
+사과 초록색
+
+사과 빨간색
+
+사과 노란색
+
+살구색
+
+물빛
+
+아쿠아마린색
+
+아티초크 초록색
+
+아스파라거스 초록색
+
+atrovirens
+
+가지색
+
+적갈색
+
+아우레올린 황색
+
+아보카도 초록색
+
+하늘색
+
+남동석색
+
+연하늘색
+
+바나나 노란색
+
+비트 빨간색
+
+베이지색
+
+비스크색
+
+암갈색
+
+선명한 주황색
+
+블러드오렌지색
+
+핏빛
+
+블루베리색
+
+홍조색
+
+bole
+
+황동색
+
+청동색
+
+갈색
+
+갈색 황토색
+
+담황색
+
+버건디색
+
+밝은 황갈색
+
+짙은 호박색
+
+태운 황토색
+
+짙은 주황색
+
+번트 시에나색
+
+번트 엄버색
+
+비잔틴 자주색
+
+카드뮴 빨간색
+
+카드뮴 초록색
+
+카드뮴 주황색
+
+카드뮴 노란색
+
+카메오 분홍색
+
+사탕 사과 초록색
+
+사탕 사과 빨간색
+
+사탕 사과 노란색
+
+caput mortuum
+
+선홍색
+
+카민색
+
+카네이션색
+
+홍옥수색
+
+당근 주황색
+
+cattleya
+
+청자색
+
+연하늘색
+
+천청색
+
+체리 분홍색
+
+세룰리언색
+
+숯색
+
+샤르트뢰즈색
+
+황록색
+
+체리 빨간색
+
+밤색
+
+차이나 블루
+
+초콜릿색
+
+chocolate cosmos
+
+크롬 초록색
+
+크롬 주황색
+
+크롬 노란색
+
+진사색
+
+계피색
+
+citreous
+
+황수정색
+
+유자색
+
+흐린 파란색
+
+코발트 파란색
+
+코발트 초록색
+
+코발트 보라색
+
+코발트 노란색
+
+커피색
+
+수레국화 파란색
+
+구리색
+
+coquelicot
+
+산호 분홍색
+
+cordovan
+
+크림색
+
+진홍색
+
+crocoite
+
+청록색
+
+시클라멘색
+
+용혈색
+
+오리빛 파란색
+
+회갈색
+
+탁한 주황색
+
+탁한 장밋빛
+
+흑단색
+
+미표백 베이지색
+
+가지색
+
+전광 파란색
+
+전광 남색
+
+전광 자홍색
+
+전광 자주색
+
+전광 보라색
+
+에메랄드색
+
+eminence
+
+erin
+
+상록색
+
+fallow
+
+팔룬 빨간색
+
+판당고 자주색
+
+담갈색
+
+feldgrau
+
+양치식물 초록색
+
+불꽃 주황색
+
+불꽃 빨간색
+
+아마색
+
+flirt
+
+형광 파란색
+
+숲 초록색
+
+푸크시아색
+
+푹신색
+
+fulvous
+
+등황색
+
+석류석색
+
+glaucous
+
+고블린 파란색
+
+고블린 진홍색
+
+녹토색
+
+초록 황토색
+
+greenockite
+
+회베이지색
+
+금색
+
+황금빛 황토색
+
+금빛 양귀비색
+
+황금 갈색
+
+미역취 황색
+
+goshenite
+
+gridelin
+
+grullo
+
+연청록색
+
+한사 노란색
+
+할리퀸 초록색
+
+헬리오도르색
+
+헬리오트로프색
+
+히비스커스색
+
+진분홍색
+
+헌터 초록색
+
+헌터 주황색
+
+히아신스색
+
+히아신스 파란색
+
+icterine
+
+제국 파란색
+
+제국 주황색
+
+제국 자주색
+
+제국 빨간색
+
+제국 노란색
+
+indanthrone blue
+
+independence
+
+irresistible
+
+아이리스색
+
+isabelline
+
+담쟁이 초록색
+
+비취색
+
+jale
+
+재스민색
+
+jonquil
+
+kachi indigo
+
+카키색
+
+kobicha
+
+다시마 초록색
+
+labradorite
+
+청금석색
+
+월계수 초록색
+
+라벤더색
+
+라벤더 파란색
+
+라벤더 자주색
+
+라벤더 남색
+
+라벤더 자홍색
+
+라벤더 장밋빛
+
+잎사귀 초록색
+
+대파 초록색
+
+레몬 노란색
+
+liberty
+
+라일락색
+
+라임 초록색
+
+liseran purple
+
+lusty gallant
+
+madder
+
+자홍색
+
+마호가니색
+
+공작석색
+
+귤색
+
+manganese violet
+
+망고색
+
+금잔화색
+
+바다 파란색
+
+마멀레이드색
+
+적갈색
+
+연자주색
+
+mauve taupe
+
+mauveine
+
+maxixe
+
+mazarine
+
+mellow yellow
+
+한밤의 파란색
+
+mikado
+
+mindaro
+
+minium
+
+민트 초록색
+
+morganite
+
+아침 하늘색
+
+이끼 초록색
+
+오디색
+
+겨자 갈색
+
+겨자 초록색
+
+겨자 노란색
+
+myrtle
+
+nattier
+
+남색
+
+짙은 자주색
+
+니켈색
+
+육두구색
+
+nyanza
+
+황토색
+
+octarine
+
+old helio
+
+old heliotrope
+
+바랜 장밋빛
+
+올리브 초록색
+
+탁한 올리브색
+
+올리브 황토색
+
+감람석색
+
+olo
+
+주황 황토색
+
+난초색
+
+orpiment
+
+검붉은 피색
+
+palatinate
+
+palatinate blue
+
+palatinate purple
+
+복숭아색
+
+배 초록색
+
+배 노란색
+
+페리도트색
+
+페리윙클색
+
+감색
+
+phlox
+
+picotee blue
+
+소나무 초록색
+
+pine tree
+
+분홍색
+
+라벤더 분홍색
+
+피스타치오색
+
+자두색
+
+ponceau
+
+양귀비 빨간색
+
+파우더 블루
+
+prase
+
+앵초 노란색
+
+puce
+
+호박 주황색
+
+보라색
+
+보라 황토색
+
+자주빛 회갈색
+
+purpura
+
+purpureus
+
+석영색
+
+quercitron
+
+산딸기색
+
+산딸기 장밋빛
+
+realgar
+
+붉은 에메랄드색
+
+붉은 황토색
+
+rej
+
+로켓 초록색
+
+rockmelon
+
+장밋빛
+
+장미석영색
+
+rose vale
+
+rubric
+
+루비색
+
+ruddy blue
+
+rufous
+
+붉은 갈색
+
+녹슨 쇠색
+
+잇꽃 주황색
+
+사프란색
+
+연어색
+
+sanguine
+
+수액 초록색
+
+사파이어색
+
+바다 파란색
+
+바다 초록색
+
+세피아색
+
+주홍색
+
+scarlet emerald
+
+형광 분홍색
+
+시에나색
+
+은색
+
+은빛 분홍색
+
+sinopia
+
+skobeloff
+
+하늘색
+
+하늘 자홍색
+
+점판암색
+
+회청색
+
+smalt
+
+smaragdine
+
+sorcerer's violet
+
+spring bud
+
+봄 초록색
+
+강철 파란색
+
+딸기 빨간색
+
+strontium yellow
+
+tamarind
+
+tang blue
+
+감귤색
+
+회갈색
+
+황갈색
+
+차잎 초록색
+
+청록색
+
+청록빛 파란색
+
+청록빛 초록색
+
+telemagenta
+
+테라코타색
+
+terre verte
+
+엉겅퀴색
+
+호안석색
+
+티타늄 노란색
+
+토마토 빨간색
+
+토파즈색
+
+강황색
+
+터키석색
+
+ulfire
+
+군청색
+
+엄버색
+
+바닐라색
+
+녹청색
+
+주홍색
+
+veronica
+
+비리디언색
+
+호두색
+
+수박 초록색
+
+수박 빨간색
+
+wenge
+
+밀색
+
+포도주색
+
+등나무꽃색
+
+xanthic
+
+xanthous
+
+yam
+
+노란 황토색
+
+zaffre
+
+아연 노란색
+
+zinnwaldite
+
+zomp
+
+주키니 초록색
