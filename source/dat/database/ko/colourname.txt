@@ -188,7 +188,7 @@ misc_colour
 
 아스파라거스 초록색
 
-atrovirens
+짙은 초록색
 
 가지색
 
@@ -224,7 +224,7 @@ atrovirens
 
 홍조색
 
-bole
+붉은 갈색 흙빛
 
 황동색
 
@@ -268,7 +268,7 @@ bole
 
 사탕 사과 노란색
 
-caput mortuum
+카푸트 모르투움색
 
 선홍색
 
@@ -280,7 +280,7 @@ caput mortuum
 
 당근 주황색
 
-cattleya
+카틀레야색
 
 청자색
 
@@ -306,7 +306,7 @@ cattleya
 
 초콜릿색
 
-chocolate cosmos
+초콜릿 코스모스색
 
 크롬 초록색
 
@@ -318,7 +318,7 @@ chocolate cosmos
 
 계피색
 
-citreous
+레몬빛
 
 황수정색
 
@@ -340,17 +340,17 @@ citreous
 
 구리색
 
-coquelicot
+양귀비 주홍색
 
 산호 분홍색
 
-cordovan
+코도반색
 
 크림색
 
 진홍색
 
-crocoite
+홍연석색
 
 청록색
 
@@ -384,13 +384,13 @@ crocoite
 
 에메랄드색
 
-eminence
+에미넌스 자주색
 
-erin
+에린 초록색
 
 상록색
 
-fallow
+황갈색
 
 팔룬 빨간색
 
@@ -398,7 +398,7 @@ fallow
 
 담갈색
 
-feldgrau
+펠트그라우색
 
 양치식물 초록색
 
@@ -408,7 +408,7 @@ feldgrau
 
 아마색
 
-flirt
+플러트 자주색
 
 형광 파란색
 
@@ -418,13 +418,13 @@ flirt
 
 푹신색
 
-fulvous
+황갈색
 
 등황색
 
 석류석색
 
-glaucous
+회녹색
 
 고블린 파란색
 
@@ -434,7 +434,7 @@ glaucous
 
 초록 황토색
 
-greenockite
+그리노카이트색
 
 회베이지색
 
@@ -448,11 +448,11 @@ greenockite
 
 미역취 황색
 
-goshenite
+고셰나이트색
 
-gridelin
+회자주색
 
-grullo
+회갈색
 
 연청록색
 
@@ -476,7 +476,7 @@ grullo
 
 히아신스 파란색
 
-icterine
+황달빛 노란색
 
 제국 파란색
 
@@ -488,35 +488,35 @@ icterine
 
 제국 노란색
 
-indanthrone blue
+인단트론 파란색
 
-independence
+인디펜던스 청회색
 
-irresistible
+이리시스터블 분홍색
 
 아이리스색
 
-isabelline
+아이보리 베이지색
 
 담쟁이 초록색
 
 비취색
 
-jale
+잘레색
 
 재스민색
 
-jonquil
+수선화 노란색
 
-kachi indigo
+카치 남색
 
 카키색
 
-kobicha
+고비차 갈색
 
 다시마 초록색
 
-labradorite
+조회장석색
 
 청금석색
 
@@ -540,17 +540,17 @@ labradorite
 
 레몬 노란색
 
-liberty
+리버티 파란색
 
 라일락색
 
 라임 초록색
 
-liseran purple
+리세란 자주색
 
-lusty gallant
+러스티 갤런트색
 
-madder
+꼭두서니색
 
 자홍색
 
@@ -560,7 +560,7 @@ madder
 
 귤색
 
-manganese violet
+망간 보라색
 
 망고색
 
@@ -574,27 +574,27 @@ manganese violet
 
 연자주색
 
-mauve taupe
+연자주 회갈색
 
-mauveine
+모베인 보라색
 
-maxixe
+막시셰색
 
-mazarine
+마자린 파란색
 
-mellow yellow
+부드러운 노란색
 
 한밤의 파란색
 
-mikado
+미카도 황색
 
-mindaro
+민다로색
 
-minium
+연단색
 
 민트 초록색
 
-morganite
+모거나이트색
 
 아침 하늘색
 
@@ -608,9 +608,9 @@ morganite
 
 겨자 노란색
 
-myrtle
+도금양 초록색
 
-nattier
+나티에 파란색
 
 남색
 
@@ -620,15 +620,15 @@ nattier
 
 육두구색
 
-nyanza
+냥자 연두색
 
 황토색
 
-octarine
+옥타린색
 
-old helio
+바랜 헬리오트로프색
 
-old heliotrope
+오래된 헬리오트로프색
 
 바랜 장밋빛
 
@@ -640,21 +640,21 @@ old heliotrope
 
 감람석색
 
-olo
+올로색
 
 주황 황토색
 
 난초색
 
-orpiment
+석황색
 
 검붉은 피색
 
-palatinate
+팔라티네이트 자주색
 
-palatinate blue
+팔라티네이트 파란색
 
-palatinate purple
+팔라티네이트 보라색
 
 복숭아색
 
@@ -668,13 +668,13 @@ palatinate purple
 
 감색
 
-phlox
+플록스색
 
-picotee blue
+피코티 파란색
 
 소나무 초록색
 
-pine tree
+소나무색
 
 분홍색
 
@@ -684,17 +684,17 @@ pine tree
 
 자두색
 
-ponceau
+퐁소 빨간색
 
 양귀비 빨간색
 
 파우더 블루
 
-prase
+프레이즈 초록색
 
 앵초 노란색
 
-puce
+암자주 갈색
 
 호박 주황색
 
@@ -704,43 +704,43 @@ puce
 
 자주빛 회갈색
 
-purpura
+푸르푸라 자주색
 
-purpureus
+자주색
 
 석영색
 
-quercitron
+참나무껍질 노란색
 
 산딸기색
 
 산딸기 장밋빛
 
-realgar
+계관석색
 
 붉은 에메랄드색
 
 붉은 황토색
 
-rej
+레즈색
 
 로켓 초록색
 
-rockmelon
+멜론 살구색
 
 장밋빛
 
 장미석영색
 
-rose vale
+로즈베일색
 
-rubric
+붉은 안료색
 
 루비색
 
-ruddy blue
+불그스름한 파란색
 
-rufous
+적갈색
 
 붉은 갈색
 
@@ -752,7 +752,7 @@ rufous
 
 연어색
 
-sanguine
+핏빛 붉은색
 
 수액 초록색
 
@@ -766,7 +766,7 @@ sanguine
 
 주홍색
 
-scarlet emerald
+진홍빛 에메랄드색
 
 형광 분홍색
 
@@ -776,9 +776,9 @@ scarlet emerald
 
 은빛 분홍색
 
-sinopia
+시노피아 적갈색
 
-skobeloff
+스코벨로프 청록색
 
 하늘색
 
@@ -788,13 +788,13 @@ skobeloff
 
 회청색
 
-smalt
+스몰트 파란색
 
-smaragdine
+에메랄드 초록색
 
-sorcerer's violet
+마법사의 보라색
 
-spring bud
+봄눈 연두색
 
 봄 초록색
 
@@ -802,11 +802,11 @@ spring bud
 
 딸기 빨간색
 
-strontium yellow
+스트론튬 노란색
 
-tamarind
+타마린드 갈색
 
-tang blue
+탱 블루
 
 감귤색
 
@@ -822,11 +822,11 @@ tang blue
 
 청록빛 초록색
 
-telemagenta
+텔레마젠타색
 
 테라코타색
 
-terre verte
+녹토색
 
 엉겅퀴색
 
@@ -842,7 +842,7 @@ terre verte
 
 터키석색
 
-ulfire
+울파이어색
 
 군청색
 
@@ -854,7 +854,7 @@ ulfire
 
 주홍색
 
-veronica
+베로니카 보라색
 
 비리디언색
 
@@ -864,7 +864,7 @@ veronica
 
 수박 빨간색
 
-wenge
+웬지 갈색
 
 밀색
 
@@ -872,20 +872,20 @@ wenge
 
 등나무꽃색
 
-xanthic
+황색
 
-xanthous
+황금빛 노란색
 
-yam
+얌색
 
 노란 황토색
 
-zaffre
+자프르 파란색
 
 아연 노란색
 
-zinnwaldite
+진발다이트색
 
-zomp
+좀프 청록색
 
 주키니 초록색
