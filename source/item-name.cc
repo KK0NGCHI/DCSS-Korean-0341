@@ -1127,6 +1127,83 @@ const char* gizmo_effect_name(int type)
     }
 }
 
+static string _ko_equipment_base_name(const string &name)
+{
+    if (Options.language != lang_t::KO)
+        return name;
+    if (name == "short sword") return "단검";
+    if (name == "long sword") return "장검";
+    if (name == "great sword") return "대검";
+    if (name == "double sword") return "쌍검";
+    if (name == "falchion") return "언월도";
+    if (name == "rapier") return "레이피어";
+    if (name == "dagger") return "단도";
+    if (name == "quick blade") return "속검";
+    if (name == "scimitar") return "시미터";
+    if (name == "demon blade") return "악마의 검";
+    if (name == "eudemon blade") return "축복받은 검";
+    if (name == "mace") return "철퇴";
+    if (name == "flail") return "도리깨";
+    if (name == "morningstar") return "모닝스타";
+    if (name == "eveningstar") return "이브닝스타";
+    if (name == "great mace") return "대형 철퇴";
+    if (name == "dire flail") return "대형 도리깨";
+    if (name == "whip") return "채찍";
+    if (name == "demon whip") return "악마의 채찍";
+    if (name == "sacred scourge") return "성스러운 채찍";
+    if (name == "club") return "곤봉";
+    if (name == "giant club") return "거대 곤봉";
+    if (name == "giant spiked club") return "거대 가시 곤봉";
+    if (name == "quarterstaff") return "육척봉";
+    if (name == "lajatang") return "라자탕";
+    if (name == "spear") return "창";
+    if (name == "trident") return "삼지창";
+    if (name == "halberd") return "할버드";
+    if (name == "glaive") return "글레이브";
+    if (name == "bardiche") return "바르디슈";
+    if (name == "demon trident") return "악마의 삼지창";
+    if (name == "trishula") return "트리슐라";
+    if (name == "hand axe") return "손도끼";
+    if (name == "war axe") return "전투도끼";
+    if (name == "broad axe") return "넓은 도끼";
+    if (name == "battleaxe") return "전투용 대도끼";
+    if (name == "executioner's axe") return "처형자의 도끼";
+    if (name == "shortbow") return "단궁";
+    if (name == "longbow") return "장궁";
+    if (name == "arbalest") return "아발레스트";
+    if (name == "triple crossbow") return "삼중 석궁";
+    if (name == "sling") return "투석구";
+    if (name == "hand cannon") return "핸드 캐넌";
+    if (name == "robe") return "로브";
+    if (name == "animal skin") return "짐승 가죽";
+    if (name == "leather armour") return "가죽 갑옷";
+    if (name == "ring mail") return "고리 갑옷";
+    if (name == "scale mail") return "비늘 갑옷";
+    if (name == "chain mail") return "사슬 갑옷";
+    if (name == "plate armour") return "판금 갑옷";
+    if (name == "crystal plate armour") return "수정 판금 갑옷";
+    if (name == "gold dragon scales") return "황금 용 비늘 갑옷";
+    if (name == "fire dragon scales") return "화염 용 비늘 갑옷";
+    if (name == "ice dragon scales") return "냉기 용 비늘 갑옷";
+    if (name == "storm dragon scales") return "폭풍 용 비늘 갑옷";
+    if (name == "shadow dragon scales") return "그림자 용 비늘 갑옷";
+    if (name == "swamp dragon scales") return "늪지 용 비늘 갑옷";
+    if (name == "acid dragon scales") return "산성 용 비늘 갑옷";
+    if (name == "steam dragon scales") return "증기 용 비늘 갑옷";
+    if (name == "troll leather armour") return "트롤 가죽 갑옷";
+    if (name == "hat") return "모자";
+    if (name == "helmet") return "투구";
+    if (name == "cloak") return "망토";
+    if (name == "scarf") return "목도리";
+    if (name == "gloves") return "장갑";
+    if (name == "boots") return "장화";
+    if (name == "barding") return "마갑";
+    if (name == "buckler") return "버클러";
+    if (name == "kite shield") return "카이트 방패";
+    if (name == "tower shield") return "타워 방패";
+    return name;
+}
+
 static const char* _ko_book_theme_name(int subtype)
 {
     switch (static_cast<book_type>(subtype))
@@ -1649,7 +1726,9 @@ static string _name_weapon(const item_def &weap, description_level_type desc,
 
     const string cosmetic_text
         = show_cosmetic ? _cosmetic_text(weap) : "";
-    const string base_name = item_base_name(weap);
+    const string base_name = dbname || qualname
+        ? item_base_name(weap)
+        : _ko_equipment_base_name(item_base_name(weap));
     const string name_with_ego
         = identified && !dbname ? weapon_brand_desc(base_name.c_str(), weap, terse)
         : base_name;
@@ -1763,7 +1842,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             }
         }
 
-        buff << item_base_name(*this);
+        buff << (dbname || qualname ? item_base_name(*this)
+                                 : _ko_equipment_base_name(item_base_name(*this)));
 
         if (identified && !dbname && !qualname && !is_artefact(*this))
         {
