@@ -1,0 +1,213 @@
+# Korean decoration database overlay; source keys preserved.
+%%%%
+sparkling_message
+
+잠깐 몸이 가벼워진다.
+
+용기가 솟구친다.
+
+잠시 메스껍다.
+
+감정이 불편하게 뒤틀린다.
+%%%%
+default fountain_eyes
+
+분수의 눈들이 너를 멍하니 꿰뚫어 본다.
+
+분수의 눈들이 사방을 한가롭게 살핀다.
+
+분수의 눈들이 허공을 응시한다.
+%%%%
+Ashenzari peaceful fountain_blue
+
+분수 너머를 점치려 하지만 던전의 마력이 너를 거부한다.
+%%%%
+Ashenzari fountain_blue
+
+분수에 비친 모습에서 던전의 과거가 스쳐 간다.
+%%%%
+Beogh fountain_blue
+
+분수에 비친 네 모습은 자랑스러운 오크다.
+%%%%
+Beogh fountain_sparkling
+
+분수에 비친 [일렁이는|반짝이는] 네 모습은 자랑스러운 오크다.
+%%%%
+Cheibriados fountain_sparkling
+
+분수의 불규칙한 마법적 흐름이 잠시 못마땅하다.
+%%%%
+Cheibriados peaceful dry_fountain
+
+물이 마른 분수의 고요함을 잠시 음미한다.
+%%%%
+Dithmenos fountain_blood
+
+지나치게 비장한 이 분수에 코웃음을 친다.
+%%%%
+Fedhas peaceful fountain_blue
+
+분수 가장자리의 조류가 건강하게 자라고 있다.
+%%%%
+Fedhas peaceful fountain_sparkling
+
+분수 가장자리의 조류가 반짝이며 화답한다.
+%%%%
+Fedhas peaceful fountain_blood
+
+분수 가장자리의 곰팡이가... 걱정스럽다.
+%%%%
+Fedhas peaceful fountain_eyes
+
+분수 가장자리의 곰팡이도 너를 살피는 것 같다.
+%%%%
+Gozag peaceful fountain_blue
+
+분수 안의 동전은 줍기에는 너무 가치가 없다.
+%%%%
+Hepliaklqana fountain_blue
+
+분수의 잔물결에 덧없는 기억이 떠오른다.
+%%%%
+Hepliaklqana dry_fountain
+
+분수를 지은 이들이 잊혔어도 너의 유산은 잊지 않겠다고 다짐한다.
+%%%%
+Hepliaklqana peaceful fountain_blood
+
+분수에 흐르는 피의 주인을 위해 묵념한다.
+%%%%
+Ignis fountain_blood
+
+네가 다가가자 분수의 피가 잠시 끓어오른다.
+%%%%
+Jiyva fountain_eyes
+
+네 유전자가 분수의 눈들과 교감하려 하지만 실패한다.
+
+분수의 눈 몇 개가 잠시 당황한 듯 황금색으로 변한다.
+%%%%
+Kikubaaqudgha peaceful dry_fountain
+
+세상 전체가 이 분수와 같은 운명을 맞을 날을 생각한다.
+%%%%
+Lugonu peaceful fountain_eyes
+
+현실 전체를 뒤틀겠다는 루고누의 약속을 되새긴다.
+%%%%
+Nemelex Xobeh peaceful fountain_blue
+
+행운을 빌며 오래된 동전을 분수에 던진다.
+%%%%
+Nemelex Xobeh peaceful fountain_sparkling
+
+화려한 행운을 기대하며 오래된 동전을 분수에 던진다.
+%%%%
+Qazlal fountain_blue
+
+폭풍 속에서 분수의 물이 부글거리며 솟구친다.
+%%%%
+Qazlal fountain_sparkling
+
+폭풍 속에서 분수의 물이 격렬하게 솟구친다.
+%%%%
+Qazlal fountain_blood
+
+폭풍 속에서 분수의 피가 부글거리며 솟구친다.
+%%%%
+Ru peaceful fountain_blue
+
+분수의 물이 세상을 비춘다. 세상도 한낱 반영일 뿐이다.
+%%%%
+Sif Muna peaceful fountain_sparkling
+
+분수의 물약들이 어떻게 희석됐는지 알아보려 애쓴다.
+%%%%
+Sif Muna peaceful fountain_blood
+
+분수의 피가 어떤 생물의 것인지 알아내려 애쓴다.
+%%%%
+Sif Muna peaceful fountain_eyes
+
+분수에서 자라는 눈을 살피며 적어도 [5|6]종을 알아본다.
+%%%%
+Uskayaw peaceful fountain_blue
+
+옛 물의 님프처럼 물속에서 잠시 춤을 춘다.
+%%%%
+Uskayaw fountain_blood
+
+피의 분수가 삶과 죽음의 즐거운 박자로 맥동한다.
+%%%%
+Vehumet fountain_blood
+
+이 분수 안에 잠든 파괴의 힘을 감지한다.
+%%%%
+Yredelemnul fountain_blood
+
+이 분수의 피는 수확에 쓸모없다고 판단한다.
+%%%%
+Zin fountain_sparkling
+
+분수의 반짝임에 뒤섞인 마법에서 눈을 돌린다.
+%%%%
+Zin fountain_eyes
+
+분수의 불결한 눈들에서 시선을 돌린다.
+%%%%
+The Shining One fountain_blood
+
+분수를 위해 피 흘린 이들의 원수를 갚겠다고 맹세한다.
+%%%%
+carnivore fruit cache
+
+과일 더미를 둘러보고 어깨를 으쓱한다.
+%%%%
+inediate fruit cache
+
+과일 더미를 바라보다 한숨을 쉰다.
+%%%%
+inediate meat cache
+
+고기 더미를 바라보다 한숨을 쉰다.
+%%%%
+inediate baked goods cache
+
+빵 더미를 바라보다 한숨을 쉰다.
+%%%%
+felid fruit cache
+
+사과를 잘라 갉아먹는다. 밍밍하다.
+
+바나나를 잘라 갉아먹는다. 밍밍하다.
+
+열매를 골라 갉아먹는다. 밍밍하다.
+%%%%
+spriggan meat cache
+
+피자를 찾으려고 뒤적이지만 보이지 않는다.
+
+w:4
+
+마법으로 보존된 피자에서 고기를 떼어낸다. 맛있다!
+%%%%
+maw fruit cache
+
+과일 더미의 절반을 먹어치운다! 그래도 부족하다.
+%%%%
+maw meat cache
+
+고기 더미의 절반을 먹어치운다! 그래도 부족하다.
+%%%%
+maw baked goods cache
+
+빵 더미의 절반을 먹어치운다! 그래도 부족하다.
+%%%%
+vampire fruit cache
+
+블러드 오렌지를 찾지만 보이지 않는다.
+
+w:4
+
+블러드 오렌지를 발견한다. 맛있다.
