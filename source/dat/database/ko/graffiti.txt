@@ -185,3 +185,103 @@ _graffiti_wares_quality_
 평범한
 
 우수한
+%%%%
+_graffiti_author_bland_
+
+@bland name@
+
+w:2
+
+@bland name@ (그 사람이 아니라)
+
+w:2
+
+@bland name@ (다른 동명이인)
+
+w:2
+
+@bland name@ (그래, 바로 그 사람)
+%%%%
+_graffiti_author_orc_
+
+오크 @any orc name@
+%%%%
+_rare_graffiti_author_god_
+
+신 우그
+%%%%
+_rare_graffiti_author_orc_
+
+오크 스파르토르쿠스
+%%%%
+_rare_graffiti_author_ordinary_
+
+코볼드 더웬트
+
+고블린 즐라즈
+
+오니 프니브
+
+엘프 베시온
+
+임프 프로보프
+%%%%
+_rare_graffiti_author_title_
+
+킬로이
+
+위대한 가르크
+
+비할 데 없는 플로그
+
+죽은 웬델
+
+꿈의 비행 부인
+%%%%
+_writing_style_
+
+@any_colour@
+
+@_writing_adj_@ @any_colour@
+
+@any_glowing_colour@
+%%%%
+_writing_type_
+
+@_writing_style_@ @_writing_noun_@
+%%%%
+_graffiti_type_
+
+@_writing_style_@ 낙서
+%%%%
+_graffiti_type_with_signature_maybe_
+
+@_graffiti_type_@
+
+@_graffiti_author_any_@의 서명이 있는 @_graffiti_type_@
+%%%%
+_graffiti_type_with_signature_maybe_non-orc_
+
+@_graffiti_type_@
+
+@_graffiti_author_any_non-orc_@의 서명이 있는 @_graffiti_type_@
+%%%%
+_graffiti_type_with_signature_maybe_orc_
+
+@_graffiti_type_@
+
+@_graffiti_author_orc_@의 서명이 있는 @_graffiti_type_@
+%%%%
+_graffiti_unreadable_
+
+읽을 수 없는 @_writing_type_@ 낙서
+
+@_graffiti_author_any_@의 서명만 읽을 수 있는 @_writing_type_@ 낙서
+
+w:1
+
+@_graffiti_hailed_god_@을 찬양하는 부분만 읽을 수 있는 @_writing_type_@ 낙서
+
+w:1
+
+@_graffiti_hailed_god_@ 찬양 문구와 @_graffiti_author_any_@의 서명만 읽을 수 있는 @_writing_type_@ 낙서
