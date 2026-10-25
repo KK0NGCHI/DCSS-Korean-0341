@@ -1663,13 +1663,13 @@ static void _append_weapon_stats(string &description, const item_def &item)
 static string _handedness_string(const item_def &item)
 {
     if (you.has_mutation(MUT_NO_GRASPING))
-        return "\nYou are unable to wield it.";
+        return Options.language == lang_t::KO ? "\n이 무기를 들 수 없어." : "\nYou are unable to wield it.";
 
     if (crawl_state.need_save
         && is_weapon_too_large(item, you.body_size(PSIZE_TORSO))
         && !you.has_mutation(MUT_QUADRUMANOUS))
     {
-        return "\nIt is too large for you to wield.";
+        return Options.language == lang_t::KO ? "\n너무 커서 들 수 없는 무기야." : "\nIt is too large for you to wield.";
     }
 
     const bool quad = you.has_mutation(MUT_QUADRUMANOUS);
@@ -2183,11 +2183,11 @@ static string _describe_ammo(const item_def &item)
     }
 
     if (ammo_always_destroyed(item))
-        description += "\n\nIt is always destroyed on impact.";
+        description += Options.language == lang_t::KO ? "\n\n명중하면 반드시 파괴돼." : "\n\nIt is always destroyed on impact.";
     else if (!ammo_never_destroyed(item))
     {
         description += make_stringf(
-            "\n\nIt has a 1/%d chance to be destroyed on impact.",
+            Options.language == lang_t::KO ? "\n\n명중하면 1/%d 확률로 파괴돼." : "\n\nIt has a 1/%d chance to be destroyed on impact.",
             ammo_destroy_chance(item)
         );
     }
@@ -2430,15 +2430,15 @@ string describe_item_rarity(const item_def &item)
     switch (rarity)
     {
     case RARITY_VERY_RARE:
-        return "very rare";
+        return Options.language == lang_t::KO ? "매우 희귀함" : "very rare";
     case RARITY_RARE:
-        return "rare";
+        return Options.language == lang_t::KO ? "희귀함" : "rare";
     case RARITY_UNCOMMON:
-        return "uncommon";
+        return Options.language == lang_t::KO ? "드묾" : "uncommon";
     case RARITY_COMMON:
-        return "common";
+        return Options.language == lang_t::KO ? "흔함" : "common";
     case RARITY_VERY_COMMON:
-        return "very common";
+        return Options.language == lang_t::KO ? "매우 흔함" : "very common";
     case RARITY_NONE:
     default:
         return "buggy";
@@ -2523,16 +2523,16 @@ static string _describe_jewellery(const item_def &item, bool verbose)
 static string _describe_item_curse(const item_def &item)
 {
     if (!item.props.exists(CURSE_KNOWLEDGE_KEY))
-        return "\nIt has a curse placed upon it.";
+        return Options.language == lang_t::KO ? "\n저주가 걸려 있어." : "\nIt has a curse placed upon it.";
 
     const CrawlVector& curses = item.props[CURSE_KNOWLEDGE_KEY].get_vector();
 
     if (curses.empty())
-        return "\nIt has a curse placed upon it.";
+        return Options.language == lang_t::KO ? "\n저주가 걸려 있어." : "\nIt has a curse placed upon it.";
 
     ostringstream desc;
 
-    desc << "\nIt has a curse which improves the following skills:\n";
+    desc << (Options.language == lang_t::KO ? "\n다음 기술을 향상하는 저주가 걸려 있어:\n" : "\nIt has a curse which improves the following skills:\n");
     desc << comma_separated_fn(curses.begin(), curses.end(), desc_curse_skills,
                                ".\n", ".\n") << ".";
 
