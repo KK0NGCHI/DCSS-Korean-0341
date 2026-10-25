@@ -1127,6 +1127,72 @@ const char* gizmo_effect_name(int type)
     }
 }
 
+static const char* _ko_book_theme_name(int subtype)
+{
+    switch (static_cast<book_type>(subtype))
+    {
+    case BOOK_MINOR_MAGIC: return "초급 마법";
+    case BOOK_CONJURATIONS: return "파괴술";
+    case BOOK_FLAMES: return "불꽃";
+    case BOOK_FROST: return "서리";
+    case BOOK_WILDERNESS: return "황야";
+    case BOOK_FIRE: return "화염";
+    case BOOK_ICE: return "냉기";
+    case BOOK_SPATIAL_TRANSLOCATIONS: return "공간이동";
+    case BOOK_HEXES: return "주술";
+    case BOOK_LIGHTNING: return "번개";
+    case BOOK_DEATH: return "죽음";
+    case BOOK_MISFORTUNE: return "불운";
+    case BOOK_SPONTANEOUS_COMBUSTION: return "자연 발화";
+    case BOOK_BATTLE: return "전투";
+    case BOOK_NECROMANCY: return "강령술";
+    case BOOK_CALLINGS: return "소환";
+    case BOOK_AIR: return "공기";
+    case BOOK_WARP: return "공간 왜곡";
+    case BOOK_ANNIHILATIONS: return "섬멸";
+    case BOOK_UNLIFE: return "불사";
+    case BOOK_GEOMANCY: return "대지술";
+    case BOOK_EARTH: return "대지";
+    case BOOK_POWER: return "힘";
+    case BOOK_CANTRIPS: return "기초 주문";
+    case BOOK_PARTY_TRICKS: return "잔재주";
+    case BOOK_DEBILITATION: return "약화";
+    case BOOK_DRAGON: return "용";
+    case BOOK_BURGLARY: return "도둑질";
+    case BOOK_DREAMS: return "꿈";
+    case BOOK_TRANSMUTATION: return "변이술";
+    case BOOK_BEASTS: return "야수";
+    case BOOK_WINTER: return "겨울";
+    case BOOK_ARMAMENTS: return "무장";
+    case BOOK_DECAY: return "부패";
+    case BOOK_DISPLACEMENT: return "전위";
+    case BOOK_SENSES: return "감각";
+    case BOOK_BLASTING: return "폭발";
+    case BOOK_IRON: return "철";
+    case BOOK_TUNDRA: return "툰드라";
+    case BOOK_MOON: return "달";
+    case BOOK_STORMS: return "폭풍";
+    case BOOK_WEAPONS: return "무기";
+    case BOOK_SLOTH: return "나태";
+    case BOOK_BLOOD: return "피";
+    case BOOK_DANGEROUS_FRIENDS: return "위험한 친구들";
+    case BOOK_TOUCH: return "접촉";
+    case BOOK_CHAOS: return "혼돈";
+    case BOOK_HUNTER: return "사냥꾼";
+    case BOOK_SCORCHING: return "작열";
+    case BOOK_MOVEMENT: return "이동";
+    case BOOK_WICKED_CREATION: return "사악한 창조";
+    case BOOK_MALADIES: return "질병";
+    case BOOK_FORTRESS: return "요새";
+    case BOOK_CRYOFORMATION: return "빙결 형성";
+    case BOOK_GRAVE: return "무덤";
+    case BOOK_METALWORKING: return "금속 가공";
+    case BOOK_DUALITY: return "이중성";
+    case BOOK_CONTRAPTIONS: return "기계 장치";
+    default: return nullptr;
+    }
+}
+
 static const char* _book_type_name(int booktype)
 {
     switch (static_cast<book_type>(booktype))
@@ -1299,6 +1365,8 @@ string sub_type_string(const item_def &item, bool known)
             {
             if (!known)
                 return "manual";
+            if (Options.language == lang_t::KO)
+                return skill_name(static_cast<skill_type>(item.plus)) + " 숙련 교본";
             string bookname = "manual of ";
             bookname += skill_name(static_cast<skill_type>(item.plus));
             return bookname;
@@ -1306,7 +1374,7 @@ string sub_type_string(const item_def &item, bool known)
         case BOOK_PARCHMENT:
             {
             if (item.plus == 0 || !known)
-                return "parchment";
+                return Options.language == lang_t::KO ? "양피지" : "parchment";
             string parchmentname = "parchment of ";
             parchmentname += spell_title(static_cast<spell_type>(item.plus));
             return parchmentname;
@@ -1361,6 +1429,8 @@ string sub_type_string(const item_def &item, bool known)
             return "Akashic Record";
 #endif
         default:
+            if (Options.language == lang_t::KO && _ko_book_theme_name(sub_type))
+                return string(_ko_book_theme_name(sub_type)) + " 마법서";
             return string("book of ") + _book_type_name(sub_type);
         }
     }
@@ -1905,7 +1975,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             break;
         }
         if (basename)
-            buff << (item_typ == BOOK_MANUAL ? "manual" : "book");
+            buff << (Options.language == lang_t::KO
+                     ? (item_typ == BOOK_MANUAL ? "교본" : "마법서")
+                     : (item_typ == BOOK_MANUAL ? "manual" : "book"));
         else
             buff << sub_type_string(*this, !dbname);
         break;
