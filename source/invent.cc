@@ -992,11 +992,11 @@ menu_letter InvMenu::load_items(const vector<const item_def*> &mitems,
     {
         // Mention the class selection shortcuts.
         if (is_set(MF_SECONDARY_SCROLL))
-            select_all = "go to first";
+            select_all = Options.language == lang_t::KO ? "첫 항목으로 이동" : "go to first";
         else if (is_set(MF_MULTISELECT))
-            select_all = "select all";
+            select_all = Options.language == lang_t::KO ? "모두 선택" : "select all";
         else
-            select_all = "select first";
+            select_all = Options.language == lang_t::KO ? "첫 항목 선택" : "select first";
     }
 
     for (int obj = 0; obj < NUM_OBJECT_CLASSES; ++obj)
@@ -1015,10 +1015,10 @@ menu_letter InvMenu::load_items(const vector<const item_def*> &mitems,
             if (!glyphs.empty())
             {
                 // longest string
-                const string str = "Magical Staves ";
+                const string str = Options.language == lang_t::KO ? "마법 지팡이 " : "Magical Staves ";
                 subtitle += string(strwidth(str) - strwidth(subtitle),
                                    ' ');
-                subtitle += "("+select_all+" with <w>";
+                subtitle += Options.language == lang_t::KO ? "("+select_all+" <w>" : "("+select_all+" with <w>";
                 for (char gly : glyphs)
                     subtitle += gly;
                 subtitle += "</w><blue>)";
