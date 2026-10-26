@@ -2506,9 +2506,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
         else
         {
-            if (!dbname)
-                buff << rune_type_name(sub_type) << " ";
-            buff << "rune of Zot";
+            // The DES item parser needs the English rune subtype even in DB mode.
+            // Only the UI display name is localized.
+            buff << rune_type_name(sub_type) << " rune of Zot";
         }
         break;
 
