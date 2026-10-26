@@ -2,6 +2,10 @@ name: Korean localized database runtime smoke
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/**'
+      - '.github/workflows/korean-runtime-smoke.yml'
 
 jobs:
   linux-console-ko-runtime:
@@ -33,7 +37,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in ability.cc beam.cc describe.cc god-abil.cc invent.cc message.cc mon-util.cc player-equip.cc player.cc spl-summoning.cc newgame.cc; do
+          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc; do
             cp "$GITHUB_WORKSPACE/source/$name" "$CRAWL_SRC/$name"
           done
           # Include BOTH ko/ overlays and Korean text already in top-level databases.
