@@ -1567,21 +1567,23 @@ static void _append_weapon_stats(string &description, const item_def &item)
     {
         const char *inf = Options.char_set == CSET_ASCII ? "inf" : "\u221e"; //"∞"
         description += make_stringf(
-            "Base accuracy: %s  Base damage: %s  ",
+            Options.language == lang_t::KO ? "기본 명중률: %s  기본 피해량: %s  " : "Base accuracy: %s  Base damage: %s  ",
             inf,
             inf);
     }
     else
     {
         description += make_stringf(
-            "Base accuracy: %+d  Base damage: %d  ",
+            Options.language == lang_t::KO ? "기본 명중률: %+d  기본 피해량: %d  " : "Base accuracy: %+d  Base damage: %d  ",
             property(item, PWPN_HIT),
             base_dam);
     }
 
     description += make_stringf(
-        "Base attack delay: %.1f\n"
-        "This weapon's minimum attack delay (%.1f) is reached at skill level %d.",
+        Options.language == lang_t::KO
+            ? "기본 공격 지연: %.1f\n무기의 최소 공격 지연(%.1f)은 기술 레벨 %d에서 달성해."
+            : "Base attack delay: %.1f\n"
+              "This weapon's minimum attack delay (%.1f) is reached at skill level %d.",
             (float) property(item, PWPN_SPEED) / 10,
             (float) weapon_min_delay(item, item.is_identified()) / 10,
             mindelay_skill / 10);
@@ -1608,7 +1610,7 @@ static void _append_weapon_stats(string &description, const item_def &item)
                                  armour_penalty / (10.0f * penalty_scale));
             }
             else
-                description += " slightly slows your attacks with this weapon";
+                description += Options.language == lang_t::KO ? " 때문에 이 무기의 공격 속도가 조금 느려져" : " slightly slows your attacks with this weapon";
         }
         else
         {
@@ -1622,7 +1624,7 @@ static void _append_weapon_stats(string &description, const item_def &item)
     if (want_player_stats)
     {
         description += _desc_attack_delay(item);
-        description += "\nDamage rating: " + damage_rating(&item);
+        description += (Options.language == lang_t::KO ? "\n피해량 평가: " : "\nDamage rating: ") + damage_rating(&item);
     }
 
     const string brand_desc = _describe_weapon_brand(item);
@@ -1824,9 +1826,11 @@ static string _describe_point_change(float points)
 {
     string point_diff_description;
 
-    point_diff_description += make_stringf("%s by %.1f",
-                                           points > 0 ? "increase" : "decrease",
-                                           abs(points));
+    point_diff_description += make_stringf(
+        Options.language == lang_t::KO ? "%s %.1f" : "%s by %.1f",
+        points > 0 ? (Options.language == lang_t::KO ? "증가" : "increase")
+                   : (Options.language == lang_t::KO ? "감소" : "decrease"),
+        abs(points));
 
     return point_diff_description;
 }
@@ -1837,7 +1841,7 @@ static string _describe_point_diff(int original,
     string description;
 
     if (original == changed)
-        return "remain unchanged";
+        return Options.language == lang_t::KO ? "변화 없음" : "remain unchanged";
 
     // Truncate to 1 decimal place, rather than round (so that it matches what
     // will be displayed as the player's AC/EV if they actually put this on.)
@@ -1945,11 +1949,11 @@ static string _equipment_property_change_description(const item_def &item,
                         + _equip_type_name(item) + ":";
     }
     else if (item.base_type == OBJ_TALISMANS)
-        description += "If you transformed using this talisman:";
+        description += Options.language == lang_t::KO ? "이 부적으로 변신하면:" : "If you transformed using this talisman:";
     else if (item.base_type == OBJ_JEWELLERY && !jewellery_is_amulet(item))
-        description += "If you were wearing this ring:";
+        description += Options.language == lang_t::KO ? "이 반지를 착용하면:" : "If you were wearing this ring:";
     else if (item.base_type == OBJ_WEAPONS && you.has_mutation(MUT_WIELD_OFFHAND))
-        description += "If you switch to wielding this weapon in your main hand:";
+        description += Options.language == lang_t::KO ? "이 무기를 주무기로 바꾸면:" : "If you switch to wielding this weapon in your main hand:";
     else
     {
         description += "If you switch to " + _equipment_switchto_string(item)
@@ -1960,7 +1964,7 @@ static string _equipment_property_change_description(const item_def &item,
     if (item.base_type == OBJ_ARMOUR && get_armour_slot(item) != SLOT_OFFHAND
         || cur_ac != new_ac)
     {
-        description += "\nYour AC would "
+        description += (Options.language == lang_t::KO ? "\n방어력(AC): " : "\nYour AC would ")
                        + _describe_point_diff(cur_ac, new_ac) + ".";
     }
 
@@ -1969,26 +1973,29 @@ static string _equipment_property_change_description(const item_def &item,
     if (item.base_type == OBJ_ARMOUR && item.sub_type != ARM_ORB
         || cur_ev != new_ev)
     {
-        description += "\nYour EV would "
+        description += (Options.language == lang_t::KO ? "\n회피력(EV): " : "\nYour EV would ")
                        + _describe_point_diff(cur_ev, new_ev) + ".";
     }
 
     // Always display SH line on shields, even if there is no change
     if (is_shield(item) || cur_sh != new_sh)
     {
-        description += "\nYour SH would "
+        description += (Options.language == lang_t::KO ? "\n방패 수치(SH): " : "\nYour SH would ")
                        + _describe_point_diff(cur_sh, new_sh) + ".";
     }
 
     if (fail_change != 0)
     {
-        description += "\nYour spell failure would ";
-        description += (fail_change > 0) ? "worsen" : "improve";
+        description += Options.language == lang_t::KO ? "\n주문 실패율이 " : "\nYour spell failure would ";
+        description += (fail_change > 0)
+            ? (Options.language == lang_t::KO ? "증가해" : "worsen")
+            : (Options.language == lang_t::KO ? "감소해" : "improve");
         if (visible_fail_change == 0)
-            description += " trivially.";
+            description += Options.language == lang_t::KO ? " (표시되는 변화는 없어)." : " trivially.";
         else
         {
-            description += make_stringf(" by up to %d%% (press '!' for details).",
+            description += make_stringf(Options.language == lang_t::KO
+                ? " 최대 %d%% (자세히 보려면 '!'를 눌러)." : " by up to %d%% (press '!' for details).",
                                     abs(visible_fail_change)).c_str();
         }
     }
@@ -2151,7 +2158,7 @@ static string _describe_weapon(const item_def &item, bool verbose, bool monster)
                            + to_string(MAX_WPN_ENCHANT) + ".";
         }
         else
-            description += "\n\nIt cannot be enchanted further.";
+            description += Options.language == lang_t::KO ? "\n\n더 이상 강화할 수 없어." : "\n\nIt cannot be enchanted further.";
     }
 
     return description;
@@ -2190,9 +2197,12 @@ static string _describe_ammo(const item_def &item)
         const int target_skill = _item_training_target(item);
 
         description += make_stringf(
-            "\n\nBase damage: %d  Base attack delay: %.1f"
-            "\nThis projectile's minimum attack delay (%.1f) "
-                "is reached at skill level %d.",
+            Options.language == lang_t::KO
+                ? "\n\n기본 피해량: %d  기본 공격 지연: %.1f"
+                  "\n투사체의 최소 공격 지연(%.1f)은 기술 레벨 %d에서 달성해."
+                : "\n\nBase damage: %d  Base attack delay: %.1f"
+                  "\nThis projectile's minimum attack delay (%.1f) "
+                  "is reached at skill level %d.",
             dam,
             (float) throw_delay / 10,
             (float) FASTEST_PLAYER_THROWING_SPEED / 10,
@@ -2205,7 +2215,7 @@ static string _describe_ammo(const item_def &item)
             description += _desc_attack_delay(item);
 
             if (property(item, PWPN_DAMAGE))
-                description += "\nDamage rating: " + damage_rating(&item);
+                description += (Options.language == lang_t::KO ? "\n피해량 평가: " : "\nDamage rating: ") + damage_rating(&item);
         }
     }
 
@@ -2386,11 +2396,12 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
     {
         if (is_enchantable_armour(item))
         {
-            description += "\n\nIt can be maximally enchanted to +"
+            description += (Options.language == lang_t::KO
+                           ? "\n\n최대 강화 수치는 +" : "\n\nIt can be maximally enchanted to +")
                            + to_string(armour_max_enchant(item)) + ".";
         }
         else if (armour_is_enchantable(item))
-            description += "\n\nIt cannot be enchanted further.";
+            description += Options.language == lang_t::KO ? "\n\n더 이상 강화할 수 없어." : "\n\nIt cannot be enchanted further.";
     }
 
     if (verbose
