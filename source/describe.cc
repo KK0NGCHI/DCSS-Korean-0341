@@ -686,36 +686,36 @@ static const char* _jewellery_base_ability_description(int subtype)
     {
 #if TAG_MAJOR_VERSION == 34
     case RING_SUSTAIN_ATTRIBUTES:
-        return "It sustains your strength, intelligence and dexterity.";
+        return Options.language == lang_t::KO ? "근력, 지능, 민첩이 감소하지 않도록 유지해 줘." : "It sustains your strength, intelligence and dexterity.";
     case RING_TELEPORTATION:
-        return "It may teleport you next to monsters.";
+        return Options.language == lang_t::KO ? "몬스터 곁으로 순간이동할 수 있어." : "It may teleport you next to monsters.";
     case RING_TELEPORT_CONTROL:
-        return "It can be evoked for teleport control.";
+        return Options.language == lang_t::KO ? "발동하면 순간이동을 제어할 수 있어." : "It can be evoked for teleport control.";
     case AMU_THE_GOURMAND:
-        return "It allows you to eat raw meat even when not hungry.";
+        return Options.language == lang_t::KO ? "배가 고프지 않아도 날고기를 먹을 수 있어." : "It allows you to eat raw meat even when not hungry.";
     case AMU_HARM:
-        return "It increases damage dealt and taken.";
+        return Options.language == lang_t::KO ? "주는 피해와 받는 피해가 모두 증가해." : "It increases damage dealt and taken.";
     case AMU_CONSERVATION:
-        return "It protects your inventory from destruction.";
+        return Options.language == lang_t::KO ? "소지품이 파괴되지 않도록 보호해 줘." : "It protects your inventory from destruction.";
     case AMU_CONTROLLED_FLIGHT:
-        return "It allows you to control your flight when levitating.";
+        return Options.language == lang_t::KO ? "공중에 떠 있을 때 비행을 제어할 수 있어." : "It allows you to control your flight when levitating.";
     case AMU_INACCURACY:
-        return "It reduces the accuracy of all your attacks.";
+        return Options.language == lang_t::KO ? "모든 공격의 명중률이 감소해." : "It reduces the accuracy of all your attacks.";
 #endif
     case AMU_GUARDIAN_SPIRIT:
-        return "It causes incoming damage to be divided between your reserves "
+        return Options.language == lang_t::KO ? "받는 피해를 체력과 마력으로 나눠 부담해." : "It causes incoming damage to be divided between your reserves "
                "of health and magic.";
     case AMU_FAITH:
-        return "It allows you to gain divine favour quickly.";
+        return Options.language == lang_t::KO ? "신의 호의를 더 빨리 얻을 수 있어." : "It allows you to gain divine favour quickly.";
     case AMU_REFLECTION:
-        return "It reflects blocked missile attacks.";
+        return Options.language == lang_t::KO ? "막아 낸 투사체 공격을 반사해." : "It reflects blocked missile attacks.";
     case AMU_WILDSHAPE:
-        return "It improves your skill with shapeshifting (+5).";
+        return Options.language == lang_t::KO ? "변신술 기술이 5 증가해." : "It improves your skill with shapeshifting (+5).";
     case AMU_CHEMISTRY:
-        return "It restores some MP whenever you drink a potion and also enhances "
+        return Options.language == lang_t::KO ? "물약을 마실 때마다 마력이 일부 회복되고 연금술 주문이 강화돼." : "It restores some MP whenever you drink a potion and also enhances "
                "your alchemy spells.";
     case AMU_DISSIPATION:
-        return "It reduces the duration of hostile enchantments and decays "
+        return Options.language == lang_t::KO ? "적대적인 마법 효과의 지속 시간이 줄고 마법 오염이 더 빨리 사라져." : "It reduces the duration of hostile enchantments and decays "
                "magical contamination more quickly.";
     }
     return "";
@@ -1707,6 +1707,33 @@ static string _category_string(const item_def &item, bool monster)
         return ""; // handled in art-data DBRAND
 
     string description = "";
+    if (Options.language == lang_t::KO)
+    {
+        const string category = skill_name(item_attack_skill(item));
+        description = "이 무기는 '" + category + "' 계열이야. ";
+        switch (item_attack_skill(item))
+        {
+        case SK_POLEARMS:
+            description += "멀리 있는 대상도 공격할 수 있어";
+            if (!monster)
+                description += " ([<white>v</white>]로 대상 지정)";
+            description += ". ";
+            break;
+        case SK_AXES:
+            description += "사용자 주변의 모든 적을 공격해";
+            if (!is_unrandom_artefact(item, UNRAND_WOE))
+                description += ". 직접 지정하지 않은 대상에게는 피해가 줄어들어";
+            description += ". ";
+            break;
+        case SK_SHORT_BLADES:
+            description += item.sub_type == WPN_DAGGER
+                ? "무방비하거나 눈치채지 못한 적을 찌르는 데 매우 효과적이야. "
+                : "무방비하거나 눈치채지 못한 적을 찌르는 데 효과적이야. ";
+            break;
+        default: break;
+        }
+        return description;
+    }
     description += "This ";
     if (is_unrandom_artefact(item))
         description += get_artefact_base_name(item);
@@ -2892,11 +2919,11 @@ string get_item_description(const item_def &item,
 
                 const string damage_str = evoke_damage_string(item);
                 if (damage_str != "")
-                    description << "\nDamage: " << damage_str;
+                    description << (Options.language == lang_t::KO ? "\n피해량: " : "\nDamage: ") << damage_str;
 
                 const string noise_str = evoke_noise_string(item);
                 if (noise_str != "")
-                    description << "\nNoise: " << noise_str;
+                    description << (Options.language == lang_t::KO ? "\n소음: " : "\nNoise: ") << noise_str;
             }
         }
 
@@ -2921,9 +2948,12 @@ string get_item_description(const item_def &item,
                         describe_player_cancellation() << ".";
                 }
             }
-            description << "\n\nIt is "
-                        << article_a(describe_item_rarity(item))
-                        << " potion.";
+            if (Options.language == lang_t::KO)
+                description << "\n\n물약 희귀도: " << describe_item_rarity(item) << ".";
+            else
+                description << "\n\nIt is "
+                            << article_a(describe_item_rarity(item))
+                            << " potion.";
             need_extra_line = false;
         }
         break;
@@ -2935,11 +2965,11 @@ string get_item_description(const item_def &item,
 
             const string damage_str = evoke_damage_string(item);
             if (damage_str != "")
-                description << "\nDamage: " << damage_str;
+                description << (Options.language == lang_t::KO ? "\n피해량: " : "\nDamage: ") << damage_str;
 
             const string noise_str = evoke_noise_string(item);
             if (noise_str != "")
-                description << "\nNoise: " << noise_str;
+                description << (Options.language == lang_t::KO ? "\n소음: " : "\nNoise: ") << noise_str;
 
             if (verbose)
                 _uselessness_desc(description, item);
