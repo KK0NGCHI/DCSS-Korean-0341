@@ -1622,7 +1622,7 @@ static void _append_weapon_stats(string &description, const item_def &item)
     if (want_player_stats)
     {
         description += _desc_attack_delay(item);
-        description += "\nDamage rating: " + damage_rating(&item);
+        description += (Options.language == lang_t::KO ? "\n피해량 평가: " : "\nDamage rating: ") + damage_rating(&item);
     }
 
     const string brand_desc = _describe_weapon_brand(item);
@@ -1945,11 +1945,11 @@ static string _equipment_property_change_description(const item_def &item,
                         + _equip_type_name(item) + ":";
     }
     else if (item.base_type == OBJ_TALISMANS)
-        description += "If you transformed using this talisman:";
+        description += Options.language == lang_t::KO ? "이 부적으로 변신하면:" : "If you transformed using this talisman:";
     else if (item.base_type == OBJ_JEWELLERY && !jewellery_is_amulet(item))
-        description += "If you were wearing this ring:";
+        description += Options.language == lang_t::KO ? "이 반지를 착용하면:" : "If you were wearing this ring:";
     else if (item.base_type == OBJ_WEAPONS && you.has_mutation(MUT_WIELD_OFFHAND))
-        description += "If you switch to wielding this weapon in your main hand:";
+        description += Options.language == lang_t::KO ? "이 무기를 주무기로 바꾸면:" : "If you switch to wielding this weapon in your main hand:";
     else
     {
         description += "If you switch to " + _equipment_switchto_string(item)
@@ -1982,13 +1982,16 @@ static string _equipment_property_change_description(const item_def &item,
 
     if (fail_change != 0)
     {
-        description += "\nYour spell failure would ";
-        description += (fail_change > 0) ? "worsen" : "improve";
+        description += Options.language == lang_t::KO ? "\n주문 실패율이 " : "\nYour spell failure would ";
+        description += (fail_change > 0)
+            ? (Options.language == lang_t::KO ? "증가해" : "worsen")
+            : (Options.language == lang_t::KO ? "감소해" : "improve");
         if (visible_fail_change == 0)
-            description += " trivially.";
+            description += Options.language == lang_t::KO ? " (표시되는 변화는 없어)." : " trivially.";
         else
         {
-            description += make_stringf(" by up to %d%% (press '!' for details).",
+            description += make_stringf(Options.language == lang_t::KO
+                ? " 최대 %d%% (자세히 보려면 '!'를 눌러)." : " by up to %d%% (press '!' for details).",
                                     abs(visible_fail_change)).c_str();
         }
     }
@@ -2151,7 +2154,7 @@ static string _describe_weapon(const item_def &item, bool verbose, bool monster)
                            + to_string(MAX_WPN_ENCHANT) + ".";
         }
         else
-            description += "\n\nIt cannot be enchanted further.";
+            description += Options.language == lang_t::KO ? "\n\n더 이상 강화할 수 없어." : "\n\nIt cannot be enchanted further.";
     }
 
     return description;
@@ -2205,7 +2208,7 @@ static string _describe_ammo(const item_def &item)
             description += _desc_attack_delay(item);
 
             if (property(item, PWPN_DAMAGE))
-                description += "\nDamage rating: " + damage_rating(&item);
+                description += (Options.language == lang_t::KO ? "\n피해량 평가: " : "\nDamage rating: ") + damage_rating(&item);
         }
     }
 
@@ -2386,11 +2389,12 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
     {
         if (is_enchantable_armour(item))
         {
-            description += "\n\nIt can be maximally enchanted to +"
+            description += (Options.language == lang_t::KO
+                           ? "\n\n최대 강화 수치는 +" : "\n\nIt can be maximally enchanted to +")
                            + to_string(armour_max_enchant(item)) + ".";
         }
         else if (armour_is_enchantable(item))
-            description += "\n\nIt cannot be enchanted further.";
+            description += Options.language == lang_t::KO ? "\n\n더 이상 강화할 수 없어." : "\n\nIt cannot be enchanted further.";
     }
 
     if (verbose
