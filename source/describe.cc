@@ -4517,12 +4517,12 @@ static string _player_spell_desc(spell_type spell)
     if (spell == SPELL_BATTLESPHERE)
     {
         vector<spell_type> battlesphere_spells = player_battlesphere_spells();
-        description << "Your battlesphere";
+        description << (Options.language == lang_t::KO ? "전투 구체는" : "Your battlesphere");
         if (battlesphere_spells.empty())
-            description << " is not activated by any of your spells";
+            description << (Options.language == lang_t::KO ? " 어떤 주문으로도 발동하지 않아" : " is not activated by any of your spells");
         else
         {
-            description << " fires when you cast "
+            description << (Options.language == lang_t::KO ? " 다음 주문을 시전할 때 공격해: " : " fires when you cast ")
                         << comma_separated_fn(battlesphere_spells.begin(),
                                               battlesphere_spells.end(),
                                               spell_title,
@@ -4534,18 +4534,18 @@ static string _player_spell_desc(spell_type spell)
     if (spell == SPELL_SPELLSPARK_SERVITOR)
     {
         spell_type servitor_spell = player_servitor_spell();
-        description << "Your servitor";
+        description << (Options.language == lang_t::KO ? "시종은" : "Your servitor");
         if (servitor_spell == SPELL_NO_SPELL)
-            description << " is unable to mimic any of your spells";
+            description << (Options.language == lang_t::KO ? " 어떤 주문도 모방할 수 없어" : " is unable to mimic any of your spells");
         else
-            description << " casts " << spell_title(player_servitor_spell());
+            description << (Options.language == lang_t::KO ? " 다음 주문을 시전해: " : " casts ") << spell_title(player_servitor_spell());
         description << ".\n";
     }
     else if (spell == SPELL_PLATINUM_PARAGON)
     {
         if (you.props.exists(PARAGON_WEAPON_KEY))
         {
-            description << "Your paragon wields "
+            description << (Options.language == lang_t::KO ? "모범자는 다음 무기를 들고 있어: " : "Your paragon wields ")
                         << you.props[PARAGON_WEAPON_KEY].get_item()
                            .name(DESC_A, true).c_str()
                         << ".\n";
@@ -4588,7 +4588,7 @@ static string _player_spell_desc(spell_type spell)
     }
 
     if (you.has_mutation(MUT_MNEMOPHAGE) && spell_can_be_enkindled(spell))
-        description << "This spell is empowered while you are enkindled.\n";
+        description << (Options.language == lang_t::KO ? "불꽃에 휩싸인 동안 이 주문이 강화돼.\n" : "This spell is empowered while you are enkindled.\n");
 
     if (!you_can_memorise(spell))
     {
