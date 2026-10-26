@@ -2919,11 +2919,11 @@ string get_item_description(const item_def &item,
 
                 const string damage_str = evoke_damage_string(item);
                 if (damage_str != "")
-                    description << "\nDamage: " << damage_str;
+                    description << (Options.language == lang_t::KO ? "\n피해량: " : "\nDamage: ") << damage_str;
 
                 const string noise_str = evoke_noise_string(item);
                 if (noise_str != "")
-                    description << "\nNoise: " << noise_str;
+                    description << (Options.language == lang_t::KO ? "\n소음: " : "\nNoise: ") << noise_str;
             }
         }
 
@@ -2948,9 +2948,12 @@ string get_item_description(const item_def &item,
                         describe_player_cancellation() << ".";
                 }
             }
-            description << "\n\nIt is "
-                        << article_a(describe_item_rarity(item))
-                        << " potion.";
+            if (Options.language == lang_t::KO)
+                description << "\n\n희귀도: " << describe_item_rarity(item) << " 물약이야.";
+            else
+                description << "\n\nIt is "
+                            << article_a(describe_item_rarity(item))
+                            << " potion.";
             need_extra_line = false;
         }
         break;
@@ -2962,11 +2965,11 @@ string get_item_description(const item_def &item,
 
             const string damage_str = evoke_damage_string(item);
             if (damage_str != "")
-                description << "\nDamage: " << damage_str;
+                description << (Options.language == lang_t::KO ? "\n피해량: " : "\nDamage: ") << damage_str;
 
             const string noise_str = evoke_noise_string(item);
             if (noise_str != "")
-                description << "\nNoise: " << noise_str;
+                description << (Options.language == lang_t::KO ? "\n소음: " : "\nNoise: ") << noise_str;
 
             if (verbose)
                 _uselessness_desc(description, item);
