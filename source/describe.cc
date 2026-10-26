@@ -2909,23 +2909,23 @@ string get_item_description(const item_def &item,
                 // slightly redundant with uselessness desc..
                 const int charges = evoker_charges(item.sub_type);
                 if (charges > 1)
-                    description << "Charges: " << charges << ". Once all charges have been used";
+                    description << (Options.language == lang_t::KO ? "충전 횟수: " : "Charges: ") << charges << (Options.language == lang_t::KO ? ". 충전을 모두 사용하면" : ". Once all charges have been used");
                 else
-                    description << "Once activated";
-                description << ", this device is rendered temporarily inert. "
-                            << "However, it recharges as you gain experience.";
+                    description << (Options.language == lang_t::KO ? "발동하면" : "Once activated");
+                description << (Options.language == lang_t::KO ? " 장치가 일시적으로 비활성화돼. 경험치를 얻으면 다시 충전돼." : ", this device is rendered temporarily inert. "
+                            "However, it recharges as you gain experience.");
 
                 if (evoker_plus(item.sub_type) < MAX_EVOKER_ENCHANT)
                 {
-                    description << "\n\nAdditional devices of the same type "
-                            << "can be combined with it to improve the rate at "
-                            << "which it recharges.";
+                    description << (Options.language == lang_t::KO ? "\n\n같은 종류의 장치를 합치면 재충전 속도를 높일 수 있어." : "\n\nAdditional devices of the same type "
+                            "can be combined with it to improve the rate at "
+                            "which it recharges.");
                 }
                 if (!is_useless_skill(SK_EVOCATIONS)
                        && you.skill(SK_EVOCATIONS) < MAX_SKILL_LEVEL)
                 {
-                    description << "\n\nIncreasing your evocations skill will "
-                                << "improve the rate at which it recharges.";
+                    description << (Options.language == lang_t::KO ? "\n\n발동술 기술이 높아지면 재충전 속도가 증가해." : "\n\nIncreasing your evocations skill will "
+                                "improve the rate at which it recharges.");
                 }
 
                 const string damage_str = evoke_damage_string(item);
@@ -4517,12 +4517,12 @@ static string _player_spell_desc(spell_type spell)
     if (spell == SPELL_BATTLESPHERE)
     {
         vector<spell_type> battlesphere_spells = player_battlesphere_spells();
-        description << "Your battlesphere";
+        description << (Options.language == lang_t::KO ? "전투 구체는" : "Your battlesphere");
         if (battlesphere_spells.empty())
-            description << " is not activated by any of your spells";
+            description << (Options.language == lang_t::KO ? " 어떤 주문으로도 발동하지 않아" : " is not activated by any of your spells");
         else
         {
-            description << " fires when you cast "
+            description << (Options.language == lang_t::KO ? " 다음 주문을 시전할 때 공격해: " : " fires when you cast ")
                         << comma_separated_fn(battlesphere_spells.begin(),
                                               battlesphere_spells.end(),
                                               spell_title,
@@ -4534,18 +4534,18 @@ static string _player_spell_desc(spell_type spell)
     if (spell == SPELL_SPELLSPARK_SERVITOR)
     {
         spell_type servitor_spell = player_servitor_spell();
-        description << "Your servitor";
+        description << (Options.language == lang_t::KO ? "시종은" : "Your servitor");
         if (servitor_spell == SPELL_NO_SPELL)
-            description << " is unable to mimic any of your spells";
+            description << (Options.language == lang_t::KO ? " 어떤 주문도 모방할 수 없어" : " is unable to mimic any of your spells");
         else
-            description << " casts " << spell_title(player_servitor_spell());
+            description << (Options.language == lang_t::KO ? " 다음 주문을 시전해: " : " casts ") << spell_title(player_servitor_spell());
         description << ".\n";
     }
     else if (spell == SPELL_PLATINUM_PARAGON)
     {
         if (you.props.exists(PARAGON_WEAPON_KEY))
         {
-            description << "Your paragon wields "
+            description << (Options.language == lang_t::KO ? "모범자는 다음 무기를 들고 있어: " : "Your paragon wields ")
                         << you.props[PARAGON_WEAPON_KEY].get_item()
                            .name(DESC_A, true).c_str()
                         << ".\n";
@@ -4588,7 +4588,7 @@ static string _player_spell_desc(spell_type spell)
     }
 
     if (you.has_mutation(MUT_MNEMOPHAGE) && spell_can_be_enkindled(spell))
-        description << "This spell is empowered while you are enkindled.\n";
+        description << (Options.language == lang_t::KO ? "불꽃에 휩싸인 동안 이 주문이 강화돼.\n" : "This spell is empowered while you are enkindled.\n");
 
     if (!you_can_memorise(spell))
     {
@@ -4608,7 +4608,7 @@ static string _player_spell_desc(spell_type spell)
     }
     else if (spell_is_useless(spell, true, false))
     {
-        description << "\nThis spell would have no effect right now because "
+        description << (Options.language == lang_t::KO ? "\n지금은 이 주문이 효과가 없어. 이유: " : "\nThis spell would have no effect right now because ")
                     << spell_uselessness_reason(spell, true, false)
                     << "\n";
     }
@@ -4987,6 +4987,39 @@ static string _describe_draconian(const monster_info& mi)
     string description;
     const int subsp = mi.draconian_subspecies();
 
+    if (Options.language == lang_t::KO)
+    {
+        string ko;
+        if (subsp != mi.type)
+        {
+            switch (subsp)
+            {
+            case MONS_BLACK_DRACONIAN: ko = "검은 비늘이 있어. "; break;
+            case MONS_YELLOW_DRACONIAN: ko = "노란 비늘이 있어. "; break;
+            case MONS_GREEN_DRACONIAN: ko = "초록 비늘이 있어. "; break;
+            case MONS_PURPLE_DRACONIAN: ko = "보라 비늘이 있어. "; break;
+            case MONS_RED_DRACONIAN: ko = "붉은 비늘이 있어. "; break;
+            case MONS_WHITE_DRACONIAN: ko = "흰 비늘이 있어. "; break;
+            case MONS_GREY_DRACONIAN: ko = "회색 비늘이 있어. "; break;
+            case MONS_PALE_DRACONIAN: ko = "창백한 비늘이 있어. "; break;
+            default: break;
+            }
+        }
+        switch (subsp)
+        {
+        case MONS_BLACK_DRACONIAN: ko += "입과 콧구멍에서 불꽃이 튀어."; break;
+        case MONS_YELLOW_DRACONIAN: ko += "주변에 산성 연기가 소용돌이쳐."; break;
+        case MONS_GREEN_DRACONIAN: ko += "턱과 침 꼬리에서 독이 뚝뚝 떨어져."; break;
+        case MONS_PURPLE_DRACONIAN: ko += "윤곽이 마법의 힘으로 일렁여."; break;
+        case MONS_RED_DRACONIAN: ko += "콧구멍에서 연기가 뿜어져 나와."; break;
+        case MONS_WHITE_DRACONIAN: ko += "콧구멍에서 냉기가 뿜어져 나와."; break;
+        case MONS_GREY_DRACONIAN: ko += "비늘과 꼬리가 물속 생활에 적응해 있어."; break;
+        case MONS_PALE_DRACONIAN: ko += "뜨거운 증기에 둘러싸여 있어."; break;
+        default: break;
+        }
+        return ko;
+    }
+
     if (subsp != mi.type)
     {
         description += "It has ";
@@ -5043,6 +5076,23 @@ static string _describe_draconian(const monster_info& mi)
 
 static const char* _get_resist_name(mon_resist_flags res_type)
 {
+    if (Options.language == lang_t::KO)
+    {
+        switch (res_type)
+        {
+        case MR_RES_ELEC: return "전기";
+        case MR_RES_POISON: return "독";
+        case MR_RES_FIRE: return "화염";
+        case MR_RES_STEAM: return "증기";
+        case MR_RES_COLD: return "냉기";
+        case MR_RES_CORR: return "산성 및 부식";
+        case MR_RES_MIASMA: return "독기";
+        case MR_RES_NEG: return "음에너지";
+        case MR_RES_DAMNATION: return "저주 화염";
+        case MR_RES_TORMENT: return "고통";
+        default: return "알 수 없는 저항";
+        }
+    }
     switch (res_type)
     {
     case MR_RES_ELEC:
@@ -5075,11 +5125,11 @@ static const char* _get_threat_desc(mon_threat_level_type threat)
     switch (threat)
     {
     case MTHRT_UNDEF: // ?
-    case MTHRT_TRIVIAL: return "Minor";
-    case MTHRT_EASY:    return "Low";
-    case MTHRT_TOUGH:   return "High";
-    case MTHRT_NASTY:   return "Lethal";
-    default:            return "Eggstreme";
+    case MTHRT_TRIVIAL: return Options.language == lang_t::KO ? "미미함" : "Minor";
+    case MTHRT_EASY:    return Options.language == lang_t::KO ? "낮음" : "Low";
+    case MTHRT_TOUGH:   return Options.language == lang_t::KO ? "높음" : "High";
+    case MTHRT_NASTY:   return Options.language == lang_t::KO ? "치명적" : "Lethal";
+    default:            return Options.language == lang_t::KO ? "극단적" : "Eggstreme";
     }
 }
 
@@ -5143,6 +5193,71 @@ static string _flavour_base_desc(attack_flavour flavour)
         { AF_DIM,               "diminish the target's spells" },
         { AF_PLAIN,             "" },
     };
+
+    if (Options.language == lang_t::KO)
+    {
+        static const map<attack_flavour, string> ko_descs = {
+            { AF_ACID, "산성 피해" },
+            { AF_REACH_TONGUE, "산성 피해" },
+            { AF_BLINK, "자신이 순간이동" },
+            { AF_BLINK_WITH, "대상과 함께 순간이동" },
+            { AF_COLD, "냉기 피해" },
+            { AF_CONFUSE, "혼란 유발" },
+            { AF_DRAIN, "생명력 흡수" },
+            { AF_VAMPIRIC, "살아 있는 대상의 체력 흡수" },
+            { AF_DRAIN_SPEED, "속도 흡수" },
+            { AF_ANTIMAGIC, "마력 흡수" },
+            { AF_SCARAB, "속도와 체력 흡수" },
+            { AF_ELEC, "전기 피해" },
+            { AF_FIRE, "화염 피해" },
+            { AF_SEAR, "화염 저항 제거" },
+            { AF_MINIPARA, "독과 순간적인 마비" },
+            { AF_POISON_PARALYSE, "독과 마비 또는 둔화" },
+            { AF_POISON, "독" },
+            { AF_REACH_STING, "독" },
+            { AF_POISON_STRONG, "강한 독" },
+            { AF_DISTORT, "공간 왜곡" },
+            { AF_RIFT, "공간 왜곡" },
+            { AF_RAGE, "대상을 광폭화" },
+            { AF_CHAOTIC, "혼돈" },
+            { AF_STEAL, "아이템 훔치기" },
+            { AF_CRUSH, "지속적인 조이기 시작" },
+            { AF_REACH, "" },
+            { AF_HOLY, "언데드와 악마에게 추가 피해" },
+            { AF_PAIN, "살아 있는 대상에게 고통 피해 추가" },
+            { AF_ENSNARE, "거미줄로 속박" },
+            { AF_FLOOD, "대상의 폐에 물을 채움" },
+            { AF_PURE_FIRE, "" },
+            { AF_VULN, "의지력 감소" },
+            { AF_SHADOWSTAB, "발각되지 않았을 때 추가 피해" },
+            { AF_DROWN, "익사 피해" },
+            { AF_CORRODE, "부식 유발" },
+            { AF_TRAMPLE, "대상을 밀쳐냄" },
+            { AF_WEAKNESS, "약화 유발" },
+            { AF_BARBS, "가시 박기" },
+            { AF_SPIDER, "거미 소환" },
+            { AF_BLOODZERK, "피를 보면 격노" },
+            { AF_SLEEP, "수면 유발" },
+            { AF_SWOOP, "공격 전에 대상의 뒤로 급습" },
+            { AF_FLANK, "공격 전에 대상의 뒤로 이동" },
+            { AF_DRAG, "대상을 뒤로 끌어당김" },
+            { AF_FOUL_FLAME, "추가 피해, 특히 선한 대상에게 강함" },
+            { AF_HELL_HUNT, "악마 짐승 소환" },
+            { AF_SWARM, "동족 추가 소환" },
+            { AF_ALEMBIC, "독 구름 방출" },
+            { AF_BOMBLET, "소형 폭탄 배치" },
+            { AF_AIRSTRIKE, "노출된 대상에게 바람 피해" },
+            { AF_TRICKSTER, "흡수·멍해짐·혼란 유발" },
+            { AF_REACH_CLEAVE_UGLY, "무작위 추악한 존재의 피해" },
+            { AF_DOOM, "파멸 부여" },
+            { AF_SLIMIFY, "대상을 서서히 슬라임화" },
+            { AF_DIM, "대상의 주문 약화" },
+            { AF_PLAIN, "" },
+        };
+        const string* ko_desc = map_find(ko_descs, flavour);
+        if (ko_desc)
+            return *ko_desc;
+    }
 
     const string* desc = map_find(base_descs, flavour);
     ASSERT(desc);
