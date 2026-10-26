@@ -5076,6 +5076,23 @@ static string _describe_draconian(const monster_info& mi)
 
 static const char* _get_resist_name(mon_resist_flags res_type)
 {
+    if (Options.language == lang_t::KO)
+    {
+        switch (res_type)
+        {
+        case MR_RES_ELEC: return "전기";
+        case MR_RES_POISON: return "독";
+        case MR_RES_FIRE: return "화염";
+        case MR_RES_STEAM: return "증기";
+        case MR_RES_COLD: return "냉기";
+        case MR_RES_CORR: return "산성 및 부식";
+        case MR_RES_MIASMA: return "독기";
+        case MR_RES_NEG: return "음에너지";
+        case MR_RES_DAMNATION: return "저주 화염";
+        case MR_RES_TORMENT: return "고통";
+        default: return "알 수 없는 저항";
+        }
+    }
     switch (res_type)
     {
     case MR_RES_ELEC:
