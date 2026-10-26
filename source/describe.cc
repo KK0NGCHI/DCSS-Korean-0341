@@ -4660,12 +4660,13 @@ static void _get_spell_description(const spell_type spell,
         description += long_descrip;
     else
     {
-        description += "This spell has no description. "
-                       "Casting it may therefore be unwise. "
+        description += Options.language == lang_t::KO
+            ? "이 주문에는 설명이 없어. 시전할 때 주의해야 해. "
+            : "This spell has no description. Casting it may therefore be unwise. ";
 #ifdef DEBUG
-                       "Instead, go fix it. ";
+                       (Options.language == lang_t::KO ? "설명을 추가해 줘. " : "Instead, go fix it. ");
 #else
-                       "Please file a bug report.";
+                       (Options.language == lang_t::KO ? "오류를 제보해 줘." : "Please file a bug report.");
 #endif
     }
 
@@ -5355,7 +5356,7 @@ static string _brand_damage_string(const monster_info &mi, brand_type brand,
             brand_dam = 4;
             break;
         case SPWPN_SUNDERING:
-            return make_stringf(" + %d per 4 attacks", dam * 3 / 2);
+            return make_stringf(Options.language == lang_t::KO ? " (4회 공격당 +%d)" : " + %d per 4 attacks", dam * 3 / 2);
         case SPWPN_VENOM:
         case SPWPN_ANTIMAGIC:
         case SPWPN_CHAOS:
