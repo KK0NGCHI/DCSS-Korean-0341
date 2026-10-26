@@ -2949,7 +2949,7 @@ string get_item_description(const item_def &item,
                 }
             }
             if (Options.language == lang_t::KO)
-                description << "\n\n희귀도: " << describe_item_rarity(item) << " 물약이야.";
+                description << "\n\n물약 희귀도: " << describe_item_rarity(item) << ".";
             else
                 description << "\n\nIt is "
                             << article_a(describe_item_rarity(item))
