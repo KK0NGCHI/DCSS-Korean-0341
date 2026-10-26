@@ -2320,11 +2320,11 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
             description += "\n\n";
         if (is_shield(item))
         {
-            description += "Base shield rating: "
+            description += (Options.language == lang_t::KO ? "기본 방패 수치: " : "Base shield rating: ")
                         + to_string(property(item, PARM_AC));
-            description += "     Encumbrance rating: "
+            description += (Options.language == lang_t::KO ? "     방해 수치: " : "     Encumbrance rating: ")
                         + to_string(-property(item, PARM_EVASION) / 10);
-            description += "     Max blocks/turn: "
+            description += (Options.language == lang_t::KO ? "     턴당 최대 방어 횟수: " : "     Max blocks/turn: ")
                         + to_string(shield_block_limit(item));
             if (is_unrandom_artefact(item, UNRAND_WARLOCK_MIRROR))
                 description += _warlock_mirror_reflect_desc();
@@ -2332,11 +2332,11 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
         else
         {
             const int evp = property(item, PARM_EVASION);
-            description += "Base armour rating: "
+            description += (Options.language == lang_t::KO ? "기본 방어력: " : "Base armour rating: ")
                         + to_string(property(item, PARM_AC));
             if (get_armour_slot(item) == SLOT_BODY_ARMOUR)
             {
-                description += "       Encumbrance rating: "
+                description += (Options.language == lang_t::KO ? "       방해 수치: " : "       Encumbrance rating: ")
                             + to_string(-evp / 10);
             }
             // Bardings reduce evasion by a fixed amount, and don't have any of
@@ -4686,8 +4686,7 @@ static void _get_spell_description(const spell_type spell,
                                             describe_player_cancellation(true).c_str());
             }
             else
-                description += "\nYou currently have no enchantments that could be"
-                               " removed by this.\n";
+                description += Options.language == lang_t::KO ? "\n현재 이 공격으로 제거될 수 있는 마법 효과가 없어.\n" : "\nYou currently have no enchantments that could be removed by this.\n";
 
         }
 
@@ -4697,20 +4696,18 @@ static void _get_spell_description(const spell_type spell,
                                 || spell == SPELL_FLASHING_BALESTRA
                                 || spell == SPELL_BECKONING_GALE ? 3 : 0);
 
-        description += "\nRange : ";
+        description += Options.language == lang_t::KO ? "\n사거리: " : "\nRange : ";
         description += range_string(range, -1, minrange);
 
         if (crawl_state.need_save && you_worship(GOD_DITHMENOS))
         {
             if (!valid_marionette_spell(spell))
             {
-                description += "\n\n<magenta>This spell cannot be performed via "
-                               "Aphotic Marionette.</magenta>\n";
+                description += Options.language == lang_t::KO ? "\n\n<magenta>이 주문은 암흑의 꼭두각시를 통해 사용할 수 없어.</magenta>\n" : "\n\n<magenta>This spell cannot be performed via Aphotic Marionette.</magenta>\n";
             }
             else if (spell_has_marionette_override(spell))
             {
-                description += "\n\n<magenta>When cast via Aphotic Marionette, "
-                               "this spell will affect the player instead.";
+                description += Options.language == lang_t::KO ? "\n\n<magenta>암흑의 꼭두각시를 통해 시전하면 이 주문은 대신 플레이어에게 영향을 줘." : "\n\n<magenta>When cast via Aphotic Marionette, this spell will affect the player instead.";
             }
         }
 
