@@ -2909,23 +2909,23 @@ string get_item_description(const item_def &item,
                 // slightly redundant with uselessness desc..
                 const int charges = evoker_charges(item.sub_type);
                 if (charges > 1)
-                    description << "Charges: " << charges << ". Once all charges have been used";
+                    description << (Options.language == lang_t::KO ? "충전 횟수: " : "Charges: ") << charges << (Options.language == lang_t::KO ? ". 충전을 모두 사용하면" : ". Once all charges have been used");
                 else
-                    description << "Once activated";
-                description << ", this device is rendered temporarily inert. "
-                            << "However, it recharges as you gain experience.";
+                    description << (Options.language == lang_t::KO ? "발동하면" : "Once activated");
+                description << (Options.language == lang_t::KO ? " 장치가 일시적으로 비활성화돼. 경험치를 얻으면 다시 충전돼." : ", this device is rendered temporarily inert. "
+                            "However, it recharges as you gain experience.");
 
                 if (evoker_plus(item.sub_type) < MAX_EVOKER_ENCHANT)
                 {
-                    description << "\n\nAdditional devices of the same type "
-                            << "can be combined with it to improve the rate at "
-                            << "which it recharges.";
+                    description << (Options.language == lang_t::KO ? "\n\n같은 종류의 장치를 합치면 재충전 속도를 높일 수 있어." : "\n\nAdditional devices of the same type "
+                            "can be combined with it to improve the rate at "
+                            "which it recharges.");
                 }
                 if (!is_useless_skill(SK_EVOCATIONS)
                        && you.skill(SK_EVOCATIONS) < MAX_SKILL_LEVEL)
                 {
-                    description << "\n\nIncreasing your evocations skill will "
-                                << "improve the rate at which it recharges.";
+                    description << (Options.language == lang_t::KO ? "\n\n발동술 기술이 높아지면 재충전 속도가 증가해." : "\n\nIncreasing your evocations skill will "
+                                "improve the rate at which it recharges.");
                 }
 
                 const string damage_str = evoke_damage_string(item);
