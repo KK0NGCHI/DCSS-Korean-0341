@@ -5075,11 +5075,11 @@ static const char* _get_threat_desc(mon_threat_level_type threat)
     switch (threat)
     {
     case MTHRT_UNDEF: // ?
-    case MTHRT_TRIVIAL: return "Minor";
-    case MTHRT_EASY:    return "Low";
-    case MTHRT_TOUGH:   return "High";
-    case MTHRT_NASTY:   return "Lethal";
-    default:            return "Eggstreme";
+    case MTHRT_TRIVIAL: return Options.language == lang_t::KO ? "미미함" : "Minor";
+    case MTHRT_EASY:    return Options.language == lang_t::KO ? "낮음" : "Low";
+    case MTHRT_TOUGH:   return Options.language == lang_t::KO ? "높음" : "High";
+    case MTHRT_NASTY:   return Options.language == lang_t::KO ? "치명적" : "Lethal";
+    default:            return Options.language == lang_t::KO ? "극단적" : "Eggstreme";
     }
 }
 
@@ -5143,6 +5143,71 @@ static string _flavour_base_desc(attack_flavour flavour)
         { AF_DIM,               "diminish the target's spells" },
         { AF_PLAIN,             "" },
     };
+
+    if (Options.language == lang_t::KO)
+    {
+        static const map<attack_flavour, string> ko_descs = {
+            { AF_ACID, "산성 피해" },
+            { AF_REACH_TONGUE, "산성 피해" },
+            { AF_BLINK, "자신이 순간이동" },
+            { AF_BLINK_WITH, "대상과 함께 순간이동" },
+            { AF_COLD, "냉기 피해" },
+            { AF_CONFUSE, "혼란 유발" },
+            { AF_DRAIN, "생명력 흡수" },
+            { AF_VAMPIRIC, "살아 있는 대상의 체력 흡수" },
+            { AF_DRAIN_SPEED, "속도 흡수" },
+            { AF_ANTIMAGIC, "마력 흡수" },
+            { AF_SCARAB, "속도와 체력 흡수" },
+            { AF_ELEC, "전기 피해" },
+            { AF_FIRE, "화염 피해" },
+            { AF_SEAR, "화염 저항 제거" },
+            { AF_MINIPARA, "독과 순간적인 마비" },
+            { AF_POISON_PARALYSE, "독과 마비 또는 둔화" },
+            { AF_POISON, "독" },
+            { AF_REACH_STING, "독" },
+            { AF_POISON_STRONG, "강한 독" },
+            { AF_DISTORT, "공간 왜곡" },
+            { AF_RIFT, "공간 왜곡" },
+            { AF_RAGE, "대상을 광폭화" },
+            { AF_CHAOTIC, "혼돈" },
+            { AF_STEAL, "아이템 훔치기" },
+            { AF_CRUSH, "지속적인 조이기 시작" },
+            { AF_REACH, "" },
+            { AF_HOLY, "언데드와 악마에게 추가 피해" },
+            { AF_PAIN, "살아 있는 대상에게 고통 피해 추가" },
+            { AF_ENSNARE, "거미줄로 속박" },
+            { AF_FLOOD, "대상의 폐에 물을 채움" },
+            { AF_PURE_FIRE, "" },
+            { AF_VULN, "의지력 감소" },
+            { AF_SHADOWSTAB, "발각되지 않았을 때 추가 피해" },
+            { AF_DROWN, "익사 피해" },
+            { AF_CORRODE, "부식 유발" },
+            { AF_TRAMPLE, "대상을 밀쳐냄" },
+            { AF_WEAKNESS, "약화 유발" },
+            { AF_BARBS, "가시 박기" },
+            { AF_SPIDER, "거미 소환" },
+            { AF_BLOODZERK, "피를 보면 격노" },
+            { AF_SLEEP, "수면 유발" },
+            { AF_SWOOP, "공격 전에 대상의 뒤로 급습" },
+            { AF_FLANK, "공격 전에 대상의 뒤로 이동" },
+            { AF_DRAG, "대상을 뒤로 끌어당김" },
+            { AF_FOUL_FLAME, "추가 피해, 특히 선한 대상에게 강함" },
+            { AF_HELL_HUNT, "악마 짐승 소환" },
+            { AF_SWARM, "동족 추가 소환" },
+            { AF_ALEMBIC, "독 구름 방출" },
+            { AF_BOMBLET, "소형 폭탄 배치" },
+            { AF_AIRSTRIKE, "노출된 대상에게 바람 피해" },
+            { AF_TRICKSTER, "흡수·멍해짐·혼란 유발" },
+            { AF_REACH_CLEAVE_UGLY, "무작위 추악한 존재의 피해" },
+            { AF_DOOM, "파멸 부여" },
+            { AF_SLIMIFY, "대상을 서서히 슬라임화" },
+            { AF_DIM, "대상의 주문 약화" },
+            { AF_PLAIN, "" },
+        };
+        const string* ko_desc = map_find(ko_descs, flavour);
+        if (ko_desc)
+            return *ko_desc;
+    }
 
     const string* desc = map_find(base_descs, flavour);
     ASSERT(desc);
