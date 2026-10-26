@@ -1222,12 +1222,6 @@ static const char* _ko_gem_label(gem_type type)
 
 static string gem_type_name(gem_type g)
 {
-    if (Options.language == lang_t::KO)
-    {
-        const char* name = _ko_gem_label(g);
-        if (name)
-            return string(name) + " 보석";
-    }
     return string(gem_adj(g)) + " gem";
 }
 
@@ -2524,6 +2518,14 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                      ? "보석" : "gem");
         else if (Options.language == lang_t::KO && (dbname || qualname))
             buff << gem_adj(static_cast<gem_type>(sub_type)) << " gem";
+        else if (Options.language == lang_t::KO)
+        {
+            const char* label = _ko_gem_label(static_cast<gem_type>(sub_type));
+            if (label)
+                buff << label << " 보석";
+            else
+                buff << gem_type_name(static_cast<gem_type>(sub_type));
+        }
         else
             buff << gem_type_name(static_cast<gem_type>(sub_type));
         break;
