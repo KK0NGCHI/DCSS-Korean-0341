@@ -540,6 +540,8 @@ bool InvMenu::examine_index(int i)
     return true;
 }
 
+static const char* _ko_item_class_name(int type, bool terse);
+
 static bool _has_temp_unwearable_armour()
 {
     for (const auto &item : you.inv)
