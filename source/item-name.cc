@@ -2232,7 +2232,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         if (identified)
         {
-            const char* name = Options.language == lang_t::KO ? _ko_potion_name(item_typ) : nullptr;
+            const char* name = Options.language == lang_t::KO && !dbname && !qualname
+                ? _ko_potion_name(item_typ) : nullptr;
             if (name)
                 buff << name << " 물약";
             else
@@ -2270,7 +2271,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             const char *clr =  (pcolour < 0 || pcolour >= PDC_NCOLOURS) ?
                                    "bogus" : potion_colours[pcolour];
 
-            if (Options.language == lang_t::KO)
+            if (Options.language == lang_t::KO && !dbname && !qualname)
             {
                 static const char* const ko_qualifiers[] = {
                     "", "거품이 이는 ", "연기가 나는 ", "톡 쏘는 ", "걸쭉한 ",
