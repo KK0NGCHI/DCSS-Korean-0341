@@ -4608,7 +4608,7 @@ static string _player_spell_desc(spell_type spell)
     }
     else if (spell_is_useless(spell, true, false))
     {
-        description << "\nThis spell would have no effect right now because "
+        description << (Options.language == lang_t::KO ? "\n지금은 이 주문이 효과가 없어. 이유: " : "\nThis spell would have no effect right now because ")
                     << spell_uselessness_reason(spell, true, false)
                     << "\n";
     }
