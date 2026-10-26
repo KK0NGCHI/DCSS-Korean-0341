@@ -1663,7 +1663,7 @@ string sub_type_string(const item_def &item, bool known)
             {
             if (!known)
                 return "manual";
-            if (Options.language == lang_t::KO)
+            if (Options.language == lang_t::KO && crawl_state.need_save && known)
                 return string(skill_name(static_cast<skill_type>(item.plus))) + " 숙련 교본";
             string bookname = "manual of ";
             bookname += skill_name(static_cast<skill_type>(item.plus));
