@@ -2320,11 +2320,11 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
             description += "\n\n";
         if (is_shield(item))
         {
-            description += Options.language == lang_t::KO ? "기본 방패 수치: " : "Base shield rating: "
+            description += (Options.language == lang_t::KO ? "기본 방패 수치: " : "Base shield rating: ")
                         + to_string(property(item, PARM_AC));
-            description += Options.language == lang_t::KO ? "     방해 수치: " : "     Encumbrance rating: "
+            description += (Options.language == lang_t::KO ? "     방해 수치: " : "     Encumbrance rating: ")
                         + to_string(-property(item, PARM_EVASION) / 10);
-            description += Options.language == lang_t::KO ? "     턴당 최대 방어 횟수: " : "     Max blocks/turn: "
+            description += (Options.language == lang_t::KO ? "     턴당 최대 방어 횟수: " : "     Max blocks/turn: ")
                         + to_string(shield_block_limit(item));
             if (is_unrandom_artefact(item, UNRAND_WARLOCK_MIRROR))
                 description += _warlock_mirror_reflect_desc();
@@ -2332,11 +2332,11 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
         else
         {
             const int evp = property(item, PARM_EVASION);
-            description += Options.language == lang_t::KO ? "기본 방어력: " : "Base armour rating: "
+            description += (Options.language == lang_t::KO ? "기본 방어력: " : "Base armour rating: ")
                         + to_string(property(item, PARM_AC));
             if (get_armour_slot(item) == SLOT_BODY_ARMOUR)
             {
-                description += Options.language == lang_t::KO ? "       방해 수치: " : "       Encumbrance rating: "
+                description += (Options.language == lang_t::KO ? "       방해 수치: " : "       Encumbrance rating: ")
                             + to_string(-evp / 10);
             }
             // Bardings reduce evasion by a fixed amount, and don't have any of
