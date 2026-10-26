@@ -2771,13 +2771,13 @@ string get_item_description(const item_def &item,
         else if (is_artefact(item) && item.is_identified()
                  && item.base_type == OBJ_JEWELLERY)
         {
-            description << "It is an ancient artefact.";
+            description << (Options.language == lang_t::KO ? "오래된 아티팩트야." : "It is an ancient artefact.");
             need_base_desc = false;
         }
         else if (item.base_type == OBJ_GIZMOS)
         {
-            description << "It is a fabulous contraption, custom-made by your "
-                           "own hands.";
+            description << (Options.language == lang_t::KO ? "직접 제작한 놀라운 장치야." : "It is a fabulous contraption, custom-made by your "
+                           "own hands.");
             need_base_desc = false;
         }
 
@@ -2789,7 +2789,7 @@ string get_item_description(const item_def &item,
             if (db_desc.empty())
             {
                 if (item_type_removed(item.base_type, item.sub_type))
-                    description << "This item has been removed.\n";
+                    description << (Options.language == lang_t::KO ? "게임에서 삭제된 아이템이야.\n" : "This item has been removed.\n");
                 else if (item.is_identified())
                 {
                     description << "[ERROR: no desc for item name '" << db_name
@@ -4280,36 +4280,36 @@ static string _player_spell_stats(const spell_type spell)
     }
     else
         failure = failure_rate_to_string(raw_spell_fail(spell));
-    description += make_stringf("        Fail: %s", failure.c_str());
+    description += make_stringf(Options.language == lang_t::KO ? "        실패율: %s" : "        Fail: %s", failure.c_str());
 
     const string damage_string = spell_damage_string(spell);
     const string max_dam_string = spell_max_damage_string(spell);
     const int acc = spell_acc(spell);
     // TODO: generalize this pattern? It's very common in descriptions
     const int padding = (acc != -1) ? 8 : damage_string.size() ? 6 : 5;
-    description += make_stringf("\n\n%*s: ", padding, "Power");
+    description += make_stringf("\n\n%*s: ", padding, Options.language == lang_t::KO ? "위력" : "Power");
     description += spell_power_string(spell);
 
     if (damage_string != "")
     {
-        description += make_stringf("\n%*s: ", padding, "Damage");
+        description += make_stringf("\n%*s: ", padding, Options.language == lang_t::KO ? "피해" : "Damage");
         description += damage_string;
 
         const string max_dam = spell_max_damage_string(spell);
         if (!max_dam.empty())
-            description += " (max " + max_dam + ")";
+            description += (Options.language == lang_t::KO ? " (최대 " : " (max ") + max_dam + ")";
     }
     if (acc != -1)
     {
         ostringstream acc_str;
         _print_bar(acc, 3, "", acc_str);
-        description += make_stringf("\n%*s: %s", padding, "Accuracy",
+        description += make_stringf("\n%*s: %s", padding, Options.language == lang_t::KO ? "명중률" : "Accuracy",
                                                     acc_str.str().c_str());
     }
 
-    description += make_stringf("\n%*s: ", padding, "Range");
+    description += make_stringf("\n%*s: ", padding, Options.language == lang_t::KO ? "사거리" : "Range");
     description += spell_range_string(spell);
-    description += make_stringf("\n%*s: ", padding, "Noise");
+    description += make_stringf("\n%*s: ", padding, Options.language == lang_t::KO ? "소음" : "Noise");
     description += spell_noise_string(spell);
     description += "\n";
     return description;
@@ -4554,16 +4554,16 @@ static string _player_spell_desc(spell_type spell)
     else if (you.has_spell(SPELL_SPELLSPARK_SERVITOR) && spell_servitorable(spell))
     {
         if (failure_rate_to_int(raw_spell_fail(spell)) <= 20)
-            description << "Your servitor can be imbued with this spell.\n";
+            description << (Options.language == lang_t::KO ? "시종에게 이 주문을 부여할 수 있어.\n" : "Your servitor can be imbued with this spell.\n");
         else
         {
-            description << "Your servitor could be imbued with this spell if "
-                           "your spell success rate were higher.\n";
+            description << (Options.language == lang_t::KO ? "주문 성공률이 더 높으면 시종에게 이 주문을 부여할 수 있어.\n" : "Your servitor could be imbued with this spell if "
+                           "your spell success rate were higher.\n");
         }
     }
 
     if (spell == SPELL_IRRADIATE)
-        description << "This inflicts up to 40% magical contamination when cast by you.\n";
+        description << (Options.language == lang_t::KO ? "이 주문을 시전하면 마법 오염이 최대 40% 발생해.\n" : "This inflicts up to 40% magical contamination when cast by you.\n");
 
     // Report summon cap
     const int limit = summons_limit(spell, true);
