@@ -1222,12 +1222,6 @@ static const char* _ko_gem_label(gem_type type)
 
 static string gem_type_name(gem_type g)
 {
-    if (Options.language == lang_t::KO)
-    {
-        const char* name = _ko_gem_label(g);
-        if (name)
-            return string(name) + " 보석";
-    }
     return string(gem_adj(g)) + " gem";
 }
 
@@ -1669,7 +1663,7 @@ string sub_type_string(const item_def &item, bool known)
             {
             if (!known)
                 return "manual";
-            if (Options.language == lang_t::KO)
+            if (Options.language == lang_t::KO && crawl_state.need_save && known)
                 return string(skill_name(static_cast<skill_type>(item.plus))) + " 숙련 교본";
             string bookname = "manual of ";
             bookname += skill_name(static_cast<skill_type>(item.plus));
@@ -2201,7 +2195,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         if (identified)
         {
-            const char* ko_name = Options.language == lang_t::KO ? _ko_wand_name(item_typ) : nullptr;
+            const char* ko_name = Options.language == lang_t::KO && !dbname && !qualname
+                ? _ko_wand_name(item_typ) : nullptr;
             if (ko_name)
                 buff << ko_name << " 마법봉";
             else
@@ -2231,7 +2226,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         if (identified)
         {
-            const char* name = Options.language == lang_t::KO ? _ko_potion_name(item_typ) : nullptr;
+            const char* name = Options.language == lang_t::KO && !dbname && !qualname
+                ? _ko_potion_name(item_typ) : nullptr;
             if (name)
                 buff << name << " 물약";
             else
@@ -2269,7 +2265,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             const char *clr =  (pcolour < 0 || pcolour >= PDC_NCOLOURS) ?
                                    "bogus" : potion_colours[pcolour];
 
-            if (Options.language == lang_t::KO)
+            if (Options.language == lang_t::KO && !dbname && !qualname)
             {
                 static const char* const ko_qualifiers[] = {
                     "", "거품이 이는 ", "연기가 나는 ", "톡 쏘는 ", "걸쭉한 ",
@@ -2500,7 +2496,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         break;
 
     case OBJ_RUNES:
-        if (Options.language == lang_t::KO && !dbname && !qualname)
+        // Keep DES/load-time item matching in English before a game exists.
+        if (Options.language == lang_t::KO && crawl_state.need_save
+            && !dbname && !qualname)
         {
             const char* ko_rune = _ko_rune_label(sub_type);
             if (ko_rune)
@@ -2510,9 +2508,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
         else
         {
-            if (!dbname)
-                buff << rune_type_name(sub_type) << " ";
-            buff << "rune of Zot";
+            // The DES item parser needs the English rune subtype even in DB mode.
+            // Only the UI display name is localized.
+            buff << rune_type_name(sub_type) << " rune of Zot";
         }
         break;
 
@@ -2522,6 +2520,14 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                      ? "보석" : "gem");
         else if (Options.language == lang_t::KO && (dbname || qualname))
             buff << gem_adj(static_cast<gem_type>(sub_type)) << " gem";
+        else if (Options.language == lang_t::KO)
+        {
+            const char* label = _ko_gem_label(static_cast<gem_type>(sub_type));
+            if (label)
+                buff << label << " 보석";
+            else
+                buff << gem_type_name(static_cast<gem_type>(sub_type));
+        }
         else
             buff << gem_type_name(static_cast<gem_type>(sub_type));
         break;
