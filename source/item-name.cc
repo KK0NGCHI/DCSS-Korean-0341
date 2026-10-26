@@ -2496,7 +2496,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         break;
 
     case OBJ_RUNES:
-        if (Options.language == lang_t::KO && !dbname && !qualname)
+        // Keep DES/load-time item matching in English before a game exists.
+        if (Options.language == lang_t::KO && crawl_state.need_save
+            && !dbname && !qualname)
         {
             const char* ko_rune = _ko_rune_label(sub_type);
             if (ko_rune)
