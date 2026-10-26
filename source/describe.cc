@@ -2659,8 +2659,7 @@ static void _uselessness_desc(ostringstream &description, const item_def &item)
         string r;
         if (is_useless_item(item, false))
         {
-            description << "This " << base_type_string(item.base_type)
-                        << " is completely useless to you";
+            description << (Options.language == lang_t::KO ? "이 아이템은 전혀 쓸모가 없어" : "This " + base_type_string(item.base_type) + " is completely useless to you");
             r = _cannot_use_reason(item, false);
         }
         else
@@ -2668,28 +2667,27 @@ static void _uselessness_desc(ostringstream &description, const item_def &item)
             switch (item.base_type)
             {
             case OBJ_SCROLLS:
-                description << "Reading this right now";
+                description << (Options.language == lang_t::KO ? "지금 이 두루마리를 읽는 건" : "Reading this right now");
                 // this is somewhat heuristic:
                 if (cannot_read_item_reason().size())
-                    description << " isn't possible";
+                    description << (Options.language == lang_t::KO ? " 불가능해" : " isn't possible");
                 else
-                    description << " will have no effect";
+                    description << (Options.language == lang_t::KO ? " 아무 효과가 없어" : " will have no effect");
                 break;
             case OBJ_POTIONS:
                 // XX code dup
-                description << "Drinking this right now";
+                description << (Options.language == lang_t::KO ? "지금 이 물약을 마시는 건" : "Drinking this right now");
                 if (cannot_drink_item_reason().size())
-                    description << " isn't possible";
+                    description << (Options.language == lang_t::KO ? " 불가능해" : " isn't possible");
                 else
-                    description << " will have no effect";
+                    description << (Options.language == lang_t::KO ? " 아무 효과가 없어" : " will have no effect");
                 break;
             case OBJ_MISCELLANY:
             case OBJ_WANDS:
-                description << "You can't evoke this right now";
+                description << (Options.language == lang_t::KO ? "지금은 이 아이템을 발동할 수 없어" : "You can't evoke this right now");
                 break;
             default:
-                description << "This " << base_type_string(item.base_type)
-                            << " is useless to you right now";
+                description << (Options.language == lang_t::KO ? "지금은 이 아이템이 쓸모없어" : "This " + base_type_string(item.base_type) + " is useless to you right now");
                 break;
             }
             r = _cannot_use_reason(item, true);
