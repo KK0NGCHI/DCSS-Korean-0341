@@ -1824,9 +1824,11 @@ static string _describe_point_change(float points)
 {
     string point_diff_description;
 
-    point_diff_description += make_stringf("%s by %.1f",
-                                           points > 0 ? "increase" : "decrease",
-                                           abs(points));
+    point_diff_description += make_stringf(
+        Options.language == lang_t::KO ? "%s %.1f" : "%s by %.1f",
+        points > 0 ? (Options.language == lang_t::KO ? "증가" : "increase")
+                   : (Options.language == lang_t::KO ? "감소" : "decrease"),
+        abs(points));
 
     return point_diff_description;
 }
@@ -1837,7 +1839,7 @@ static string _describe_point_diff(int original,
     string description;
 
     if (original == changed)
-        return "remain unchanged";
+        return Options.language == lang_t::KO ? "변화 없음" : "remain unchanged";
 
     // Truncate to 1 decimal place, rather than round (so that it matches what
     // will be displayed as the player's AC/EV if they actually put this on.)
@@ -1960,7 +1962,7 @@ static string _equipment_property_change_description(const item_def &item,
     if (item.base_type == OBJ_ARMOUR && get_armour_slot(item) != SLOT_OFFHAND
         || cur_ac != new_ac)
     {
-        description += "\nYour AC would "
+        description += (Options.language == lang_t::KO ? "\n방어력(AC): " : "\nYour AC would ")
                        + _describe_point_diff(cur_ac, new_ac) + ".";
     }
 
@@ -1969,14 +1971,14 @@ static string _equipment_property_change_description(const item_def &item,
     if (item.base_type == OBJ_ARMOUR && item.sub_type != ARM_ORB
         || cur_ev != new_ev)
     {
-        description += "\nYour EV would "
+        description += (Options.language == lang_t::KO ? "\n회피력(EV): " : "\nYour EV would ")
                        + _describe_point_diff(cur_ev, new_ev) + ".";
     }
 
     // Always display SH line on shields, even if there is no change
     if (is_shield(item) || cur_sh != new_sh)
     {
-        description += "\nYour SH would "
+        description += (Options.language == lang_t::KO ? "\n방패 수치(SH): " : "\nYour SH would ")
                        + _describe_point_diff(cur_sh, new_sh) + ".";
     }
 
