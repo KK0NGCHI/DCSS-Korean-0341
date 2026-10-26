@@ -1567,21 +1567,23 @@ static void _append_weapon_stats(string &description, const item_def &item)
     {
         const char *inf = Options.char_set == CSET_ASCII ? "inf" : "\u221e"; //"∞"
         description += make_stringf(
-            "Base accuracy: %s  Base damage: %s  ",
+            Options.language == lang_t::KO ? "기본 명중률: %s  기본 피해량: %s  " : "Base accuracy: %s  Base damage: %s  ",
             inf,
             inf);
     }
     else
     {
         description += make_stringf(
-            "Base accuracy: %+d  Base damage: %d  ",
+            Options.language == lang_t::KO ? "기본 명중률: %+d  기본 피해량: %d  " : "Base accuracy: %+d  Base damage: %d  ",
             property(item, PWPN_HIT),
             base_dam);
     }
 
     description += make_stringf(
-        "Base attack delay: %.1f\n"
-        "This weapon's minimum attack delay (%.1f) is reached at skill level %d.",
+        Options.language == lang_t::KO
+            ? "기본 공격 지연: %.1f\n무기의 최소 공격 지연(%.1f)은 기술 레벨 %d에서 달성해."
+            : "Base attack delay: %.1f\n"
+              "This weapon's minimum attack delay (%.1f) is reached at skill level %d.",
             (float) property(item, PWPN_SPEED) / 10,
             (float) weapon_min_delay(item, item.is_identified()) / 10,
             mindelay_skill / 10);
@@ -1608,7 +1610,7 @@ static void _append_weapon_stats(string &description, const item_def &item)
                                  armour_penalty / (10.0f * penalty_scale));
             }
             else
-                description += " slightly slows your attacks with this weapon";
+                description += Options.language == lang_t::KO ? " 때문에 이 무기의 공격 속도가 조금 느려져" : " slightly slows your attacks with this weapon";
         }
         else
         {
