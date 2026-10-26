@@ -2201,7 +2201,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         if (identified)
         {
-            const char* ko_name = Options.language == lang_t::KO ? _ko_wand_name(item_typ) : nullptr;
+            const char* ko_name = Options.language == lang_t::KO && !dbname && !qualname
+                ? _ko_wand_name(item_typ) : nullptr;
             if (ko_name)
                 buff << ko_name << " 마법봉";
             else
