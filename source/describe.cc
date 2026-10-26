@@ -2195,9 +2195,12 @@ static string _describe_ammo(const item_def &item)
         const int target_skill = _item_training_target(item);
 
         description += make_stringf(
-            "\n\nBase damage: %d  Base attack delay: %.1f"
-            "\nThis projectile's minimum attack delay (%.1f) "
-                "is reached at skill level %d.",
+            Options.language == lang_t::KO
+                ? "\n\n기본 피해량: %d  기본 공격 지연: %.1f"
+                  "\n투사체의 최소 공격 지연(%.1f)은 기술 레벨 %d에서 달성해."
+                : "\n\nBase damage: %d  Base attack delay: %.1f"
+                  "\nThis projectile's minimum attack delay (%.1f) "
+                  "is reached at skill level %d.",
             dam,
             (float) throw_delay / 10,
             (float) FASTEST_PLAYER_THROWING_SPEED / 10,
