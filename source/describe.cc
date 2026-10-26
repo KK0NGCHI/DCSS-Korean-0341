@@ -5482,7 +5482,7 @@ static void _add_attack_flavour_desc(string& desc, attack_flavour flavour,
     {
         desc += make_stringf(" (max %d%s)",
                                 flav_dam,
-                                attk_mult > 1 ? " each" : "");
+                                attk_mult > 1 ? (Options.language == lang_t::KO ? " 각각" : " each") : "");
     }
     else if (flavour == AF_DRAIN)
         desc += make_stringf(" (max %d damage)", real_dam / 2);
@@ -5592,12 +5592,12 @@ static void _attacks_table_row(const monster_info &mi, mon_attack_desc_info &di,
 
     string dam_str;
     if (dam != real_dam)
-        dam_str = make_stringf("%d (base %d)", real_dam, dam);
+        dam_str = make_stringf(Options.language == lang_t::KO ? "%d (기본 %d)" : "%d (base %d)", real_dam, dam);
     else
         dam_str = make_stringf("%d", dam);
 
     if (attack.flavour == AF_PURE_FIRE)
-        dam_str += " fire";
+        dam_str += Options.language == lang_t::KO ? " 화염" : " fire";
 
     string brand_str;
     if (wpn)
@@ -5618,7 +5618,7 @@ static void _attacks_table_row(const monster_info &mi, mon_attack_desc_info &di,
 
     string final_dam_str = make_stringf("%s%s%s", dam_str.c_str(),
                                         brand_str.c_str(),
-                                        attk_mult > 1 ? " each" : "");
+                                        attk_mult > 1 ? (Options.language == lang_t::KO ? " 각각" : " each") : "");
     di.damage_descriptions.emplace_back(final_dam_str);
     di.damage_width = max(di.damage_width, final_dam_str.size());
 
@@ -5647,7 +5647,7 @@ static void _attacks_table_row(const monster_info &mi, mon_attack_desc_info &di,
     }
     // ...except Nessos' ranged attacks apply venom as a special effect
     else if (mi.type == MONS_NESSOS)
-        bonus_desc += make_stringf("Poison");
+        bonus_desc += Options.language == lang_t::KO ? "독" : "Poison";
 
     di.bonus_descriptions.emplace_back(bonus_desc);
     di.bonus_width = max(di.bonus_width, bonus_desc.size());
@@ -5662,7 +5662,7 @@ static void _attacks_table_row_throwing(const monster_info &mi,
     if (!quiv || quiv->base_type != OBJ_MISSILES)
         return;
 
-    string throw_str = "Throw: ";
+    string throw_str = Options.language == lang_t::KO ? "투척: " : "Throw: ";
     if (quiv->is_type(OBJ_MISSILES, MI_THROWING_NET))
         throw_str += quiv->name(DESC_A, false, false, true, false);
     else
@@ -5674,29 +5674,29 @@ static void _attacks_table_row_throwing(const monster_info &mi,
     string dam_desc = "0";
     string bonus_desc = "";
     if (quiv->sub_type == MI_THROWING_NET)
-        bonus_desc = "Ensnare in a net";
+        bonus_desc = Options.language == lang_t::KO ? "그물로 속박" : "Ensnare in a net";
     else if (quiv->sub_type == MI_DART)
     {
         switch (quiv->brand)
         {
         case SPMSL_CURARE:
-            dam_desc = "12 (curare)"; // direct curare damage is 2d6
-            bonus_desc = "Poison and slowing";
+            dam_desc = Options.language == lang_t::KO ? "12 (쿠라레)" : "12 (curare)"; // direct curare damage is 2d6
+            bonus_desc = Options.language == lang_t::KO ? "독과 둔화" : "Poison and slowing";
             break;
         case SPMSL_POISONED:
-            bonus_desc = "Poison";
+            bonus_desc = Options.language == lang_t::KO ? "독" : "Poison";
             break;
         case SPMSL_BLINDING:
-            bonus_desc = "Blinding and confusion";
+            bonus_desc = Options.language == lang_t::KO ? "실명과 혼란" : "Blinding and confusion";
             break;
         case SPMSL_FRENZY:
-            bonus_desc = "Drive defenders into a frenzy";
+            bonus_desc = Options.language == lang_t::KO ? "대상을 광란에 빠뜨림" : "Drive defenders into a frenzy";
             break;
         case SPMSL_DISPERSAL:
-            bonus_desc = "Blink the defender away";
+            bonus_desc = Options.language == lang_t::KO ? "대상을 순간이동시킴" : "Blink the defender away";
             break;
         case SPMSL_DISJUNCTION:
-            bonus_desc = "Blink the defender repeatedly";
+            bonus_desc = Options.language == lang_t::KO ? "대상을 반복해서 순간이동시킴" : "Blink the defender repeatedly";
         default:
             break;
         }
@@ -5717,7 +5717,7 @@ static void _attacks_table_row_throwing(const monster_info &mi,
             string dmg_msg;
             int silver_dam = max(dam / 3,
                                  silver_damages_victim(&you, dam, dmg_msg));
-            silver_str = make_stringf(" + %d (silver)", silver_dam);
+            silver_str = make_stringf(Options.language == lang_t::KO ? " + %d (은)" : " + %d (silver)", silver_dam);
         }
         dam_desc = make_stringf("%d%s", dam, silver_str.c_str());
     }
@@ -5746,13 +5746,13 @@ static void _build_table_of_attacks(mon_attack_desc_info &di,
     // Note: columns are separated by (a minimum of) 2 spaces
 
     // First, the table header
-    result << padded_str(di.plural ? "Attacks" : "Attack",
+    result << padded_str(Options.language == lang_t::KO ? "공격" : (di.plural ? "Attacks" : "Attack"),
                          di.attk_desc_width + 2)
-           << padded_str("Max Damage", di.damage_width + 2);
+           << padded_str(Options.language == lang_t::KO ? "최대 피해" : "Max Damage", di.damage_width + 2);
     if (di.has_any_flavour)
     {
-        result << padded_str(di.flavour_without_dam ? "Bonus"
-                                                    : "After Damaging Hits",
+        result << padded_str(Options.language == lang_t::KO ? (di.flavour_without_dam ? "추가 효과" : "명중 후 효과")
+                               : (di.flavour_without_dam ? "Bonus" : "After Damaging Hits"),
                              di.bonus_width);
     }
     result << "\n";
