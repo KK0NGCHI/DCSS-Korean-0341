@@ -4987,6 +4987,39 @@ static string _describe_draconian(const monster_info& mi)
     string description;
     const int subsp = mi.draconian_subspecies();
 
+    if (Options.language == lang_t::KO)
+    {
+        string ko;
+        if (subsp != mi.type)
+        {
+            switch (subsp)
+            {
+            case MONS_BLACK_DRACONIAN: ko = "검은 비늘이 있어. "; break;
+            case MONS_YELLOW_DRACONIAN: ko = "노란 비늘이 있어. "; break;
+            case MONS_GREEN_DRACONIAN: ko = "초록 비늘이 있어. "; break;
+            case MONS_PURPLE_DRACONIAN: ko = "보라 비늘이 있어. "; break;
+            case MONS_RED_DRACONIAN: ko = "붉은 비늘이 있어. "; break;
+            case MONS_WHITE_DRACONIAN: ko = "흰 비늘이 있어. "; break;
+            case MONS_GREY_DRACONIAN: ko = "회색 비늘이 있어. "; break;
+            case MONS_PALE_DRACONIAN: ko = "창백한 비늘이 있어. "; break;
+            default: break;
+            }
+        }
+        switch (subsp)
+        {
+        case MONS_BLACK_DRACONIAN: ko += "입과 콧구멍에서 불꽃이 튀어."; break;
+        case MONS_YELLOW_DRACONIAN: ko += "주변에 산성 연기가 소용돌이쳐."; break;
+        case MONS_GREEN_DRACONIAN: ko += "턱과 침 꼬리에서 독이 뚝뚝 떨어져."; break;
+        case MONS_PURPLE_DRACONIAN: ko += "윤곽이 마법의 힘으로 일렁여."; break;
+        case MONS_RED_DRACONIAN: ko += "콧구멍에서 연기가 뿜어져 나와."; break;
+        case MONS_WHITE_DRACONIAN: ko += "콧구멍에서 냉기가 뿜어져 나와."; break;
+        case MONS_GREY_DRACONIAN: ko += "비늘과 꼬리가 물속 생활에 적응해 있어."; break;
+        case MONS_PALE_DRACONIAN: ko += "뜨거운 증기에 둘러싸여 있어."; break;
+        default: break;
+        }
+        return ko;
+    }
+
     if (subsp != mi.type)
     {
         description += "It has ";
