@@ -1006,7 +1006,8 @@ menu_letter InvMenu::load_items(const vector<const item_def*> &mitems,
         if (!inv_class[i])
             continue;
 
-        string subtitle = item_class_name(i);
+        string subtitle = Options.language == lang_t::KO
+            ? _ko_item_class_name(i, false) : item_class_name(i);
 
         if (subkeys)
         {
@@ -1213,12 +1214,6 @@ static const char* _ko_item_class_name(int type, bool terse)
 
 const char *item_class_name(int type, bool terse)
 {
-    if (Options.language == lang_t::KO)
-    {
-        const char* label = _ko_item_class_name(type, terse);
-        if (label)
-            return label;
-    }
     if (terse)
     {
         switch (type)
