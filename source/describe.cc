@@ -4567,22 +4567,22 @@ static string _player_spell_desc(spell_type spell)
     const int limit = summons_limit(spell, true);
     if (limit)
     {
-        description << "You can sustain at most " + number_in_words(limit)
+        description << (Options.language == lang_t::KO ? "이 주문으로 유지할 수 있는 최대 소환 수: " + to_string(limit) : "You can sustain at most " + number_in_words(limit))
                     // Attempt to clarify that flayed ghosts are NOT included in the cap
-                    << (spell == SPELL_MARTYRS_KNELL ? " martyred shade" : " creature")
-                    << (limit > 1 ? "s" : "")
-                    << " summoned by this spell.\n";
+                    << (Options.language == lang_t::KO ? (spell == SPELL_MARTYRS_KNELL ? " 순교자의 그림자" : " 생물") : (spell == SPELL_MARTYRS_KNELL ? " martyred shade" : " creature"))
+                    << (Options.language == lang_t::KO ? "" : (limit > 1 ? "s" : ""))
+                    << (Options.language == lang_t::KO ? ".\n" : " summoned by this spell.\n");
     }
 
     if (god_hates_spell(spell, you.religion))
     {
         description << uppercase_first(god_name(you.religion))
-                    << " frowns upon the use of this spell.\n";
+                    << (Options.language == lang_t::KO ? ": 이 주문의 사용을 못마땅하게 여겨.\n" : " frowns upon the use of this spell.\n");
     }
     else if (god_likes_spell(spell, you.religion))
     {
         description << uppercase_first(god_name(you.religion))
-                    << " supports the use of this spell.\n";
+                    << (Options.language == lang_t::KO ? ": 이 주문의 사용을 지지해.\n" : " supports the use of this spell.\n");
     }
 
     if (you.has_mutation(MUT_MNEMOPHAGE) && spell_can_be_enkindled(spell))
@@ -4590,9 +4590,9 @@ static string _player_spell_desc(spell_type spell)
 
     if (!you_can_memorise(spell))
     {
-        description << "\nYou cannot "
-                    << (you.has_spell(spell) ? "cast" : "memorise")
-                    << " this spell because "
+        description << (Options.language == lang_t::KO ? "\n이 주문을 " : "\nYou cannot ")
+                    << (you.has_spell(spell) ? (Options.language == lang_t::KO ? "시전" : "cast") : (Options.language == lang_t::KO ? "암기" : "memorise"))
+                    << (Options.language == lang_t::KO ? "할 수 없어. 이유: " : " this spell because ")
                     << desc_cannot_memorise_reason(spell)
                     << "\n";
     }
@@ -4613,10 +4613,10 @@ static string _player_spell_desc(spell_type spell)
 
     if (spell == SPELL_GRAVE_CLAW && you.has_spell(SPELL_GRAVE_CLAW))
     {
-        description << "\nYou have harvested enough death to cast this spell "
-                    << you.props[GRAVE_CLAW_CHARGES_KEY].get_int() << " time"
-                    << (you.props[GRAVE_CLAW_CHARGES_KEY].get_int() == 1 ? "" : "s")
-                    << ". (Maximum of " << GRAVE_CLAW_MAX_CHARGES << ".)";
+        description << (Options.language == lang_t::KO ? "\n모은 죽음의 힘으로 이 주문을 " : "\nYou have harvested enough death to cast this spell ")
+                    << you.props[GRAVE_CLAW_CHARGES_KEY].get_int()
+                    << (Options.language == lang_t::KO ? "회 시전할 수 있어. (최대 " : (you.props[GRAVE_CLAW_CHARGES_KEY].get_int() == 1 ? " time. (Maximum of " : " times. (Maximum of "))
+                    << GRAVE_CLAW_MAX_CHARGES << ".)";
     }
 
     return description.str();
