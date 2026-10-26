@@ -1707,6 +1707,33 @@ static string _category_string(const item_def &item, bool monster)
         return ""; // handled in art-data DBRAND
 
     string description = "";
+    if (Options.language == lang_t::KO)
+    {
+        const string category = skill_name(item_attack_skill(item));
+        description = "이 무기는 '" + category + "' 계열이야. ";
+        switch (item_attack_skill(item))
+        {
+        case SK_POLEARMS:
+            description += "멀리 있는 대상도 공격할 수 있어";
+            if (!monster)
+                description += " ([<white>v</white>]로 대상 지정)";
+            description += ". ";
+            break;
+        case SK_AXES:
+            description += "사용자 주변의 모든 적을 공격해";
+            if (!is_unrandom_artefact(item, UNRAND_WOE))
+                description += ". 직접 지정하지 않은 대상에게는 피해가 줄어들어";
+            description += ". ";
+            break;
+        case SK_SHORT_BLADES:
+            description += item.sub_type == WPN_DAGGER
+                ? "무방비하거나 눈치채지 못한 적을 찌르는 데 매우 효과적이야. "
+                : "무방비하거나 눈치채지 못한 적을 찌르는 데 효과적이야. ";
+            break;
+        default: break;
+        }
+        return description;
+    }
     description += "This ";
     if (is_unrandom_artefact(item))
         description += get_artefact_base_name(item);
