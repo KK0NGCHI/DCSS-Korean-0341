@@ -2659,7 +2659,7 @@ static void _uselessness_desc(ostringstream &description, const item_def &item)
         string r;
         if (is_useless_item(item, false))
         {
-            description << (Options.language == lang_t::KO ? "이 아이템은 전혀 쓸모가 없어" : "This " + base_type_string(item.base_type) + " is completely useless to you");
+            description << (Options.language == lang_t::KO ? "이 아이템은 전혀 쓸모가 없어" : string("This ") + base_type_string(item.base_type) + " is completely useless to you");
             r = _cannot_use_reason(item, false);
         }
         else
@@ -2687,7 +2687,7 @@ static void _uselessness_desc(ostringstream &description, const item_def &item)
                 description << (Options.language == lang_t::KO ? "지금은 이 아이템을 발동할 수 없어" : "You can't evoke this right now");
                 break;
             default:
-                description << (Options.language == lang_t::KO ? "지금은 이 아이템이 쓸모없어" : "This " + base_type_string(item.base_type) + " is useless to you right now");
+                description << (Options.language == lang_t::KO ? "지금은 이 아이템이 쓸모없어" : string("This ") + base_type_string(item.base_type) + " is useless to you right now");
                 break;
             }
             r = _cannot_use_reason(item, true);
