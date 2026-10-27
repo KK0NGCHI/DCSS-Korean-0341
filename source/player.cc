@@ -4402,8 +4402,7 @@ void contaminate_player(int change, bool controlled, bool msg)
 
         if (!player_harmful_contamination() && was_glowing && you.invisible())
         {
-            mpr("You fade completely from view now that you are no longer "
-                "glowing from magical contamination.");
+            mpr(Options.language == lang_t::KO ? "마법 오염의 빛이 사라지자 완전히 투명해졌다." : "You fade completely from view now that you are no longer glowing from magical contamination.");
         }
     }
 
@@ -5334,7 +5333,7 @@ void fly_player(int pow, bool already_flying)
 
     bool standing = !you.airborne() && !already_flying;
     if (!already_flying)
-        mprf(MSGCH_DURATION, "You feel %s buoyant.", standing ? "very" : "more");
+        mprf(MSGCH_DURATION, Options.language == lang_t::KO ? (standing ? "몸이 아주 가벼워진다." : "몸이 한결 가벼워진다.") : (standing ? "You feel very buoyant." : "You feel more buoyant."));
 
     you.increase_duration(DUR_FLIGHT, 25 + random2(pow), 100);
 
@@ -5344,11 +5343,15 @@ void fly_player(int pow, bool already_flying)
 
 void enable_emergency_flight()
 {
-    mprf("You can't survive in this terrain! You fly above the %s, but the "
-         "process is draining.",
-         (env.grid(you.pos()) == DNGN_LAVA)       ? "lava" :
-         (env.grid(you.pos()) == DNGN_DEEP_WATER) ? "water"
-                                             : "buggy terrain");
+    if (Options.language == lang_t::KO)
+        mprf("이 지형에서는 살아남을 수 없어 %s 위로 떠올랐지만, 이 비행은 기력을 소모합니다.",
+             env.grid(you.pos()) == DNGN_LAVA ? "용암" :
+             env.grid(you.pos()) == DNGN_DEEP_WATER ? "물" : "알 수 없는 지형");
+    else
+        mprf("You can't survive in this terrain! You fly above the %s, but the "
+             "process is draining.",
+             env.grid(you.pos()) == DNGN_LAVA ? "lava" :
+             env.grid(you.pos()) == DNGN_DEEP_WATER ? "water" : "buggy terrain");
 
     you.props[EMERGENCY_FLIGHT_KEY] = true;
 }
@@ -8590,9 +8593,10 @@ static string _constriction_description()
     const int num_free_tentacles = you.usable_tentacles();
     if (num_free_tentacles)
     {
-        cinfo += make_stringf("You have %d tentacle%s available for constriction.",
-                              num_free_tentacles,
-                              num_free_tentacles > 1 ? "s" : "");
+        cinfo += Options.language == lang_t::KO
+            ? make_stringf("조이기에 사용할 수 있는 촉수가 %d개 있습니다.", num_free_tentacles)
+            : make_stringf("You have %d tentacle%s available for constriction.",
+                           num_free_tentacles, num_free_tentacles > 1 ? "s" : "");
     }
 
     if (you.constricted_type == CONSTRICT_MELEE)
@@ -8603,7 +8607,7 @@ static string _constriction_description()
         if (!cinfo.empty())
             cinfo += "\n";
 
-        cinfo += make_stringf("You are being constricted by %s.",
+        cinfo += make_stringf(Options.language == lang_t::KO ? "%s에게 조여지고 있습니다." : "You are being constricted by %s.",
                               constrictor->name(DESC_A).c_str());
     }
 
