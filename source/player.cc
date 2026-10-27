@@ -4356,11 +4356,27 @@ string describe_contamination(bool verbose)
     const unsigned int lvl = you.magic_contamination / 1000;
     ASSERT(lvl < ARRAYSZ(verbose_desc));
 
-    string msg = verbose ? verbose_desc[lvl] : terse_desc[lvl];
+    string msg;
+    if (Options.language == lang_t::KO)
+    {
+        static const string ko_verbose_desc[] = {
+            "잔류 마법에 약하게 오염되어 있습니다.",
+            "잔류 마법에 위험할 정도로 오염되어 있습니다.",
+            "잔류 마법에 극도로 오염되어 있습니다.",
+            "잔류 마법에 완전히 뒤덮였습니다!"
+        };
+        static const string ko_terse_desc[] = {
+            "약한 마법 오염", "위험한 마법 오염",
+            "극심한 마법 오염", "완전한 마법 오염"
+        };
+        msg = verbose ? ko_verbose_desc[lvl] : ko_terse_desc[lvl];
+    }
+    else
+        msg = verbose ? verbose_desc[lvl] : terse_desc[lvl];
 
     const int dmg = contam_max_damage();
     if (dmg > 0)
-        msg = make_stringf("%s (up to %d damage)", msg.c_str(), dmg);
+        msg = make_stringf(Options.language == lang_t::KO ? "%s (최대 %d 피해)" : "%s (up to %d damage)", msg.c_str(), dmg);
 
     return msg;
 }
