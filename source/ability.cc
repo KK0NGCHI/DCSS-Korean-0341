@@ -1039,7 +1039,7 @@ const string make_cost_description(ability_type ability)
     if (abil.flags & abflag::card)
     {
         ret += ", ";
-        ret += (Options.language == lang_t::KO ? ""카드 1장 " : "A Card ");
+        ret += (Options.language == lang_t::KO ? "카드 1장 " : "A Card ");
         ret += nemelex_card_text(ability);
     }
 
