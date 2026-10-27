@@ -614,6 +614,16 @@ mon_holy_type mons_class_holiness(monster_type mc)
 
 const char* intelligence_description(mon_intel_type intel)
 {
+    if (Options.language == lang_t::KO)
+    {
+        switch (intel)
+        {
+        case I_BRAINLESS:   return "지능 없음";
+        case I_ANIMAL:      return "동물 수준";
+        case I_HUMAN:       return "인간 수준";
+        default:            return "고도의 지능";
+        }
+    }
     switch (intel)
     {
     case I_BRAINLESS:   return "Mindless";
