@@ -988,44 +988,44 @@ const string make_cost_description(ability_type ability)
 
     if (abil.flags & abflag::drac_charges)
     {
-        ret += make_stringf(", %d/%d uses available",
+        ret += make_stringf((Options.language == lang_t::KO ? ", 사용 가능 %d/%d회" : ", %d/%d uses available"),
                     draconian_breath_uses_available(),
                     MAX_DRACONIAN_BREATH);
     }
 
     if (abil.flags & abflag::delay)
-        ret += ", Delay";
+        ret += (Options.language == lang_t::KO ? ", 지연" : ", Delay");
 
     if (abil.flags & abflag::torment)
-        ret += ", Torment";
+        ret += (Options.language == lang_t::KO ? ", 고통" : ", Torment");
 
     if (abil.flags & abflag::injury)
-        ret += ", Injury";
+        ret += (Options.language == lang_t::KO ? ", 부상" : ", Injury");
 
     if (abil.flags & abflag::exhaustion)
-        ret += ", Exhaustion";
+        ret += (Options.language == lang_t::KO ? ", 탈진" : ", Exhaustion");
 
     if (abil.flags & abflag::instant)
-        ret += ", Instant"; // not really a cost, more of a bonus - bwr
+        ret += (Options.language == lang_t::KO ? ", 즉시 발동" : ", Instant"); // not really a cost, more of a bonus - bwr
 
     if (abil.flags & abflag::max_hp_drain
         && (ability != ABIL_EVOKE_TURN_INVISIBLE || _invis_causes_drain()))
     {
-        ret += ", Drain";
+        ret += (Options.language == lang_t::KO ? ", 최대 체력 감소" : ", Drain");
     }
 
     if (abil.flags & abflag::curse)
-        ret += ", Cursed item";
+        ret += (Options.language == lang_t::KO ? ", 저주받은 아이템" : ", Cursed item");
 
     if (abil.flags & abflag::gold)
     {
         const int amount = get_gold_cost(ability);
         if (amount)
-            ret += make_stringf(", %d Gold", amount);
+            ret += make_stringf((Options.language == lang_t::KO ? ", 금화 %d개" : ", %d Gold"), amount);
         else if (ability == ABIL_GOZAG_POTION_PETITION)
-            ret += ", Free";
+            ret += (Options.language == lang_t::KO ? ", 무료" : ", Free");
         else
-            ret += ", Gold";
+            ret += (Options.language == lang_t::KO ? ", 금화" : ", Gold");
     }
 
     if (abil.flags & abflag::sacrifice)
@@ -1039,16 +1039,16 @@ const string make_cost_description(ability_type ability)
     if (abil.flags & abflag::card)
     {
         ret += ", ";
-        ret += "A Card ";
+        ret += (Options.language == lang_t::KO ? "카드 1장 " : "A Card ");
         ret += nemelex_card_text(ability);
     }
 
     if (abil.flags & abflag::torchlight)
-        ret += ", Torchlight";
+        ret += (Options.language == lang_t::KO ? ", 횃불" : ", Torchlight");
 
     // If we haven't output anything so far, then the effect has no cost
     if (ret.empty())
-        return "None";
+        return (Options.language == lang_t::KO ? "없음" : "None");
 
     ret.erase(0, 2);
     return ret;
@@ -1060,94 +1060,93 @@ static const string _detailed_cost_description(ability_type ability)
     ostringstream ret;
 
     bool have_cost = false;
-    ret << "This ability costs: ";
+    ret << (Options.language == lang_t::KO ? "이 능력의 소모 비용: " : "This ability costs: ");
 
     if (abil.get_mp_cost())
     {
         have_cost = true;
-        ret << "\nMP     : ";
+        ret << (Options.language == lang_t::KO ? "\n마력   : " : "\nMP     : ");
         ret << abil.get_mp_cost();
     }
     if (abil.get_hp_cost())
     {
         have_cost = true;
-        ret << "\nHP     : ";
+        ret << (Options.language == lang_t::KO ? "\n체력   : " : "\nHP     : ");
         ret << abil.get_hp_cost();
     }
 
     if (abil.piety_cost)
     {
         have_cost = true;
-        ret << "\nPiety  : ";
+        ret << (Options.language == lang_t::KO ? "\n신앙심 : " : "\nPiety  : ");
         ret << abil.piety_pips() << abil.piety_desc();
     }
 
     if (abil.flags & abflag::gold)
     {
         have_cost = true;
-        ret << "\nGold   : ";
+        ret << (Options.language == lang_t::KO ? "\n금화   : " : "\nGold   : ");
         int gold_amount = get_gold_cost(ability);
         if (gold_amount)
             ret << gold_amount;
         else if (ability == ABIL_GOZAG_POTION_PETITION)
-            ret << "free";
+            ret << (Options.language == lang_t::KO ? "무료" : "free");
         else
-            ret << "variable";
+            ret << (Options.language == lang_t::KO ? "가변" : "variable");
     }
 
     if (abil.flags & abflag::curse)
     {
         have_cost = true;
-        ret << "\nOne cursed item";
+        ret << (Options.language == lang_t::KO ? "\n저주받은 아이템 1개" : "\nOne cursed item");
     }
 
     if (abil.flags & abflag::torchlight)
     {
         have_cost = true;
-        ret << "\nTorchlight";
+        ret << (Options.language == lang_t::KO ? "\n횃불의 불빛" : "\nTorchlight");
     }
     if (!have_cost)
-        ret << "nothing.";
+        ret << (Options.language == lang_t::KO ? "없음." : "nothing.");
 
     if (abil.flags & abflag::breath)
-        ret << "\nYou must catch your breath between uses of this ability.";
+        ret << (Options.language == lang_t::KO ? "\n이 능력을 다시 사용하기 전에 숨을 골라야 합니다." : "\nYou must catch your breath between uses of this ability.");
 
     if (abil.flags & abflag::delay)
-        ret << "\nThis ability takes some time before being effective.";
+        ret << (Options.language == lang_t::KO ? "\n효과가 나타나기까지 시간이 걸립니다." : "\nThis ability takes some time before being effective.");
 
     if (abil.flags & abflag::injury)
-        ret << "\nUsing this ability will hurt you for a large fraction of your current HP.";
+        ret << (Options.language == lang_t::KO ? "\n사용하면 현재 체력의 상당 부분을 잃습니다." : "\nUsing this ability will hurt you for a large fraction of your current HP.");
 
     if (abil.flags & abflag::torment)
-        ret << "\nUsing this ability invokes torment.";
+        ret << (Options.language == lang_t::KO ? "\n사용하면 고통 효과가 발생합니다." : "\nUsing this ability invokes torment.");
 
     if (abil.flags & abflag::exhaustion)
-        ret << "\nThis ability causes exhaustion, and cannot be used when exhausted.";
+        ret << (Options.language == lang_t::KO ? "\n사용하면 탈진하며, 탈진 중에는 사용할 수 없습니다." : "\nThis ability causes exhaustion, and cannot be used when exhausted.");
 
     if (abil.flags & abflag::instant)
-        ret << "\nThis ability is instantaneous.";
+        ret << (Options.language == lang_t::KO ? "\n이 능력은 즉시 발동합니다." : "\nThis ability is instantaneous.");
 
     if (abil.flags & abflag::conf_ok)
-        ret << "\nYou can use this ability even if confused.";
+        ret << (Options.language == lang_t::KO ? "\n혼란 상태에서도 사용할 수 있습니다." : "\nYou can use this ability even if confused.");
 
     if (abil.flags & abflag::max_hp_drain
         && (ability != ABIL_EVOKE_TURN_INVISIBLE || _invis_causes_drain()))
     {
-        ret << "\nThis ability will temporarily drain your maximum health when used";
+        ret << (Options.language == lang_t::KO ? "\n사용하면 최대 체력이 일시적으로 감소합니다" : "\nThis ability will temporarily drain your maximum health when used");
         if (ability == ABIL_EVOKE_TURN_INVISIBLE)
-            ret << ", even unsuccessfully";
+            ret << (Options.language == lang_t::KO ? ", 실패하더라도" : ", even unsuccessfully");
         ret << ".";
     }
 
     if (abil.flags & abflag::drac_charges)
-        ret << "\nGaining experience will replenish charges of this ability.";
+        ret << (Options.language == lang_t::KO ? "\n경험치를 얻으면 이 능력의 충전 횟수가 회복됩니다." : "\nGaining experience will replenish charges of this ability.");
 
 #if TAG_MAJOR_VERSION == 34
     if (abil.ability == ABIL_HEAL_WOUNDS)
     {
         ASSERT(!have_cost); // validate just in case this ever changes
-        return "This ability has a chance of reducing your maximum magic "
-               "capacity when used.";
+        return (Options.language == lang_t::KO ? "이 능력을 사용하면 일정 확률로 최대 마력이 감소합니다." : "This ability has a chance of reducing your maximum magic capacity when used.");
     }
 #endif
 
