@@ -3534,15 +3534,15 @@ static void _display_attack_delay(const item_def *offhand)
         // TODO: add amount, as in item description (see _describe_armour)
         // double parens are awkward
         penalty_msg =
-            make_stringf( " (and is slowed by your %s)",
-                         shield_penalty && armour_penalty ? "shield and armour" :
-                         shield_penalty ? "shield" : "armour");
+            make_stringf((Options.language == lang_t::KO ? " (%s의 영향으로 공격이 느려짐)" : " (and is slowed by your %s)"),
+                         shield_penalty && armour_penalty ? (Options.language == lang_t::KO ? "방패와 방어구" : "shield and armour") :
+                         shield_penalty ? (Options.language == lang_t::KO ? "방패" : "shield") : (Options.language == lang_t::KO ? "방어구" : "armour"));
     }
 
     mprf("공격 지연 시간은 약 %.1f%s%s이야.",
          (float)delay / 10,
          at_min_delay ?
-            " (and cannot be improved with additional weapon skill)" : "",
+            (Options.language == lang_t::KO ? " (무기 기술을 더 올려도 공격 속도가 빨라지지 않음)" : " (and cannot be improved with additional weapon skill)") : "",
          penalty_msg.c_str());
 }
 
@@ -7181,26 +7181,25 @@ int player_willpower(bool temp)
 string player::no_tele_reason(bool blinking, bool temp) const
 {
     if (stasis())
-        return "Your stasis prevents you from teleporting.";
+        return (Options.language == lang_t::KO ? "정지 효과로 인해 순간이동할 수 없습니다." : "Your stasis prevents you from teleporting.");
 
     if (!blinking)
     {
         if (crawl_state.game_is_sprint())
-            return "Long-range teleportation is disallowed in Dungeon Sprint.";
+            return (Options.language == lang_t::KO ? "던전 스프린트에서는 장거리 순간이동을 할 수 없습니다." : "Long-range teleportation is disallowed in Dungeon Sprint.");
         else if (player_in_branch(BRANCH_GAUNTLET))
         {
-            return "A magic seal in the Gauntlet prevents long-range "
-                "teleports.";
+            return (Options.language == lang_t::KO ? "건틀릿의 마법 봉인이 장거리 순간이동을 막습니다." : "A magic seal in the Gauntlet prevents long-range teleports.");
         }
     }
 
     vector<string> problems;
 
     if (temp && duration[DUR_DIMENSION_ANCHOR])
-        problems.emplace_back("locked down by a dimension anchor");
+        problems.emplace_back((Options.language == lang_t::KO ? "차원 닻에 고정되어 있기" : "locked down by a dimension anchor"));
 
     if (temp && form == transformation::tree)
-        problems.emplace_back("held in place by your roots");
+        problems.emplace_back((Options.language == lang_t::KO ? "뿌리가 몸을 고정하고 있기" : "held in place by your roots"));
 
     vector<const item_def *> notele_items;
     if (has_notele_item(&notele_items))
@@ -7212,7 +7211,7 @@ string player::no_tele_reason(bool blinking, bool temp) const
         {
             if (item->base_type == OBJ_WEAPONS)
             {
-                problems.push_back(make_stringf("wielding %s",
+                problems.push_back(make_stringf((Options.language == lang_t::KO ? "%s 무기를 들고 있기" : "wielding %s"),
                                                 item->name(DESC_A).c_str()));
             }
             else
@@ -7222,14 +7221,14 @@ string player::no_tele_reason(bool blinking, bool temp) const
         if (worn_notele.size() > static_cast<size_t>(problems.empty() ? 3 : 1))
         {
             problems.push_back(
-                make_stringf("wearing %s %s preventing teleportation",
+                make_stringf((Options.language == lang_t::KO ? "순간이동을 막는 %s개의 %s 착용 중" : "wearing %s %s preventing teleportation"),
                              number_in_words(worn_notele.size()).c_str(),
-                             found_nonartefact ? "items": "artefacts"));
+                             found_nonartefact ? (Options.language == lang_t::KO ? "아이템" : "items") : (Options.language == lang_t::KO ? "아티팩트" : "artefacts")));
         }
         else if (!worn_notele.empty())
         {
             problems.push_back(
-                make_stringf("wearing %s",
+                make_stringf((Options.language == lang_t::KO ? "%s 착용 중" : "wearing %s"),
                              comma_separated_line(worn_notele.begin(),
                                                   worn_notele.end()).c_str()));
         }
@@ -7238,8 +7237,8 @@ string player::no_tele_reason(bool blinking, bool temp) const
     if (problems.empty())
         return ""; // no problem
 
-    return make_stringf("You cannot %s because you are %s.",
-                        blinking ? "blink" : "teleport",
+    return make_stringf((Options.language == lang_t::KO ? "%s할 수 없습니다. 이유: %s." : "You cannot %s because you are %s."),
+                        blinking ? (Options.language == lang_t::KO ? "순간이동" : "blink") : (Options.language == lang_t::KO ? "장거리 순간이동" : "teleport"),
                         comma_separated_line(problems.begin(),
                                              problems.end()).c_str());
 }
