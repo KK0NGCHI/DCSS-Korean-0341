@@ -176,9 +176,9 @@ bool check_moveto_cloud(const coord_def& p, const string &move_verb,
 
         if (prompted)
             *prompted = true;
-        string prompt = make_stringf(Options.language == lang_t::KO ? "정말 %s 이동하여 %s 구름 안으로 들어갈까?" : "Really %s into that cloud of %s?",
-                                     move_verb.c_str(),
-                                     cloud_type_name(ctype).c_str());
+        string prompt = Options.language == lang_t::KO
+            ? make_stringf("정말 %s 구름 안으로 들어갈까?", cloud_type_name(ctype).c_str())
+            : make_stringf("Really %s into that cloud of %s?", move_verb.c_str(), cloud_type_name(ctype).c_str());
         learned_something_new(HINT_CLOUD_WARNING);
 
         if (!yesno(prompt.c_str(), false, 'n'))
@@ -204,8 +204,8 @@ bool check_moveto_trap(const coord_def& p, const string &move_verb,
 
     if (trap->type == TRAP_ZOT && !trap->is_safe() && !crawl_state.disables[DIS_CONFIRMATIONS])
     {
-        string msg = Options.language == lang_t::KO ? "정말 %s 조트 함정에 들어갈까?" : "Do you really want to %s into the Zot trap?";
-        string prompt = make_stringf(msg.c_str(), move_verb.c_str());
+        string prompt = Options.language == lang_t::KO ? "정말 조트 함정에 들어갈까?"
+            : make_stringf("Do you really want to %s into the Zot trap?", move_verb.c_str());
 
         if (prompted)
             *prompted = true;
