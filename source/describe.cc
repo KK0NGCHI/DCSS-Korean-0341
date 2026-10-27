@@ -7261,7 +7261,8 @@ static formatted_string _get_monster_status_descriptions(const monster_info& mi)
         if (lookup.empty())
             continue;
 
-        out << "<w>" << uppercase_first(tag) << ":</w>\n";
+        out << "<w>" << (Options.language == lang_t::KO ? "상태: " : "")
+            << uppercase_first(tag) << ":</w>\n";
 
         // Wordwrap and indent slightly.
         linebreak_string(lookup, 77);
@@ -7336,9 +7337,9 @@ int describe_monster(const monster_info &mi, const string& /*footer*/)
 
     const string mores[3] =
     {
-        "[<w>!</w>]: <w>Description</w>",
-        "[<w>!</w>]: Description",
-        "[<w>!</w>]: Description",
+        Options.language == lang_t::KO ? "[<w>!</w>]: <w>설명</w>" : "[<w>!</w>]: <w>Description</w>",
+        Options.language == lang_t::KO ? "[<w>!</w>]: 설명" : "[<w>!</w>]: Description",
+        Options.language == lang_t::KO ? "[<w>!</w>]: 설명" : "[<w>!</w>]: Description",
     };
 
     const formatted_string *content[3] = { &desc, &status_desc, &quote };
@@ -7360,10 +7361,12 @@ int describe_monster(const monster_info &mi, const string& /*footer*/)
 
         string more = make_stringf("%s%s%s", mores[i].c_str(),
             !status_desc.empty()
-                ? i == 1 ? "|<w>Statuses</w>" : "|Statuses"
+                ? i == 1 ? (Options.language == lang_t::KO ? "|<w>상태</w>" : "|<w>Statuses</w>")
+                         : (Options.language == lang_t::KO ? "|상태" : "|Statuses")
                 : "",
             !inf.quote.empty()
-                ? i == 2 ? "|<w>Quote</w>" : "|Quote"
+                ? i == 2 ? (Options.language == lang_t::KO ? "|<w>인용문</w>" : "|<w>Quote</w>")
+                         : (Options.language == lang_t::KO ? "|인용문" : "|Quote")
                 : "");
 
         more_sw->add_child(make_shared<Text>(
