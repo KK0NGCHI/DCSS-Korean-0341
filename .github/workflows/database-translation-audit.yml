@@ -1,6 +1,16 @@
 name: Korean gameplay database audit
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/dat/database/**'
+      - 'tools/dcss-extractor/scripts/audit_database_translations.py'
+      - 'tools/dcss-extractor/scripts/audit_monspell_ko.py'
+      - 'tools/dcss-extractor/scripts/audit_monspeak_ko.py'
+      - 'tools/dcss-extractor/scripts/test_audit_database_translations.py'
+      - 'tools/dcss-extractor/scripts/test_audit_monspell_ko.py'
+      - 'tools/dcss-extractor/scripts/test_audit_monspeak_ko.py'
+      - '.github/workflows/database-translation-audit.yml'
 
 jobs:
   audit:
