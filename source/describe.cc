@@ -7088,14 +7088,17 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
 
     if (mi.is(MB_SUMMONED))
     {
-        inf.body << "\nThis monster has been ";
+        if (Options.language != lang_t::KO)
+            inf.body << "\nThis monster has been ";
+        else
+            inf.body << "\n";
 
         // XXX: Expand this for better descriptions of some other types of
         //      non-abjurable summons?
         if (mi.is(MB_ABJURABLE))
-            inf.body << "temporarily summoned to this location. ";
+            inf.body << (Options.language == lang_t::KO ? "이곳에 일시적으로 소환된 몬스터입니다. " : "temporarily summoned to this location. ");
         else if (mi.is(MB_MINION))
-            inf.body << "created by magic and is temporary. ";
+            inf.body << (Options.language == lang_t::KO ? "마법으로 만들어진 일시적인 존재입니다. " : "created by magic and is temporary. ");
 
         // TODO: hacks; convert angered_by_attacks to a monster_info check
         // (but on the other hand, it is really limiting to not have access
@@ -7104,26 +7107,37 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
                                 && monster_at(mi.pos)->angered_by_attacks()
                                 && mi.attitude == ATT_FRIENDLY)
         {
-            inf.body << "If angered " << it
-                                      << " will immediately vanish, yielding ";
+            if (Options.language == lang_t::KO)
+                inf.body << "화를 내게 하면 즉시 사라집니다. 처치 보상: ";
+            else
+                inf.body << "If angered " << it
+                                          << " will immediately vanish, yielding ";
         }
+        else if (Options.language == lang_t::KO)
+            inf.body << "처치 보상: ";
         else
             inf.body << "Killing " << it_o << " yields ";
-        inf.body << "no experience or items";
+        inf.body << (Options.language == lang_t::KO ? "경험치와 아이템 없음" : "no experience or items");
 
         if (!did_stair_use)
-            inf.body << "; " << it << " " << is << " incapable of using stairs";
+            if (Options.language == lang_t::KO)
+                inf.body << "; 계단을 이용할 수 없음";
+            else
+                inf.body << "; " << it << " " << is << " incapable of using stairs";
 
         inf.body << ".\n";
     }
     else if (mi.is(MB_NO_REWARD))
-        inf.body << "\nKilling this monster yields no experience or items.";
+        inf.body << (Options.language == lang_t::KO ? "\n이 몬스터를 처치해도 경험치나 아이템을 얻을 수 없습니다." : "\nKilling this monster yields no experience or items.");
     else if (mons_class_leaves_hide(mi.type))
     {
-        inf.body << "\nIf " << it << " " << is <<
-                    " slain, it may be possible to recover "
-                 << mi.pronoun(PRONOUN_POSSESSIVE)
-                 << " hide, which can be used as armour.\n";
+        if (Options.language == lang_t::KO)
+            inf.body << "\n처치하면 방어구 재료로 쓸 수 있는 가죽을 얻을 수도 있습니다.\n";
+        else
+            inf.body << "\nIf " << it << " " << is <<
+                        " slain, it may be possible to recover "
+                     << mi.pronoun(PRONOUN_POSSESSIVE)
+                     << " hide, which can be used as armour.\n";
     }
 
     if (!inf.quote.empty())
