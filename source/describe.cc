@@ -6623,6 +6623,16 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     {
         const vector<string> unusual_items = mi.get_unusual_items();
 
+        if (Options.language == lang_t::KO)
+        {
+            if (!mons_class_is_animated_weapon(mi.type))
+                result << "특이한 소지품: "
+                       << comma_separated_line(unusual_items.begin(), unusual_items.end()) << ".\n";
+            else
+                result << "특이한 아이템 자체입니다.\n";
+        }
+        else
+        {
         result << uppercase_first(pronoun) << " ";
         (!mons_class_is_animated_weapon(mi.type) ?
             result << conjugate_verb("have", plural)
@@ -6632,6 +6642,7 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
             result << conjugate_verb("are", plural)
                    << " an unusual item")
                << ".\n";
+        }
     }
 
     if (!resist_descriptions.empty())
@@ -6772,25 +6783,34 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
         auto eligibility = zin_check_recite_to_single_monster(m, retval);
         if (eligibility == RE_INELIGIBLE)
         {
-            result << uppercase_first(pronoun) <<
-                    " cannot be affected by reciting Zin's laws.";
+            if (Options.language == lang_t::KO)
+                result << "진의 율법 낭송에 영향을 받지 않습니다.";
+            else
+                result << uppercase_first(pronoun) <<
+                         " cannot be affected by reciting Zin's laws.";
         }
         else if (eligibility == RE_TOO_STRONG)
         {
-            result << uppercase_first(pronoun) << " "
-                   << conjugate_verb("are", plural)
-                   << " too strong to be affected by reciting Zin's laws.";
+            if (Options.language == lang_t::KO)
+                result << "너무 강력하여 진의 율법 낭송에 영향을 받지 않습니다.";
+            else
+                result << uppercase_first(pronoun) << " "
+                       << conjugate_verb("are", plural)
+                       << " too strong to be affected by reciting Zin's laws.";
         }
         else // RE_ELIGIBLE || RE_RECITE_TIMER
         {
-            result << uppercase_first(pronoun) <<
-                            " can be affected by reciting Zin's laws.";
+            if (Options.language == lang_t::KO)
+                result << "진의 율법 낭송에 영향을 받을 수 있습니다.";
+            else
+                result << uppercase_first(pronoun) <<
+                         " can be affected by reciting Zin's laws.";
         }
 
         if (you.wizard)
         {
-            result << " (Recite power:" << zin_recite_power()
-                   << ", Hit dice:" << mi.hd << ")";
+            result << (Options.language == lang_t::KO ? " (낭송 위력: " : " (Recite power:") << zin_recite_power()
+                   << (Options.language == lang_t::KO ? ", HD: " : ", Hit dice:") << mi.hd << ")";
         }
         result << "\n";
     }
@@ -6819,8 +6839,11 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
             result << uppercase_first(pronoun) << " can open doors.\n";
         else
         {
-            result << "Despite " << mi.pronoun(PRONOUN_POSSESSIVE)
-                   << " appearance, " << pronoun << " can open doors.\n";
+            if (Options.language == lang_t::KO)
+                result << "외형과 달리 문을 열 수 있습니다.\n";
+            else
+                result << "Despite " << mi.pronoun(PRONOUN_POSSESSIVE)
+                       << " appearance, " << pronoun << " can open doors.\n";
         }
     }
     else if (mons_class_flag(mi.type, M_CRASH_DOORS))
