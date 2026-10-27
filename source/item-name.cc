@@ -2196,7 +2196,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         }
 
         if (cursed() && terse && !dbname && !qualname)
-            buff << " (curse)";
+            buff << (Options.language == lang_t::KO ? " (저주)" : " (curse)");
         break;
 
     case OBJ_WANDS:
@@ -2213,6 +2213,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                 ? _ko_wand_name(item_typ) : nullptr;
             if (ko_name)
                 buff << ko_name << " 마법봉";
+            else if (Options.language == lang_t::KO && !dbname && !qualname)
+                buff << _wand_type_name(item_typ) << " 마법봉";
             else
                 buff << "wand of " << _wand_type_name(item_typ);
         }
@@ -2220,7 +2222,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         {
             buff << (Options.language == lang_t::KO && !dbname && !qualname ? _ko_wand_secondary_string(subtype_rnd / NDSC_WAND_PRI) : wand_secondary_string(subtype_rnd / NDSC_WAND_PRI))
                  << (Options.language == lang_t::KO && !dbname && !qualname ? _ko_wand_primary_string(subtype_rnd % NDSC_WAND_PRI) : wand_primary_string(subtype_rnd % NDSC_WAND_PRI))
-                 << " wand";
+                 << (Options.language == lang_t::KO && !dbname && !qualname ? " 마법봉" : " wand");
         }
 
         if (dbname)
@@ -2234,7 +2236,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     case OBJ_POTIONS:
         if (basename)
         {
-            buff << "potion";
+            buff << (Options.language == lang_t::KO && !dbname && !qualname ? "물약" : "potion");
             break;
         }
 
@@ -2244,6 +2246,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                 ? _ko_potion_name(item_typ) : nullptr;
             if (name)
                 buff << name << " 물약";
+            else if (Options.language == lang_t::KO && !dbname && !qualname)
+                buff << potion_type_name(item_typ) << " 물약";
             else
                 buff << "potion of " << potion_type_name(item_typ);
         }
