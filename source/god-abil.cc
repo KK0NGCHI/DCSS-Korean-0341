@@ -5689,7 +5689,7 @@ bool uskayaw_line_pass()
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("You can't repeat Line Pass.");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "선 통과는 반복할 수 없습니다." : "You can't repeat Line Pass."));
         return false;
     }
 
@@ -5721,7 +5721,7 @@ bool uskayaw_line_pass()
         args.restricts = DIR_ENFORCE_RANGE;
         args.mode = TARG_ANY;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Line Pass</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>선 통과</white>" : "Aiming: <white>Line Pass</white>");
         args.range = 8;
 
         if (!spell_direction(beam, line_pass, &args))
@@ -5823,7 +5823,7 @@ spret uskayaw_grand_finale(bool fail)
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("No encores!");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "앙코르는 없습니다!" : "No encores!"));
         return spret::abort;
     }
 
@@ -5837,7 +5837,7 @@ spret uskayaw_grand_finale(bool fail)
         direction_chooser_args args;
         args.mode = TARG_HOSTILE;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Grand Finale</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>대단원</white>" : "Aiming: <white>Grand Finale</white>");
         args.self = confirm_prompt_type::cancel;
         targeter_smite tgt(&you);
         args.hitfunc = &tgt;
@@ -6053,7 +6053,7 @@ static coord_def _get_transference_target()
     args.needs_path = false;
     args.self = confirm_prompt_type::none;
     args.show_floor_desc = true;
-    args.top_prompt = "Select a target.";
+    args.top_prompt = (Options.language == lang_t::KO ? "대상을 선택하세요." : "Select a target.");
 
     direction(spd, args);
 
@@ -6284,7 +6284,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
 {
     if (target.distance_from(you.pos()) != 1)
     {
-        error_ret = "Please select an adjacent position to wall jump against.";
+        error_ret = (Options.language == lang_t::KO ? "벽 도약을 하려면 인접한 위치를 선택하세요." : "Please select an adjacent position to wall jump against.");
         return false;
     }
 
@@ -6292,7 +6292,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
     {
         if (!feat_can_wall_jump_against(env.grid(target)))
         {
-            error_ret = string("You cannot wall jump against ") +
+            error_ret = string((Options.language == lang_t::KO ? "이 지형을 향해서는 벽 도약할 수 없습니다: " : "You cannot wall jump against ")) +
                 feature_description_at(target, false, DESC_THE) + ".";
         }
         else
@@ -6307,7 +6307,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
     monster* beholder = you.get_beholder(wall_jump_landing_spot);
     if (beholder)
     {
-        error_ret = make_stringf("You cannot wall jump away from %s!",
+        error_ret = make_stringf((Options.language == lang_t::KO ? "%s 때문에 반대 방향으로 벽 도약할 수 없습니다!" : "You cannot wall jump away from %s!"),
              beholder->name(DESC_THE, true).c_str());
         return false;
     }
@@ -6315,7 +6315,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
     monster* fearmonger = you.get_fearmonger(wall_jump_landing_spot);
     if (fearmonger)
     {
-        error_ret = make_stringf("You cannot wall jump closer to %s!",
+        error_ret = make_stringf((Options.language == lang_t::KO ? "%s에게 더 가까이 벽 도약할 수 없습니다!" : "You cannot wall jump closer to %s!"),
              fearmonger->name(DESC_THE, true).c_str());
         return false;
     }
@@ -6329,13 +6329,13 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
         if (landing_actor)
         {
             error_ret = make_stringf(
-                "You have no room to wall jump there; %s is in the way.",
+                (Options.language == lang_t::KO ? "그 방향으로 벽 도약할 공간이 없습니다. %s이(가) 길을 막고 있습니다." : "You have no room to wall jump there; %s is in the way."),
                 landing_actor->observable()
                             ? landing_actor->name(DESC_THE).c_str()
-                            : "something you can't see");
+                            : (Options.language == lang_t::KO ? "보이지 않는 무언가" : "something you can't see"));
         }
         else
-            error_ret = "You have no room to wall jump there.";
+            error_ret = (Options.language == lang_t::KO ? "그 방향으로 벽 도약할 공간이 없습니다." : "You have no room to wall jump there.");
         return false;
     }
     error_ret = "";
@@ -6395,7 +6395,7 @@ spret wu_jian_wall_jump_ability()
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("You can't repeat a wall jump.");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "벽 도약은 반복할 수 없습니다." : "You can't repeat a wall jump."));
         return spret::abort;
     }
 
@@ -6438,7 +6438,7 @@ spret wu_jian_wall_jump_ability()
         args.mode = TARG_NON_ACTOR;
         args.range = 1;
         args.needs_path = false; // TODO: overridden by hitfunc?
-        args.top_prompt = "Aiming: <white>Wall Jump</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>벽 도약</white>" : "Aiming: <white>Wall Jump</white>");
         args.self = confirm_prompt_type::cancel;
         targeter_walljump tgt;
         tgt.obeys_mesmerise = true;
