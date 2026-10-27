@@ -1837,9 +1837,9 @@ static string _cosmetic_text(const item_def &weap)
     switch (desc)
     {
         case ISFLAG_RUNED:
-            return "runed ";
+            return Options.language == lang_t::KO ? "룬이 새겨진 " : "runed ";
         case ISFLAG_GLOWING:
-            return "glowing ";
+            return Options.language == lang_t::KO ? "빛나는 " : "glowing ";
         default:
             return "";
     }
@@ -2147,23 +2147,23 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                     || item_typ == ARM_GLOVES || item_typ == ARM_BOOTS
                     || item_typ == ARM_SCARF || item_typ == ARM_HAT)
                 {
-                    buff << "embroidered ";
+                    buff << (Options.language == lang_t::KO ? "자수가 놓인 " : "embroidered ");
                 }
                 else if (item_typ != ARM_LEATHER_ARMOUR
                          && item_typ != ARM_ANIMAL_SKIN)
                 {
-                    buff << "shiny ";
+                    buff << (Options.language == lang_t::KO ? "반짝이는 " : "shiny ");
                 }
                 else
-                    buff << "dyed ";
+                    buff << (Options.language == lang_t::KO ? "염색된 " : "dyed ");
                 break;
 
             case ISFLAG_RUNED:
-                    buff << "runed ";
+                    buff << (Options.language == lang_t::KO ? "룬이 새겨진 " : "runed ");
                 break;
 
             case ISFLAG_GLOWING:
-                    buff << "glowing ";
+                    buff << (Options.language == lang_t::KO ? "빛나는 " : "glowing ");
                 break;
             }
         }
