@@ -2056,7 +2056,8 @@ static string _name_weapon(const item_def &weap, description_level_type desc,
         = identified && !dbname ? weapon_brand_desc(base_name.c_str(), weap, terse)
         : base_name;
     const string curse_suffix
-        = weap.cursed() && terse && !dbname && !qualname ? " (curse)" :  "";
+        = weap.cursed() && terse && !dbname && !qualname
+            ? (Options.language == lang_t::KO ? " (저주)" : " (curse)") : "";
     return curse_prefix + plus_text + cosmetic_text
            + name_with_ego + curse_suffix;
 }
@@ -2116,7 +2117,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     }
     case OBJ_ARMOUR:
         if (!terse && cursed())
-            buff << "cursed ";
+            buff << (Options.language == lang_t::KO && !dbname && !qualname
+                     ? "저주받은 " : "cursed ");
 
         // Don't list unenchantable armor as +0.
         if (identified && !dbname && !qualname && armour_is_enchantable(*this))
@@ -2126,7 +2128,8 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             && !is_unrandom_artefact(*this, UNRAND_POWER_GLOVES)
             && !is_unrandom_artefact(*this, UNRAND_DELATRAS_GLOVES))
         {
-            buff << "pair of ";
+            if (Options.language != lang_t::KO || dbname || qualname)
+                buff << "pair of ";
         }
 
         if (is_artefact(*this) && !dbname)
