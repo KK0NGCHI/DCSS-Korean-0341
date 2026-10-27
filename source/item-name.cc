@@ -1735,7 +1735,9 @@ string sub_type_string(const item_def &item, bool known)
         default:
             if (known && Options.language == lang_t::KO && _ko_book_theme_name(sub_type))
                 return string(_ko_book_theme_name(sub_type)) + " 마법서";
-            return string("book of ") + _book_type_name(sub_type);
+            return known && Options.language == lang_t::KO
+                ? string(_book_type_name(sub_type)) + " 마법서"
+                : string("book of ") + _book_type_name(sub_type);
         }
     }
 #if TAG_MAJOR_VERSION == 34
@@ -1989,10 +1991,13 @@ static string _name_weapon(const item_def &weap, description_level_type desc,
 
     const bool identified = ident || weap.is_identified();
 
-    const string curse_prefix = !dbname && !terse && weap.cursed() ? "cursed " : "";
+    const string curse_prefix = !dbname && !terse && weap.cursed()
+        ? (Options.language == lang_t::KO ? "저주받은 " : "cursed ") : "";
     const string plus_text = identified && !dbname && !qualname ? _plus_prefix(weap) : "";
-    const string chaotic = testbits(weap.flags, ISFLAG_CHAOTIC) ? "chaotic " : "";
-    const string replica = testbits(weap.flags, ISFLAG_REPLICA) ? "replica " : "";
+    const string chaotic = testbits(weap.flags, ISFLAG_CHAOTIC)
+        ? (Options.language == lang_t::KO ? "혼돈의 " : "chaotic ") : "";
+    const string replica = testbits(weap.flags, ISFLAG_REPLICA)
+        ? (Options.language == lang_t::KO ? "복제품 " : "replica ") : "";
 
     if (is_artefact(weap) && !dbname)
     {
