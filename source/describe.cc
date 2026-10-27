@@ -7057,11 +7057,17 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
     const int curse_power = mummy_curse_power(mi.type);
     if (curse_power && !mi.is(MB_SUMMONED))
     {
-        inf.body << "\n" << It << " will inflict a ";
-        if (curse_power > 10)
-            inf.body << "powerful ";
-        inf.body << "necromantic curse on "
-                 << mi.pronoun(PRONOUN_POSSESSIVE) << " foe when destroyed.\n";
+        if (Options.language == lang_t::KO)
+            inf.body << "\n처치되면 적에게 " << (curse_power > 10 ? "강력한 " : "")
+                     << "강령술의 저주를 내립니다.\n";
+        else
+        {
+            inf.body << "\n" << It << " will inflict a ";
+            if (curse_power > 10)
+                inf.body << "powerful ";
+            inf.body << "necromantic curse on "
+                     << mi.pronoun(PRONOUN_POSSESSIVE) << " foe when destroyed.\n";
+        }
     }
 
     // Get information on resistances, speed, etc.
@@ -7152,42 +7158,42 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
 
     if (mons.has_originating_map())
     {
-        inf.body << make_stringf("\nPlaced by map: %s",
+        inf.body << make_stringf((Options.language == lang_t::KO ? "\n배치된 지도: %s" : "\nPlaced by map: %s"),
                                  mons.originating_map().c_str());
     }
 
-    inf.body << "\nMonster health: "
+    inf.body << (Options.language == lang_t::KO ? "\n몬스터 체력: " : "\nMonster health: ") 
              << mons.hit_points << "/" << mons.max_hit_points << "\n";
 
     const actor *mfoe = mons.get_foe();
-    inf.body << "Monster foe: "
+    inf.body << (Options.language == lang_t::KO ? "몬스터의 적: " : "Monster foe: ") 
              << (mfoe? mfoe->name(DESC_PLAIN, true)
-                 : "(none)");
+                 : (Options.language == lang_t::KO ? "(없음)" : "(none)"));
 
     vector<string> attitude;
     if (mons.friendly())
-        attitude.emplace_back("friendly");
+        attitude.emplace_back((Options.language == lang_t::KO ? "우호적" : "friendly"));
     if (mons.neutral())
-        attitude.emplace_back("neutral");
+        attitude.emplace_back((Options.language == lang_t::KO ? "중립" : "neutral"));
     if (mons.good_neutral())
-        attitude.emplace_back("good_neutral");
+        attitude.emplace_back((Options.language == lang_t::KO ? "선의의 중립" : "good_neutral"));
     if (mons.pacified())
-        attitude.emplace_back("pacified");
+        attitude.emplace_back((Options.language == lang_t::KO ? "진정됨" : "pacified"));
     if (mons.wont_attack())
-        attitude.emplace_back("wont_attack");
+        attitude.emplace_back((Options.language == lang_t::KO ? "공격하지 않음" : "wont_attack"));
     if (!attitude.empty())
     {
         string att = comma_separated_line(attitude.begin(), attitude.end(),
                                           "; ", "; ");
         if (mons.has_ench(ENCH_FRENZIED))
-            inf.body << "; frenzied and wild (otherwise " << att << ")";
+            inf.body << (Options.language == lang_t::KO ? "; 광란 상태 (평소: " : "; frenzied and wild (otherwise ") << att << ")"
         else
             inf.body << "; " << att;
     }
     else if (mons.has_ench(ENCH_FRENZIED))
-        inf.body << "; frenzied and wild";
+        inf.body << (Options.language == lang_t::KO ? "; 광란 상태" : "; frenzied and wild");
 
-    inf.body << "\n\nHas holiness: ";
+    inf.body << (Options.language == lang_t::KO ? "\n\n신성 분류: " : "\n\nHas holiness: ");
     inf.body << holiness_description(mi.holi);
     inf.body << ".";
 
@@ -7198,7 +7204,7 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
     {
         if (!found_spell)
         {
-            inf.body << "\n\nMonster Spells:\n";
+            inf.body << (Options.language == lang_t::KO ? "\n\n몬스터 주문:\n" : "\n\nMonster Spells:\n");
             found_spell = true;
         }
 
@@ -7206,19 +7212,19 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
                  << spell_title(hspell_pass[i].spell)
                  << " (";
         if (hspell_pass[i].flags & MON_SPELL_EMERGENCY)
-            inf.body << "emergency, ";
+            inf.body << (Options.language == lang_t::KO ? "긴급, " : "emergency, ");
         if (hspell_pass[i].flags & MON_SPELL_NATURAL)
-            inf.body << "natural, ";
+            inf.body << (Options.language == lang_t::KO ? "자연, " : "natural, ");
         if (hspell_pass[i].flags & MON_SPELL_MAGICAL)
-            inf.body << "magical, ";
+            inf.body << (Options.language == lang_t::KO ? "마법, " : "magical, ");
         if (hspell_pass[i].flags & MON_SPELL_WIZARD)
-            inf.body << "wizard, ";
+            inf.body << (Options.language == lang_t::KO ? "마법사, " : "wizard, ");
         if (hspell_pass[i].flags & MON_SPELL_PRIEST)
-            inf.body << "priest, ";
+            inf.body << (Options.language == lang_t::KO ? "사제, " : "priest, ");
         if (hspell_pass[i].flags & MON_SPELL_VOCAL)
-            inf.body << "vocal, ";
+            inf.body << (Options.language == lang_t::KO ? "발성, " : "vocal, ");
         if (hspell_pass[i].flags & MON_SPELL_BREATH)
-            inf.body << "breath, ";
+            inf.body << (Options.language == lang_t::KO ? "숨결, " : "breath, ");
         inf.body << (int) hspell_pass[i].freq << ")";
     }
 
@@ -7227,7 +7233,7 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
     {
         if (!has_item)
         {
-            inf.body << "\n\nMonster Inventory:\n";
+            inf.body << (Options.language == lang_t::KO ? "\n\n몬스터 소지품:\n" : "\n\nMonster Inventory:\n");
             has_item = true;
         }
         inf.body << "    " << ii.slot() << ": "
@@ -7236,7 +7242,7 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
 
     if (mons.props.exists(BLAME_KEY))
     {
-        inf.body << "\n\nMonster blame chain:\n";
+        inf.body << (Options.language == lang_t::KO ? "\n\n몬스터 원인 추적:\n" : "\n\nMonster blame chain:\n");
 
         const CrawlVector& blame = mons.props[BLAME_KEY].get_vector();
 
