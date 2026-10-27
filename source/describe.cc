@@ -5491,15 +5491,15 @@ static void _add_attack_flavour_desc(string& desc, attack_flavour flavour,
     desc += uppercase_first(_flavour_base_desc(flavour));
     if (flav_dam && attack.flavour != AF_PURE_FIRE)
     {
-        desc += make_stringf(" (max %d%s)",
+        desc += make_stringf(Options.language == lang_t::KO ? " (최대 %d%s)" : " (max %d%s)",
                                 flav_dam,
                                 attk_mult > 1 ? (Options.language == lang_t::KO ? " 각각" : " each") : "");
     }
     else if (flavour == AF_DRAIN)
-        desc += make_stringf(" (max %d damage)", real_dam / 2);
+        desc += make_stringf(Options.language == lang_t::KO ? " (최대 %d 피해)" : " (max %d damage)", real_dam / 2);
     else if (flavour == AF_CRUSH)
     {
-        desc += make_stringf(" (%d-%d dam)", attack.damage,
+        desc += make_stringf(Options.language == lang_t::KO ? " (피해 %d~%d)" : " (%d-%d dam)", attack.damage,
                                 attack.damage*2);
     }
 
@@ -5509,16 +5509,25 @@ static void _add_attack_flavour_desc(string& desc, attack_flavour flavour,
         && !flavour_has_mobility(attack.flavour)
         && !(attack.flavour == AF_REACH_CLEAVE_UGLY))
     {
-        desc += " (if damage dealt)";
+        desc += Options.language == lang_t::KO ? " (피해를 입힌 경우)" : " (if damage dealt)";
     }
 
     if (flavour_has_reach(attack.flavour))
     {
-        desc += (desc.empty() ? "Reaches"
-                        : (flavour == AF_REACH_CLEAVE_UGLY) ? "; cleaves"
-                        : "; reaches");
-        desc += (flavour == AF_RIFT ? " very far"
-                                    : " from afar");
+        if (Options.language == lang_t::KO)
+        {
+            desc += desc.empty() ? "원거리 공격" :
+                    (flavour == AF_REACH_CLEAVE_UGLY) ? "; 베어내기" : "; 원거리 공격";
+            desc += flavour == AF_RIFT ? " (매우 먼 거리)" : " (떨어진 거리)";
+        }
+        else
+        {
+            desc += (desc.empty() ? "Reaches"
+                            : (flavour == AF_REACH_CLEAVE_UGLY) ? "; cleaves"
+                            : "; reaches");
+            desc += (flavour == AF_RIFT ? " very far"
+                                        : " from afar");
+        }
     }
 }
 
@@ -5539,7 +5548,7 @@ static void _attacks_table_row(const monster_info &mi, mon_attack_desc_info &di,
         attk_mult *= weapon_hits_per_swing(*wpn);
     string attk_name = uppercase_first(mon_attack_name_short(attack.type));
     if (ranged)
-        attk_name = "Shoot";
+        attk_name = Options.language == lang_t::KO ? "사격" : "Shoot";
     string weapon_descriptor = "";
     if (wpn)
         weapon_descriptor = ": " + wpn->name(DESC_PLAIN, true, true, false);
@@ -5902,7 +5911,8 @@ static string _monster_notice_chance(const monster_info& mi)
 
 static void _describe_aux_hit_chance(ostringstream &result, vector<string>& auxes, int chance)
 {
-    result << " and " << chance << "% to hit with your ";
+    result << (Options.language == lang_t::KO ? " / 보조 공격 명중률 " : " and ") << chance
+           << (Options.language == lang_t::KO ? "% (" : "% to hit with your ");
     for (size_t i = 0; i < auxes.size(); ++i)
     {
         if (i > 0 && auxes.size() > 2)
@@ -5910,13 +5920,15 @@ static void _describe_aux_hit_chance(ostringstream &result, vector<string>& auxe
             if (i < auxes.size() - 1)
                 result << ", ";
             else
-                result << ", and ";
+                result << (Options.language == lang_t::KO ? ", " : ", and ");
         }
         else if (i == 1 && auxes.size() == 2)
-            result << " and ";
+            result << (Options.language == lang_t::KO ? ", " : " and ");
 
         result << auxes[i];
     }
+    if (Options.language == lang_t::KO)
+        result << ")";
 }
 
 /**
@@ -5984,26 +5996,36 @@ void describe_to_hit(const monster_info &mi, ostringstream &result,
 void describe_hit_chance(int hit_chance, ostringstream &result, const item_def *weapon,
                          bool verbose, int distance_from)
 {
-    if (verbose)
-        result << "about ";
-
-    result << hit_chance << "% to hit";
+    if (Options.language == lang_t::KO)
+        result << "명중률 " << (verbose ? "약 " : "") << hit_chance << "%";
+    else
+    {
+        if (verbose)
+            result << "about ";
+        result << hit_chance << "% to hit";
+    }
 
     if (verbose)
     {
-        result << " with ";
+        result << (Options.language == lang_t::KO ? " (사용 무기: " : " with ");
         if (weapon == nullptr)
-            result << "your " << you.hand_name(true);
+        {
+            if (Options.language != lang_t::KO)
+                result << "your ";
+            result << you.hand_name(true);
+        }
         else
             result << weapon->name(DESC_YOUR, false, false, false);
+        if (Options.language == lang_t::KO)
+            result << ")";
     }
 
     if (you.duration[DUR_BLIND])
     {
         if (verbose)
-            result << " (while you are blinded and from distance " << distance_from << ")";
+            result << (Options.language == lang_t::KO ? " (실명 상태, 거리 " : " (while you are blinded and from distance ") << distance_from << ")";
         else
-            result << " at this distance";
+            result << (Options.language == lang_t::KO ? " (현재 거리 기준)" : " at this distance");
     }
 }
 
@@ -6066,9 +6088,12 @@ static void _describe_mons_to_hit(const monster_info& mi, ostringstream &result)
     const int beat_sh_chance = mon_beat_sh_pct(shield_bypass, scaled_sh);
 
     const int hit_chance = beat_ev_chance * beat_sh_chance / 100;
-    result << uppercase_first(mi.pronoun(PRONOUN_SUBJECTIVE)) << " "
-           << conjugate_verb("have", mi.pronoun_plurality())
-           << " about " << hit_chance << "% to hit you.\n";
+    if (Options.language == lang_t::KO)
+        result << "이 몬스터가 당신을 명중시킬 확률은 약 " << hit_chance << "%입니다.\n";
+    else
+        result << uppercase_first(mi.pronoun(PRONOUN_SUBJECTIVE)) << " "
+               << conjugate_verb("have", mi.pronoun_plurality())
+               << " about " << hit_chance << "% to hit you.\n";
 }
 
 /**
@@ -6098,10 +6123,10 @@ static void _print_bar(int value, int scale, const string &name,
     const bool currently_disabled = !value && base_value;
 
     if (currently_disabled)
-      result << "none (normally ";
+      result << (Options.language == lang_t::KO ? "없음 (평소: " : "none (normally ");
 
     if (display_max == 0)
-        result << "none";
+        result << (Options.language == lang_t::KO ? "없음" : "none");
     else
     {
         for (int i = 0; i * scale < display_max; i++)
@@ -6120,7 +6145,7 @@ static void _print_bar(int value, int scale, const string &name,
     {
         result << " (" << value << ")";
         if (currently_disabled)
-            result << " (base: " << base_value << ")";
+            result << (Options.language == lang_t::KO ? " (기본: " : " (base: ") << base_value << ")";
     }
 #endif
 }
@@ -6130,7 +6155,7 @@ static string _build_bar(int value, int scale)
     // Round up.
     const int pips = (value + scale - 1) / scale;
     if (pips <= 0)
-        return "none";
+        return Options.language == lang_t::KO ? "없음" : "none";
     if (pips > 8) // too many..
         return make_stringf("~%d", pips * scale);
 
@@ -6179,11 +6204,15 @@ string _monster_habitat_description(const monster_info& mi)
     switch (mons_habitat_type(type, mi.base_type))
     {
     case HT_AMPHIBIOUS:
+        if (Options.language == lang_t::KO)
+            return mi.type == MONS_ORC_APOSTLE ? "물 위를 걸을 수 있습니다.\n" : "물속을 이동할 수 있습니다.\n";
         return uppercase_first(make_stringf("%s can %s water.\n",
                                mi.pronoun(PRONOUN_SUBJECTIVE),
                                mi.type == MONS_ORC_APOSTLE
                                 ? "walk on" : "travel through"));
     case HT_AMPHIBIOUS_LAVA:
+        if (Options.language == lang_t::KO)
+            return "용암 속을 이동할 수 있습니다.\n";
         return uppercase_first(make_stringf("%s can travel through lava.\n",
                                mi.pronoun(PRONOUN_SUBJECTIVE)));
     default:
@@ -6209,6 +6238,14 @@ const char* get_size_adj(const size_type size, bool ignore_medium)
     ASSERT_RANGE(size, 0, ARRAYSZ(size_adj));
     if (ignore_medium && size == SIZE_MEDIUM)
         return nullptr; // don't mention medium size
+    if (Options.language == lang_t::KO)
+    {
+        static const char* const ko_size_adj[] = {
+            "극소형", "매우 작음", "소형", "중형", "대형", "거대형"
+        };
+        COMPILE_CHECK(ARRAYSZ(ko_size_adj) == NUM_SIZE_LEVELS);
+        return ko_size_adj[size];
+    }
     return size_adj[size];
 }
 
@@ -6228,16 +6265,22 @@ static string _monster_current_target_description(const monster_info &mi)
         auto allies = find_allies_targeting(*m);
         if (allies.size() == 1)
         {
-            result << uppercase_first(pronoun) << " "
-                   << conjugate_verb("are", plural)
-                   << " currently targeted by "
-                   << allies[0]->name(DESC_YOUR) << ".\n";
+            if (Options.language == lang_t::KO)
+                result << "현재 " << allies[0]->name(DESC_YOUR) << "의 공격 대상입니다.\n";
+            else
+                result << uppercase_first(pronoun) << " "
+                       << conjugate_verb("are", plural)
+                       << " currently targeted by "
+                       << allies[0]->name(DESC_YOUR) << ".\n";
         }
         else
         {
-            result << uppercase_first(pronoun) << " "
-                   << conjugate_verb("are", plural)
-                   << " currently targeted by:\n";
+            if (Options.language == lang_t::KO)
+                result << "현재 다음 아군의 공격 대상입니다:\n";
+            else
+                result << uppercase_first(pronoun) << " "
+                       << conjugate_verb("are", plural)
+                       << " currently targeted by:\n";
             for (auto *a : allies)
                 result << "  " << a->name(DESC_YOUR) << "\n";
         }
@@ -6246,10 +6289,13 @@ static string _monster_current_target_description(const monster_info &mi)
     // TODO: this might be ambiguous, give a relative position?
     if (mi.attitude == ATT_FRIENDLY && m->get_foe())
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " currently targeting "
-               << m->get_foe()->name(DESC_THE) << ".\n";
+        if (Options.language == lang_t::KO)
+            result << "현재 공격 대상: " << m->get_foe()->name(DESC_THE) << "\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " currently targeting "
+                   << m->get_foe()->name(DESC_THE) << ".\n";
     }
 
     return result.str();
@@ -6426,7 +6472,7 @@ static void _desc_mon_death_explosion(ostringstream &result,
     if (mi.type == MONS_LURKING_HORROR)
         return; // no damage number
     const dice_def dam = mon_explode_dam(mi.type, mi.hd);
-    result << "Explosion damage: " << dam.num << "d" << dam.size << "\n";
+    result << (Options.language == lang_t::KO ? "폭발 피해: " : "Explosion damage: ") << dam.num << "d" << dam.size << "\n";
 }
 
 // Describe a monster's (intrinsic) resistances, speed and a few other
@@ -6441,8 +6487,8 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     TablePrinter pr;
 
     pr.AddRow();
-    pr.AddCell("Max HP", mi.get_max_hp_desc());
-    pr.AddCell("Will", _describe_monster_wl(mi));
+    pr.AddCell((Options.language == lang_t::KO ? "최대 HP" : "Max HP"), mi.get_max_hp_desc());
+    pr.AddCell((Options.language == lang_t::KO ? "의지력" : "Will"), _describe_monster_wl(mi));
     pr.AddCell("AC", _build_bar(mi.ac, 5));
     pr.AddCell("EV", _build_bar(mi.base_ev, 5));
     if (mi.sh / 2 > 0)  // rescale to match player SH
@@ -6455,22 +6501,25 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     // Less important common properties. Arguably should be lower down.
     const size_type sz = mi.body_size();
-    const string size_desc = sz == SIZE_LITTLE ? "V. Small" : uppercase_first(get_size_adj(sz));
+    const string size_desc = sz == SIZE_LITTLE
+        ? (Options.language == lang_t::KO ? "매우 작음" : "V. Small")
+        : uppercase_first(get_size_adj(sz));
     const auto holiness = mons_class_holiness(mi.type);
-    const string holi = holiness == MH_NONLIVING ? "Nonliv."
+    const string holi = holiness == MH_NONLIVING
+                                ? (Options.language == lang_t::KO ? "무생물" : "Nonliv.")
                                                  : single_holiness_description(holiness);
     pr.AddRow();
     if (mi.threat != MTHRT_UNDEF && !mons_class_is_peripheral(mi.type))
-        pr.AddCell("Threat", _get_threat_desc(mi.threat));
+        pr.AddCell((Options.language == lang_t::KO ? "위험도" : "Threat"), _get_threat_desc(mi.threat));
     else // ?/m
         pr.AddCell(); // ensure alignment
-    pr.AddCell("Class", uppercase_first(holi).c_str());
-    pr.AddCell("Size", size_desc.c_str());
-    pr.AddCell("Int", intelligence_description(mi.intel()));
+    pr.AddCell((Options.language == lang_t::KO ? "분류" : "Class"), uppercase_first(holi).c_str());
+    pr.AddCell((Options.language == lang_t::KO ? "크기" : "Size"), size_desc.c_str());
+    pr.AddCell((Options.language == lang_t::KO ? "지능" : "Int"), intelligence_description(mi.intel()));
     if (mi.is(MB_SICK) || mi.is(MB_NO_REGEN))
-        pr.AddCell("Regen", "None");
+        pr.AddCell((Options.language == lang_t::KO ? "재생" : "Regen"), (Options.language == lang_t::KO ? "없음" : "None"));
     else if (mons_class_fast_regen(mi.type) || mi.is(MB_REGENERATION))
-        pr.AddCell("Regen", make_stringf("%d/turn", mi.regen_rate(1)));
+        pr.AddCell((Options.language == lang_t::KO ? "재생" : "Regen"), make_stringf((Options.language == lang_t::KO ? "%d/턴" : "%d/turn"), mi.regen_rate(1)));
                                         // (Wait, what's a 'turn'?)
 
     pr.Print(result);
@@ -6479,12 +6528,12 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     if (crawl_state.game_started)
     {
-        result << "You have ";
+        result << (Options.language == lang_t::KO ? "당신의 " : "You have ");
         describe_to_hit(mi, result, you.weapon(), true);
         if (mi.incapacitated()) // Affects ev and sh
-            result << " (while incapacitated)";
+            result << (Options.language == lang_t::KO ? " (행동 불능 상태)" : " (while incapacitated)");
         else if (mi.base_ev != mi.ev)
-            result << " (at present)";
+            result << (Options.language == lang_t::KO ? " (현재 상태 기준)" : " (at present)");
         result << ".\n";
     }
     result << _monster_attacks_description(mi);
@@ -6538,31 +6587,31 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     }
 
     if (mi.is(MB_UNBLINDABLE))
-        extreme_resists.emplace_back("blinding");
+        extreme_resists.emplace_back((Options.language == lang_t::KO ? "실명" : "blinding"));
     // Resists flooding but still dies on falling into deep water.
     if (mi.is(MB_RES_DROWN))
-        base_resists.emplace_back("drowning");
+        base_resists.emplace_back((Options.language == lang_t::KO ? "익사" : "drowning"));
 
     if (mi.props.exists(CLOUD_IMMUNE_MB_KEY) && mi.props[CLOUD_IMMUNE_MB_KEY])
-        extreme_resists.emplace_back("clouds of all kinds");
+        extreme_resists.emplace_back((Options.language == lang_t::KO ? "모든 종류의 구름" : "clouds of all kinds"));
 
     vector<string> resist_descriptions;
     if (!extreme_resists.empty())
     {
-        const string tmp = "immune to "
+        const string tmp = (Options.language == lang_t::KO ? "면역: " : "immune to ")
             + comma_separated_line(extreme_resists.begin(),
                                    extreme_resists.end());
         resist_descriptions.push_back(tmp);
     }
     if (!high_resists.empty())
     {
-        const string tmp = "very resistant to "
+        const string tmp = (Options.language == lang_t::KO ? "매우 강한 저항: " : "very resistant to ")
             + comma_separated_line(high_resists.begin(), high_resists.end());
         resist_descriptions.push_back(tmp);
     }
     if (!base_resists.empty())
     {
-        const string tmp = "resistant to "
+        const string tmp = (Options.language == lang_t::KO ? "저항: " : "resistant to ")
             + comma_separated_line(base_resists.begin(), base_resists.end());
         resist_descriptions.push_back(tmp);
     }
@@ -6574,6 +6623,16 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     {
         const vector<string> unusual_items = mi.get_unusual_items();
 
+        if (Options.language == lang_t::KO)
+        {
+            if (!mons_class_is_animated_weapon(mi.type))
+                result << "특이한 소지품: "
+                       << comma_separated_line(unusual_items.begin(), unusual_items.end()) << ".\n";
+            else
+                result << "특이한 아이템 자체입니다.\n";
+        }
+        else
+        {
         result << uppercase_first(pronoun) << " ";
         (!mons_class_is_animated_weapon(mi.type) ?
             result << conjugate_verb("have", plural)
@@ -6583,10 +6642,14 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
             result << conjugate_verb("are", plural)
                    << " an unusual item")
                << ".\n";
+        }
     }
 
     if (!resist_descriptions.empty())
     {
+        if (Options.language == lang_t::KO)
+            result << comma_separated_line(resist_descriptions.begin(), resist_descriptions.end(), "; ", "; ") << ".\n";
+        else
         result << uppercase_first(pronoun) << " "
                << conjugate_verb("are", plural) << " "
                << comma_separated_line(resist_descriptions.begin(),
@@ -6598,6 +6661,9 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     // Is monster susceptible to anything? (On a new line.)
     if (!suscept.empty())
     {
+        if (Options.language == lang_t::KO)
+            result << "취약: " << comma_separated_line(suscept.begin(), suscept.end()) << ".\n";
+        else
         result << uppercase_first(pronoun) << " "
                << conjugate_verb("are", plural) << " susceptible to "
                << comma_separated_line(suscept.begin(), suscept.end())
@@ -6606,50 +6672,74 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     if (mi.is(MB_CHAOTIC))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " vulnerable to silver and hated by Zin.\n";
+        if (Options.language == lang_t::KO)
+            result << "은에 취약하며 진의 미움을 받습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " vulnerable to silver and hated by Zin.\n";
     }
 
     if (mons_class_flag(mi.type, M_STATIONARY)
         && !mons_is_tentacle_or_tentacle_segment(mi.type))
     {
-        result << uppercase_first(pronoun) << " cannot move.\n";
+        if (Options.language == lang_t::KO)
+            result << "움직일 수 없습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " cannot move.\n";
     }
 
     if (mons_class_flag(mi.type, M_COLD_BLOOD)
         && get_resist(resist, MR_RES_COLD) <= 0)
     {
-        result << uppercase_first(pronoun)
-               << " " << conjugate_verb("are", plural)
-               << " cold-blooded and may be slowed by cold attacks.\n";
+        if (Options.language == lang_t::KO)
+            result << "냉혈성으로 냉기 공격을 받으면 둔화될 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun)
+                   << " " << conjugate_verb("are", plural)
+                   << " cold-blooded and may be slowed by cold attacks.\n";
     }
 
     if (mi.can_see_invisible())
-        result << uppercase_first(pronoun) << " can see invisible.\n";
+        if (Options.language == lang_t::KO)
+            result << "투명한 존재를 볼 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can see invisible.\n";
 
     if (mons_class_flag(mi.type, M_BURROWS))
-        result << uppercase_first(pronoun) << " can burrow through diggable terrain.\n";
+        if (Options.language == lang_t::KO)
+            result << "굴착 가능한 지형을 파고 이동할 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can burrow through diggable terrain.\n";
 
     if (mons_class_flag(mi.type, M_ACID_SPLASH))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("inflict", plural)
-               << " 1d5 acid damage when struck in melee.\n";
+        if (Options.language == lang_t::KO)
+            result << "근접 공격을 받으면 공격자에게 1d5 산성 피해를 줍니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("inflict", plural)
+                   << " 1d5 acid damage when struck in melee.\n";
     }
 
     // Insubstantialness should take priority.
     if (mons_class_flag(mi.type, M_INSUBSTANTIAL))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " insubstantial and immune to ensnarement.\n";
+        if (Options.language == lang_t::KO)
+            result << "실체가 없어 속박에 면역입니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " insubstantial and immune to ensnarement.\n";
     }
     else if (mons_class_flag(mi.type, M_AMORPHOUS))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " amorphous and immune to ensnarement.\n";
+        if (Options.language == lang_t::KO)
+            result << "정해진 형태가 없어 속박에 면역입니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " amorphous and immune to ensnarement.\n";
     }
 
     // XXX: could mention "immune to dazzling" here, but that's spammy, since
@@ -6660,26 +6750,31 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     if (mi.type == MONS_SHADOWGHAST)
     {
         // Cf. monster::action_energy() in monster.cc.
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("cover", plural)
-               << " ground more quickly when invisible.\n";
+        if (Options.language == lang_t::KO)
+            result << "투명한 상태에서는 더 빠르게 이동합니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("cover", plural)
+                   << " ground more quickly when invisible.\n";
     }
 
     if (mi.type == MONS_ROYAL_JELLY)
     {
-        result << "It will release varied jellies when damaged or killed, with"
-            " the number of jellies proportional to the amount of damage.\n";
-        result << "It will release all of its jellies when polymorphed.\n";
+        result << (Options.language == lang_t::KO ? "피해를 받거나 죽으면 다양한 젤리를 방출하며, 피해량이 클수록 더 많은 젤리를 방출합니다.\n" : "It will release varied jellies when damaged or killed, with the number of jellies proportional to the amount of damage.\n");
+        result << (Options.language == lang_t::KO ? "변이되면 보유한 젤리를 모두 방출합니다.\n" : "It will release all of its jellies when polymorphed.\n");
     }
 
     if (mi.type == MONS_STAR_JELLY)
     {
         dice_def dmg = zap_damage(ZAP_SHOOTING_STAR, 150, true, false);
-        result << "Shooting star damage: " << dmg.num << "d" << dmg.size << " (x3)\n";
+        result << (Options.language == lang_t::KO ? "유성 피해: " : "Shooting star damage: ") << dmg.num << "d" << dmg.size << " (x3)\n";
     }
 
     if (mi.airborne())
-        result << uppercase_first(pronoun) << " can fly.\n";
+        if (Options.language == lang_t::KO)
+            result << "비행할 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can fly.\n";
 
     if (in_good_standing(GOD_ZIN, 0) && !mi.pos.origin() && monster_at(mi.pos))
     {
@@ -6688,25 +6783,34 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
         auto eligibility = zin_check_recite_to_single_monster(m, retval);
         if (eligibility == RE_INELIGIBLE)
         {
-            result << uppercase_first(pronoun) <<
-                    " cannot be affected by reciting Zin's laws.";
+            if (Options.language == lang_t::KO)
+                result << "진의 율법 낭송에 영향을 받지 않습니다.";
+            else
+                result << uppercase_first(pronoun) <<
+                         " cannot be affected by reciting Zin's laws.";
         }
         else if (eligibility == RE_TOO_STRONG)
         {
-            result << uppercase_first(pronoun) << " "
-                   << conjugate_verb("are", plural)
-                   << " too strong to be affected by reciting Zin's laws.";
+            if (Options.language == lang_t::KO)
+                result << "너무 강력하여 진의 율법 낭송에 영향을 받지 않습니다.";
+            else
+                result << uppercase_first(pronoun) << " "
+                       << conjugate_verb("are", plural)
+                       << " too strong to be affected by reciting Zin's laws.";
         }
         else // RE_ELIGIBLE || RE_RECITE_TIMER
         {
-            result << uppercase_first(pronoun) <<
-                            " can be affected by reciting Zin's laws.";
+            if (Options.language == lang_t::KO)
+                result << "진의 율법 낭송에 영향을 받을 수 있습니다.";
+            else
+                result << uppercase_first(pronoun) <<
+                         " can be affected by reciting Zin's laws.";
         }
 
         if (you.wizard)
         {
-            result << " (Recite power:" << zin_recite_power()
-                   << ", Hit dice:" << mi.hd << ")";
+            result << (Options.language == lang_t::KO ? " (낭송 위력: " : " (Recite power:") << zin_recite_power()
+                   << (Options.language == lang_t::KO ? ", HD: " : ", Hit dice:") << mi.hd << ")";
         }
         result << "\n";
     }
@@ -6717,7 +6821,7 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     if (mi.type == MONS_BATTLESPHERE)
     {
         const dice_def dam = battlesphere_damage_from_hd(mi.hd);
-        result << "Projectile damage: " << dam.num << "d" << dam.size << "\n";
+        result << (Options.language == lang_t::KO ? "투사체 피해: " : "Projectile damage: ") << dam.num << "d" << dam.size << "\n";
     }
 
     // Flying monsters can't be forced to fall into liquids these days.
@@ -6729,17 +6833,29 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
         !mons_class_is_stationary(mi.type))
     {
         if (mon_shape_is_humanoid(get_mon_shape(mi.type)))
+            if (Options.language == lang_t::KO)
+            result << "문을 열 수 있습니다.\n";
+        else
             result << uppercase_first(pronoun) << " can open doors.\n";
         else
         {
-            result << "Despite " << mi.pronoun(PRONOUN_POSSESSIVE)
-                   << " appearance, " << pronoun << " can open doors.\n";
+            if (Options.language == lang_t::KO)
+                result << "외형과 달리 문을 열 수 있습니다.\n";
+            else
+                result << "Despite " << mi.pronoun(PRONOUN_POSSESSIVE)
+                       << " appearance, " << pronoun << " can open doors.\n";
         }
     }
     else if (mons_class_flag(mi.type, M_CRASH_DOORS))
-        result << uppercase_first(pronoun) << " can crash through doors.\n";
+        if (Options.language == lang_t::KO)
+            result << "문을 부수고 통과할 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can crash through doors.\n";
     else if (mons_class_flag(mi.type, M_EAT_DOORS))
-        result << uppercase_first(pronoun) << " can eat doors.\n";
+        if (Options.language == lang_t::KO)
+            result << "문을 먹을 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can eat doors.\n";
 
     result << _monster_spells_description(mi, mark_spells);
 
