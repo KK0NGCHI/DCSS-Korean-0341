@@ -138,8 +138,11 @@ static void _moveto_maybe_repel_stairs()
 
         if (slide_feature_over(you.pos()))
         {
-            mprf("%s slides away as you move %s it!", stair_str.c_str(),
-                 prep.c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s이(가) 미끄러져 멀어집니다!", stair_str.c_str());
+            else
+                mprf("%s slides away as you move %s it!", stair_str.c_str(),
+                     prep.c_str());
 
             if (player_in_a_dangerous_place() && one_chance_in(5))
                 xom_is_stimulated(25);
@@ -463,7 +466,7 @@ bool swap_check(monster* mons, coord_def &loc, bool quiet)
         if (!quiet)
         {
             simple_monster_message(*mons,
-                make_stringf(" is %s!", held_status(mons)).c_str());
+                make_stringf(Options.language == lang_t::KO ? "은(는) %s 상태입니다!" : " is %s!", held_status(mons)).c_str());
         }
         return false;
     }
@@ -7412,7 +7415,7 @@ bool player::corrode(const actor* /*source*/, const char* corrosion_msg, int amo
 {
     // always increase duration, but...
     increase_duration(DUR_CORROSION, 10 + roll_dice(2, 4), 50,
-                      make_stringf("%s corrodes you!",
+                      make_stringf(Options.language == lang_t::KO ? "%s 때문에 몸이 부식됩니다!" : "%s corrodes you!",
                                    corrosion_msg).c_str());
 
     // Reduce corrosion amount by 50% if you have resistance.
@@ -7586,7 +7589,7 @@ bool player::vex(const actor* who, int dur, string source, string special_msg)
         return false;
 
     if (!special_msg.empty())
-        mprf(MSGCH_WARN, "You %s", special_msg.c_str());
+        mprf(MSGCH_WARN, Options.language == lang_t::KO ? "%s" : "You %s", special_msg.c_str());
     else
         mprf(MSGCH_WARN, "좌절감이 밀려온다!");
     you.duration[DUR_VEXED] = dur * BASELINE_DELAY;
@@ -8569,7 +8572,7 @@ bool player::floodify(const actor* attacker, int dur, const char* substance)
     props[WATER_HOLDER_KEY].get_int() = attacker->mid;
     props[WATER_HOLDER_NAME_KEY] = attacker->name(DESC_A, true);
 
-    mprf(MSGCH_WARN, "%s floods into your lungs!", substance);
+    mprf(MSGCH_WARN, Options.language == lang_t::KO ? "%s이(가) 폐를 가득 채웁니다!" : "%s floods into your lungs!", substance);
 
     return true;
 }
@@ -8661,7 +8664,7 @@ static string _constriction_description()
             if (!cinfo.empty())
                 cinfo += "\n";
 
-            cinfo += "You are constricting ";
+            cinfo += Options.language == lang_t::KO ? "조이고 있는 대상: " : "You are constricting ";
             cinfo += comma_separated_line(c_name.begin(), c_name.end());
             cinfo += ".";
         }
@@ -8956,14 +8959,14 @@ void player_open_door(coord_def doorpos)
             if (!door_airborne.empty())
                 verb = door_airborne.c_str();
             else
-                verb = "You reach down and open the %s%s.";
+                verb = Options.language == lang_t::KO ? "%s%s을(를) 향해 손을 뻗어 열었습니다." : "You reach down and open the %s%s.";
         }
         else
         {
             if (!door_open_verb.empty())
                verb = door_open_verb.c_str();
             else
-               verb = "You open the %s%s.";
+               verb = Options.language == lang_t::KO ? "%s%s을(를) 열었습니다." : "You open the %s%s.";
         }
 
         mprf(verb, adj, noun);
