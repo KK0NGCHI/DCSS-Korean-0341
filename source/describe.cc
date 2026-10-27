@@ -6472,7 +6472,7 @@ static void _desc_mon_death_explosion(ostringstream &result,
     if (mi.type == MONS_LURKING_HORROR)
         return; // no damage number
     const dice_def dam = mon_explode_dam(mi.type, mi.hd);
-    result << "Explosion damage: " << dam.num << "d" << dam.size << "\n";
+    result << (Options.language == lang_t::KO ? "폭발 피해: " : "Explosion damage: ") << dam.num << "d" << dam.size << "\n";
 }
 
 // Describe a monster's (intrinsic) resistances, speed and a few other
@@ -6487,8 +6487,8 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     TablePrinter pr;
 
     pr.AddRow();
-    pr.AddCell("Max HP", mi.get_max_hp_desc());
-    pr.AddCell("Will", _describe_monster_wl(mi));
+    pr.AddCell((Options.language == lang_t::KO ? "최대 HP" : "Max HP"), mi.get_max_hp_desc());
+    pr.AddCell((Options.language == lang_t::KO ? "의지력" : "Will"), _describe_monster_wl(mi));
     pr.AddCell("AC", _build_bar(mi.ac, 5));
     pr.AddCell("EV", _build_bar(mi.base_ev, 5));
     if (mi.sh / 2 > 0)  // rescale to match player SH
@@ -6501,22 +6501,25 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     // Less important common properties. Arguably should be lower down.
     const size_type sz = mi.body_size();
-    const string size_desc = sz == SIZE_LITTLE ? "V. Small" : uppercase_first(get_size_adj(sz));
+    const string size_desc = sz == SIZE_LITTLE
+        ? (Options.language == lang_t::KO ? "매우 작음" : "V. Small")
+        : uppercase_first(get_size_adj(sz));
     const auto holiness = mons_class_holiness(mi.type);
-    const string holi = holiness == MH_NONLIVING ? "Nonliv."
+    const string holi = holiness == MH_NONLIVING
+                                ? (Options.language == lang_t::KO ? "무생물" : "Nonliv.")
                                                  : single_holiness_description(holiness);
     pr.AddRow();
     if (mi.threat != MTHRT_UNDEF && !mons_class_is_peripheral(mi.type))
-        pr.AddCell("Threat", _get_threat_desc(mi.threat));
+        pr.AddCell((Options.language == lang_t::KO ? "위험도" : "Threat"), _get_threat_desc(mi.threat));
     else // ?/m
         pr.AddCell(); // ensure alignment
-    pr.AddCell("Class", uppercase_first(holi).c_str());
-    pr.AddCell("Size", size_desc.c_str());
-    pr.AddCell("Int", intelligence_description(mi.intel()));
+    pr.AddCell((Options.language == lang_t::KO ? "분류" : "Class"), uppercase_first(holi).c_str());
+    pr.AddCell((Options.language == lang_t::KO ? "크기" : "Size"), size_desc.c_str());
+    pr.AddCell((Options.language == lang_t::KO ? "지능" : "Int"), intelligence_description(mi.intel()));
     if (mi.is(MB_SICK) || mi.is(MB_NO_REGEN))
-        pr.AddCell("Regen", "None");
+        pr.AddCell((Options.language == lang_t::KO ? "재생" : "Regen"), (Options.language == lang_t::KO ? "없음" : "None"));
     else if (mons_class_fast_regen(mi.type) || mi.is(MB_REGENERATION))
-        pr.AddCell("Regen", make_stringf("%d/turn", mi.regen_rate(1)));
+        pr.AddCell((Options.language == lang_t::KO ? "재생" : "Regen"), make_stringf((Options.language == lang_t::KO ? "%d/턴" : "%d/turn"), mi.regen_rate(1)));
                                         // (Wait, what's a 'turn'?)
 
     pr.Print(result);
@@ -6525,12 +6528,12 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     if (crawl_state.game_started)
     {
-        result << "You have ";
+        result << (Options.language == lang_t::KO ? "당신의 " : "You have ");
         describe_to_hit(mi, result, you.weapon(), true);
         if (mi.incapacitated()) // Affects ev and sh
-            result << " (while incapacitated)";
+            result << (Options.language == lang_t::KO ? " (행동 불능 상태)" : " (while incapacitated)");
         else if (mi.base_ev != mi.ev)
-            result << " (at present)";
+            result << (Options.language == lang_t::KO ? " (현재 상태 기준)" : " (at present)");
         result << ".\n";
     }
     result << _monster_attacks_description(mi);
@@ -6584,31 +6587,31 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     }
 
     if (mi.is(MB_UNBLINDABLE))
-        extreme_resists.emplace_back("blinding");
+        extreme_resists.emplace_back((Options.language == lang_t::KO ? "실명" : "blinding"));
     // Resists flooding but still dies on falling into deep water.
     if (mi.is(MB_RES_DROWN))
-        base_resists.emplace_back("drowning");
+        base_resists.emplace_back((Options.language == lang_t::KO ? "익사" : "drowning"));
 
     if (mi.props.exists(CLOUD_IMMUNE_MB_KEY) && mi.props[CLOUD_IMMUNE_MB_KEY])
-        extreme_resists.emplace_back("clouds of all kinds");
+        extreme_resists.emplace_back((Options.language == lang_t::KO ? "모든 종류의 구름" : "clouds of all kinds"));
 
     vector<string> resist_descriptions;
     if (!extreme_resists.empty())
     {
-        const string tmp = "immune to "
+        const string tmp = (Options.language == lang_t::KO ? "면역: " : "immune to ")
             + comma_separated_line(extreme_resists.begin(),
                                    extreme_resists.end());
         resist_descriptions.push_back(tmp);
     }
     if (!high_resists.empty())
     {
-        const string tmp = "very resistant to "
+        const string tmp = (Options.language == lang_t::KO ? "매우 강한 저항: " : "very resistant to ")
             + comma_separated_line(high_resists.begin(), high_resists.end());
         resist_descriptions.push_back(tmp);
     }
     if (!base_resists.empty())
     {
-        const string tmp = "resistant to "
+        const string tmp = (Options.language == lang_t::KO ? "저항: " : "resistant to ")
             + comma_separated_line(base_resists.begin(), base_resists.end());
         resist_descriptions.push_back(tmp);
     }
@@ -6633,6 +6636,9 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     if (!resist_descriptions.empty())
     {
+        if (Options.language == lang_t::KO)
+            result << comma_separated_line(resist_descriptions.begin(), resist_descriptions.end(), "; ", "; ") << ".\n";
+        else
         result << uppercase_first(pronoun) << " "
                << conjugate_verb("are", plural) << " "
                << comma_separated_line(resist_descriptions.begin(),
@@ -6644,6 +6650,9 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     // Is monster susceptible to anything? (On a new line.)
     if (!suscept.empty())
     {
+        if (Options.language == lang_t::KO)
+            result << "취약: " << comma_separated_line(suscept.begin(), suscept.end()) << ".\n";
+        else
         result << uppercase_first(pronoun) << " "
                << conjugate_verb("are", plural) << " susceptible to "
                << comma_separated_line(suscept.begin(), suscept.end())
@@ -6721,7 +6730,7 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     if (mi.type == MONS_STAR_JELLY)
     {
         dice_def dmg = zap_damage(ZAP_SHOOTING_STAR, 150, true, false);
-        result << "Shooting star damage: " << dmg.num << "d" << dmg.size << " (x3)\n";
+        result << (Options.language == lang_t::KO ? "유성 피해: " : "Shooting star damage: ") << dmg.num << "d" << dmg.size << " (x3)\n";
     }
 
     if (mi.airborne())
@@ -6763,7 +6772,7 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     if (mi.type == MONS_BATTLESPHERE)
     {
         const dice_def dam = battlesphere_damage_from_hd(mi.hd);
-        result << "Projectile damage: " << dam.num << "d" << dam.size << "\n";
+        result << (Options.language == lang_t::KO ? "투사체 피해: " : "Projectile damage: ") << dam.num << "d" << dam.size << "\n";
     }
 
     // Flying monsters can't be forced to fall into liquids these days.
