@@ -937,15 +937,15 @@ string nemelex_card_text(ability_type ability)
     int cards = deck_cards(ability_deck(ability));
 
     if (ability == ABIL_NEMELEX_DRAW_STACK)
-        return make_stringf("(next: %s)", stack_top().c_str());
+        return make_stringf((Options.language == lang_t::KO ? "(다음 카드: %s)" : "(next: %s)"), stack_top().c_str());
     else
-        return make_stringf("(%d in deck)", cards);
+        return make_stringf((Options.language == lang_t::KO ? "(덱에 %d장 남음)" : "(%d in deck)"), cards);
 }
 
 static string _ashenzari_curse_text()
 {
     const CrawlVector& curses = you.props[CURSE_KNOWLEDGE_KEY].get_vector();
-    return "(Boost: "
+    return (Options.language == lang_t::KO ? "(강화: " : "(Boost: ")
            + comma_separated_fn(curses.begin(), curses.end(),
                                 curse_abbr, "/", "/")
            + ")";
@@ -956,18 +956,18 @@ const string make_cost_description(ability_type ability)
     const ability_def& abil = get_ability_def(ability);
     string ret;
     if (abil.get_mp_cost())
-        ret += make_stringf(", %d MP", abil.get_mp_cost());
+        ret += make_stringf((Options.language == lang_t::KO ? ", MP %d" : ", %d MP"), abil.get_mp_cost());
 
     if (abil.flags & abflag::variable_mp)
-        ret += ", MP";
+        ret += (Options.language == lang_t::KO ? ", MP" : ", MP");
 
 #if TAG_MAJOR_VERSION == 34
     if (ability == ABIL_HEAL_WOUNDS)
-        ret += make_stringf(", Permanent MP (%d left)", get_real_mp(false));
+        ret += make_stringf((Options.language == lang_t::KO ? ", 영구 MP 소모 (남은 MP: %d)" : ", Permanent MP (%d left)"), get_real_mp(false));
 #endif
 
     if (ability == ABIL_CACOPHONY)
-        ret += ", Noise";
+        ret += (Options.language == lang_t::KO ? ", 소음" : ", Noise");
 
     if (ability == ABIL_ASHENZARI_CURSE
         && !you.props[CURSE_KNOWLEDGE_KEY].get_vector().empty())
@@ -978,13 +978,13 @@ const string make_cost_description(ability_type ability)
 
     const int hp_cost = abil.get_hp_cost();
     if (hp_cost)
-        ret += make_stringf(", %d HP", hp_cost);
+        ret += make_stringf((Options.language == lang_t::KO ? ", HP %d" : ", %d HP"), hp_cost);
 
     if (abil.piety_cost)
-        ret += make_stringf(", Piety%s", abil.piety_pips().c_str());
+        ret += make_stringf((Options.language == lang_t::KO ? ", 신앙심%s" : ", Piety%s"), abil.piety_pips().c_str());
 
     if (abil.flags & abflag::breath)
-        ret += ", Breath";
+        ret += (Options.language == lang_t::KO ? ", 호흡" : ", Breath");
 
     if (abil.flags & abflag::drac_charges)
     {
