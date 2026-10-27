@@ -988,44 +988,44 @@ const string make_cost_description(ability_type ability)
 
     if (abil.flags & abflag::drac_charges)
     {
-        ret += make_stringf(", %d/%d uses available",
+        ret += make_stringf((Options.language == lang_t::KO ? ", 사용 가능 %d/%d회" : ", %d/%d uses available"),
                     draconian_breath_uses_available(),
                     MAX_DRACONIAN_BREATH);
     }
 
     if (abil.flags & abflag::delay)
-        ret += ", Delay";
+        ret += (Options.language == lang_t::KO ? ", 지연" : ", Delay");
 
     if (abil.flags & abflag::torment)
-        ret += ", Torment";
+        ret += (Options.language == lang_t::KO ? ", 고통" : ", Torment");
 
     if (abil.flags & abflag::injury)
-        ret += ", Injury";
+        ret += (Options.language == lang_t::KO ? ", 부상" : ", Injury");
 
     if (abil.flags & abflag::exhaustion)
-        ret += ", Exhaustion";
+        ret += (Options.language == lang_t::KO ? ", 탈진" : ", Exhaustion");
 
     if (abil.flags & abflag::instant)
-        ret += ", Instant"; // not really a cost, more of a bonus - bwr
+        ret += (Options.language == lang_t::KO ? ", 즉시 발동" : ", Instant"); // not really a cost, more of a bonus - bwr
 
     if (abil.flags & abflag::max_hp_drain
         && (ability != ABIL_EVOKE_TURN_INVISIBLE || _invis_causes_drain()))
     {
-        ret += ", Drain";
+        ret += (Options.language == lang_t::KO ? ", 최대 체력 감소" : ", Drain");
     }
 
     if (abil.flags & abflag::curse)
-        ret += ", Cursed item";
+        ret += (Options.language == lang_t::KO ? ", 저주받은 아이템" : ", Cursed item");
 
     if (abil.flags & abflag::gold)
     {
         const int amount = get_gold_cost(ability);
         if (amount)
-            ret += make_stringf(", %d Gold", amount);
+            ret += make_stringf((Options.language == lang_t::KO ? ", 금화 %d개" : ", %d Gold"), amount);
         else if (ability == ABIL_GOZAG_POTION_PETITION)
-            ret += ", Free";
+            ret += (Options.language == lang_t::KO ? ", 무료" : ", Free");
         else
-            ret += ", Gold";
+            ret += (Options.language == lang_t::KO ? ", 금화" : ", Gold");
     }
 
     if (abil.flags & abflag::sacrifice)
@@ -1039,16 +1039,16 @@ const string make_cost_description(ability_type ability)
     if (abil.flags & abflag::card)
     {
         ret += ", ";
-        ret += "A Card ";
+        ret += (Options.language == lang_t::KO ? ""카드 1장 " : "A Card ");
         ret += nemelex_card_text(ability);
     }
 
     if (abil.flags & abflag::torchlight)
-        ret += ", Torchlight";
+        ret += (Options.language == lang_t::KO ? ", 횃불" : ", Torchlight");
 
     // If we haven't output anything so far, then the effect has no cost
     if (ret.empty())
-        return "None";
+        return (Options.language == lang_t::KO ? "없음" : "None");
 
     ret.erase(0, 2);
     return ret;
