@@ -267,8 +267,11 @@ static bool _check_moveto_binding_sigil(coord_def p, const string &move_verb,
         if (!msg.empty())
             prompt = msg + " ";
 
-        prompt += "Are you sure you want to " + move_verb
-                + " onto a binding sigil?";
+        if (Options.language == lang_t::KO)
+            prompt += "정말 속박의 인장 위로 이동할까?";
+        else
+            prompt += "Are you sure you want to " + move_verb
+                    + " onto a binding sigil?";
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
@@ -304,8 +307,11 @@ bool check_moveto_terrain(const coord_def& p, const string &move_verb,
         if (!msg.empty())
             prompt = msg + " ";
 
-        prompt += "Are you sure you want to " + move_verb
-                + " into a toxic bog?";
+        if (Options.language == lang_t::KO)
+            prompt += "정말 독성 늪에 들어갈까?";
+        else
+            prompt += "Are you sure you want to " + move_verb
+                    + " into a toxic bog?";
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
@@ -324,18 +330,24 @@ bool check_moveto_terrain(const coord_def& p, const string &move_verb,
         if (!msg.empty())
             prompt = msg + " ";
 
-        prompt += "Are you sure you want to " + move_verb;
-
-        if (!you.airborne())
-            prompt += " into ";
+        if (Options.language == lang_t::KO)
+        {
+            prompt += env.grid(p) == DNGN_DEEP_WATER
+                ? "정말 깊은 물" : "정말 용암";
+            prompt += you.airborne() ? " 위로 이동할까?" : " 속으로 들어갈까?";
+            prompt += need_expiration_warning(DUR_FLIGHT, p)
+                ? " 비행 능력이 사라지고 있습니다!"
+                : " 변신이 곧 풀립니다!";
+        }
         else
-            prompt += " over ";
-
-        prompt += env.grid(p) == DNGN_DEEP_WATER ? "deep water" : "lava";
-
-        prompt += need_expiration_warning(DUR_FLIGHT, p)
-            ? " while you are losing your buoyancy?"
-            : " while your transformation is expiring?";
+        {
+            prompt += "Are you sure you want to " + move_verb;
+            prompt += you.airborne() ? " over " : " into ";
+            prompt += env.grid(p) == DNGN_DEEP_WATER ? "deep water" : "lava";
+            prompt += need_expiration_warning(DUR_FLIGHT, p)
+                ? " while you are losing your buoyancy?"
+                : " while your transformation is expiring?";
+        }
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
@@ -1098,10 +1110,14 @@ bool berserk_check_wielded_weapon()
         && (!is_melee_weapon(*wpn)
             || needs_handle_warning(*wpn, OPER_ATTACK, penance)))
     {
-        string prompt = "Do you really want to go berserk while wielding "
-                        + wpn->name(DESC_YOUR) + "?";
+        string prompt = Options.language == lang_t::KO
+            ? "정말 " + wpn->name(DESC_YOUR) + "을(를) 들고 광폭화할까?"
+            : "Do you really want to go berserk while wielding "
+              + wpn->name(DESC_YOUR) + "?";
         if (penance)
-            prompt += " This could place you under penance!";
+            prompt += Options.language == lang_t::KO
+                ? " 신의 징벌을 받을 수도 있습니다!"
+                : " This could place you under penance!";
 
         if (!yesno(prompt.c_str(), true, 'n'))
         {
@@ -4340,11 +4356,27 @@ string describe_contamination(bool verbose)
     const unsigned int lvl = you.magic_contamination / 1000;
     ASSERT(lvl < ARRAYSZ(verbose_desc));
 
-    string msg = verbose ? verbose_desc[lvl] : terse_desc[lvl];
+    string msg;
+    if (Options.language == lang_t::KO)
+    {
+        static const string ko_verbose_desc[] = {
+            "잔류 마법에 약하게 오염되어 있습니다.",
+            "잔류 마법에 위험할 정도로 오염되어 있습니다.",
+            "잔류 마법에 극도로 오염되어 있습니다.",
+            "잔류 마법에 완전히 뒤덮였습니다!"
+        };
+        static const string ko_terse_desc[] = {
+            "약한 마법 오염", "위험한 마법 오염",
+            "극심한 마법 오염", "완전한 마법 오염"
+        };
+        msg = verbose ? ko_verbose_desc[lvl] : ko_terse_desc[lvl];
+    }
+    else
+        msg = verbose ? verbose_desc[lvl] : terse_desc[lvl];
 
     const int dmg = contam_max_damage();
     if (dmg > 0)
-        msg = make_stringf("%s (up to %d damage)", msg.c_str(), dmg);
+        msg = make_stringf(Options.language == lang_t::KO ? "%s (최대 %d 피해)" : "%s (up to %d damage)", msg.c_str(), dmg);
 
     return msg;
 }
@@ -4402,8 +4434,7 @@ void contaminate_player(int change, bool controlled, bool msg)
 
         if (!player_harmful_contamination() && was_glowing && you.invisible())
         {
-            mpr("You fade completely from view now that you are no longer "
-                "glowing from magical contamination.");
+            mpr(Options.language == lang_t::KO ? "마법 오염의 빛이 사라지자 완전히 투명해졌다." : "You fade completely from view now that you are no longer glowing from magical contamination.");
         }
     }
 
@@ -5334,7 +5365,7 @@ void fly_player(int pow, bool already_flying)
 
     bool standing = !you.airborne() && !already_flying;
     if (!already_flying)
-        mprf(MSGCH_DURATION, "You feel %s buoyant.", standing ? "very" : "more");
+        mprf(MSGCH_DURATION, Options.language == lang_t::KO ? (standing ? "몸이 아주 가벼워진다." : "몸이 한결 가벼워진다.") : (standing ? "You feel very buoyant." : "You feel more buoyant."));
 
     you.increase_duration(DUR_FLIGHT, 25 + random2(pow), 100);
 
@@ -5344,11 +5375,15 @@ void fly_player(int pow, bool already_flying)
 
 void enable_emergency_flight()
 {
-    mprf("You can't survive in this terrain! You fly above the %s, but the "
-         "process is draining.",
-         (env.grid(you.pos()) == DNGN_LAVA)       ? "lava" :
-         (env.grid(you.pos()) == DNGN_DEEP_WATER) ? "water"
-                                             : "buggy terrain");
+    if (Options.language == lang_t::KO)
+        mprf("이 지형에서는 살아남을 수 없어 %s 위로 떠올랐지만, 이 비행은 기력을 소모합니다.",
+             env.grid(you.pos()) == DNGN_LAVA ? "용암" :
+             env.grid(you.pos()) == DNGN_DEEP_WATER ? "물" : "알 수 없는 지형");
+    else
+        mprf("You can't survive in this terrain! You fly above the %s, but the "
+             "process is draining.",
+             env.grid(you.pos()) == DNGN_LAVA ? "lava" :
+             env.grid(you.pos()) == DNGN_DEEP_WATER ? "water" : "buggy terrain");
 
     you.props[EMERGENCY_FLIGHT_KEY] = true;
 }
@@ -8590,9 +8625,10 @@ static string _constriction_description()
     const int num_free_tentacles = you.usable_tentacles();
     if (num_free_tentacles)
     {
-        cinfo += make_stringf("You have %d tentacle%s available for constriction.",
-                              num_free_tentacles,
-                              num_free_tentacles > 1 ? "s" : "");
+        cinfo += Options.language == lang_t::KO
+            ? make_stringf("조이기에 사용할 수 있는 촉수가 %d개 있습니다.", num_free_tentacles)
+            : make_stringf("You have %d tentacle%s available for constriction.",
+                           num_free_tentacles, num_free_tentacles > 1 ? "s" : "");
     }
 
     if (you.constricted_type == CONSTRICT_MELEE)
@@ -8603,7 +8639,7 @@ static string _constriction_description()
         if (!cinfo.empty())
             cinfo += "\n";
 
-        cinfo += make_stringf("You are being constricted by %s.",
+        cinfo += make_stringf(Options.language == lang_t::KO ? "%s에게 조여지고 있습니다." : "You are being constricted by %s.",
                               constrictor->name(DESC_A).c_str());
     }
 
