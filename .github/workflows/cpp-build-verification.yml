@@ -18,6 +18,7 @@ jobs:
             libpcre3-dev libzstd-dev
       - name: Fetch official 0.34.1 full source release
         run: |
+          set -euo pipefail
           curl --fail --location --retry 3 --output /tmp/stone_soup-0.34.1.tar.xz \
             https://github.com/crawl/crawl/releases/download/0.34.1/stone_soup-0.34.1.tar.xz
           echo '473b9cdc16be0b537ac11e43c6c77db4b290000e4a17f72a842eba59c6b7be2a  /tmp/stone_soup-0.34.1.tar.xz' | sha256sum -c -
@@ -26,18 +27,22 @@ jobs:
           find /tmp/crawl-build -maxdepth 3 -name Makefile.obj -print
       - name: Overlay translated C++ sources
         run: |
+          set -euo pipefail
           upstream=$(find /tmp/crawl-build -maxdepth 3 -name Makefile.obj -printf '%h\n' | head -n 1)
           test -n "$upstream"
-          for name in ability.cc beam.cc describe.cc god-abil.cc invent.cc message.cc mon-util.cc player-equip.cc player.cc spl-summoning.cc newgame.cc; do
+          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc; do
             cp "source/$name" "$upstream/$name"
           done
           printf '%s\n' "$upstream" > /tmp/dcss-build-source-path
       - name: Compile translated DCSS console binary
         run: |
+          set -euo pipefail
           cd "$(cat /tmp/dcss-build-source-path)"
           make -j2
       - name: Verify executable
         run: |
+          set -euo pipefail
           cd "$(cat /tmp/dcss-build-source-path)"
           test -x crawl
           file crawl
+          ./crawl -version
