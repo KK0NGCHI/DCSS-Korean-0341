@@ -1362,7 +1362,7 @@ string ability_name(ability_type ability, bool dbname)
                 return "Brand Self";
             else
             {
-                return make_stringf("Accept %s",
+                return make_stringf(Options.language == lang_t::KO ? "%s 받아들이기" : "Accept %s",
                                     mutation_name(makhleb_ability_to_mutation(ability)));
             }
 
@@ -1879,7 +1879,9 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
             {
                 if (action.matches(name))
                 {
-                    string prompt = "Really use " + name + "?";
+                    string prompt = Options.language == lang_t::KO
+                        ? "정말 " + name + " 능력을 사용할까?"
+                        : "Really use " + name + "?";
                     if (!yesno(prompt.c_str(), false, 'n'))
                     {
                         canned_msg(MSG_OK);
@@ -3304,7 +3306,9 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         {
             item_def *wpn = nullptr;
             auto success = use_an_item_menu(wpn, OPER_ANY, OSEL_ARTEFACT_WEAPON,
-                                "Select an artefact weapon to imprint upon your Paragon.",
+                                Options.language == lang_t::KO
+                                    ? "모범 전사에게 각인할 아티팩트 무기를 선택하세요."
+                                    : "Select an artefact weapon to imprint upon your Paragon.",
                                 [=](){return true;});
 
             if (success == OPER_NONE)
