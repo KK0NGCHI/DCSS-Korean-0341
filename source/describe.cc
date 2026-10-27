@@ -7261,8 +7261,7 @@ static formatted_string _get_monster_status_descriptions(const monster_info& mi)
         if (lookup.empty())
             continue;
 
-        out << "<w>" << (Options.language == lang_t::KO ? "상태: " : "")
-            << uppercase_first(tag) << ":</w>\n";
+        out << "<w>" << uppercase_first(tag) << ":</w>\n";
 
         // Wordwrap and indent slightly.
         linebreak_string(lookup, 77);
