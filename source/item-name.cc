@@ -1674,7 +1674,7 @@ string sub_type_string(const item_def &item, bool known)
             if (item.plus == 0 || !known)
                 return known && Options.language == lang_t::KO ? "양피지" : "parchment";
             string parchmentname;
-            if (Options.language == lang_t::KO && !dbname && !qualname)
+            if (Options.language == lang_t::KO && known)
                 parchmentname = string(spell_title(static_cast<spell_type>(item.plus))) + " 양피지";
             else
             {
