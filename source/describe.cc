@@ -1821,7 +1821,7 @@ static string _describe_weapon_brand(const item_def &item)
     if (ego == SPWPN_VALOUR)
     {
         dice_def dmg = zap_damage(ZAP_VALOUR_BEAM, property(item, PWPN_DAMAGE), false, false);
-        ego_desc += make_stringf("The beam does %dd%d damage.", dmg.num, dmg.size);
+        ego_desc += make_stringf((Options.language == lang_t::KO ? "광선 피해량: %dd%d." : "The beam does %dd%d damage."), dmg.num, dmg.size);
     }
 
     return ego_desc;
@@ -2059,9 +2059,14 @@ static string _spell_fail_change_description(const item_def &item,
 
     // Otherwise, generate a complete list of all non-trivial changes
     string desc;
-    desc = make_stringf("If you %s this item, your spell failure would %s:\n",
-                        remove ? "removed" : "equipped",
-                        fail_change < 0 ? "worsen" : "improve");
+    if (Options.language == lang_t::KO)
+        desc = make_stringf("이 아이템을 %s 주문 실패율이 %s:\n",
+                            remove ? "벗으면" : "장착하면",
+                            fail_change < 0 ? "높아집니다" : "낮아집니다");
+    else
+        desc = make_stringf("If you %s this item, your spell failure would %s:\n",
+                            remove ? "removed" : "equipped",
+                            fail_change < 0 ? "worsen" : "improve");
 
     // Sort spells by degree of change in their fail rates (and then by
     // absolute fail rate after that)
@@ -2462,7 +2467,7 @@ static string _describe_lignify_ac()
     you.equipment.unmeld_all_equipment(true);
     you.equipment.meld_equipment(tree_form->blocked_slots, true);
 
-    return make_stringf("If you quaff this potion your AC would be %d.",
+    return make_stringf((Options.language == lang_t::KO ? "이 물약을 마시면 AC가 %d이(가) 됩니다." : "If you quaff this potion your AC would be %d."),
                         you.armour_class_scaled(1));
 }
 
@@ -4027,7 +4032,7 @@ command_type describe_item_popup(const item_def &item,
     if (loc.is_valid() && loc != level_id::current())
     {
         // should be off-level stash search only
-        desc += make_stringf("It can be found on %s.\n\n",
+        desc += make_stringf((Options.language == lang_t::KO ? "발견 위치: %s.\n\n" : "It can be found on %s.\n\n"),
             loc.describe(true, true).c_str());
     }
 
@@ -4747,10 +4752,9 @@ static void _get_spell_description(const spell_type spell,
                 wiz_info += make_stringf(" (pow %d)", _mon_hex_pow(spell, mon_owner, is_wand));
 #endif
             description += you.immune_to_hex(spell)
-                ? make_stringf("You cannot be affected by this "
-                               "spell right now. %s\n",
+                ? make_stringf((Options.language == lang_t::KO ? "현재 이 주문의 영향을 받지 않습니다. %s\n" : "You cannot be affected by this spell right now. %s\n"),
                                wiz_info.c_str())
-                : make_stringf("Chance to defeat your Will: %d%%%s\n",
+                : make_stringf((Options.language == lang_t::KO ? "의지력 저항을 뚫을 확률: %d%%%s\n" : "Chance to defeat your Will: %d%%%s\n"),
                                hex_chance(spell, mon_owner, is_wand),
                                wiz_info.c_str());
         }
