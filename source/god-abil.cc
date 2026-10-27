@@ -1526,16 +1526,16 @@ void yred_end_conquest()
     int ratio = kills * 100 / (kills + souls_remaining + 1);
 
     // Print a message about how happy Yred is about our performance this floor
-    string msg = "You offer up the Black Torch's flame,";
+    string msg = (Options.language == lang_t::KO ? "검은 횃불의 불꽃을 바치자," : "You offer up the Black Torch's flame,");
 
     if (ratio > 90)
-        msg+= " and Yredelemnul is glorified by your conquest!";
+        msg+= (Options.language == lang_t::KO ? " 정복의 위업으로 이레데렘눌의 영광이 드높아집니다!" : " and Yredelemnul is glorified by your conquest!");
     else if (ratio > 65)
-        msg+= " and Yredelemnul is satisfied with your conquest.";
+        msg+= (Options.language == lang_t::KO ? " 이레데렘눌이 정복의 성과에 만족합니다." : " and Yredelemnul is satisfied with your conquest.");
     else if (ratio > 30)
-        msg+= " and feel Yredelemnul's disappointment in your meagre crusade.";
+        msg+= (Options.language == lang_t::KO ? " 보잘것없는 정복으로 이레데렘눌의 실망이 느껴집니다." : " and feel Yredelemnul's disappointment in your meagre crusade.");
     else
-        msg+= " and feel Yredelemnul's disdain for your failure.";
+        msg+= (Options.language == lang_t::KO ? " 실패에 대한 이레데렘눌의 경멸이 느껴집니다." : " and feel Yredelemnul's disdain for your failure.");
 
     mprf(MSGCH_GOD, "%s", msg.c_str());
 
@@ -3782,10 +3782,10 @@ bool gozag_check_bribe_branch(bool quiet)
                 break;
             }
     }
-    const string who = make_stringf("the denizens of %s",
+    const string who = make_stringf((Options.language == lang_t::KO ? "%s의 주민들" : "the denizens of %s"),
                                    branches[branch].longname);
     const string who2 = branch2 != NUM_BRANCHES
-                        ? make_stringf("the denizens of %s",
+                        ? make_stringf((Options.language == lang_t::KO ? "%s의 주민들" : "the denizens of %s"),
                                        branches[branch2].longname)
                         : "";
     if (!gozag_branch_bribable(branch)
@@ -3818,8 +3818,8 @@ bool gozag_bribe_branch()
             {
                 branch_type stair_branch = gozag_fixup_branch(it->id);
                 string prompt =
-                    make_stringf("Do you want to bribe the denizens of %s?",
-                                 stair_branch == BRANCH_VESTIBULE ? "the Hells"
+                    make_stringf((Options.language == lang_t::KO ? "%s의 주민들에게 뇌물을 줄까?" : "Do you want to bribe the denizens of %s?"),
+                                 stair_branch == BRANCH_VESTIBULE ? (Options.language == lang_t::KO ? "지옥" : "the Hells")
                                  : branches[stair_branch].longname);
                 if (yesno(prompt.c_str(), true, 'n'))
                 {
@@ -3836,7 +3836,7 @@ bool gozag_bribe_branch()
                 break;
             }
     }
-    string who = make_stringf("the denizens of %s",
+    string who = make_stringf((Options.language == lang_t::KO ? "%s의 주민들" : "the denizens of %s"),
                               branches[branch].longname);
     if (!gozag_branch_bribable(branch))
     {
@@ -3845,8 +3845,8 @@ bool gozag_bribe_branch()
     }
 
     string prompt =
-        make_stringf("Do you want to bribe the denizens of %s?",
-                     branch == BRANCH_VESTIBULE ? "the Hells" :
+        make_stringf((Options.language == lang_t::KO ? "%s의 주민들에게 뇌물을 줄까?" : "Do you want to bribe the denizens of %s?"),
+                     branch == BRANCH_VESTIBULE ? (Options.language == lang_t::KO ? "지옥" : "the Hells") :
                      branches[branch].longname);
 
     if (prompted || yesno(prompt.c_str(), true, 'n'))
@@ -3854,7 +3854,7 @@ bool gozag_bribe_branch()
         you.del_gold(bribe_amount);
         you.attribute[ATTR_GOZAG_GOLD_USED] += bribe_amount;
         branch_bribe[branch] += bribe_amount;
-        string msg = make_stringf(" spreads your bribe to %s!",
+        string msg = make_stringf((Options.language == lang_t::KO ? "%s에 뇌물이 퍼집니다!" : " spreads your bribe to %s!"),
                                   branch == BRANCH_VESTIBULE ? "the Hells" :
                                   branches[branch].longname);
         simple_god_message(msg.c_str());
@@ -3933,7 +3933,7 @@ spret qazlal_upheaval(coord_def target, bool quiet, bool fail, dist *player_targ
         args.restricts = DIR_TARGET;
         args.mode = TARG_HOSTILE;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Upheaval</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>대격변</white>" : "Aiming: <white>Upheaval</white>");
         args.self = confirm_prompt_type::none;
         args.hitfunc = &tgt;
         if (!spell_direction(*player_target, beam, &args))
@@ -3974,27 +3974,27 @@ spret qazlal_upheaval(coord_def target, bool quiet, bool fail, dist *player_targ
             beam.colour    = RED;
             beam.hit_verb  = "engulfs";
             beam.tile_beam = TILE_BOLT_MAGMA;
-            message        = "Magma suddenly erupts from the ground!";
+            message = (Options.language == lang_t::KO ? "땅에서 용암이 갑자기 솟구칩니다!" : "Magma suddenly erupts from the ground!");
             break;
         case 1:
             beam.name      = "blast of ice";
             beam.flavour   = BEAM_ICE;
             beam.colour    = WHITE;
             beam.tile_beam = TILE_BOLT_ICEBLAST;
-            message        = "A blizzard blasts the area with ice!";
+            message = (Options.language == lang_t::KO ? "눈보라가 주변을 얼음으로 휩씁니다!" : "A blizzard blasts the area with ice!");
             break;
         case 2:
             beam.name      = "cutting wind";
             beam.flavour   = BEAM_AIR;
             beam.colour    = LIGHTGRAY;
             beam.tile_beam = TILE_BOLT_STRONG_AIR;
-            message        = "A storm cloud blasts the area with cutting wind!";
+            message = (Options.language == lang_t::KO ? "폭풍 구름이 날카로운 바람으로 주변을 휩씁니다!" : "A storm cloud blasts the area with cutting wind!");
             break;
         case 3:
             beam.name    = "blast of rubble";
             beam.flavour = BEAM_FRAG;
             beam.colour  = BROWN;
-            message      = "The ground shakes violently, spewing rubble!";
+            message = (Options.language == lang_t::KO ? "땅이 격렬하게 흔들리며 돌무더기를 뿜어냅니다!" : "The ground shakes violently, spewing rubble!");
             break;
         default:
             break;
@@ -4935,15 +4935,15 @@ string ru_sacrifice_vector(ability_type sac)
 static const char* _describe_sacrifice_piety_gain(int piety_gain)
 {
     if (piety_gain >= 40)
-        return "an incredible";
+        return (Options.language == lang_t::KO ? "엄청난" : "an incredible");
     else if (piety_gain >= 29)
-        return "a major";
+        return (Options.language == lang_t::KO ? "큰" : "a major");
     else if (piety_gain >= 21)
-        return "a medium";
+        return (Options.language == lang_t::KO ? "보통의" : "a medium");
     else if (piety_gain >= 13)
-        return "a modest";
+        return (Options.language == lang_t::KO ? "작은" : "a modest");
     else
-        return "a trivial";
+        return (Options.language == lang_t::KO ? "미미한" : "a trivial");
 }
 
 static const string _piety_asterisks(int piety)
@@ -5402,7 +5402,7 @@ bool ru_power_leap()
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("You can't repeat Power Leap.");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "강력한 도약은 반복할 수 없습니다." : "You can't repeat Power Leap."));
         return false;
     }
     if (you.is_nervous())
@@ -5421,7 +5421,7 @@ bool ru_power_leap()
         args.mode = TARG_HOSTILE;
         args.range = 3;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Power Leap</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>강력한 도약</white>" : "Aiming: <white>Power Leap</white>");
         args.self = confirm_prompt_type::cancel;
         const int explosion_size = 1;
         targeter_smite tgt(&you, args.range, explosion_size, explosion_size);
@@ -5701,7 +5701,7 @@ bool uskayaw_line_pass()
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("You can't repeat Line Pass.");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "선 통과는 반복할 수 없습니다." : "You can't repeat Line Pass."));
         return false;
     }
 
@@ -5733,7 +5733,7 @@ bool uskayaw_line_pass()
         args.restricts = DIR_ENFORCE_RANGE;
         args.mode = TARG_ANY;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Line Pass</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>선 통과</white>" : "Aiming: <white>Line Pass</white>");
         args.range = 8;
 
         if (!spell_direction(beam, line_pass, &args))
@@ -5835,7 +5835,7 @@ spret uskayaw_grand_finale(bool fail)
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("No encores!");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "앙코르는 없습니다!" : "No encores!"));
         return spret::abort;
     }
 
@@ -5849,7 +5849,7 @@ spret uskayaw_grand_finale(bool fail)
         direction_chooser_args args;
         args.mode = TARG_HOSTILE;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Grand Finale</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>대단원</white>" : "Aiming: <white>Grand Finale</white>");
         args.self = confirm_prompt_type::cancel;
         targeter_smite tgt(&you);
         args.hitfunc = &tgt;
@@ -6065,7 +6065,7 @@ static coord_def _get_transference_target()
     args.needs_path = false;
     args.self = confirm_prompt_type::none;
     args.show_floor_desc = true;
-    args.top_prompt = "Select a target.";
+    args.top_prompt = (Options.language == lang_t::KO ? "대상을 선택하세요." : "Select a target.");
 
     direction(spd, args);
 
@@ -6296,7 +6296,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
 {
     if (target.distance_from(you.pos()) != 1)
     {
-        error_ret = "Please select an adjacent position to wall jump against.";
+        error_ret = (Options.language == lang_t::KO ? "벽 도약을 하려면 인접한 위치를 선택하세요." : "Please select an adjacent position to wall jump against.");
         return false;
     }
 
@@ -6304,7 +6304,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
     {
         if (!feat_can_wall_jump_against(env.grid(target)))
         {
-            error_ret = string("You cannot wall jump against ") +
+            error_ret = string((Options.language == lang_t::KO ? "이 지형을 향해서는 벽 도약할 수 없습니다: " : "You cannot wall jump against ")) +
                 feature_description_at(target, false, DESC_THE) + ".";
         }
         else
@@ -6319,7 +6319,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
     monster* beholder = you.get_beholder(wall_jump_landing_spot);
     if (beholder)
     {
-        error_ret = make_stringf("You cannot wall jump away from %s!",
+        error_ret = make_stringf((Options.language == lang_t::KO ? "%s 때문에 반대 방향으로 벽 도약할 수 없습니다!" : "You cannot wall jump away from %s!"),
              beholder->name(DESC_THE, true).c_str());
         return false;
     }
@@ -6327,7 +6327,7 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
     monster* fearmonger = you.get_fearmonger(wall_jump_landing_spot);
     if (fearmonger)
     {
-        error_ret = make_stringf("You cannot wall jump closer to %s!",
+        error_ret = make_stringf((Options.language == lang_t::KO ? "%s에게 더 가까이 벽 도약할 수 없습니다!" : "You cannot wall jump closer to %s!"),
              fearmonger->name(DESC_THE, true).c_str());
         return false;
     }
@@ -6341,13 +6341,13 @@ bool wu_jian_can_wall_jump(const coord_def& target, string &error_ret)
         if (landing_actor)
         {
             error_ret = make_stringf(
-                "You have no room to wall jump there; %s is in the way.",
+                (Options.language == lang_t::KO ? "그 방향으로 벽 도약할 공간이 없습니다. %s이(가) 길을 막고 있습니다." : "You have no room to wall jump there; %s is in the way."),
                 landing_actor->observable()
                             ? landing_actor->name(DESC_THE).c_str()
-                            : "something you can't see");
+                            : (Options.language == lang_t::KO ? "보이지 않는 무언가" : "something you can't see"));
         }
         else
-            error_ret = "You have no room to wall jump there.";
+            error_ret = (Options.language == lang_t::KO ? "그 방향으로 벽 도약할 공간이 없습니다." : "You have no room to wall jump there.");
         return false;
     }
     error_ret = "";
@@ -6407,7 +6407,7 @@ spret wu_jian_wall_jump_ability()
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("You can't repeat a wall jump.");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "벽 도약은 반복할 수 없습니다." : "You can't repeat a wall jump."));
         return spret::abort;
     }
 
@@ -6450,7 +6450,7 @@ spret wu_jian_wall_jump_ability()
         args.mode = TARG_NON_ACTOR;
         args.range = 1;
         args.needs_path = false; // TODO: overridden by hitfunc?
-        args.top_prompt = "Aiming: <white>Wall Jump</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>벽 도약</white>" : "Aiming: <white>Wall Jump</white>");
         args.self = confirm_prompt_type::cancel;
         targeter_walljump tgt;
         tgt.obeys_mesmerise = true;
