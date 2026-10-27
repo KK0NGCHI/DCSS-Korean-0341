@@ -1515,16 +1515,16 @@ void yred_end_conquest()
     int ratio = kills * 100 / (kills + souls_remaining + 1);
 
     // Print a message about how happy Yred is about our performance this floor
-    string msg = "You offer up the Black Torch's flame,";
+    string msg = (Options.language == lang_t::KO ? "검은 횃불의 불꽃을 바치자," : "You offer up the Black Torch's flame,");
 
     if (ratio > 90)
-        msg+= " and Yredelemnul is glorified by your conquest!";
+        msg+= (Options.language == lang_t::KO ? " 정복의 위업으로 이레데렘눌의 영광이 드높아집니다!" : " and Yredelemnul is glorified by your conquest!");
     else if (ratio > 65)
-        msg+= " and Yredelemnul is satisfied with your conquest.";
+        msg+= (Options.language == lang_t::KO ? " 이레데렘눌이 정복의 성과에 만족합니다." : " and Yredelemnul is satisfied with your conquest.");
     else if (ratio > 30)
-        msg+= " and feel Yredelemnul's disappointment in your meagre crusade.";
+        msg+= (Options.language == lang_t::KO ? " 보잘것없는 정복으로 이레데렘눌의 실망이 느껴집니다." : " and feel Yredelemnul's disappointment in your meagre crusade.");
     else
-        msg+= " and feel Yredelemnul's disdain for your failure.";
+        msg+= (Options.language == lang_t::KO ? " 실패에 대한 이레데렘눌의 경멸이 느껴집니다." : " and feel Yredelemnul's disdain for your failure.");
 
     mprf(MSGCH_GOD, "%s", msg.c_str());
 
@@ -3921,7 +3921,7 @@ spret qazlal_upheaval(coord_def target, bool quiet, bool fail, dist *player_targ
         args.restricts = DIR_TARGET;
         args.mode = TARG_HOSTILE;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Upheaval</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>대격변</white>" : "Aiming: <white>Upheaval</white>");
         args.self = confirm_prompt_type::none;
         args.hitfunc = &tgt;
         if (!spell_direction(*player_target, beam, &args))
@@ -3962,27 +3962,27 @@ spret qazlal_upheaval(coord_def target, bool quiet, bool fail, dist *player_targ
             beam.colour    = RED;
             beam.hit_verb  = "engulfs";
             beam.tile_beam = TILE_BOLT_MAGMA;
-            message        = "Magma suddenly erupts from the ground!";
+            message = (Options.language == lang_t::KO ? "땅에서 용암이 갑자기 솟구칩니다!" : "Magma suddenly erupts from the ground!");
             break;
         case 1:
             beam.name      = "blast of ice";
             beam.flavour   = BEAM_ICE;
             beam.colour    = WHITE;
             beam.tile_beam = TILE_BOLT_ICEBLAST;
-            message        = "A blizzard blasts the area with ice!";
+            message = (Options.language == lang_t::KO ? "눈보라가 주변을 얼음으로 휩씁니다!" : "A blizzard blasts the area with ice!");
             break;
         case 2:
             beam.name      = "cutting wind";
             beam.flavour   = BEAM_AIR;
             beam.colour    = LIGHTGRAY;
             beam.tile_beam = TILE_BOLT_STRONG_AIR;
-            message        = "A storm cloud blasts the area with cutting wind!";
+            message = (Options.language == lang_t::KO ? "폭풍 구름이 날카로운 바람으로 주변을 휩씁니다!" : "A storm cloud blasts the area with cutting wind!");
             break;
         case 3:
             beam.name    = "blast of rubble";
             beam.flavour = BEAM_FRAG;
             beam.colour  = BROWN;
-            message      = "The ground shakes violently, spewing rubble!";
+            message = (Options.language == lang_t::KO ? "땅이 격렬하게 흔들리며 돌무더기를 뿜어냅니다!" : "The ground shakes violently, spewing rubble!");
             break;
         default:
             break;
@@ -5390,7 +5390,7 @@ bool ru_power_leap()
 
     if (crawl_state.is_replaying_keys())
     {
-        crawl_state.cancel_cmd_all("You can't repeat Power Leap.");
+        crawl_state.cancel_cmd_all((Options.language == lang_t::KO ? "강력한 도약은 반복할 수 없습니다." : "You can't repeat Power Leap."));
         return false;
     }
     if (you.is_nervous())
@@ -5409,7 +5409,7 @@ bool ru_power_leap()
         args.mode = TARG_HOSTILE;
         args.range = 3;
         args.needs_path = false;
-        args.top_prompt = "Aiming: <white>Power Leap</white>";
+        args.top_prompt = (Options.language == lang_t::KO ? "조준: <white>강력한 도약</white>" : "Aiming: <white>Power Leap</white>");
         args.self = confirm_prompt_type::cancel;
         const int explosion_size = 1;
         targeter_smite tgt(&you, args.range, explosion_size, explosion_size);
