@@ -1316,15 +1316,16 @@ static string _your_skill_desc(skill_type skill, bool show_target_button,
             you.get_training_target(skill) < min_scaled_target)
     {
         target_button_desc = make_stringf(
-            "; use <white>(s)</white> to set %d.%d as a target for %s.",
-                                min_scaled_target / 10, min_scaled_target % 10,
-                                skill_name(skill));
+            Options.language == lang_t::KO
+                ? "; <white>(s)</white>로 목표 %d.%d 설정 (%s)"
+                : "; use <white>(s)</white> to set %d.%d as a target for %s.",
+            min_scaled_target / 10, min_scaled_target % 10, skill_name(skill));
     }
     int you_skill_temp = you.skill(skill, 10);
     int you_skill = you.skill(skill, 10, false, false);
 
-    return make_stringf("Your %sskill: %s%d.%d%s",
-                            (you_skill_temp != you_skill ? "(base) " : ""),
+    return make_stringf(Options.language == lang_t::KO ? "당신의 %s기술: %s%d.%d%s" : "Your %sskill: %s%d.%d%s",
+                            (you_skill_temp != you_skill ? (Options.language == lang_t::KO ? "(기본) " : "(base) ") : ""),
                             padding.c_str(), you_skill / 10, you_skill % 10,
                             target_button_desc.c_str());
 }
@@ -1692,6 +1693,10 @@ static string _handedness_string(const item_def &item)
         break;
     }
 
+    if (Options.language == lang_t::KO)
+        return you.hands_reqd(item) == HANDS_ONE
+            ? "한 손으로 다룰 수 있는 무기입니다."
+            : "두 손으로 다뤄야 하는 무기입니다.";
     if (quad)
         return make_stringf("It is a weapon for %s %s.", n.c_str(), handname.c_str());
     else
