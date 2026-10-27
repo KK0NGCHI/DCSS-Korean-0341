@@ -5920,10 +5920,10 @@ static void _describe_aux_hit_chance(ostringstream &result, vector<string>& auxe
             if (i < auxes.size() - 1)
                 result << ", ";
             else
-                result << ", and ";
+                result << (Options.language == lang_t::KO ? ", " : ", and ");
         }
         else if (i == 1 && auxes.size() == 2)
-            result << " and ";
+            result << (Options.language == lang_t::KO ? ", " : " and ");
 
         result << auxes[i];
     }
