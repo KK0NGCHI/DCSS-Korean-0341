@@ -1673,8 +1673,14 @@ string sub_type_string(const item_def &item, bool known)
             {
             if (item.plus == 0 || !known)
                 return known && Options.language == lang_t::KO ? "양피지" : "parchment";
-            string parchmentname = "parchment of ";
-            parchmentname += spell_title(static_cast<spell_type>(item.plus));
+            string parchmentname;
+            if (Options.language == lang_t::KO && known)
+                parchmentname = string(spell_title(static_cast<spell_type>(item.plus))) + " 양피지";
+            else
+            {
+                parchmentname = "parchment of ";
+                parchmentname += spell_title(static_cast<spell_type>(item.plus));
+            }
             return parchmentname;
             }
         case BOOK_NECRONOMICON:
@@ -2309,7 +2315,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             else if (identified && _ko_scroll_name(item_typ))
                 buff << _ko_scroll_name(item_typ) << " 두루마리";
             else if (identified)
-                buff << "scroll of " << scroll_type_name(item_typ);
+                buff << scroll_type_name(item_typ) << " 두루마리";
             else
                 buff << make_name(subtype_rnd, MNAME_SCROLL) << "라고 적힌 두루마리";
             break;
