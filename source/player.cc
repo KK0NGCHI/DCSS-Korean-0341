@@ -8664,7 +8664,7 @@ static string _constriction_description()
             if (!cinfo.empty())
                 cinfo += "\n";
 
-            cinfo += "You are constricting ";
+            cinfo += Options.language == lang_t::KO ? "조이고 있는 대상: " : "You are constricting ";
             cinfo += comma_separated_line(c_name.begin(), c_name.end());
             cinfo += ".";
         }
@@ -8959,14 +8959,14 @@ void player_open_door(coord_def doorpos)
             if (!door_airborne.empty())
                 verb = door_airborne.c_str();
             else
-                verb = "You reach down and open the %s%s.";
+                verb = Options.language == lang_t::KO ? "%s%s을(를) 향해 손을 뻗어 열었습니다." : "You reach down and open the %s%s.";
         }
         else
         {
             if (!door_open_verb.empty())
                verb = door_open_verb.c_str();
             else
-               verb = "You open the %s%s.";
+               verb = Options.language == lang_t::KO ? "%s%s을(를) 열었습니다." : "You open the %s%s.";
         }
 
         mprf(verb, adj, noun);
