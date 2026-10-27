@@ -163,7 +163,7 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
 {
     ASSERT(can_do_capstone_ability(god));
 
-    int item_slot = prompt_invent_item("Brand which weapon?",
+    int item_slot = prompt_invent_item(Options.language == lang_t::KO ? "어느 무기에 속성을 부여할까?" : "Brand which weapon?",
                                        menu_type::invlist,
                                        OSEL_BLESSABLE_WEAPON, OPER_ANY,
                                        invprompt_flag::escape_only);
@@ -182,15 +182,28 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
         return false;
     }
 
-    string prompt = "Do you wish to have " + wpn.name(DESC_YOUR)
-                       + " ";
-    if (brand == SPWPN_PAIN)
-        prompt += "bloodied with pain";
-    else if (brand == SPWPN_DISTORTION)
-        prompt += "corrupted with distortion";
+    string prompt;
+    if (Options.language == lang_t::KO)
+    {
+        prompt = wpn.name(DESC_YOUR);
+        if (brand == SPWPN_PAIN)
+            prompt += "에 고통의 속성을 부여할까?";
+        else if (brand == SPWPN_DISTORTION)
+            prompt += "에 왜곡의 속성을 부여할까?";
+        else
+            prompt += "에 신성한 분노의 속성을 부여할까?";
+    }
     else
-        prompt += "blessed with holy wrath";
-    prompt += "?";
+    {
+        prompt = "Do you wish to have " + wpn.name(DESC_YOUR) + " ";
+        if (brand == SPWPN_PAIN)
+            prompt += "bloodied with pain";
+        else if (brand == SPWPN_DISTORTION)
+            prompt += "corrupted with distortion";
+        else
+            prompt += "blessed with holy wrath";
+        prompt += "?";
+    }
     if (!yesno(prompt.c_str(), true, 'n'))
     {
         canned_msg(MSG_OK);
