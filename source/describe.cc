@@ -6528,7 +6528,7 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     if (crawl_state.game_started)
     {
-        result << (Options.language == lang_t::KO ? "당신의 " : "You have ");
+        result << (Options.language == lang_t::KO ? "이 몬스터에 대한 당신의 " : "You have ");
         describe_to_hit(mi, result, you.weapon(), true);
         if (mi.incapacitated()) // Affects ev and sh
             result << (Options.language == lang_t::KO ? " (행동 불능 상태)" : " (while incapacitated)");
@@ -6833,10 +6833,12 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
         !mons_class_is_stationary(mi.type))
     {
         if (mon_shape_is_humanoid(get_mon_shape(mi.type)))
+        {
             if (Options.language == lang_t::KO)
-            result << "문을 열 수 있습니다.\n";
-        else
-            result << uppercase_first(pronoun) << " can open doors.\n";
+                result << "문을 열 수 있습니다.\n";
+            else
+                result << uppercase_first(pronoun) << " can open doors.\n";
+        }
         else
         {
             if (Options.language == lang_t::KO)
@@ -6974,13 +6976,13 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
     }
 
     case MONS_PLAYER_GHOST:
-        inf.body << "The apparition of " << get_ghost_description(mi) << ".\n";
+        inf.body << (Options.language == lang_t::KO ? "유령: " : "The apparition of ") << get_ghost_description(mi) << ".\n";
         if (mi.props.exists(MIRRORED_GHOST_KEY))
-            inf.body << "It looks just like you...spooky!\n";
+            inf.body << (Options.language == lang_t::KO ? "당신과 꼭 닮았습니다... 으스스하군요!\n" : "It looks just like you...spooky!\n");
         break;
 
     case MONS_PLAYER_ILLUSION:
-        inf.body << "An illusion of " << get_ghost_description(mi) << ".\n";
+        inf.body << (Options.language == lang_t::KO ? "환영: " : "An illusion of ") << get_ghost_description(mi) << ".\n";
         break;
 
     case MONS_PANDEMONIUM_LORD:
@@ -6995,29 +6997,32 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
 
     case MONS_BLOCK_OF_ICE:
         if (mi.is(MB_SLOWLY_DYING))
-            inf.body << "\nIt is quickly melting away.\n";
+            inf.body << (Options.language == lang_t::KO ? "\n빠르게 녹아 없어지고 있습니다.\n" : "\nIt is quickly melting away.\n");
         break;
 
     case MONS_BRIAR_PATCH: // death msg uses "crumbling"
     case MONS_PILLAR_OF_SALT:
         // XX why are these "quick" here but "slow" elsewhere??
         if (mi.is(MB_SLOWLY_DYING))
-            inf.body << "\nIt is quickly crumbling away.\n";
+            inf.body << (Options.language == lang_t::KO ? "\n빠르게 부스러지고 있습니다.\n" : "\nIt is quickly crumbling away.\n");
         break;
 
     case MONS_FOXFIRE:
-        inf.body << "\nIt deals " << _desc_foxfire_dam(mi) << " fire damage.\n";
+        inf.body << (Options.language == lang_t::KO ? "\n화염 피해 " : "\nIt deals ") << _desc_foxfire_dam(mi) << (Options.language == lang_t::KO ? "을 줍니다.\n" : " fire damage.\n");
         break;
 
     case MONS_SHOOTING_STAR:
-        inf.body << "\nIt deals " << _desc_shooting_star_dam(mi) << " damage.\n";
+        inf.body << (Options.language == lang_t::KO ? "\n피해 " : "\nIt deals ") << _desc_shooting_star_dam(mi) << (Options.language == lang_t::KO ? "을 줍니다.\n" : " damage.\n");
         break;
 
     case MONS_PROGRAM_BUG:
-        inf.body << "If this monster is a \"program bug\", then it's "
-                "recommended that you save your game and reload. Please report "
-                "monsters who masquerade as program bugs or run around the "
-                "dungeon without a proper description to the authorities.\n";
+        if (Options.language == lang_t::KO)
+            inf.body << "이 몬스터가 '프로그램 오류'로 표시된다면 게임을 저장한 뒤 다시 실행해 보세요. 설명 없이 던전을 돌아다니거나 프로그램 오류로 위장한 몬스터를 발견하면 개발팀에 신고해 주세요.\n";
+        else
+            inf.body << "If this monster is a \"program bug\", then it's "
+                    "recommended that you save your game and reload. Please report "
+                    "monsters who masquerade as program bugs or run around the "
+                    "dungeon without a proper description to the authorities.\n";
         break;
 
     default:
@@ -7027,13 +7032,13 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
     if (mons_class_is_fragile(mi.type))
     {
         if (mi.is(MB_CRUMBLING))
-            inf.body << "\nIt is quickly crumbling away.\n";
+            inf.body << (Options.language == lang_t::KO ? "\n빠르게 부스러지고 있습니다.\n" : "\nIt is quickly crumbling away.\n");
         else if (mi.is(MB_WITHERING))
-            inf.body << "\nIt is quickly withering away.\n";
+            inf.body << (Options.language == lang_t::KO ? "\n빠르게 시들어 가고 있습니다.\n" : "\nIt is quickly withering away.\n");
         else if (mi.holi & (MH_NONLIVING))
-            inf.body << "\nIf struck, it will crumble away soon after.\n";
+            inf.body << (Options.language == lang_t::KO ? "\n공격받으면 곧 부스러져 사라집니다.\n" : "\nIf struck, it will crumble away soon after.\n");
         else
-            inf.body << "\nIf struck, it will die soon after.\n";
+            inf.body << (Options.language == lang_t::KO ? "\n공격받으면 곧 죽습니다.\n" : "\nIf struck, it will die soon after.\n");
     }
 
     if (!mons_is_unique(mi.type))
@@ -7070,7 +7075,10 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
     bool did_stair_use = false;
     if (!mons_class_can_use_stairs(mi.type))
     {
-        inf.body << It << " " << is << " incapable of using stairs.\n";
+        if (Options.language == lang_t::KO)
+            inf.body << "계단을 이용할 수 없습니다.\n";
+        else
+            inf.body << It << " " << is << " incapable of using stairs.\n";
         did_stair_use = true;
     }
 
@@ -7080,14 +7088,17 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
 
     if (mi.is(MB_SUMMONED))
     {
-        inf.body << "\nThis monster has been ";
+        if (Options.language != lang_t::KO)
+            inf.body << "\nThis monster has been ";
+        else
+            inf.body << "\n";
 
         // XXX: Expand this for better descriptions of some other types of
         //      non-abjurable summons?
         if (mi.is(MB_ABJURABLE))
-            inf.body << "temporarily summoned to this location. ";
+            inf.body << (Options.language == lang_t::KO ? "이곳에 일시적으로 소환된 몬스터입니다. " : "temporarily summoned to this location. ");
         else if (mi.is(MB_MINION))
-            inf.body << "created by magic and is temporary. ";
+            inf.body << (Options.language == lang_t::KO ? "마법으로 만들어진 일시적인 존재입니다. " : "created by magic and is temporary. ");
 
         // TODO: hacks; convert angered_by_attacks to a monster_info check
         // (but on the other hand, it is really limiting to not have access
@@ -7096,26 +7107,37 @@ void get_monster_db_desc(const monster_info& mi, describe_info &inf,
                                 && monster_at(mi.pos)->angered_by_attacks()
                                 && mi.attitude == ATT_FRIENDLY)
         {
-            inf.body << "If angered " << it
-                                      << " will immediately vanish, yielding ";
+            if (Options.language == lang_t::KO)
+                inf.body << "화를 내게 하면 즉시 사라집니다. 처치 보상: ";
+            else
+                inf.body << "If angered " << it
+                                          << " will immediately vanish, yielding ";
         }
+        else if (Options.language == lang_t::KO)
+            inf.body << "처치 보상: ";
         else
             inf.body << "Killing " << it_o << " yields ";
-        inf.body << "no experience or items";
+        inf.body << (Options.language == lang_t::KO ? "경험치와 아이템 없음" : "no experience or items");
 
         if (!did_stair_use)
-            inf.body << "; " << it << " " << is << " incapable of using stairs";
+            if (Options.language == lang_t::KO)
+                inf.body << "; 계단을 이용할 수 없음";
+            else
+                inf.body << "; " << it << " " << is << " incapable of using stairs";
 
         inf.body << ".\n";
     }
     else if (mi.is(MB_NO_REWARD))
-        inf.body << "\nKilling this monster yields no experience or items.";
+        inf.body << (Options.language == lang_t::KO ? "\n이 몬스터를 처치해도 경험치나 아이템을 얻을 수 없습니다." : "\nKilling this monster yields no experience or items.");
     else if (mons_class_leaves_hide(mi.type))
     {
-        inf.body << "\nIf " << it << " " << is <<
-                    " slain, it may be possible to recover "
-                 << mi.pronoun(PRONOUN_POSSESSIVE)
-                 << " hide, which can be used as armour.\n";
+        if (Options.language == lang_t::KO)
+            inf.body << "\n처치하면 방어구 재료로 쓸 수 있는 가죽을 얻을 수도 있습니다.\n";
+        else
+            inf.body << "\nIf " << it << " " << is <<
+                        " slain, it may be possible to recover "
+                     << mi.pronoun(PRONOUN_POSSESSIVE)
+                     << " hide, which can be used as armour.\n";
     }
 
     if (!inf.quote.empty())
