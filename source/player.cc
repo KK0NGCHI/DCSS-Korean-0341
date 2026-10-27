@@ -267,8 +267,11 @@ static bool _check_moveto_binding_sigil(coord_def p, const string &move_verb,
         if (!msg.empty())
             prompt = msg + " ";
 
-        prompt += "Are you sure you want to " + move_verb
-                + " onto a binding sigil?";
+        if (Options.language == lang_t::KO)
+            prompt += "정말 속박의 인장 위로 이동할까?";
+        else
+            prompt += "Are you sure you want to " + move_verb
+                    + " onto a binding sigil?";
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
@@ -304,8 +307,11 @@ bool check_moveto_terrain(const coord_def& p, const string &move_verb,
         if (!msg.empty())
             prompt = msg + " ";
 
-        prompt += "Are you sure you want to " + move_verb
-                + " into a toxic bog?";
+        if (Options.language == lang_t::KO)
+            prompt += "정말 독성 늪에 들어갈까?";
+        else
+            prompt += "Are you sure you want to " + move_verb
+                    + " into a toxic bog?";
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
@@ -324,18 +330,24 @@ bool check_moveto_terrain(const coord_def& p, const string &move_verb,
         if (!msg.empty())
             prompt = msg + " ";
 
-        prompt += "Are you sure you want to " + move_verb;
-
-        if (!you.airborne())
-            prompt += " into ";
+        if (Options.language == lang_t::KO)
+        {
+            prompt += env.grid(p) == DNGN_DEEP_WATER
+                ? "정말 깊은 물" : "정말 용암";
+            prompt += you.airborne() ? " 위로 이동할까?" : " 속으로 들어갈까?";
+            prompt += need_expiration_warning(DUR_FLIGHT, p)
+                ? " 비행 능력이 사라지고 있습니다!"
+                : " 변신이 곧 풀립니다!";
+        }
         else
-            prompt += " over ";
-
-        prompt += env.grid(p) == DNGN_DEEP_WATER ? "deep water" : "lava";
-
-        prompt += need_expiration_warning(DUR_FLIGHT, p)
-            ? " while you are losing your buoyancy?"
-            : " while your transformation is expiring?";
+        {
+            prompt += "Are you sure you want to " + move_verb;
+            prompt += you.airborne() ? " over " : " into ";
+            prompt += env.grid(p) == DNGN_DEEP_WATER ? "deep water" : "lava";
+            prompt += need_expiration_warning(DUR_FLIGHT, p)
+                ? " while you are losing your buoyancy?"
+                : " while your transformation is expiring?";
+        }
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
@@ -1098,10 +1110,14 @@ bool berserk_check_wielded_weapon()
         && (!is_melee_weapon(*wpn)
             || needs_handle_warning(*wpn, OPER_ATTACK, penance)))
     {
-        string prompt = "Do you really want to go berserk while wielding "
-                        + wpn->name(DESC_YOUR) + "?";
+        string prompt = Options.language == lang_t::KO
+            ? "정말 " + wpn->name(DESC_YOUR) + "을(를) 들고 광폭화할까?"
+            : "Do you really want to go berserk while wielding "
+              + wpn->name(DESC_YOUR) + "?";
         if (penance)
-            prompt += " This could place you under penance!";
+            prompt += Options.language == lang_t::KO
+                ? " 신의 징벌을 받을 수도 있습니다!"
+                : " This could place you under penance!";
 
         if (!yesno(prompt.c_str(), true, 'n'))
         {
