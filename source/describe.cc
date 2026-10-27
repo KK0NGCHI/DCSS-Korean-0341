@@ -1317,7 +1317,7 @@ static string _your_skill_desc(skill_type skill, bool show_target_button,
     {
         target_button_desc = make_stringf(
             Options.language == lang_t::KO
-                ? "; <white>(s)</white>: %d.%d을(를) %s 기술 목표로 설정"
+                ? "; <white>(s)</white>로 목표 %d.%d 설정 (%s)"
                 : "; use <white>(s)</white> to set %d.%d as a target for %s.",
             min_scaled_target / 10, min_scaled_target % 10, skill_name(skill));
     }
