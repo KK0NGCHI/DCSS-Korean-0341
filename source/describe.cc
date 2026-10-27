@@ -5392,6 +5392,17 @@ static string _monster_staff_damage_string(const monster_info &mi,
                            : staff == STAFF_ALCHEMY       ? "poison"
                            /*staff == STAFF_CONJURATION*/ : "conj";
 
+    if (Options.language == lang_t::KO)
+    {
+        dam_type_string = staff == STAFF_FIRE ? "화염"
+                        : staff == STAFF_COLD ? "냉기"
+                        : staff == STAFF_AIR ? "전기"
+                        : staff == STAFF_EARTH ? "대지"
+                        : staff == STAFF_NECROMANCY ? "생명력 흡수"
+                        : staff == STAFF_ALCHEMY ? "독"
+                        : "파괴술";
+    }
+
     return make_stringf(" + %d (%s)",
                         _staff_max_damage(staff, staff_skill, evo_skill),
                         dam_type_string.c_str());
