@@ -1423,13 +1423,12 @@ string yred_cannot_light_torch_reason()
     // First check invalid locations
     if (player_in_branch(BRANCH_TEMPLE))
     {
-        return "There are no souls to scour here; only the pathetic idols"
-               " of powerless gods.";
+        return (Options.language == lang_t::KO ? "이곳에는 거둘 영혼이 없습니다. 무력한 신들의 초라한 우상만 있을 뿐입니다." : "There are no souls to scour here; only the pathetic idols of powerless gods.");
     }
     else if (player_in_branch(BRANCH_BAZAAR) || player_in_branch(BRANCH_TROVE))
-        return "There are no souls worth scouring here.";
+        return (Options.language == lang_t::KO ? "이곳에는 거둘 만한 영혼이 없습니다." : "There are no souls worth scouring here.");
     else if (player_in_branch(BRANCH_ABYSS))
-        return "Not even a god could conquer a realm without end; waste no time trying.";
+        return (Options.language == lang_t::KO ? "끝없는 영역은 신조차 정복할 수 없습니다. 헛수고하지 마세요." : "Not even a god could conquer a realm without end; waste no time trying.");
 
     if (!you.props.exists(YRED_TORCH_USED_KEY))
         return "";
@@ -1437,8 +1436,7 @@ string yred_cannot_light_torch_reason()
     CrawlHashTable &levels = you.props[YRED_TORCH_USED_KEY].get_table();
     if (levels.exists(level_id::current().describe()))
     {
-        return "You have raised the torch once already on this floor."
-               " Yredelemnul offers no second chances.";
+        return (Options.language == lang_t::KO ? "이 층에서는 이미 검은 횃불을 들었습니다. 이레데렘눌은 2번째 기회를 주지 않습니다." : "You have raised the torch once already on this floor. Yredelemnul offers no second chances.");
     }
 
     return "";
@@ -2831,14 +2829,15 @@ string dithmenos_cannot_shadowslip_reason()
 {
     const monster* shadow = dithmenos_get_player_shadow();
     if (!shadow)
-        return "Your shadow is still firmly attached to your body.";
+        return (Options.language == lang_t::KO ? "그림자가 아직 몸에 단단히 붙어 있습니다." : "Your shadow is still firmly attached to your body.");
     else if (!you.can_see(*shadow))
-        return "Your shadow isn't in sight!";
+        return (Options.language == lang_t::KO ? "시야에 그림자가 없습니다!" : "Your shadow isn't in sight!");
     else if (is_feat_dangerous(env.grid(shadow->pos())))
     {
-        return make_stringf("It would be unwise to slip onto %s.",
+        return make_stringf(Options.language == lang_t::KO ? "%s 위로 그림자 이동을 하는 것은 위험합니다." : "It would be unwise to slip onto %s.",
                              env.grid(shadow->pos()) == DNGN_DEEP_WATER
-                                ? "deep water" : "lava");
+                                ? (Options.language == lang_t::KO ? "깊은 물" : "deep water")
+                                : (Options.language == lang_t::KO ? "용암" : "lava"));
     }
 
     return "";
@@ -3096,7 +3095,7 @@ string dithmenos_cannot_marionette_reason()
         }
     }
 
-    return "There isn't a suitable marionette in sight.";
+    return (Options.language == lang_t::KO ? "시야에 꼭두각시로 삼을 만한 대상이 없습니다." : "There isn't a suitable marionette in sight.");
 }
 
 spret dithmenos_marionette(monster& target, bool fail)
