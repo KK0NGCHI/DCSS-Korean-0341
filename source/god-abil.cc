@@ -3770,10 +3770,10 @@ bool gozag_check_bribe_branch(bool quiet)
                 break;
             }
     }
-    const string who = make_stringf("the denizens of %s",
+    const string who = make_stringf((Options.language == lang_t::KO ? "%s의 주민들" : "the denizens of %s"),
                                    branches[branch].longname);
     const string who2 = branch2 != NUM_BRANCHES
-                        ? make_stringf("the denizens of %s",
+                        ? make_stringf((Options.language == lang_t::KO ? "%s의 주민들" : "the denizens of %s"),
                                        branches[branch2].longname)
                         : "";
     if (!gozag_branch_bribable(branch)
@@ -3806,8 +3806,8 @@ bool gozag_bribe_branch()
             {
                 branch_type stair_branch = gozag_fixup_branch(it->id);
                 string prompt =
-                    make_stringf("Do you want to bribe the denizens of %s?",
-                                 stair_branch == BRANCH_VESTIBULE ? "the Hells"
+                    make_stringf((Options.language == lang_t::KO ? "%s의 주민들에게 뇌물을 줄까?" : "Do you want to bribe the denizens of %s?"),
+                                 stair_branch == BRANCH_VESTIBULE ? (Options.language == lang_t::KO ? "지옥" : "the Hells")
                                  : branches[stair_branch].longname);
                 if (yesno(prompt.c_str(), true, 'n'))
                 {
@@ -3824,7 +3824,7 @@ bool gozag_bribe_branch()
                 break;
             }
     }
-    string who = make_stringf("the denizens of %s",
+    string who = make_stringf((Options.language == lang_t::KO ? "%s의 주민들" : "the denizens of %s"),
                               branches[branch].longname);
     if (!gozag_branch_bribable(branch))
     {
@@ -3833,8 +3833,8 @@ bool gozag_bribe_branch()
     }
 
     string prompt =
-        make_stringf("Do you want to bribe the denizens of %s?",
-                     branch == BRANCH_VESTIBULE ? "the Hells" :
+        make_stringf((Options.language == lang_t::KO ? "%s의 주민들에게 뇌물을 줄까?" : "Do you want to bribe the denizens of %s?"),
+                     branch == BRANCH_VESTIBULE ? (Options.language == lang_t::KO ? "지옥" : "the Hells") :
                      branches[branch].longname);
 
     if (prompted || yesno(prompt.c_str(), true, 'n'))
@@ -3842,7 +3842,7 @@ bool gozag_bribe_branch()
         you.del_gold(bribe_amount);
         you.attribute[ATTR_GOZAG_GOLD_USED] += bribe_amount;
         branch_bribe[branch] += bribe_amount;
-        string msg = make_stringf(" spreads your bribe to %s!",
+        string msg = make_stringf((Options.language == lang_t::KO ? "%s에 뇌물이 퍼집니다!" : " spreads your bribe to %s!"),
                                   branch == BRANCH_VESTIBULE ? "the Hells" :
                                   branches[branch].longname);
         simple_god_message(msg.c_str());
@@ -4923,15 +4923,15 @@ string ru_sacrifice_vector(ability_type sac)
 static const char* _describe_sacrifice_piety_gain(int piety_gain)
 {
     if (piety_gain >= 40)
-        return "an incredible";
+        return (Options.language == lang_t::KO ? "엄청난" : "an incredible");
     else if (piety_gain >= 29)
-        return "a major";
+        return (Options.language == lang_t::KO ? "큰" : "a major");
     else if (piety_gain >= 21)
-        return "a medium";
+        return (Options.language == lang_t::KO ? "보통의" : "a medium");
     else if (piety_gain >= 13)
-        return "a modest";
+        return (Options.language == lang_t::KO ? "작은" : "a modest");
     else
-        return "a trivial";
+        return (Options.language == lang_t::KO ? "미미한" : "a trivial");
 }
 
 static const string _piety_asterisks(int piety)
