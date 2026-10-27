@@ -7222,7 +7222,8 @@ string player::no_tele_reason(bool blinking, bool temp) const
         {
             problems.push_back(
                 make_stringf((Options.language == lang_t::KO ? "순간이동을 막는 %s개의 %s 착용 중" : "wearing %s %s preventing teleportation"),
-                             number_in_words(worn_notele.size()).c_str(),
+                             (Options.language == lang_t::KO ? make_stringf("%d", (int)worn_notele.size())
+                              : number_in_words(worn_notele.size())).c_str(),
                              found_nonartefact ? (Options.language == lang_t::KO ? "아이템" : "items") : (Options.language == lang_t::KO ? "아티팩트" : "artefacts")));
         }
         else if (!worn_notele.empty())
