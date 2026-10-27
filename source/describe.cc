@@ -5049,7 +5049,7 @@ static string _describe_draconian(const monster_info& mi)
     switch (subsp)
     {
     case MONS_BLACK_DRACONIAN:
-        description += "Sparks flare out of its mouth and nostrils.";
+        description += Options.language == lang_t::KO ? "입과 콧구멍에서 불꽃이 튀어 오릅니다." : "Sparks flare out of its mouth and nostrils.";
         break;
     case MONS_YELLOW_DRACONIAN:
         description += "Acidic fumes swirl around it.";
