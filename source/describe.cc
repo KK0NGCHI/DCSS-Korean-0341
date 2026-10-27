@@ -6661,50 +6661,74 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
 
     if (mi.is(MB_CHAOTIC))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " vulnerable to silver and hated by Zin.\n";
+        if (Options.language == lang_t::KO)
+            result << "은에 취약하며 진의 미움을 받습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " vulnerable to silver and hated by Zin.\n";
     }
 
     if (mons_class_flag(mi.type, M_STATIONARY)
         && !mons_is_tentacle_or_tentacle_segment(mi.type))
     {
-        result << uppercase_first(pronoun) << " cannot move.\n";
+        if (Options.language == lang_t::KO)
+            result << "움직일 수 없습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " cannot move.\n";
     }
 
     if (mons_class_flag(mi.type, M_COLD_BLOOD)
         && get_resist(resist, MR_RES_COLD) <= 0)
     {
-        result << uppercase_first(pronoun)
-               << " " << conjugate_verb("are", plural)
-               << " cold-blooded and may be slowed by cold attacks.\n";
+        if (Options.language == lang_t::KO)
+            result << "냉혈성으로 냉기 공격을 받으면 둔화될 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun)
+                   << " " << conjugate_verb("are", plural)
+                   << " cold-blooded and may be slowed by cold attacks.\n";
     }
 
     if (mi.can_see_invisible())
-        result << uppercase_first(pronoun) << " can see invisible.\n";
+        if (Options.language == lang_t::KO)
+            result << "투명한 존재를 볼 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can see invisible.\n";
 
     if (mons_class_flag(mi.type, M_BURROWS))
-        result << uppercase_first(pronoun) << " can burrow through diggable terrain.\n";
+        if (Options.language == lang_t::KO)
+            result << "굴착 가능한 지형을 파고 이동할 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can burrow through diggable terrain.\n";
 
     if (mons_class_flag(mi.type, M_ACID_SPLASH))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("inflict", plural)
-               << " 1d5 acid damage when struck in melee.\n";
+        if (Options.language == lang_t::KO)
+            result << "근접 공격을 받으면 공격자에게 1d5 산성 피해를 줍니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("inflict", plural)
+                   << " 1d5 acid damage when struck in melee.\n";
     }
 
     // Insubstantialness should take priority.
     if (mons_class_flag(mi.type, M_INSUBSTANTIAL))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " insubstantial and immune to ensnarement.\n";
+        if (Options.language == lang_t::KO)
+            result << "실체가 없어 속박에 면역입니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " insubstantial and immune to ensnarement.\n";
     }
     else if (mons_class_flag(mi.type, M_AMORPHOUS))
     {
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("are", plural)
-               << " amorphous and immune to ensnarement.\n";
+        if (Options.language == lang_t::KO)
+            result << "정해진 형태가 없어 속박에 면역입니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("are", plural)
+                   << " amorphous and immune to ensnarement.\n";
     }
 
     // XXX: could mention "immune to dazzling" here, but that's spammy, since
@@ -6715,16 +6739,18 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     if (mi.type == MONS_SHADOWGHAST)
     {
         // Cf. monster::action_energy() in monster.cc.
-        result << uppercase_first(pronoun) << " "
-               << conjugate_verb("cover", plural)
-               << " ground more quickly when invisible.\n";
+        if (Options.language == lang_t::KO)
+            result << "투명한 상태에서는 더 빠르게 이동합니다.\n";
+        else
+            result << uppercase_first(pronoun) << " "
+                   << conjugate_verb("cover", plural)
+                   << " ground more quickly when invisible.\n";
     }
 
     if (mi.type == MONS_ROYAL_JELLY)
     {
-        result << "It will release varied jellies when damaged or killed, with"
-            " the number of jellies proportional to the amount of damage.\n";
-        result << "It will release all of its jellies when polymorphed.\n";
+        result << (Options.language == lang_t::KO ? "피해를 받거나 죽으면 다양한 젤리를 방출하며, 피해량이 클수록 더 많은 젤리를 방출합니다.\n" : "It will release varied jellies when damaged or killed, with the number of jellies proportional to the amount of damage.\n");
+        result << (Options.language == lang_t::KO ? "변이되면 보유한 젤리를 모두 방출합니다.\n" : "It will release all of its jellies when polymorphed.\n");
     }
 
     if (mi.type == MONS_STAR_JELLY)
@@ -6734,7 +6760,10 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
     }
 
     if (mi.airborne())
-        result << uppercase_first(pronoun) << " can fly.\n";
+        if (Options.language == lang_t::KO)
+            result << "비행할 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can fly.\n";
 
     if (in_good_standing(GOD_ZIN, 0) && !mi.pos.origin() && monster_at(mi.pos))
     {
@@ -6784,6 +6813,9 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
         !mons_class_is_stationary(mi.type))
     {
         if (mon_shape_is_humanoid(get_mon_shape(mi.type)))
+            if (Options.language == lang_t::KO)
+            result << "문을 열 수 있습니다.\n";
+        else
             result << uppercase_first(pronoun) << " can open doors.\n";
         else
         {
@@ -6792,9 +6824,15 @@ static string _monster_stat_description(const monster_info& mi, bool mark_spells
         }
     }
     else if (mons_class_flag(mi.type, M_CRASH_DOORS))
-        result << uppercase_first(pronoun) << " can crash through doors.\n";
+        if (Options.language == lang_t::KO)
+            result << "문을 부수고 통과할 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can crash through doors.\n";
     else if (mons_class_flag(mi.type, M_EAT_DOORS))
-        result << uppercase_first(pronoun) << " can eat doors.\n";
+        if (Options.language == lang_t::KO)
+            result << "문을 먹을 수 있습니다.\n";
+        else
+            result << uppercase_first(pronoun) << " can eat doors.\n";
 
     result << _monster_spells_description(mi, mark_spells);
 
