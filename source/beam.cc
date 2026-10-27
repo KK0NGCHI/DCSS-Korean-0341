@@ -7896,7 +7896,7 @@ bool cancel_beam_prompt(const bolt& beam, const player_beam_tracer& tracer,
         const monster* mon = tracer.bad_charm_target;
         monclass_flags_t flags = monster_info(mon).airborne() ? M_FLIES
                                                               : M_NO_FLAGS;
-        const string verb = make_stringf("charm %s",
+        const string verb = make_stringf(Options.language == lang_t::KO ? "%s에게 매혹 시도" : "charm %s",
                                          mon->name(DESC_THE).c_str());
         if (stop_summoning_prompt(monster_info(mon).resists(), flags, verb))
             return true;
@@ -7907,15 +7907,13 @@ bool cancel_beam_prompt(const bolt& beam, const player_beam_tracer& tracer,
         string prompt;
         if (tracer.hit_self_count > 1)
         {
-            prompt = make_stringf("That %s could hit you up to %d times."
-                " Continue anyway?",
+            prompt = make_stringf(Options.language == lang_t::KO ? "%s에 최대 %d번 맞을 수 있습니다. 그래도 계속할까?" : "That %s could hit you up to %d times. Continue anyway?",
                 beam.ranged_atk ? beam.ranged_atk->projectile_name().c_str() : "beam",
                 tracer.hit_self_count);
         }
         else
         {
-            prompt = make_stringf("That %s is likely to hit you."
-                " Continue anyway?",
+            prompt = make_stringf(Options.language == lang_t::KO ? "%s에 맞을 가능성이 높습니다. 그래도 계속할까?" : "That %s is likely to hit you. Continue anyway?",
                 beam.ranged_atk ? beam.ranged_atk->projectile_name().c_str() : "beam");
         }
         if (!yesno(prompt.c_str(), false, 'n'))
@@ -7948,10 +7946,10 @@ bool cancel_beam_prompt(const bolt& beam, const player_beam_tracer& tracer,
             verb += "towards ";
         const bool penance = victims.penance();
 
-        const string prompt = make_stringf("Really %s%s%s?%s",
+        const string prompt = make_stringf(Options.language == lang_t::KO ? "정말 %s%s%s?%s" : "Really %s%s%s?%s",
                         verb.c_str(), mon_name.c_str(),
                         victims.suffix(),
-                        penance ? " This would place you under penance!" : "");
+                        penance ? (Options.language == lang_t::KO ? " 신의 징벌을 받게 됩니다!" : " This would place you under penance!") : "");
 
         if (!yesno(prompt.c_str(), false, 'n'))
         {
