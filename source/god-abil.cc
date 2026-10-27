@@ -2338,7 +2338,7 @@ static void _do_curse_item(item_def &item)
  */
 bool ashenzari_curse_item()
 {
-    const string prompt_msg = make_stringf("Curse which item? (Esc to abort)");
+    const string prompt_msg = Options.language == lang_t::KO ? "어느 아이템에 저주를 걸까? (Esc: 취소)" : "Curse which item? (Esc to abort)";
     const int item_slot = prompt_invent_item(prompt_msg.c_str(),
                                              menu_type::invlist,
                                              OSEL_CURSABLE, OPER_ANY,
@@ -2373,7 +2373,7 @@ bool ashenzari_curse_item()
  */
 bool ashenzari_uncurse_item()
 {
-    int item_slot = prompt_invent_item("Uncurse and destroy which item?",
+    int item_slot = prompt_invent_item(Options.language == lang_t::KO ? "어느 아이템의 저주를 풀고 파괴할까?" : "Uncurse and destroy which item?",
                                        menu_type::invlist,
                                        OSEL_CURSED_WORN, OPER_ANY,
                                        invprompt_flag::escape_only);
@@ -2395,11 +2395,10 @@ bool ashenzari_uncurse_item()
         return false;
     }
 
-    if (!yesno(make_stringf("Really remove and destroy %s?%s",
+    if (!yesno(make_stringf(Options.language == lang_t::KO ? "정말 %s의 저주를 풀고 파괴할까?%s" : "Really remove and destroy %s?%s",
                             item.name(DESC_THE).c_str(),
                             you.props.exists(AVAILABLE_CURSE_KEY) ?
-                                " Ashenzari will withdraw the offered vision "
-                                "and curse!"
+                                (Options.language == lang_t::KO ? " 아셴자리의 계시와 저주가 거두어집니다!" : " Ashenzari will withdraw the offered vision and curse!")
                                 : "").c_str(),
                             false, 'n'))
     {
@@ -5071,7 +5070,7 @@ string ru_sacrifice_description(ability_type sac)
         return "";
 
     const int piety_gain = _ru_get_sac_piety_gain(sac);
-    return make_stringf("This is %s sacrifice. Piety after sacrifice: %s",
+    return make_stringf(Options.language == lang_t::KO ? "희생의 가치: %s. 희생 후 신앙심: %s" : "This is %s sacrifice. Piety after sacrifice: %s",
                         _describe_sacrifice_piety_gain(piety_gain),
                         _piety_asterisks(you.raw_piety + piety_gain).c_str());
 }
@@ -6186,7 +6185,7 @@ spret hepliaklqana_transference(bool fail)
 static void _hepliaklqana_choose_name()
 {
     const string old_name = hepliaklqana_ally_name();
-    string prompt  = make_stringf("Remember %s name as what? ",
+    string prompt  = make_stringf(Options.language == lang_t::KO ? "%s의 새 이름을 무엇으로 기억할까? " : "Remember %s name as what? ",
                                   apostrophise(old_name).c_str());
 
     char buf[18];
@@ -7055,7 +7054,7 @@ void makhleb_infernal_servant()
 
 void makhleb_inscribe_mark(mutation_type mark)
 {
-    string prompt = make_stringf("Really brand yourself with the %s?",
+    string prompt = make_stringf(Options.language == lang_t::KO ? "정말 몸에 %s의 낙인을 새길까?" : "Really brand yourself with the %s?",
                                     mutation_name(mark));
     if (!yesno(prompt.c_str(), true, 'n'))
     {

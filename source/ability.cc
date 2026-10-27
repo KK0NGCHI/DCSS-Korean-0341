@@ -1609,8 +1609,8 @@ string get_ability_desc(const ability_type ability, bool need_title)
     lookup += "\n";
 
     if (damage_str != "")
-        lookup += make_stringf("Damage: %s\n ", damage_str.c_str());
-    lookup += make_stringf("Range: %s\n", range_str.c_str());
+        lookup += make_stringf(Options.language == lang_t::KO ? "피해: %s\n " : "Damage: %s\n ", damage_str.c_str());
+    lookup += make_stringf(Options.language == lang_t::KO ? "사거리: %s\n" : "Range: %s\n", range_str.c_str());
 
     ostringstream res;
     if (need_title)
