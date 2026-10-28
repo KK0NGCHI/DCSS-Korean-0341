@@ -892,7 +892,7 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
         if (!clua.callfn("c_choose_spell", ">s", &luachoice))
         {
             if (!clua.error.empty())
-                mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+                mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
         }
         else if (!luachoice.empty() && isalpha(luachoice[0]))
         {
@@ -936,7 +936,7 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
                 if (you.last_cast_spell == SPELL_NO_SPELL
                     || !Options.enable_recast_spell)
                 {
-                    mprf(MSGCH_PROMPT, "Cast which spell? (? or * to list) ");
+                    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 주문을 시전하시겠습니까? (? 또는 *: 목록) " : "Cast which spell? (? or * to list) "));
                 }
                 else
                 {
@@ -1165,7 +1165,7 @@ static void _try_monster_cast(spell_type spell, int /*powc*/,
         return;
     }
 
-    mpr("Invalid player spell, attempting to cast it as monster spell.");
+    mpr((Options.language == lang_t::KO ? "플레이어가 사용할 수 없는 주문입니다. 몬스터 주문으로 시도합니다." : "Invalid player spell, attempting to cast it as monster spell."));
 
     mon->mname      = "Dummy Monster";
     mon->type       = MONS_HUMAN;
@@ -2402,7 +2402,7 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
     {
         if (actual_spell)
         {
-            mprf("You miscast %s.", spell_title(spell));
+            mprf((Options.language == lang_t::KO ? "%s 주문 시전에 실패했습니다." : "You miscast %s."), spell_title(spell));
             flush_input_buffer(FLUSH_ON_FAILURE);
             learned_something_new(HINT_SPELL_MISCAST);
             miscast_effect(spell, fail);
@@ -2426,7 +2426,7 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
 
         if (is_valid_spell(spell))
         {
-            mprf(MSGCH_ERROR, "Spell '%s' is not a player castable spell.",
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "주문 '%s'은(는) 플레이어가 시전할 수 없습니다." : "Spell '%s' is not a player castable spell."),
                  spell_title(spell));
         }
         else
@@ -2848,7 +2848,7 @@ static spret _do_cast(spell_type spell, int powc, const dist& spd,
     default:
         if (spell_removed(spell))
         {
-            mprf("Sorry, the spell '%s' is gone!", spell_title(spell));
+            mprf((Options.language == lang_t::KO ? "주문 '%s'이(가) 사라졌습니다." : "Sorry, the spell '%s' is gone!"), spell_title(spell));
             return spret::abort;
         }
         break;
@@ -3486,7 +3486,7 @@ void handle_channelled_spell()
             return;
 
         default:
-            mprf(MSGCH_WARN, "Attempting to channel buggy spell: %s", spell_title(spell));
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "오류가 있는 주문의 집중 시도: %s" : "Attempting to channel buggy spell: %s"), spell_title(spell));
     }
 }
 
