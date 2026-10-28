@@ -59,6 +59,7 @@
 #include "mutation.h"
 #include "nearby-danger.h"
 #include "notes.h"
+#include "options.h"
 #include "output.h"
 #include "piety-info.h"
 #include "player-equip.h"
