@@ -1082,7 +1082,7 @@ static void _handle_hellfire_mortar(monster& mortar)
             // We've reached the end of our path.
             if (i + 1 == path.size())
             {
-                simple_monster_message(mortar, " sinks back into the magma.");
+                simple_monster_message(mortar, (Options.language == lang_t::KO ? " 다시 용암 속으로 가라앉습니다." : " sinks back into the magma."));
                 monster_die(mortar, KILL_NON_ACTOR, NON_MONSTER, true);
                 return;
             }
@@ -1108,7 +1108,7 @@ static void _handle_hellfire_mortar(monster& mortar)
                         collides = _and = "";
 
                     mpr(mortar.name(DESC_THE) + collides + barrier + _and +
-                        " sinks back into the magma.");
+                        (Options.language == lang_t::KO ? " 다시 용암 속으로 가라앉습니다." : " sinks back into the magma."));
                 }
 
                 monster_die(mortar, KILL_NON_ACTOR, NON_MONSTER, true);
@@ -3724,7 +3724,7 @@ static bool _do_move_monster(monster& mons, const coord_def& delta)
     if (mons.is_constricted() && !mons.cannot_move())
     {
         if (mons.attempt_escape())
-            simple_monster_message(mons, " escapes!");
+            simple_monster_message(mons, (Options.language == lang_t::KO ? " 탈출합니다!" : " escapes!"));
         else
         {
             simple_monster_message(mons, (Options.language == lang_t::KO ? " 조임에서 벗어나려 몸부림칩니다." : " struggles to escape constriction."));
