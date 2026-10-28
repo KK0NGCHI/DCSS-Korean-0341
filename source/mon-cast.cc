@@ -5378,7 +5378,7 @@ bool handle_mon_spell(monster* mons)
     {
         // This may be a bad idea -- if we decide monsters shouldn't
         // lose a turn like players do not, please make this just return.
-        simple_monster_message(*mons, " falters for a moment.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " 잠시 주춤합니다." : " falters for a moment."));
         mons->lose_energy(EUT_SPELL);
         return true;
     }
@@ -5533,7 +5533,7 @@ static int _monster_abjure_target(monster* target, int pow, bool actual)
     if (!target->lose_ench_duration(timer, pow))
     {
         if (!shielded)
-            simple_monster_message(*target, " shudders.");
+            simple_monster_message(*target, (Options.language == lang_t::KO ? " 몸을 부르르 떱니다." : " shudders."));
         return 1;
     }
 
@@ -6198,7 +6198,7 @@ static int _mons_cause_fear(monster* mons, bool actual)
     if (actual)
     {
         if (you.can_see(*mons))
-            simple_monster_message(*mons, " radiates an aura of fear!");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 공포의 기운을 내뿜습니다!" : " radiates an aura of fear!"));
         else if (you.see_cell(mons->pos()))
             mpr((Options.language == lang_t::KO ? "공포의 기운이 주위에 가득 찹니다!" : "An aura of fear fills the air!"));
     }
@@ -6433,7 +6433,7 @@ static void _blink_allies_encircle(const monster* mon)
         if (!(ally->flags & MF_WAS_IN_VIEW)
             && ally->flags & MF_SEEN)
         {
-            simple_monster_message(*ally, " blinks into view!");
+            simple_monster_message(*ally, (Options.language == lang_t::KO ? " 순간이동하여 모습을 드러냅니다!" : " blinks into view!"));
         }
         ally->behaviour = BEH_SEEK;
         ally->foe = mon->foe;
@@ -7880,7 +7880,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
     case SPELL_SILENCE:
         mons->add_ench(ENCH_SILENCE);
         invalidate_agrid(true);
-        simple_monster_message(*mons, " surroundings become eerily quiet.", true);
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? "의 주변이 기이할 정도로 고요해집니다." : " surroundings become eerily quiet."), true);
         return;
 
     case SPELL_CALL_TIDE:
@@ -8413,7 +8413,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
     case SPELL_ENGLACIATION:
         if (you.can_see(*mons))
-            simple_monster_message(*mons, " radiates an aura of cold.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 냉기의 기운을 내뿜습니다." : " radiates an aura of cold."));
         else if (mons->see_cell_no_trans(you.pos()))
             mpr((Options.language == lang_t::KO ? "차가운 기운이 몸을 휩쓸고 지나갑니다." : "A wave of cold passes over you."));
         apply_area_visible([splpow, mons] (coord_def where) {
@@ -8504,7 +8504,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
             monster* targ = targets[random2(targets.size())];
             if (cast_phantom_mirror(mons, targ))
-                simple_monster_message(*targ, " shimmers and seems to become two!");
+                simple_monster_message(*targ, (Options.language == lang_t::KO ? " 희미하게 빛나더니 2개로 나뉜 듯 보입니다!" : " shimmers and seems to become two!"));
         }
         return;
     }
@@ -8595,7 +8595,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
     }
 
     case SPELL_CLEANSING_FLAME:
-        simple_monster_message(*mons, " channels a blast of cleansing flame!");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " 정화의 불꽃을 폭발시킵니다!" : " channels a blast of cleansing flame!"));
         cleansing_flame(5 + (5 * mons->spell_hd(spell_cast) / 12),
                         cleansing_flame_source::spell, mons->pos(), mons);
         return;
@@ -8632,7 +8632,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         return;
 
     case SPELL_BIND_SOULS:
-        simple_monster_message(*mons, " binds the souls of nearby monsters.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " 주변 몬스터들의 영혼을 속박합니다." : " binds the souls of nearby monsters."));
         for (monster_near_iterator mi(mons, LOS_NO_TRANS); mi; ++mi)
         {
             if (*mi == mons)
@@ -8703,7 +8703,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
             return;
 
         if (create_monster(mgen))
-            simple_monster_message(*mons, " launches a sporangium.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 포자낭을 발사합니다." : " launches a sporangium."));
 
         return;
     }
