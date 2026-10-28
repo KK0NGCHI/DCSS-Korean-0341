@@ -756,13 +756,13 @@ static void _process_command(const char keypress)
                 do_interlevel_travel();
             }
             else
-                mpr("Sorry, you haven't seen any altar yet.");
+                mpr((Options.language == lang_t::KO ? "아직 제단을 발견하지 못했습니다." : "Sorry, you haven't seen any altar yet."));
             return;
         case '$':
             if (!shops_present.empty())
                 StashTrack.search_stashes("shop");
             else
-                mpr("Sorry, you haven't seen any shop yet.");
+                mpr((Options.language == lang_t::KO ? "아직 상점을 발견하지 못했습니다." : "Sorry, you haven't seen any shop yet."));
             return;
         case '!':
             do_annotate();
@@ -1244,13 +1244,13 @@ void do_annotate()
         case ID_UP:
             // level_id() is the error value of find_up_level(lid)
             if (find_up_level(lid) == level_id())
-                mpr("There is no level above you.");
+                mpr((Options.language == lang_t::KO ? "위쪽에는 층이 없습니다." : "There is no level above you."));
             else
                 annotate_level(find_up_level(lid));
             return;
         case ID_DOWN:
             if (find_down_level(lid) == lid)
-                mpr("There is no level below you in this branch.");
+                mpr((Options.language == lang_t::KO ? "이 구역에는 아래층이 없습니다." : "There is no level below you in this branch."));
             else
                 annotate_level(find_down_level(lid));
             return;
@@ -1276,7 +1276,7 @@ void do_annotate()
         annotate_level(level_id(br, depth));
     }
     else
-        mpr("That's not a valid depth.");
+        mpr((Options.language == lang_t::KO ? "올바르지 않은 층 깊이입니다." : "That's not a valid depth."));
     }
 }
 
@@ -1301,7 +1301,7 @@ void annotate_level(level_id li)
         level_annotations[li] = string(buf);
     else
     {
-        mpr("Cleared annotation.");
+        mpr((Options.language == lang_t::KO ? "주석을 지웠습니다." : "Cleared annotation."));
         level_annotations.erase(li);
     }
 }
