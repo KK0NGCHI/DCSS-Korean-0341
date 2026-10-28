@@ -406,7 +406,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_FRENZIED:
         if (!quiet)
-            simple_monster_message(*this, " is no longer in a wild frenzy.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 광란 상태가 아닙니다." : " is no longer in a wild frenzy."));
 
         if (mons_is_elven_twin(this))
         {
@@ -428,7 +428,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_BERSERK:
         if (!quiet)
-            simple_monster_message(*this, " is no longer berserk.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 광폭화 상태가 아닙니다." : " is no longer berserk."));
 
         scale_hp(2, 3);
         calc_speed();
@@ -443,7 +443,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_FATIGUE:
         if (!quiet)
-            simple_monster_message(*this, " looks more energetic.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 한층 활기를 되찾습니다." : " looks more energetic."));
         del_ench(ENCH_SLOW, true);
         break;
 
@@ -454,22 +454,22 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     case ENCH_DOUBLED_VIGOUR:
         scale_hp(1, 2);
         if (!quiet)
-            simple_monster_message(*this, " excess health fades away.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? "의 추가 체력이 사라집니다." : " excess health fades away."), true);
         break;
 
     case ENCH_HASTE:
         calc_speed();
         if (!quiet)
-            simple_monster_message(*this, " is no longer moving quickly.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 빠르게 움직이지 않습니다." : " is no longer moving quickly."));
         break;
 
     case ENCH_SWIFT:
         if (!quiet)
         {
             if (type == MONS_ALLIGATOR)
-                simple_monster_message(*this, " slows down.");
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " 느려집니다." : " slows down."));
             else
-                simple_monster_message(*this, " is no longer moving quickly.");
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 빠르게 움직이지 않습니다." : " is no longer moving quickly."));
         }
         break;
 
@@ -478,7 +478,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
         if (!quiet && !silenced(pos()))
         {
             if (alive())
-                simple_monster_message(*this, " becomes audible again.");
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " 다시 소리를 내기 시작합니다." : " becomes audible again."));
             else
                 mprf("As %s %s, the sound returns.",
                      name(DESC_THE).c_str(),
@@ -488,30 +488,30 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_MIGHT:
         if (!quiet)
-            simple_monster_message(*this, " no longer looks unusually strong.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 비정상적으로 강해 보이지 않습니다." : " no longer looks unusually strong."));
         break;
 
     case ENCH_SLOW:
         if (!quiet)
-            simple_monster_message(*this, " is no longer moving slowly.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 느리게 움직이지 않습니다." : " is no longer moving slowly."));
         calc_speed();
         break;
 
     case ENCH_VEXED:
         if (!quiet)
-            simple_monster_message(*this, " is no longer overcome with frustration.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 좌절감에 사로잡혀 있지 않습니다." : " is no longer overcome with frustration."));
         break;
 
     case ENCH_PARALYSIS:
         if (!quiet)
-            simple_monster_message(*this, " is no longer paralysed.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 마비에서 풀려납니다." : " is no longer paralysed."));
 
         behaviour_event(this, ME_EVAL);
         break;
 
     case ENCH_PETRIFIED:
         if (!quiet)
-            simple_monster_message(*this, " is no longer petrified.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 석화 상태에서 벗어납니다." : " is no longer petrified."));
         del_ench(ENCH_PETRIFYING);
 
         behaviour_event(this, ME_EVAL);
@@ -554,7 +554,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_CONFUSION:
         if (!quiet)
-            simple_monster_message(*this, " seems less confused.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 혼란에서 조금 벗어난 듯합니다." : " seems less confused."));
 
         // Reevaluate behaviour.
         behaviour_event(this, ME_EVAL);
@@ -643,7 +643,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     if (!quiet)
         {
             if (visible_to(&you))
-                simple_monster_message(*this, " stops glowing.");
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " 빛을 내지 않게 됩니다." : " stops glowing."));
             else if (has_ench(ENCH_INVIS) && you.see_cell(pos()))
             {
                 mprf("%s stops glowing and disappears.",
@@ -654,12 +654,12 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_STICKY_FLAME:
         if (!quiet)
-            simple_monster_message(*this, " stops burning.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 불타지 않습니다." : " stops burning."));
         break;
 
     case ENCH_POISON:
         if (!quiet)
-            simple_monster_message(*this, " looks more healthy.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 건강을 되찾은 듯 보입니다." : " looks more healthy."));
         break;
 
     case ENCH_SUMMON_TIMER:
@@ -669,7 +669,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
             return end_battlesphere(this, false);
 
         if (berserk())
-            simple_monster_message(*this, " is no longer berserk.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 광폭화 상태가 아닙니다." : " is no longer berserk."));
 
         monster_die(*this, quiet ? KILL_RESET : KILL_TIMEOUT, NON_MONSTER);
         break;
@@ -690,7 +690,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
         invalidate_agrid();
 
         if (!quiet)
-            simple_monster_message(*this, " is no longer liquefying the ground.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 땅을 액화시키지 않습니다." : " is no longer liquefying the ground."));
         break;
 
     case ENCH_FLIGHT:
@@ -700,24 +700,24 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_DAZED:
         if (!quiet && alive())
-                simple_monster_message(*this, " is no longer dazed.");
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 멍한 상태가 아닙니다." : " is no longer dazed."));
         break;
 
     case ENCH_INNER_FLAME:
         if (!quiet && alive())
-            simple_monster_message(*this, " inner flame fades away.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? "의 내면의 불꽃이 사라집니다." : " inner flame fades away."), true);
         break;
 
     //The following should never happen, but just in case...
 
     case ENCH_MUTE:
         if (!quiet && alive())
-                simple_monster_message(*this, " is no longer mute.");
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 침묵 상태가 아닙니다." : " is no longer mute."));
         break;
 
     case ENCH_BLIND:
         if (!quiet && alive())
-            simple_monster_message(*this, " is no longer blind.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 눈이 멀지 않았습니다." : " is no longer blind."));
 
         // Reevaluate behaviour.
         behaviour_event(this, ME_EVAL);
@@ -725,7 +725,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_DUMB:
         if (!quiet && alive())
-            simple_monster_message(*this, " is no longer stupefied.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 우둔한 상태가 아닙니다." : " is no longer stupefied."));
 
         // Reevaluate behaviour.
         behaviour_event(this, ME_EVAL);
@@ -733,7 +733,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_MAD:
         if (!quiet && alive())
-            simple_monster_message(*this, " is no longer mad.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 광기에 빠져 있지 않습니다." : " is no longer mad."));
 
         // Reevaluate behaviour.
         behaviour_event(this, ME_EVAL);
@@ -741,12 +741,12 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_REGENERATION:
         if (!quiet)
-            simple_monster_message(*this, " is no longer regenerating.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 재생하지 않습니다." : " is no longer regenerating."));
         break;
 
     case ENCH_STRONG_WILLED:
         if (!quiet)
-            simple_monster_message(*this, " is no longer strong-willed.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 강한 의지를 유지하지 않습니다." : " is no longer strong-willed."));
         break;
 
     case ENCH_WRETCHED:
@@ -774,7 +774,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_WEAK:
         if (!quiet)
-            simple_monster_message(*this, " is no longer weakened.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 약화 상태가 아닙니다." : " is no longer weakened."));
         break;
 
     case ENCH_TOXIC_RADIANCE:
@@ -784,7 +784,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_FIRE_VULN:
         if (!quiet)
-            simple_monster_message(*this, " is no longer more vulnerable to fire.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 화염에 취약하지 않습니다." : " is no longer more vulnerable to fire."));
         break;
 
     case ENCH_MERFOLK_AVATAR_SONG:
@@ -793,27 +793,27 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_POISON_VULN:
         if (!quiet)
-            simple_monster_message(*this, " is no longer more vulnerable to poison.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 독에 취약하지 않습니다." : " is no longer more vulnerable to poison."));
         break;
 
     case ENCH_AGILE:
         if (!quiet)
-            simple_monster_message(*this, " is no longer unusually agile.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 비정상적으로 민첩하지 않습니다." : " is no longer unusually agile."));
         break;
 
     case ENCH_FROZEN:
         if (!quiet)
-            simple_monster_message(*this, " is no longer encased in ice.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 얼음에 갇혀 있지 않습니다." : " is no longer encased in ice."));
         calc_speed();
         break;
 
     case ENCH_SIGN_OF_RUIN:
-        simple_monster_message(*this, " sign of ruin fades away.", true);
+        simple_monster_message(*this, (Options.language == lang_t::KO ? "에게 새겨진 파멸의 징표가 사라집니다." : " sign of ruin fades away."), true);
         break;
 
     case ENCH_SAP_MAGIC:
         if (!quiet)
-            simple_monster_message(*this, " is no longer being sapped.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 더 이상 기력을 빼앗기지 않습니다." : " is no longer being sapped."));
         break;
 
     case ENCH_CORROSION:
