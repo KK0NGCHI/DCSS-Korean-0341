@@ -5198,13 +5198,17 @@ void gain_grave_claw_soul(bool silent, bool wizard)
 
         if (charges == GRAVE_CLAW_MAX_CHARGES)
         {
-            mprf(MSGCH_DURATION, "You have harvested as much death for "
-                                 "Grave Claw as you can hold at once.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO
+                                  ? "무덤의 발톱을 위해 저장할 수 있는 죽음의 힘을 최대한 모았습니다."
+                                  : "You have harvested as much death for "
+                                    "Grave Claw as you can hold at once."));
         }
         else
         {
-            mprf(MSGCH_DURATION, "You have harvested enough death to cast "
-                                 "Grave Claw an additional time.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO
+                                  ? "무덤의 발톱을 1회 더 시전할 만큼 죽음의 힘을 모았습니다."
+                                  : "You have harvested enough death to cast "
+                                    "Grave Claw an additional time."));
         }
     }
 }
@@ -5242,7 +5246,10 @@ void unleash_fortress_blast(actor& caster)
             desc = "a very strong";
         else if (power > 80)
             desc = "a strong";
-        mprf(MSGCH_DURATION, "You unleash %s concussive blast!", desc.c_str());
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_DURATION, "강력한 충격파를 방출합니다!");
+        else
+            mprf(MSGCH_DURATION, "You unleash %s concussive blast!", desc.c_str());
     }
 
     bolt blast;
