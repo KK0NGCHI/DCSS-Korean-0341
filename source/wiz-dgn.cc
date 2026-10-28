@@ -24,6 +24,7 @@
 #include "map-knowledge.h"
 #include "mon-act.h"
 #include "message.h"
+#include "options.h"
 #include "place.h"
 #include "player-notices.h"
 #include "prompt.h"
@@ -60,7 +61,7 @@ static dungeon_feature_type _find_appropriate_stairs(bool down)
     // Can't go down from bottom level of a branch.
     if (depth > brdepth[you.where_are_you])
     {
-        mpr("Can't go down from the bottom of a branch.");
+        mpr((Options.language == lang_t::KO ? "구역 최하층에서는 더 내려갈 수 없습니다." : "Can't go down from the bottom of a branch."));
         return DNGN_UNSEEN;
     }
     // Going up from top level of branch
@@ -76,7 +77,7 @@ static dungeon_feature_type _find_appropriate_stairs(bool down)
     }
     else
     {
-        mpr("Bug in determining level exit.");
+        mpr((Options.language == lang_t::KO ? "층 출구를 결정하는 과정에서 오류가 발생했습니다." : "Bug in determining level exit."));
         return DNGN_UNSEEN;
     }
 }
@@ -197,9 +198,9 @@ dungeon_feature_type wizard_select_feature(bool mimic, bool allow_fprop)
     char specs[256];
     // TODO: this sub-ui is very annoying to use
     if (mimic)
-        mprf(MSGCH_PROMPT, "Create what kind of feature mimic? ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 종류의 지형 모방체를 생성하시겠습니까? " : "Create what kind of feature mimic? "));
     else
-        mprf(MSGCH_PROMPT, "Create which feature? ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 지형을 생성하시겠습니까? " : "Create which feature? "));
 
     if (cancellable_get_line_autohist(specs, sizeof(specs)) || specs[0] == 0)
     {
@@ -392,7 +393,7 @@ void wizard_list_branches()
         return;
 
     mprf(MSGCH_DIAGNOSTICS, "----");
-    mprf(MSGCH_DIAGNOSTICS, "Overflow temples: ");
+    mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "추가 신전: " : "Overflow temples: "));
 
     CrawlVector &levels = you.props[OVERFLOW_TEMPLES_KEY].get_vector();
 
@@ -449,7 +450,7 @@ void wizard_map_level()
         env.properties[FORCE_MAPPABLE_KEY] = true;
     }
 
-    mpr("Mapping level.");
+    mpr((Options.language == lang_t::KO ? "층의 지도를 작성합니다." : "Mapping level."));
     magic_mapping(GDM, 100, true, true, false, true, false);
 
     for (rectangle_iterator ri(BOUNDARY_BORDER - 1); ri; ++ri)
@@ -510,7 +511,7 @@ bool debug_make_shop(const coord_def& pos)
 {
     if (env.grid(pos) != DNGN_FLOOR)
     {
-        mpr("Insufficient floor-space for new Wal-Mart.");
+        mpr((Options.language == lang_t::KO ? "새 상점을 만들 바닥 공간이 부족합니다." : "Insufficient floor-space for new Wal-Mart."));
         return false;
     }
 
@@ -529,7 +530,7 @@ bool debug_make_shop(const coord_def& pos)
         return false;
 
     place_spec_shop(pos, static_cast<shop_type>(menu.result()));
-    mpr("Done.");
+    mpr((Options.language == lang_t::KO ? "완료했습니다." : "Done."));
     return true;
 }
 
@@ -764,14 +765,14 @@ void debug_test_explore()
     // Return to starting point.
     you.move_to(where, MV_INTERNAL);
 
-    mprf("Explore took %d turns.", explore_turns);
+    mprf((Options.language == lang_t::KO ? "탐색에 %d턴이 걸렸습니다." : "Explore took %d turns."), explore_turns);
 }
 
 void wizard_list_levels()
 {
     if (!you.level_stack.empty())
     {
-        mpr("Level stack:");
+        mpr((Options.language == lang_t::KO ? "층 스택:" : "Level stack:"));
         for (unsigned int i = 0; i < you.level_stack.size(); i++)
         {
             mprf(MSGCH_DIAGNOSTICS, i+1, // inhibit merging
@@ -784,7 +785,7 @@ void wizard_list_levels()
 
     vector<level_id> levs = travel_cache.known_levels();
 
-    mpr("Known levels:");
+    mpr((Options.language == lang_t::KO ? "알려진 층:" : "Known levels:"));
     for (unsigned int i = 0; i < levs.size(); i++)
     {
         const LevelInfo* lv = travel_cache.find_level_info(levs[i]);
@@ -807,7 +808,7 @@ void wizard_list_levels()
 
 void wizard_recreate_level()
 {
-    mpr("Regenerating level.");
+    mpr((Options.language == lang_t::KO ? "층을 다시 생성합니다." : "Regenerating level."));
 
     // Need to allow reuse of vaults, otherwise we'd run out of them fast.
     #ifndef DEBUG_VETO_RESUME
@@ -865,7 +866,7 @@ void wizard_clear_used_vaults()
     env.level_uniq_map_tags.clear();
     for (int i = 0; i < NUM_BRANCHES; ++i)
         branch_uniq_map_tags[i].clear();
-    mpr("All vaults are now eligible for [re]use.");
+    mpr((Options.language == lang_t::KO ? "모든 볼트가 다시 사용 가능한 상태가 되었습니다." : "All vaults are now eligible for [re]use."));
 }
 
 void wizard_abyss_speed()
@@ -879,7 +880,7 @@ void wizard_abyss_speed()
         const int speed = atoi(specs);
         if (speed || specs[0] == '0')
         {
-            mprf("Setting Abyss speed to %i.", speed);
+            mprf((Options.language == lang_t::KO ? "심연 속도를 %i로 설정합니다." : "Setting Abyss speed to %i."), speed);
             you.abyss_speed = speed;
             return;
         }

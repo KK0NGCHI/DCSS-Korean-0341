@@ -461,9 +461,9 @@ void wizard_value_item()
     const int real_value = item_value(item, true);
     const int known_value = item_value(item, false);
     if (real_value != known_value)
-        mprf("Real value: %d (known: %d)", real_value, known_value);
+        mprf((Options.language == lang_t::KO ? "실제 값: %d (알려진 값: %d)" : "Real value: %d (known: %d)"), real_value, known_value);
     else
-        mprf("Value: %d", real_value);
+        mprf((Options.language == lang_t::KO ? "값: %d" : "Value: %d"), real_value);
 }
 
 /**
@@ -610,7 +610,7 @@ void wizard_make_object_randart()
             mpr((Options.language == lang_t::KO ? "해당 신이 없어 아이템의 출처를 변경하지 않습니다." : "No such god, leaving item origin alone."));
         else
         {
-            mprf("God gift of %s.", god_name(god, false).c_str());
+            mprf((Options.language == lang_t::KO ? "%s의 신성한 선물입니다." : "God gift of %s."), god_name(god, false).c_str());
             item.orig_monnum = -god;
         }
     }
@@ -881,7 +881,7 @@ static void _debug_acquirement_stats()
 
     if (total_quant == 0 || acq_calls == 0)
     {
-        mpr("No items generated.");
+        mpr((Options.language == lang_t::KO ? "생성된 아이템이 없습니다." : "No items generated."));
         return;
     }
 
@@ -1107,7 +1107,7 @@ static void _debug_acquirement_stats()
 
     fprintf(ostat, "-----------------------------------------\n\n");
     fclose(ostat);
-    mpr("Results written into acquirement_stats.txt.");
+    mpr((Options.language == lang_t::KO ? "결과를 acquirement_stats.txt에 기록했습니다." : "Results written into acquirement_stats.txt."));
 }
 
 /**
@@ -1327,13 +1327,13 @@ static void _debug_randart_stats()
     }
 
     fprintf(ostat, "\n-----------------------------------------\n\n");
-    mpr("Results written into 'randart_stats.txt'.");
+    mpr((Options.language == lang_t::KO ? "결과를 randart_stats.txt에 기록했습니다." : "Results written into 'randart_stats.txt'."));
     fclose(ostat);
 }
 
 void debug_item_statistics()
 {
-    mpr("Generate stats for: [a] acquirement [b] randart properties");
+    mpr((Options.language == lang_t::KO ? "통계 생성: [a] 획득 [b] 무작위 아티팩트 속성" : "Generate stats for: [a] acquirement [b] randart properties"));
     flush_prev_message();
 
     const int keyin = toalower(get_ch());
@@ -1353,7 +1353,7 @@ void wizard_draw_card()
     char buf[80];
     if (cancellable_get_line_autohist(buf, sizeof buf))
     {
-        mpr("Unknown card.");
+        mpr((Options.language == lang_t::KO ? "알 수 없는 카드입니다." : "Unknown card."));
         return;
     }
 
@@ -1374,7 +1374,7 @@ void wizard_draw_card()
         }
     }
     if (!found_card)
-        mpr("Unknown card.");
+        mpr((Options.language == lang_t::KO ? "알 수 없는 카드입니다." : "Unknown card."));
 }
 
 void wizard_identify_all_items()
@@ -1428,7 +1428,7 @@ void wizard_recharge_evokers()
 
         evoker_debt(dummy.sub_type) = 0;
     }
-    mpr("Evokers recharged.");
+    mpr((Options.language == lang_t::KO ? "발동형 도구가 재충전되었습니다." : "Evokers recharged."));
 }
 
 void wizard_unobtain_runes_and_orb()
@@ -1438,6 +1438,6 @@ void wizard_unobtain_runes_and_orb()
     you.chapter = CHAPTER_ORB_HUNTING;
     invalidate_agrid(true);
 
-    mpr("Unobtained all runes and the Orb of Zot.");
+    mpr((Options.language == lang_t::KO ? "모든 룬과 조트의 오브 획득 상태를 취소했습니다." : "Unobtained all runes and the Orb of Zot."));
 }
 #endif
