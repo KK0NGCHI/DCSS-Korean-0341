@@ -141,7 +141,7 @@ void uncontrolled_blink(bool override_stasis, int max_distance)
     if (!random_near_space(&you, you.pos(), target, false, max_distance)
         && !random_near_space(&you, you.pos(), target, true, max_distance))
     {
-        mpr("You feel jittery for a moment.");
+        mpr((Options.language == lang_t::KO ? "순간 안절부절못하는 느낌이 듭니다." : "You feel jittery for a moment."));
         return;
     }
 
@@ -166,7 +166,7 @@ spret spider_jump()
     if (!random_near_space(&you, you.pos(), target, false, you.current_vision)
         && !random_near_space(&you, you.pos(), target, true, you.current_vision))
     {
-        mpr("You jump in place.");
+        mpr((Options.language == lang_t::KO ? "제자리에서 도약합니다." : "You jump in place."));
         return spret::success;
     }
 
@@ -199,7 +199,7 @@ spret spider_jump()
 
     you.stop_being_constricted(false, "jump");
 
-    mpr("You jump through the air!");
+    mpr((Options.language == lang_t::KO ? "공중으로 도약합니다!" : "You jump through the air!"));
     place_cloud(CLOUD_DUST, you.pos(), 2 + random2(3), &you);
     you.move_to(target, MV_DELIBERATE);
     you.increase_duration(DUR_BLINK_COOLDOWN, random_range(2, 5));
@@ -337,14 +337,14 @@ void wizard_blink()
     if (!in_bounds(beam.target))
     {
         clear_messages();
-        mpr("Please don't blink into the map border.");
+        mpr((Options.language == lang_t::KO ? "지도 경계로 순간이동하지 마세요." : "Please don't blink into the map border."));
         return wizard_blink();
     }
 
     if (monster_at(beam.target))
     {
         clear_messages();
-        mpr("Please don't try to blink into monsters.");
+        mpr((Options.language == lang_t::KO ? "몬스터가 있는 곳으로 순간이동하지 마세요." : "Please don't try to blink into monsters."));
         return wizard_blink();
     }
 
@@ -461,7 +461,7 @@ spret frog_hop(bool fail, dist *target)
 
         if (grid_distance(you.pos(), target->target) > hop_range)
         {
-            mpr("That's out of range!"); // ! targeting
+            mpr((Options.language == lang_t::KO ? "사거리 밖입니다!" : "That's out of range!")); // ! targeting
             continue;
         }
         break;
@@ -475,7 +475,7 @@ spret frog_hop(bool fail, dist *target)
     // invisible monster that the targeter didn't know to avoid, or similar
     if (target->target.origin())
     {
-        mpr("You tried to hop, but there was no room to land!");
+        mpr((Options.language == lang_t::KO ? "도약하려 했지만 착지할 공간이 없습니다!" : "You tried to hop, but there was no room to land!"));
         // TODO: what to do here?
         return spret::success; // of a sort
     }
@@ -484,7 +484,7 @@ spret frog_hop(bool fail, dist *target)
     you.move_to(target->target, MV_DELIBERATE);
     crawl_state.cancel_cmd_again();
     crawl_state.cancel_cmd_repeat();
-    mpr("Boing!");
+    mpr((Options.language == lang_t::KO ? "뿅!" : "Boing!"));
     you.increase_duration(DUR_NO_HOP, 12 + random2(13));
 
     return spret::success; // TODO
@@ -553,7 +553,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
              > spell_range(SPELL_ELECTRIC_CHARGE, &agent))
     {
         if (fail_reason)
-            *fail_reason = "That's out of range!";
+            *fail_reason = (Options.language == lang_t::KO ? "사거리 밖입니다!" : "That's out of range!");
 
         return false;
     }
@@ -691,7 +691,7 @@ static bool _displace_charge_blocker(actor& agent, coord_def pos)
             && blocker->blink_to(targ, true))
         {
             if (blocker->is_player())
-                mpr("You are hurled out of the way!");
+                mpr((Options.language == lang_t::KO ? "옆으로 튕겨 나갑니다!" : "You are hurled out of the way!"));
 
             continue;
         }
@@ -774,9 +774,9 @@ spret electric_charge(actor& agent, int powc, bool fail, const coord_def &target
 
         // Monster cast messages are handled through monspell.txt
         if (silenced(dest_pos))
-            mpr("You charge forward in eerie silence!");
+            mpr((Options.language == lang_t::KO ? "기이한 정적 속에서 앞으로 돌진합니다!" : "You charge forward in eerie silence!"));
         else
-            mpr("You charge forward with an electric crackle!");
+            mpr((Options.language == lang_t::KO ? "전기가 파직거리는 소리와 함께 돌진합니다!" : "You charge forward with an electric crackle!"));
     }
 
     // Trying to clear space at our destination by moving actors away from it.
@@ -871,7 +871,7 @@ spret controlled_blink(bool safe_cancel, dist *target)
         if (!_find_cblink_target(*target, safe_cancel, "blink", &tgt))
             return spret::abort;
         target->target = _fuzz_blink_destination(target->target);
-        mprf(MSGCH_ORB, "You feel the Orb interfering with your translocation!");
+        mprf(MSGCH_ORB, (Options.language == lang_t::KO ? "오브가 공간 이동을 방해하는 것이 느껴집니다!" : "You feel the Orb interfering with your translocation!"));
     }
     else
     {
@@ -884,7 +884,7 @@ spret controlled_blink(bool safe_cancel, dist *target)
     // invisible monster that the targeter didn't know to avoid
     if (monster_at(target->target))
     {
-        mpr("Oops! There was something there already!");
+        mpr((Options.language == lang_t::KO ? "이런! 그 자리에 이미 무언가가 있습니다!" : "Oops! There was something there already!"));
         uncontrolled_blink();
         return spret::success; // of a sort
     }
@@ -933,29 +933,29 @@ void you_teleport(bool is_hostile, mid_t teleportitis_source)
         canned_msg(MSG_STRANGE_STASIS);
     else if (you.duration[DUR_TELEPORT])
     {
-        mpr("You feel strangely stable.");
+        mpr((Options.language == lang_t::KO ? "이상할 정도로 안정된 느낌이 듭니다." : "You feel strangely stable."));
         you.duration[DUR_TELEPORT] = 0;
         you.props.erase(TELEPORTITIS_SOURCE);
     }
     else
     {
         if (teleportitis_source == MID_PLAYER)
-            mprf(MSGCH_WARN, "You feel space start to destabilise around you!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "주변 공간이 불안정해지기 시작합니다!" : "You feel space start to destabilise around you!"));
         else if (is_hostile)
-            mprf(MSGCH_WARN, "You feel a distressing malevolence running through your instability!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "공간의 불안정함 속에서 불길한 악의가 느껴집니다!" : "You feel a distressing malevolence running through your instability!"));
         else
-            mpr("You feel strangely unstable.");
+            mpr((Options.language == lang_t::KO ? "이상하게 불안정한 느낌이 듭니다." : "You feel strangely unstable."));
 
         int teleport_delay = 3 + random2(3);
 
         if (player_in_branch(BRANCH_ABYSS))
         {
-            mpr("You feel the power of the Abyss delaying your translocation!");
+            mpr((Options.language == lang_t::KO ? "심연의 힘이 공간 이동을 지연시키는 것이 느껴집니다!" : "You feel the power of the Abyss delaying your translocation!"));
             teleport_delay += 5 + random2(10);
         }
         else if (orb_limits_translocation())
         {
-            mprf(MSGCH_ORB, "You feel the Orb delaying your translocation!");
+            mprf(MSGCH_ORB, (Options.language == lang_t::KO ? "오브가 공간 이동을 지연시키는 것이 느껴집니다!" : "You feel the Orb delaying your translocation!"));
             teleport_delay += 5 + random2(5);
         }
 
@@ -1013,17 +1013,17 @@ static bool _real_teleport_cleanup(coord_def oldpos, coord_def newpos, bool quie
     if (newpos == oldpos)
     {
         if (!quiet)
-            mpr("Your surroundings flicker for a moment.");
+            mpr((Options.language == lang_t::KO ? "주변 풍경이 잠깐 깜박입니다." : "Your surroundings flicker for a moment."));
     }
     else if (you.see_cell(newpos))
     {
         if (!quiet)
-            mpr("Your surroundings seem slightly different.");
+            mpr((Options.language == lang_t::KO ? "주변 풍경이 조금 달라진 것 같습니다." : "Your surroundings seem slightly different."));
     }
     else
     {
         if (!quiet)
-            mpr("Your surroundings suddenly seem different.");
+            mpr((Options.language == lang_t::KO ? "주변 풍경이 갑자기 달라진 것 같습니다." : "Your surroundings suddenly seem different."));
         large_change = true;
     }
 
@@ -1098,7 +1098,7 @@ static bool _teleport_player(bool wizard_tele, string reason="")
 
         if (cell_vetoes_teleport(pos, true, wizard_tele))
         {
-            mprf(MSGCH_WARN, "Even you can't go there right now. Sorry!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "지금은 그곳으로 이동할 수 없습니다!" : "Even you can't go there right now. Sorry!"));
             return false;
         }
         else
@@ -1442,9 +1442,9 @@ spret cast_manifold_assault(actor& agent, int pow, bool fail, bool real,
         if (agent.is_player() && !katana_defender)
         {
             if (real && !found_unsafe_target)
-                mpr("You can't see anything to attack.");
+                mpr((Options.language == lang_t::KO ? "공격할 대상이 보이지 않습니다." : "You can't see anything to attack."));
             else if (real && found_unsafe_target)
-                mpr("You can't see anything you can safely attack.");
+                mpr((Options.language == lang_t::KO ? "안전하게 공격할 수 있는 대상이 보이지 않습니다." : "You can't see anything you can safely attack."));
         }
         return spret::abort;
     }
@@ -1468,7 +1468,7 @@ spret cast_manifold_assault(actor& agent, int pow, bool fail, bool real,
         if (weapon && is_unrandom_artefact(*weapon, UNRAND_AUTUMN_KATANA))
             mprf("Space folds impossibly around %s blade!", agent.name(DESC_ITS).c_str());
         else if (!(agent.is_monster() && agent.as_monster()->has_ench(ENCH_PARADOX_TOUCHED)))
-            mpr("Space momentarily warps into an impossible shape!");
+            mpr((Options.language == lang_t::KO ? "공간이 순간적으로 있을 수 없는 형태로 뒤틀립니다!" : "Space momentarily warps into an impossible shape!"));
     }
 
     shuffle_array(targets);
@@ -1538,7 +1538,7 @@ spret cast_apportation(int pow, bolt& beam, bool fail)
     const int item_idx = you.visible_igrd(where);
     if (item_idx == NON_ITEM || !in_bounds(where))
     {
-        mpr("You don't see anything to apport there.");
+        mpr((Options.language == lang_t::KO ? "그곳에는 끌어올 대상이 보이지 않습니다." : "You don't see anything to apport there."));
         return spret::abort;
     }
 
@@ -1546,7 +1546,7 @@ spret cast_apportation(int pow, bolt& beam, bool fail)
 
     if (item_is_stationary(item))
     {
-        mpr("You cannot apport that!");
+        mpr((Options.language == lang_t::KO ? "그것은 끌어올 수 없습니다!" : "You cannot apport that!"));
         return spret::abort;
     }
 
@@ -1613,7 +1613,7 @@ spret cast_apportation(int pow, bolt& beam, bool fail)
         if (location_on_path == dist)
         {
             // we've checked every position in beam.path_taken within max_dist
-            mpr("Not with that terrain in the way!");
+            mpr((Options.language == lang_t::KO ? "지형이 가로막고 있어 불가능합니다!" : "Not with that terrain in the way!"));
             return spret::success; // of a sort
         }
         new_spot = beam.path_taken[location_on_path];
@@ -1652,7 +1652,7 @@ spret cast_golubrias_passage(int pow, const coord_def& where, bool fail)
     if (grid_distance(where, you.pos())
         > spell_range(SPELL_GOLUBRIAS_PASSAGE, &you, pow))
     {
-        mpr("That's out of range!");
+        mpr((Options.language == lang_t::KO ? "사거리 밖입니다!" : "That's out of range!"));
         return spret::abort;
     }
 
