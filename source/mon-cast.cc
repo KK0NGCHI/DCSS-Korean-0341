@@ -893,10 +893,16 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
 
                 if (you.can_see(caster))
                 {
-                    mprf("%s shreds %s%s", caster.name(DESC_THE).c_str(),
-                        victim->name(DESC_THE).c_str(),
-                        final ? attack_strength_punctuation(final).c_str()
-                                : ", but does no damage.");
+                    if (Options.language == lang_t::KO)
+                        mprf("%s %s을(를) 갈기갈기 찢습니다%s",
+                             caster.name(DESC_THE).c_str(), victim->name(DESC_THE).c_str(),
+                             final ? attack_strength_punctuation(final).c_str()
+                                   : ", 하지만 피해를 주지 못합니다.");
+                    else
+                        mprf("%s shreds %s%s", caster.name(DESC_THE).c_str(),
+                             victim->name(DESC_THE).c_str(),
+                             final ? attack_strength_punctuation(final).c_str()
+                                   : ", but does no damage.");
                 }
 
                 if (final)
@@ -3910,10 +3916,13 @@ static bool _make_monster_angry(const monster* mon, monster* targ, bool actual)
         if (mon->type == MONS_QUEEN_BEE && (targ->type == MONS_KILLER_BEE ||
                                             targ->type == MONS_MELIAI))
         {
-            mprf("%s calls on %s to defend %s!",
-                mon->name(DESC_THE).c_str(),
-                targ->name(DESC_THE).c_str(),
-                mon->pronoun(PRONOUN_OBJECTIVE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s %s에게 자신을 지키라고 명령합니다!",
+                     mon->name(DESC_THE).c_str(), targ->name(DESC_THE).c_str());
+            else
+                mprf("%s calls on %s to defend %s!",
+                     mon->name(DESC_THE).c_str(), targ->name(DESC_THE).c_str(),
+                     mon->pronoun(PRONOUN_OBJECTIVE).c_str());
         }
         else
             mprf(Options.language == lang_t::KO ? "%s %s을(를) 부추깁니다!" : "%s goads %s on!",
@@ -6764,9 +6773,12 @@ static void _cast_resonance_strike(monster &caster, mon_spell_slot, bolt&)
 
     if (you.see_cell(target->pos()))
     {
-        mprf("A blast of power from the earth%s strikes %s!",
-             constructs_desc.c_str(),
-             target->name(DESC_THE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("대지에서 솟아난 강력한 충격파가 %s을(를) 강타합니다!",
+                 target->name(DESC_THE).c_str());
+        else
+            mprf("A blast of power from the earth%s strikes %s!",
+                 constructs_desc.c_str(), target->name(DESC_THE).c_str());
     }
     target->hurt(&caster, dam, BEAM_MISSILE, KILLED_BY_BEAM,
                  "", "by a resonance strike");
