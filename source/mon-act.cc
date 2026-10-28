@@ -3061,7 +3061,11 @@ static void _mons_open_door(monster& mons, const coord_def &pos)
 
         if (!you.can_see(mons))
         {
-            mprf((Options.language == lang_t::KO ? "보이지 않는 무언가가 %s" : "Something unseen %s"), open_str.c_str());
+            if (Options.language == lang_t::KO)
+                mpr(broken ? "보이지 않는 무언가가 문을 부숩니다."
+                           : "보이지 않는 무언가가 문을 엽니다.");
+            else
+                mprf("Something unseen %s", open_str.c_str());
             interrupt_activity(activity_interrupt::sense_monster);
         }
         else
