@@ -1760,20 +1760,20 @@ static string _category_string(const item_def &item, bool monster)
         // TODO(PF): maybe remove this whole section for util/monster summaries..?
         description += (Options.language == lang_t::KO ? "이 무기는 긴 사거리를 가집니다" : "It has an extended reach");
         if (!monster)
-            description += " (target with [<white>v</white>])";
+            description += (Options.language == lang_t::KO ? " ([<white>v</white>]로 조준)" : " (target with [<white>v</white>])");
         description += ". ";
         break;
     case SK_AXES:
         description += (Options.language == lang_t::KO ? "사용자에게 인접한 모든 적을 공격합니다" : "It hits all enemies adjacent to the wielder");
         if (!is_unrandom_artefact(item, UNRAND_WOE))
-            description += ", dealing less damage to those not targeted";
+            description += (Options.language == lang_t::KO ? ", 주 대상 외의 적에게는 피해량이 감소합니다" : ", dealing less damage to those not targeted");
         description += ". ";
         break;
     case SK_SHORT_BLADES:
         {
             description += make_stringf(
-                "It is%s good for stabbing helpless or unaware enemies. ",
-                (item.sub_type == WPN_DAGGER) ? " extremely" : "");
+                (Options.language == lang_t::KO ? "무방비하거나 눈치채지 못한 적을 기습하는 데%s 유용합니다. " : "It is%s good for stabbing helpless or unaware enemies. "),
+                (item.sub_type == WPN_DAGGER) ? (Options.language == lang_t::KO ? " 특히" : " extremely") : "");
 
         }
         break;
