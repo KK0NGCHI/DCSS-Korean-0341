@@ -890,9 +890,12 @@ void bolt::digging_wall_effect()
             else
                 wall = "rock";
 
-            mprf("%s %s shatters into small pieces.",
-                 agent() && agent()->is_player() ? "The" : "Some",
-                 wall.c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s 벽이 작은 조각으로 산산조각 납니다.", wall.c_str());
+            else
+                mprf("%s %s shatters into small pieces.",
+                     agent() && agent()->is_player() ? "The" : "Some",
+                     wall.c_str());
         }
     }
     else if (feat_is_wall(feat))
@@ -2329,8 +2332,11 @@ static void _malign_offering_effect(actor* victim, const actor* agent, int damag
         {
             if (ai->heal(max(1, damage * 2 / 3)) && you.can_see(**ai))
             {
-                mprf("%s %s healed.", ai->name(DESC_THE).c_str(),
-                                      ai->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s의 상처가 치유됩니다.", ai->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s healed.", ai->name(DESC_THE).c_str(),
+                         ai->conj_verb("are").c_str());
             }
         }
     }
@@ -2343,11 +2349,16 @@ static void _vampiric_draining_effect(actor& victim, actor& agent, int damage)
 
     if (you.can_see(victim) || you.can_see(agent))
     {
-        mprf("%s %s life force from %s%s",
-             agent.name(DESC_THE).c_str(),
-             agent.conj_verb("draw").c_str(),
-             victim.name(DESC_THE).c_str(),
-             attack_strength_punctuation(damage).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) %s에게서 생명력을 흡수합니다%s",
+                 agent.name(DESC_THE).c_str(), victim.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(damage).c_str());
+        else
+            mprf("%s %s life force from %s%s",
+                 agent.name(DESC_THE).c_str(),
+                 agent.conj_verb("draw").c_str(),
+                 victim.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(damage).c_str());
     }
 
     if (agent.is_player())

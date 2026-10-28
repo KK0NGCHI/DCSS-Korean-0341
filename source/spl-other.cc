@@ -199,7 +199,7 @@ bool try_recall(mid_t mid)
         return false;
     }
     recall_orders(mons);
-    simple_monster_message(*mons, " is recalled.");
+    simple_monster_message(*mons, (Options.language == lang_t::KO ? " 소환되어 돌아옵니다." : " is recalled."));
     mons->finalise_movement();
     // mons may have been killed, shafted, etc,
     // but they were still recalled!
@@ -732,8 +732,8 @@ void handle_spike_launcher(int delay)
     // Check if we've gotten too far away from our launcher
     if (!you.see_cell_no_trans(pos) || grid_distance(you.pos(), pos) > 3)
     {
-        mpr("Your spike launcher falls apart as you grow too distant to "
-            "maintain it.");
+        mpr((Options.language == lang_t::KO ? "너무 멀리 이동해 유지할 수 없게 되자 가시 발사기가 무너져 내립니다." : "Your spike launcher falls apart as you grow too distant to "
+            "maintain it."));
         revert_terrain_change(pos, TERRAIN_CHANGE_SPIKE_LAUNCHER);
         you.duration[DUR_SPIKE_LAUNCHER_ACTIVE] = 0;
         return;
