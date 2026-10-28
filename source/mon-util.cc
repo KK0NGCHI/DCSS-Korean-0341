@@ -4653,7 +4653,7 @@ string do_mon_str_replacements(const string& in_msg, const monster& mons,
 
     if (s_type < 0 || s_type >= NUM_LOUDNESS || s_type == NUM_SHOUTS)
     {
-        mprf(MSGCH_DIAGNOSTICS, "Invalid @says@ type.");
+        mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "올바르지 않은 @says@ 유형입니다." : "Invalid @says@ type."));
         msg = replace_all(msg, "@says@", "buggily says");
     }
     else
