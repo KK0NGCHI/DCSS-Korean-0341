@@ -6134,15 +6134,25 @@ static void _mons_mesmerise(monster& mons)
     {
         if (you.see_cell(mons.pos()))
         {
-            mprf(ch, "%s attempts to bespell %s!", mons.name(DESC_THE).c_str(), targ_msg.c_str());
+            if (Options.language == lang_t::KO)
+                mprf(ch, mons_aligned(&mons, &you)
+                         ? "%s 적들에게 매혹 마법을 시도합니다!"
+                         : "%s 당신에게 매혹 마법을 시도합니다!",
+                     mons.name(DESC_THE).c_str());
+            else
+                mprf(ch, "%s attempts to bespell %s!",
+                     mons.name(DESC_THE).c_str(), targ_msg.c_str());
             flash_view(UA_MONSTER, LIGHTMAGENTA);
         }
     }
     else
     {
-        mprf(ch, "%s draws you further into %s thrall.",
-                mons.name(DESC_THE).c_str(),
-                mons.pronoun(PRONOUN_POSSESSIVE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf(ch, "%s 당신을 더욱 깊이 매혹합니다!", mons.name(DESC_THE).c_str());
+        else
+            mprf(ch, "%s draws you further into %s thrall.",
+                 mons.name(DESC_THE).c_str(),
+                 mons.pronoun(PRONOUN_POSSESSIVE).c_str());
     }
 
     _mesmerise_los(mons, mons_spellpower(mons, SPELL_MESMERISE), false);
@@ -6247,7 +6257,9 @@ static int _mons_cause_fear(monster* mons, bool actual)
             retval = 1;
 
             if (you.can_see(**mi))
-                simple_monster_message(**mi, " looks frightened!");
+                simple_monster_message(**mi,
+                    Options.language == lang_t::KO
+                        ? " 겁에 질린 듯합니다!" : " looks frightened!");
 
             behaviour_event(*mi, ME_SCARE, mons);
         }
@@ -6886,7 +6898,9 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
         if (!sleep_pow)
         {
             mprf(chan, (Options.language == lang_t::KO ? "보이지 않는 곳에서 꿈의 먼지가 흩날립니다." : "Motes of dream dust float from an unseen source."));
-            mprf("%s is unaffected.", foe_name.c_str());
+            mprf(Options.language == lang_t::KO
+                     ? "%s 아무런 영향도 받지 않습니다." : "%s is unaffected.",
+                     foe_name.c_str());
             return;
         }
 
