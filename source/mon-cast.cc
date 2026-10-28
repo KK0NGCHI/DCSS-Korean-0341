@@ -6942,7 +6942,7 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
     else
         mprf(chan, "The dream sheep attempt%s to lull %s to sleep.",
              pluralize, foe_name.c_str());
-    mprf("%s is unaffected.", foe_name.c_str());
+    mprf(Options.language == lang_t::KO ? "%s 아무런 영향을 받지 않습니다." : "%s is unaffected.", foe_name.c_str());
 }
 
 static void _dream_sheep_sleep(monster& mons, actor& foe)
@@ -7874,7 +7874,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
     case SPELL_FLEETFOOT:
         mons->add_ench(ENCH_SWIFT);
-        simple_monster_message(*mons, " movement is quickened by the wind!", true);
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? "의 움직임이 바람의 힘으로 빨라집니다!" : " movement is quickened by the wind!"), true);
         return;
 
     case SPELL_SILENCE:
@@ -8582,7 +8582,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         return;
 
     case SPELL_DEFLECT_MISSILES:
-        simple_monster_message(*mons, " begins deflecting missiles!");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " 날아오는 투사체를 쳐내기 시작합니다!" : " begins deflecting missiles!"));
         mons->add_ench(mon_enchant(ENCH_DEFLECT_MISSILES, mons, INFINITE_DURATION));
         return;
 
