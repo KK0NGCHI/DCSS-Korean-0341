@@ -1758,22 +1758,22 @@ static string _category_string(const item_def &item, bool monster)
     {
     case SK_POLEARMS:
         // TODO(PF): maybe remove this whole section for util/monster summaries..?
-        description += "It has an extended reach";
+        description += (Options.language == lang_t::KO ? "이 무기는 긴 사거리를 가집니다" : "It has an extended reach");
         if (!monster)
-            description += " (target with [<white>v</white>])";
+            description += (Options.language == lang_t::KO ? " ([<white>v</white>]로 조준)" : " (target with [<white>v</white>])");
         description += ". ";
         break;
     case SK_AXES:
-        description += "It hits all enemies adjacent to the wielder";
+        description += (Options.language == lang_t::KO ? "사용자에게 인접한 모든 적을 공격합니다" : "It hits all enemies adjacent to the wielder");
         if (!is_unrandom_artefact(item, UNRAND_WOE))
-            description += ", dealing less damage to those not targeted";
+            description += (Options.language == lang_t::KO ? ", 주 대상 외의 적에게는 피해량이 감소합니다" : ", dealing less damage to those not targeted");
         description += ". ";
         break;
     case SK_SHORT_BLADES:
         {
             description += make_stringf(
-                "It is%s good for stabbing helpless or unaware enemies. ",
-                (item.sub_type == WPN_DAGGER) ? " extremely" : "");
+                (Options.language == lang_t::KO ? "무방비하거나 눈치채지 못한 적을 기습하는 데%s 유용합니다. " : "It is%s good for stabbing helpless or unaware enemies. "),
+                (item.sub_type == WPN_DAGGER) ? (Options.language == lang_t::KO ? " 특히" : " extremely") : "");
 
         }
         break;
@@ -5052,25 +5052,25 @@ static string _describe_draconian(const monster_info& mi)
         description += Options.language == lang_t::KO ? "입과 콧구멍에서 불꽃이 튀어 오릅니다." : "Sparks flare out of its mouth and nostrils.";
         break;
     case MONS_YELLOW_DRACONIAN:
-        description += "Acidic fumes swirl around it.";
+        description += (Options.language == lang_t::KO ? "산성 연기가 몸 주위를 감돕니다." : "Acidic fumes swirl around it.");
         break;
     case MONS_GREEN_DRACONIAN:
-        description += "Venom drips from its jaws and stinger tail.";
+        description += (Options.language == lang_t::KO ? "턱과 꼬리의 독침에서 독액이 떨어집니다." : "Venom drips from its jaws and stinger tail.");
         break;
     case MONS_PURPLE_DRACONIAN:
-        description += "Its outline shimmers with magical energy.";
+        description += (Options.language == lang_t::KO ? "몸의 윤곽이 마력으로 아른거립니다." : "Its outline shimmers with magical energy.");
         break;
     case MONS_RED_DRACONIAN:
-        description += "Smoke pours from its nostrils.";
+        description += (Options.language == lang_t::KO ? "콧구멍에서 연기가 뿜어져 나옵니다." : "Smoke pours from its nostrils.");
         break;
     case MONS_WHITE_DRACONIAN:
-        description += "Frost pours from its nostrils.";
+        description += (Options.language == lang_t::KO ? "콧구멍에서 서리가 뿜어져 나옵니다." : "Frost pours from its nostrils.");
         break;
     case MONS_GREY_DRACONIAN:
-        description += "Its scales and tail are adapted to the water.";
+        description += (Options.language == lang_t::KO ? "비늘과 꼬리가 수중 환경에 적응해 있습니다." : "Its scales and tail are adapted to the water.");
         break;
     case MONS_PALE_DRACONIAN:
-        description += "It is cloaked in a pall of superheated steam.";
+        description += (Options.language == lang_t::KO ? "뜨겁게 달아오른 수증기에 휩싸여 있습니다." : "It is cloaked in a pall of superheated steam.");
         break;
     default:
         break;
