@@ -390,7 +390,7 @@ spret cast_sign_of_ruin(actor& caster, coord_def target, int duration, bool chec
         else
         {
             if (you.can_see(*act))
-                mprf("The sign of ruin forms upon %s!", act->name(DESC_THE).c_str());
+                mprf((Options.language == lang_t::KO ? "%s에게 파멸의 징표가 새겨집니다!" : "The sign of ruin forms upon %s!"), act->name(DESC_THE).c_str());
 
             act->as_monster()->add_ench(mon_enchant(ENCH_SIGN_OF_RUIN, &caster,
                                                     random_range(duration, duration * 3 / 2)));
