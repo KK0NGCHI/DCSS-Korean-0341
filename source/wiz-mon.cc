@@ -779,7 +779,7 @@ void wizard_polymorph_monster(monster* mon)
 
     if (!mon->alive())
     {
-        mprf(MSGCH_ERROR, "Polymorph killed monster?");
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "변신 때문에 몬스터가 죽었습니까?" : "Polymorph killed monster?"));
         return;
     }
 
@@ -791,7 +791,7 @@ void wizard_polymorph_monster(monster* mon)
         change_monster_type(mon, type);
         if (!mon->alive())
         {
-            mprf(MSGCH_ERROR, "Polymorph killed monster?");
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "변신 때문에 몬스터가 죽었습니까?" : "Polymorph killed monster?"));
             return;
         }
 
@@ -839,7 +839,7 @@ void debug_pathfind(int idx)
             tiles.update_minimap(pos);
 #endif
         string path_str;
-        mpr("Here's the shortest path: ");
+        mpr((Options.language == lang_t::KO ? "최단 경로: " : "Here's the shortest path: "));
         for (coord_def pos : path)
             path_str += make_stringf("(%d, %d)  ", pos.x, pos.y);
         mpr(path_str);
@@ -849,7 +849,7 @@ void debug_pathfind(int idx)
         path = mp.calc_waypoints();
         path_str = "";
         mpr("");
-        mpr("And here are the needed waypoints: ");
+        mpr((Options.language == lang_t::KO ? "필요한 경유지: " : "And here are the needed waypoints: "));
         for (coord_def pos : path)
             path_str += make_stringf("(%d, %d)  ", pos.x, pos.y);
         mpr(path_str);
@@ -882,12 +882,12 @@ void debug_miscast(int target_index)
 
     if (!target->alive())
     {
-        mpr("Can't make already dead target miscast.");
+        mpr((Options.language == lang_t::KO ? "이미 죽은 대상에게는 주문 오발동을 일으킬 수 없습니다." : "Can't make already dead target miscast."));
         return;
     }
 
     char specs[100];
-    mprf(MSGCH_PROMPT, "Miscast which school or spell, by name? ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "오발동시킬 마법 학파 또는 주문 이름을 입력하세요: " : "Miscast which school or spell, by name? "));
     if (cancellable_get_line_autohist(specs, sizeof specs) || !*specs)
     {
         canned_msg(MSG_OK);
@@ -908,7 +908,7 @@ void debug_miscast(int target_index)
 
     if (spell == SPELL_NO_SPELL && school == spschool::none)
     {
-        mpr("No matching spell or spell school.");
+        mpr((Options.language == lang_t::KO ? "일치하는 주문이나 마법 학파가 없습니다." : "No matching spell or spell school."));
         return;
     }
     else if (spell != SPELL_NO_SPELL && school != spschool::none)
@@ -931,14 +931,14 @@ void debug_miscast(int target_index)
     }
 
     if (spell != SPELL_NO_SPELL)
-        mprf("Miscasting spell %s.", spell_title(spell));
+        mprf((Options.language == lang_t::KO ? "%s 주문을 오발동시킵니다." : "Miscasting spell %s."), spell_title(spell));
     else
-        mprf("Miscasting school %s.", spelltype_long_name(school));
+        mprf((Options.language == lang_t::KO ? "%s 학파의 주문을 오발동시킵니다." : "Miscasting school %s."), spelltype_long_name(school));
 
     if (spell != SPELL_NO_SPELL)
-        mprf(MSGCH_PROMPT, "Enter fail: ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "실패 수치를 입력하세요: " : "Enter fail: "));
     else
-        mprf(MSGCH_PROMPT, "Enter level, fail: ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "레벨과 실패 수치를 입력하세요: " : "Enter level, fail: "));
 
     if (cancellable_get_line_autohist(specs, sizeof specs) || !*specs)
     {
@@ -964,7 +964,7 @@ void debug_miscast(int target_index)
     {
         if (spell != SPELL_NO_SPELL)
         {
-            mpr("Can only enter spell level for schools, not spells.");
+            mpr((Options.language == lang_t::KO ? "주문 레벨은 개별 주문이 아닌 학파에만 지정할 수 있습니다." : "Can only enter spell level for schools, not spells."));
             return;
         }
 
@@ -976,7 +976,7 @@ void debug_miscast(int target_index)
         }
         else if (level > 9)
         {
-            mpr("Spell level can be at most 9.");
+            mpr((Options.language == lang_t::KO ? "주문 레벨은 최대 9입니다." : "Spell level can be at most 9."));
             return;
         }
     }
@@ -994,7 +994,7 @@ void debug_miscast(int target_index)
     {
         if (kbhit())
         {
-            mpr("Key pressed, interrupting miscast testing.");
+            mpr((Options.language == lang_t::KO ? "키 입력으로 주문 오발동 검사를 중단합니다." : "Key pressed, interrupting miscast testing."));
             getchm();
             break;
         }
