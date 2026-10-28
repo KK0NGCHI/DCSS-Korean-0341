@@ -59,7 +59,7 @@ spret kindle_blastmotes(int pow, bool fail)
 {
     if (cloud_at(you.pos()))
     {
-        mpr("There's already a cloud here!");
+        mpr((Options.language == lang_t::KO ? "이미 이곳에 구름이 있습니다!" : "There's already a cloud here!"));
         return spret::abort;
     }
 
@@ -186,7 +186,7 @@ void holy_flames(monster* caster, actor* defender)
     if (cloud_count)
     {
         if (defender->is_player())
-            mpr("Blessed fire suddenly surrounds you!");
+            mpr((Options.language == lang_t::KO ? "축복받은 불길이 갑자기 주위를 에워쌉니다!" : "Blessed fire suddenly surrounds you!"));
         else
             simple_monster_message(*defender->as_monster(),
                                    " is surrounded by blessed fire!");
@@ -211,12 +211,12 @@ spret scroll_of_poison(bool scroll_unknown)
 
     if (created > 0)
     {
-        mpr("The air fills with toxic fumes!");
+        mpr((Options.language == lang_t::KO ? "공기가 유독성 연기로 가득 찹니다!" : "The air fills with toxic fumes!"));
         return spret::success;
     }
     if (!scroll_unknown && !unknown_unseen)
     {
-        mpr("There's no open space to fill with poison.");
+        mpr((Options.language == lang_t::KO ? "독구름을 퍼뜨릴 빈 공간이 없습니다." : "There's no open space to fill with poison."));
         return spret::abort;
     }
     canned_msg(MSG_NOTHING_HAPPENS);
