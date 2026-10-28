@@ -5290,7 +5290,7 @@ bool handle_mon_spell(monster* mons)
 
             if (ignore_good_idea)
             {
-                mprf(MSGCH_GOD, "You redirect %s's attack!",
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "%s의 공격 방향을 바꿉니다!" : "You redirect %s's attack!"),
                      mons->name(DESC_THE).c_str());
             }
         }
@@ -7036,7 +7036,7 @@ static void _mons_vortex(monster *mons)
     if (you.can_see(*mons))
     {
         bool flying = mons->airborne();
-        mprf("A freezing vortex appears %s%s%s!",
+        mprf((Options.language == lang_t::KO ? "얼어붙는 소용돌이가 %s%s%s 나타납니다!" : "A freezing vortex appears %s%s%s!"),
              flying ? "around " : "and lifts ",
              mons->name(DESC_THE).c_str(),
              flying ? "" : " up!");
@@ -7727,7 +7727,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         if (foe->is_player())
             mpr("The long-dead rise up around you.");
         else if (you.can_see(*foe))
-            mprf("The long-dead rise up around %s.", foe->name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "오래전에 죽은 자들이 %s 주위에서 일어납니다." : "The long-dead rise up around %s."), foe->name(DESC_THE).c_str());
         _cast_vanquished_vanguard(mons);
         return;
 
