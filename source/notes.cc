@@ -183,7 +183,7 @@ static bool _is_noteworthy(const Note& note)
             break;
 
         default:
-            mpr("Buggy note passed: unknown note type");
+            mpr((Options.language == lang_t::KO ? "잘못된 기록이 전달되었습니다: 알 수 없는 기록 유형" : "Buggy note passed: unknown note type"));
             // Return now, rather than give a "Buggy note passed" message
             // for each note of the matching type in the note list.
             return true;
