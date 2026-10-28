@@ -1658,7 +1658,7 @@ spret cast_golubrias_passage(int pow, const coord_def& where, bool fail)
 
     if (cell_is_solid(where))
     {
-        mpr("You can't create a passage there!");
+        mpr((Options.language == lang_t::KO ? "그곳에는 통로를 만들 수 없습니다!" : "You can't create a passage there!"));
         return spret::abort;
     }
 
@@ -1715,7 +1715,7 @@ spret cast_golubrias_passage(int pow, const coord_def& where, bool fail)
     trap_def *trap2 = trap_at(randomized_here);
     if (!trap || !trap2)
     {
-        mpr("Something buggy happened.");
+        mpr((Options.language == lang_t::KO ? "예기치 못한 오류가 발생했습니다." : "Something buggy happened."));
         return spret::abort;
     }
 
@@ -1750,7 +1750,7 @@ spret cast_dispersal(int pow, bool fail)
             return _disperse_monster(mon, pow);
         }, you.pos(), radius))
     {
-        mpr("The air shimmers briefly around you.");
+        mpr((Options.language == lang_t::KO ? "주변의 공기가 잠깐 일렁입니다." : "The air shimmers briefly around you."));
     }
     return spret::success;
 }
@@ -1822,7 +1822,7 @@ spret cast_gravitas(int pow, const coord_def& where, bool fail)
     const int radius = gravitas_radius(pow);
 
     // XXX: If this is ever usable from elsewhere than the item, change this.
-    mpr("You rattle the tambourine.");
+    mpr((Options.language == lang_t::KO ? "탬버린을 흔듭니다." : "You rattle the tambourine."));
 
     mprf("Waves of gravity draw inward%s%s.",
          mons || feat_is_solid(env.grid(where)) ? " around " : "",
@@ -2016,7 +2016,7 @@ spret word_of_chaos(int pow, bool fail)
     fail_check();
     shuffle_array(targets);
 
-    mpr("You speak a word of chaos!");
+    mpr((Options.language == lang_t::KO ? "혼돈의 말을 외칩니다!" : "You speak a word of chaos!"));
     for (auto mons : targets)
     {
         if (mons->no_tele())
@@ -2050,7 +2050,7 @@ spret blinkbolt(int power, bolt &beam, bool fail)
     monster* mons = monster_at(beam.target);
     if (!mons || !you.can_see(*mons))
     {
-        mpr("You see nothing there to target!");
+        mpr((Options.language == lang_t::KO ? "그곳에는 겨냥할 대상이 보이지 않습니다!" : "You see nothing there to target!"));
         return spret::abort;
     }
 
@@ -2242,7 +2242,7 @@ spret cast_piledriver(const coord_def& target, int pow, bool fail)
     // There must be something invisible blocking all possible paths, so 'fail'.
     if (length == 0)
     {
-        mprf("Space begins to contract around you, but something blocks your path.");
+        mprf((Options.language == lang_t::KO ? "주변 공간이 수축하기 시작하지만 무언가가 길을 막습니다." : "Space begins to contract around you, but something blocks your path."));
         return spret::success;
     }
 
