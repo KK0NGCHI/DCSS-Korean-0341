@@ -806,7 +806,7 @@ static void _explore_find_target_square()
                                                       inacc.end()).c_str());
                 reasons.push_back(inacc_desc.c_str());
             }
-            mprf("Partly explored, %s.",
+            mprf((Options.language == lang_t::KO ? "일부만 탐색했습니다. %s." : "Partly explored, %s."),
                  comma_separated_line(reasons.begin(), reasons.end()).c_str());
         }
         stop_running();
@@ -887,7 +887,7 @@ void explore_pickup_event(int did_pickup, int tried_pickup)
 
                     if (!ap_disabled.empty())
                     {
-                        mprf("Autopickup disabled for %s.",
+                        mprf((Options.language == lang_t::KO ? "%s의 자동 줍기가 비활성화되었습니다." : "Autopickup disabled for %s."),
                              comma_separated_line(ap_disabled.begin(),
                                                   ap_disabled.end()).c_str());
                     }
@@ -1061,7 +1061,7 @@ command_type travel()
 
     if (Options.travel_key_stop && kbhit())
     {
-        mprf("Key pressed, stopping %s.", you.running.runmode_name().c_str());
+        mprf((Options.language == lang_t::KO ? "키가 입력되어 %s을(를) 중단합니다." : "Key pressed, stopping %s."), you.running.runmode_name().c_str());
         stop_running();
         return CMD_NO_CMD;
     }
@@ -1069,7 +1069,7 @@ command_type travel()
     // Excluded squares are only safe if marking stairs, i.e. another level.
     if (is_excluded(you.pos()) && !is_stair_exclusion(you.pos()))
     {
-        mprf("You're in a travel-excluded area, stopping %s.",
+        mprf((Options.language == lang_t::KO ? "자동 이동 제외 구역에 들어와 %s을(를) 중단합니다." : "You're in a travel-excluded area, stopping %s."),
              you.running.runmode_name().c_str());
         stop_running();
         return CMD_NO_CMD;
@@ -1158,13 +1158,13 @@ command_type travel()
 #ifdef DEBUG_EXPLORE
         if (you.running.pos == you.pos())
         {
-            mprf("Stopping explore at target %d,%d", you.running.pos.x, you.running.pos.y);
+            mprf((Options.language == lang_t::KO ? "목표 좌표 %d,%d에서 탐색을 중단합니다." : "Stopping explore at target %d,%d"), you.running.pos.x, you.running.pos.y);
             stop_running();
             return CMD_NO_CMD;
         }
         else if (!_is_valid_explore_target(you.running.pos))
         {
-            mprf("Stopping explore; everything in los of %d,%d is mapped", you.running.pos.x, you.running.pos.y);
+            mprf((Options.language == lang_t::KO ? "%d,%d의 시야 내 지형이 모두 확인되어 탐색을 중단합니다." : "Stopping explore; everything in los of %d,%d is mapped"), you.running.pos.x, you.running.pos.y);
             stop_running();
             return CMD_NO_CMD;
         }
@@ -2819,7 +2819,7 @@ static level_pos _prompt_travel_depth(const level_id &id, bool remember_targ)
     while (true)
     {
         msgwin_clear_temporary();
-        mprf(MSGCH_PROMPT, "What level of %s? "
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s의 몇 층으로 이동하시겠습니까? " : "What level of %s? ")
              "(default %s, ? - help) ",
              branches[target.id.branch].longname,
              _get_trans_travel_dest(target, true).c_str());
@@ -4349,7 +4349,7 @@ void TravelCache::delete_waypoint()
         clear_messages();
         mpr((Options.language == lang_t::KO ? "기존 경유지:" : "Existing waypoints:"));
         list_waypoints();
-        mprf(MSGCH_PROMPT, "Delete which waypoint? (* - delete all, Esc - exit) ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "삭제할 경유지를 선택하세요. (*: 모두 삭제, Esc: 취소) " : "Delete which waypoint? (* - delete all, Esc - exit) "));
 
         int key = getchm();
         if (key >= '0' && key <= '9')
@@ -4393,7 +4393,7 @@ void TravelCache::add_waypoint(int x, int y)
         mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "이 층의 경유지는 언제든 사라질 수 있습니다." : "Waypoints on this level may disappear at any time."));
     else if (!is_connected_branch(you.where_are_you))
         mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "이 층을 떠나면 경유지가 사라집니다." : "Waypoints will disappear once you leave this level."));
-    mprf(MSGCH_PROMPT, "Assign waypoint to what number? (0-9%s) ",
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "경유지 번호를 지정하세요. (0-9%s) " : "Assign waypoint to what number? (0-9%s) "),
          waypoints_exist? ", D - delete waypoint" : "");
 
     int keyin = toalower(get_ch());
@@ -4437,15 +4437,15 @@ void TravelCache::set_waypoint(int waynum, int x, int y)
     if (overwrite)
     {
         if (lid == old_lid) // same level
-            mprf("Waypoint %d re-assigned to %s.", waynum, new_dest.c_str());
+            mprf((Options.language == lang_t::KO ? "경유지 %d을(를) %s에 다시 지정했습니다." : "Waypoint %d re-assigned to %s."), waynum, new_dest.c_str());
         else
         {
-            mprf("Waypoint %d re-assigned from %s to %s.",
+            mprf((Options.language == lang_t::KO ? "경유지 %d의 위치를 %s에서 %s(으)로 변경했습니다." : "Waypoint %d re-assigned from %s to %s."),
                  waynum, old_dest.c_str(), new_dest.c_str());
         }
     }
     else
-        mprf("Waypoint %d assigned to %s.", waynum, new_dest.c_str());
+        mprf((Options.language == lang_t::KO ? "경유지 %d을(를) %s에 지정했습니다." : "Waypoint %d assigned to %s."), waynum, new_dest.c_str());
 
     update_waypoints();
 }
@@ -5162,7 +5162,7 @@ bool explore_discoveries::stop_explore() const
         mpr(msg);
 
     for (const string &marked : marked_feats)
-        mprf("Found %s", marked.c_str());
+        mprf((Options.language == lang_t::KO ? "발견: %s" : "Found %s"), marked.c_str());
 
     if (!es_flags)
         return marker_stop;
