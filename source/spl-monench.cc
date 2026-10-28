@@ -82,7 +82,7 @@ int englaciate(coord_def where, int pow, actor *agent)
 spret cast_englaciation(int pow, bool fail)
 {
     fail_check();
-    mpr("You radiate an aura of cold.");
+    mpr((Options.language == lang_t::KO ? "차가운 기운이 몸에서 뿜어져 나옵니다." : "You radiate an aura of cold."));
     apply_area_visible([pow] (coord_def where) {
         return englaciate(where, pow, &you);
     }, you.pos());
@@ -214,7 +214,7 @@ bool enfeeble_player(actor *source, int pow)
     if (res_margin > 0)
         canned_msg(MSG_YOU_PARTIALLY_RESIST);
 
-    mpr("You are enfeebled!");
+    mpr((Options.language == lang_t::KO ? "쇠약해졌습니다!" : "You are enfeebled!"));
     return true;
 }
 
@@ -384,7 +384,7 @@ spret cast_sign_of_ruin(actor& caster, coord_def target, int duration, bool chec
     {
         if (act->is_player())
         {
-            mprf(MSGCH_WARN, "The sign of ruin forms upon you!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "몸에 파멸의 징표가 새겨집니다!" : "The sign of ruin forms upon you!"));
             you.duration[DUR_SIGN_OF_RUIN] = random_range(duration, duration * 3 / 2);
         }
         else
