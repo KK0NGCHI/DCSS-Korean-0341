@@ -1015,7 +1015,7 @@ static bool _learn_spell_checks(spell_type specspell, bool wizard = false)
 {
     if (spell_removed(specspell))
     {
-        mprf("Sorry, the spell '%s' is gone!", spell_title(specspell));
+        mprf((Options.language == lang_t::KO ? "주문 '%s'이(가) 사라졌습니다." : "Sorry, the spell '%s' is gone!"), spell_title(specspell));
         return false;
     }
 
