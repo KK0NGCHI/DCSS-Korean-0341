@@ -6093,9 +6093,15 @@ static void _mesmerise_los(monster& agent, int power, bool check_hearing)
             if (you.can_see(*mons))
             {
                 if (mons->has_ench(ENCH_DAZED))
-                    mprf("%s trance deepens.", mons->name(DESC_ITS).c_str());
+                    mprf(Options.language == lang_t::KO
+                             ? "%s의 황홀경이 더욱 깊어집니다."
+                             : "%s trance deepens.",
+                         mons->name(DESC_ITS).c_str());
                 else
-                    mprf("%s is mesmerised by %s!", mons->name(DESC_THE).c_str(), agent.name(DESC_THE).c_str());
+                    mprf(Options.language == lang_t::KO
+                             ? "%s %s에게 매혹됩니다!"
+                             : "%s is mesmerised by %s!",
+                         mons->name(DESC_THE).c_str(), agent.name(DESC_THE).c_str());
             }
 
             if (!mons->has_ench(ENCH_DAZED))
@@ -7721,11 +7727,18 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
             tileidx_t tile = TILE_BOLT_DEFAULT_WHITE;
 
-            mprf("%s and strikes %s%s%s",
-                 airstrike_intensity_display(empty_space, tile).c_str(),
-                 foe->name(DESC_THE).c_str(),
-                 spell_cast == SPELL_SLEETSTRIKE ? " with frigid sleet" : "",
-                 attack_strength_punctuation(damage_taken).c_str());
+            if (Options.language == lang_t::KO)
+                mprf(spell_cast == SPELL_SLEETSTRIKE
+                         ? "차가운 진눈깨비를 동반한 강풍이 %s을(를) 강타합니다%s"
+                         : "거센 바람이 %s을(를) 강타합니다%s",
+                     foe->name(DESC_THE).c_str(),
+                     attack_strength_punctuation(damage_taken).c_str());
+            else
+                mprf("%s and strikes %s%s%s",
+                     airstrike_intensity_display(empty_space, tile).c_str(),
+                     foe->name(DESC_THE).c_str(),
+                     spell_cast == SPELL_SLEETSTRIKE ? " with frigid sleet" : "",
+                     attack_strength_punctuation(damage_taken).c_str());
 
             flash_tile(foe->pos(), WHITE, 60, tile);
         }
