@@ -125,7 +125,10 @@ spret cast_fire_storm(int pow, bolt &beam, bool fail)
     if (cell_is_solid(beam.target))
     {
         const char *feat = feat_type_name(env.grid(beam.target));
-        mprf("You can't place the storm on %s.", article_a(feat).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s 지형에는 폭풍을 배치할 수 없습니다.", feat);
+        else
+            mprf("You can't place the storm on %s.", article_a(feat).c_str());
         return spret::abort;
     }
 
@@ -308,9 +311,12 @@ spret cast_chain_lightning(int pow, const actor &caster, bool fail)
 
     if (you.can_see(caster))
     {
-        mprf("Lightning arcs from %s %s!",
-             apostrophise(caster.name(DESC_PLAIN)).c_str(),
-             caster.hand_name(true).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s의 손에서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
+        else
+            mprf("Lightning arcs from %s %s!",
+                 apostrophise(caster.name(DESC_PLAIN)).c_str(),
+                 caster.hand_name(true).c_str());
     }
 
     vector<arc_victim> victims;
@@ -895,10 +901,14 @@ spret cast_freeze(int pow, monster* mons, bool fail)
     const int orig_hurted = beam.damage.roll();
     // calculate the resist adjustment to punctuate
     int hurted = mons_adjust_flavoured(mons, beam, orig_hurted, false);
-    mprf("You freeze %s%s%s",
-         mons->name(DESC_THE).c_str(),
-         hurted ? "" : " but do no damage",
-         attack_strength_punctuation(hurted).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("%s을(를) 얼립니다%s%s", mons->name(DESC_THE).c_str(),
+             hurted ? "" : ", 하지만 피해를 주지 못합니다",
+             attack_strength_punctuation(hurted).c_str());
+    else
+        mprf("You freeze %s%s%s", mons->name(DESC_THE).c_str(),
+             hurted ? "" : " but do no damage",
+             attack_strength_punctuation(hurted).c_str());
 
     // print the resist message and expose to the cold
     mons_adjust_flavoured(mons, beam, orig_hurted);
@@ -1914,8 +1924,12 @@ spret cast_scorch(const actor& agent, int pow, bool fail)
     const int base_dam = scorch_damage(pow, true).roll();
     const int post_ac_dam = max(0, targ->apply_ac(base_dam));
 
-    mprf("Flames lash %s%s.", targ->name(DESC_THE).c_str(),
-         post_ac_dam ? "" : " but do no damage");
+    if (Options.language == lang_t::KO)
+        mprf("불길이 %s을(를) 후려칩니다%s.", targ->name(DESC_THE).c_str(),
+             post_ac_dam ? "" : ", 하지만 피해를 주지 못합니다");
+    else
+        mprf("Flames lash %s%s.", targ->name(DESC_THE).c_str(),
+             post_ac_dam ? "" : " but do no damage");
     const coord_def p = targ->pos();
     noisy(spell_effect_noise(SPELL_SCORCH), p);
 
