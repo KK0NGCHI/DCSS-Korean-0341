@@ -7228,7 +7228,7 @@ static void _cast_bestow_arms(monster& caster)
     if (you.can_see(caster))
     {
         mprf(MSGCH_MONSTER_SPELL,
-             Options.language == lang_t::KO ? "%s 아군에게 %s을(를) 무장시킵니다." : "%s arms its allies with %s.",
+             Options.language == lang_t::KO ? "%s 아군에게 %s을(를) 지급합니다." : "%s arms its allies with %s.",
              caster.name(DESC_THE).c_str(), pluralise(wpn.name(DESC_PLAIN, false, true)).c_str());
     }
 
