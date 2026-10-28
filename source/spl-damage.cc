@@ -462,7 +462,7 @@ spret cast_chain_spell(spell_type spell_cast, int pow,
         // Trying to limit message spamming here so we'll only mention
         // the chaos at the start or when it's out of LoS.
         if (first && see_source)
-            mpr("A swirling arc of seething chaos appears!");
+            mpr((Options.language == lang_t::KO ? "끓어오르는 혼돈의 소용돌이치는 전격이 나타납니다!" : "A swirling arc of seething chaos appears!"));
         first = false;
 
         if (see_source && !see_targ)
@@ -1765,8 +1765,8 @@ static int _shatter_player(int pow, actor *wielder, bool devastator = false)
 
     if (damage > 0)
     {
-        mprf(damage > 15 ? "You shudder from the earth-shattering force%s"
-                        : "You shudder%s",
+        mprf(damage > 15 ? (Options.language == lang_t::KO ? "대지를 뒤흔드는 충격에 몸이 떨립니다%s" : "You shudder from the earth-shattering force%s")
+                        : (Options.language == lang_t::KO ? "몸이 떨립니다%s" : "You shudder%s"),
              attack_strength_punctuation(damage).c_str());
         if (devastator)
             ouch(damage, KILLED_BY_MONSTER, wielder->mid);
@@ -3014,7 +3014,7 @@ void do_eel_melee_jolt(coord_def pos)
 
 void do_eel_arcjolt()
 {
-    mprf("Your %s violently discharge electricity!", you.hand_name(true).c_str());
+    mprf((Options.language == lang_t::KO ? "%s에서 전기가 격렬하게 방출됩니다!" : "Your %s violently discharge electricity!"), you.hand_name(true).c_str());
 
     vector<coord_def> to_check;
     to_check.push_back(you.pos());
@@ -5212,13 +5212,17 @@ void gain_grave_claw_soul(bool silent, bool wizard)
 
         if (charges == GRAVE_CLAW_MAX_CHARGES)
         {
-            mprf(MSGCH_DURATION, "You have harvested as much death for "
-                                 "Grave Claw as you can hold at once.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO
+                                  ? "무덤의 발톱을 위해 저장할 수 있는 죽음의 힘을 최대한 모았습니다."
+                                  : "You have harvested as much death for "
+                                    "Grave Claw as you can hold at once."));
         }
         else
         {
-            mprf(MSGCH_DURATION, "You have harvested enough death to cast "
-                                 "Grave Claw an additional time.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO
+                                  ? "무덤의 발톱을 1회 더 시전할 만큼 죽음의 힘을 모았습니다."
+                                  : "You have harvested enough death to cast "
+                                    "Grave Claw an additional time."));
         }
     }
 }
@@ -5256,7 +5260,10 @@ void unleash_fortress_blast(actor& caster)
             desc = "a very strong";
         else if (power > 80)
             desc = "a strong";
-        mprf(MSGCH_DURATION, "You unleash %s concussive blast!", desc.c_str());
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_DURATION, "강력한 충격파를 방출합니다!");
+        else
+            mprf(MSGCH_DURATION, "You unleash %s concussive blast!", desc.c_str());
     }
 
     bolt blast;
