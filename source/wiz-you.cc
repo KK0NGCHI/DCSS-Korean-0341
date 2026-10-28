@@ -368,7 +368,7 @@ void wizard_set_gold()
     else
         you.set_gold(max(atoi(buf), 0));
 
-    mprf("You now have %d gold piece%s.", you.gold, you.gold != 1 ? "s" : "");
+    mprf(Options.language == lang_t::KO ? "현재 금화 %d개를 보유하고 있습니다.%s" : "You now have %d gold piece%s.", you.gold, Options.language == lang_t::KO ? "" : (you.gold != 1 ? "s" : ""));
 }
 
 void wizard_set_piety()
