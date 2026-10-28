@@ -504,7 +504,7 @@ static void _spread_fire(const cloud_struct &cloud)
             continue;
 
         if (you.see_cell(*ai))
-            mpr("The forest fire spreads!");
+            mpr((Options.language == lang_t::KO ? "산불이 번져 나갑니다!" : "The forest fire spreads!"));
         destroy_wall(*ai);
         env.cloud[*ai] = cloud;
         env.cloud[*ai].pos = *ai;
@@ -675,7 +675,7 @@ static void _maybe_leave_water(const coord_def pos)
         return;
 
     if (you.pos() == pos && !you.airborne())
-        mpr("The rain has left you waist-deep in water!");
+        mpr((Options.language == lang_t::KO ? "빗물에 허리까지 잠겼습니다!" : "The rain has left you waist-deep in water!"));
     temp_change_terrain(pos, DNGN_SHALLOW_WATER,
                         random_range(500, 1000),
                         TERRAIN_CHANGE_FLOOD);
@@ -1091,7 +1091,7 @@ static bool _actor_apply_cloud_side_effects(actor *act,
         {
             if (1 + random2(27) >= you.experience_level)
             {
-                mpr("You choke on the stench!");
+                mpr((Options.language == lang_t::KO ? "악취에 숨이 막힙니다!" : "You choke on the stench!"));
                 // effectively one or two turns, since it will be
                 // decremented right away
                 confuse_player(random_range(2, 3));
@@ -1161,7 +1161,7 @@ static bool _actor_apply_cloud_side_effects(actor *act,
     case CLOUD_MUTAGENIC:
         if (player)
         {
-            mpr("The mutagenic energy flows into you.");
+            mpr((Options.language == lang_t::KO ? "변이 에너지가 몸속으로 흘러듭니다." : "The mutagenic energy flows into you."));
             // It's possible that you got trampled into the mutagenic cloud
             // and it's not your fault... so we'll say it's not intentional.
             // (it's quite bad in any case, so players won't scum, probably.)
@@ -1179,7 +1179,7 @@ static bool _actor_apply_cloud_side_effects(actor *act,
     case CLOUD_ALCOHOL:
         if (player && (coinflip()))
         {
-            mpr("You feel dizzy.");
+            mpr((Options.language == lang_t::KO ? "어지러움을 느낍니다." : "You feel dizzy."));
             you.increase_duration(DUR_VERTIGO, random_range(7, 11), 50);
             return true;
         }
@@ -1944,7 +1944,7 @@ void start_still_winds()
 void end_still_winds()
 {
     env.level_state &= ~LSTATE_STILL_WINDS;
-    mpr("The air resumes its normal movements.");
+    mpr((Options.language == lang_t::KO ? "공기가 다시 정상적으로 흐르기 시작합니다." : "The air resumes its normal movements."));
 }
 
 /**

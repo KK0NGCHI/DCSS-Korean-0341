@@ -88,7 +88,7 @@ bool attribute_increase()
         || innate_stat(STAT_INT) != you.intel()
         || innate_stat(STAT_DEX) != you.dex())
     {
-        mprf(MSGCH_PROMPT, "Your base attributes are Str %d, Int %d, Dex %d.",
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "기본 능력치: 힘 %d, 지능 %d, 민첩 %d." : "Your base attributes are Str %d, Int %d, Dex %d."),
              innate_stat(STAT_STR),
              innate_stat(STAT_INT),
              innate_stat(STAT_DEX));
@@ -152,7 +152,7 @@ bool attribute_increase()
         case 's':
         case 'i':
         case 'd':
-            mprf(MSGCH_PROMPT, "Uppercase letters only, please.");
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "대문자만 입력하세요." : "Uppercase letters only, please."));
             break;
         }
     }
@@ -392,7 +392,7 @@ static int _stat_modifier(stat_type stat, bool innate_only)
     case STAT_INT: return _int_modifier(innate_only);
     case STAT_DEX: return _dex_modifier(innate_only);
     default:
-        mprf(MSGCH_ERROR, "Bad stat: %d", stat);
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "잘못된 능력치: %d" : "Bad stat: %d"), stat);
         return 0;
     }
 }
@@ -414,7 +414,7 @@ static void _handle_stat_change(stat_type stat)
     }
     else if (was_zero && val > 0)
     {
-        mprf(MSGCH_RECOVERY, "You have recovered your %s.", stat_desc(stat, SD_NAME));
+        mprf(MSGCH_RECOVERY, (Options.language == lang_t::KO ? "%s 능력치가 회복되었습니다." : "You have recovered your %s."), stat_desc(stat, SD_NAME));
         you.attribute[ATTR_STAT_ZERO] &= ~(1 << (int)stat);
     }
 

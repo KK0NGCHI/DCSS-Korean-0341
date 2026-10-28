@@ -3450,7 +3450,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     if (mons.has_ench(ENCH_RIMEBLIGHT) && !was_banished && !mons_reset)
     {
         if (you.can_see(mons))
-            mprf("Plague seeps from the dead %s.", mons.name(DESC_PLAIN).c_str());
+            mprf((Options.language == lang_t::KO ? "죽은 %s에게서 역병이 스며 나옵니다." : "Plague seeps from the dead %s."), mons.name(DESC_PLAIN).c_str());
 
         // Potentially infect everyone around the dead monster.
         // (100% chance at range 1, 50% chance at range 2)

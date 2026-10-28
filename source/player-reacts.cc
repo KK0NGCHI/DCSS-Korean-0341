@@ -166,7 +166,7 @@ static bool _decrement_a_duration(duration_type dur, int delay,
             if (you.duration[dur] <= 0)
                 you.duration[dur] = 1;
             if (need_expiration_warning(dur))
-                mprf(MSGCH_DANGER, "Careful! %s", expmsg);
+                mprf(MSGCH_DANGER, (Options.language == lang_t::KO ? "주의! %s" : "Careful! %s"), expmsg);
             else
                 mprf(chan, "%s", expmsg);
         }
@@ -650,7 +650,7 @@ static void _handle_recitation(int step)
             if (!closure.empty())
                 speech << ' ' << closure;
         }
-        mprf(MSGCH_DURATION, "You finish reciting %s", speech.str().c_str());
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "%s 낭송을 마칩니다." : "You finish reciting %s"), speech.str().c_str());
         you.set_duration(DUR_RECITE_COOLDOWN, 1 + random2(10) + random2(30));
     }
 }
@@ -1094,7 +1094,7 @@ static void _decrement_durations()
 
     if (you.duration[DUR_EELJOLT_COOLDOWN] && you.hp == you.hp_max)
     {
-        mprf(MSGCH_DURATION, "Your %s have fully recharged.", you.hand_name(true).c_str());
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "%s의 충전이 완료되었습니다." : "Your %s have fully recharged."), you.hand_name(true).c_str());
         you.duration[DUR_EELJOLT_COOLDOWN] = 0;
     }
 

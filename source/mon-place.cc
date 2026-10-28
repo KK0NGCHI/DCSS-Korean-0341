@@ -3202,7 +3202,7 @@ monster* create_monster(mgen_data mg, bool fail_msg)
             fail_msg = false;
 
         if (!summd && fail_msg && you.see_cell(mg.pos))
-            mpr("You see a puff of smoke.");
+            mpr((Options.language == lang_t::KO ? "연기가 한 줄기 피어오르는 것이 보입니다." : "You see a puff of smoke."));
     }
 
     return summd;

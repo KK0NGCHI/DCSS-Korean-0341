@@ -679,7 +679,7 @@ void seen_monster(monster* mons, bool do_encounter_message)
         && coinflip()
         && mons->get_experience_level() >= random2(you.experience_level))
     {
-        mprf(MSGCH_GOD, GOD_GOZAG, "Gozag incites %s against you.",
+        mprf(MSGCH_GOD, GOD_GOZAG, (Options.language == lang_t::KO ? "고자그가 %s을(를) 부추겨 당신을 공격하게 합니다." : "Gozag incites %s against you."),
                 mons->name(DESC_THE).c_str());
         gozag_incite(mons);
     }

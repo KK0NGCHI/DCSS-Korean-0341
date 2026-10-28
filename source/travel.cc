@@ -772,7 +772,7 @@ static void _explore_find_target_square()
         const bool unknown_trans = _level_has_unknown_transporters();
         if (!estatus && !unknown_trans)
         {
-            mpr("Done exploring.");
+            mpr((Options.language == lang_t::KO ? "탐색을 마쳤습니다." : "Done exploring."));
             learned_something_new(HINT_DONE_EXPLORE);
         }
         else
@@ -2920,12 +2920,12 @@ static void _start_translevel_travel()
         if (level_target.pos.x == -1 &&
             level_target.id.depth == branches[level_target.id.branch].numlevels)
         {
-            mpr("You're already at the bottom of this branch!");
+            mpr((Options.language == lang_t::KO ? "이미 이 구역의 가장 아래층에 있습니다!" : "You're already at the bottom of this branch!"));
             return;
         }
         else if (level_target.pos.x == -1 || level_target.pos == you.pos())
         {
-            mpr("You're already here!");
+            mpr((Options.language == lang_t::KO ? "이미 이곳에 있습니다!" : "You're already here!"));
             return;
         }
     }
@@ -2958,15 +2958,15 @@ void start_translevel_travel(const level_pos &pos)
     if (!can_travel_to(pos.id))
     {
         if (!can_travel_interlevel())
-            mpr("Sorry, you can't auto-travel out of here.");
+            mpr((Options.language == lang_t::KO ? "이곳에서는 자동 이동으로 빠져나갈 수 없습니다." : "Sorry, you can't auto-travel out of here."));
         else
-            mpr("Sorry, I don't know how to get there.");
+            mpr((Options.language == lang_t::KO ? "그곳까지 가는 길을 찾을 수 없습니다." : "Sorry, I don't know how to get there."));
         return;
     }
 
     if (pos.is_valid() && !in_bounds(pos.pos))
     {
-        mpr("Sorry, I don't know how to get there.");
+        mpr((Options.language == lang_t::KO ? "그곳까지 가는 길을 찾을 수 없습니다." : "Sorry, I don't know how to get there."));
         return;
     }
 
@@ -2995,7 +2995,7 @@ void start_translevel_travel(const level_pos &pos)
         {
             if (!_loadlev_populate_stair_distances(pos))
             {
-                mpr("Level memory is imperfect, aborting.");
+                mpr((Options.language == lang_t::KO ? "층에 대한 기억이 불완전하여 중단합니다." : "Level memory is imperfect, aborting."));
                 return ;
             }
         }
@@ -3398,7 +3398,7 @@ static bool _find_transtravel_square(const level_pos &target, bool verbose)
         return false;
     if (maybe_traversable)
     {
-        mpr("Sorry, I don't know how to get there.");
+        mpr((Options.language == lang_t::KO ? "그곳까지 가는 길을 찾을 수 없습니다." : "Sorry, I don't know how to get there."));
         return false;
     }
 
@@ -3406,7 +3406,7 @@ static bool _find_transtravel_square(const level_pos &target, bool verbose)
     coord_def closest_alt = _find_closest_adj(target.pos);
     if (closest_alt.origin())
     {
-        mpr("Sorry, I don't know how to traverse that place.");
+        mpr((Options.language == lang_t::KO ? "그곳을 통과할 방법을 찾을 수 없습니다." : "Sorry, I don't know how to traverse that place."));
         return false;
     }
 
@@ -3481,7 +3481,7 @@ void start_explore(bool grab_items, bool skip_autorest)
 void do_explore_cmd(bool skip_autorest)
 {
     if (you.berserk())
-        mpr("Calm down first, please.");
+        mpr((Options.language == lang_t::KO ? "먼저 진정해야 합니다." : "Calm down first, please."));
     else                        // Start exploring
         start_explore(Options.explore_greedy, skip_autorest);
 }
@@ -4347,7 +4347,7 @@ void TravelCache::delete_waypoint()
     while (get_waypoint_count())
     {
         clear_messages();
-        mpr("Existing waypoints:");
+        mpr((Options.language == lang_t::KO ? "기존 경유지:" : "Existing waypoints:"));
         list_waypoints();
         mprf(MSGCH_PROMPT, "Delete which waypoint? (* - delete all, Esc - exit) ");
 
@@ -4375,7 +4375,7 @@ void TravelCache::delete_waypoint()
     }
 
     clear_messages();
-    mpr("All waypoints deleted. Have a nice day!");
+    mpr((Options.language == lang_t::KO ? "모든 경유지를 삭제했습니다." : "All waypoints deleted. Have a nice day!"));
 }
 
 void TravelCache::add_waypoint(int x, int y)
@@ -4385,14 +4385,14 @@ void TravelCache::add_waypoint(int x, int y)
     const bool waypoints_exist = get_waypoint_count();
     if (waypoints_exist)
     {
-        mpr("Existing waypoints:");
+        mpr((Options.language == lang_t::KO ? "기존 경유지:" : "Existing waypoints:"));
         list_waypoints();
     }
 
     if (you.where_are_you == BRANCH_ABYSS)
-        mprf(MSGCH_PROMPT, "Waypoints on this level may disappear at any time.");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "이 층의 경유지는 언제든 사라질 수 있습니다." : "Waypoints on this level may disappear at any time."));
     else if (!is_connected_branch(you.where_are_you))
-        mprf(MSGCH_PROMPT, "Waypoints will disappear once you leave this level.");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "이 층을 떠나면 경유지가 사라집니다." : "Waypoints will disappear once you leave this level."));
     mprf(MSGCH_PROMPT, "Assign waypoint to what number? (0-9%s) ",
          waypoints_exist? ", D - delete waypoint" : "");
 
@@ -4716,7 +4716,7 @@ bool runrest::run_should_stop() const
     {
 #ifndef USE_TILE_LOCAL
         // XXX: Remove this once exclusions are visible.
-        mprf(MSGCH_WARN, "Stopped running for exclusion.");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "제외 구역 때문에 자동 이동을 중단했습니다." : "Stopped running for exclusion."));
 #endif
         return true;
     }
@@ -5188,12 +5188,12 @@ void do_interlevel_travel()
     {
         if (you.running.pos == you.pos())
         {
-            mpr("You're already here!");
+            mpr((Options.language == lang_t::KO ? "이미 이곳에 있습니다!" : "You're already here!"));
             return;
         }
         else if (!you.running.pos.x || !you.running.pos.y)
         {
-            mpr("Sorry, you can't auto-travel out of here.");
+            mpr((Options.language == lang_t::KO ? "이곳에서는 자동 이동으로 빠져나갈 수 없습니다." : "Sorry, you can't auto-travel out of here."));
             return;
         }
 
