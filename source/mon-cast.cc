@@ -6904,8 +6904,9 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
             return;
         }
 
-        mprf(chan,
-             "As motes of dream dust float from an unseen source, %s falls asleep.",
+        mprf(chan, Options.language == lang_t::KO
+                 ? "보이지 않는 곳에서 꿈의 먼지가 흩날리자 %s 잠에 빠집니다."
+                 : "As motes of dream dust float from an unseen source, %s falls asleep.",
              foe_name.c_str());
         return;
     }
@@ -6913,18 +6914,19 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
     const char* pluralize = num_sheep == 1 ? "s": "";
     if (sleep_pow)
     {
-        mprf(chan,
-             "As the sheep sparkle%s and sway%s, %s falls asleep.",
-             pluralize,
-             pluralize,
-             foe_name.c_str());
+        if (Options.language == lang_t::KO)
+            mprf(chan, "꿈의 양들이 반짝이며 몸을 흔들자 %s 잠에 빠집니다.", foe_name.c_str());
+        else
+            mprf(chan, "As the sheep sparkle%s and sway%s, %s falls asleep.",
+                 pluralize, pluralize, foe_name.c_str());
         return;
     }
 
-    mprf(chan,
-         "The dream sheep attempt%s to lull %s to sleep.",
-         pluralize,
-         foe_name.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(chan, "꿈의 양들이 %s 잠재우려 합니다.", foe_name.c_str());
+    else
+        mprf(chan, "The dream sheep attempt%s to lull %s to sleep.",
+             pluralize, foe_name.c_str());
     mprf("%s is unaffected.", foe_name.c_str());
 }
 
