@@ -212,7 +212,7 @@ static int _cull_items()
 
     // XXX: Not the prettiest of messages, but the player
     // deserves to know whenever this kicks in. -- bwr
-    mprf(MSGCH_WARN, "Too many items on level, removing some.");
+    mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "이 층에 아이템이 너무 많아 일부를 제거합니다." : "Too many items on level, removing some."));
 
     // Rules:
     //  1. Don't cleanup anything nearby the player
@@ -1087,7 +1087,7 @@ void pickup_menu(int item_link)
                 // floor.
                 if (!move_item_to_inv(j, num_to_take))
                 {
-                    pickup_warning = "You can't carry that many items.";
+                    pickup_warning = (Options.language == lang_t::KO ? "그렇게 많은 아이템을 들고 다닐 수 없습니다." : "You can't carry that many items.");
                     if (env.item[j].defined())
                         env.item[j].flags = oldflags;
                 }
@@ -1384,7 +1384,7 @@ bool pickup_single_item(int link, int qty)
     item_def* item = &env.item[link];
     if (item_is_stationary(env.item[link]))
     {
-        mpr("You can't pick that up.");
+        mpr((Options.language == lang_t::KO ? "그것은 주울 수 없습니다." : "You can't pick that up."));
         return false;
     }
     if (item->base_type == OBJ_GOLD && !qty && !i_feel_safe()
@@ -1428,7 +1428,7 @@ bool pickup_single_item(int link, int qty)
 
     if (!pickup_succ)
     {
-        mpr("You can't carry that many items.");
+        mpr((Options.language == lang_t::KO ? "그렇게 많은 아이템을 들고 다닐 수 없습니다." : "You can't carry that many items."));
         learned_something_new(HINT_FULL_INVENTORY);
         return false;
     }
@@ -1463,7 +1463,7 @@ void pickup(bool partial_quantity)
     you.last_pickup.clear();
 
     if (o == NON_ITEM)
-        mpr("There are no items here.");
+        mpr((Options.language == lang_t::KO ? "이곳에는 아이템이 없습니다." : "There are no items here."));
     else if (num_items == 1) // just one movable item?
     {
         // Get the link to the movable item in the pile.
@@ -1482,9 +1482,9 @@ void pickup(bool partial_quantity)
     {
         int next;
         if (num_items == 0)
-            mpr("There are no objects that can be picked up here.");
+            mpr((Options.language == lang_t::KO ? "이곳에는 주울 수 있는 물건이 없습니다." : "There are no objects that can be picked up here."));
         else
-            mpr("There are several objects here.");
+            mpr((Options.language == lang_t::KO ? "이곳에는 물건이 여러 개 있습니다." : "There are several objects here."));
         string pickup_warning;
         bool any_selectable = false;
         while (o != NON_ITEM)
@@ -1532,7 +1532,7 @@ void pickup(bool partial_quantity)
                 // attempt to actually pick up the object.
                 if (!move_item_to_inv(o, num_to_take))
                 {
-                    pickup_warning = "You can't carry that many items.";
+                    pickup_warning = (Options.language == lang_t::KO ? "그렇게 많은 아이템을 들고 다닐 수 없습니다." : "You can't carry that many items.");
                     env.item[o].flags = old_flags;
                 }
             }
@@ -1765,7 +1765,7 @@ static bool _put_item_in_inv(item_def& it, int quant_got, bool quiet, bool& put_
     if (item_is_stationary(it))
     {
         if (!quiet)
-            mpr("You can't pick that up.");
+            mpr((Options.language == lang_t::KO ? "그것은 주울 수 없습니다." : "You can't pick that up."));
         // Fake a successful pickup (return 1), so we can continue to
         // pick up anything else that might be on this square.
         return true;
@@ -1855,7 +1855,7 @@ static void _get_book(item_def& it)
         mprf("You pick up %s and begin reading...", it.name(DESC_A).c_str());
 
         if (!library_add_spells(spells_in_book(it)))
-            mpr("Unfortunately, you learned nothing new or useful.");
+            mpr((Options.language == lang_t::KO ? "안타깝게도 새롭거나 유용한 지식을 얻지 못했습니다." : "Unfortunately, you learned nothing new or useful."));
 
         taken_new_item(it.base_type);
 
@@ -1938,7 +1938,7 @@ static void _get_rune(const item_def& it, bool quiet)
              rune_type_name(it.sub_type));
         int nrunes = runes_in_pack();
         if (nrunes >= you.obtainable_runes)
-            mpr("You have collected all the runes! Now go and win!");
+            mpr((Options.language == lang_t::KO ? "모든 룬을 모았습니다! 이제 승리하러 가세요!" : "You have collected all the runes! Now go and win!"));
         else if (nrunes == ZOT_ENTRY_RUNES)
         {
             // might be inappropriate in new Sprints, please change it then
@@ -1948,15 +1948,15 @@ static void _get_rune(const item_def& it, bool quiet)
         else if (nrunes > 1)
         {
             if (player_in_branch(BRANCH_PANDEMONIUM) && _got_all_pan_runes())
-                mpr("You've emptied out Pandemonium! Nothing left here but demons.");
+                mpr((Options.language == lang_t::KO ? "판데모니엄에서 얻을 것은 모두 얻었습니다! 이제 악마들만 남았습니다." : "You've emptied out Pandemonium! Nothing left here but demons."));
             mprf("You now have %d runes.", nrunes);
         }
 
-        mpr("Press } to see all the runes you have collected.");
+        mpr((Options.language == lang_t::KO ? "모은 룬을 모두 보려면 } 키를 누르세요." : "Press } to see all the runes you have collected."));
     }
 
     if (it.sub_type == RUNE_ABYSSAL)
-        mpr("You feel the abyssal rune guiding you out of this place.");
+        mpr((Options.language == lang_t::KO ? "심연의 룬이 이곳을 빠져나갈 길을 알려주는 듯합니다." : "You feel the abyssal rune guiding you out of this place."));
 }
 
 static bool _is_disabled_gem(gem_type gem)
@@ -2008,7 +2008,7 @@ static void _get_gem(const item_def& it, bool quiet)
         mprf("You've found all the gems! Together, they sparkle an otherworldly %s!",
              getSpeakString("misc_colour").c_str());
     }
-    mpr("Press } and ! to see all the gems you have collected.");
+    mpr((Options.language == lang_t::KO ? "모은 보석을 모두 보려면 } 키와 ! 키를 누르세요." : "Press } and ! to see all the gems you have collected."));
     print_gem_warnings(it.sub_type, 0);
 }
 
@@ -2019,10 +2019,10 @@ static void _get_orb()
 {
     run_animation(ANIMATION_ORB, UA_PICKUP);
 
-    mprf(MSGCH_ORB, "You pick up the Orb of Zot!");
+    mprf(MSGCH_ORB, (Options.language == lang_t::KO ? "조트의 오브를 주웠습니다!" : "You pick up the Orb of Zot!"));
 
     if (bezotted())
-        mpr("Zot can harm you no longer.");
+        mpr((Options.language == lang_t::KO ? "조트는 더 이상 당신을 해칠 수 없습니다." : "Zot can harm you no longer."));
 
     env.orb_pos = you.pos(); // can be wrong in wizmode
     orb_pickup_noise(you.pos(), 30);
@@ -2844,14 +2844,14 @@ bool drop_item(int item_dropped, int quant_drop)
     {
         if (item.base_type == OBJ_GIZMOS)
         {
-            mpr("That is permanently installed in your exoskeleton.");
+            mpr((Options.language == lang_t::KO ? "그것은 외골격에 영구적으로 장착되어 있습니다." : "That is permanently installed in your exoskeleton."));
             return false;
         }
 
         const bool is_wpn = is_weapon(item);
         if (!Options.easy_unequip && !is_wpn)
         {
-            mprf(MSGCH_PROMPT, "You will have to take that off first.");
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "먼저 그것을 벗어야 합니다." : "You will have to take that off first."));
             return false;
         }
 
@@ -2878,7 +2878,7 @@ bool drop_item(int item_dropped, int quant_drop)
 
     if (copy_item_to_grid(item, you.pos(), quant_drop, true, true) == NON_ITEM)
     {
-        mpr("Too many items on this level, not dropping the item.");
+        mpr((Options.language == lang_t::KO ? "이 층에 아이템이 너무 많아 물건을 내려놓을 수 없습니다." : "Too many items on this level, not dropping the item."));
         return false;
     }
 
@@ -2912,7 +2912,7 @@ void drop_last()
     }
 
     if (items_to_drop.empty())
-        mpr("No item to drop.");
+        mpr((Options.language == lang_t::KO ? "내려놓을 아이템이 없습니다." : "No item to drop."));
     else
     {
         you.last_pickup.clear();
@@ -4549,7 +4549,7 @@ static void _rune_from_specs(const char* _specs, item_def &item)
                 line.clear();
             }
         }
-        mprf(MSGCH_PROMPT, "Which rune (ESC to exit)? ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 룬입니까? (Esc: 취소) " : "Which rune (ESC to exit)? "));
 
         int keyin = toalower(get_ch());
 
@@ -4756,7 +4756,7 @@ bool get_item_by_name(item_def *item, const char* specs,
                 item->skill = skill;
             else
             {
-                mpr("Sorry, no books on that skill today.");
+                mpr((Options.language == lang_t::KO ? "오늘은 해당 기술에 관한 책이 없습니다." : "Sorry, no books on that skill today."));
                 item->skill = SK_FIGHTING; // Was probably that anyway.
             }
             item->skill_points = random_range(2000, 3000);
@@ -4768,7 +4768,7 @@ bool get_item_by_name(item_def *item, const char* specs,
             if (buf[0] != '\0')
             {
                 if (!_book_from_spell(buf, *item))
-                    mpr("That parchment doesn't seem to exist.");
+                    mpr((Options.language == lang_t::KO ? "그 양피지는 존재하지 않는 것 같습니다." : "That parchment doesn't seem to exist."));
             }
         }
         else if (type_wanted == BOOK_RANDART_THEME)
