@@ -690,7 +690,7 @@ static level_id _travel_destination(const dungeon_feature_type how,
              shaft_depth > 1 ? "s" : "");
 
         // Shafts are one-time-use.
-        mpr("The shaft crumbles and collapses.");
+        mpr((Options.language == lang_t::KO ? "수직 통로가 무너져 내립니다." : "The shaft crumbles and collapses."));
         maybe_destroy_shaft(you.pos());
     }
 
@@ -751,7 +751,7 @@ void rise_through_ceiling()
         && you.depth == 1
         && player_has_orb())
     {
-        mpr("With a burst of heat and light, you rocket upward!");
+        mpr((Options.language == lang_t::KO ? "열기와 섬광을 내뿜으며 위로 솟구칩니다!" : "With a burst of heat and light, you rocket upward!"));
         floor_transition(DNGN_EXIT_DUNGEON, DNGN_EXIT_DUNGEON,
                          level_id(BRANCH_DUNGEON, 0), true, true, false, false);
     }
@@ -762,7 +762,7 @@ void rise_through_ceiling()
         return;
     }
 
-    mpr("With a burst of heat and light, you rocket upward!");
+    mpr((Options.language == lang_t::KO ? "열기와 섬광을 내뿜으며 위로 솟구칩니다!" : "With a burst of heat and light, you rocket upward!"));
     untag_followers(); // XXX: is this needed?
     stop_delay(true);
     floor_transition(DNGN_ALTAR_IGNIS /*hack*/, DNGN_ALTAR_IGNIS,
@@ -841,7 +841,7 @@ void floor_transition(dungeon_feature_type how,
     if (you.duration[DUR_CACOPHONY])
     {
         you.duration[DUR_CACOPHONY] = 0;
-        mprf(MSGCH_DURATION, "Your cacophony subsides as you depart the area.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "이 지역을 떠나자 불협화음이 잦아듭니다." : "Your cacophony subsides as you depart the area."));
         for (monster_iterator mi; mi; ++mi)
             if (mi->was_created_by(MON_SUMM_CACOPHONY))
                 monster_die(**mi, KILL_RESET, NON_MONSTER, true);
@@ -888,7 +888,7 @@ void floor_transition(dungeon_feature_type how,
     if (how == DNGN_EXIT_DUNGEON)
     {
         you.depth = 0;
-        mpr("You have escaped!");
+        mpr((Options.language == lang_t::KO ? "탈출했습니다!" : "You have escaped!"));
         ouch(INSTANT_DEATH, player_has_orb() ? KILLED_BY_WINNING
                                              : KILLED_BY_LEAVING);
     }
@@ -911,14 +911,14 @@ void floor_transition(dungeon_feature_type how,
     if (old_level.branch == BRANCH_VESTIBULE
         && !is_hell_subbranch(you.where_are_you))
     {
-        mpr("Thank you for visiting Hell. Please come again soon.");
+        mpr((Options.language == lang_t::KO ? "지옥에 방문해 주셔서 감사합니다. 다음에 또 찾아오세요." : "Thank you for visiting Hell. Please come again soon."));
     }
 
     if (how == DNGN_EXIT_ABYSS
         || how == DNGN_EXIT_PANDEMONIUM
         || how == DNGN_EXIT_THROUGH_ABYSS)
     {
-        mpr("You pass through the gate.");
+        mpr((Options.language == lang_t::KO ? "관문을 통과합니다." : "You pass through the gate."));
         take_note(Note(NOTE_MESSAGE, 0, 0,
             how == DNGN_EXIT_ABYSS ? "Escaped the Abyss" :
             how == DNGN_EXIT_PANDEMONIUM ? "Escaped Pandemonium" :
@@ -954,16 +954,16 @@ void floor_transition(dungeon_feature_type how,
             break;
         if (old_level.branch == BRANCH_ABYSS)
         {
-            mprf(MSGCH_BANISHMENT, "You plunge deeper into the Abyss.");
+            mprf(MSGCH_BANISHMENT, (Options.language == lang_t::KO ? "심연의 더 깊은 곳으로 떨어집니다." : "You plunge deeper into the Abyss."));
             if (!you.runes[RUNE_ABYSSAL] && you.depth >= ABYSSAL_RUNE_MIN_LEVEL)
-                mpr("The abyssal rune of Zot can be found at this depth.");
+                mpr((Options.language == lang_t::KO ? "이 깊이에서는 조트의 심연 룬을 찾을 수 있습니다." : "The abyssal rune of Zot can be found at this depth."));
             break;
         }
         if (!forced)
-            mpr("You enter the Abyss!");
+            mpr((Options.language == lang_t::KO ? "심연에 들어갑니다!" : "You enter the Abyss!"));
 
-        mpr("To return, you must find a gate leading back.");
-        mpr("Killing monsters will force the Abyss to allow you passage.");
+        mpr((Options.language == lang_t::KO ? "돌아가려면 귀환 관문을 찾아야 합니다." : "To return, you must find a gate leading back."));
+        mpr((Options.language == lang_t::KO ? "몬스터를 처치하면 심연이 출구를 열도록 만들 수 있습니다." : "Killing monsters will force the Abyss to allow you passage."));
         if (have_passive(passive_t::slow_abyss))
         {
             mprf(MSGCH_GOD, you.religion,
@@ -980,7 +980,7 @@ void floor_transition(dungeon_feature_type how,
 
     case BRANCH_PANDEMONIUM:
         if (old_level.branch == BRANCH_PANDEMONIUM)
-            mpr("You pass into a different region of Pandemonium.");
+            mpr((Options.language == lang_t::KO ? "판데모니엄의 다른 지역으로 이동합니다." : "You pass into a different region of Pandemonium."));
         break;
 
     default:
@@ -1007,9 +1007,9 @@ void floor_transition(dungeon_feature_type how,
         if (bezotted())
         {
             if (was_bezotted)
-                mpr("Zot already knows this place too well. Descend or flee this branch!");
+                mpr((Options.language == lang_t::KO ? "조트가 이미 이곳을 너무 잘 알고 있습니다. 아래층으로 내려가거나 이 구역을 떠나세요!" : "Zot already knows this place too well. Descend or flee this branch!"));
             else
-                mpr("Zot's attention fixes on you again. Descend or flee this branch!");
+                mpr((Options.language == lang_t::KO ? "조트가 다시 당신을 주시합니다. 아래층으로 내려가거나 이 구역을 떠나세요!" : "Zot's attention fixes on you again. Descend or flee this branch!"));
 #if TAG_MAJOR_VERSION == 34
             if (you.species == SP_METEORAN)
                 update_vision_range();
@@ -1018,9 +1018,9 @@ void floor_transition(dungeon_feature_type how,
         else if (was_bezotted)
         {
             if (branch == BRANCH_ABYSS)
-                mpr("Zot has no power in the Abyss.");
+                mpr((Options.language == lang_t::KO ? "심연에서는 조트의 힘이 미치지 않습니다." : "Zot has no power in the Abyss."));
             else
-                mpr("You feel Zot lose track of you.");
+                mpr((Options.language == lang_t::KO ? "조트가 당신을 놓친 것 같습니다." : "You feel Zot lose track of you."));
 #if TAG_MAJOR_VERSION == 34
             if (you.species == SP_METEORAN)
                 update_vision_range();
@@ -1031,7 +1031,7 @@ void floor_transition(dungeon_feature_type how,
         if (how == DNGN_ENTER_VAULTS && !runes_in_pack())
         {
             lock_vaults();
-            mpr("The door slams shut behind you.");
+            mpr((Options.language == lang_t::KO ? "뒤에서 문이 쾅 닫힙니다." : "The door slams shut behind you."));
         }
 
         if (branch == BRANCH_GAUNTLET)
@@ -1077,7 +1077,7 @@ void floor_transition(dungeon_feature_type how,
     if (player_has_ability(ABIL_SHAFT_SELF, true)
                                 && !is_valid_shaft_level(false))
     {
-        mpr("Beware, you cannot shaft yourself on this level.");
+        mpr((Options.language == lang_t::KO ? "주의하세요. 이 층에서는 스스로 수직 통로에 빠질 수 없습니다." : "Beware, you cannot shaft yourself on this level."));
     }
 
     const bool newlevel = load_level(how, LOAD_ENTER_LEVEL, old_level);
