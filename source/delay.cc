@@ -499,7 +499,7 @@ void ImbueDelay::start()
 
 void ImprintDelay::start()
 {
-    mprf(MSGCH_MULTITURN_ACTION, "You begin to imprint %s upon your paragon.",
+    mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "파라곤에 %s을(를) 새기기 시작합니다." : "You begin to imprint %s upon your paragon."),
          wpn.name(DESC_THE).c_str());
 }
 
@@ -550,7 +550,7 @@ void BaseRunDelay::handle()
 
     if (want_move() && you.confused())
     {
-        mprf("You're confused, stopping %s.",
+        mprf((Options.language == lang_t::KO ? "혼란 상태이므로 %s을(를) 중단합니다." : "You're confused, stopping %s."),
              you.running.runmode_name().c_str());
         stop_running();
     }
@@ -885,7 +885,7 @@ void ImbueDelay::finish()
 
 void ImprintDelay::finish()
 {
-    mprf("You finish imprinting the physical structure of %s upon your paragon.",
+    mprf((Options.language == lang_t::KO ? "파라곤에 %s의 물리적 구조를 새기는 작업을 마쳤습니다." : "You finish imprinting the physical structure of %s upon your paragon."),
             wpn.name(DESC_THE).c_str());
     you.props[PARAGON_WEAPON_KEY].get_item() = wpn;
 }
@@ -914,7 +914,7 @@ void run_macro(const char *macroname)
 #ifdef CLUA_BINDINGS
     if (!clua)
     {
-        mprf(MSGCH_DIAGNOSTICS, "Lua not initialised");
+        mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "Lua가 초기화되지 않았습니다." : "Lua not initialised"));
         stop_delay();
         return;
     }
@@ -935,7 +935,7 @@ void run_macro(const char *macroname)
     {
         if (!clua.error.empty())
         {
-            mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
             stop_delay();
         }
         else if (delay->duration > 0)
