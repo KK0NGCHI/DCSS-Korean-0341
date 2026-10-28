@@ -782,7 +782,7 @@ void handle_behaviour(monster* mon)
                 if (mon->is_travelling() && mon->travel_target != MTRAV_PATROL)
                 {
 #ifdef DEBUG_PATHFIND
-                    mpr("It's been too long! Stop travelling.");
+                    mpr((Options.language == lang_t::KO ? "이동 시간이 너무 길어 자동 이동을 중단합니다." : "It's been too long! Stop travelling."));
 #endif
                     mon->travel_path.clear();
                     mon->travel_target = MTRAV_NONE;
@@ -1479,7 +1479,7 @@ static void _mons_indicate_level_exit(const monster* mon)
                                 : "jumps into").c_str());
 
         // Shafts are one-time-use.
-        mpr("The shaft crumbles and collapses.");
+        mpr((Options.language == lang_t::KO ? "수직 통로가 무너져 내립니다." : "The shaft crumbles and collapses."));
         maybe_destroy_shaft(mon->pos());
     }
 }
