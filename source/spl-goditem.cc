@@ -215,7 +215,7 @@ static spret _try_to_pacify(monster &mon, int healed, int pow,
     if (pacified_roll * 23 / 20 < mon_hp)
     {
         // not even close.
-        mprf("The light of Elyvilon fails to reach %s.",
+        mprf((Options.language == lang_t::KO ? "엘리빌론의 빛이 %s에게 닿지 못합니다." : "The light of Elyvilon fails to reach %s."),
              mon.name(DESC_THE).c_str());
         return spret::success;
     }
@@ -223,7 +223,7 @@ static spret _try_to_pacify(monster &mon, int healed, int pow,
     if (pacified_roll < mon_hp)
     {
         // closer! ...but not quite.
-        mprf("The light of Elyvilon almost touches upon %s.",
+        mprf((Options.language == lang_t::KO ? "엘리빌론의 빛이 %s에게 거의 닿을 뻔합니다." : "The light of Elyvilon almost touches upon %s."),
              mon.name(DESC_THE).c_str());
         return spret::success;
     }
@@ -271,7 +271,7 @@ bool heal_monster(monster& patient, int amount)
     if (!patient.heal(amount))
         return false;
 
-    mprf("You heal %s.", patient.name(DESC_THE).c_str());
+    mprf((Options.language == lang_t::KO ? "%s을(를) 치유합니다." : "You heal %s."), patient.name(DESC_THE).c_str());
 
     if (patient.hit_points == patient.max_hit_points)
         simple_monster_message(patient, " is completely healed.");
@@ -811,12 +811,12 @@ spret cast_tomb(int pow, actor* victim, int source, bool fail)
             if (none_vis)
             {
                 fail_check();
-                mprf("You briefly glimpse something next to %s.",
+                mprf((Options.language == lang_t::KO ? "%s 옆에서 무언가가 잠깐 보입니다." : "You briefly glimpse something next to %s."),
                      targname.c_str());
                 return spret::success;
             }
 
-            mprf("You need more space to imprison %s.", targname.c_str());
+            mprf((Options.language == lang_t::KO ? "%s을(를) 가두려면 공간이 더 필요합니다." : "You need more space to imprison %s."), targname.c_str());
             return spret::abort;
         }
     }
@@ -911,7 +911,7 @@ spret cast_tomb(int pow, actor* victim, int source, bool fail)
     {
         if (zin)
         {
-            mprf("Zin imprisons %s with walls of pure silver!",
+            mprf((Options.language == lang_t::KO ? "진이 순은으로 된 벽으로 %s을(를) 가둡니다!" : "Zin imprisons %s with walls of pure silver!"),
                  targname.c_str());
         }
         else

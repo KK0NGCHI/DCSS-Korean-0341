@@ -1164,7 +1164,7 @@ static bool _give_nemelex_gift(bool forced = false)
     if (gift_cards())
     {
         simple_god_message(" deals you some cards!");
-        mprf(MSGCH_GOD, "You now have %s.", deck_summary().c_str());
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "현재 %s을(를) 가지고 있습니다." : "You now have %s."), deck_summary().c_str());
     }
     _inc_gift_timeout(5 + random2avg(9, 2));
     you.num_current_gifts[you.religion]++;
@@ -3654,7 +3654,7 @@ static void _join_gozag()
     if (fee > 0)
     {
         ASSERT(you.gold >= fee);
-        mprf(MSGCH_GOD, "You pay a service fee of %d gold.", fee);
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "서비스 이용료로 금화 %d개를 지불합니다." : "You pay a service fee of %d gold."), fee);
         you.gold -= fee;
         you.attribute[ATTR_GOZAG_GOLD_USED] += fee;
     }
@@ -3757,7 +3757,7 @@ static void _join_makhleb()
 {
     // Re-active our Mark, if we gained one, then abandoned and rejoined.
     if (!makhleb_mark_name().empty())
-        mprf("Your %s burns with power once more.", makhleb_mark_name().c_str());
+        mprf((Options.language == lang_t::KO ? "%s이(가) 다시 힘차게 타오릅니다." : "Your %s burns with power once more."), makhleb_mark_name().c_str());
 
     makhleb_initialize_marks();
 }

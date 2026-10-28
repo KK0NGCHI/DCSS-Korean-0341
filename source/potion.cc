@@ -25,6 +25,7 @@
 #include "item-use.h"
 #include "items.h"
 #include "message.h"
+#include "options.h"
 #include "mutation.h"
 #include "nearby-danger.h"
 #include "player-stats.h"
@@ -134,7 +135,7 @@ public:
         }
 
         if (ddoor)
-            mpr("You feel queasy.");
+            mpr((Options.language == lang_t::KO ? "속이 메스껍습니다." : "You feel queasy."));
         else if (you.can_potion_heal()
                  || !is_potion
                  || you.duration[DUR_POISONING]
@@ -145,7 +146,7 @@ public:
             canned_msg(MSG_GAIN_HEALTH);
         }
         else
-            mpr("That felt strangely inert.");
+            mpr((Options.language == lang_t::KO ? "이상하게도 아무런 효과가 없는 듯합니다." : "That felt strangely inert."));
         // need to redraw from yellow to green even if no hp was gained
         if (you.duration[DUR_POISONING])
             you.redraw_hit_points = true;
@@ -204,12 +205,12 @@ public:
     {
         if (you.duration[DUR_DEATHS_DOOR])
         {
-            mpr("You feel queasy.");
+            mpr((Options.language == lang_t::KO ? "속이 메스껍습니다." : "You feel queasy."));
             return false;
         }
         if (!you.can_potion_heal() && is_potion)
         {
-            mpr("That seemed strangely inert.");
+            mpr((Options.language == lang_t::KO ? "이상하게도 아무런 효과가 없었던 것 같습니다." : "That seemed strangely inert."));
             return false;
         }
 
@@ -220,7 +221,7 @@ public:
         inc_hp(amount);
         if (is_potion)
             print_potion_heal_message();
-        mpr("You feel much better.");
+        mpr((Options.language == lang_t::KO ? "몸 상태가 훨씬 나아집니다." : "You feel much better."));
         return true;
     }
 };
@@ -414,12 +415,12 @@ public:
     bool effect(bool=true, int=40, bool=true) const override
     {
         debuff_player(true);
-        mpr("You feel magically purged.");
+        mpr((Options.language == lang_t::KO ? "몸속의 마법 에너지가 정화되는 느낌입니다." : "You feel magically purged."));
         if (you.magic_contamination > 0)
         {
             contaminate_player(-1 * random_range(250, 1000));
             if (you.magic_contamination > 0)
-                mpr("You feel slightly less contaminated with magical energies.");
+                mpr((Options.language == lang_t::KO ? "마법 오염이 조금 줄어든 느낌입니다." : "You feel slightly less contaminated with magical energies."));
         }
         return true;
     }
@@ -450,7 +451,7 @@ public:
 
         // should be unreachable: nothing blocks intentional confusion. (If
         // this ever changes, consider adding a `can_quaff`)
-        mpr("You feel briefly invigorated.");
+        mpr((Options.language == lang_t::KO ? "잠깐 활력이 솟습니다." : "You feel briefly invigorated."));
         return false;
     }
 };
@@ -560,7 +561,7 @@ public:
         if (you.experience_level < you.get_max_xl())
         {
             const int levels = min(you.get_max_xl(), pow / 40);
-            mpr("You feel more experienced!");
+            mpr((Options.language == lang_t::KO ? "경험이 더 쌓인 느낌입니다!" : "You feel more experienced!"));
             // Defer calling level_change() until later in drink() to prevent
             // SIGHUP abuse.
             adjust_level(levels, true);
@@ -624,7 +625,7 @@ public:
                                : POT_MAGIC_MP;
         inc_mp(amount);
         if (you.has_mutation(MUT_HP_CASTING))
-            mpr("Magic washes over you without effect.");
+            mpr((Options.language == lang_t::KO ? "마법의 기운이 몸을 스치지만 아무런 효과가 없습니다." : "Magic washes over you without effect."));
         else
         {
             if (is_potion && you.unrand_equipped(UNRAND_KRYIAS))
@@ -633,9 +634,9 @@ public:
                      you.body_armour()->name(DESC_THE, false, false, false).c_str());
             }
             else if (is_potion && you.has_mutation(MUT_DOUBLE_POTION_HEAL))
-                mpr("You savour every drop.");
+                mpr((Options.language == lang_t::KO ? "한 방울도 남김없이 음미합니다." : "You savour every drop."));
 
-            mpr("Magic courses through your body.");
+            mpr((Options.language == lang_t::KO ? "마력이 온몸을 타고 흐릅니다." : "Magic courses through your body."));
         }
         return true;
     }
@@ -661,7 +662,7 @@ public:
     {
         if (you.is_lifeless_undead())
         {
-            mpr("You feel slightly irritated.");
+            mpr((Options.language == lang_t::KO ? "조금 짜증이 납니다." : "You feel slightly irritated."));
             return false;
         }
 
@@ -718,7 +719,7 @@ public:
 
     bool effect(bool=true, int pow = 40, bool is_potion = true) const override
     {
-        mprf(MSGCH_DURATION, "You feel protected.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "보호받는 느낌이 듭니다." : "You feel protected."));
         const int add = _scale_pot_duration(35 + random2(pow), is_potion);;
         you.increase_duration(DUR_RESISTANCE, add);
         return true;
@@ -752,7 +753,7 @@ public:
     {
         if (you.form == transformation::death) // Gozag potion petition
         {
-            mpr("You're too dead to put down roots!");
+            mpr((Options.language == lang_t::KO ? "죽은 몸으로는 뿌리를 내릴 수 없습니다!" : "You're too dead to put down roots!"));
             return false;
         }
         const int dur = _scale_pot_duration(15 + random2(30) + random2(15), is_potion);
@@ -786,7 +787,7 @@ public:
             did_god_conduct(DID_CHAOS, 10, was_known);
         }
         else
-            mpr("You feel woody for a moment.");
+            mpr((Options.language == lang_t::KO ? "잠시 몸이 나무처럼 변하는 느낌이 듭니다." : "You feel woody for a moment."));
         return true;
     }
 };
@@ -817,7 +818,7 @@ public:
         if (have_passive(passive_t::cleanse_mut_potions))
             simple_god_message(" cleanses your potion of mutation!");
         else
-            mpr("You feel extremely strange.");
+            mpr((Options.language == lang_t::KO ? "몸에 극도로 기묘한 느낌이 듭니다." : "You feel extremely strange."));
         bool mutated = false;
         int remove_mutations = random_range(MIN_REMOVED, MAX_REMOVED);
         int add_mutations = random_range(MIN_ADDED, MAX_ADDED);
@@ -880,7 +881,7 @@ public:
 
     bool effect(bool=true, int=40, bool is_potion = true) const override
     {
-        mpr("You feel tipsy.");
+        mpr((Options.language == lang_t::KO ? "약간 취기가 오릅니다." : "You feel tipsy."));
         const int dur = _scale_pot_duration(random_range(10, 25), is_potion);
         you.increase_duration(DUR_VERTIGO, dur, 50);
         return true;
@@ -994,7 +995,7 @@ bool quaff_potion(item_def &potion, bool force)
         if (you.wearing(OBJ_JEWELLERY, AMU_CHEMISTRY, false, true)
             && you.magic_points < you.max_magic_points)
         {
-            mpr("You extract magical energy from the potion.");
+            mpr((Options.language == lang_t::KO ? "물약에서 마법 에너지를 추출합니다." : "You extract magical energy from the potion."));
             inc_mp(random_range(5, 9));
         }
 

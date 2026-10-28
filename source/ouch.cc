@@ -88,9 +88,9 @@ void maybe_melt_player_enchantments(beam_type flavour, int damage)
             if (!you.duration[DUR_ICEMAIL_DEPLETED])
             {
                 if (you.has_mutation(MUT_ICEMAIL))
-                    mprf(MSGCH_DURATION, "Your icy defences dissipate!");
+                    mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "얼음 방어막이 사라집니다!" : "Your icy defences dissipate!"));
                 else
-                    mprf(MSGCH_DURATION, "Your condensation shield dissipates!");
+                    mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "응결 방패가 사라집니다!" : "Your condensation shield dissipates!"));
             }
             you.duration[DUR_ICEMAIL_DEPLETED] = ICEMAIL_TIME;
             you.redraw_armour_class = true;
@@ -129,7 +129,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
     case BEAM_WATER:
         hurted = resist_adjust_damage(&you, flavour, hurted);
         if (!hurted && doEffects)
-            mpr("You shrug off the wave.");
+            mpr((Options.language == lang_t::KO ? "파도의 충격을 떨쳐 냅니다." : "You shrug off the wave."));
         break;
 
     case BEAM_STEAM:
@@ -138,7 +138,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
             canned_msg(MSG_YOU_RESIST);
         else if (hurted > original && doEffects)
         {
-            mpr("The steam scalds you terribly!");
+            mpr((Options.language == lang_t::KO ? "증기에 심하게 데입니다!" : "The steam scalds you terribly!"));
             xom_is_stimulated(200);
         }
         break;
@@ -149,7 +149,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
             canned_msg(MSG_YOU_RESIST);
         else if (hurted > original && doEffects)
         {
-            mpr("The fire burns you terribly!");
+            mpr((Options.language == lang_t::KO ? "불길에 심하게 화상을 입습니다!" : "The fire burns you terribly!"));
             xom_is_stimulated(200);
         }
         break;
@@ -163,7 +163,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
             canned_msg(MSG_YOU_RESIST);
         else if (hurted > original && doEffects)
         {
-            mpr("The cold chills you terribly!");
+            mpr((Options.language == lang_t::KO ? "혹독한 냉기에 몸이 얼어붙습니다!" : "The cold chills you terribly!"));
             xom_is_stimulated(200);
         }
         break;
@@ -248,7 +248,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
             canned_msg(MSG_YOU_PARTIALLY_RESIST);
         else if (hurted > original && doEffects)
         {
-            mpr("The ice freezes you terribly!");
+            mpr((Options.language == lang_t::KO ? "얼음에 심하게 얼어붙습니다!" : "The ice freezes you terribly!"));
             xom_is_stimulated(200);
         }
         break;
@@ -260,7 +260,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
             canned_msg(MSG_YOU_PARTIALLY_RESIST);
         else if (hurted > original && doEffects)
         {
-            mpr("The lava burns you terribly!");
+            mpr((Options.language == lang_t::KO ? "용암에 심하게 화상을 입습니다!" : "The lava burns you terribly!"));
             xom_is_stimulated(200);
         }
         break;
@@ -288,7 +288,7 @@ int check_your_resists(int hurted, beam_type flavour, string source,
             canned_msg(MSG_YOU_RESIST);
         else if (hurted > original && doEffects)
         {
-            mpr("You writhe in agony!");
+            mpr((Options.language == lang_t::KO ? "극심한 고통에 몸부림칩니다!" : "You writhe in agony!"));
             xom_is_stimulated(200);
         }
         break;
@@ -324,9 +324,9 @@ int check_your_resists(int hurted, beam_type flavour, string source,
         if (doEffects)
         {
             if (you.is_insubstantial() || you.is_amorphous())
-                mpr("The bolas passes through you!");
+                mpr((Options.language == lang_t::KO ? "볼라가 몸을 그대로 통과합니다!" : "The bolas passes through you!"));
             else if (you.unrand_equipped(UNRAND_SLICK_SLIPPERS))
-                mpr("You slip free of the bolas.");
+                mpr((Options.language == lang_t::KO ? "볼라에서 빠져나옵니다." : "You slip free of the bolas."));
             else
             {
                 you.set_duration(DUR_NO_MOMENTUM, random_range(4, 8), 0,
@@ -387,7 +387,7 @@ void expose_player_to_element(beam_type flavour, int strength, bool slow_cold_bl
 
         if (x_chance_in_y(chance, 100))
         {
-            mprf(MSGCH_WARN, "The heat overwhelms you.");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "열기에 압도됩니다." : "The heat overwhelms you."));
             you.slow_down(0, random_range(4, 8));
         }
     }
@@ -404,7 +404,7 @@ void expose_player_to_element(beam_type flavour, int strength, bool slow_cold_bl
 
         if (x_chance_in_y(chance, 100))
         {
-            mprf(MSGCH_WARN, "The cold chills your senses.");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "냉기에 감각이 무뎌집니다." : "The cold chills your senses."));
             const int dur = random_range(5, 10);
             blind_player(dur, LIGHTBLUE);
             you.increase_duration(DUR_WEAK, dur, 50);
@@ -424,14 +424,14 @@ void expose_player_to_element(beam_type flavour, int strength, bool slow_cold_bl
 
         if (x_chance_in_y(chance, 100))
         {
-            mprf(MSGCH_WARN, "The electricity makes your body seize.");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "전기 충격에 몸이 경직됩니다." : "The electricity makes your body seize."));
             you.increase_duration(DUR_NO_MOMENTUM, random_range(3, 7), 10);
         }
     }
 
     if (flavour == BEAM_WATER && you.duration[DUR_STICKY_FLAME])
     {
-        mprf(MSGCH_WARN, "The flames go out!");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "불길이 꺼집니다!" : "The flames go out!"));
         end_sticky_flame_player();
     }
 
@@ -439,7 +439,7 @@ void expose_player_to_element(beam_type flavour, int strength, bool slow_cold_bl
         && get_beam_resist_type(flavour) == BEAM_COLD && coinflip())
     {
         if (!you.duration[DUR_FROZEN])
-            mpr("Your body starts to freeze solid!");
+            mpr((Options.language == lang_t::KO ? "몸이 완전히 얼어붙기 시작합니다!" : "Your body starts to freeze solid!"));
         you.increase_duration(DUR_FROZEN, random_range(5, 10), 50);
     }
 }
@@ -737,7 +737,7 @@ void _maybe_blood_hastes_allies()
 
     if (targetable.empty())
     {
-       mpr("Your atemporal blood churns to no real effect.");
+       mpr((Options.language == lang_t::KO ? "시간의 흐름을 벗어난 피가 요동치지만 별다른 효과는 없습니다." : "Your atemporal blood churns to no real effect."));
        return;
     }
 
@@ -759,7 +759,7 @@ void _maybe_blood_hastes_allies()
     }
 
     if (affected > 0)
-        mpr("The spilling of your atemporal blood hastes your allies!");
+        mpr((Options.language == lang_t::KO ? "시간의 흐름을 벗어난 피가 흘러나와 아군을 가속합니다!" : "The spilling of your atemporal blood hastes your allies!"));
 }
 
 static void _maybe_spawn_monsters(int dam, kill_method_type death_type,
@@ -838,7 +838,7 @@ static void _powered_by_pain(int dam)
         {
             if (you.magic_points < you.max_magic_points)
             {
-                mpr("You focus on the pain.");
+                mpr((Options.language == lang_t::KO ? "고통에 집중합니다." : "You focus on the pain."));
                 int mp = roll_dice(3, 2 + 3 * level);
                 canned_msg(MSG_GAIN_MAGIC);
                 inc_mp(mp);
@@ -847,11 +847,11 @@ static void _powered_by_pain(int dam)
             break;
         }
         case 2:
-            mpr("You focus on the pain.");
+            mpr((Options.language == lang_t::KO ? "고통에 집중합니다." : "You focus on the pain."));
             potionlike_effect(POT_MIGHT, level * 20);
             break;
         case 3:
-            mpr("You focus on the pain.");
+            mpr((Options.language == lang_t::KO ? "고통에 집중합니다." : "You focus on the pain."));
             you.be_agile(level * 20);
             break;
         }
@@ -863,7 +863,7 @@ static void _maybe_fog(int dam)
     const int upper_threshold = you.hp_max / 2;
     if (you_worship(GOD_XOM) && x_chance_in_y(dam, 30 * upper_threshold))
     {
-        mprf(MSGCH_GOD, "You emit a cloud of colourful smoke!");
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "형형색색의 연기 구름을 내뿜습니다!" : "You emit a cloud of colourful smoke!"));
         big_cloud(CLOUD_XOM_TRAIL, &you, you.pos(), 50, 4 + random2(5), -1);
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, "smoke on damage"), true);
     }
@@ -908,7 +908,7 @@ static void _maybe_splash_water(int dam)
     if (water == 0)
         return;
 
-    mpr("You splash onto the ground.");
+    mpr((Options.language == lang_t::KO ? "땅바닥에 철퍼덕 떨어집니다." : "You splash onto the ground."));
     for (int i = 0; i < water; ++i)
     {
         const coord_def pos = one_chance_in(3) ? random_spots[i] : spots[i];
@@ -945,7 +945,7 @@ static void _maybe_hive_swarm()
 
     if (made_mon)
     {
-        mpr("Angry insects swarm out of your body to defend their hive!");
+        mpr((Options.language == lang_t::KO ? "성난 곤충들이 벌집을 지키려 몸에서 떼 지어 쏟아져 나옵니다!" : "Angry insects swarm out of your body to defend their hive!"));
         you.duration[DUR_HIVE_COOLDOWN] = 1;
     }
 }
@@ -969,7 +969,7 @@ static void _maybe_medusa_lithotoxin()
         return;
 
     draw_ring_animation(you.pos(), 3, LIGHTGREY, 0U, true, 25);
-    mprf("Your pain echoes through the poison around you!");
+    mprf((Options.language == lang_t::KO ? "고통이 주변의 독을 타고 메아리칩니다!" : "Your pain echoes through the poison around you!"));
     for (monster* targ : targs)
     {
         if (x_chance_in_y(get_form()->get_effect_chance(), 100))
@@ -1038,7 +1038,7 @@ static void _maybe_trigger_spiteful_blood()
             made_mon = true;
 
     if (made_mon)
-        mpr("Your spilled blood starts moving with violent intent!");
+        mpr((Options.language == lang_t::KO ? "흘린 피가 난폭한 의지를 품고 움직이기 시작합니다!" : "Your spilled blood starts moving with violent intent!"));
 }
 
 int corrosion_chance(int sources)
@@ -1115,7 +1115,7 @@ static void _place_player_corpse(bool explode)
         dummy.flags &= MF_EXPLODE_KILL;
 
     if (you.form != transformation::none)
-        mpr("Your shape twists and changes as you die.");
+        mpr((Options.language == lang_t::KO ? "죽어 가는 동안 몸의 형태가 뒤틀리고 변합니다." : "Your shape twists and changes as you die."));
 
     place_monster_corpse(dummy, false);
 }
@@ -1227,7 +1227,7 @@ static void _god_death_messages(kill_method_type death_type,
     if (left_corpse)
     {
         if (will_have_passive(passive_t::goldify_corpses))
-            mprf(MSGCH_GOD, "Your body crumbles into a pile of gold.");
+            mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "몸이 무너져 금화 더미로 변합니다." : "Your body crumbles into a pile of gold."));
 
         if (you.religion == GOD_NEMELEX_XOBEH)
             nemelex_death_message();
@@ -1431,7 +1431,7 @@ void ouch(int dam, kill_method_type death_type, mid_t source, const char *aux,
         // Even if we have low HP messages off, we'll still give a
         // big hit warning (in this case, a hit for half our HPs) -- bwr
         if (dam > 0 && you.hp_max <= dam * 2)
-            mprf(MSGCH_DANGER, "Ouch! That really hurt!");
+            mprf(MSGCH_DANGER, (Options.language == lang_t::KO ? "아야! 정말 아픕니다!" : "Ouch! That really hurt!"));
 
         if (you.hp > 0 && dam > 0)
         {
@@ -1556,7 +1556,7 @@ void ouch(int dam, kill_method_type death_type, mid_t source, const char *aux,
 
             if (crawl_state.test || !yesno("Die?", false, 'n'))
             {
-                mpr("Thought so.");
+                mpr((Options.language == lang_t::KO ? "역시 그럴 줄 알았습니다." : "Thought so."));
                 take_note(Note(NOTE_DEATH, you.hp, you.hp_max,
                                 death_desc.c_str()), true);
                 _wizard_restore_life();
