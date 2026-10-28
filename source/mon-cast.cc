@@ -4527,8 +4527,12 @@ static void _prayer_of_brilliance(monster* agent)
         {
             if (!mi->has_ench(ENCH_EMPOWERED_SPELLS) && you.can_see(**mi))
             {
-               mprf((Options.language == lang_t::KO ? "%s의 주문이 찬란한 기도로 강화됩니다!" : "%s spells are empowered by the prayer of brilliance!"),
-                    mi->name(DESC_ITS).c_str());
+               if (Options.language == lang_t::KO)
+                   mprf("%s의 주문이 찬란한 기도로 강화됩니다!",
+                        mi->name(DESC_THE).c_str());
+               else
+                   mprf("%s spells are empowered by the prayer of brilliance!",
+                        mi->name(DESC_ITS).c_str());
             }
             mi->add_ench(mon_enchant(ENCH_EMPOWERED_SPELLS, agent));
         }
@@ -4637,8 +4641,12 @@ static bool _prepare_ghostly_sacrifice(monster &caster, bolt &beam)
 
     if (you.see_cell(victim->pos()))
     {
-        mprf((Options.language == lang_t::KO ? "%s의 생명 부여 에너지가 유령의 불꽃으로 분출합니다!" : "%s animating energy erupts into ghostly fire!"),
-             apostrophise(victim->name(DESC_THE)).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s의 생명 부여 에너지가 유령의 불꽃으로 분출합니다!",
+                 victim->name(DESC_THE).c_str());
+        else
+            mprf("%s animating energy erupts into ghostly fire!",
+                 apostrophise(victim->name(DESC_THE)).c_str());
     }
     monster_die(*victim, &caster, true);
     return true;
