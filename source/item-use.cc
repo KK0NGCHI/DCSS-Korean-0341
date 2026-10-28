@@ -918,7 +918,7 @@ static bool _can_generically_use_armour(bool wear=true)
 
     if (!form_can_wear())
     {
-        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "현재 모습으로는 아무것도 %s할 수 없습니다." : "You can't %s anything in your present form."),
+        mprf(MSGCH_PROMPT, "You can't %s anything in your present form.",
             wear ? "wear" : "remove");
         return false;
     }
