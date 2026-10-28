@@ -1196,7 +1196,7 @@ void player_equip_set::handle_melding(vector<item_def*>& to_meld, bool skip_effe
     for (item_def* meld_item : to_meld)
         meld_msg.emplace_back(meld_item->name(DESC_PLAIN));
 
-    mprf(Options.language == lang_t::KO ? "%s이(가) 몸속으로 융합됩니다." : "Your %s meld%s into your body.",
+    mprf(Options.language == lang_t::KO ? "%s%s이(가) 몸속으로 융합됩니다." : "Your %s meld%s into your body.",
             comma_separated_line(meld_msg.begin(), meld_msg.end()).c_str(),
             Options.language == lang_t::KO ? "" : (meld_msg.size() > 1 ? "" : "s"));
 
@@ -1314,7 +1314,7 @@ void player_equip_set::handle_unmelding(vector<item_def*>& to_unmeld, bool skip_
         for (item_def* unmeld_item : to_unmeld)
             unmeld_msg.emplace_back(unmeld_item->name(DESC_PLAIN));
 
-        mprf(Options.language == lang_t::KO ? "%s이(가) 몸에서 다시 분리됩니다." : "Your %s unmeld%s from your body.",
+        mprf(Options.language == lang_t::KO ? "%s%s이(가) 몸에서 다시 분리됩니다." : "Your %s unmeld%s from your body.",
                 comma_separated_line(unmeld_msg.begin(), unmeld_msg.end()).c_str(),
                 Options.language == lang_t::KO ? "" : (unmeld_msg.size() > 1 ? "" : "s"));
     }
