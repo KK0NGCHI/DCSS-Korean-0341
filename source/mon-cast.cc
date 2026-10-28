@@ -7036,10 +7036,15 @@ static void _mons_vortex(monster *mons)
     if (you.can_see(*mons))
     {
         bool flying = mons->airborne();
-        mprf((Options.language == lang_t::KO ? "얼어붙는 소용돌이가 %s%s%s 나타납니다!" : "A freezing vortex appears %s%s%s!"),
-             flying ? "around " : "and lifts ",
-             mons->name(DESC_THE).c_str(),
-             flying ? "" : " up!");
+        if (Options.language == lang_t::KO)
+            mprf(flying ? "얼어붙는 소용돌이가 %s 주위에 나타납니다!"
+                         : "얼어붙는 소용돌이가 %s을(를) 들어 올립니다!",
+                 mons->name(DESC_THE).c_str());
+        else
+            mprf("A freezing vortex appears %s%s%s!",
+                 flying ? "around " : "and lifts ",
+                 mons->name(DESC_THE).c_str(),
+                 flying ? "" : " up!");
     }
     else if (you.see_cell(mons->pos()))
         mpr("A freezing vortex appears out of thin air!");
