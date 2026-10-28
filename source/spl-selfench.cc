@@ -34,8 +34,8 @@
 spret cast_deaths_door(int pow, bool fail)
 {
     fail_check();
-    mpr("You stand defiantly in death's doorway!");
-    mprf(MSGCH_SOUND, "You seem to hear sand running through an hourglass...");
+    mpr((Options.language == lang_t::KO ? "죽음의 문턱에서 당당히 버팁니다!" : "You stand defiantly in death's doorway!"));
+    mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "모래시계에서 모래가 흘러내리는 소리가 들리는 듯합니다..." : "You seem to hear sand running through an hourglass..."));
 
     you.set_duration(DUR_DEATHS_DOOR, 10 + random2avg(13, 3)
                                        + div_rand_round(random2(pow), 10));
@@ -51,7 +51,7 @@ spret cast_deaths_door(int pow, bool fail)
 
 void remove_ice_armour()
 {
-    mprf(MSGCH_DURATION, "Your icy armour melts away.");
+    mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "얼음 갑옷이 녹아내립니다." : "Your icy armour melts away."));
     you.redraw_armour_class = true;
     you.duration[DUR_ICY_ARMOUR] = 0;
 }
@@ -61,7 +61,7 @@ spret ice_armour(int pow, bool fail)
     fail_check();
 
     if (you.duration[DUR_ICY_ARMOUR])
-        mpr("Your icy armour thickens.");
+        mpr((Options.language == lang_t::KO ? "얼음 갑옷이 더욱 두꺼워집니다." : "Your icy armour thickens."));
     else
         mpr("A film of ice covers your body!");
 
@@ -75,7 +75,7 @@ spret ice_armour(int pow, bool fail)
 void fiery_armour()
 {
     if (you.duration[DUR_FIERY_ARMOUR])
-        mpr("Your cloak of flame flares fiercely!");
+        mpr((Options.language == lang_t::KO ? "화염 망토가 맹렬하게 타오릅니다!" : "Your cloak of flame flares fiercely!"));
     else if (you.duration[DUR_ICY_ARMOUR] || player_icemail_armour_class())
     {
         mpr("A sizzling cloak of flame settles atop your icy armour.");
@@ -92,7 +92,7 @@ void fiery_armour()
 spret cast_revivification(int pow, bool fail)
 {
     fail_check();
-    mpr("Your body is healed in an amazingly painful way.");
+    mpr((Options.language == lang_t::KO ? "엄청난 고통과 함께 몸의 상처가 치유됩니다." : "Your body is healed in an amazingly painful way."));
 
     const int loss = 6 + binomial(9, 8, pow);
     dec_max_hp(loss * you.hp_max / 100);
@@ -100,7 +100,7 @@ spret cast_revivification(int pow, bool fail)
 
     if (you.duration[DUR_DEATHS_DOOR])
     {
-        mprf(MSGCH_DURATION, "Your life is in your own hands once again.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "다시 자신의 운명을 스스로 결정할 수 있게 됩니다." : "Your life is in your own hands once again."));
         // XXX: better cause name?
         you.paralyse(&you, random_range(2, 5), "breaking free from death's doorway");
         you.duration[DUR_DEATHS_DOOR] = 0;
@@ -169,9 +169,9 @@ spret cast_fugue_of_the_fallen(int pow, bool fail)
     fail_check();
 
     if (you.duration[DUR_FUGUE])
-        mpr("You release your grip on the fallen and begin the cycle anew!");
+        mpr((Options.language == lang_t::KO ? "쓰러진 자들을 놓아주고 순환을 새로 시작합니다!" : "You release your grip on the fallen and begin the cycle anew!"));
     else
-        mpr("You call out to the remnants of the fallen!");
+        mpr((Options.language == lang_t::KO ? "쓰러진 자들의 잔재를 불러냅니다!" : "You call out to the remnants of the fallen!"));
 
     you.set_duration(DUR_FUGUE, 25 + random2avg(pow, 2));
 
@@ -198,7 +198,7 @@ void do_fugue_wail(const coord_def pos)
     int pow = calc_spell_power(SPELL_FUGUE_OF_THE_FALLEN);
 
     if (!affected.empty())
-        mpr("The fallen lash out in pain!");
+        mpr((Options.language == lang_t::KO ? "쓰러진 자들이 고통에 몸부림치며 공격합니다!" : "The fallen lash out in pain!"));
     for (monster *m : affected)
     {
         if (m->alive())
@@ -244,7 +244,7 @@ spret cast_liquefaction(int pow, bool fail)
     flash_view_delay(UA_PLAYER, YELLOW, 80);
     flash_view_delay(UA_PLAYER, BROWN, 140);
 
-    mpr("The ground around you becomes liquefied!");
+    mpr((Options.language == lang_t::KO ? "주변의 땅이 액체처럼 변합니다!" : "The ground around you becomes liquefied!"));
 
     you.increase_duration(DUR_LIQUEFYING, 15 + random2avg(pow, 2), 100);
     invalidate_agrid(true);
@@ -270,7 +270,7 @@ spret cast_jinxbite(int pow, bool fail)
 {
     if (!jinxbite_targets_available())
     {
-        mpr("There is nobody nearby that the sprites are interested in.");
+        mpr((Options.language == lang_t::KO ? "주변에는 요정들이 관심을 보일 대상이 없습니다." : "There is nobody nearby that the sprites are interested in."));
         return spret::abort;
     }
 
@@ -310,7 +310,7 @@ spret cast_detonation_catalyst(bool fail)
 {
     fail_check();
 
-    mpr("You ready an explosive catalyst.");
+    mpr((Options.language == lang_t::KO ? "폭발성 촉매를 준비합니다." : "You ready an explosive catalyst."));
 
     // base duration is very low to minimize precasting
     you.set_duration(DUR_DETONATION_CATALYST, random_range(3,5));
