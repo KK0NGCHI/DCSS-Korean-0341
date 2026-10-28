@@ -36,6 +36,7 @@
 #include "macro.h"
 #include "mapmark.h"
 #include "message.h"
+#include "options.h"
 #include "misc.h"
 #include "mon-behv.h"
 #include "mon-cast.h"
@@ -128,7 +129,7 @@ spret cast_fire_storm(int pow, bolt &beam, bool fail)
         if (Options.language == lang_t::KO)
             mprf("%s 지형에는 폭풍을 배치할 수 없습니다.", feat);
         else
-            mprf("You can't place the storm on %s.", article_a(feat).c_str());
+            mprf((Options.language == lang_t::KO ? "%s에는 폭풍을 생성할 수 없습니다." : "You can't place the storm on %s."), article_a(feat).c_str());
         return spret::abort;
     }
 
@@ -1928,7 +1929,7 @@ spret cast_scorch(const actor& agent, int pow, bool fail)
         mprf("불길이 %s을(를) 후려칩니다%s.", targ->name(DESC_THE).c_str(),
              post_ac_dam ? "" : ", 하지만 피해를 주지 못합니다");
     else
-        mprf("Flames lash %s%s.", targ->name(DESC_THE).c_str(),
+        mprf((Options.language == lang_t::KO ? "불길이 %s%s을(를) 휘감습니다." : "Flames lash %s%s."), targ->name(DESC_THE).c_str(),
              post_ac_dam ? "" : " but do no damage");
     const coord_def p = targ->pos();
     noisy(spell_effect_noise(SPELL_SCORCH), p);
@@ -5263,7 +5264,7 @@ void unleash_fortress_blast(actor& caster)
         if (Options.language == lang_t::KO)
             mprf(MSGCH_DURATION, "강력한 충격파를 방출합니다!");
         else
-            mprf(MSGCH_DURATION, "You unleash %s concussive blast!", desc.c_str());
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "%s 충격파를 방출합니다!" : "You unleash %s concussive blast!"), desc.c_str());
     }
 
     bolt blast;

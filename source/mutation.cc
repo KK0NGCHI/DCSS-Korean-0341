@@ -35,6 +35,7 @@
 #include "melee-attack.h" // mut_aux_attack_desc
 #include "menu.h"
 #include "message.h"
+#include "options.h"
 #include "mon-place.h"
 #include "notes.h"
 #include "output.h"
@@ -1836,7 +1837,7 @@ bool mutate(mutation_type which_mutation, const string &reason, bool failMsg,
         if (!god_gift && _resist_mutation(mutclass, beneficial))
         {
             if (failMsg)
-                mprf(MSGCH_MUTATION, "You feel odd for a moment.");
+                mprf(MSGCH_MUTATION, (Options.language == lang_t::KO ? "잠시 몸에 이상한 느낌이 듭니다." : "You feel odd for a moment."));
             return false;
         }
 
@@ -1859,7 +1860,7 @@ bool mutate(mutation_type which_mutation, const string &reason, bool failMsg,
                 return false;
             // fallthrough to normal mut
         case MUTCLASS_NORMAL:
-            mprf(MSGCH_MUTATION, "Your body decomposes!");
+            mprf(MSGCH_MUTATION, (Options.language == lang_t::KO ? "몸이 부패합니다!" : "Your body decomposes!"));
             drain_player(30, false, true, true);
             return true;
         case MUTCLASS_INNATE:
@@ -1918,7 +1919,7 @@ bool mutate(mutation_type which_mutation, const string &reason, bool failMsg,
                     you.attribute[ATTR_TEMP_MUT_KILLS] = 0;
             }
             you.mutation[mutat]--;
-            mprf(MSGCH_MUTATION, "Your %s mutation feels more permanent.",
+            mprf(MSGCH_MUTATION, (Options.language == lang_t::KO ? "%s 변이가 더 영구적으로 자리 잡는 느낌입니다." : "Your %s mutation feels more permanent."),
                                   mutation_name(mutat));
             take_note(Note(NOTE_PERM_MUTATION, mutat,
                     you.get_base_mutation_level(mutat), reason.c_str()));
@@ -2338,7 +2339,7 @@ bool delete_mutation(mutation_type which_mutation, const string &reason,
                     || coinflip()))
             {
                 if (failMsg)
-                    mprf(MSGCH_MUTATION, "You feel rather odd for a moment.");
+                    mprf(MSGCH_MUTATION, (Options.language == lang_t::KO ? "잠시 몸에 꽤 기묘한 느낌이 듭니다." : "You feel rather odd for a moment."));
                 return false;
             }
         }
@@ -2419,7 +2420,7 @@ bool delete_temp_mutation()
         // games.
         if (mutat == NUM_MUTATIONS)
         {
-            mprf(MSGCH_ERROR, "Found no temp mutations, clearing.");
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "일시적인 변이를 찾지 못해 초기화합니다." : "Found no temp mutations, clearing."));
             you.attribute[ATTR_TEMP_MUTATIONS] = 0;
             return false;
         }
@@ -3475,7 +3476,7 @@ bool add_bane(bane_type bane, string reason, int duration, int mult)
 
         if (candidates.empty())
         {
-            mprf("You are already as afflicted as possible.");
+            mprf((Options.language == lang_t::KO ? "이미 가능한 한도까지 고통받고 있습니다." : "You are already as afflicted as possible."));
             return false;
         }
 
@@ -3489,7 +3490,7 @@ bool add_bane(bane_type bane, string reason, int duration, int mult)
     if (you.banes[bane] == 0)
         mprf(MSGCH_WARN, "You are stricken with the %s.", bane_name(bane).c_str());
     else
-        mprf(MSGCH_WARN, "Your %s grows stronger.", bane_name(bane).c_str());
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "%s의 힘이 강해집니다." : "Your %s grows stronger."), bane_name(bane).c_str());
 
     you.banes[bane] += duration;
 
@@ -3504,7 +3505,7 @@ bool add_bane(bane_type bane, string reason, int duration, int mult)
 
 void remove_bane(bane_type bane)
 {
-    mprf(MSGCH_RECOVERY, "The %s upon you is lifted.", bane_name(bane).c_str());
+    mprf(MSGCH_RECOVERY, (Options.language == lang_t::KO ? "몸에 걸린 %s이(가) 해제됩니다." : "The %s upon you is lifted."), bane_name(bane).c_str());
     you.banes[bane] = 0;
 
     if (bane == BANE_MORTALITY)

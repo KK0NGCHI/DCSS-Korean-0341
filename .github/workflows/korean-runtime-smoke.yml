@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc mon-act.cc mon-cast.cc spl-other.cc spl-damage.cc spl-transloc.cc mon-ench.cc spl-clouds.cc spl-selfench.cc spl-vortex.cc spl-goditem.cc spl-cast.cc spl-book.cc spl-monench.cc spl-util.cc player-reacts.cc player-act.cc mon-behv.cc mon-death.cc mon-place.cc mon-abil.cc player-notices.cc player-stats.cc cloud.cc terrain.cc travel.cc item-use.cc items.cc throw.cc stairs.cc skills.cc command.cc shopping.cc religion.cc evoke.cc potion.cc ouch.cc; do
+          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc mon-act.cc mon-cast.cc spl-other.cc spl-damage.cc spl-transloc.cc mon-ench.cc spl-clouds.cc spl-selfench.cc spl-vortex.cc spl-goditem.cc spl-cast.cc spl-book.cc spl-monench.cc spl-util.cc player-reacts.cc player-act.cc mon-behv.cc mon-death.cc mon-place.cc mon-abil.cc player-notices.cc player-stats.cc cloud.cc terrain.cc travel.cc item-use.cc items.cc throw.cc stairs.cc skills.cc command.cc shopping.cc religion.cc evoke.cc potion.cc ouch.cc mutation.cc delay.cc fineff.cc; do
             cp "$GITHUB_WORKSPACE/source/$name" "$CRAWL_SRC/$name"
           done
           # Include BOTH ko/ overlays and Korean text already in top-level databases.
