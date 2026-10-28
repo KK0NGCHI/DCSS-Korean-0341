@@ -520,7 +520,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
             if (foe->is_player())
             {
                 flash_tile(you.pos(), LIGHTBLUE, 25);
-                mpr("Mutagenic energy flows into you.");
+                mpr((Options.language == lang_t::KO ? "변이의 기운이 몸속으로 흘러듭니다." : "Mutagenic energy flows into you."));
                 contaminate_player(random_range(160, 270)
                                     + (you.magic_contamination < 1000 ? 120 : 0));
             }
@@ -1012,7 +1012,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
         },
         [](monster &caster, mon_spell_slot, bolt&) {
             caster.props[DOOMSAYING_USED_KEY] = true;
-            mprf(MSGCH_WARN, "You feel a dangerous fate closing in on you...");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "위험한 운명이 다가오는 느낌이 듭니다..." : "You feel a dangerous fate closing in on you..."));
             you.attribute[ATTR_DOOM] += (100 - you.attribute[ATTR_DOOM]) / 2;
             you.redraw_doom = true;
         },
@@ -1074,7 +1074,7 @@ static const map<spell_type, mons_spell_logic> marionette_spell_to_logic {
             return ai_action::good_or_impossible(!you.duration[DUR_MIGHT]);
         },
         [] (monster&, mon_spell_slot /*slot*/, bolt& /*beem*/) {
-            mprf(MSGCH_DURATION, "You feel very mighty all of a sudden.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "갑자기 엄청난 힘이 솟구칩니다." : "You feel very mighty all of a sudden."));
             you.increase_duration(DUR_MIGHT, random_range(15, 25));
         }
     } },
@@ -1422,11 +1422,11 @@ static void _cast_brain_bite(monster &caster, mon_spell_slot slot, bolt&)
         if (you.magic_points <= you.max_magic_points / 5)
         {
             dam_multiplier = 2;
-            mpr("Something gnaws heavily on your mind!");
+            mpr((Options.language == lang_t::KO ? "무언가가 정신을 맹렬히 갉아먹습니다!" : "Something gnaws heavily on your mind!"));
             xom_is_stimulated(30);
         }
         else
-            mpr("Something gnaws on your mind!");
+            mpr((Options.language == lang_t::KO ? "무언가가 정신을 갉아먹습니다!" : "Something gnaws on your mind!"));
 
     }
     else
@@ -1450,7 +1450,7 @@ static void _cast_brain_bite(monster &caster, mon_spell_slot slot, bolt&)
         drain = min(you.magic_points, max(1, you.max_magic_points / 5));
         if (drain > 0)
         {
-            mprf(MSGCH_WARN, "You feel your power leaking away.");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "힘이 빠져나가는 느낌이 듭니다." : "You feel your power leaking away."));
             drain_mp(drain);
         }
     }
@@ -1534,12 +1534,12 @@ static void _cast_beckoning_gale(monster &caster, mon_spell_slot, bolt&)
 
     if (moved)
     {
-        mprf("A beckoning whirlwind drags %s forward!",
+        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s을(를) 앞으로 끌어당깁니다!" : "A beckoning whirlwind drags %s forward!"),
             foe->name(DESC_THE).c_str());
     }
     else
     {
-        mprf("A beckoning whirlwind swirls around %s.",
+        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s 주위를 맴돕니다." : "A beckoning whirlwind swirls around %s."),
             foe->name(DESC_THE).c_str());
     }
 
@@ -1785,9 +1785,9 @@ static void _cast_siphon_essence(monster &caster, mon_spell_slot, bolt&)
         caster.heal(heal);
 
         if (seen)
-            mprf("Stolen life floods into %s!", caster.name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "빼앗긴 생명력이 %s에게 흘러듭니다!" : "Stolen life floods into %s!"), caster.name(DESC_THE).c_str());
         else
-            mpr("Stolen life floods into an unseen void!");
+            mpr((Options.language == lang_t::KO ? "빼앗긴 생명력이 보이지 않는 허공으로 흘러듭니다!" : "Stolen life floods into an unseen void!"));
     }
 }
 
@@ -3566,12 +3566,12 @@ static bool _seal_doors_and_stairs(const monster* warden,
                 (warden->visible_to(&you) ? warden->name(DESC_THE, true).c_str()
                                           : "Someone"));
         if (num_closed > 1)
-            mpr("The doors slam shut!");
+            mpr((Options.language == lang_t::KO ? "문들이 쾅 닫힙니다!" : "The doors slam shut!"));
         else if (num_closed == 1)
-            mpr("A door slams shut!");
+            mpr((Options.language == lang_t::KO ? "문이 쾅 닫힙니다!" : "A door slams shut!"));
 
         if (player_pushed)
-            mpr("You are pushed out of the doorway!");
+            mpr((Options.language == lang_t::KO ? "문간에서 밀려납니다!" : "You are pushed out of the doorway!"));
 
         for (actor* act : pushed)
             act->finalise_movement();
@@ -4151,7 +4151,7 @@ static bool _awaken_vines(monster* mon, bool test_only = false)
     else
     {
         if (seen)
-            mpr("Vines fly forth from the trees!");
+            mpr((Options.language == lang_t::KO ? "나무에서 덩굴이 뻗어 나옵니다!" : "Vines fly forth from the trees!"));
         return true;
     }
 }
@@ -4343,7 +4343,7 @@ static bool _wall_of_brambles(monster* mons)
     }
 
     if (seen)
-        mpr("Thorny briars emerge from the ground!");
+        mpr((Options.language == lang_t::KO ? "땅에서 가시덤불이 솟아납니다!" : "Thorny briars emerge from the ground!"));
 
     return true;
 }
@@ -6146,7 +6146,7 @@ static int _mons_cause_fear(monster* mons, bool actual)
         if (you.can_see(*mons))
             simple_monster_message(*mons, " radiates an aura of fear!");
         else if (you.see_cell(mons->pos()))
-            mpr("An aura of fear fills the air!");
+            mpr((Options.language == lang_t::KO ? "공포의 기운이 주위에 가득 찹니다!" : "An aura of fear fills the air!"));
     }
 
     int retval = -1;
@@ -6645,12 +6645,12 @@ static void _flay(const monster &caster, actor &defender, int damage)
     {
         if (was_flayed)
         {
-            mprf("Terrible wounds spread across more of %s body!",
+            mprf((Options.language == lang_t::KO ? "%s의 몸에 끔찍한 상처가 더욱 번집니다!" : "Terrible wounds spread across more of %s body!"),
                  defender.name(DESC_ITS).c_str());
         }
         else
         {
-            mprf("Terrible wounds open up all over %s body!",
+            mprf((Options.language == lang_t::KO ? "%s의 온몸에 끔찍한 상처가 생깁니다!" : "Terrible wounds open up all over %s body!"),
                  defender.name(DESC_ITS).c_str());
         }
     }

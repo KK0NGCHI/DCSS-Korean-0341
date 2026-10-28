@@ -1421,7 +1421,7 @@ static void _mons_fire_wand(monster& mons, spell_type mzap, bolt &beem)
     if (!simple_monster_message(mons, " zaps a wand."))
     {
         if (!silenced(you.pos()))
-            mprf(MSGCH_SOUND, "You hear a zap.");
+            mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "지직거리는 소리가 들립니다." : "You hear a zap."));
     }
     mons_cast(&mons, beem, mzap, MON_SPELL_EVOKE, false);
     mons.lose_energy(EUT_ITEM);
@@ -2015,7 +2015,7 @@ void handle_monster_move(monster* mons)
                                            MSGCH_WARN);
                 }
                 else
-                    mprf(MSGCH_SOUND, "You hear a loud crackle.");
+                    mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "커다란 파직거리는 소리가 들립니다." : "You hear a loud crackle."));
             }
             // Done this way to keep the detonation timer predictable
             mons->speed_increment -= BASELINE_DELAY;
@@ -2449,7 +2449,7 @@ void monster::struggle_against_net()
             if (you.see_cell(pos()))
             {
                 if (!visible_to(&you))
-                    mpr("Something you can't see is thrashing in a web.");
+                    mpr((Options.language == lang_t::KO ? "보이지 않는 무언가가 거미줄 안에서 몸부림칩니다." : "Something you can't see is thrashing in a web."));
                 else
                     simple_monster_message(*this,
                                         " struggles to get unstuck from the web.");
@@ -2466,7 +2466,7 @@ void monster::struggle_against_net()
     if (you.see_cell(pos()))
     {
         if (!visible_to(&you))
-            mpr("Something wriggles in the net.");
+            mpr((Options.language == lang_t::KO ? "무언가가 그물 안에서 꿈틀거립니다." : "Something wriggles in the net."));
         else
             simple_monster_message(*this, " struggles against the net.");
     }
@@ -2492,7 +2492,7 @@ void monster::struggle_against_net()
                      name(DESC_THE).c_str());
             }
             else
-                mpr("All of a sudden the net rips apart!");
+                mpr((Options.language == lang_t::KO ? "갑자기 그물이 찢어집니다!" : "All of a sudden the net rips apart!"));
         }
         stop_being_caught(false);
     }
@@ -2859,7 +2859,7 @@ static bool _jelly_divide(monster& parent)
     if (!simple_monster_message(parent, " splits in two!")
         && (player_can_hear(parent.pos()) || player_can_hear(child->pos())))
     {
-        mprf(MSGCH_SOUND, "You hear a squelching noise.");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "질척거리는 소리가 들립니다." : "You hear a squelching noise."));
     }
 
     if (crawl_state.game_is_arena())
@@ -3748,7 +3748,7 @@ static bool _do_move_monster(monster& mons, const coord_def& delta)
 
                 if (!you.can_see(mons))
                 {
-                    mpr("The door bursts into shrapnel!");
+                    mpr((Options.language == lang_t::KO ? "문이 산산조각 나며 파편이 튀어 오릅니다!" : "The door bursts into shrapnel!"));
                     interrupt_activity(activity_interrupt::sense_monster);
                 }
                 else
@@ -3776,7 +3776,7 @@ static bool _do_move_monster(monster& mons, const coord_def& delta)
 
                 if (!you.can_see(mons))
                 {
-                    mpr("The door mysteriously vanishes.");
+                    mpr((Options.language == lang_t::KO ? "문이 수수께끼처럼 사라집니다." : "The door mysteriously vanishes."));
                     interrupt_activity(activity_interrupt::sense_monster);
                 }
                 else
