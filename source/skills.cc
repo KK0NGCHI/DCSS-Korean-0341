@@ -29,6 +29,7 @@
 #include "libutil.h"
 #include "message.h"
 #include "notes.h"
+#include "options.h"
 #include "output.h"
 #include "random.h"
 #include "religion.h"
@@ -798,7 +799,7 @@ bool check_selected_skills()
         if (!you.received_noskill_warning)
         {
             you.received_noskill_warning = true;
-            mpr("You cannot train any new skills!");
+            mpr((Options.language == lang_t::KO ? "새로운 기술을 훈련할 수 없습니다!" : "You cannot train any new skills!"));
         }
         // It's possible to have no selectable skills, if they are all
         // untrainable or level 27, so we don't assert.
@@ -821,7 +822,7 @@ bool check_selected_skills()
         return false;
     }
 
-    mpr("You need to enable at least one skill for training.");
+    mpr((Options.language == lang_t::KO ? "훈련할 기술을 최소 1개 활성화해야 합니다." : "You need to enable at least one skill for training."));
     // Training will be fixed up on load if this ASSERT triggers.
     ASSERT(!you.has_mutation(MUT_DISTRIBUTED_TRAINING));
     more();
@@ -1836,14 +1837,14 @@ bool player::set_training_target(const skill_type sk, const int target, bool ann
 {
     if (target > 270) // if target is above 270, reject with an error
     {
-        mpr("Your training target must be 27 or below!");
+        mpr((Options.language == lang_t::KO ? "훈련 목표는 27 이하로 설정해야 합니다!" : "Your training target must be 27 or below!"));
         return false;
     }
     const int ranged_target = min(max((int) target, 0), 270);
     if (announce && ranged_target != (int) training_targets[sk])
     {
         if (you.has_mutation(MUT_DISTRIBUTED_TRAINING))
-            mpr("You can't set training targets!");
+            mpr((Options.language == lang_t::KO ? "훈련 목표를 설정할 수 없습니다!" : "You can't set training targets!"));
         else if (ranged_target == 0)
             mprf("Clearing the skill training target for %s.", skill_name(sk));
         else

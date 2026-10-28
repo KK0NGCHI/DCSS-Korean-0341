@@ -59,6 +59,7 @@
 #include "mutation.h"
 #include "nearby-danger.h"
 #include "notes.h"
+#include "options.h"
 #include "output.h"
 #include "piety-info.h"
 #include "player-equip.h"
@@ -709,17 +710,17 @@ void dec_penance(god_type god, int val)
             // TSO's halo is once more available.
             if (!had_halo && have_passive(passive_t::halo))
             {
-                mprf(MSGCH_GOD, "Your divine halo returns!");
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "신성한 후광이 다시 나타납니다!" : "Your divine halo returns!"));
                 invalidate_agrid(true);
             }
             if (!had_umbra && have_passive(passive_t::umbra))
             {
-                mprf(MSGCH_GOD, "Your aura of darkness returns!");
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "어둠의 기운이 다시 나타납니다!" : "Your aura of darkness returns!"));
                 invalidate_agrid(true);
             }
             if (have_passive(passive_t::sinv))
             {
-                mprf(MSGCH_GOD, "Your vision regains its divine sight.");
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "시야에 신성한 통찰력이 돌아옵니다." : "Your vision regains its divine sight."));
                 autotoggle_autopickup(false);
             }
             if (have_passive(passive_t::stat_boost))
@@ -755,7 +756,7 @@ void dec_penance(god_type god, int val)
         else if (god == GOD_HEPLIAKLQANA)
         {
             calc_hp(); // frailty ends
-            mprf(MSGCH_GOD, god, "Your full life essence returns.");
+            mprf(MSGCH_GOD, god, (Options.language == lang_t::KO ? "생명의 정수가 완전히 돌아옵니다." : "Your full life essence returns."));
         }
     }
     else
@@ -797,7 +798,7 @@ static bool _need_water_walking()
 
 static void _grant_temporary_waterwalk()
 {
-    mpr("Your water-walking will last only until you reach solid ground.");
+    mpr((Options.language == lang_t::KO ? "단단한 땅을 밟을 때까지만 물 위를 걸을 수 있습니다." : "Your water-walking will last only until you reach solid ground."));
     you.props[TEMP_WATERWALK_KEY] = true;
 }
 
@@ -882,12 +883,12 @@ static void _inc_penance(god_type god, int val)
 
         if (had_halo && !have_passive(passive_t::halo))
         {
-            mprf(MSGCH_GOD, god, "Your divine halo fades away.");
+            mprf(MSGCH_GOD, god, (Options.language == lang_t::KO ? "신성한 후광이 사라집니다." : "Your divine halo fades away."));
             invalidate_agrid();
         }
         if (had_umbra && !have_passive(passive_t::umbra))
         {
-            mprf(MSGCH_GOD, god, "Your aura of darkness fades away.");
+            mprf(MSGCH_GOD, god, (Options.language == lang_t::KO ? "어둠의 기운이 사라집니다." : "Your aura of darkness fades away."));
             invalidate_agrid();
         }
 
@@ -947,17 +948,17 @@ static void _inc_penance(god_type god, int val)
             // just gained penance.
             if (you.piety() >= piety_breakpoint(0))
             {
-                mprf(MSGCH_GOD, god, "The storm surrounding you dissipates.");
+                mprf(MSGCH_GOD, god, (Options.language == lang_t::KO ? "주변을 둘러싼 폭풍이 흩어집니다." : "The storm surrounding you dissipates."));
                 you.redraw_armour_class = true;
             }
             if (you.duration[DUR_QAZLAL_FIRE_RES])
             {
-                mprf(MSGCH_DURATION, "Your resistance to fire fades away.");
+                mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "화염 저항력이 사라집니다." : "Your resistance to fire fades away."));
                 you.duration[DUR_QAZLAL_FIRE_RES] = 0;
             }
             if (you.duration[DUR_QAZLAL_COLD_RES])
             {
-                mprf(MSGCH_DURATION, "Your resistance to cold fades away.");
+                mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "냉기 저항력이 사라집니다." : "Your resistance to cold fades away."));
                 you.duration[DUR_QAZLAL_COLD_RES] = 0;
             }
             if (you.duration[DUR_QAZLAL_ELEC_RES])
@@ -1427,7 +1428,7 @@ static bool _gift_jiyva_gift(bool forced)
             return true;
         }
         else
-            mpr("You feel as though nothing has changed.");
+            mpr((Options.language == lang_t::KO ? "아무것도 달라지지 않은 느낌이 듭니다." : "You feel as though nothing has changed."));
     }
     return false;
 }
@@ -2407,7 +2408,7 @@ static void _handle_piety_gain(int old_piety)
             if (rank == rank_for_passive(passive_t::halo))
                 mprf(MSGCH_GOD, "A divine halo surrounds you!");
             if (rank == rank_for_passive(passive_t::umbra))
-                mprf(MSGCH_GOD, "You are shrouded in an aura of darkness!");
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "어둠의 기운에 휩싸입니다!" : "You are shrouded in an aura of darkness!"));
             if (rank == rank_for_passive(passive_t::jelly_regen))
             {
                 simple_god_message(" begins accelerating your health and magic "
@@ -2833,7 +2834,7 @@ static void _ash_uncurse()
             continue;
         if (!uncursed)
         {
-            mprf(MSGCH_GOD, GOD_ASHENZARI, "Your curses shatter.");
+            mprf(MSGCH_GOD, GOD_ASHENZARI, (Options.language == lang_t::KO ? "저주가 산산조각 납니다." : "Your curses shatter."));
             uncursed = true;
         }
         unequip_item(entry.get_item());
@@ -2921,7 +2922,7 @@ void excommunication(bool voluntary, god_type new_god)
     you.wield_change = true;
     quiver::set_needs_redraw();
 
-    mpr("You have lost your religion!");
+    mpr((Options.language == lang_t::KO ? "신앙을 잃었습니다!" : "You have lost your religion!"));
     // included in default force_more_message
 
     if (old_god == GOD_BEOGH)
@@ -2945,12 +2946,12 @@ void excommunication(bool voluntary, god_type new_god)
 
     if (had_halo)
     {
-        mprf(MSGCH_GOD, old_god, "Your divine halo fades away.");
+        mprf(MSGCH_GOD, old_god, (Options.language == lang_t::KO ? "신성한 후광이 사라집니다." : "Your divine halo fades away."));
         invalidate_agrid(true);
     }
     if (had_umbra)
     {
-        mprf(MSGCH_GOD, old_god, "Your aura of darkness fades away.");
+        mprf(MSGCH_GOD, old_god, (Options.language == lang_t::KO ? "어둠의 기운이 사라집니다." : "Your aura of darkness fades away."));
         invalidate_agrid(true);
     }
     // You might have lost water walking at a bad time...
@@ -2966,7 +2967,7 @@ void excommunication(bool voluntary, god_type new_god)
     switch (old_god)
     {
     case GOD_KIKUBAAQUDGHA:
-        mprf(MSGCH_GOD, old_god, "You sense decay."); // in the state of Denmark
+        mprf(MSGCH_GOD, old_god, (Options.language == lang_t::KO ? "부패의 기운이 느껴집니다." : "You sense decay.")); // in the state of Denmark
         add_daction(DACT_ROT_CORPSES);
         break;
 
@@ -3004,7 +3005,7 @@ void excommunication(bool voluntary, god_type new_god)
 
     case GOD_BEOGH:
         simple_god_message(" voice booms out: Traitor to your kin!", true, old_god);
-        mprf(MSGCH_MONSTER_ENCHANT, "All of your followers decide to abandon you.");
+        mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "모든 추종자가 당신을 떠나기로 합니다." : "All of your followers decide to abandon you."));
 
         add_daction(DACT_ALLY_BEOGH);
         remove_all_companions(GOD_BEOGH);
@@ -3065,7 +3066,7 @@ void excommunication(bool voluntary, god_type new_god)
 
         if (query_daction_counter(DACT_ALLY_SLIME))
         {
-            mprf(MSGCH_MONSTER_ENCHANT, "All of your fellow slimes turn on you.");
+            mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "동료 슬라임들이 모두 당신에게 등을 돌립니다." : "All of your fellow slimes turn on you."));
             add_daction(DACT_ALLY_SLIME);
         }
 
@@ -3075,7 +3076,7 @@ void excommunication(bool voluntary, god_type new_god)
     case GOD_FEDHAS:
         if (query_daction_counter(DACT_ALLY_PLANT))
         {
-            mprf(MSGCH_MONSTER_ENCHANT, "The plants of the dungeon turn on you.");
+            mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "던전의 식물들이 당신에게 등을 돌립니다." : "The plants of the dungeon turn on you."));
             add_daction(DACT_ALLY_PLANT);
         }
         break;
@@ -3114,12 +3115,12 @@ void excommunication(bool voluntary, god_type new_god)
         }
         if (you.duration[DUR_QAZLAL_FIRE_RES])
         {
-            mprf(MSGCH_DURATION, "Your resistance to fire fades away.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "화염 저항력이 사라집니다." : "Your resistance to fire fades away."));
             you.duration[DUR_QAZLAL_FIRE_RES] = 0;
         }
         if (you.duration[DUR_QAZLAL_COLD_RES])
         {
-            mprf(MSGCH_DURATION, "Your resistance to cold fades away.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "냉기 저항력이 사라집니다." : "Your resistance to cold fades away."));
             you.duration[DUR_QAZLAL_COLD_RES] = 0;
         }
         if (you.duration[DUR_QAZLAL_ELEC_RES])
