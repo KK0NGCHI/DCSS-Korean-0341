@@ -5087,7 +5087,7 @@ void maybe_name_weapon(item_def &item, bool silent)
     string full_name = get_weapon_name(item, true);
 
     // TODO: variant messages? (in the database?)
-    mprf((Options.language == lang_t::KO ? "%s%s을(를) 손에 쥡니다." : "You welcome %s%s into your grasp."), full_name.c_str(),
+    mprf("You welcome %s%s into your grasp.", full_name.c_str(),
          new_name ? "" : " back");
 }
 
