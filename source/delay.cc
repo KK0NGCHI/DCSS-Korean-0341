@@ -130,7 +130,7 @@ bool MemoriseDelay::try_interrupt(bool /*force*/)
 {
     // Losing work here is okay... having to start from
     // scratch is a reasonable behaviour. -- bwr
-    mpr("Your memorisation is interrupted.");
+    mpr((Options.language == lang_t::KO ? "주문 암기가 중단됩니다." : "Your memorisation is interrupted."));
     return true;
 }
 
@@ -138,7 +138,7 @@ bool MultidropDelay::try_interrupt(bool /*force*/)
 {
     // No work lost
     if (!items.empty())
-        mpr("You stop dropping stuff.");
+        mpr((Options.language == lang_t::KO ? "물건 내려놓기를 중단합니다." : "You stop dropping stuff."));
     return true;
 }
 
@@ -252,14 +252,14 @@ bool EquipOffDelay::try_interrupt(bool force)
 
 bool AscendingStairsDelay::try_interrupt(bool /*force*/)
 {
-    mpr("You stop ascending the stairs.");
+    mpr((Options.language == lang_t::KO ? "계단 오르기를 중단합니다." : "You stop ascending the stairs."));
     untag_followers();
     return true;  // short... and probably what people want
 }
 
 bool DescendingStairsDelay::try_interrupt(bool /*force*/)
 {
-    mpr("You stop descending the stairs.");
+    mpr((Options.language == lang_t::KO ? "계단 내려가기를 중단합니다." : "You stop descending the stairs."));
     untag_followers();
     return true;  // short... and probably what people want
 }
@@ -269,7 +269,7 @@ bool PasswallDelay::try_interrupt(bool /*force*/)
     // finish() can trigger interrupts, avoid a double message
     if (interrupt_block::blocked())
         return false;
-    mpr("Your meditation is interrupted.");
+    mpr((Options.language == lang_t::KO ? "명상이 중단됩니다." : "Your meditation is interrupted."));
     you.props.erase(PASSWALL_ARMOUR_KEY);
     you.redraw_armour_class = true;
     return true;
@@ -277,7 +277,7 @@ bool PasswallDelay::try_interrupt(bool /*force*/)
 
 bool ShaftSelfDelay::try_interrupt(bool /*force*/)
 {
-    mpr("You stop digging.");
+    mpr((Options.language == lang_t::KO ? "땅 파기를 중단합니다." : "You stop digging."));
     return true;
 }
 
@@ -300,7 +300,7 @@ bool TransformDelay::try_interrupt(bool force)
 
     if (!interrupt)
         return false;
-    mpr("You stop transforming.");
+    mpr((Options.language == lang_t::KO ? "변신을 중단합니다." : "You stop transforming."));
     return true;
 }
 
@@ -323,7 +323,7 @@ bool ImbueDelay::try_interrupt(bool force)
 
     if (interrupt)
     {
-        mpr("You stop imbuing your servitor.");
+        mpr((Options.language == lang_t::KO ? "시종에게 힘을 불어넣는 것을 중단합니다." : "You stop imbuing your servitor."));
         return true;
     }
     return false;
@@ -331,7 +331,7 @@ bool ImbueDelay::try_interrupt(bool force)
 
 bool ImprintDelay::try_interrupt(bool /*force*/)
 {
-    mpr("Your concentration is interrupted.");
+    mpr((Options.language == lang_t::KO ? "집중이 흐트러집니다." : "Your concentration is interrupted."));
     return true;
 }
 
@@ -426,7 +426,7 @@ static command_type _get_running_command()
         if (!is_resting() && you.running.hp == you.hp
             && you.running.mp == you.magic_points)
         {
-            mpr("Done waiting.");
+            mpr((Options.language == lang_t::KO ? "대기를 마쳤습니다." : "Done waiting."));
         }
 
         if (Options.rest_delay > 0)
@@ -477,17 +477,17 @@ void MemoriseDelay::start()
             spell_title(spell));
         simple_god_message(message.c_str());
     }
-    mprf(MSGCH_MULTITURN_ACTION, "You start memorising the spell.");
+    mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "주문을 암기하기 시작합니다." : "You start memorising the spell."));
 }
 
 void PasswallDelay::start()
 {
-    mprf(MSGCH_MULTITURN_ACTION, "You begin to meditate on the wall.");
+    mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "벽을 마주하고 명상하기 시작합니다." : "You begin to meditate on the wall."));
 }
 
 void ShaftSelfDelay::start()
 {
-    mprf(MSGCH_MULTITURN_ACTION, "You begin to dig a shaft.");
+    mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "수직 통로를 파기 시작합니다." : "You begin to dig a shaft."));
 }
 
 void ImbueDelay::start()
@@ -506,9 +506,9 @@ void ImprintDelay::start()
 void TransformDelay::start()
 {
     if (form == transformation::none)
-        mprf(MSGCH_MULTITURN_ACTION, "You begin untransforming.");
+        mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "원래 모습으로 돌아가기 시작합니다." : "You begin untransforming."));
     else
-        mprf(MSGCH_MULTITURN_ACTION, "You begin transforming.");
+        mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "변신하기 시작합니다." : "You begin transforming."));
 }
 
 command_type RunDelay::move_cmd() const
@@ -670,9 +670,9 @@ void DropItemDelay::tick()
 void TransformDelay::tick()
 {
     if (form == transformation::none)
-        mprf(MSGCH_MULTITURN_ACTION, "You continue untransforming.");
+        mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "원래 모습으로 돌아가는 중입니다." : "You continue untransforming."));
     else
-        mprf(MSGCH_MULTITURN_ACTION, "You continue transforming.");
+        mprf(MSGCH_MULTITURN_ACTION, (Options.language == lang_t::KO ? "변신을 계속합니다." : "You continue transforming."));
 }
 
 void Delay::handle()
@@ -757,7 +757,7 @@ void MemoriseDelay::finish()
 #ifdef USE_SOUND
     parse_sound(MEMORISE_SPELL_SOUND);
 #endif
-    mpr("You finish memorising.");
+    mpr((Options.language == lang_t::KO ? "주문 암기를 마칩니다." : "You finish memorising."));
     add_spell_to_memory(spell);
     vehumet_accept_gift(spell);
     quiver::on_actions_changed();
@@ -768,7 +768,7 @@ void PasswallDelay::finish()
     // No interrupt message if our destination causes this delay to be
     // interrupted
     const interrupt_block block_double_message;
-    mpr("You finish merging with the rock.");
+    mpr((Options.language == lang_t::KO ? "바위와 융합을 마칩니다." : "You finish merging with the rock."));
     // included in default force_more_message
 
     // Immediately cancel bonus AC (since there are so many paths through this code)
@@ -879,7 +879,7 @@ void DescendingStairsDelay::finish()
 
 void ImbueDelay::finish()
 {
-    mpr("You finish imbuing your servitor.");
+    mpr((Options.language == lang_t::KO ? "시종에게 힘을 불어넣는 작업을 마칩니다." : "You finish imbuing your servitor."));
     you.props[SERVITOR_SPELL_KEY] = spell;
 }
 
@@ -1051,7 +1051,7 @@ void autotoggle_autopickup(bool off)
     else if (Options.autopickup_on < 0) // was turned off automatically
     {
         Options.autopickup_on = 1;
-        mprf(MSGCH_WARN, "Reactivating autopickup.");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "자동 줍기를 다시 활성화합니다." : "Reactivating autopickup."));
     }
 }
 
@@ -1068,7 +1068,7 @@ void monster_interrupt_message(activity_interrupt ai, const activity_interrupt_d
 
     if (ai == activity_interrupt::sense_monster)
     {
-        mprf(MSGCH_WARN, "You sense a monster nearby.");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "근처에 몬스터가 있는 것이 느껴집니다." : "You sense a monster nearby."));
         return;
     }
 
@@ -1115,7 +1115,7 @@ bool interrupt_activity(activity_interrupt ai, const activity_interrupt_data &at
     else if (ai == activity_interrupt::full_mp && !you.running.notified_mp_full)
     {
         you.running.notified_mp_full = true;
-        mpr("Magic restored.");
+        mpr((Options.language == lang_t::KO ? "마력이 회복되었습니다." : "Magic restored."));
     }
     else if (ai == activity_interrupt::ancestor_hp
              && !you.running.notified_ancestor_hp_full)
@@ -1123,7 +1123,7 @@ bool interrupt_activity(activity_interrupt ai, const activity_interrupt_data &at
         // This interrupt only triggers when the ancestor is in LOS,
         // so this message does not leak information.
         you.running.notified_ancestor_hp_full = true;
-        mpr("Ancestor HP restored.");
+        mpr((Options.language == lang_t::KO ? "조상의 체력이 회복되었습니다." : "Ancestor HP restored."));
     }
 
     if (_should_stop_activity(delay.get(), ai, at))
