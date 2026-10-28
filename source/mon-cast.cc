@@ -317,7 +317,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
             int damage = 0;
             fire_los_attack_spell(slot.spell, splpow, &caster, false, &damage);
             if (damage > 0 && caster.heal(damage))
-                simple_monster_message(caster, " is healed.");
+                simple_monster_message(caster, (Options.language == lang_t::KO ? "의 상처가 치유됩니다." : " is healed."));
         },
         _zap_setup(SPELL_DRAIN_LIFE),
         MSPELL_NO_AUTO_NOISE,
@@ -962,7 +962,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
                 foe = &you;
             caster.props[CLOCKWORK_BEE_TARGET].get_int() = foe->mid;
             caster.add_ench(mon_enchant(ENCH_CLOCKWORK_BEE_CAST, &caster, 40));
-            simple_monster_message(caster, " begins winding a clockwork bee!");
+            simple_monster_message(caster, (Options.language == lang_t::KO ? " 태엽 벌의 태엽을 감기 시작합니다!" : " begins winding a clockwork bee!"));
         },
     } },
     { SPELL_ALL_PURPOSE_TEMPERING, {
@@ -1402,7 +1402,7 @@ static void _cast_smiting(monster &caster, mon_spell_slot slot, bolt&)
     if (foe->is_player())
         mprf("%s smites you!", _god_name(god).c_str());
     else
-        simple_monster_message(*foe->as_monster(), " is smitten.");
+        simple_monster_message(*foe->as_monster(), (Options.language == lang_t::KO ? " 신벌을 받습니다." : " is smitten."));
 
     foe->hurt(&caster, 7 + random2avg(11, 2), BEAM_MISSILE, KILLED_BY_BEAM,
               "", "by divine providence");
@@ -1435,10 +1435,10 @@ static void _cast_brain_bite(monster &caster, mon_spell_slot slot, bolt&)
         if (mon_foe->has_ench(ENCH_ANTIMAGIC))
         {
             dam_multiplier = 2;
-            simple_monster_message(*foe->as_monster(), " mind is heavily gnawed upon.", true);
+            simple_monster_message(*foe->as_monster(), (Options.language == lang_t::KO ? "의 정신이 심하게 갉아먹힙니다." : " mind is heavily gnawed upon."), true);
         }
         else
-            simple_monster_message(*foe->as_monster(), " mind is gnawed upon.", true);
+            simple_monster_message(*foe->as_monster(), (Options.language == lang_t::KO ? "의 정신이 갉아먹힙니다." : " mind is gnawed upon."), true);
     }
 
     foe->hurt(&caster, (4 + random2avg(5, 2)) * dam_multiplier,
@@ -1483,7 +1483,7 @@ static void _cast_draining_gaze(monster &caster, mon_spell_slot, bolt&)
         drain = max(div_round_up(m_foe->get_experience_level()
                                  - m_foe->get_ench(ENCH_DRAINED).degree, 5), 2);
         if (m_foe->add_ench(mon_enchant(ENCH_DRAINED, &you, random_range(60, 150), drain)))
-            simple_monster_message(*m_foe, " is drained!");
+            simple_monster_message(*m_foe, (Options.language == lang_t::KO ? "의 생명력이 흡수됩니다!" : " is drained!"));
 
         _whack(caster, *foe);
     }
@@ -1597,7 +1597,7 @@ static void _cast_regenerate_other(monster* caster)
     {
         const int pow = mons_spellpower(*caster, SPELL_REGENERATE_OTHER);
         int dur = (4 + roll_dice(2, pow / 20)) * BASELINE_DELAY;
-        simple_monster_message(*targ, " wounds begin to rapidly close.", true);
+        simple_monster_message(*targ, (Options.language == lang_t::KO ? "의 상처가 빠르게 아물기 시작합니다." : " wounds begin to rapidly close."), true);
         _regen_monster(targ, caster, dur);
     }
 }
@@ -1614,7 +1614,7 @@ static void _cast_mass_regeneration(monster* caster)
 
     const int pow = mons_spellpower(*caster, SPELL_MASS_REGENERATION);
     int dur = (3 + roll_dice(2, pow / 25)) * BASELINE_DELAY;
-    simple_monster_message(*caster, " allies begin to heal rapidly.", true);
+    simple_monster_message(*caster, (Options.language == lang_t::KO ? "의 아군들이 빠르게 회복하기 시작합니다." : " allies begin to heal rapidly."), true);
     for (monster* mon : targs)
         _regen_monster(mon, caster, dur);
 }
@@ -1662,7 +1662,7 @@ static bool _cast_seismic_stomp(const monster& caster, bolt& beam, bool check_on
         {
             if (mon->alive() && !mon->airborne() && one_chance_in(3))
             {
-                simple_monster_message(*mon, " stumbles on the uneven ground.");
+                simple_monster_message(*mon, (Options.language == lang_t::KO ? " 울퉁불퉁한 땅에 발이 걸려 비틀거립니다." : " stumbles on the uneven ground."));
                 mon->speed_increment -= random_range(10, 13);
             }
         }
@@ -4040,7 +4040,7 @@ bool mons_word_of_recall(monster* mons, int recall_target, int min_dist)
             recalled.push_back(mon);
 
             if (you.can_see(*mon))
-                simple_monster_message(*mon, " is recalled.");
+                simple_monster_message(*mon, (Options.language == lang_t::KO ? " 소환되어 돌아옵니다." : " is recalled."));
             else if (could_see)
                 mprf("%s is recalled away.", mon->name(DESC_THE, true).c_str());
         }
@@ -7135,7 +7135,7 @@ static bool _cast_dirge(monster& caster, bool check_only = false)
             behaviour_event(mons, ME_DISTURB, 0, caster.pos());
 
         if (you.can_see(*mons))
-            simple_monster_message(*mons, " is empowered.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 힘이 강화됩니다." : " is empowered."));
     }
 
     return true;
@@ -7446,7 +7446,7 @@ static bool _cast_dominate_undead(const monster& caster, int pow, bool check_onl
                 continue;
             }
 
-            simple_monster_message(*mon, " is compelled to serve!");
+            simple_monster_message(*mon, (Options.language == lang_t::KO ? " 강제로 복종하게 됩니다!" : " is compelled to serve!"));
             mon->add_ench(mon_enchant(caster.wont_attack() ? ENCH_CHARM : ENCH_HEXED, &caster));
             flash_tile(mon->pos(), BLUE);
         }
@@ -7724,7 +7724,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
             {
                 if (!monfoe->has_ench(ENCH_FROZEN))
                 {
-                    simple_monster_message(*monfoe, " is flash-frozen.");
+                    simple_monster_message(*monfoe, (Options.language == lang_t::KO ? " 순식간에 얼어붙습니다." : " is flash-frozen."));
                     monfoe->add_ench(mon_enchant(ENCH_FROZEN, mons));
                 }
             }
@@ -7793,12 +7793,12 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
     case SPELL_WOODWEAL:
         if (mons->heal(35 + random2(mons->spell_hd(spell_cast) * 3)))
-            simple_monster_message(*mons, " is healed.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? "의 상처가 치유됩니다." : " is healed."));
         return;
 
     case SPELL_MAJOR_HEALING:
         if (mons->heal(50 + random2avg(mons->spell_hd(spell_cast) * 10, 2)))
-            simple_monster_message(*mons, " is healed.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? "의 상처가 치유됩니다." : " is healed."));
         return;
 
     case SPELL_BERSERKER_RAGE:
