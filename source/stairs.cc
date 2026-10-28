@@ -446,7 +446,7 @@ static void _rune_effect(dungeon_feature_type ftype)
         // XXX: The messaging below assumes exactly three runes are needed.
         ASSERT(ZOT_ENTRY_RUNES == 3);
 
-        mprf("You insert the %s rune into the lock.", rune_type_name(runes[2]));
+        mprf((Options.language == lang_t::KO ? "%s 룬을 자물쇠에 끼웁니다." : "You insert the %s rune into the lock."), rune_type_name(runes[2]));
 #ifdef USE_TILE_LOCAL
         view_add_tile_overlay(you.pos(), tileidx_zap(rune_colour(runes[2]),
                                                      you.pos()));
@@ -458,7 +458,7 @@ static void _rune_effect(dungeon_feature_type ftype)
         mpr((Options.language == lang_t::KO ? "자물쇠가 섬뜩한 빛을 냅니다!" : "The lock glows eerily!"));
         // included in default force_more_message
 
-        mprf("You insert the %s rune into the lock.", rune_type_name(runes[1]));
+        mprf((Options.language == lang_t::KO ? "%s 룬을 자물쇠에 끼웁니다." : "You insert the %s rune into the lock."), rune_type_name(runes[1]));
         big_cloud(CLOUD_BLUE_SMOKE, &you, you.pos(), 20, 7 + random2(7));
         viewwindow();
         update_screen();
@@ -466,7 +466,7 @@ static void _rune_effect(dungeon_feature_type ftype)
         // included in default force_more_message
     }
 
-    mprf("You insert the %s rune into the lock.", rune_type_name(runes[0]));
+    mprf((Options.language == lang_t::KO ? "%s 룬을 자물쇠에 끼웁니다." : "You insert the %s rune into the lock."), rune_type_name(runes[0]));
 
     if (silenced(you.pos()))
         mpr((Options.language == lang_t::KO ? "문이 활짝 열립니다!" : "The gate opens wide!"));
@@ -995,13 +995,13 @@ void floor_transition(dungeon_feature_type how,
     {
         const branch_type branch = you.where_are_you;
         if (branch_entered(branch))
-            mprf("Welcome back to %s!", branches[branch].longname);
+            mprf((Options.language == lang_t::KO ? "%s에 다시 오신 것을 환영합니다!" : "Welcome back to %s!"), branches[branch].longname);
         else if (how == branches[branch].entry_stairs)
         {
             if (branches[branch].entry_message)
                 mpr(branches[branch].entry_message);
             else if (branch != BRANCH_ABYSS) // too many messages...
-                mprf("Welcome to %s!", branches[branch].longname);
+                mprf((Options.language == lang_t::KO ? "%s에 오신 것을 환영합니다!" : "Welcome to %s!"), branches[branch].longname);
         }
         const bool was_bezotted = bezotted_in(old_level.branch);
         if (bezotted())
