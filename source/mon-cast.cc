@@ -1534,12 +1534,12 @@ static void _cast_beckoning_gale(monster &caster, mon_spell_slot, bolt&)
 
     if (moved)
     {
-        mprf("A beckoning whirlwind drags %s forward!",
+        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s을(를) 앞으로 끌어당깁니다!" : "A beckoning whirlwind drags %s forward!"),
             foe->name(DESC_THE).c_str());
     }
     else
     {
-        mprf("A beckoning whirlwind swirls around %s.",
+        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s 주위를 맴돕니다." : "A beckoning whirlwind swirls around %s."),
             foe->name(DESC_THE).c_str());
     }
 
@@ -1785,7 +1785,7 @@ static void _cast_siphon_essence(monster &caster, mon_spell_slot, bolt&)
         caster.heal(heal);
 
         if (seen)
-            mprf("Stolen life floods into %s!", caster.name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "빼앗긴 생명력이 %s에게 흘러듭니다!" : "Stolen life floods into %s!"), caster.name(DESC_THE).c_str());
         else
             mpr((Options.language == lang_t::KO ? "빼앗긴 생명력이 보이지 않는 허공으로 흘러듭니다!" : "Stolen life floods into an unseen void!"));
     }
@@ -6645,12 +6645,12 @@ static void _flay(const monster &caster, actor &defender, int damage)
     {
         if (was_flayed)
         {
-            mprf("Terrible wounds spread across more of %s body!",
+            mprf((Options.language == lang_t::KO ? "%s의 몸에 끔찍한 상처가 더욱 번집니다!" : "Terrible wounds spread across more of %s body!"),
                  defender.name(DESC_ITS).c_str());
         }
         else
         {
-            mprf("Terrible wounds open up all over %s body!",
+            mprf((Options.language == lang_t::KO ? "%s의 온몸에 끔찍한 상처가 생깁니다!" : "Terrible wounds open up all over %s body!"),
                  defender.name(DESC_ITS).c_str());
         }
     }
