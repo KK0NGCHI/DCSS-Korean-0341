@@ -380,13 +380,13 @@ static void _do_merge_slimes(monster* initial_slime, monster* merge_to)
         if (you.can_see(*merge_to))
         {
             // cases 1 and 2
-            mprf("Two slime creatures merge to form %s.",
+            mprf((Options.language == lang_t::KO ? "슬라임 생물 2마리가 합쳐져 %s이(가) 됩니다." : "Two slime creatures merge to form %s."),
                  merge_to->name(DESC_A).c_str());
         }
         else
         {
             // case 3
-            mprf("Something merges into %s, and it vanishes!",
+            mprf((Options.language == lang_t::KO ? "무언가가 %s에게 합쳐지면서 사라집니다!" : "Something merges into %s, and it vanishes!"),
                  old_name.c_str());
         }
 
@@ -913,12 +913,12 @@ void treant_release_fauna(monster& mons)
     {
         if (fauna_t == MONS_RAVEN)
         {
-            mprf("Jet-black ravens fly out from beneath %s foliage!",
+            mprf((Options.language == lang_t::KO ? "%s의 잎사귀 아래에서 새까만 까마귀들이 날아오릅니다!" : "Jet-black ravens fly out from beneath %s foliage!"),
                  mons.name(DESC_ITS).c_str());
         }
         else
         {
-            mprf("Angry insects surge out from beneath %s foliage!",
+            mprf((Options.language == lang_t::KO ? "%s의 잎사귀 아래에서 성난 곤충들이 쏟아져 나옵니다!" : "Angry insects surge out from beneath %s foliage!"),
                 mons.name(DESC_ITS).c_str());
         }
     }
@@ -1636,7 +1636,7 @@ void activate_tesseracts()
 
         if (!did_activate)
         {
-            mprf(MSGCH_WARN, "You feel the power of Zot begin to gather its forces!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "조트의 힘이 병력을 모으기 시작하는 것이 느껴집니다!" : "You feel the power of Zot begin to gather its forces!"));
             take_note(Note(NOTE_TESSERACT_ACTIVATED));
             mark_milestone("tesseract.activate", "activated a tesseract");
             // Tracked on the player instead of the monster so status lookup is quicker.
