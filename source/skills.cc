@@ -340,11 +340,14 @@ static void _change_skill_level(skill_type exsk, int n)
     }
     else if (you.num_turns)
     {
-        mprf(MSGCH_INTRINSIC_GAIN, "Your %s%s skill %s %d levels and is now "
-             "at level %d!",
-             specify_base ? "base " : "",
+        mprf(MSGCH_INTRINSIC_GAIN,
+             Options.language == lang_t::KO
+                 ? "%s%s 기술이 %s %d레벨 변동하여 현재 %d레벨입니다!"
+                 : "Your %s%s skill %s %d levels and is now at level %d!",
+             specify_base ? (Options.language == lang_t::KO ? "기본 " : "base ") : "",
              skill_name(exsk),
-             (n > 0) ? "gained" : "lost",
+             Options.language == lang_t::KO ? (n > 0 ? "상승 방향으로" : "하락 방향으로")
+                 : (n > 0 ? "gained" : "lost"),
              abs(n), you.skills[exsk]);
     }
 
