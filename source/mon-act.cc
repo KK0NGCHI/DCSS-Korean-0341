@@ -2488,7 +2488,7 @@ void monster::struggle_against_net()
         {
             if (visible_to(&you))
             {
-                mprf("The net rips apart, and %s comes free!",
+                mprf((Options.language == lang_t::KO ? "그물이 찢어지면서 %s이(가) 풀려납니다!" : "The net rips apart, and %s comes free!"),
                      name(DESC_THE).c_str());
             }
             else
@@ -2911,8 +2911,8 @@ static bool _monster_eat_item(monster* mons)
 
         if (eaten && !shown_msg && player_can_hear(mons->pos()))
         {
-            mprf(MSGCH_SOUND, "You hear a%s slurping noise.",
-                 you.see_cell(mons->pos()) ? "" : " distant");
+            mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "%s후루룩거리는 소리가 들립니다." : "You hear a%s slurping noise."),
+                 you.see_cell(mons->pos()) ? "" : (Options.language == lang_t::KO ? "멀리서 " : " distant"));
             shown_msg = true;
         }
 
@@ -3540,7 +3540,7 @@ static void _jelly_grows(monster& mons)
 {
     if (player_can_hear(mons.pos()))
     {
-        mprf(MSGCH_SOUND, "You hear a%s slurping noise.",
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "%s후루룩거리는 소리가 들립니다." : "You hear a%s slurping noise."),
              you.see_cell(mons.pos()) ? "" : " distant");
     }
 

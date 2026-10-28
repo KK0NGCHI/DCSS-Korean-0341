@@ -5486,7 +5486,7 @@ static int _monster_abjure_target(monster* target, int pow, bool actual)
     else if (is_sanctuary(target->pos()))
     {
         pow = 0;
-        mprf(MSGCH_GOD, "Zin's power protects your fellow warrior from evil magic!");
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "진의 권능이 동료 전사를 사악한 마법으로부터 보호합니다!" : "Zin's power protects your fellow warrior from evil magic!"));
         shielded = true;
     }
 
@@ -5508,7 +5508,7 @@ static int _monster_abjuration(const monster& caster, bool actual)
     int maffected = 0;
 
     if (actual)
-        mpr("Send 'em back where they came from!");
+        mpr((Options.language == lang_t::KO ? "저것들을 원래 있던 곳으로 돌려보내라!" : "Send 'em back where they came from!"));
 
     const int pow = mons_spellpower(caster, SPELL_ABJURATION);
 
@@ -6853,7 +6853,7 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
     {
         if (!sleep_pow)
         {
-            mprf(chan, "Motes of dream dust float from an unseen source.");
+            mprf(chan, (Options.language == lang_t::KO ? "보이지 않는 곳에서 꿈의 먼지가 흩날립니다." : "Motes of dream dust float from an unseen source."));
             mprf("%s is unaffected.", foe_name.c_str());
             return;
         }
@@ -7042,7 +7042,7 @@ static void _mons_vortex(monster *mons)
              flying ? "" : " up!");
     }
     else if (you.see_cell(mons->pos()))
-        mpr("A freezing vortex appears out of thin air!");
+        mpr((Options.language == lang_t::KO ? "허공에서 얼어붙는 소용돌이가 나타납니다!" : "A freezing vortex appears out of thin air!"));
 
     const int ench_dur = 60;
 
@@ -7700,7 +7700,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
             if (foe->is_player() && !you.duration[DUR_FROZEN])
             {
-                mprf(MSGCH_WARN, "You are encased in ice.");
+                mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "얼음에 갇혔습니다." : "You are encased in ice."));
                 you.duration[DUR_FROZEN] = (random_range(5, 8)) * BASELINE_DELAY;
             }
             else if (monster* monfoe = foe->as_monster())
@@ -7725,7 +7725,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         if (!foe)
             return;
         if (foe->is_player())
-            mpr("The long-dead rise up around you.");
+            mpr((Options.language == lang_t::KO ? "오래전에 죽은 자들이 주위에서 일어납니다." : "The long-dead rise up around you."));
         else if (you.can_see(*foe))
             mprf("The long-dead rise up around %s.", foe->name(DESC_THE).c_str());
         _cast_vanquished_vanguard(mons);
@@ -7740,9 +7740,9 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
     case SPELL_HAUNT:
         ASSERT(foe);
         if (foe->is_player())
-            mpr("You feel haunted.");
+            mpr((Options.language == lang_t::KO ? "무언가에 홀린 듯한 느낌이 듭니다." : "You feel haunted."));
         else
-            mpr("You sense an evil presence.");
+            mpr((Options.language == lang_t::KO ? "사악한 존재의 기운이 느껴집니다." : "You sense an evil presence."));
         _mons_cast_haunt(mons);
         return;
 
@@ -8253,7 +8253,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
     {
         monster* spire = _summon(*mons, MONS_LIGHTNING_SPIRE, summ_dur(2), slot, false);
         if (spire && !silenced(spire->pos()))
-            mpr("An electric hum fills the air.");
+            mpr((Options.language == lang_t::KO ? "전기적인 웅웅거림이 주위에 퍼집니다." : "An electric hum fills the air."));
         return;
     }
 
@@ -8332,7 +8332,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         if (you.can_see(*mons))
             simple_monster_message(*mons, " radiates an aura of cold.");
         else if (mons->see_cell_no_trans(you.pos()))
-            mpr("A wave of cold passes over you.");
+            mpr((Options.language == lang_t::KO ? "차가운 기운이 몸을 휩쓸고 지나갑니다." : "A wave of cold passes over you."));
         apply_area_visible([splpow, mons] (coord_def where) {
             return englaciate(where, min(splpow, 200), mons);
         }, mons->pos());
