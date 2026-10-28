@@ -608,7 +608,7 @@ bool player::fumbles_attack()
     {
         if (x_chance_in_y(3, 8))
         {
-            mpr("Your unstable footing causes you to fumble your attack.");
+            mpr((Options.language == lang_t::KO ? "불안정한 발판 때문에 공격이 빗나갑니다." : "Your unstable footing causes you to fumble your attack."));
             did_fumble = true;
         }
         if (floundering())
@@ -675,20 +675,20 @@ bool player::go_berserk(bool intentional, bool potion)
     if (you.duration[DUR_FINESSE] > 0)
     {
         you.duration[DUR_FINESSE] = 0; // Totally incompatible.
-        mpr("Your finesse ends abruptly.");
+        mpr((Options.language == lang_t::KO ? "기교의 효과가 갑자기 끝납니다." : "Your finesse ends abruptly."));
     }
 
     if (you.duration[DUR_AFRAID] > 0)
     {
         you.clear_fearmongers();
         you.duration[DUR_AFRAID] = 0; // Too angry to be scared.
-        mpr("Your anger overwhelms your terror!");
+        mpr((Options.language == lang_t::KO ? "분노가 공포를 압도합니다!" : "Your anger overwhelms your terror!"));
     }
 
     if (!_god_prevents_berserk_haste(intentional))
-        mpr("You feel yourself moving faster!");
+        mpr((Options.language == lang_t::KO ? "몸이 더 빠르게 움직이는 것을 느낍니다!" : "You feel yourself moving faster!"));
 
-    mpr("You feel mighty!");
+    mpr((Options.language == lang_t::KO ? "강력해진 느낌이 듭니다!" : "You feel mighty!"));
 
     int dur = (20 + random2avg(19,2)) / 2;
     if (potion && you.has_mutation(MUT_EFFICIENT_METABOLISM))

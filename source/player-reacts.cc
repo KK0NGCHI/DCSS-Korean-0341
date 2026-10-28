@@ -212,7 +212,7 @@ static void _decrement_petrification(int delay)
             you.fully_petrify();
         }
         else if (dur < 15 && old_dur >= 15)
-            mpr("Your limbs are stiffening.");
+            mpr((Options.language == lang_t::KO ? "팔다리가 뻣뻣해지고 있습니다." : "Your limbs are stiffening."));
     }
 }
 
@@ -238,7 +238,7 @@ static void _decrement_attraction(int delay)
 
     attract_monsters(delay);
     if (_decrement_a_duration(DUR_ATTRACTIVE, delay))
-        mpr("You feel less attractive to monsters.");
+        mpr((Options.language == lang_t::KO ? "몬스터들의 관심을 덜 끄는 것 같습니다." : "You feel less attractive to monsters."));
 }
 
 static void _decrement_paralysis(int delay)
@@ -253,7 +253,7 @@ static void _decrement_paralysis(int delay)
 
     you.give_stun_immunity(random_range(1, 3));
 
-    mprf(MSGCH_DURATION, "You can act again.");
+    mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "다시 행동할 수 있습니다." : "You can act again."));
     you.redraw_armour_class = true;
     you.redraw_evasion = true;
 }
@@ -270,7 +270,7 @@ static void _maybe_melt_armour()
     if (you.props.exists(MELT_ARMOUR_KEY))
     {
         you.props.erase(MELT_ARMOUR_KEY);
-        mprf(MSGCH_DURATION, "The heat melts your icy armour.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "열기가 얼음 갑옷을 녹입니다." : "The heat melts your icy armour."));
     }
 }
 
@@ -381,11 +381,11 @@ static void _update_cowardice()
         return;
 
     if (horror_level >= HORROR_LVL_OVERWHELMING)
-        mpr("Monsters! Monsters everywhere! You have to get out of here!");
+        mpr((Options.language == lang_t::KO ? "몬스터다! 사방에 몬스터가 있습니다! 여기서 벗어나야 합니다!" : "Monsters! Monsters everywhere! You have to get out of here!"));
     else if (horror_level >= HORROR_LVL_EXTREME)
-        mpr("You reel with horror at the sight of these foes!");
+        mpr((Options.language == lang_t::KO ? "적들을 보고 공포에 휩싸입니다!" : "You reel with horror at the sight of these foes!"));
     else
-        mpr("You feel a twist of horror at the sight of this foe.");
+        mpr((Options.language == lang_t::KO ? "이 적을 보고 섬뜩한 공포를 느낍니다." : "You feel a twist of horror at the sight of this foe."));
 }
 
 static void _update_claustrophobia()
@@ -521,9 +521,9 @@ void player_reacts_to_monsters()
         && you.is_constricted())
     {
         if (you.constricted_type == CONSTRICT_ROOTS)
-            mprf("The roots around you sink back into the ground.");
+            mprf((Options.language == lang_t::KO ? "주변의 뿌리가 다시 땅속으로 가라앉습니다." : "The roots around you sink back into the ground."));
         else if (you.constricted_type == CONSTRICT_BVC)
-            mprf("The zombie hands holding you return to the earth.");
+            mprf((Options.language == lang_t::KO ? "붙잡고 있던 좀비의 손들이 땅속으로 돌아갑니다." : "The zombie hands holding you return to the earth."));
 
         you.stop_being_constricted(true);
     }
@@ -564,7 +564,7 @@ void player_reacts_to_monsters()
         && !there_are_monsters_nearby(true, true, false))
     {
         if (_decrement_a_duration(DUR_STARDUST_COOLDOWN, you.time_taken))
-            mprf(MSGCH_DURATION, "Your orb has finished recharging its magic.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "오브의 마력 충전이 끝났습니다." : "Your orb has finished recharging its magic."));
     }
 
 
@@ -610,7 +610,7 @@ static bool _check_recite()
         || you.petrified()
         || you.berserk())
     {
-        mprf(MSGCH_DURATION, "Your recitation is interrupted.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "낭송이 중단되었습니다." : "Your recitation is interrupted."));
         you.duration[DUR_RECITE] = 0;
         you.set_duration(DUR_RECITE_COOLDOWN, 1 + random2(10) + random2(30));
         return false;
@@ -721,7 +721,7 @@ static void _handle_trickster_decay(int delay)
     if (stacks <= 0)
     {
         you.props.erase(TRICKSTER_POW_KEY);
-        mprf(MSGCH_DURATION, "You feel your existence waver again.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "자신의 존재가 다시 흔들리는 것을 느낍니다." : "You feel your existence waver again."));
     }
 
     if (reduction > 0)
@@ -852,7 +852,7 @@ static void _decrement_durations()
     {
         if (you.pos() != you.props[FORTRESS_BLAST_POS_KEY].get_coord())
         {
-            mprf(MSGCH_DURATION, "Your fortress blast dissipates harmlessly.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "요새의 폭발이 피해 없이 사라집니다." : "Your fortress blast dissipates harmlessly."));
             you.duration[DUR_FORTRESS_BLAST_TIMER] = 0;
         }
         else
@@ -924,7 +924,7 @@ static void _decrement_durations()
         }
         else
         {
-            mprf(MSGCH_WARN, "Your lungs strain for air.");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "폐가 공기를 갈구합니다." : "Your lungs strain for air."));
             const int dmg = roll_dice(2, 5);
             ouch(div_rand_round(dmg * delay, BASELINE_DELAY), KILLED_BY_WATER,
                                                 you.props[WATER_HOLDER_KEY].get_int());
@@ -1063,7 +1063,7 @@ static void _decrement_durations()
 
     if (you.duration[DUR_CELEBRANT_COOLDOWN] && you.hp == you.hp_max)
     {
-        mprf(MSGCH_DURATION, "You are ready to perform a blood rite again.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "다시 피의 의식을 치를 준비가 되었습니다." : "You are ready to perform a blood rite again."));
         you.duration[DUR_CELEBRANT_COOLDOWN] = 0;
     }
 
@@ -1072,20 +1072,20 @@ static void _decrement_durations()
         // Don't print it the message if the mutation is lost
         // before the cooldown wears off.
         if (you.get_mutation_level(MUT_TIME_WARPED_BLOOD))
-            mprf(MSGCH_DURATION, "Your time-warped blood is ready to ripple again.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "시간이 뒤틀린 피가 다시 파동을 일으킬 준비가 되었습니다." : "Your time-warped blood is ready to ripple again."));
 
         you.duration[DUR_TIME_WARPED_BLOOD_COOLDOWN] = 0;
     }
 
     if (you.duration[DUR_HIVE_COOLDOWN] && you.hp == you.hp_max)
     {
-        mprf(MSGCH_DURATION, "The buzzing within you returns to its normal rhythm.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "몸속의 윙윙거림이 평소의 박자로 돌아옵니다." : "The buzzing within you returns to its normal rhythm."));
         you.duration[DUR_HIVE_COOLDOWN] = 0;
     }
 
     if (you.duration[DUR_MEDUSA_COOLDOWN] && you.hp == you.hp_max)
     {
-        mprf(MSGCH_DURATION, "You feel your defenses recover.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "방어력이 회복되는 것을 느낍니다." : "You feel your defenses recover."));
         you.duration[DUR_MEDUSA_COOLDOWN] = 0;
     }
 
@@ -1260,7 +1260,7 @@ static void _handle_fugue(int delay)
     {
         // Keep the spam down
         if (you.props[FUGUE_KEY].get_int() < 3 || one_chance_in(5))
-            mpr("The wailing of tortured souls fills the air!");
+            mpr((Options.language == lang_t::KO ? "고통받는 영혼들의 울부짖음이 사방에 울려 퍼집니다!" : "The wailing of tortured souls fills the air!"));
         noisy(spell_effect_noise(SPELL_FUGUE_OF_THE_FALLEN), you.pos());
     }
 }

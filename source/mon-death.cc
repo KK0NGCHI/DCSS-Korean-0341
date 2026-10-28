@@ -308,7 +308,7 @@ static void _give_player_experience(int experience, killer_type killer,
 
     // Give a message for monsters dying out of sight.
     if (exp_gain > 0 && !was_visible)
-        mpr("You feel a bit more experienced.");
+        mpr((Options.language == lang_t::KO ? "경험이 조금 쌓인 느낌이 듭니다." : "You feel a bit more experienced."));
 }
 
 /**
@@ -1853,7 +1853,7 @@ static void _cassandra_death_ambush()
     // player off lucky.
     if (spots.empty())
     {
-        mpr("You feel as though you may have cheated fate.");
+        mpr((Options.language == lang_t::KO ? "운명을 속인 듯한 느낌이 듭니다." : "You feel as though you may have cheated fate."));
         return;
     }
 
@@ -1911,9 +1911,9 @@ static void _cassandra_death_ambush()
     }
 
     if (placed > 0)
-        mpr("You feel an ambush drawing close....");
+        mpr((Options.language == lang_t::KO ? "매복한 적들이 가까워지는 느낌이 듭니다..." : "You feel an ambush drawing close...."));
     else
-        mpr("You feel as though you may have cheated fate.");
+        mpr((Options.language == lang_t::KO ? "운명을 속인 듯한 느낌이 듭니다." : "You feel as though you may have cheated fate."));
 
     // Now seal all stairs on the floor for a moderate duration.
     const int seal_duration = random_range(150, 300);
@@ -2380,13 +2380,13 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
         {
             const int bonus = (2 + random2(4)) / 2;
             you.increase_duration(DUR_BERSERK, bonus);
-            mpr("The necklace of Bloodlust glows a violent red.");
+            mpr((Options.language == lang_t::KO ? "피의 욕망의 목걸이가 강렬한 붉은빛을 발합니다." : "The necklace of Bloodlust glows a violent red."));
         }
         else if (you.unrand_equipped(UNRAND_TROG) && coinflip())
         {
             const int bonus = (2 + random2(4)) / 2;
             you.increase_duration(DUR_BERSERK, bonus);
-            mpr("You feel the ancient rage of your axe.");
+            mpr((Options.language == lang_t::KO ? "도끼에 깃든 오래된 분노를 느낍니다." : "You feel the ancient rage of your axe."));
         }
     }
 
@@ -2406,7 +2406,7 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
 
             // Give a message for hitting max stacks
             if (slaying_bonus + 1 == FUGUE_MAX_STACKS)
-                mpr("The wailing of the fallen reaches a fever pitch!");
+                mpr((Options.language == lang_t::KO ? "쓰러진 자들의 울부짖음이 절정에 달합니다!" : "The wailing of the fallen reaches a fever pitch!"));
         }
     }
 
@@ -2676,7 +2676,7 @@ item_def* monster_die(monster& mons, killer_type killer,
             else if (source->is_player())
             {
                 you.duration[DUR_WEAK] = 0;
-                mprf(MSGCH_RECOVERY, "You feel your strength returning.");
+                mprf(MSGCH_RECOVERY, (Options.language == lang_t::KO ? "힘이 돌아오는 것을 느낍니다." : "You feel your strength returning."));
             }
 
             silent = true;
@@ -2792,7 +2792,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     {
         you.props[SOLAR_EMBER_REVIVAL_KEY].get_int() = you.elapsed_time + random_range(200, 320);
         if (!you.can_see(mons))
-            mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "You feel your sun fade away.");
+            mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, (Options.language == lang_t::KO ? "태양이 사그라지는 것을 느낍니다." : "You feel your sun fade away."));
     }
     else if (mons.type == MONS_BATTLESPHERE)
         end_battlesphere(&mons, true);
@@ -2800,7 +2800,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         end_spectral_weapon(&mons, true, true);
     else if (mons.type == MONS_RENDING_BLADE)
     {
-        mprf(MSGCH_DURATION, "Your magic returns to you!");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "마력이 돌아옵니다!" : "Your magic returns to you!"));
         inc_mp(you.props[RENDING_BLADE_MP_KEY].get_int());
         you.props.erase(RENDING_BLADE_MP_KEY);
     }
@@ -2834,7 +2834,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                     (was_banished || !real_death) ? "disappears" : "dies");
             }
             else
-                mprf(MSGCH_WARN, "You feel something broadcast a psychic alarm.");
+                mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "무언가가 정신적인 경보를 퍼뜨리는 것을 느낍니다." : "You feel something broadcast a psychic alarm."));
 
             activate_tesseracts();
         }
@@ -3050,7 +3050,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                     && !mons.is_unrewarding()
                     && !mons.friendly())
                 {
-                    mpr("That felt strangely unrewarding.");
+                    mpr((Options.language == lang_t::KO ? "이상하게도 보람이 느껴지지 않습니다." : "That felt strangely unrewarding."));
                 }
             }
 
@@ -3401,9 +3401,9 @@ item_def* monster_die(monster& mons, killer_type killer,
             && !was_banished)
         {
             if (mons_base_type(mons) == MONS_KRAKEN)
-                mpr("The kraken's tentacles disappear.");
+                mpr((Options.language == lang_t::KO ? "크라켄의 촉수들이 사라집니다." : "The kraken's tentacles disappear."));
             else if (mons.type == MONS_TENTACLED_STARSPAWN)
-                mpr("The starspawn's tentacles wither and die.");
+                mpr((Options.language == lang_t::KO ? "별의 피조물의 촉수들이 시들어 죽습니다." : "The starspawn's tentacles wither and die."));
         }
     }
     else if (mons_is_tentacle_or_tentacle_segment(mons.type)
