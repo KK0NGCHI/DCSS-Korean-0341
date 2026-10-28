@@ -978,11 +978,11 @@ void feat_splash_noise(dungeon_feature_type feat)
     {
     case DNGN_SHALLOW_WATER:
     case DNGN_DEEP_WATER:
-        mprf(MSGCH_SOUND, "You hear a splash.");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "물에 무언가 빠지는 소리가 들립니다." : "You hear a splash."));
         return;
 
     case DNGN_LAVA:
-        mprf(MSGCH_SOUND, "You hear a sizzling splash.");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "치익 하는 소리와 함께 물이 튀는 소리가 들립니다." : "You hear a sizzling splash."));
         return;
 
     default:
@@ -2704,7 +2704,7 @@ void descent_crumble_stairs()
 
         dungeon_change_base_terrain(*ri, DNGN_FLOOR);
         if (you.see_cell(*ri) && !is_temp_terrain(*ri))
-            mpr("The exit collapses.");
+            mpr((Options.language == lang_t::KO ? "출구가 무너집니다." : "The exit collapses."));
         if (env.map_knowledge(*ri).feat() == original_feat)
         {
             env.map_knowledge(*ri).set_feature(DNGN_FLOOR);
