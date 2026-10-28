@@ -925,7 +925,7 @@ void debug_miscast(int target_index)
 
         if (!disciplines)
         {
-            mprf("Spell '%s' has no disciplines.", spell_title(spell));
+            mprf((Options.language == lang_t::KO ? "'%s' 주문에는 마법 학파가 없습니다." : "Spell '%s' has no disciplines."), spell_title(spell));
             return;
         }
     }
