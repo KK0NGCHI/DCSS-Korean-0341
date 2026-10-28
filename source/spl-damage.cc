@@ -456,7 +456,7 @@ spret cast_chain_spell(spell_type spell_cast, int pow,
         // Trying to limit message spamming here so we'll only mention
         // the chaos at the start or when it's out of LoS.
         if (first && see_source)
-            mpr("A swirling arc of seething chaos appears!");
+            mpr((Options.language == lang_t::KO ? "끓어오르는 혼돈의 소용돌이치는 전격이 나타납니다!" : "A swirling arc of seething chaos appears!"));
         first = false;
 
         if (see_source && !see_targ)
@@ -1755,8 +1755,8 @@ static int _shatter_player(int pow, actor *wielder, bool devastator = false)
 
     if (damage > 0)
     {
-        mprf(damage > 15 ? "You shudder from the earth-shattering force%s"
-                        : "You shudder%s",
+        mprf(damage > 15 ? (Options.language == lang_t::KO ? "대지를 뒤흔드는 충격에 몸이 떨립니다%s" : "You shudder from the earth-shattering force%s")
+                        : (Options.language == lang_t::KO ? "몸이 떨립니다%s" : "You shudder%s"),
              attack_strength_punctuation(damage).c_str());
         if (devastator)
             ouch(damage, KILLED_BY_MONSTER, wielder->mid);
@@ -3000,7 +3000,7 @@ void do_eel_melee_jolt(coord_def pos)
 
 void do_eel_arcjolt()
 {
-    mprf("Your %s violently discharge electricity!", you.hand_name(true).c_str());
+    mprf((Options.language == lang_t::KO ? "%s에서 전기가 격렬하게 방출됩니다!" : "Your %s violently discharge electricity!"), you.hand_name(true).c_str());
 
     vector<coord_def> to_check;
     to_check.push_back(you.pos());
