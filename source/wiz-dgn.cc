@@ -233,7 +233,7 @@ dungeon_feature_type wizard_select_feature(bool mimic, bool allow_fprop)
                 }
                 else
                 {
-                    mprf(MSGCH_DIAGNOSTICS, "No features matching '%s'",
+                    mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "'%s'에 해당하는 지형이 없습니다." : "No features matching '%s'"),
                          name.c_str());
                 }
                 return DNGN_UNSEEN;
@@ -472,7 +472,7 @@ bool debug_make_trap(const coord_def& pos, trap_type trap)
 {
     if (env.grid(pos) != DNGN_FLOOR)
     {
-        mprf("You can only make a %s on a floor square.",
+        mprf((Options.language == lang_t::KO ? "%s은(는) 바닥 칸에만 생성할 수 있습니다." : "You can only make a %s on a floor square."),
              trap == TRAP_UNASSIGNED ? "trap" : full_trap_name(trap).c_str());
         return false;
     }
@@ -496,7 +496,7 @@ bool debug_make_trap(const coord_def& pos, trap_type trap)
     }
     place_specific_trap(pos, trap);
 
-    mprf("Created %s.",
+    mprf((Options.language == lang_t::KO ? "%s을(를) 생성했습니다." : "Created %s."),
          (trap == TRAP_RANDOM)
             ? "a random trap"
             : trap_at(pos)->name(DESC_A).c_str());
@@ -560,7 +560,7 @@ static void debug_load_map_by_name(string name, bool primary)
 
         if (matches.empty())
         {
-            mprf("Can't find map named '%s'.", name.c_str());
+            mprf((Options.language == lang_t::KO ? "'%s'라는 이름의 지도를 찾을 수 없습니다." : "Can't find map named '%s'."), name.c_str());
             return;
         }
         else if (matches.size() == 1)
@@ -651,7 +651,7 @@ static void debug_load_map_by_name(string name, bool primary)
         unwind_var<string_set> lumt(env.level_uniq_map_tags, string_set());
         if (dgn_place_map(toplace, false, false, where))
         {
-            mprf("Successfully placed %s.", toplace->name.c_str());
+            mprf((Options.language == lang_t::KO ? "%s 배치에 성공했습니다." : "Successfully placed %s."), toplace->name.c_str());
             // Fix up doors from vaults and any changes to the default walls
             // and floors from the vault.
             tile_init_flavour();

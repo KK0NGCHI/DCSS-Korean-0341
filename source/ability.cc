@@ -1671,7 +1671,7 @@ bool activate_ability()
     if (!clua.callfn("c_choose_ability", ">s", &luachoice))
     {
         if (!clua.error.empty())
-            mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
     }
     else if (!luachoice.empty())
     {
