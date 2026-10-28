@@ -6082,7 +6082,8 @@ static void _mesmerise_los(monster& agent, int power, bool check_hearing)
             if (ai->is_player())
                 canned_msg(MSG_YOU_UNAFFECTED);
             else
-                simple_monster_message(*ai->as_monster(), " is unaffected.");
+                simple_monster_message(*ai->as_monster(),
+                    Options.language == lang_t::KO ? " 영향을 받지 않습니다." : " is unaffected.");
 
             continue;
         }
