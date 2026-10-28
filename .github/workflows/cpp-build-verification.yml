@@ -30,7 +30,7 @@ jobs:
           set -euo pipefail
           upstream=$(find /tmp/crawl-build -maxdepth 3 -name Makefile.obj -printf '%h\n' | head -n 1)
           test -n "$upstream"
-          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc mon-act.cc mon-cast.cc; do
+          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc mon-act.cc mon-cast.cc spl-other.cc; do
             cp "source/$name" "$upstream/$name"
           done
           printf '%s\n' "$upstream" > /tmp/dcss-build-source-path
