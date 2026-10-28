@@ -2924,13 +2924,13 @@ static void _print_battlecry_announcement(const monster& chief,
     {
         if (spell_cast == SPELL_BATTLECRY)
         {
-            mprf(channel, "%s goes into a battle-frenzy!",
-                seen_affected[0]->name(DESC_THE).c_str());
+            mprf(channel, Options.language == lang_t::KO ? "%s 전투의 광기에 빠집니다!" : "%s goes into a battle-frenzy!",
+                 seen_affected[0]->name(DESC_THE).c_str());
         }
         else if (spell_cast == SPELL_HUNTING_CALL)
         {
-            mprf(channel, "%s picks up the pace!",
-                seen_affected[0]->name(DESC_THE).c_str());
+            mprf(channel, Options.language == lang_t::KO ? "%s 움직임이 빨라집니다!" : "%s picks up the pace!",
+                 seen_affected[0]->name(DESC_THE).c_str());
         }
         return;
     }
@@ -2954,13 +2954,19 @@ static void _print_battlecry_announcement(const monster& chief,
 
     if (spell_cast == SPELL_BATTLECRY)
     {
-        mprf(channel, "%s %s go into a battle-frenzy!",
-            chief.friendly() ? "Your" : "The", ally_desc.c_str());
+        if (Options.language == lang_t::KO)
+            mprf(channel, "%s 무리가 전투의 광기에 빠집니다!", ally_desc.c_str());
+        else
+            mprf(channel, "%s %s go into a battle-frenzy!",
+                 chief.friendly() ? "Your" : "The", ally_desc.c_str());
     }
     else if (spell_cast == SPELL_HUNTING_CALL)
     {
-        mprf(channel, "%s %s pick up the pace!",
-            chief.friendly() ? "Your" : "The", ally_desc.c_str());
+        if (Options.language == lang_t::KO)
+            mprf(channel, "%s 무리의 움직임이 빨라집니다!", ally_desc.c_str());
+        else
+            mprf(channel, "%s %s pick up the pace!",
+                 chief.friendly() ? "Your" : "The", ally_desc.c_str());
     }
 }
 
