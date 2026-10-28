@@ -1334,25 +1334,33 @@ string ability_name(ability_type ability, bool dbname)
             if (dbname)
                 return "Recruit Apostle";
             else
-                return "Recruit " + get_apostle_name(0);
+                return Options.language == lang_t::KO
+                    ? get_apostle_name(0) + " 영입"
+                    : "Recruit " + get_apostle_name(0);
 
         case ABIL_BEOGH_DISMISS_APOSTLE_1:
             if (dbname)
                 return "Dismiss Apostle";
             else
-                return "Dismiss " + get_apostle_name(1, true);
+                return Options.language == lang_t::KO
+                    ? get_apostle_name(1, true) + " 해임"
+                    : "Dismiss " + get_apostle_name(1, true);
 
         case ABIL_BEOGH_DISMISS_APOSTLE_2:
             if (dbname)
                 return "Dismiss Apostle";
             else
-                return "Dismiss " + get_apostle_name(2, true);
+                return Options.language == lang_t::KO
+                    ? get_apostle_name(2, true) + " 해임"
+                    : "Dismiss " + get_apostle_name(2, true);
 
         case ABIL_BEOGH_DISMISS_APOSTLE_3:
             if (dbname)
                 return "Dismiss Apostle";
             else
-                return "Dismiss " + get_apostle_name(3, true);
+                return Options.language == lang_t::KO
+                    ? get_apostle_name(3, true) + " 해임"
+                    : "Dismiss " + get_apostle_name(3, true);
 
         case ABIL_MAKHLEB_BRAND_SELF_1:
         case ABIL_MAKHLEB_BRAND_SELF_2:
@@ -1388,8 +1396,9 @@ static string _curse_desc()
     if (curses.empty())
         return "";
 
-    return "\nIf you bind an item with this curse Ashenzari will enhance "
-           "the following skills:\n"
+    return (Options.language == lang_t::KO
+               ? "\n이 저주로 아이템을 결속하면 아셴자리가 다음 기술들을 강화합니다:\n"
+               : "\nIf you bind an item with this curse Ashenzari will enhance the following skills:\n")
            + comma_separated_fn(curses.begin(), curses.end(), desc_curse_skills,
                                 ".\n", ".\n") + ".";
 }
@@ -1401,11 +1410,12 @@ static string _desc_sac_mut(const CrawlStoreValue &mut_store)
 
 static string _sacrifice_desc(const ability_type ability)
 {
-    const string boilerplate =
-        "\nIf you make this sacrifice, your powers granted by Ru "
-        "will become stronger in proportion to the value of the "
-        "sacrifice, and you may gain new powers as well.\n\n"
-        "Sacrifices cannot be taken back.\n";
+    const string boilerplate = Options.language == lang_t::KO
+        ? "\n이 희생을 바치면 루가 부여한 힘이 희생의 가치에 따라 강해지고, 새로운 힘을 얻을 수도 있습니다.\n\n희생은 되돌릴 수 없습니다.\n"
+        : "\nIf you make this sacrifice, your powers granted by Ru "
+          "will become stronger in proportion to the value of the "
+          "sacrifice, and you may gain new powers as well.\n\n"
+          "Sacrifices cannot be taken back.\n";
     const string piety_info = ru_sacrifice_description(ability);
     const string desc = boilerplate + piety_info;
 
@@ -1418,7 +1428,9 @@ static string _sacrifice_desc(const ability_type ability)
 
     ASSERT(you.props.exists(sac_vec_key));
     const CrawlVector &sacrifice_muts = you.props[sac_vec_key].get_vector();
-    return "\nAfter this sacrifice, you will find that "
+    return (Options.language == lang_t::KO
+                ? "\n이 희생을 바치면 다음 변화가 생깁니다: "
+                : "\nAfter this sacrifice, you will find that ")
             + comma_separated_fn(sacrifice_muts.begin(), sacrifice_muts.end(),
                                  _desc_sac_mut)
             + ".\n" + desc;
@@ -1429,8 +1441,14 @@ static string _nemelex_desc(ability_type ability)
     ostringstream desc;
     deck_type deck = ability_deck(ability);
 
-    desc << "Draw a card from " << (deck == DECK_STACK ? "your " : "the ");
-    desc << deck_name(deck) << "; " << lowercase_first(deck_description(deck));
+    if (Options.language == lang_t::KO)
+        desc << deck_name(deck) << "에서 카드를 1장 뽑습니다. "
+             << deck_description(deck);
+    else
+    {
+        desc << "Draw a card from " << (deck == DECK_STACK ? "your " : "the ");
+        desc << deck_name(deck) << "; " << lowercase_first(deck_description(deck));
+    }
 
     return desc.str();
 }
