@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc mon-act.cc mon-cast.cc spl-other.cc; do
+          for name in ability.cc artefact.cc beam.cc describe.cc god-abil.cc invent.cc item-name.cc message.cc mon-util.cc player-equip.cc player.cc randbook.cc spl-summoning.cc newgame.cc mon-act.cc mon-cast.cc spl-other.cc spl-damage.cc; do
             cp "$GITHUB_WORKSPACE/source/$name" "$CRAWL_SRC/$name"
           done
           # Include BOTH ko/ overlays and Korean text already in top-level databases.
