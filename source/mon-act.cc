@@ -906,7 +906,7 @@ static void _handle_boulder_movement(monster& boulder)
     if (boulder.summoner == MID_PLAYER
         && (!you.can_see(boulder) || !you.see_cell(targ)))
     {
-        simple_monster_message(boulder, " crumbles as it rolls away.");
+        simple_monster_message(boulder, (Options.language == lang_t::KO ? " 굴러가다가 부서집니다." : " crumbles as it rolls away."));
         monster_die(boulder, KILL_RESET, true);
         return;
     }
@@ -1132,7 +1132,7 @@ static void _check_blazeheart_golem_link(monster& mons)
         mons.blazeheart_heat -= 1;
         if (mons.blazeheart_heat <= 0 && !mons.has_ench(ENCH_PARALYSIS))
         {
-            simple_monster_message(mons, " core grows cold and it stops moving.", true);
+            simple_monster_message(mons, (Options.language == lang_t::KO ? "의 핵이 식어 움직임을 멈춥니다." : " core grows cold and it stops moving."), true);
             mons.add_ench(mon_enchant(ENCH_PARALYSIS, &mons, INFINITE_DURATION));
         }
     }
@@ -1142,7 +1142,7 @@ static void _check_blazeheart_golem_link(monster& mons)
         if (mons.has_ench(ENCH_PARALYSIS))
         {
             mons.del_ench(ENCH_PARALYSIS, true);
-            simple_monster_message(mons, " core flares to life once more.", true);
+            simple_monster_message(mons, (Options.language == lang_t::KO ? "의 핵이 다시 타오릅니다." : " core flares to life once more."), true);
         }
 
         // Give the golem another turn before it goes cold.
@@ -1225,7 +1225,7 @@ static void _fire_rending_blade(monster& blade, coord_def target, int pow)
     slash.aimed_at_spot = true;
     slash.hit_verb = "slices through";
 
-    simple_monster_message(blade, " flashes!");
+    simple_monster_message(blade, (Options.language == lang_t::KO ? " 번쩍 빛납니다!" : " flashes!"));
 
     slash.fire();
     blade.blink_to(target, true, true);
@@ -1387,7 +1387,7 @@ static void _burstshroom_grow(monster& mons)
             }
         }
 
-        simple_monster_message(mons, " violently releases its spores.");
+        simple_monster_message(mons, (Options.language == lang_t::KO ? " 격렬하게 포자를 내뿜습니다." : " violently releases its spores."));
         if (need_redraw)
             animation_delay(20, true);
 
@@ -1406,7 +1406,7 @@ static void _burstshroom_grow(monster& mons)
                 && x_chance_in_y(get_form(transformation::spore)->get_level(10), targ->get_hit_dice() * 30))
             {
                 targ->daze(random_range(2, 5));
-                simple_monster_message(*targ, " is dazed by the spores.");
+                simple_monster_message(*targ, (Options.language == lang_t::KO ? " 포자에 맞아 멍해집니다." : " is dazed by the spores."));
             }
         }
 
@@ -1418,7 +1418,7 @@ static void _burstshroom_grow(monster& mons)
 
 static void _mons_fire_wand(monster& mons, spell_type mzap, bolt &beem)
 {
-    if (!simple_monster_message(mons, " zaps a wand."))
+    if (!simple_monster_message(mons, (Options.language == lang_t::KO ? " 마법봉을 발동합니다." : " zaps a wand.")))
     {
         if (!silenced(you.pos()))
             mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "지직거리는 소리가 들립니다." : "You hear a zap."));
@@ -2011,7 +2011,7 @@ void handle_monster_move(monster* mons)
             {
                 if (you.can_see(*mons))
                 {
-                    simple_monster_message(*mons, " crackles loudly.", false,
+                    simple_monster_message(*mons, (Options.language == lang_t::KO ? " 커다란 파직거리는 소리를 냅니다." : " crackles loudly."), false,
                                            MSGCH_WARN);
                 }
                 else
@@ -2076,7 +2076,7 @@ void handle_monster_move(monster* mons)
             if (find_habitable_spot_near(you.pos(), MONS_HAUNTED_ARMOUR, 3, spot,
                                          -1, &you))
             {
-                simple_monster_message(*mons, " returns to your side.");
+                simple_monster_message(*mons, (Options.language == lang_t::KO ? " 다시 당신 곁으로 돌아옵니다." : " returns to your side."));
                 mons->move_to(spot, MV_TRANSLOCATION);
             }
             // If returning is impossible, kill it immediately.
@@ -2457,7 +2457,7 @@ void monster::struggle_against_net()
             return;
         }
         else
-            simple_monster_message(*this, " tears free of the web.");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " 거미줄을 찢고 빠져나옵니다." : " tears free of the web."));
 
         stop_being_caught();
         return;
@@ -2858,7 +2858,7 @@ static bool _jelly_divide(monster& parent)
     child->set_new_monster_id();
     child->move_to(child_spot, MV_INTERNAL);
 
-    if (!simple_monster_message(parent, " splits in two!")
+    if (!simple_monster_message(parent, (Options.language == lang_t::KO ? " 2개로 갈라집니다!" : " splits in two!"))
         && (player_can_hear(parent.pos()) || player_can_hear(child->pos())))
     {
         mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "질척거리는 소리가 들립니다." : "You hear a squelching noise."));
@@ -3727,7 +3727,7 @@ static bool _do_move_monster(monster& mons, const coord_def& delta)
             simple_monster_message(mons, " escapes!");
         else
         {
-            simple_monster_message(mons, " struggles to escape constriction.");
+            simple_monster_message(mons, (Options.language == lang_t::KO ? " 조임에서 벗어나려 몸부림칩니다." : " struggles to escape constriction."));
             _swim_or_move_energy(mons);
             return true;
         }
@@ -3857,7 +3857,7 @@ static bool _monster_move(monster* mons, coord_def& delta)
         }
         if (adj_move.empty())
         {
-            simple_monster_message(*mons, " flops around on dry land!");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 마른 땅에서 퍼덕거립니다!" : " flops around on dry land!"));
             return false;
         }
 
@@ -3873,7 +3873,7 @@ static bool _monster_move(monster* mons, coord_def& delta)
             && (newpos == you.pos() && mons->wont_attack()
                 || (mon2 && mons->wont_attack() == mon2->wont_attack())))
         {
-            simple_monster_message(*mons, " flops around on dry land!");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 마른 땅에서 퍼덕거립니다!" : " flops around on dry land!"));
             return false;
         }
 
@@ -3992,7 +3992,7 @@ static bool _monster_move(monster* mons, coord_def& delta)
                         mons->spell_slot_flags(SPELL_DIG));
         }
         else
-            simple_monster_message(*mons, " falters for a moment.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 잠시 비틀거립니다." : " falters for a moment."));
         mons->lose_energy(EUT_SPELL);
         return true;
     }
