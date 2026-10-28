@@ -86,7 +86,7 @@ void wizard_create_spec_object_by_name()
     create_item_named(buf, you.pos(), &error);
     if (!error.empty())
     {
-        mprf(MSGCH_ERROR, "Error: %s", error.c_str());
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "오류: %s" : "Error: %s"), error.c_str());
         return;
     }
     id_floor_items();
@@ -316,7 +316,7 @@ static void _tweak_randart(item_def &item)
 
         if (ego == 0 && string(specs) != "normal") // this is secretly a hack
         {
-            mprf("No such ego as: %s", specs);
+            mprf((Options.language == lang_t::KO ? "해당 장비 속성이 없습니다: %s" : "No such ego as: %s"), specs);
             break;
         }
         if (ego == -1)
@@ -601,7 +601,7 @@ void wizard_make_object_randart()
         item.props.clear();
     }
 
-    mprf(MSGCH_PROMPT, "Fake item as gift from which god (ENTER to leave alone): ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아이템을 어느 신의 선물로 설정하시겠습니까? (Enter: 변경 안 함) " : "Fake item as gift from which god (ENTER to leave alone): "));
     char name[80];
     if (!cancellable_get_line(name, sizeof(name)) && name[0])
     {
@@ -1133,7 +1133,7 @@ static void _debug_randart_stats()
     const string err = ilist.add_item(buf, false);
     if (!err.empty())
     {
-        mprf(MSGCH_ERROR, "Error: %s", err.c_str());
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "오류: %s" : "Error: %s"), err.c_str());
         return;
     }
 
@@ -1202,7 +1202,7 @@ static void _debug_randart_stats()
 
         if (ind == NON_ITEM)
         {
-            mprf(MSGCH_ERROR, "Unable to make artefact from '%s'", buf);
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "'%s'을(를) 아티팩트로 만들 수 없습니다." : "Unable to make artefact from '%s'"), buf);
             return;
         }
 
