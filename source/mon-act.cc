@@ -2536,8 +2536,10 @@ static void _ancient_zyme_sicken(monster* mons)
         {
             if (!you.duration[DUR_SICKENING])
             {
-                mprf(MSGCH_WARN, "You feel yourself growing ill in the "
-                                 "presence of %s.",
+                mprf(MSGCH_WARN,
+                    Options.language == lang_t::KO
+                        ? "%s 근처에 있자 몸이 아파지는 것 같습니다."
+                        : "You feel yourself growing ill in the presence of %s.",
                     mons->name(DESC_THE).c_str());
             }
 
