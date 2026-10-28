@@ -345,9 +345,9 @@ static spell_list _get_spell_list(bool just_check = false,
         if (!just_check)
         {
             if (you.has_mutation(MUT_INNATE_CASTER))
-                mprf(MSGCH_PROMPT, "You need no library to learn spells.");
+                mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "주문을 배우는 데 주문 도서관이 필요하지 않습니다." : "You need no library to learn spells."));
             else
-                mprf(MSGCH_PROMPT, "Your library has no spells.");
+                mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "주문 도서관에 주문이 없습니다." : "Your library has no spells."));
         }
         return mem_spells;
     }
@@ -1033,31 +1033,31 @@ static bool _learn_spell_checks(spell_type specspell, bool wizard = false)
 
     if (you.has_spell(specspell))
     {
-        mpr("You already know that spell!");
+        mpr((Options.language == lang_t::KO ? "이미 알고 있는 주문입니다!" : "You already know that spell!"));
         return false;
     }
 
     if (you.spell_no >= MAX_KNOWN_SPELLS)
     {
-        mpr("Your mind is already too full of spells!");
+        mpr((Options.language == lang_t::KO ? "이미 너무 많은 주문을 기억하고 있습니다!" : "Your mind is already too full of spells!"));
         return false;
     }
 
     if (you.experience_level < spell_difficulty(specspell) && !wizard)
     {
-        mpr("You're too inexperienced to learn that spell!");
+        mpr((Options.language == lang_t::KO ? "그 주문을 배우기에는 경험이 부족합니다!" : "You're too inexperienced to learn that spell!"));
         return false;
     }
 
     if (player_spell_levels() < spell_levels_required(specspell) && !wizard)
     {
-        mpr("You can't memorise that many levels of magic yet!");
+        mpr((Options.language == lang_t::KO ? "아직 그만큼 많은 주문 레벨을 암기할 수 없습니다!" : "You can't memorise that many levels of magic yet!"));
         return false;
     }
 
     if (!wizard && !_spell_available_to_memorize(specspell))
     {
-        mpr("You haven't found that spell!");
+        mpr((Options.language == lang_t::KO ? "아직 그 주문을 발견하지 못했습니다!" : "You haven't found that spell!"));
         return false;
     }
 
@@ -1084,7 +1084,7 @@ bool learn_spell(spell_type specspell, bool wizard, bool interactive)
         const int severity = fail_severity(specspell);
 
         if (raw_spell_fail(specspell) >= 100 && !vehumet_is_offering(specspell))
-            mprf(MSGCH_WARN, "This spell is impossible to cast!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "이 주문은 시전할 수 없습니다!" : "This spell is impossible to cast!"));
         else if (severity > 0)
         {
             mprf(MSGCH_WARN, "This spell is %s to cast%s",
@@ -1164,7 +1164,7 @@ spret divine_exegesis(bool fail)
     spell_list spells(_get_spell_list(true, true));
     if (spells.empty())
     {
-        mpr("You don't know of any spells!");
+        mpr((Options.language == lang_t::KO ? "알고 있는 주문이 없습니다!" : "You don't know of any spells!"));
         return spret::abort;
     }
 
@@ -1207,7 +1207,7 @@ spret imbue_servitor()
     spell_list spells(_get_player_servitor_spells());
     if (spells.empty())
     {
-        mpr("You don't know any spells that your servitor could cast!");
+        mpr((Options.language == lang_t::KO ? "소환한 시종이 시전할 수 있는 주문을 알지 못합니다!" : "You don't know any spells that your servitor could cast!"));
         return spret::abort;
     }
 
