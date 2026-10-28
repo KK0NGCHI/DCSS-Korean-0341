@@ -370,7 +370,7 @@ bool add_spell_to_memory(spell_type spell)
         }
 
     if (you.num_turns)
-        mprf("Spell assigned to '%c'.", index_to_letter(letter_j));
+        mprf((Options.language == lang_t::KO ? "주문을 '%c' 키에 지정했습니다." : "Spell assigned to '%c'."), index_to_letter(letter_j));
 
     // A hint, for those who may not be aware.
     if (spell == SPELL_SPELLSPARK_SERVITOR)
@@ -430,7 +430,7 @@ bool del_spell_from_memory_by_slot(int slot)
 
     spell_skills(you.spells[slot], you.skills_to_hide);
 
-    mprf("Your memory of %s unravels.", spell_title(you.spells[slot]));
+    mprf((Options.language == lang_t::KO ? "%s 주문에 대한 기억이 사라집니다." : "Your memory of %s unravels."), spell_title(you.spells[slot]));
 
     you.spells[slot] = SPELL_NO_SPELL;
 
