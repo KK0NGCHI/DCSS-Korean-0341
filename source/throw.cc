@@ -287,7 +287,7 @@ static shared_ptr<quiver::action> _fire_prompt_for_item()
         // possibly they should get a similar message? They all do print a
         // more specific message if you try to use them, and some have a
         // prompt or the like (e.g. scroll of fear).
-        mpr("You have nothing you can fire or use right now.");
+        mpr((Options.language == lang_t::KO ? "지금 발사하거나 사용할 수 있는 물건이 없습니다." : "You have nothing you can fire or use right now."));
         return make_shared<quiver::action>(); // hack: prevent "Ok, then."
     }
 

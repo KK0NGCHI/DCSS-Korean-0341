@@ -219,7 +219,7 @@ static void _climb_message(dungeon_feature_type stair, bool going_up,
     if (feat_is_portal(stair))
     {
         if (stair != DNGN_ENTER_CRUCIBLE)
-            mpr("The world spins around you as you enter the gateway.");
+            mpr((Options.language == lang_t::KO ? "관문에 들어서자 세상이 빙글빙글 돕니다." : "The world spins around you as you enter the gateway."));
     }
     else if (feat_is_escape_hatch(stair))
     {
@@ -230,7 +230,7 @@ static void _climb_message(dungeon_feature_type stair, bool going_up,
             mprf("You %s downwards.",
                  you.airborne() ? "fly" : "slide");
         }
-        mpr("The hatch slams shut behind you.");
+        mpr((Options.language == lang_t::KO ? "뒤에서 해치가 쾅 닫힙니다." : "The hatch slams shut behind you."));
     }
     else if (feat_is_gate(stair))
     {
@@ -241,9 +241,9 @@ static void _climb_message(dungeon_feature_type stair, bool going_up,
     else if (old_branch == BRANCH_SLIME && !you.royal_jelly_dead)
     {
         if (going_up)
-            mpr("You ooze up the stairs.");   // Jiyva-worshippers only
+            mpr((Options.language == lang_t::KO ? "계단을 따라 끈적하게 흘러 올라갑니다." : "You ooze up the stairs."));   // Jiyva-worshippers only
         else
-            mpr("You slide down the stairs, becoming coated in regenerative ooze.");
+            mpr((Options.language == lang_t::KO ? "계단 아래로 미끄러지며 재생하는 점액에 뒤덮입니다." : "You slide down the stairs, becoming coated in regenerative ooze."));
     }
     else if (stair != DNGN_ALTAR_IGNIS)
     {
@@ -275,7 +275,7 @@ static void _remove_unstable_monsters()
 static void _complete_zig()
 {
     if (!zot_immune())
-        mpr("You have passed through the Ziggurat. Zot will hunt you nevermore.");
+        mpr((Options.language == lang_t::KO ? "지구라트를 통과했습니다. 조트는 더 이상 당신을 추적하지 않습니다." : "You have passed through the Ziggurat. Zot will hunt you nevermore."));
     you.zigs_completed++;
 }
 
@@ -383,13 +383,13 @@ static bool _check_stairs(const dungeon_feature_type ftype, bool going_up)
                                                      : CMD_GO_DOWNSTAIRS))
         {
             if (ftype == DNGN_STONE_ARCH)
-                mpr("There is nothing on the other side of the stone arch.");
+                mpr((Options.language == lang_t::KO ? "돌 아치 너머에는 아무것도 없습니다." : "There is nothing on the other side of the stone arch."));
             else if (ftype == DNGN_ABANDONED_SHOP)
-                mpr("This shop has been abandoned, nothing of value remains.");
+                mpr((Options.language == lang_t::KO ? "버려진 상점입니다. 값진 물건은 남아 있지 않습니다." : "This shop has been abandoned, nothing of value remains."));
             else if (going_up)
-                mpr("You can't go up here!");
+                mpr((Options.language == lang_t::KO ? "이곳에서는 올라갈 수 없습니다!" : "You can't go up here!"));
             else
-                mpr("You can't go down here!");
+                mpr((Options.language == lang_t::KO ? "이곳에서는 내려갈 수 없습니다!" : "You can't go down here!"));
             return false;
         }
     }
@@ -455,23 +455,23 @@ static void _rune_effect(dungeon_feature_type ftype)
 #else
         flash_view(UA_BRANCH_ENTRY, rune_colour(runes[2]));
 #endif
-        mpr("The lock glows eerily!");
+        mpr((Options.language == lang_t::KO ? "자물쇠가 섬뜩한 빛을 냅니다!" : "The lock glows eerily!"));
         // included in default force_more_message
 
         mprf("You insert the %s rune into the lock.", rune_type_name(runes[1]));
         big_cloud(CLOUD_BLUE_SMOKE, &you, you.pos(), 20, 7 + random2(7));
         viewwindow();
         update_screen();
-        mpr("Heavy smoke blows from the lock!");
+        mpr((Options.language == lang_t::KO ? "자물쇠에서 짙은 연기가 뿜어져 나옵니다!" : "Heavy smoke blows from the lock!"));
         // included in default force_more_message
     }
 
     mprf("You insert the %s rune into the lock.", rune_type_name(runes[0]));
 
     if (silenced(you.pos()))
-        mpr("The gate opens wide!");
+        mpr((Options.language == lang_t::KO ? "문이 활짝 열립니다!" : "The gate opens wide!"));
     else
-        mpr("With a soft hiss the gate opens wide!");
+        mpr((Options.language == lang_t::KO ? "부드러운 쉿 소리와 함께 문이 활짝 열립니다!" : "With a soft hiss the gate opens wide!"));
     // these are included in default force_more_message
 }
 
@@ -501,10 +501,10 @@ static void _gauntlet_effect()
     if (you.stasis())
         return;
 
-    mprf(MSGCH_WARN, "The nature of this place prevents you from teleporting.");
+    mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "이곳의 특성 때문에 순간이동할 수 없습니다." : "The nature of this place prevents you from teleporting."));
 
     if (you.get_base_mutation_level(MUT_TELEPORTITIS))
-        mpr("You feel stable on this floor.");
+        mpr((Options.language == lang_t::KO ? "이 층에서는 안정된 느낌이 듭니다." : "You feel stable on this floor."));
 }
 
 static void _hell_effects()
@@ -552,7 +552,7 @@ static void _vainglory_arrival()
 
     if (!mons.empty())
     {
-        mprf(MSGCH_WARN, "You announce your regal presence to all who would look upon you.");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "당신을 바라보는 모두에게 왕의 위엄을 드러냅니다." : "You announce your regal presence to all who would look upon you."));
         for (monster* mon : mons)
             behaviour_event(mon, ME_ANNOY, &you);
 
@@ -622,7 +622,7 @@ static level_id _travel_destination(const dungeon_feature_type how,
         if (!is_valid_shaft_level(false))
         {
             if (known_shaft)
-                mpr("The shaft disappears in a puff of logic!");
+                mpr((Options.language == lang_t::KO ? "수직 통로가 갑자기 사라집니다!" : "The shaft disappears in a puff of logic!"));
             maybe_destroy_shaft(you.pos());
             return dest;
         }
@@ -670,7 +670,7 @@ static level_id _travel_destination(const dungeon_feature_type how,
         {
             if (known_shaft)
             {
-                mpr("Strange, the shaft seems to lead back to this level.");
+                mpr((Options.language == lang_t::KO ? "이상하게도 수직 통로가 다시 이 층으로 이어지는 것 같습니다." : "Strange, the shaft seems to lead back to this level."));
                 mpr("The strain on the space-time continuum destroys the "
                     "shaft!");
             }

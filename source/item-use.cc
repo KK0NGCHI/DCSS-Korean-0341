@@ -910,7 +910,7 @@ static bool _can_generically_use_armour(bool wear=true)
             mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아무것도 착용할 수 없습니다." : "You can't wear anything."));
         else
         {
-            mprf(MSGCH_PROMPT, "You can't remove your %s, sorry.",
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s을(를) 벗을 수 없습니다." : "You can't remove your %s, sorry."),
                 species::skin_name(you.species).c_str());
         }
         return false;
@@ -1881,7 +1881,7 @@ bool oni_drunken_swing()
         bool success = false;
         if (you.weapon())
         {
-            mprf("You take a swig of the potion and twirl %s.",
+            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 %s을(를) 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
                  you.weapon()->name(DESC_YOUR).c_str());
         }
         else
@@ -1998,7 +1998,7 @@ bool drink(item_def* potion)
             || potion->sub_type == POT_MIGHT
             || potion->sub_type == POT_RESISTANCE))
         {
-            mprf("Your mutated metabolism churns, savouring the %s.",
+            mprf((Options.language == lang_t::KO ? "변이된 신진대사가 %s의 맛을 음미하며 활발해집니다." : "Your mutated metabolism churns, savouring the %s."),
                 potion->name(DESC_QUALNAME).c_str());
         }
 
@@ -2282,7 +2282,7 @@ static bool _handle_brand_weapon(bool alreadyknown, const string &pre_msg)
     if (!clua.callfn("c_choose_brand_weapon", ">s", &letter))
     {
         if (!clua.error.empty())
-            mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
     }
     else if (isalpha(letter.c_str()[0]))
     {
@@ -2350,7 +2350,7 @@ static bool _identify(bool alreadyknown, const string &pre_msg)
     if (!clua.callfn("c_choose_identify", ">s", &letter))
     {
         if (!clua.error.empty())
-            mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
     }
     else if (isalpha(letter.c_str()[0]))
     {
@@ -2422,7 +2422,7 @@ static bool _handle_enchant_weapon(bool alreadyknown, const string &pre_msg)
     if (!clua.callfn("c_choose_enchant_weapon", ">s", &letter))
     {
         if (!clua.error.empty())
-            mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
     }
     else if (isalpha(letter.c_str()[0]))
     {
@@ -2491,7 +2491,7 @@ static bool _handle_enchant_armour(bool alreadyknown, const string &pre_msg)
     if (!clua.callfn("c_choose_enchant_armour", ">s", &letter))
     {
         if (!clua.error.empty())
-            mprf(MSGCH_ERROR, "Lua error: %s", clua.error.c_str());
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "Lua 오류: %s" : "Lua error: %s"), clua.error.c_str());
     }
     else if (isalpha(letter.c_str()[0]))
     {
