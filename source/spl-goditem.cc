@@ -507,7 +507,7 @@ void debuff_player(bool ignore_resistance)
 
     if (!buffs.empty() & !ignore_resistance && you.has_mutation(MUT_INVIOLATE_MAGIC))
     {
-        mpr("Your magical effects refuse to unravel!");
+        mpr((Options.language == lang_t::KO ? "마법 효과가 해제되지 않습니다!" : "Your magical effects refuse to unravel!"));
         return;
     }
 
@@ -517,13 +517,13 @@ void debuff_player(bool ignore_resistance)
         if (duration == DUR_TELEPORT)
         {
             len = 0;
-            mprf(MSGCH_DURATION, "You feel strangely stable.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "이상하게 안정된 느낌이 듭니다." : "You feel strangely stable."));
             you.props.erase(TELEPORTITIS_SOURCE);
         }
         else if (duration == DUR_PETRIFYING)
         {
             len = 0;
-            mprf(MSGCH_DURATION, "You feel limber!");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "몸이 유연해진 느낌이 듭니다!" : "You feel limber!"));
             you.redraw_evasion = true;
         }
         else if (duration == DUR_FLAYED)
@@ -533,13 +533,13 @@ void debuff_player(bool ignore_resistance)
         }
         else if (duration == DUR_STICKY_FLAME)
         {
-            mprf(MSGCH_DURATION, "You are no longer on fire.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "몸에 붙은 불이 꺼집니다." : "You are no longer on fire."));
             end_sticky_flame_player();
         }
         else if (duration == DUR_FORTRESS_BLAST_TIMER)
         {
             len = 0;
-            mprf(MSGCH_DURATION, "Your fortress blast dissipates harmlessly.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "요새의 폭발이 아무런 피해 없이 사라집니다." : "Your fortress blast dissipates harmlessly."));
         }
         else if (len > 1)
         {
@@ -549,7 +549,7 @@ void debuff_player(bool ignore_resistance)
     }
 
     if (need_msg)
-        mprf(MSGCH_WARN, "Your magical effects are unravelling.");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "마법 효과가 풀리고 있습니다." : "Your magical effects are unravelling."));
 }
 
 /**
@@ -915,7 +915,7 @@ spret cast_tomb(int pow, actor* victim, int source, bool fail)
                  targname.c_str());
         }
         else
-            mpr("Walls emerge from the floor!");
+            mpr((Options.language == lang_t::KO ? "바닥에서 벽이 솟아오릅니다!" : "Walls emerge from the floor!"));
 
         const int tomb_duration = BASELINE_DELAY * pow;
         env.markers.add(new map_tomb_marker(where,
@@ -952,7 +952,7 @@ spret cast_smiting(int pow, monster* mons, bool fail)
 
     if (mons->friendly())
     {
-        mpr("Beogh will not strike down an ally of the cause.");
+        mpr((Options.language == lang_t::KO ? "베오그는 자신의 대의에 동참한 자를 공격하지 않습니다." : "Beogh will not strike down an ally of the cause."));
         return spret::abort;
     }
 
@@ -1002,7 +1002,7 @@ void holy_word_player(holy_word_source_type source)
     if (!hploss)
         return;
 
-    mpr("You are blasted by holy energy!");
+    mpr((Options.language == lang_t::KO ? "신성한 에너지에 얻어맞습니다!" : "You are blasted by holy energy!"));
 
     const char *aux = "holy word";
 
@@ -1133,11 +1133,11 @@ int torment_player(const actor *attacker, torment_source_type taux)
 
     if (!hploss)
     {
-        mpr("You feel a surge of unholy energy.");
+        mpr((Options.language == lang_t::KO ? "불경한 에너지가 솟구치는 것을 느낍니다." : "You feel a surge of unholy energy."));
         return 0;
     }
 
-    mpr("Your body is wracked with pain!");
+    mpr((Options.language == lang_t::KO ? "온몸이 고통으로 뒤틀립니다!" : "Your body is wracked with pain!"));
 
     kill_method_type type = KILLED_BY_BEAM;
     if (crawl_state.is_god_acting())
@@ -1221,7 +1221,7 @@ int torment_actor(actor* victim, actor *attacker, torment_source_type taux)
         if (mons->observable())
             simple_monster_message(*mons, " convulses!");
         else if (you.see_cell(mons->pos()))
-            mpr("Something is bathed in an unholy light!");
+            mpr((Options.language == lang_t::KO ? "무언가가 불경한 빛에 휩싸입니다!" : "Something is bathed in an unholy light!"));
 
         // Currently, torment doesn't annoy the monsters it affects
         // because it can't kill them, and because hostile monsters use
@@ -1356,7 +1356,7 @@ void dreamshard_shatter()
             break;
         }
     }
-    mpr("Your necklace shatters, unleashing a wave of protective dreams!");
+    mpr((Options.language == lang_t::KO ? "목걸이가 산산조각 나며 보호의 꿈이 파도처럼 퍼져 나갑니다!" : "Your necklace shatters, unleashing a wave of protective dreams!"));
     mark_milestone("dreamshard", "was saved by the dreamshard necklace!");
     take_note(NOTE_DREAMSHARD);
 

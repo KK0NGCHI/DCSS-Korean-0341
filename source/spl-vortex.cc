@@ -363,7 +363,7 @@ void polar_vortex_damage(actor *caster, int dur)
                     {
                         bool standing = !you.airborne();
                         if (standing)
-                            mpr("The freezing vortex lifts you up.");
+                            mpr((Options.language == lang_t::KO ? "얼어붙을 듯한 소용돌이가 몸을 들어 올립니다." : "The freezing vortex lifts you up."));
                         you.duration[DUR_FLIGHT]
                             = max(you.duration[DUR_FLIGHT], 20);
                         if (standing)
