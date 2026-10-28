@@ -3143,8 +3143,13 @@ static bool _mons_awaken_flesh(const monster& caster, const int power,
 
     if (seen_affected > 0)
     {
-        mprf("Chaos surges forth from %s of flesh, awakening new unlife!",
-             seen_affected == 1 ? "the pile" : "piles");
+        if (Options.language == lang_t::KO)
+            mpr(seen_affected == 1
+                ? "살덩이에서 혼돈의 기운이 솟구치며 새로운 언데드가 깨어납니다!"
+                : "살덩이들에서 혼돈의 기운이 솟구치며 새로운 언데드가 깨어납니다!");
+        else
+            mprf("Chaos surges forth from %s of flesh, awakening new unlife!",
+                 seen_affected == 1 ? "the pile" : "piles");
     }
 
     for (monster* mon : affected)
@@ -7653,10 +7658,17 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
         if (you.can_see(*foe))
         {
-                mprf("The water %s and strikes %s%s",
-                        foe->airborne() ? "rises up" : "swirls",
-                        foe->name(DESC_THE).c_str(),
-                        attack_strength_punctuation(damage_taken).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf(foe->airborne()
+                             ? "물이 솟아올라 %s을(를) 강타합니다%s"
+                             : "물이 소용돌이치며 %s을(를) 강타합니다%s",
+                         foe->name(DESC_THE).c_str(),
+                         attack_strength_punctuation(damage_taken).c_str());
+                else
+                    mprf("The water %s and strikes %s%s",
+                         foe->airborne() ? "rises up" : "swirls",
+                         foe->name(DESC_THE).c_str(),
+                         attack_strength_punctuation(damage_taken).c_str());
         }
 
         foe->hurt(mons, damage_taken, BEAM_MISSILE, KILLED_BY_BEAM,
@@ -9413,10 +9425,16 @@ static void _siren_sing(monster* mons, bool avatar)
     }
     else
     {
-        mprf(MSGCH_SOUND, "You hear %s.",
-                          already_mesmerised ? "a luring song" :
-                          coinflip()         ? "a haunting song"
-                                             : "an eerie melody");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_SOUND, "%s 들립니다.",
+                 already_mesmerised ? "유혹하는 노랫소리가" :
+                 coinflip()         ? "으스스한 노랫소리가"
+                                    : "기묘한 선율이");
+        else
+            mprf(MSGCH_SOUND, "You hear %s.",
+                 already_mesmerised ? "a luring song" :
+                 coinflip()         ? "a haunting song"
+                                    : "an eerie melody");
     }
 
     _mesmerise_los(*mons, mons_spellpower(*mons, SPELL_SIREN_SONG), true);
