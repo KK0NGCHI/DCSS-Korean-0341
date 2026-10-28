@@ -1575,7 +1575,7 @@ void shop()
     if (menu.bought_something)
         mprf("Thank you for shopping at %s!", shopname.c_str());
     if (any_on_list)
-        mpr("You can access your shopping list by pressing '$'.");
+        mpr((Options.language == lang_t::KO ? "'$' 키를 누르면 쇼핑 목록을 확인할 수 있습니다." : "You can access your shopping list by pressing '$'."));
 }
 
 void shop(shop_struct& shop, const level_pos& pos)
@@ -2320,7 +2320,7 @@ void ShoppingList::gold_changed(int old_amount, int new_amount)
 
         mpr_comma_separated_list("You now have enough gold to ", descs,
                                  ", or ");
-        mpr("You can access your shopping list by pressing '$'.");
+        mpr((Options.language == lang_t::KO ? "'$' 키를 누르면 쇼핑 목록을 확인할 수 있습니다." : "You can access your shopping list by pressing '$'."));
 
         // Our gold has changed, maybe we can buy different things now.
         refresh();
@@ -2545,7 +2545,7 @@ void ShoppingList::display(bool view_only)
 
             if (this->list->empty())
             {
-                mpr("Your shopping list is now empty.");
+                mpr((Options.language == lang_t::KO ? "쇼핑 목록이 비었습니다." : "Your shopping list is now empty."));
                 return false;
             }
 
