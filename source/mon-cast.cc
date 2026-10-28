@@ -3582,7 +3582,7 @@ static bool _seal_doors_and_stairs(const monster* warden,
     if (had_effect)
     {
         ASSERT(!check_only);
-        mprf(MSGCH_MONSTER_SPELL, "%s activates a sealing rune.",
+        mprf(MSGCH_MONSTER_SPELL, (Options.language == lang_t::KO ? "%s 봉인의 룬을 활성화합니다." : "%s activates a sealing rune."),
                 (warden->visible_to(&you) ? warden->name(DESC_THE, true).c_str()
                                           : "Someone"));
         if (num_closed > 1)
@@ -4060,7 +4060,7 @@ bool mons_word_of_recall(monster* mons, int recall_target, int min_dist)
             if (you.can_see(*mon))
                 simple_monster_message(*mon, (Options.language == lang_t::KO ? " 소환되어 돌아옵니다." : " is recalled."));
             else if (could_see)
-                mprf("%s is recalled away.", mon->name(DESC_THE, true).c_str());
+                mprf((Options.language == lang_t::KO ? "%s 소환되어 사라집니다." : "%s is recalled away."), mon->name(DESC_THE, true).c_str());
         }
         // Can only recall a couple things at once
         if ((int)recalled.size() == recall_target)
@@ -4527,7 +4527,7 @@ static void _prayer_of_brilliance(monster* agent)
         {
             if (!mi->has_ench(ENCH_EMPOWERED_SPELLS) && you.can_see(**mi))
             {
-               mprf("%s spells are empowered by the prayer of brilliance!",
+               mprf((Options.language == lang_t::KO ? "%s의 주문이 찬란한 기도로 강화됩니다!" : "%s spells are empowered by the prayer of brilliance!"),
                     mi->name(DESC_ITS).c_str());
             }
             mi->add_ench(mon_enchant(ENCH_EMPOWERED_SPELLS, agent));
@@ -4637,7 +4637,7 @@ static bool _prepare_ghostly_sacrifice(monster &caster, bolt &beam)
 
     if (you.see_cell(victim->pos()))
     {
-        mprf("%s animating energy erupts into ghostly fire!",
+        mprf((Options.language == lang_t::KO ? "%s의 생명 부여 에너지가 유령의 불꽃으로 분출합니다!" : "%s animating energy erupts into ghostly fire!"),
              apostrophise(victim->name(DESC_THE)).c_str());
     }
     monster_die(*victim, &caster, true);
@@ -4787,7 +4787,7 @@ static bool _prepare_seracfall(monster &caster, bolt &beam)
 
     // Beam origin message handled here
     beam.seen = true;
-    mprf("%s collapses into a mass of ice!", victim->name(DESC_THE).c_str());
+    mprf((Options.language == lang_t::KO ? "%s 얼음 덩어리로 무너져 내립니다!" : "%s collapses into a mass of ice!"), victim->name(DESC_THE).c_str());
     monster_die(*victim, &caster, true);
     return true;
 }
