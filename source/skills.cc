@@ -29,6 +29,7 @@
 #include "libutil.h"
 #include "message.h"
 #include "notes.h"
+#include "options.h"
 #include "output.h"
 #include "random.h"
 #include "religion.h"
