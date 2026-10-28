@@ -29,6 +29,7 @@
 #include "losglobal.h"
 #include "melee-attack.h"
 #include "message.h"
+#include "options.h"
 #include "mgen-data.h"
 #include "mon-abil.h"
 #include "mon-act.h"
@@ -1012,7 +1013,7 @@ void mirror_damage_fineff::fire()
                  reflector->name(DESC_THE).c_str());
         }
         else
-            mpr("Your damage is reflected back at you!");
+            mpr((Options.language == lang_t::KO ? "가한 피해가 자신에게 반사됩니다!" : "Your damage is reflected back at you!"));
         ouch(damage, KILLED_BY_MIRROR_DAMAGE);
     }
     else
@@ -1161,7 +1162,7 @@ void trj_spawn_fineff::fire()
         }
     }
     else if (spawned == 1)
-        mpr("One of the Royal Jelly's fragments survives.");
+        mpr((Options.language == lang_t::KO ? "로열 젤리의 파편 1개가 살아남았습니다." : "One of the Royal Jelly's fragments survives."));
     else
     {
         mprf("The dying Royal Jelly spits out %s more jellies.",
@@ -1563,7 +1564,7 @@ void mummy_death_curse_fineff::fire()
         return;
 
     if (victim->is_player())
-        mprf(MSGCH_MONSTER_SPELL, "You feel extremely nervous for a moment...");
+        mprf(MSGCH_MONSTER_SPELL, (Options.language == lang_t::KO ? "순간 극도로 불안해집니다..." : "You feel extremely nervous for a moment..."));
     else if (you.can_see(*victim))
     {
         mprf(MSGCH_MONSTER_SPELL, "A malignant aura surrounds %s.",
@@ -1766,7 +1767,7 @@ void pyromania_fineff::fire()
     exp.source = you.pos();
     exp.ex_size = 3;
 
-    mpr("Your orb flickers with a hungry flame!");
+    mpr((Options.language == lang_t::KO ? "오브에서 굶주린 불꽃이 일렁입니다!" : "Your orb flickers with a hungry flame!"));
     exp.explode(true, true);
 }
 
@@ -1785,7 +1786,7 @@ void celebrant_bloodrite_fineff::fire()
     if (targs.empty())
         return;
 
-    mpr("You consecrate your suffering and invoke the rites of blood!");
+    mpr((Options.language == lang_t::KO ? "고통을 봉헌하고 피의 의식을 행합니다!" : "You consecrate your suffering and invoke the rites of blood!"));
 
     // Set cooldown before firing, in case we recieve damage during the volley
     // (eg: via reflected projectiles) that would trigger this again.
