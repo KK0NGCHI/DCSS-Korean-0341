@@ -3488,7 +3488,7 @@ bool add_bane(bane_type bane, string reason, int duration, int mult)
     duration = duration * mult / 100;
 
     if (you.banes[bane] == 0)
-        mprf(MSGCH_WARN, "You are stricken with the %s.", bane_name(bane).c_str());
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "%s에 걸렸습니다." : "You are stricken with the %s."), bane_name(bane).c_str());
     else
         mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "%s의 힘이 강해집니다." : "Your %s grows stronger."), bane_name(bane).c_str());
 

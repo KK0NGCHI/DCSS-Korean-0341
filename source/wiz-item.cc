@@ -75,7 +75,7 @@ static void _make_all_books()
 void wizard_create_spec_object_by_name()
 {
     char buf[1024];
-    mprf(MSGCH_PROMPT, "Enter name of item (or ITEM spec): ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아이템 이름(또는 ITEM 지정 형식)을 입력하세요: " : "Enter name of item (or ITEM spec): "));
     if (cancellable_get_line_autohist(buf, sizeof buf) || !*buf)
     {
         canned_msg(MSG_OK);
@@ -112,7 +112,7 @@ void wizard_create_spec_object()
     int thing_created = get_mitm_slot();
     if (thing_created == NON_ITEM)
     {
-        mpr("Could not allocate item.");
+        mpr((Options.language == lang_t::KO ? "아이템을 할당할 수 없습니다." : "Could not allocate item."));
         return;
     }
     item_def& item(env.item[thing_created]);
@@ -145,19 +145,19 @@ void wizard_create_spec_object()
 
         if (mon == MONS_NO_MONSTER || mon == MONS_PROGRAM_BUG)
         {
-            mpr("No such monster.");
+            mpr((Options.language == lang_t::KO ? "해당 몬스터가 없습니다." : "No such monster."));
             return;
         }
 
         if (!mons_class_can_leave_corpse(mon))
         {
-            mpr("That monster doesn't leave corpses.");
+            mpr((Options.language == lang_t::KO ? "그 몬스터는 시체를 남기지 않습니다." : "That monster doesn't leave corpses."));
             return;
         }
 
         if (mons_is_draconian_job(mon))
         {
-            mpr("You can't make a draconian corpse by its background.");
+            mpr((Options.language == lang_t::KO ? "드라코니언의 직업으로 시체를 생성할 수 없습니다." : "You can't make a draconian corpse by its background."));
             mon = MONS_DRACONIAN;
         }
 
@@ -173,7 +173,7 @@ void wizard_create_spec_object()
 
         if (!place_monster_corpse(dummy, true))
         {
-            mpr("Failed to create corpse.");
+            mpr((Options.language == lang_t::KO ? "시체 생성에 실패했습니다." : "Failed to create corpse."));
             return;
         }
     }
@@ -205,7 +205,7 @@ void wizard_create_spec_object()
 
         if (!get_item_by_name(&item, specs, class_wanted, true))
         {
-            mpr("No such item.");
+            mpr((Options.language == lang_t::KO ? "해당 아이템이 없습니다." : "No such item."));
 
             // Clean up item
             destroy_item(thing_created);
@@ -231,7 +231,7 @@ static void _tweak_randart(item_def &item)
 {
     if (item_is_equipped(item))
     {
-        mprf(MSGCH_PROMPT, "You can't tweak the randart properties of an equipped item.");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "장착 중인 아이템의 무작위 아티팩트 속성은 조정할 수 없습니다." : "You can't tweak the randart properties of an equipped item."));
         return;
     }
     else
@@ -402,7 +402,7 @@ void wizard_tweak_object()
         if (keyin == 'e' && new_val & ISFLAG_ARTEFACT_MASK
             && !you.inv[item].props.exists(ARTEFACT_PROPS_KEY))
         {
-            mpr("You can't set this flag on a non-artefact.");
+            mpr((Options.language == lang_t::KO ? "아티팩트가 아닌 아이템에는 이 플래그를 설정할 수 없습니다." : "You can't set this flag on a non-artefact."));
             continue;
         }
 
@@ -437,7 +437,7 @@ static bool _make_book_randart(item_def &book)
 
     do
     {
-        mprf(MSGCH_PROMPT, "Make book fixed [t]heme or fixed [l]evel? ");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "마법서를 고정 [t]테마 또는 고정 [l]레벨로 만드시겠습니까? " : "Make book fixed [t]heme or fixed [l]evel? "));
         type = toalower(getch_ck());
     }
     while (type != 't' && type != 'l');
@@ -570,13 +570,13 @@ void wizard_make_object_randart()
 
     if (is_unrandom_artefact(item))
     {
-        mpr("That item is already an unrandom artefact.");
+        mpr((Options.language == lang_t::KO ? "해당 아이템은 이미 고정 아티팩트입니다." : "That item is already an unrandom artefact."));
         return;
     }
 
     if (!item_type_can_be_artefact(item.base_type))
     {
-        mpr("That item cannot be turned into an artefact.");
+        mpr((Options.language == lang_t::KO ? "해당 아이템은 아티팩트로 바꿀 수 없습니다." : "That item cannot be turned into an artefact."));
         return;
     }
 
@@ -607,7 +607,7 @@ void wizard_make_object_randart()
     {
         god_type god = str_to_god(name, false);
         if (god == GOD_NO_GOD)
-            mpr("No such god, leaving item origin alone.");
+            mpr((Options.language == lang_t::KO ? "해당 신이 없어 아이템의 출처를 변경하지 않습니다." : "No such god, leaving item origin alone."));
         else
         {
             mprf("God gift of %s.", god_name(god, false).c_str());
@@ -619,13 +619,13 @@ void wizard_make_object_randart()
     {
         if (!_make_book_randart(item))
         {
-            mpr("Failed to turn book into randart.");
+            mpr((Options.language == lang_t::KO ? "마법서를 무작위 아티팩트로 만드는 데 실패했습니다." : "Failed to turn book into randart."));
             return;
         }
     }
     else if (!make_item_randart(item, true))
     {
-        mpr("Failed to turn item into randart.");
+        mpr((Options.language == lang_t::KO ? "아이템을 무작위 아티팩트로 만드는 데 실패했습니다." : "Failed to turn item into randart."));
         return;
     }
 
@@ -638,7 +638,7 @@ void wizard_make_object_randart()
 
 void wizard_identify_pack()
 {
-    mpr("You feel a rush of knowledge.");
+    mpr((Options.language == lang_t::KO ? "지식이 밀려드는 것을 느낍니다." : "You feel a rush of knowledge."));
     identify_inventory();
     you.wield_change  = true;
     quiver::set_needs_redraw();
@@ -655,7 +655,7 @@ static void _forget_item(item_def &item)
 
 void wizard_unidentify_pack()
 {
-    mpr("You feel a rush of antiknowledge.");
+    mpr((Options.language == lang_t::KO ? "반지식이 밀려드는 것을 느낍니다." : "You feel a rush of antiknowledge."));
     for (auto &item : you.inv)
         if (item.defined())
             _forget_item(item);
@@ -673,7 +673,7 @@ void wizard_unidentify_pack()
 
 void wizard_list_items()
 {
-    mpr("Item stacks (by location and top item):");
+    mpr((Options.language == lang_t::KO ? "아이템 더미(위치 및 맨 위 아이템 기준):" : "Item stacks (by location and top item):"));
     for (const auto &item : env.item)
     {
         if (item.defined() && !item.held_by_monster() && item.link != NON_ITEM)
@@ -685,7 +685,7 @@ void wizard_list_items()
     }
 
     mpr("");
-    mpr("Floor items (stacks only show top item):");
+    mpr((Options.language == lang_t::KO ? "바닥 아이템(더미는 맨 위 아이템만 표시):" : "Floor items (stacks only show top item):"));
 
     const coord_def start(1,1), end(GXM-1, GYM-1);
     for (rectangle_iterator ri(start, end); ri; ++ri)
@@ -756,7 +756,7 @@ static void _debug_acquirement_stats()
     int p = get_mitm_slot(11);
     if (p == NON_ITEM)
     {
-        mpr("Too many items on level.");
+        mpr((Options.language == lang_t::KO ? "이 층에 아이템이 너무 많습니다." : "Too many items on level."));
         return;
     }
     env.item[p].base_type = OBJ_UNASSIGNED;
@@ -811,7 +811,7 @@ static void _debug_acquirement_stats()
         if (kbhit())
         {
             getch_ck();
-            mpr("Stopping early due to keyboard input.");
+            mpr((Options.language == lang_t::KO ? "키보드 입력으로 작업을 조기 중단합니다." : "Stopping early due to keyboard input."));
             break;
         }
 
@@ -820,7 +820,7 @@ static void _debug_acquirement_stats()
 
         if (item_index == NON_ITEM || !env.item[item_index].defined())
         {
-            mpr("Acquirement failed, stopping early.");
+            mpr((Options.language == lang_t::KO ? "획득에 실패하여 작업을 조기 중단합니다." : "Acquirement failed, stopping early."));
             break;
         }
 
@@ -1122,7 +1122,7 @@ static int _median(vector<int> &counts)
 static void _debug_randart_stats()
 {
     char buf[1024];
-    mprf(MSGCH_PROMPT, "Enter name of item (or ITEM spec): ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아이템 이름(또는 ITEM 지정 형식)을 입력하세요: " : "Enter name of item (or ITEM spec): "));
     if (cancellable_get_line_autohist(buf, sizeof buf) || !*buf)
     {
         canned_msg(MSG_OK);
@@ -1182,7 +1182,7 @@ static void _debug_randart_stats()
         if (kbhit())
         {
             getch_ck();
-            mpr("Stopping early due to keyboard input.");
+            mpr((Options.language == lang_t::KO ? "키보드 입력으로 작업을 조기 중단합니다." : "Stopping early due to keyboard input."));
             break;
         }
 

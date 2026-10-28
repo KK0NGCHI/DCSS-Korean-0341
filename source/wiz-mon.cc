@@ -30,6 +30,7 @@
 #include "libutil.h"
 #include "macro.h"
 #include "message.h"
+#include "options.h"
 #include "mon-death.h"
 #include "mon-pathfind.h"
 #include "mon-place.h"
@@ -53,7 +54,7 @@
 void wizard_create_spec_monster_name()
 {
     char specs[1024];
-    mprf(MSGCH_PROMPT, "Enter monster name (or MONS spec) (? for help): ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "몬스터 이름(또는 MONS 지정 형식)을 입력하세요 (?: 도움말): " : "Enter monster name (or MONS spec) (? for help): "));
     if (cancellable_get_line_autohist(specs, sizeof specs) || !*specs)
     {
         canned_msg(MSG_OK);
@@ -91,7 +92,7 @@ void wizard_create_spec_monster_name()
     mons_spec mspec = mlist.get_monster(0);
     if (mspec.type == MONS_NO_MONSTER)
     {
-        mprf(MSGCH_DIAGNOSTICS, "Such a monster couldn't be found.");
+        mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "해당 몬스터를 찾을 수 없습니다." : "Such a monster couldn't be found."));
         return;
     }
 
@@ -109,7 +110,7 @@ void wizard_create_spec_monster_name()
 
     if (!in_bounds(place))
     {
-        mprf(MSGCH_DIAGNOSTICS, "Found no space to place monster.");
+        mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "몬스터를 배치할 공간이 없습니다." : "Found no space to place monster."));
         return;
     }
 
@@ -120,7 +121,7 @@ void wizard_create_spec_monster_name()
 
     if (!dgn_place_monster(mspec, place, true, false))
     {
-        mprf(MSGCH_DIAGNOSTICS, "Unable to place monster.");
+        mprf(MSGCH_DIAGNOSTICS, (Options.language == lang_t::KO ? "몬스터를 배치할 수 없습니다." : "Unable to place monster."));
         return;
     }
 }
@@ -271,7 +272,7 @@ void debug_stethoscope(int mon)
         i = mon;
     else
     {
-        mprf(MSGCH_PROMPT, "Which monster?");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 몬스터입니까?" : "Which monster?"));
 
         direction(stth, direction_chooser_args());
 
@@ -500,7 +501,7 @@ void wizard_dismiss_all_monsters(bool force_all)
 
 void debug_make_monster_shout(monster* mon)
 {
-    mprf(MSGCH_PROMPT, "Make the monster (S)hout or (T)alk? ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "몬스터가 (S)외치거나 (T)말하게 하시겠습니까? " : "Make the monster (S)hout or (T)alk? "));
 
     char type = (char) getchm(KMC_DEFAULT);
     type = toalower(type);
@@ -525,7 +526,7 @@ void debug_make_monster_shout(monster* mon)
     else
     {
         if (mon->invisible())
-            mpr("The monster is invisible and likely won't speak.");
+            mpr((Options.language == lang_t::KO ? "몬스터가 보이지 않아 말하지 않을 가능성이 큽니다." : "The monster is invisible and likely won't speak."));
 
         if (silenced(you.pos()) && !silenced(mon->pos()))
         {
@@ -533,7 +534,7 @@ void debug_make_monster_shout(monster* mon)
                 "probably hear/see nothing.");
         }
         else if (!silenced(you.pos()) && silenced(mon->pos()))
-            mpr("The monster is silenced and likely won't say anything.");
+            mpr((Options.language == lang_t::KO ? "몬스터가 침묵 상태라 아무 말도 하지 않을 것입니다." : "The monster is silenced and likely won't say anything."));
         else if (silenced(you.pos()) && silenced(mon->pos()))
         {
             mpr("Both you and the monster are silenced, so you likely "
@@ -549,7 +550,7 @@ void debug_make_monster_shout(monster* mon)
 
 void wizard_apply_monster_blessing(monster* mon)
 {
-    mprf(MSGCH_PROMPT, "Apply blessing of the (S)hining One? ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "샤이닝 원의 축복을 적용하시겠습니까? (S) " : "Apply blessing of the (S)hining One? "));
 
     char type = (char) getchm(KMC_DEFAULT);
     type = toalower(type);
@@ -570,7 +571,7 @@ void wizard_give_monster_item(monster* mon)
     mon_itemuse_type item_use = mons_itemuse(*mon);
     if (item_use < MONUSE_STARTING_EQUIPMENT)
     {
-        mpr("That type of monster can't use any items.");
+        mpr((Options.language == lang_t::KO ? "이 종류의 몬스터는 아이템을 사용할 수 없습니다." : "That type of monster can't use any items."));
         return;
     }
 
@@ -584,7 +585,7 @@ void wizard_give_monster_item(monster* mon)
 
     if (item_is_equipped(item))
     {
-        mpr("Can't give equipped items to a monster.");
+        mpr((Options.language == lang_t::KO ? "장착 중인 아이템은 몬스터에게 줄 수 없습니다." : "Can't give equipped items to a monster."));
         return;
     }
 
@@ -592,7 +593,7 @@ void wizard_give_monster_item(monster* mon)
 
     if (mon_slot == NUM_MONSTER_SLOTS)
     {
-        mpr("You can't give that type of item to a monster.");
+        mpr((Options.language == lang_t::KO ? "이 종류의 아이템은 몬스터에게 줄 수 없습니다." : "You can't give that type of item to a monster."));
         return;
     }
 
@@ -603,7 +604,7 @@ void wizard_give_monster_item(monster* mon)
     }
 
     if (!mon->take_item(player_slot, mon_slot))
-        mpr("Error: monster failed to take item.");
+        mpr((Options.language == lang_t::KO ? "오류: 몬스터가 아이템을 받지 못했습니다." : "Error: monster failed to take item."));
 }
 
 static void _move_player(const coord_def& where)
@@ -658,7 +659,7 @@ void wizard_move_player_or_monster(const coord_def& where)
 
     if (!in_bounds(where))
     {
-        mpr("Cannot move out of bounds.");
+        mpr((Options.language == lang_t::KO ? "맵 경계 밖으로 이동할 수 없습니다." : "Cannot move out of bounds."));
         return;
     }
 
@@ -666,7 +667,7 @@ void wizard_move_player_or_monster(const coord_def& where)
 
     if (already_moving)
     {
-        mpr("Already doing a move command.");
+        mpr((Options.language == lang_t::KO ? "이미 이동 명령을 실행 중입니다." : "Already doing a move command."));
         return;
     }
 
@@ -678,7 +679,7 @@ void wizard_move_player_or_monster(const coord_def& where)
     {
         if (crawl_state.arena_suspended)
         {
-            mpr("You can't move yourself into the arena.");
+            mpr((Options.language == lang_t::KO ? "자신을 투기장 안으로 이동시킬 수 없습니다." : "You can't move yourself into the arena."));
             more();
             return;
         }
@@ -694,7 +695,7 @@ void wizard_make_monster_summoned(monster* mon)
 {
     if (mon->is_summoned())
     {
-        mprf(MSGCH_PROMPT, "Monster is already summoned.");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "몬스터가 이미 소환되어 있습니다." : "Monster is already summoned."));
         return;
     }
 
@@ -736,13 +737,13 @@ void wizard_make_monster_summoned(monster* mon)
         spell_type spell = spell_by_name(specs, true);
         if (spell == SPELL_NO_SPELL)
         {
-            mprf(MSGCH_PROMPT, "No such spell.");
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "해당 주문이 없습니다." : "No such spell."));
             return;
         }
         type = (int) spell;
     }
     mon->mark_summoned(type, dur);
-    mpr("Monster is now summoned.");
+    mpr((Options.language == lang_t::KO ? "몬스터가 소환 상태가 되었습니다." : "Monster is now summoned."));
 }
 
 void wizard_polymorph_monster(monster* mon)
@@ -758,19 +759,19 @@ void wizard_polymorph_monster(monster* mon)
 
     if (invalid_monster_type(type))
     {
-        mprf(MSGCH_PROMPT, "Invalid monster type.");
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "잘못된 몬스터 종류입니다." : "Invalid monster type."));
         return;
     }
 
     if (type == old_type)
     {
-        mpr("Old type and new type are the same, not polymorphing.");
+        mpr((Options.language == lang_t::KO ? "기존 종류와 새 종류가 같아 변신시키지 않습니다." : "Old type and new type are the same, not polymorphing."));
         return;
     }
 
     if (mons_species(type) == mons_species(old_type))
     {
-        mpr("Target species must be different from current species.");
+        mpr((Options.language == lang_t::KO ? "목표 종족은 현재 종족과 달라야 합니다." : "Target species must be different from current species."));
         return;
     }
 
@@ -786,7 +787,7 @@ void wizard_polymorph_monster(monster* mon)
 
     if (mon->type == old_type)
     {
-        mpr("Trying harder");
+        mpr((Options.language == lang_t::KO ? "다시 시도합니다" : "Trying harder"));
         change_monster_type(mon, type);
         if (!mon->alive())
         {
@@ -798,9 +799,9 @@ void wizard_polymorph_monster(monster* mon)
     }
 
     if (mon->type == old_type)
-        mpr("Polymorph failed.");
+        mpr((Options.language == lang_t::KO ? "변신에 실패했습니다." : "Polymorph failed."));
     else if (mon->type != type)
-        mpr("Monster turned into something other than the desired type.");
+        mpr((Options.language == lang_t::KO ? "몬스터가 지정한 종류와 다른 모습으로 변했습니다." : "Monster turned into something other than the desired type."));
 }
 
 void debug_pathfind(int idx)
@@ -808,7 +809,7 @@ void debug_pathfind(int idx)
     if (idx == NON_MONSTER)
         return;
 
-    mpr("Choose a destination!");
+    mpr((Options.language == lang_t::KO ? "목적지를 선택하세요!" : "Choose a destination!"));
 #ifndef USE_TILE_LOCAL
     more();
 #endif
