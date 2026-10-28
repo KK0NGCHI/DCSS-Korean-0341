@@ -1852,7 +1852,7 @@ static void _get_book(item_def& it)
                  it.name(DESC_THE).c_str());
             return;
         }
-        mprf("You pick up %s and begin reading...", it.name(DESC_A).c_str());
+        mprf((Options.language == lang_t::KO ? "%s을(를) 주워 읽기 시작합니다..." : "You pick up %s and begin reading..."), it.name(DESC_A).c_str());
 
         if (!library_add_spells(spells_in_book(it)))
             mpr((Options.language == lang_t::KO ? "안타깝게도 새롭거나 유용한 지식을 얻지 못했습니다." : "Unfortunately, you learned nothing new or useful."));
@@ -1868,22 +1868,22 @@ static void _get_book(item_def& it)
 
     if (is_useless_skill(sk))
     {
-        mprf("You pick up %s. Unfortunately, it's quite useless to you.",
+        mprf((Options.language == lang_t::KO ? "%s을(를) 주웠지만 아쉽게도 쓸모가 없습니다." : "You pick up %s. Unfortunately, it's quite useless to you."),
              it.name(DESC_A).c_str());
         return;
     }
 
     if (you.skills[sk] >= MAX_SKILL_LEVEL)
     {
-        mprf("You pick up %s, but it has nothing more to teach you.",
+        mprf((Options.language == lang_t::KO ? "%s을(를) 주웠지만 더 배울 내용은 없습니다." : "You pick up %s, but it has nothing more to teach you."),
              it.name(DESC_A).c_str());
         return;
     }
 
     if (you.skill_manual_points[sk])
-        mprf("You pick up another %s and continue studying.", it.name(DESC_PLAIN).c_str());
+        mprf((Options.language == lang_t::KO ? "%s을(를) 하나 더 주워 계속 공부합니다." : "You pick up another %s and continue studying."), it.name(DESC_PLAIN).c_str());
     else
-        mprf("You pick up %s and begin studying.", it.name(DESC_A).c_str());
+        mprf((Options.language == lang_t::KO ? "%s을(를) 주워 공부하기 시작합니다." : "You pick up %s and begin studying."), it.name(DESC_A).c_str());
     you.skill_manual_points[sk] += it.skill_points;
     you.skills_to_show.insert(sk);
 }
@@ -1934,7 +1934,7 @@ static void _get_rune(const item_def& it, bool quiet)
     if (!quiet)
     {
         flash_view_delay(UA_PICKUP, rune_colour(it.sub_type), 300);
-        mprf("You pick up the %s rune and feel its power.",
+        mprf((Options.language == lang_t::KO ? "%s 룬을 주워 그 힘을 느낍니다." : "You pick up the %s rune and feel its power."),
              rune_type_name(it.sub_type));
         int nrunes = runes_in_pack();
         if (nrunes >= you.obtainable_runes)
@@ -1949,7 +1949,7 @@ static void _get_rune(const item_def& it, bool quiet)
         {
             if (player_in_branch(BRANCH_PANDEMONIUM) && _got_all_pan_runes())
                 mpr((Options.language == lang_t::KO ? "판데모니엄에서 얻을 것은 모두 얻었습니다! 이제 악마들만 남았습니다." : "You've emptied out Pandemonium! Nothing left here but demons."));
-            mprf("You now have %d runes.", nrunes);
+            mprf((Options.language == lang_t::KO ? "현재 보유한 룬: %d개." : "You now have %d runes."), nrunes);
         }
 
         mpr((Options.language == lang_t::KO ? "모은 룬을 모두 보려면 } 키를 누르세요." : "Press } to see all the runes you have collected."));
@@ -2001,11 +2001,11 @@ static void _get_gem(const item_def& it, bool quiet)
 
     flash_view_delay(UA_PICKUP, it.gem_colour(), 300);
     // XXX: consider customizing this message per-gem
-    mprf("You pick up %s and feel its impossibly delicate weight in your %s.",
+    mprf((Options.language == lang_t::KO ? "%s을(를) 주웠습니다. %s에 믿기 어려울 만큼 섬세한 무게가 느껴집니다." : "You pick up %s and feel its impossibly delicate weight in your %s."),
          it.name(DESC_THE).c_str(), you.hand_name(true).c_str());
     if (_got_all_gems())
     {
-        mprf("You've found all the gems! Together, they sparkle an otherworldly %s!",
+        mprf((Options.language == lang_t::KO ? "모든 보석을 찾았습니다! 보석들이 함께 모여 이세계의 %s 빛으로 반짝입니다!" : "You've found all the gems! Together, they sparkle an otherworldly %s!"),
              getSpeakString("misc_colour").c_str());
     }
     mpr((Options.language == lang_t::KO ? "모은 보석을 모두 보려면 } 키와 ! 키를 누르세요." : "Press } and ! to see all the gems you have collected."));
@@ -2654,7 +2654,7 @@ bool move_item_to_grid(int *const obj, const coord_def& p, bool silent)
     }
 
     if (p == you.pos() && _id_floor_item(item))
-        mprf("You see here %s.", item.name(DESC_A).c_str());
+        mprf((Options.language == lang_t::KO ? "이곳에 %s이(가) 보입니다." : "You see here %s."), item.name(DESC_A).c_str());
 
     return true;
 }
@@ -2882,7 +2882,7 @@ bool drop_item(int item_dropped, int quant_drop)
         return false;
     }
 
-    mprf("You drop %s.", quant_name(item, quant_drop, DESC_A).c_str());
+    mprf((Options.language == lang_t::KO ? "%s을(를) 내려놓습니다." : "You drop %s."), quant_name(item, quant_drop, DESC_A).c_str());
 
     // If you drop an item in as a merfolk, it is below the water line and
     // makes no noise falling.
@@ -2986,11 +2986,11 @@ static void _maybe_disable_autopickup_for_dropped_items(vector<SelItem> &items)
     }
     if (autopickup_remove_count == 1)
     {
-        mprf("Autopickup disabled for %s.",
+        mprf((Options.language == lang_t::KO ? "%s의 자동 줍기가 비활성화되었습니다." : "Autopickup disabled for %s."),
              pluralise(last_touched_item->name(DESC_DBNAME)).c_str());
     }
     else if (autopickup_remove_count > 1)
-        mprf("Autopickup disabled for %d items.", autopickup_remove_count);
+        mprf((Options.language == lang_t::KO ? "%d개 아이템의 자동 줍기가 비활성화되었습니다." : "Autopickup disabled for %d items."), autopickup_remove_count);
 }
 
 /**
@@ -4991,7 +4991,7 @@ static void _identify_last_item(item_def &item)
     const string class_name = item.base_type == OBJ_JEWELLERY ?
                                     item_base_name(item) :
                                     item_class_name(item.base_type, true);
-    mprf("You have identified the last %s.", class_name.c_str());
+    mprf((Options.language == lang_t::KO ? "마지막 %s까지 감정했습니다." : "You have identified the last %s."), class_name.c_str());
 
     if (in_inventory(item))
     {
@@ -5096,7 +5096,7 @@ void say_farewell_to_weapon(const item_def &item)
     string name = get_weapon_name(item, false);
 
     // TODO: variant messages? (in the database?)
-    mprf("You whisper farewell to %s.", name.c_str());
+    mprf((Options.language == lang_t::KO ? "%s에게 작별 인사를 속삭입니다." : "You whisper farewell to %s."), name.c_str());
 }
 
 // Returns whether an additional copy of a given item in the player's inventory
