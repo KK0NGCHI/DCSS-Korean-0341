@@ -213,7 +213,7 @@ static void _melee_attack_player(monster &mons, monster* ru_target)
         // attack that target
         mons.target = ru_target->pos();
         mons.foe = ru_target->mindex();
-        mprf(MSGCH_GOD, "You redirect %s's attack!",
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "%s의 공격 방향을 바꿉니다!" : "You redirect %s's attack!"),
              mons.name(DESC_THE).c_str());
         fight_melee(&mons, ru_target);
     }
@@ -1599,7 +1599,7 @@ bool handle_throw(monster* mons, bolt & beem, bool teleport, bool check_only, bo
         }
         else if (interference == DO_REDIRECT_ATTACK)
         {
-            mprf(MSGCH_GOD, "You redirect %s's attack!",
+            mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "%s의 공격 방향을 바꿉니다!" : "You redirect %s's attack!"),
                     mons->name(DESC_THE).c_str());
             int pfound = 0;
             for (radius_iterator ri(you.pos(),
@@ -3061,7 +3061,11 @@ static void _mons_open_door(monster& mons, const coord_def &pos)
 
         if (!you.can_see(mons))
         {
-            mprf("Something unseen %s", open_str.c_str());
+            if (Options.language == lang_t::KO)
+                mpr(broken ? "보이지 않는 무언가가 문을 부숩니다."
+                           : "보이지 않는 무언가가 문을 엽니다.");
+            else
+                mprf("Something unseen %s", open_str.c_str());
             interrupt_activity(activity_interrupt::sense_monster);
         }
         else
