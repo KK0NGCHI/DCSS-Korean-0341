@@ -33,11 +33,11 @@ spret cast_sublimation_of_blood(int pow, bool fail)
     bool success = false;
 
     if (you.duration[DUR_DEATHS_DOOR])
-        mpr("You can't draw power from your own body while in death's door.");
+        mpr((Options.language == lang_t::KO ? "죽음의 문턱에 있는 동안에는 자신의 몸에서 힘을 끌어낼 수 없습니다." : "You can't draw power from your own body while in death's door."));
     else if (!you.has_blood())
-        mpr("Your body is bloodless.");
+        mpr((Options.language == lang_t::KO ? "몸에 피가 흐르지 않습니다." : "Your body is bloodless."));
     else if (!enough_hp(2, true))
-        mpr("Your attempt to draw power from your own body fails.");
+        mpr((Options.language == lang_t::KO ? "자신의 몸에서 힘을 끌어내는 데 실패했습니다." : "Your attempt to draw power from your own body fails."));
     else
     {
         // Take at most 90% of currhp.
@@ -59,9 +59,9 @@ spret cast_sublimation_of_blood(int pow, bool fail)
                 break;
         }
         if (success)
-            mpr("You draw magical energy from your own body!");
+            mpr((Options.language == lang_t::KO ? "자신의 몸에서 마력을 끌어냅니다!" : "You draw magical energy from your own body!"));
         else
-            mpr("Your attempt to draw power from your own body fails.");
+            mpr((Options.language == lang_t::KO ? "자신의 몸에서 힘을 끌어내는 데 실패했습니다." : "Your attempt to draw power from your own body fails."));
     }
 
     return success ? spret::success : spret::abort;
@@ -70,7 +70,7 @@ spret cast_sublimation_of_blood(int pow, bool fail)
 spret cast_death_channel(int pow, god_type god, bool fail)
 {
     fail_check();
-    mpr("Malign forces permeate your being, awaiting release.");
+    mpr((Options.language == lang_t::KO ? "사악한 힘이 몸속에 스며들어 해방될 순간을 기다립니다." : "Malign forces permeate your being, awaiting release."));
 
     you.increase_duration(DUR_DEATH_CHANNEL,
                           30 + random2(1 + div_rand_round(2 * pow, 3)), 200);
@@ -105,9 +105,9 @@ spret cast_animate_dead(int pow, bool fail)
     fail_check();
 
     if (_dismiss_dead())
-        mpr("You dismiss your zombies and call upon the dead to rise afresh.");
+        mpr((Options.language == lang_t::KO ? "좀비들을 돌려보내고 죽은 자들이 다시 일어나도록 부릅니다." : "You dismiss your zombies and call upon the dead to rise afresh."));
     else
-        mpr("You call upon the dead to rise.");
+        mpr((Options.language == lang_t::KO ? "죽은 자들이 일어나도록 부릅니다." : "You call upon the dead to rise."));
 
     you.increase_duration(DUR_ANIMATE_DEAD, 20 + random2(1 + pow), 100);
     you.props[ANIMATE_DEAD_POWER_KEY] = pow;
@@ -152,7 +152,7 @@ void do_player_recall(recall_t type)
     }
 
     if (!did_recall)
-        mpr("Nothing appears to have answered your call.");
+        mpr((Options.language == lang_t::KO ? "부름에 응답한 존재는 없는 듯합니다." : "Nothing appears to have answered your call."));
 }
 
 // Remind a recalled ally (or one skipped due to proximity) not to run
@@ -447,7 +447,7 @@ static int _intoxicate_monsters(coord_def where, int pow, bool tracer)
     if (!tracer && x_chance_in_y(40 + div_rand_round(pow, 3), 100))
     {
         mons->add_ench(mon_enchant(ENCH_CONFUSION, &you));
-        simple_monster_message(*mons, " looks rather confused.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " 꽤 혼란스러워 보입니다." : " looks rather confused."));
         return 1;
     }
     // Just count affectable monsters for the tracer
@@ -466,7 +466,7 @@ spret cast_intoxicate(int pow, bool fail, bool tracer)
     }
 
     fail_check();
-    mpr("You attempt to intoxicate your foes!");
+    mpr((Options.language == lang_t::KO ? "적들을 취하게 만들려 합니다!" : "You attempt to intoxicate your foes!"));
 
     const int count = apply_area_visible([pow] (coord_def where) {
         return _intoxicate_monsters(where, pow, false);
@@ -474,7 +474,7 @@ spret cast_intoxicate(int pow, bool fail, bool tracer)
 
     if (count > 0)
     {
-        mprf(MSGCH_WARN, "The world spins around you!");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "주변 세상이 빙글빙글 돕니다!" : "The world spins around you!"));
         you.increase_duration(DUR_VERTIGO, 4 + count + random2(count + 1));
         you.redraw_evasion = true;
     }
@@ -523,7 +523,7 @@ spret cast_sigil_of_binding(int pow, bool fail, bool tracer)
     fail_check();
     if (!success)
     {
-        mpr("There was nowhere nearby to inscribe sigils!");
+        mpr((Options.language == lang_t::KO ? "근처에 문양을 새길 만한 곳이 없습니다!" : "There was nowhere nearby to inscribe sigils!"));
         return spret::success;
     }
 
@@ -574,9 +574,9 @@ spret cast_sigil_of_binding(int pow, bool fail, bool tracer)
     }
 
     if (!sigil_pos_d1.empty() && !sigil_pos_d2.empty())
-        mpr("You inscribe a pair of binding sigils.");
+        mpr((Options.language == lang_t::KO ? "속박 문양 2개를 새깁니다." : "You inscribe a pair of binding sigils."));
     else
-        mpr("You inscribe a binding sigil.");
+        mpr((Options.language == lang_t::KO ? "속박 문양을 새깁니다." : "You inscribe a binding sigil."));
 
     return spret::success;
 }
@@ -586,7 +586,7 @@ void trigger_binding_sigil(actor& actor)
     if (actor.is_binding_sigil_immune())
     {
         if (actor.is_player())
-            mpr("You slip past the binding sigil.");
+            mpr((Options.language == lang_t::KO ? "속박 문양을 비켜 지나갑니다." : "You slip past the binding sigil."));
         else
         {
             mprf("%s cannot be bound by the sigil due to %s high momentum!",
@@ -597,7 +597,7 @@ void trigger_binding_sigil(actor& actor)
 
     if (actor.is_player())
     {
-        mprf(MSGCH_WARN, "You move over the binding sigil and are bound in place!");
+        mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "속박 문양 위로 이동하자 그 자리에 묶입니다!" : "You move over the binding sigil and are bound in place!"));
         you.increase_duration(DUR_NO_MOMENTUM, random_range(3, 6));
         revert_terrain_change(you.pos(), TERRAIN_CHANGE_BINDING_SIGIL);
         return;
@@ -662,7 +662,7 @@ spret cast_spike_launcher(int pow, bool fail)
     you.props.erase(SPIKE_LAUNCHER_TIMER);
     you.props[SPIKE_LAUNCHER_POWER] = pow;
 
-    mpr("You shape a spike launcher from a nearby wall.");
+    mpr((Options.language == lang_t::KO ? "근처 벽으로부터 가시 발사기를 만들어 냅니다." : "You shape a spike launcher from a nearby wall."));
 
     return spret::success;
 }
@@ -782,7 +782,7 @@ void end_spike_launcher()
 
         if (marker->change_type == TERRAIN_CHANGE_SPIKE_LAUNCHER)
         {
-            mpr("Your spike launcher falls apart.");
+            mpr((Options.language == lang_t::KO ? "가시 발사기가 무너져 내립니다." : "Your spike launcher falls apart."));
             revert_terrain_change(marker->pos, TERRAIN_CHANGE_SPIKE_LAUNCHER);
             return;
         }
