@@ -2819,8 +2819,7 @@ static level_pos _prompt_travel_depth(const level_id &id, bool remember_targ)
     while (true)
     {
         msgwin_clear_temporary();
-        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s의 몇 층으로 이동하시겠습니까? " : "What level of %s? ")
-             "(default %s, ? - help) ",
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s의 몇 층으로 이동하시겠습니까? (기본값 %s, ?: 도움말) " : "What level of %s? (default %s, ? - help) "),
              branches[target.id.branch].longname,
              _get_trans_travel_dest(target, true).c_str());
 
