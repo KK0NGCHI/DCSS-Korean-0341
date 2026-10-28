@@ -118,7 +118,7 @@ spret cast_fire_storm(int pow, bolt &beam, bool fail)
 {
     if (grid_distance(beam.target, beam.source) > beam.range)
     {
-        mpr("That is beyond the maximum range.");
+        mpr((Options.language == lang_t::KO ? "최대 사거리를 벗어났습니다." : "That is beyond the maximum range."));
         return spret::abort;
     }
 
@@ -175,7 +175,7 @@ bool cast_smitey_damnation(int pow, bolt &beam)
     if (cancel_beam_prompt(beam, tracer))
         return false;
 
-    mpr("You call forth a pillar of damnation!");
+    mpr((Options.language == lang_t::KO ? "파멸의 기둥을 불러냅니다!" : "You call forth a pillar of damnation!"));
 
     beam.in_explosion_phase = false;
     beam.explode(true);
@@ -1058,7 +1058,7 @@ spret cast_momentum_strike(int pow, coord_def target, bool fail)
     if (!beam.foes_hurt && !beam.friends_hurt) // miss!
     {
         if (!mons || !you.can_see(*mons))
-            mpr("The momentum dissipates harmlessly.");
+            mpr((Options.language == lang_t::KO ? "운동량이 아무런 피해 없이 사라집니다." : "The momentum dissipates harmlessly."));
         return spret::success;
     }
 
@@ -1183,7 +1183,7 @@ spret cast_permafrost_eruption(actor &caster, int pow, bool fail)
 
 
     const coord_def targ = *random_iterator(maybe_targets);
-    mpr("Bitter cold erupts, blasting rock from the ceiling!");
+    mpr((Options.language == lang_t::KO ? "매서운 냉기가 폭발하며 천장의 바위를 부숩니다!" : "Bitter cold erupts, blasting rock from the ceiling!"));
 
     _fire_permafrost_at(caster, pow, targ, false);
 
@@ -1464,7 +1464,7 @@ bool setup_fragmentation_beam(bolt &beam, int pow, const actor *caster,
     {
         // Couldn't find a monster or wall to shatter - abort casting!
         if (caster->is_player() && !quiet)
-            mpr("You can't deconstruct that!");
+            mpr((Options.language == lang_t::KO ? "그것은 분해할 수 없습니다!" : "You can't deconstruct that!"));
         return false;
     }
 
@@ -1682,7 +1682,7 @@ static int _shatter_walls(coord_def where, actor *agent)
         if (feat_is_door(feat))
             mpr("A door shatters!");
         else if (feat == DNGN_GRATE)
-            mpr("An iron grate is ripped into pieces!");
+            mpr((Options.language == lang_t::KO ? "쇠창살이 산산조각 납니다!" : "An iron grate is ripped into pieces!"));
     }
 
     noisy(spell_effect_noise(SPELL_SHATTER), where);
@@ -1718,11 +1718,11 @@ spret cast_shatter(int pow, bool fail)
     const bool silence = silenced(you.pos());
 
     if (silence)
-        mpr("The dungeon shakes!");
+        mpr((Options.language == lang_t::KO ? "던전이 흔들립니다!" : "The dungeon shakes!"));
     else
     {
         noisy(spell_effect_noise(SPELL_SHATTER), you.pos());
-        mprf(MSGCH_SOUND, "The dungeon rumbles!");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "던전이 우르릉거립니다!" : "The dungeon rumbles!"));
     }
 
     run_animation(ANIMATION_SHAKE_VIEWPORT, UA_PLAYER);
@@ -1739,7 +1739,7 @@ spret cast_shatter(int pow, bool fail)
     }
 
     if (dest && !silence)
-        mprf(MSGCH_SOUND, "Ka-crash!");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "콰르릉!" : "Ka-crash!"));
 
     return spret::success;
 }
@@ -1817,7 +1817,7 @@ bool mons_shatter(monster* caster, bool actual)
     }
 
     if (dest && !silence)
-        mprf(MSGCH_SOUND, "Ka-crash!");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "콰르릉!" : "Ka-crash!"));
 
     if (actual)
         run_animation(ANIMATION_SHAKE_VIEWPORT, UA_MONSTER);
@@ -1872,7 +1872,7 @@ void shillelagh(actor *wielder, coord_def where, int pow)
         if (strwidth(message) < get_number_of_cols() - 2)
             mpr(message);
         else
-            mpr("There is a shattering impact!");
+            mpr((Options.language == lang_t::KO ? "산산조각 나는 충격이 일어납니다!" : "There is a shattering impact!"));
     }
 
     // need to do this again to do the actual damage
@@ -1960,7 +1960,7 @@ spret cast_scorch(const actor& agent, int pow, bool fail)
         }
         else
         {
-            mprf(MSGCH_DANGER, "Your fire resistance burns away!");
+            mprf(MSGCH_DANGER, (Options.language == lang_t::KO ? "화염 저항이 불타 사라집니다!" : "Your fire resistance burns away!"));
             you.duration[DUR_FIRE_VULN] += dur * 3 / 2;
         }
     }
@@ -2061,7 +2061,7 @@ spret cast_irradiate(int powc, actor &caster, bool fail)
     fail_check();
 
     if (caster.is_player())
-        mpr("You erupt in a fountain of uncontrolled magic!");
+        mpr((Options.language == lang_t::KO ? "통제되지 않는 마력이 분수처럼 폭발합니다!" : "You erupt in a fountain of uncontrolled magic!"));
     else
     {
         simple_monster_message(*caster.as_monster(),
@@ -2313,11 +2313,11 @@ static int _ignite_poison_player(coord_def where, int pow, actor *agent)
     flash_tile(where, RED, 0, TILE_BOLT_IGNITE_POISON_TARGET);
     const int resist = player_res_fire();
     if (resist > 0)
-        mpr("You feel like your blood is boiling!");
+        mpr((Options.language == lang_t::KO ? "피가 끓어오르는 듯합니다!" : "You feel like your blood is boiling!"));
     else if (resist < 0)
-        mpr("The poison in your system burns terribly!");
+        mpr((Options.language == lang_t::KO ? "몸속의 독이 끔찍하게 타오릅니다!" : "The poison in your system burns terribly!"));
     else
-        mpr("The poison in your system burns!");
+        mpr((Options.language == lang_t::KO ? "몸속의 독이 타오릅니다!" : "The poison in your system burns!"));
 
     ouch(damage, KILLED_BY_BEAM, agent->mid,
          "by burning poison", you.can_see(*agent),
@@ -2325,7 +2325,7 @@ static int _ignite_poison_player(coord_def where, int pow, actor *agent)
     if (damage > 0)
         you.expose_to_element(BEAM_FIRE, 2);
 
-    mprf(MSGCH_RECOVERY, "You are no longer poisoned.");
+    mprf(MSGCH_RECOVERY, (Options.language == lang_t::KO ? "더 이상 중독 상태가 아닙니다." : "You are no longer poisoned."));
     you.duration[DUR_POISONING] = 0;
 
     return damage ? 1 : 0;
@@ -2561,7 +2561,7 @@ spret cast_ignition(const actor *agent, int pow, bool fail)
         return spret::success;
     }
 
-        mpr("The air bursts into flame!");
+        mpr((Options.language == lang_t::KO ? "공기가 불길에 휩싸입니다!" : "The air bursts into flame!"));
 
     vector<coord_def> blast_adjacents;
 
@@ -2709,7 +2709,7 @@ static int _discharge_monsters(const coord_def &where, int pow,
     {
         // Only printed if we did damage, so that the messages in
         // cast_discharge() are clean. -- bwr
-        mpr("The lightning grounds out.");
+        mpr((Options.language == lang_t::KO ? "번개가 땅으로 흘러 사라집니다." : "The lightning grounds out."));
     }
 
     return damage;
@@ -2780,7 +2780,7 @@ static void _discharge_message(int dam)
     else
     {
         if (coinflip())
-            mpr("The air crackles with electrical energy.");
+            mpr((Options.language == lang_t::KO ? "공기 중에 전기 에너지가 파직거립니다." : "The air crackles with electrical energy."));
         else
         {
             const bool plural = coinflip();
@@ -2968,7 +2968,7 @@ spret cast_arcjolt(int pow, const actor &agent, bool fail)
     fail_check();
 
     if (agent.is_player())
-        mpr("Electricity surges outward!");
+        mpr((Options.language == lang_t::KO ? "전기가 사방으로 뻗어 나갑니다!" : "Electricity surges outward!"));
     else
     {
         simple_monster_message(*agent.as_monster(),
@@ -3188,7 +3188,7 @@ spret cast_plasma_beam(int pow, const actor &agent, bool fail)
 
 spret cast_watery_grave()
 {
-    mpr("You reach out to the water around you and turn it against your foes!");
+    mpr((Options.language == lang_t::KO ? "주변의 물을 조종해 적들을 공격합니다!" : "You reach out to the water around you and turn it against your foes!"));
 
     bolt strike;
     zappy(ZAP_WATERY_GRAVE, get_form()->get_level(8), false, strike);
@@ -3238,7 +3238,7 @@ spret cast_golden_breath(bolt& beam, int power, bool fail)
 
     fail_check();
 
-    mpr("You exhale a blast of multi-hued devastation!");
+    mpr((Options.language == lang_t::KO ? "여러 빛깔의 파괴적인 숨결을 내뿜습니다!" : "You exhale a blast of multi-hued devastation!"));
 
     bolt fire_beam = beam;
     fire_beam.set_agent(&you);
@@ -3518,9 +3518,9 @@ spret cast_toxic_radiance(actor *agent, int pow, bool fail, bool tracer)
         fail_check();
 
         if (!you.duration[DUR_TOXIC_RADIANCE])
-            mpr("You begin to radiate toxic energy.");
+            mpr((Options.language == lang_t::KO ? "독성 에너지를 방출하기 시작합니다." : "You begin to radiate toxic energy."));
         else
-            mpr("Your toxic radiance grows in intensity.");
+            mpr((Options.language == lang_t::KO ? "독성 광휘가 더욱 강해집니다." : "Your toxic radiance grows in intensity."));
 
         you.increase_duration(DUR_TOXIC_RADIANCE,
                               2 + random2(1 + div_rand_round(pow, 25)), 15);
@@ -3769,7 +3769,7 @@ spret cast_poisonous_vapours(const actor& agent, int pow, const coord_def target
     if (act && you.can_see(*act))
         mprf("Poisonous fumes billow around %s!", act->name(DESC_THE).c_str());
     else
-        mpr("Poisonous fumes billow in the air!");
+        mpr((Options.language == lang_t::KO ? "공기 중에 독성 연기가 피어오릅니다!" : "Poisonous fumes billow in the air!"));
 
     if (!act || act->res_poison() > 0 || !could_harm(&agent, act, true, true))
         return spret::success;
@@ -3849,7 +3849,7 @@ void handle_flame_wave(int lvl)
 
     if (lvl >= spell_range(SPELL_FLAME_WAVE, &you))
     {
-        mpr("Your wave of flame reaches its maximum intensity and dissipates.");
+        mpr((Options.language == lang_t::KO ? "화염의 파동이 최고조에 이른 뒤 사라집니다." : "Your wave of flame reaches its maximum intensity and dissipates."));
         stop_channelling_spells(true);
     }
 }
@@ -3955,7 +3955,7 @@ bool handle_searing_ray(actor& agent, int turn)
 
         if (turn > 3)
         {
-            mpr("You finish channelling your searing ray.");
+            mpr((Options.language == lang_t::KO ? "작열하는 광선의 집중을 끝냅니다." : "You finish channelling your searing ray."));
             stop_channelling_spells(true);
         }
     }
@@ -4373,7 +4373,7 @@ spret cast_imb(int pow, bool fail)
 
     fail_check();
 
-    mpr("You erupt in a blast of force!");
+    mpr((Options.language == lang_t::KO ? "강력한 충격파를 내뿜습니다!" : "You erupt in a blast of force!"));
 
     vector<actor *> act_list;
     // knock back into dispersal could move the player, so save the current pos
@@ -4516,7 +4516,7 @@ spret cast_frozen_ramparts(int pow, bool fail)
 
     if (wall_locs.empty())
     {
-        mpr("There are no walls around you to affect.");
+        mpr((Options.language == lang_t::KO ? "영향을 줄 수 있는 벽이 주변에 없습니다." : "There are no walls around you to affect."));
         return spret::abort;
     }
 
@@ -4533,7 +4533,7 @@ spret cast_frozen_ramparts(int pow, bool fail)
     you.props[FROZEN_RAMPARTS_KEY] = you.pos();
     you.props[FROZEN_RAMPARTS_POWER_KEY].get_int() = pow;
 
-    mpr("The walls around you are covered in ice.");
+    mpr((Options.language == lang_t::KO ? "주변 벽이 얼음으로 뒤덮입니다." : "The walls around you are covered in ice."));
     you.duration[DUR_FROZEN_RAMPARTS] = random_range(40 + pow,
                                                      80 + pow * 3 / 2);
     return spret::success;
@@ -4615,7 +4615,7 @@ spret cast_maxwells_coupling(int pow, bool fail, bool tracer)
     if (!mon || !you.can_see(*mon))
     {
         if (!tracer)
-            mpr("You can't see anything to vaporise!");
+            mpr((Options.language == lang_t::KO ? "기화시킬 대상을 볼 수 없습니다!" : "You can't see anything to vaporise!"));
         return spret::abort;
     }
 
@@ -4625,7 +4625,7 @@ spret cast_maxwells_coupling(int pow, bool fail, bool tracer)
 
     fail_check();
 
-    mpr("You begin accumulating electric charge.");
+    mpr((Options.language == lang_t::KO ? "전하를 모으기 시작합니다." : "You begin accumulating electric charge."));
 
     you.props[COUPLING_TIME_KEY] =
        you.elapsed_time + (30 + div_rand_round(random2((200 - pow) * 40), 200));
@@ -4641,7 +4641,7 @@ static void _discharge_maxwells_coupling()
 
     if (!mon)
     {
-        mpr("Your charge dissipates without a target.");
+        mpr((Options.language == lang_t::KO ? "대상이 없어 모아 둔 전하가 사라집니다." : "Your charge dissipates without a target."));
         return;
     }
 
@@ -4697,7 +4697,7 @@ void handle_maxwells_coupling()
         return;
     }
 
-    mpr("You feel charge building up...");
+    mpr((Options.language == lang_t::KO ? "전하가 쌓이는 것이 느껴집니다..." : "You feel charge building up..."));
 }
 
 vector<coord_def> find_bog_locations(const coord_def &center)
@@ -4731,7 +4731,7 @@ spret cast_noxious_bog(int pow, bool fail)
     vector <coord_def> bog_locs = find_bog_locations(you.pos());
     if (bog_locs.empty())
     {
-        mpr("There are no places for you to create a bog.");
+        mpr((Options.language == lang_t::KO ? "늪을 만들 수 있는 장소가 없습니다." : "There are no places for you to create a bog."));
         return spret::abort;
     }
 
@@ -4747,7 +4747,7 @@ spret cast_noxious_bog(int pow, bool fail)
     }
 
     flash_view_delay(UA_PLAYER, LIGHTGREEN, 100);
-    mpr("You spew toxic sludge!");
+    mpr((Options.language == lang_t::KO ? "독성 진흙을 내뿜습니다!" : "You spew toxic sludge!"));
 
     return spret::success;
 }
@@ -4876,7 +4876,7 @@ spret cast_magnavolt(coord_def target, int pow, bool fail)
     mon->add_ench(mon_enchant(ENCH_MAGNETISED, &you, random_range(5, 8) * BASELINE_DELAY));
 
     // Then zap all magnetized enemies.
-    mpr("Electricity arcs towards the magnetite!");
+    mpr((Options.language == lang_t::KO ? "전기가 자철석을 향해 튀어 오릅니다!" : "Electricity arcs towards the magnetite!"));
     for (unsigned int i = 0; i < targets.size(); ++i)
     {
         bolt volt;
@@ -4900,7 +4900,7 @@ spret cast_fulsome_fusillade(int pow, bool fail)
 
     fail_check();
 
-    mpr("You conjure up an array of volatile reagents!");
+    mpr((Options.language == lang_t::KO ? "휘발성 시약들을 만들어 냅니다!" : "You conjure up an array of volatile reagents!"));
 
     you.duration[DUR_FUSILLADE] = 5;
     you.props[FUSILLADE_POWER_KEY] = pow;
@@ -5056,7 +5056,7 @@ void fire_fusillade()
     {
         if (!enough_mp(2, true))
         {
-            mpr("Your magical reserves are too exhausted to conjure more reagents.");
+            mpr((Options.language == lang_t::KO ? "마력이 바닥나 더 이상 시약을 만들어 낼 수 없습니다." : "Your magical reserves are too exhausted to conjure more reagents."));
             you.duration[DUR_FUSILLADE] = 0;
             return;
         }
@@ -5064,7 +5064,7 @@ void fire_fusillade()
         finalize_mp_cost();
     }
 
-    mpr("Flasks of reagents rain from above!");
+    mpr((Options.language == lang_t::KO ? "하늘에서 시약 병이 비처럼 쏟아집니다!" : "Flasks of reagents rain from above!"));
 
     int pow = you.props[FUSILLADE_POWER_KEY].get_int();
 
@@ -5137,7 +5137,7 @@ void fire_fusillade()
     you.duration[DUR_FUSILLADE] -= 1;
 
     if (!you.duration[DUR_FUSILLADE])
-        mprf(MSGCH_DURATION, "Your rain of reagents ends.");
+        mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "시약의 비가 그칩니다." : "Your rain of reagents ends."));
 }
 
 spret cast_grave_claw(actor& caster, coord_def targ, int pow, bool fail)
@@ -5154,7 +5154,7 @@ spret cast_grave_claw(actor& caster, coord_def targ, int pow, bool fail)
 
     if (caster.is_player())
     {
-        mpr("You unleash the spiteful dead!");
+        mpr((Options.language == lang_t::KO ? "원한에 찬 망자들을 풀어놓습니다!" : "You unleash the spiteful dead!"));
         you.props[GRAVE_CLAW_CHARGES_KEY].get_int()--;
     }
 
@@ -5173,7 +5173,7 @@ spret cast_grave_claw(actor& caster, coord_def targ, int pow, bool fail)
     if (caster.is_player())
     {
         if (you.props[GRAVE_CLAW_CHARGES_KEY].get_int() == 0)
-            mprf(MSGCH_DURATION, "The last of your harvested death is exhausted.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "수확한 죽음의 힘을 모두 소진했습니다." : "The last of your harvested death is exhausted."));
     }
 
     return spret::success;
@@ -5217,7 +5217,7 @@ spret cast_fortress_blast(actor& caster, int pow, bool fail)
     {
         const int delay = 70 - div_rand_round(pow * 10, 25);
         you.duration[DUR_FORTRESS_BLAST_TIMER] = delay;
-        mprf("You steady yourself in place and focus your resilience into a mighty blast.");
+        mprf((Options.language == lang_t::KO ? "자세를 굳히고 버티는 힘을 강력한 폭발에 집중합니다." : "You steady yourself in place and focus your resilience into a mighty blast."));
     }
     // Todo: Add monster implementation here
 
