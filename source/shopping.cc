@@ -1531,7 +1531,7 @@ void shop()
 {
     if (!shop_at(you.pos()))
     {
-        mprf(MSGCH_ERROR, "Help! Non-existent shop.");
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "오류: 존재하지 않는 상점입니다." : "Help! Non-existent shop."));
         return;
     }
 
@@ -1573,7 +1573,7 @@ void shop()
     redraw_screen();
     update_screen();
     if (menu.bought_something)
-        mprf("Thank you for shopping at %s!", shopname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s을(를) 이용해 주셔서 감사합니다!" : "Thank you for shopping at %s!"), shopname.c_str());
     if (any_on_list)
         mpr((Options.language == lang_t::KO ? "'$' 키를 누르면 쇼핑 목록을 확인할 수 있습니다." : "You can access your shopping list by pressing '$'."));
 }
@@ -2048,7 +2048,7 @@ bool ShoppingList::cull_identical_items(const item_def& item, int cost)
             if (yesno(prompt.c_str(), true, 'y', false))
             {
                 to_del.push_back(listed);
-                mprf("Shopping list: removing %s",
+                mprf((Options.language == lang_t::KO ? "쇼핑 목록에서 %s 삭제" : "Shopping list: removing %s"),
                      describe_thing(thing, DESC_A).c_str());
             }
             else
@@ -2056,7 +2056,7 @@ bool ShoppingList::cull_identical_items(const item_def& item, int cost)
         }
         else
         {
-            mprf("Shopping list: removing %s",
+            mprf((Options.language == lang_t::KO ? "쇼핑 목록에서 %s 삭제" : "Shopping list: removing %s"),
                  describe_thing(thing, DESC_A).c_str());
             to_del.push_back(listed);
         }
@@ -2163,7 +2163,7 @@ void ShoppingList::spells_added_to_library(const vector<spell_type>& spells, boo
         for (auto idx : indices_to_del)
         {
             ASSERT_RANGE(idx, 0, list->size());
-            mprf("Shopping list: removing %s",
+            mprf((Options.language == lang_t::KO ? "쇼핑 목록에서 %s 삭제" : "Shopping list: removing %s"),
                 describe_thing((*list)[idx], DESC_A).c_str());
         }
     }

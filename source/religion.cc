@@ -3110,7 +3110,7 @@ void excommunication(bool voluntary, god_type new_god)
     case GOD_QAZLAL:
         if (old_piety >= piety_breakpoint(0))
         {
-            mprf(MSGCH_GOD, old_god, "Your storm instantly dissipates.");
+            mprf(MSGCH_GOD, old_god, (Options.language == lang_t::KO ? "폭풍이 순식간에 사라집니다." : "Your storm instantly dissipates."));
             you.redraw_armour_class = true;
         }
         if (you.duration[DUR_QAZLAL_FIRE_RES])
@@ -3179,13 +3179,13 @@ void excommunication(bool voluntary, god_type new_god)
         if (you.duration[DUR_FIERY_ARMOUR])
         {
             you.duration[DUR_FIERY_ARMOUR] = 0;
-            mpr("Your cloak of flame burns out.");
+            mpr((Options.language == lang_t::KO ? "화염 망토가 꺼집니다." : "Your cloak of flame burns out."));
             you.redraw_armour_class = true;
         }
         if (you.duration[DUR_RISING_FLAME])
         {
             you.duration[DUR_RISING_FLAME] = 0;
-            mpr("Your rising flame fizzles out.");
+            mpr((Options.language == lang_t::KO ? "솟구치던 불길이 사그라집니다." : "Your rising flame fizzles out."));
         }
         break;
 
@@ -3351,7 +3351,7 @@ static void _god_welcome_handle_gear()
     if (!you.has_mutation(MUT_FAITH) && ignore_faith_reason().empty()
         && you.wearing_jewellery(AMU_FAITH))
     {
-        mprf(MSGCH_GOD, "Your amulet flashes!");
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "목걸이가 번쩍 빛납니다!" : "Your amulet flashes!"));
         flash_view_delay(UA_PLAYER, god_colour(you.religion), 300);
     }
 
@@ -3699,7 +3699,7 @@ static void _join_okawaru()
         }
     }
     if (needs_message)
-        mpr("Your summoned allies are dismissed!");
+        mpr((Options.language == lang_t::KO ? "소환한 아군이 모두 소환 해제됩니다!" : "Your summoned allies are dismissed!"));
 }
 
 /// Setup when joining the sacred cult of Ru.
@@ -3740,7 +3740,7 @@ static void _join_zin()
 
     if (you.props.exists(ORCIFICATION_LEVEL_KEY))
     {
-        mprf(MSGCH_GOD, "Zin cleanses your body of Beogh's taint.");
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "진이 몸에 남은 베오그의 오염을 정화합니다." : "Zin cleanses your body of Beogh's taint."));
         you.props.erase(ORCIFICATION_LEVEL_KEY);
     }
 }
@@ -3940,7 +3940,7 @@ void join_religion(god_type which_god)
 void god_pitch(god_type which_god)
 {
     if (which_god == GOD_BEOGH && env.grid(you.pos()) != DNGN_ALTAR_BEOGH)
-        mpr("You bow before the missionary of Beogh.");
+        mpr((Options.language == lang_t::KO ? "베오그의 선교사 앞에 머리를 숙입니다." : "You bow before the missionary of Beogh."));
     else
     {
         mprf("You %s the altar of %s.",
@@ -4990,7 +4990,7 @@ void ostracise_player(int amount)
 {
     if (you.religion == GOD_NO_GOD)
     {
-        mpr("You feel a momentary loss of self-confidence.");
+        mpr((Options.language == lang_t::KO ? "잠시 자신감이 사라집니다." : "You feel a momentary loss of self-confidence."));
         return;
     }
     else if (you.religion == GOD_GOZAG)
@@ -5009,7 +5009,7 @@ void ostracise_player(int amount)
         return;
     }
 
-    mpr("You feel the divine grow more distant.");
+    mpr((Options.language == lang_t::KO ? "신성한 존재가 멀어지는 듯합니다." : "You feel the divine grow more distant."));
 
     // Give a bonus to ostracism first gained, so that we quickly skip past the
     // 'invisible' piety above 6 stars.
@@ -5034,7 +5034,7 @@ void player_change_ostracism(int amount)
     {
         _handle_piety_gain(old_piety);
         if (you.attribute[ATTR_OSTRACISM] == 0)
-            mprf(MSGCH_RECOVERY, "You feel the divine notice you fully once more.");
+            mprf(MSGCH_RECOVERY, (Options.language == lang_t::KO ? "신성한 존재가 다시 당신에게 온전히 관심을 기울이는 것을 느낍니다." : "You feel the divine notice you fully once more."));
     }
 
     // Redraw piety stars, which may have changed.
