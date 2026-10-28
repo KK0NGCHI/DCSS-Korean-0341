@@ -721,7 +721,7 @@ bool can_cast_spells(bool quiet)
     if (you.duration[DUR_NO_CAST])
     {
         if (!quiet)
-            mpr("You are unable to access your magic!");
+            mpr((Options.language == lang_t::KO ? "마법을 사용할 수 없습니다!" : "You are unable to access your magic!"));
         return false;
     }
 
@@ -729,7 +729,7 @@ bool can_cast_spells(bool quiet)
     if (you.no_cast())
     {
         if (!quiet)
-            mpr("Something interferes with your magic!");
+            mpr((Options.language == lang_t::KO ? "무언가가 마법을 방해합니다!" : "Something interferes with your magic!"));
         return false;
     }
 
@@ -743,7 +743,7 @@ bool can_cast_spells(bool quiet)
     if (you.confused())
     {
         if (!quiet)
-            mpr("You're too confused to cast spells.");
+            mpr((Options.language == lang_t::KO ? "너무 혼란스러워 주문을 시전할 수 없습니다." : "You're too confused to cast spells."));
         return false;
     }
 
@@ -795,7 +795,7 @@ static void _handle_energy_orb(int cost, spret cast_result)
         int drain = !targs.empty() ? random_range(1, 3) + targs.size() / 2 : 0;
 
         if (targs.empty())
-            mpr("Magical energy flows into your mind!");
+            mpr((Options.language == lang_t::KO ? "마법의 에너지가 정신으로 흘러듭니다!" : "Magical energy flows into your mind!"));
         else
             mprf("Magical energy flows from %s into your mind!",
                  describe_monsters_condensed(targs).c_str());
@@ -803,7 +803,7 @@ static void _handle_energy_orb(int cost, spret cast_result)
     }
     else
     {
-        mpr("Magical energy flows into your mind!");
+        mpr((Options.language == lang_t::KO ? "마법의 에너지가 정신으로 흘러듭니다!" : "Magical energy flows into your mind!"));
         inc_mp(cost, true);
     }
     did_god_conduct(DID_WIZARDLY_ITEM, 10);
@@ -986,7 +986,7 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
         }
         else if (!isaalpha(keyin))
         {
-            mpr("You don't know that spell.");
+            mpr((Options.language == lang_t::KO ? "그 주문을 알지 못합니다." : "You don't know that spell."));
             crawl_state.zero_turns_taken();
             return spret::abort;
         }
@@ -996,7 +996,7 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
 
     if (spell == SPELL_NO_SPELL)
     {
-        mpr("You don't know that spell.");
+        mpr((Options.language == lang_t::KO ? "그 주문을 알지 못합니다." : "You don't know that spell."));
         crawl_state.zero_turns_taken();
         return spret::abort;
     }
@@ -1137,7 +1137,7 @@ static void _spellcasting_side_effects(spell_type spell, god_type god,
     {
         if (you.duration[DUR_SAP_MAGIC] && !fake_spell)
         {
-            mprf(MSGCH_WARN, "You lose access to your magic!");
+            mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "마법을 사용할 수 없게 되었습니다!" : "You lose access to your magic!"));
             you.increase_duration(DUR_NO_CAST, 3 + random2(3));
         }
 
@@ -2270,7 +2270,7 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
         if (testbits(flags, spflag::not_self) && target->isMe())
         {
             if (spell == SPELL_TELEPORT_OTHER)
-                mpr("Sorry, this spell works on others only.");
+                mpr((Options.language == lang_t::KO ? "이 주문은 다른 대상에게만 사용할 수 있습니다." : "Sorry, this spell works on others only."));
             else
                 canned_msg(MSG_UNTHINKING_ACT);
 
@@ -2430,7 +2430,7 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
                  spell_title(spell));
         }
         else
-            mprf(MSGCH_ERROR, "Invalid spell!");
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "유효하지 않은 주문입니다!" : "Invalid spell!"));
 
         return spret::abort;
     }
@@ -3396,7 +3396,7 @@ void do_demonic_magic(int pow, int rank)
     if (rank < 1)
         return;
 
-    mpr("Malevolent energies surge around you.");
+    mpr((Options.language == lang_t::KO ? "악의적인 에너지가 주변에서 솟구칩니다." : "Malevolent energies surge around you."));
 
     for (radius_iterator ri(you.pos(), rank, C_SQUARE, LOS_NO_TRANS, true); ri; ++ri)
     {
@@ -3503,19 +3503,19 @@ void stop_channelling_spells(bool quiet)
     switch (spell)
     {
         case SPELL_FLAME_WAVE:
-            mpr("You stop channelling waves of flame.");
+            mpr((Options.language == lang_t::KO ? "화염의 파도 집중을 중단합니다." : "You stop channelling waves of flame."));
             break;
 
         case SPELL_SEARING_RAY:
-            mpr("You stop channelling your searing ray.");
+            mpr((Options.language == lang_t::KO ? "작열하는 광선 집중을 중단합니다." : "You stop channelling your searing ray."));
             break;
 
         case SPELL_MAXWELLS_COUPLING:
-            mpr("The insufficient charge dissipates harmlessly.");
+            mpr((Options.language == lang_t::KO ? "불충분한 충전 에너지가 아무런 피해 없이 사라집니다." : "The insufficient charge dissipates harmlessly."));
             break;
 
         case SPELL_CLOCKWORK_BEE:
-            mpr("You stop assembling your clockwork bee.");
+            mpr((Options.language == lang_t::KO ? "태엽벌 조립을 중단합니다." : "You stop assembling your clockwork bee."));
             break;
 
         default:
