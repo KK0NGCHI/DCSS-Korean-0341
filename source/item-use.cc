@@ -907,7 +907,7 @@ static bool _can_generically_use_armour(bool wear=true)
     if (you.has_mutation(MUT_NO_ARMOUR))
     {
         if (wear)
-            mprf(MSGCH_PROMPT, "You can't wear anything.");
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아무것도 착용할 수 없습니다." : "You can't wear anything."));
         else
         {
             mprf(MSGCH_PROMPT, "You can't remove your %s, sorry.",
@@ -1067,7 +1067,7 @@ static int _move_item_from_floor_to_inv(const item_def &to_get)
 
     if (!move_item_to_inv(to_get.index(), to_get.quantity, true))
     {
-        mpr("You can't carry that many items.");
+        mpr((Options.language == lang_t::KO ? "그렇게 많은 아이템을 들고 다닐 수 없습니다." : "You can't carry that many items."));
         you.last_pickup = tmp_l_p;
     }
     // Get the slot of the last thing picked up
@@ -1338,7 +1338,7 @@ bool try_equip_item(item_def& item)
     // to even pick it up, first
     if (item.pos != ITEM_IN_INVENTORY && !room_in_inventory(item))
     {
-        mpr("You can't carry that many items.");
+        mpr((Options.language == lang_t::KO ? "그렇게 많은 아이템을 들고 다닐 수 없습니다." : "You can't carry that many items."));
         return false;
     }
     else if (item_is_equipped(item))
@@ -1836,7 +1836,7 @@ void prompt_inscribe_item()
 {
     if (inv_count() < 1)
     {
-        mpr("You don't have anything to inscribe.");
+        mpr((Options.language == lang_t::KO ? "새길 문구를 적을 아이템이 없습니다." : "You don't have anything to inscribe."));
         return;
     }
 
@@ -1885,7 +1885,7 @@ bool oni_drunken_swing()
                  you.weapon()->name(DESC_YOUR).c_str());
         }
         else
-            mpr("You take a swig of the potion and flex your muscles.");
+            mpr((Options.language == lang_t::KO ? "물약을 한 모금 마시고 근육에 힘을 줍니다." : "You take a swig of the potion and flex your muscles."));
 
         for (actor* victim : targets)
         {
@@ -2006,7 +2006,7 @@ bool drink(item_def* potion)
     {
         if (heal_on_id)
         {
-            mpr("The energy of discovery flows from your fingertips!");
+            mpr((Options.language == lang_t::KO ? "발견의 에너지가 손끝에서 흘러나옵니다!" : "The energy of discovery flows from your fingertips!"));
             potionlike_effect(POT_HEAL_WOUNDS, 40);
         }
 
@@ -3022,7 +3022,7 @@ bool read(item_def* scroll, dist *target)
 
     case SCR_ACQUIREMENT:
         if (!alreadyknown)
-            mpr("This is a scroll of acquirement!");
+            mpr((Options.language == lang_t::KO ? "이것은 획득의 두루마리입니다!" : "This is a scroll of acquirement!"));
 
         // included in default force_more_message
         // Identify it early in case the player checks the '\' screen.
@@ -3030,7 +3030,7 @@ bool read(item_def* scroll, dist *target)
 
         if (feat_eliminates_items(env.grid(you.pos())))
         {
-            mpr("Anything you acquired here would fall and be lost!");
+            mpr((Options.language == lang_t::KO ? "이곳에서 획득한 물건은 떨어져 사라질 것입니다!" : "Anything you acquired here would fall and be lost!"));
             cancel_scroll = true;
             break;
         }
@@ -3039,7 +3039,7 @@ bool read(item_def* scroll, dist *target)
         break;
 
     case SCR_FEAR:
-        mpr("You assume a fearsome visage.");
+        mpr((Options.language == lang_t::KO ? "무시무시한 형상을 취합니다." : "You assume a fearsome visage."));
         mass_enchantment(ENCH_FEAR, 1000);
         break;
 
@@ -3093,9 +3093,9 @@ bool read(item_def* scroll, dist *target)
         }
 
         if (had_effect)
-            mpr("The creatures around you are filled with an inner flame!");
+            mpr((Options.language == lang_t::KO ? "주변 생물들의 몸속에 불길이 깃듭니다!" : "The creatures around you are filled with an inner flame!"));
         else
-            mpr("The air around you briefly surges with heat, but it dissipates.");
+            mpr((Options.language == lang_t::KO ? "주변 공기가 잠시 뜨거워졌다가 식습니다." : "The air around you briefly surges with heat, but it dissipates."));
 
         bad_effect = true;
         break;
@@ -3116,7 +3116,7 @@ bool read(item_def* scroll, dist *target)
         if (!alreadyknown)
         {
             mpr(pre_succ_msg);
-            mpr("It is a scroll of enchant weapon.");
+            mpr((Options.language == lang_t::KO ? "무기 강화의 두루마리입니다." : "It is a scroll of enchant weapon."));
             // included in default force_more_message (to show it before menu)
 
             run_uncancel(UNC_ENCHANT_WEAPON);
@@ -3130,7 +3130,7 @@ bool read(item_def* scroll, dist *target)
         if (!alreadyknown)
         {
             mpr(pre_succ_msg);
-            mpr("It is a scroll of brand weapon.");
+            mpr((Options.language == lang_t::KO ? "무기 속성 부여의 두루마리입니다." : "It is a scroll of brand weapon."));
             // included in default force_more_message (to show it before menu)
 
             run_uncancel(UNC_BRAND_WEAPON);
@@ -3144,7 +3144,7 @@ bool read(item_def* scroll, dist *target)
         if (!alreadyknown)
         {
             mpr(pre_succ_msg);
-            mpr("It is a scroll of identify.");
+            mpr((Options.language == lang_t::KO ? "감정의 두루마리입니다." : "It is a scroll of identify."));
             // included in default force_more_message (to show it before menu)
             // Do this here so it doesn't turn up in the ID menu.
             identify_item(*scroll);
@@ -3160,7 +3160,7 @@ bool read(item_def* scroll, dist *target)
         if (!alreadyknown)
         {
             mpr(pre_succ_msg);
-            mpr("It is a scroll of enchant armour.");
+            mpr((Options.language == lang_t::KO ? "방어구 강화의 두루마리입니다." : "It is a scroll of enchant armour."));
             // included in default force_more_message (to show it before menu)
 
             run_uncancel(UNC_ENCHANT_ARMOUR);
@@ -3177,7 +3177,7 @@ bool read(item_def* scroll, dist *target)
     case SCR_RANDOM_USELESSNESS:
     case SCR_HOLY_WORD:
     {
-        mpr("This item has been removed, sorry!");
+        mpr((Options.language == lang_t::KO ? "이 아이템은 게임에서 삭제되었습니다!" : "This item has been removed, sorry!"));
         cancel_scroll = true;
         break;
     }
@@ -3195,12 +3195,12 @@ bool read(item_def* scroll, dist *target)
         if (!alreadyknown)
         {
             mpr(pre_succ_msg);
-            mpr("It is a scroll of amnesia.");
+            mpr((Options.language == lang_t::KO ? "주문 망각의 두루마리입니다." : "It is a scroll of amnesia."));
             // included in default force_more_message (to show it before menu)
         }
         if (you.spell_no == 0 || you.has_mutation(MUT_INNATE_CASTER))
         {
-            mpr("You feel forgetful for a moment.");
+            mpr((Options.language == lang_t::KO ? "잠시 기억이 흐릿해집니다." : "You feel forgetful for a moment."));
             break;
         }
 
@@ -3212,7 +3212,7 @@ bool read(item_def* scroll, dist *target)
         break;
 
     default:
-        mpr("Read a buggy scroll, please report this.");
+        mpr((Options.language == lang_t::KO ? "오류가 있는 두루마리를 읽었습니다. 이 문제를 신고해 주세요." : "Read a buggy scroll, please report this."));
         break;
     }
 
@@ -3254,7 +3254,7 @@ bool read(item_def* scroll, dist *target)
     {
         if (you.unrand_equipped(UNRAND_DELATRAS_GLOVES))
         {
-            mpr("The energy of discovery flows from your fingertips!");
+            mpr((Options.language == lang_t::KO ? "발견의 에너지가 손끝에서 흘러나옵니다!" : "The energy of discovery flows from your fingertips!"));
             potionlike_effect(POT_MAGIC, 40);
         }
 
@@ -3401,7 +3401,7 @@ bool use_talisman(item_def& talisman)
 
     if (talisman.pos != ITEM_IN_INVENTORY && !room_in_inventory(talisman))
     {
-        mpr("You can't carry that many items.");
+        mpr((Options.language == lang_t::KO ? "그렇게 많은 아이템을 들고 다닐 수 없습니다." : "You can't carry that many items."));
         return false;
     }
 
@@ -3450,7 +3450,7 @@ void tile_item_pickup(int idx, bool part)
 {
     if (item_is_stationary(env.item[idx]))
     {
-        mpr("You can't pick that up.");
+        mpr((Options.language == lang_t::KO ? "그것은 주울 수 없습니다." : "You can't pick that up."));
         return;
     }
 
