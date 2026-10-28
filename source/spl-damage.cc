@@ -125,7 +125,10 @@ spret cast_fire_storm(int pow, bolt &beam, bool fail)
     if (cell_is_solid(beam.target))
     {
         const char *feat = feat_type_name(env.grid(beam.target));
-        mprf("You can't place the storm on %s.", article_a(feat).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s 지형에는 폭풍을 배치할 수 없습니다.", feat);
+        else
+            mprf("You can't place the storm on %s.", article_a(feat).c_str());
         return spret::abort;
     }
 
@@ -308,9 +311,12 @@ spret cast_chain_lightning(int pow, const actor &caster, bool fail)
 
     if (you.can_see(caster))
     {
-        mprf("Lightning arcs from %s %s!",
-             apostrophise(caster.name(DESC_PLAIN)).c_str(),
-             caster.hand_name(true).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s의 손에서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
+        else
+            mprf("Lightning arcs from %s %s!",
+                 apostrophise(caster.name(DESC_PLAIN)).c_str(),
+                 caster.hand_name(true).c_str());
     }
 
     vector<arc_victim> victims;
@@ -448,7 +454,7 @@ spret cast_chain_spell(spell_type spell_cast, int pow,
         if (target.x == -1)
         {
             if (see_source)
-                mprf("The %s grounds out.", beam.name.c_str());
+                mprf((Options.language == lang_t::KO ? "%s의 전류가 땅으로 흘러 사라집니다." : "The %s grounds out."), beam.name.c_str());
 
             break;
         }
@@ -460,9 +466,9 @@ spret cast_chain_spell(spell_type spell_cast, int pow,
         first = false;
 
         if (see_source && !see_targ)
-            mprf("The %s arcs out of your line of sight!", beam.name.c_str());
+            mprf((Options.language == lang_t::KO ? "%s이(가) 시야 밖으로 튀어 나갑니다!" : "The %s arcs out of your line of sight!"), beam.name.c_str());
         else if (!see_source && see_targ)
-            mprf("The %s suddenly appears!", beam.name.c_str());
+            mprf((Options.language == lang_t::KO ? "%s이(가) 갑자기 나타납니다!" : "The %s suddenly appears!"), beam.name.c_str());
 
         beam.source = source;
         beam.target = target;
@@ -895,10 +901,14 @@ spret cast_freeze(int pow, monster* mons, bool fail)
     const int orig_hurted = beam.damage.roll();
     // calculate the resist adjustment to punctuate
     int hurted = mons_adjust_flavoured(mons, beam, orig_hurted, false);
-    mprf("You freeze %s%s%s",
-         mons->name(DESC_THE).c_str(),
-         hurted ? "" : " but do no damage",
-         attack_strength_punctuation(hurted).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("%s을(를) 얼립니다%s%s", mons->name(DESC_THE).c_str(),
+             hurted ? "" : ", 하지만 피해를 주지 못합니다",
+             attack_strength_punctuation(hurted).c_str());
+    else
+        mprf("You freeze %s%s%s", mons->name(DESC_THE).c_str(),
+             hurted ? "" : " but do no damage",
+             attack_strength_punctuation(hurted).c_str());
 
     // print the resist message and expose to the cold
     mons_adjust_flavoured(mons, beam, orig_hurted);
@@ -1538,12 +1548,12 @@ spret cast_fragmentation(int pow, const actor *caster,
     if (what != nullptr) // Terrain explodes.
     {
         if (you.see_cell(target))
-            mprf("The %s shatters!", what);
+            mprf((Options.language == lang_t::KO ? "%s이(가) 산산조각 납니다!" : "The %s shatters!"), what);
     }
     else if (target == you.pos()) // You explode.
     {
         const int dam = beam.damage.roll();
-        mprf("You shatter%s", attack_strength_punctuation(dam).c_str());
+        mprf((Options.language == lang_t::KO ? "산산조각 내는 충격을 가합니다%s" : "You shatter%s"), attack_strength_punctuation(dam).c_str());
 
         ouch(dam, KILLED_BY_BEAM, caster->mid,
              "by Lee's Rapid Deconstruction", true,
@@ -1776,13 +1786,13 @@ bool mons_shatter(monster* caster, bool actual)
     {
         if (silence)
         {
-            mprf("The dungeon shakes around %s!",
+            mprf((Options.language == lang_t::KO ? "%s 주변의 던전이 흔들립니다!" : "The dungeon shakes around %s!"),
                  caster->name(DESC_THE).c_str());
         }
         else
         {
             noisy(spell_effect_noise(SPELL_SHATTER), caster->pos(), caster->mid);
-            mprf(MSGCH_SOUND, "The dungeon rumbles around %s!",
+            mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "%s 주변의 던전에서 우르릉거리는 소리가 납니다!" : "The dungeon rumbles around %s!"),
                  caster->name(DESC_THE).c_str());
         }
     }
@@ -1914,8 +1924,12 @@ spret cast_scorch(const actor& agent, int pow, bool fail)
     const int base_dam = scorch_damage(pow, true).roll();
     const int post_ac_dam = max(0, targ->apply_ac(base_dam));
 
-    mprf("Flames lash %s%s.", targ->name(DESC_THE).c_str(),
-         post_ac_dam ? "" : " but do no damage");
+    if (Options.language == lang_t::KO)
+        mprf("불길이 %s을(를) 후려칩니다%s.", targ->name(DESC_THE).c_str(),
+             post_ac_dam ? "" : ", 하지만 피해를 주지 못합니다");
+    else
+        mprf("Flames lash %s%s.", targ->name(DESC_THE).c_str(),
+             post_ac_dam ? "" : " but do no damage");
     const coord_def p = targ->pos();
     noisy(spell_effect_noise(SPELL_SCORCH), p);
 
@@ -2667,7 +2681,7 @@ static int _discharge_monsters(const coord_def &where, int pow,
             dprf("You: static discharge damage: %d", damage);
             damage = check_your_resists(damage, BEAM_ELECTRICITY,
                                         "static discharge");
-            mprf("You are struck by an arc of lightning%s",
+            mprf((Options.language == lang_t::KO ? "번개의 줄기에 맞습니다%s" : "You are struck by an arc of lightning%s"),
                 attack_strength_punctuation(damage).c_str());
             ouch(damage, KILLED_BY_BEAM, agent.mid, "by static electricity", true,
                 agent.is_player() ? "you" : agent.name(DESC_A).c_str());
@@ -2910,7 +2924,7 @@ static void _do_chain_jolt(const actor& agent, vector<coord_def>& targets, dice_
 
         if (act->is_player())
         {
-            mprf("You are struck by an electric surge%s",
+            mprf((Options.language == lang_t::KO ? "전기 충격을 받습니다%s" : "You are struck by an electric surge%s"),
                 attack_strength_punctuation(post_resist_dam).c_str());
         }
         else
@@ -3767,7 +3781,7 @@ spret cast_poisonous_vapours(const actor& agent, int pow, const coord_def target
     fail_check();
 
     if (act && you.can_see(*act))
-        mprf("Poisonous fumes billow around %s!", act->name(DESC_THE).c_str());
+        mprf((Options.language == lang_t::KO ? "%s 주변에 독성 연기가 피어오릅니다!" : "Poisonous fumes billow around %s!"), act->name(DESC_THE).c_str());
     else
         mpr((Options.language == lang_t::KO ? "공기 중에 독성 연기가 피어오릅니다!" : "Poisonous fumes billow in the air!"));
 
@@ -3882,7 +3896,7 @@ spret cast_searing_ray(actor& agent, int pow, bolt &beam, bool fail)
 
     // Announce lock-on, if this causes one.
     if (targ && !beam.aimed_at_spot && agent.is_player())
-        mprf("You focus your ray upon %s.", targ->name(DESC_THE).c_str());
+        mprf((Options.language == lang_t::KO ? "광선을 %s에게 집중합니다." : "You focus your ray upon %s."), targ->name(DESC_THE).c_str());
 
     if (agent.is_player())
         start_channelling_spell(SPELL_SEARING_RAY, "maintain the ray");
@@ -3936,7 +3950,7 @@ bool handle_searing_ray(actor& agent, int turn)
         fire_tracer(agent.as_monster(), tracer, beam);
         if (!mons_should_fire(beam, tracer))
         {
-            simple_monster_message(*agent.as_monster(), " stops channelling.");
+            simple_monster_message(*agent.as_monster(), (Options.language == lang_t::KO ? " 집중을 중단합니다." : " stops channelling."));
             agent.as_monster()->del_ench(ENCH_CHANNEL_SEARING_RAY);
             return false;
         }
@@ -3966,7 +3980,7 @@ bool handle_searing_ray(actor& agent, int turn)
         mon_enchant me = mons->get_ench(ENCH_CHANNEL_SEARING_RAY);
         mons->lose_ench_duration(me, 1);
         if (!mons->has_ench(ENCH_CHANNEL_SEARING_RAY))
-            simple_monster_message(*mons, " finishes channelling their searing ray.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " 작열하는 광선의 집중을 마칩니다." : " finishes channelling their searing ray."));
     }
 
     return true;
@@ -4448,7 +4462,7 @@ void actor_apply_toxic_bog(actor * act)
 
     if (player && final_damage > 0)
     {
-        mprf("You fester in the toxic bog%s",
+        mprf((Options.language == lang_t::KO ? "독성 늪에서 몸이 썩어갑니다%s" : "You fester in the toxic bog%s"),
                 attack_strength_punctuation(final_damage).c_str());
     }
     else if (final_damage > 0)
@@ -4661,7 +4675,7 @@ static void _discharge_maxwells_coupling()
         schedule_trj_spawn_fineff(&you, mon, mon->pos(), mon->hit_points);
     }
     else
-        mprf("The electricity discharges through %s%s", mon->name(DESC_THE).c_str(), attack_punctuation.c_str());
+        mprf((Options.language == lang_t::KO ? "%s에게 전기가 방출됩니다%s" : "The electricity discharges through %s%s"), mon->name(DESC_THE).c_str(), attack_punctuation.c_str());
 
     // XX the messaging and corpse logic here would be better handled in
     // monster_die, so that various special cases (e.g. dancing weapons in
@@ -4669,10 +4683,10 @@ static void _discharge_maxwells_coupling()
     const coord_def pos = mon->pos();
     const bool goldify = mons_will_goldify(*mon);
     if (goldify)
-        simple_monster_message(*mon, " vaporises and condenses as gold!");
+        simple_monster_message(*mon, (Options.language == lang_t::KO ? " 기화한 뒤 금으로 응결합니다!" : " vaporises and condenses as gold!"));
     else
     {
-        simple_monster_message(*mon, " vaporises in an electric haze!");
+        simple_monster_message(*mon, (Options.language == lang_t::KO ? " 전기 안개 속에서 기화합니다!" : " vaporises in an electric haze!"));
         big_cloud(CLOUD_ELECTRICITY, &you, pos, random_range(4, 8), random_range(8, 12));
     }
 
@@ -4871,7 +4885,7 @@ spret cast_magnavolt(coord_def target, int pow, bool fail)
     monster* mon = monster_at(target);
 
     if (!mon->has_ench(ENCH_MAGNETISED))
-        mprf("Magnetic shrapnel attaches itself to %s.", mon->name(DESC_THE).c_str());
+        mprf((Options.language == lang_t::KO ? "자성 파편이 %s에게 달라붙습니다." : "Magnetic shrapnel attaches itself to %s."), mon->name(DESC_THE).c_str());
 
     mon->add_ench(mon_enchant(ENCH_MAGNETISED, &you, random_range(5, 8) * BASELINE_DELAY));
 
