@@ -39,6 +39,7 @@
 #include "libutil.h"
 #include "losglobal.h"
 #include "message.h"
+#include "options.h"
 #include "mgen-data.h"
 #include "misc.h"
 #include "mon-behv.h"
@@ -85,7 +86,7 @@ static bool _evoke_horn_of_geryon()
 
     bool created = false;
 
-    mprf(MSGCH_SOUND, "You produce a hideous howling noise!");
+    mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "소름 끼치는 울부짖음을 냅니다!" : "You produce a hideous howling noise!"));
     noisy(15, you.pos()); // same as hell effect noise
     did_god_conduct(DID_EVIL, 3);
     int num = 1;
@@ -111,7 +112,7 @@ static bool _evoke_horn_of_geryon()
             created = true;
     }
     if (!created)
-        mpr("Nothing answers your call.");
+        mpr((Options.language == lang_t::KO ? "부름에 아무것도 응답하지 않습니다." : "Nothing answers your call."));
     return true;
 }
 
@@ -186,7 +187,7 @@ void zap_wand(int slot, dist *_target)
     item_def& wand = you.inv[item_slot];
     if (wand.base_type != OBJ_WANDS)
     {
-        mpr("You can't zap that!");
+        mpr((Options.language == lang_t::KO ? "그것은 발동할 수 없습니다!" : "You can't zap that!"));
         return;
     }
 
@@ -229,7 +230,7 @@ void zap_wand(int slot, dist *_target)
         || you.unrand_equipped(UNRAND_GADGETEER))
         && x_chance_in_y(3, 10))
     {
-        mpr("You conserve a charge of your wand.");
+        mpr((Options.language == lang_t::KO ? "마법봉의 충전 횟수를 보존했습니다." : "You conserve a charge of your wand."));
     }
     else
         wand.charges--;
@@ -238,7 +239,7 @@ void zap_wand(int slot, dist *_target)
     {
         ASSERT(in_inventory(wand));
 
-        mpr("The now-empty wand crumbles to dust.");
+        mpr((Options.language == lang_t::KO ? "충전 횟수가 다한 마법봉이 가루가 됩니다." : "The now-empty wand crumbles to dust."));
         dec_inv_item_quantity(wand.link, 1);
     }
 
@@ -268,7 +269,7 @@ static bool _box_of_beasts()
     if (!player_summon_check(MONS_MUTANT_BEAST))
         return false;
 
-    mpr("You open the lid...");
+    mpr((Options.language == lang_t::KO ? "뚜껑을 엽니다..." : "You open the lid..."));
 
     // two rolls to reduce std deviation - +-6 so can get < max even at 27 sk
     int rnd_factor = random2(7);
@@ -392,7 +393,7 @@ static bool _sack_of_spiders()
     if (!player_summon_check(MONS_REDBACK))
         return false;
 
-    mpr("You reach into the sack...");
+    mpr((Options.language == lang_t::KO ? "자루 안으로 손을 뻗습니다..." : "You reach into the sack..."));
 
     const bool made_mons = _spill_out_spiders();
     if (made_mons)
@@ -417,7 +418,7 @@ static bool _make_zig(item_def &zig)
         || player_in_branch(BRANCH_ARENA)
         || is_temp_terrain(you.pos()))
     {
-        mpr("You can't place a gateway to a ziggurat here.");
+        mpr((Options.language == lang_t::KO ? "이곳에는 지구라트로 향하는 관문을 만들 수 없습니다." : "You can't place a gateway to a ziggurat here."));
         return false;
     }
     for (int lev = 1; lev <= brdepth[BRANCH_ZIGGURAT]; lev++)
@@ -425,7 +426,7 @@ static bool _make_zig(item_def &zig)
         if (is_level_on_stack(level_id(BRANCH_ZIGGURAT, lev))
             || you.where_are_you == BRANCH_ZIGGURAT)
         {
-            mpr("Finish your current ziggurat first!");
+            mpr((Options.language == lang_t::KO ? "현재 탐험 중인 지구라트부터 완료하세요!" : "Finish your current ziggurat first!"));
             return false;
         }
     }
@@ -433,7 +434,7 @@ static bool _make_zig(item_def &zig)
     ASSERT(in_inventory(zig));
     dec_inv_item_quantity(zig.link, 1);
     dungeon_terrain_changed(you.pos(), DNGN_ENTER_ZIGGURAT);
-    mpr("You set the figurine down, and a mystic portal to a ziggurat forms.");
+    mpr((Options.language == lang_t::KO ? "조각상을 내려놓자 지구라트로 이어지는 신비한 관문이 나타납니다." : "You set the figurine down, and a mystic portal to a ziggurat forms."));
     return true;
 }
 
@@ -648,9 +649,9 @@ static spret _phantom_mirror(dist *target)
     if (!victim || !you.can_see(*victim))
     {
         if (beam.target == you.pos())
-            mpr("You can't use the mirror on yourself.");
+            mpr((Options.language == lang_t::KO ? "자신에게는 거울을 사용할 수 없습니다." : "You can't use the mirror on yourself."));
         else
-            mpr("You can't see anything there to clone.");
+            mpr((Options.language == lang_t::KO ? "그곳에는 복제할 대상이 보이지 않습니다." : "You can't see anything there to clone."));
         return spret::abort;
     }
 
@@ -659,7 +660,7 @@ static spret _phantom_mirror(dist *target)
     if (!actor_is_illusion_cloneable(victim)
         && !victim->has_ench(ENCH_PHANTOM_MIRROR))
     {
-        mpr("The mirror can't reflect that.");
+        mpr((Options.language == lang_t::KO ? "거울로는 그것을 비출 수 없습니다." : "The mirror can't reflect that."));
         return spret::abort;
     }
 
@@ -860,7 +861,7 @@ static spret _tremorstone()
     beam.ex_size = 2;
     beam.target = center;
 
-    mpr("The tremorstone explodes into fragments!");
+    mpr((Options.language == lang_t::KO ? "진동석이 폭발해 산산조각 납니다!" : "The tremorstone explodes into fragments!"));
 
     const int num_explosions = tremorstone_count(power);
     for (int i = 0; i < num_explosions; i++)
@@ -952,7 +953,7 @@ static spret _condenser()
     }
 
     if (did_something)
-        mpr("Clouds condense from the air!");
+        mpr((Options.language == lang_t::KO ? "공기 중에서 구름이 응축됩니다!" : "Clouds condense from the air!"));
 
     return spret::success;
 }
@@ -1158,7 +1159,7 @@ bool evoke_item(item_def& item, dist *preselect)
                 return false;
             expend_xp_evoker(item.sub_type);
             if (!evoker_charges(item.sub_type))
-                mpr("The box is emptied!");
+                mpr((Options.language == lang_t::KO ? "상자가 비었습니다!" : "The box is emptied!"));
             practise_evoking(1);
             break;
 
@@ -1167,7 +1168,7 @@ bool evoke_item(item_def& item, dist *preselect)
                 return false;
             expend_xp_evoker(item.sub_type);
             if (!evoker_charges(item.sub_type))
-                mpr("The sack is emptied!");
+                mpr((Options.language == lang_t::KO ? "자루가 비었습니다!" : "The sack is emptied!"));
             practise_evoking(1);
             break;
 
@@ -1177,7 +1178,7 @@ bool evoke_item(item_def& item, dist *preselect)
                 practise_evoking(1);
                 expend_xp_evoker(item.sub_type);
                 if (!evoker_charges(item.sub_type))
-                    mpr("The lightning rod overheats!");
+                    mpr((Options.language == lang_t::KO ? "번개 막대가 과열됩니다!" : "The lightning rod overheats!"));
             }
             else
                 return false;
@@ -1201,7 +1202,7 @@ bool evoke_item(item_def& item, dist *preselect)
                 case spret::success:
                     expend_xp_evoker(item.sub_type);
                     if (!evoker_charges(item.sub_type))
-                        mpr("The mirror clouds!");
+                        mpr((Options.language == lang_t::KO ? "거울이 흐려집니다!" : "The mirror clouds!"));
                     // deliberate fall-through
                 case spret::fail:
                     practise_evoking(1);
@@ -1224,7 +1225,7 @@ bool evoke_item(item_def& item, dist *preselect)
                 case spret::success:
                     expend_xp_evoker(item.sub_type);
                     if (!evoker_charges(item.sub_type))
-                        mpr("The tin is emptied!");
+                        mpr((Options.language == lang_t::KO ? "통이 비었습니다!" : "The tin is emptied!"));
                 case spret::fail:
                     practise_evoking(1);
                     break;
@@ -1241,7 +1242,7 @@ bool evoke_item(item_def& item, dist *preselect)
                 case spret::success:
                     expend_xp_evoker(item.sub_type);
                     if (!evoker_charges(item.sub_type))
-                        mpr("The condenser dries out!");
+                        mpr((Options.language == lang_t::KO ? "응축기가 말라 버립니다!" : "The condenser dries out!"));
                 case spret::fail:
                     practise_evoking(1);
                     break;
