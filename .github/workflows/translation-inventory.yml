@@ -1,6 +1,11 @@
 name: Translation source inventory
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'source/**'
+      - 'tools/dcss-extractor/scripts/**'
+      - '.github/workflows/translation-inventory.yml'
 
 jobs:
   inventory:
