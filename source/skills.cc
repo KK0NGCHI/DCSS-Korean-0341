@@ -329,7 +329,7 @@ static void _change_skill_level(skill_type exsk, int n)
     // are you drained/crosstrained/ash'd in the relevant skill?
     const bool specify_base = you.skill(exsk, 1) != you.skill(exsk, 1, true);
     if (you.skills[exsk] == MAX_SKILL_LEVEL)
-        mprf(MSGCH_INTRINSIC_GAIN, "You have mastered %s!", skill_name(exsk));
+        mprf(MSGCH_INTRINSIC_GAIN, (Options.language == lang_t::KO ? "%s 기술을 완전히 숙달했습니다!" : "You have mastered %s!"), skill_name(exsk));
     else if (abs(n) == 1 && you.num_turns)
     {
         mprf(MSGCH_INTRINSIC_GAIN, "Your %s%s skill %s to level %d!",
@@ -1845,10 +1845,10 @@ bool player::set_training_target(const skill_type sk, const int target, bool ann
         if (you.has_mutation(MUT_DISTRIBUTED_TRAINING))
             mpr((Options.language == lang_t::KO ? "훈련 목표를 설정할 수 없습니다!" : "You can't set training targets!"));
         else if (ranged_target == 0)
-            mprf("Clearing the skill training target for %s.", skill_name(sk));
+            mprf((Options.language == lang_t::KO ? "%s 기술의 훈련 목표를 해제합니다." : "Clearing the skill training target for %s."), skill_name(sk));
         else
         {
-            mprf("Setting a skill training target for %s at %d.%d.", skill_name(sk),
+            mprf((Options.language == lang_t::KO ? "%s 기술의 훈련 목표를 %d.%d로 설정합니다." : "Setting a skill training target for %s at %d.%d."), skill_name(sk),
                                     ranged_target / 10, ranged_target % 10);
         }
     }
