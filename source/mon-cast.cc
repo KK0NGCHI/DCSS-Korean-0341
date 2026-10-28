@@ -399,9 +399,11 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
         [](monster &caster, mon_spell_slot, bolt&) {
             if (you.can_see(caster))
             {
-                mprf("%s liquefies the ground around %s!",
-                     caster.name(DESC_THE).c_str(),
-                     caster.pronoun(PRONOUN_REFLEXIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s 주변의 땅이 액체처럼 변합니다!", caster.name(DESC_THE).c_str());
+                else
+                    mprf("%s liquefies the ground around %s!", caster.name(DESC_THE).c_str(),
+                         caster.pronoun(PRONOUN_REFLEXIVE).c_str());
                 flash_view_delay(UA_MONSTER, BROWN, 80);
             }
 
@@ -830,9 +832,11 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
                                                 random_range(3, 5) * BASELINE_DELAY));
                 if (you.can_see(*targs[i]))
                 {
-                    mprf("%s is pinned to %s own shadow.",
-                         targs[i]->name(DESC_THE).c_str(),
-                         targs[i]->pronoun(PRONOUN_POSSESSIVE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mprf("%s의 그림자가 그 자리에 붙잡아 둡니다.", targs[i]->name(DESC_THE).c_str());
+                    else
+                        mprf("%s is pinned to %s own shadow.", targs[i]->name(DESC_THE).c_str(),
+                             targs[i]->pronoun(PRONOUN_POSSESSIVE).c_str());
                 }
 
             }
@@ -843,9 +847,11 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
             {
                 targeter_radius hitfunc(&caster, LOS_SOLID, 2);
                 flash_view_delay(UA_MONSTER, DARKGREY, 200, &hitfunc);
-                mprf("%s draws nearby shadows into %s.",
-                    caster.name(DESC_THE).c_str(),
-                    caster.pronoun(PRONOUN_REFLEXIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s 주변의 그림자를 자기 몸으로 끌어들입니다.", caster.name(DESC_THE).c_str());
+                else
+                    mprf("%s draws nearby shadows into %s.", caster.name(DESC_THE).c_str(),
+                         caster.pronoun(PRONOUN_REFLEXIVE).c_str());
             }
 
             dice_def dmg = zap_damage(ZAP_SHADOW_DRAIN,
@@ -3206,8 +3212,11 @@ static void _corrupt_locale(monster &mons)
     if (player_in_branch(BRANCH_ABYSS))
         return;
 
-    mprf("%s corrupts the dungeon around %s!",
-         mons.name(DESC_THE).c_str(), mons.pronoun(PRONOUN_OBJECTIVE).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("%s 주변의 던전을 타락시킵니다!", mons.name(DESC_THE).c_str());
+    else
+        mprf("%s corrupts the dungeon around %s!",
+             mons.name(DESC_THE).c_str(), mons.pronoun(PRONOUN_OBJECTIVE).c_str());
 
     lugonu_corrupt_level_monster(mons);
 }
@@ -3907,8 +3916,8 @@ static bool _make_monster_angry(const monster* mon, monster* targ, bool actual)
                 mon->pronoun(PRONOUN_OBJECTIVE).c_str());
         }
         else
-            mprf("%s goads %s on!", mon->name(DESC_THE).c_str(),
-                 targ->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "%s %s을(를) 부추깁니다!" : "%s goads %s on!",
+                 mon->name(DESC_THE).c_str(), targ->name(DESC_THE).c_str());
     }
 
     targ->go_berserk(false);
@@ -7218,8 +7227,9 @@ static void _cast_bestow_arms(monster& caster)
 
     if (you.can_see(caster))
     {
-        mprf(MSGCH_MONSTER_SPELL, "%s arms its allies with %s.", caster.name(DESC_THE).c_str(),
-                                    pluralise(wpn.name(DESC_PLAIN, false, true)).c_str());
+        mprf(MSGCH_MONSTER_SPELL,
+             Options.language == lang_t::KO ? "%s 아군에게 %s을(를) 지급합니다." : "%s arms its allies with %s.",
+             caster.name(DESC_THE).c_str(), pluralise(wpn.name(DESC_PLAIN, false, true)).c_str());
     }
 
     int dur = random_range(20, 37) * BASELINE_DELAY;
