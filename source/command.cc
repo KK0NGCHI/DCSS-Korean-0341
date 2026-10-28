@@ -458,7 +458,7 @@ static void _handle_FAQ()
     vector<string> question_keys = getAllFAQKeys();
     if (question_keys.empty())
     {
-        mpr("No questions found in FAQ! Please submit a bug report!");
+        mpr((Options.language == lang_t::KO ? "FAQ에서 질문을 찾을 수 없습니다! 오류를 신고해 주세요!" : "No questions found in FAQ! Please submit a bug report!"));
         return;
     }
     Menu FAQmenu(MF_SINGLESELECT | MF_ANYPRINTABLE | MF_ALLOW_FORMATTING);
