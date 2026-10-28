@@ -2426,7 +2426,7 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
 
         if (is_valid_spell(spell))
         {
-            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "주문 '%s'은(는) 플레이어가 시전할 수 없습니다." : "Spell '%s' is not a player castable spell."),
+            mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "플레이어는 주문 '%s'을(를) 시전할 수 없습니다." : "Spell '%s' is not a player castable spell."),
                  spell_title(spell));
         }
         else
@@ -2848,7 +2848,7 @@ static spret _do_cast(spell_type spell, int powc, const dist& spd,
     default:
         if (spell_removed(spell))
         {
-            mprf((Options.language == lang_t::KO ? "주문 '%s'이(가) 사라졌습니다." : "Sorry, the spell '%s' is gone!"), spell_title(spell));
+            mprf((Options.language == lang_t::KO ? "주문 '%s'을(를) 더 이상 사용할 수 없습니다." : "Sorry, the spell '%s' is gone!"), spell_title(spell));
             return spret::abort;
         }
         break;
