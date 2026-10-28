@@ -1354,17 +1354,19 @@ static string _skill_target_desc(skill_type skill, int scaled_target,
     const int level_diff = xp_to_level_diff(diffs.experience / 10, 10);
 
     if (max_training)
-        description += "At 100% training ";
+        description += (Options.language == lang_t::KO ? "훈련 비중 100%일 때 " : "At 100% training ");
     else if (!hypothetical)
     {
-        description += make_stringf("At current training (%d%%) ",
+        description += make_stringf(Options.language == lang_t::KO ? "현재 훈련 비중(%d%%)에서 " : "At current training (%d%%) ",
                                         you.training[skill]);
     }
     else
-        description += make_stringf("At a training level of %d%% ", training);
+        description += make_stringf(Options.language == lang_t::KO ? "훈련 비중 %d%%에서 " : "At a training level of %d%% ", training);
 
     description += make_stringf(
-        "you %sreach %d.%d in %s %d.%d XLs.",
+        Options.language == lang_t::KO
+            ? "%s기술 레벨 %d.%d 도달까지 %s 경험치 레벨 %d.%d 상당의 경험치가 필요합니다."
+            : "you %sreach %d.%d in %s %d.%d XLs.",
             hypothetical ? "would " : "",
             scaled_target / 10, scaled_target % 10,
             (you.experience_level + (level_diff + 9) / 10) > 27
@@ -1559,8 +1561,9 @@ static void _append_weapon_stats(string &description, const item_def &item)
         && is_useless_skill(staff_skill(static_cast<stave_type>(item.sub_type))))
     {
         description += make_stringf(
-            "Your inability to study %s prevents you from drawing on the"
-            " full power of this staff in melee.\n\n",
+            Options.language == lang_t::KO
+                ? "%s 기술을 수련할 수 없어 근접전에서 이 지팡이의 힘을 완전히 끌어내지 못합니다.\n\n"
+                : "Your inability to study %s prevents you from drawing on the full power of this staff in melee.\n\n",
             skill_name(staff_skill(static_cast<stave_type>(item.sub_type))));
     }
 
@@ -1601,13 +1604,13 @@ static void _append_weapon_stats(string &description, const item_def &item)
             const item_def *body_armour = you.body_armour();
             description += (body_armour ? uppercase_first(
                                               body_armour->name(DESC_YOUR))
-                                        : "Your heavy armour");
+                                        : (Options.language == lang_t::KO ? "무거운 갑옷" : "Your heavy armour"));
 
             const bool significant = armour_penalty >= penalty_scale;
             if (significant)
             {
                 description +=
-                    make_stringf(" slows your attacks with this weapon by %.1f",
+                    make_stringf(Options.language == lang_t::KO ? " 때문에 이 무기의 공격 지연이 %.1f만큼 증가합니다" : " slows your attacks with this weapon by %.1f",
                                  armour_penalty / (10.0f * penalty_scale));
             }
             else
@@ -1615,8 +1618,9 @@ static void _append_weapon_stats(string &description, const item_def &item)
         }
         else
         {
-            description += "Wearing heavy armour would reduce your attack "
-                           "speed with this weapon";
+            description += (Options.language == lang_t::KO
+                    ? "무거운 갑옷을 착용하면 이 무기의 공격 속도가 느려집니다"
+                    : "Wearing heavy armour would reduce your attack speed with this weapon");
         }
         description += ".";
     }
