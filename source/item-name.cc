@@ -1459,6 +1459,23 @@ static const char* _ko_talisman_name(int subtype)
     }
 }
 
+// Translate only a generated randart's leading equipment type for display.
+// The original artefact name and internal lookup keys stay unchanged.
+static string _ko_randart_display_name(const item_def &item, bool force_known)
+{
+    const string original = get_artefact_name(item, force_known);
+    if (Options.language != lang_t::KO || !is_random_artefact(item))
+        return original;
+    if (item.base_type != OBJ_WEAPONS && item.base_type != OBJ_ARMOUR)
+        return original;
+
+    const string base = item_base_name(item);
+    const string translated = _ko_equipment_base_name(base);
+    if (translated == base || !starts_with(original, base + " "))
+        return original;
+    return translated + original.substr(base.size());
+}
+
 static const char* _ko_book_theme_name(int subtype)
 {
     switch (static_cast<book_type>(subtype))
@@ -2057,7 +2074,7 @@ static string _name_weapon(const item_def &weap, description_level_type desc,
     if (is_artefact(weap) && !dbname)
     {
         const string long_name = curse_prefix + chaotic + plus_text + replica
-                                 + get_artefact_name(weap, ident);
+                                 + _ko_randart_display_name(weap, ident);
 
         // crop long artefact names when not controlled by webtiles -
         // webtiles displays weapon names across multiple lines
@@ -2191,7 +2208,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         if (is_artefact(*this) && !dbname)
         {
-            buff << get_artefact_name(*this, ident);
+            buff << _ko_randart_display_name(*this, ident);
             break;
         }
 
@@ -2424,7 +2441,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
         if (is_randart && !dbname)
         {
-            buff << get_artefact_name(*this, ident);
+            buff << _ko_randart_display_name(*this, ident);
             break;
         }
 
@@ -2489,7 +2506,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
 
     case OBJ_TALISMANS:
         if (is_random_artefact(*this) && !dbname && !basename)
-            buff << get_artefact_name(*this, ident);
+            buff << _ko_randart_display_name(*this, ident);
         else if (Options.language == lang_t::KO && !dbname && !qualname)
         {
             const char* label = _ko_talisman_name(item_typ);
@@ -2541,7 +2558,7 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                          << " staff";
             }
             // TODO: crop long artefact names when not controlled by webtiles
-            buff << get_artefact_name(*this, ident);
+            buff << _ko_randart_display_name(*this, ident);
             if (!identified)
                 buff << (ko_display ? "지팡이" : "staff");
         }
