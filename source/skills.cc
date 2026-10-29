@@ -333,18 +333,21 @@ static void _change_skill_level(skill_type exsk, int n)
         mprf(MSGCH_INTRINSIC_GAIN, (Options.language == lang_t::KO ? "%s 기술을 완전히 숙달했습니다!" : "You have mastered %s!"), skill_name(exsk));
     else if (abs(n) == 1 && you.num_turns)
     {
-        mprf(MSGCH_INTRINSIC_GAIN, "Your %s%s skill %s to level %d!",
-             specify_base ? "base " : "",
-             skill_name(exsk), (n > 0) ? "increases" : "decreases",
+        mprf(MSGCH_INTRINSIC_GAIN, Options.language == lang_t::KO ? "%s%s 기술이 %s하여 %d레벨이 되었습니다!" : "Your %s%s skill %s to level %d!",
+             specify_base ? (Options.language == lang_t::KO ? "기본 " : "base ") : "",
+             skill_name(exsk), (n > 0) ? (Options.language == lang_t::KO ? "상승" : "increases") : (Options.language == lang_t::KO ? "하락" : "decreases"),
              you.skills[exsk]);
     }
     else if (you.num_turns)
     {
-        mprf(MSGCH_INTRINSIC_GAIN, "Your %s%s skill %s %d levels and is now "
-             "at level %d!",
-             specify_base ? "base " : "",
+        mprf(MSGCH_INTRINSIC_GAIN,
+             Options.language == lang_t::KO
+                 ? "%s%s 기술이 %s했습니다. 변화량: %d레벨, 현재 %d레벨입니다!"
+                 : "Your %s%s skill %s %d levels and is now at level %d!",
+             specify_base ? (Options.language == lang_t::KO ? "기본 " : "base ") : "",
              skill_name(exsk),
-             (n > 0) ? "gained" : "lost",
+             Options.language == lang_t::KO ? (n > 0 ? "상승" : "하락")
+                 : (n > 0 ? "gained" : "lost"),
              abs(n), you.skills[exsk]);
     }
 
