@@ -918,8 +918,11 @@ static bool _can_generically_use_armour(bool wear=true)
 
     if (!form_can_wear())
     {
-        mprf(MSGCH_PROMPT, "You can't %s anything in your present form.",
-            wear ? "wear" : "remove");
+        mprf(MSGCH_PROMPT,
+            Options.language == lang_t::KO ? "현재 모습으로는 아무것도 %s 수 없습니다."
+                                           : "You can't %s anything in your present form.",
+            Options.language == lang_t::KO ? (wear ? "착용할" : "벗을")
+                                           : (wear ? "wear" : "remove"));
         return false;
     }
 
@@ -976,9 +979,15 @@ static bool _can_generically_use(operation_types oper)
             && you_can_wear(SLOT_AMULET, true) == false
             && you.transform_uncancellable)
         {
-            mprf(MSGCH_PROMPT, "You can't %s jewellery%s.",
-                oper == OPER_PUTON ? "wear" : "remove",
-                you.has_mutation(MUT_NO_JEWELLERY) ? "" :  " in your present form");
+            mprf(MSGCH_PROMPT,
+                Options.language == lang_t::KO ? "장신구를 %s 수 없습니다%s."
+                                               : "You can't %s jewellery%s.",
+                Options.language == lang_t::KO
+                    ? (oper == OPER_PUTON ? "착용할" : "벗을")
+                    : (oper == OPER_PUTON ? "wear" : "remove"),
+                Options.language == lang_t::KO
+                    ? (you.has_mutation(MUT_NO_JEWELLERY) ? "" : " (현재 모습에서는 불가능)")
+                    : (you.has_mutation(MUT_NO_JEWELLERY) ? "" : " in your present form"));
             return false;
         }
         break;
