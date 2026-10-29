@@ -2641,10 +2641,12 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         if (!_name.empty() && name_type == MF_NAME_SUFFIX)
             buff << _name << " ";
 
+        const bool ko_display = Options.language == lang_t::KO
+                                && !dbname && !qualname;
         if (item_typ == CORPSE_BODY)
-            buff << "corpse";
+            buff << (ko_display ? "시체" : "corpse");
         else if (item_typ == CORPSE_SKELETON)
-            buff << "skeleton";
+            buff << (ko_display ? "해골" : "skeleton");
         else
             buff << "corpse bug";
 
