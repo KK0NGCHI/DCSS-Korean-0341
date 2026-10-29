@@ -2531,16 +2531,20 @@ static void _handle_regen_item_equip(const item_def& item)
 #if TAG_MAJOR_VERSION == 34
     if (regen_hp && !regen_mp && you.get_mutation_level(MUT_NO_REGENERATION))
     {
-        mprf("The %s feel%s cold and inert.", item_name.c_str(),
-             plural ? "" : "s");
+        mprf(Options.language == lang_t::KO
+                 ? "%s 장비에서 차갑고 아무런 반응도 느껴지지 않습니다.%s"
+                 : "The %s feel%s cold and inert.", item_name.c_str(),
+             Options.language == lang_t::KO ? "" : (plural ? "" : "s"));
         return;
     }
 #endif
     if (regen_mp && !regen_hp && !player_regenerates_mp()
         && !item.is_type(OBJ_JEWELLERY, AMU_CHEMISTRY))
     {
-        mprf("The %s feel%s cold and inert.", item_name.c_str(),
-             plural ? "" : "s");
+        mprf(Options.language == lang_t::KO
+                 ? "%s 장비에서 차갑고 아무런 반응도 느껴지지 않습니다.%s"
+                 : "The %s feel%s cold and inert.", item_name.c_str(),
+             Options.language == lang_t::KO ? "" : (plural ? "" : "s"));
 
         return;
     }
@@ -2550,15 +2554,20 @@ static void _handle_regen_item_equip(const item_def& item)
 
     if (!low_mp && !low_hp)
     {
-        mprf("The %s throb%s to your%s body.", item_name.c_str(),
-             plural ? " as they attune themselves" : "s as it attunes itself",
-             regen_hp ? " uninjured" : "");
+        mprf(Options.language == lang_t::KO
+                 ? "%s 장비가 몸에 조율되며 맥동합니다.%s%s"
+                 : "The %s throb%s to your%s body.", item_name.c_str(),
+             Options.language == lang_t::KO ? "" : (plural ? " as they attune themselves" : "s as it attunes itself"),
+             Options.language == lang_t::KO ? "" : (regen_hp ? " uninjured" : ""));
         you.equipment.get_entry_for(item).attuned = true;
         return;
     }
 
-    mprf("The %s cannot attune %s to your%s body.", item_name.c_str(),
-         plural ? "themselves" : "itself", low_hp ? " injured" : " exhausted");
+    mprf(Options.language == lang_t::KO
+             ? "%s 장비가 몸에 조율되지 못합니다.%s%s"
+             : "The %s cannot attune %s to your%s body.", item_name.c_str(),
+         Options.language == lang_t::KO ? "" : (plural ? "themselves" : "itself"),
+         Options.language == lang_t::KO ? "" : (low_hp ? " injured" : " exhausted"));
 
     return;
 }
