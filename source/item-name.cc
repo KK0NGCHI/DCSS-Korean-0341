@@ -1424,6 +1424,9 @@ static const char* _ko_book_theme_name(int subtype)
     case BOOK_DEATH: return "죽음";
     case BOOK_MISFORTUNE: return "불운";
     case BOOK_SPONTANEOUS_COMBUSTION: return "자연 발화";
+#if TAG_MAJOR_VERSION == 34
+    case BOOK_TRANSFIGURATIONS: return "변형술";
+#endif
     case BOOK_BATTLE: return "전투";
     case BOOK_NECROMANCY: return "강령술";
     case BOOK_CALLINGS: return "소환";
