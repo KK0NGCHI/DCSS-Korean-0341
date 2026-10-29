@@ -1424,6 +1424,9 @@ static const char* _ko_book_theme_name(int subtype)
     case BOOK_DEATH: return "죽음";
     case BOOK_MISFORTUNE: return "불운";
     case BOOK_SPONTANEOUS_COMBUSTION: return "자연 발화";
+#if TAG_MAJOR_VERSION == 34
+    case BOOK_TRANSFIGURATIONS: return "변형술";
+#endif
     case BOOK_BATTLE: return "전투";
     case BOOK_NECROMANCY: return "강령술";
     case BOOK_CALLINGS: return "소환";
@@ -1663,7 +1666,7 @@ string sub_type_string(const item_def &item, bool known)
             {
             if (!known)
                 return "manual";
-            if (Options.language == lang_t::KO && crawl_state.need_save && known)
+            if (Options.language == lang_t::KO && known)
                 return string(skill_name(static_cast<skill_type>(item.plus))) + " 숙련 교본";
             string bookname = "manual of ";
             bookname += skill_name(static_cast<skill_type>(item.plus));
