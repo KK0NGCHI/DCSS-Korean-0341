@@ -2616,8 +2616,13 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     }
 
     // One plural to rule them all.
-    if (need_plural && quantity > 1 && !basename && !qualname)
+    // Korean item names do not use English plural suffixes.
+    // Preserve the original form for internal database and qualified names.
+    if (need_plural && quantity > 1 && !basename && !qualname
+        && (Options.language != lang_t::KO || dbname))
+    {
         buff.str(pluralise(buff.str()));
+    }
 
     // debugging output -- oops, I probably block it above ... dang! {dlb}
     if (buff.str().length() < 3)
