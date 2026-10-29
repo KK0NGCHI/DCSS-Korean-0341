@@ -1408,6 +1408,27 @@ static string _ko_equipment_base_name(const string &name)
 }
 
 
+static const char* _ko_missile_name(missile_type subtype)
+{
+    switch (subtype)
+    {
+    case MI_DART: return "다트";
+    case MI_STONE: return "돌";
+    case MI_LARGE_ROCK: return "큰 바위";
+    case MI_JAVELIN: return "투창";
+    case MI_THROWING_NET: return "투척 그물";
+    case MI_BOOMERANG: return "부메랑";
+#if TAG_MAJOR_VERSION == 34
+    case MI_NEEDLE: return "바늘";
+    case MI_ARROW: return "화살";
+    case MI_BOLT: return "볼트";
+    case MI_SLUG: return "탄환";
+    case MI_SLING_BULLET: return "투석구 탄환";
+#endif
+    default: return nullptr;
+    }
+}
+
 static const char* _ko_talisman_name(int subtype)
 {
     switch (static_cast<talisman_type>(subtype))
@@ -2136,7 +2157,9 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
                 buff << missile_brand_name(*this, MBN_NAME) << ' ';
         }
 
-        buff << missile_name(static_cast<missile_type>(item_typ));
+        const char* ko_name = Options.language == lang_t::KO && !dbname && !qualname
+            ? _ko_missile_name(static_cast<missile_type>(item_typ)) : nullptr;
+        buff << (ko_name ? ko_name : missile_name(static_cast<missile_type>(item_typ)));
 
         if (msl_brand != SPMSL_NORMAL
             && !basename && !dbname)
