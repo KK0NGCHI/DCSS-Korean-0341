@@ -269,7 +269,7 @@ static void _tweak_randart(item_def &item)
     switch (artp_value_type(prop))
     {
     case ARTP_VAL_BOOL:
-        mprf(MSGCH_PROMPT, "Toggling %s to %s.", artp_name(prop),
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s을(를) %s(으)로 전환합니다." : "Toggling %s to %s."), artp_name(prop),
              props[prop] ? "off" : "on");
         artefact_set_property(item, static_cast<artefact_prop_type>(prop),
                              !props[prop]);
@@ -282,7 +282,7 @@ static void _tweak_randart(item_def &item)
 
         if (val < 0)
         {
-            mprf(MSGCH_PROMPT, "Value for %s must be non-negative",
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s의 값은 음수가 될 수 없습니다." : "Value for %s must be non-negative"),
                  artp_name(prop));
             return;
         }
@@ -321,7 +321,7 @@ static void _tweak_randart(item_def &item)
         }
         if (ego == -1)
         {
-            mprf("Ego '%s' is invalid for %s.",
+            mprf((Options.language == lang_t::KO ? "장비 속성 '%s'은(는) %s에 적용할 수 없습니다." : "Ego '%s' is invalid for %s."),
                  specs, item.name(DESC_A).c_str());
             break;
         }
@@ -511,7 +511,7 @@ void wizard_create_all_artefacts(bool override_unique)
             islot = items(true, entry->base_type, 0, 0, -index, -1);
             if (islot == NON_ITEM)
             {
-                mprf(MSGCH_ERROR, "Failed to generate item for '%s'",
+                mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "'%s' 아이템 생성에 실패했습니다." : "Failed to generate item for '%s'"),
                     entry->name);
                 continue;
             }
@@ -788,7 +788,7 @@ static void _debug_acquirement_stats()
     FILE *ostat = fopen_u("acquirement_stats.txt", "a");
     if (!ostat)
     {
-        mprf(MSGCH_ERROR, "Can't write to acquirement_stats.txt: %s",
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "acquirement_stats.txt에 쓸 수 없습니다: %s" : "Can't write to acquirement_stats.txt: %s"),
                 strerror(errno));
         return;
     }
@@ -1171,7 +1171,7 @@ static void _debug_randart_stats()
     FILE *ostat = fopen_u("randart_stats.txt", "a");
     if (!ostat)
     {
-        mprf(MSGCH_ERROR, "Can't write to randart_stats.txt: %s",
+        mprf(MSGCH_ERROR, (Options.language == lang_t::KO ? "randart_stats.txt에 쓸 수 없습니다: %s" : "Can't write to randart_stats.txt: %s"),
                 strerror(errno));
         return;
     }

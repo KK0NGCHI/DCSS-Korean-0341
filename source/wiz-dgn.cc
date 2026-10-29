@@ -89,7 +89,7 @@ void wizard_place_stairs(bool down)
     if (stairs == DNGN_UNSEEN)
         return;
 
-    mprf("Creating %sstairs.", down ? "down" : "up");
+    mprf((Options.language == lang_t::KO ? "%s 계단을 생성합니다." : "Creating %sstairs."), down ? "down" : "up");
     dungeon_terrain_changed(you.pos(), stairs);
 }
 
@@ -661,7 +661,7 @@ static void debug_load_map_by_name(string name, bool primary)
         }
         else
         {
-            mprf("Failed to place %s; last builder error: %s",
+            mprf((Options.language == lang_t::KO ? "%s 배치 실패. 마지막 생성기 오류: %s" : "Failed to place %s; last builder error: %s"),
                 toplace->name.c_str(), crawl_state.last_builder_error.c_str());
         }
     }

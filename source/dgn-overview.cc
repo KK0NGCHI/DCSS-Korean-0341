@@ -1285,7 +1285,7 @@ void annotate_level(level_id li)
     const string old = get_level_annotation(li, true, true);
     if (!old.empty())
     {
-        mprf(MSGCH_PROMPT, "Current level annotation: <lightgrey>%s</lightgrey>",
+        mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "현재 층 주석: <lightgrey>%s</lightgrey>" : "Current level annotation: <lightgrey>%s</lightgrey>"),
              old.c_str());
     }
 

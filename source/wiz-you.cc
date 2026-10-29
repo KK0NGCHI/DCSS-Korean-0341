@@ -20,6 +20,7 @@
 #include "libutil.h"
 #include "macro.h"
 #include "message.h"
+#include "options.h"
 #include "mutation.h"
 #include "output.h"
 #include "playable.h"
@@ -127,7 +128,7 @@ void wizard_change_species()
     // Means from_str_loose couldn't interpret `specs`.
     if (sp == SP_UNKNOWN)
     {
-        mpr("That species isn't available.");
+        mpr((Options.language == lang_t::KO ? "해당 종족은 사용할 수 없습니다." : "That species isn't available."));
         return;
     }
 
@@ -140,7 +141,7 @@ void wizard_cast_spec_spell()
     char specs[80], *end;
     int spell;
 
-    mprf(MSGCH_PROMPT, "Cast which spell? ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 주문을 시전하시겠습니까? " : "Cast which spell? "));
     if (cancellable_get_line_autohist(specs, sizeof(specs))
         || specs[0] == '\0')
     {
@@ -155,7 +156,7 @@ void wizard_cast_spec_spell()
     {
         if ((spell = spell_by_name(specs, true)) == SPELL_NO_SPELL)
         {
-            mpr("Cannot find that spell.");
+            mpr((Options.language == lang_t::KO ? "해당 주문을 찾을 수 없습니다." : "Cannot find that spell."));
             crawl_state.cancel_cmd_repeat();
             return;
         }
@@ -170,7 +171,7 @@ void wizard_memorise_spec_spell()
     char specs[80], *end;
     int spell;
 
-    mprf(MSGCH_PROMPT, "Memorise which spell? ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "어떤 주문을 암기하시겠습니까? " : "Memorise which spell? "));
     if (cancellable_get_line_autohist(specs, sizeof(specs))
         || specs[0] == '\0')
     {
@@ -185,14 +186,14 @@ void wizard_memorise_spec_spell()
     {
         if ((spell = spell_by_name(specs, true)) == SPELL_NO_SPELL)
         {
-            mpr("Cannot find that spell.");
+            mpr((Options.language == lang_t::KO ? "해당 주문을 찾을 수 없습니다." : "Cannot find that spell."));
             crawl_state.cancel_cmd_repeat();
             return;
         }
     }
 
     if (spell_is_monster_only(static_cast<spell_type>(spell)))
-        mpr("Spell is monster-only - unpredictable behaviour may result.");
+        mpr((Options.language == lang_t::KO ? "몬스터 전용 주문입니다. 예기치 못한 동작이 발생할 수 있습니다." : "Spell is monster-only - unpredictable behaviour may result."));
     if (!learn_spell(static_cast<spell_type>(spell), true))
         crawl_state.cancel_cmd_repeat();
 }
@@ -201,7 +202,7 @@ void wizard_heal(bool super_heal)
 {
     if (super_heal)
     {
-        mpr("Super healing.");
+        mpr((Options.language == lang_t::KO ? "강력 치유." : "Super healing."));
         // Clear more stuff.
         undrain_hp(9999);
         you.magic_contamination = 0;
@@ -266,7 +267,7 @@ void wizard_heal(bool super_heal)
         you.props.erase(COGLIN_GIZMO_KEY);
     }
     else
-        mpr("Healing.");
+        mpr((Options.language == lang_t::KO ? "치유." : "Healing."));
 
     // Clear some status ailments.
     you.duration[DUR_CONF]      = 0;
@@ -320,7 +321,7 @@ void wizard_set_piety_to(int newpiety, bool force)
         if (newinterest >= 0 && newinterest < 256)
             you.gift_timeout = newinterest;
         else
-            mpr("Interest must be between 0 and 255.");
+            mpr((Options.language == lang_t::KO ? "이자는 0에서 255 사이여야 합니다." : "Interest must be between 0 and 255."));
 
         mprf("Set piety to %d, interest to %d.", you.raw_piety, newinterest);
 
@@ -374,7 +375,7 @@ void wizard_set_piety()
 {
     if (you_worship(GOD_NO_GOD))
     {
-        mpr("You are not religious!");
+        mpr((Options.language == lang_t::KO ? "신앙이 없습니다!" : "You are not religious!"));
         return;
     }
 
@@ -402,12 +403,12 @@ void wizard_exercise_skill()
     skill_type skill = debug_prompt_for_skill("Which skill (by name)? ");
 
     if (skill == SK_NONE)
-        mpr("That skill doesn't seem to exist.");
+        mpr((Options.language == lang_t::KO ? "해당 기술이 존재하지 않는 것 같습니다." : "That skill doesn't seem to exist."));
     else if (is_removed_skill(skill))
-        mpr("That skill was removed.");
+        mpr((Options.language == lang_t::KO ? "해당 기술은 삭제되었습니다." : "That skill was removed."));
     else
     {
-        mpr("Exercising...");
+        mpr((Options.language == lang_t::KO ? "훈련 중..." : "Exercising..."));
         exercise(skill, 10);
     }
 }
@@ -418,19 +419,19 @@ void wizard_set_skill_level(skill_type skill)
         skill = debug_prompt_for_skill("Which skill (by name)? ");
 
     if (is_removed_skill(skill)){
-        mpr("That skill was removed.");
+        mpr((Options.language == lang_t::KO ? "해당 기술은 삭제되었습니다." : "That skill was removed."));
         return;
     }
 
     if (skill == SK_NONE)
     {
-        mpr("That skill doesn't seem to exist.");
+        mpr((Options.language == lang_t::KO ? "해당 기술이 존재하지 않는 것 같습니다." : "That skill doesn't seem to exist."));
         return;
     }
 
     if (is_useless_skill(skill))
     {
-        mpr("Can't change a useless skill.");
+        mpr((Options.language == lang_t::KO ? "사용할 수 없는 기술은 변경할 수 없습니다." : "Can't change a useless skill."));
         return;
     }
 
@@ -507,7 +508,7 @@ bool wizard_add_mutation()
     char specs[80];
 
     if (you.has_mutation(MUT_MUTATION_RESISTANCE))
-        mpr("Ignoring mut resistance to apply mutation.");
+        mpr((Options.language == lang_t::KO ? "변이 저항을 무시하고 변이를 적용합니다." : "Ignoring mut resistance to apply mutation."));
 
     msgwin_get_line("Which mutation (name, 'good', 'bad', 'any', "
                     "'xom', 'slime', 'qazlal')? ",
@@ -530,7 +531,7 @@ bool wizard_add_mutation()
         crawl_state.cancel_cmd_repeat();
 
         if (partial_matches.empty())
-            mpr("No matching mutation names.");
+            mpr((Options.language == lang_t::KO ? "일치하는 변이 이름이 없습니다." : "No matching mutation names."));
         else
         {
             vector<string> matches;
@@ -605,7 +606,7 @@ bool wizard_toggle_bane()
         crawl_state.cancel_cmd_repeat();
 
         if (partial_matches.empty())
-            mpr("No matching bane names.");
+            mpr((Options.language == lang_t::KO ? "일치하는 고통 이름이 없습니다." : "No matching bane names."));
         else
         {
             vector<string> matches;
@@ -648,7 +649,7 @@ bool wizard_toggle_bane()
 void wizard_set_abyss()
 {
     char buf[80];
-    mprf(MSGCH_PROMPT, "Enter values for X, Y, Z (space separated) or return: ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "X, Y, Z 값을 공백으로 구분해 입력하거나 Enter를 누르세요: " : "Enter values for X, Y, Z (space separated) or return: "));
     if (!cancellable_get_line_autohist(buf, sizeof buf))
         abyss_teleport();
 
@@ -660,7 +661,7 @@ void wizard_set_abyss()
 void wizard_set_stats()
 {
     char buf[80];
-    mprf(MSGCH_PROMPT, "Enter values for Str, Int, Dex (space separated): ");
+    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "힘, 지능, 민첩 값을 공백으로 구분해 입력하세요: " : "Enter values for Str, Int, Dex (space separated): "));
     if (cancellable_get_line_autohist(buf, sizeof buf) || buf[0] == '\0')
     {
         canned_msg(MSG_OK);
@@ -902,7 +903,7 @@ void wizard_get_god_gift()
 {
     if (you_worship(GOD_NO_GOD))
     {
-        mpr("You are not religious!");
+        mpr((Options.language == lang_t::KO ? "신앙이 없습니다!" : "You are not religious!"));
         return;
     }
 
