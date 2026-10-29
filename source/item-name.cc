@@ -2641,10 +2641,12 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         if (!_name.empty() && name_type == MF_NAME_SUFFIX)
             buff << _name << " ";
 
+        const bool ko_display = Options.language == lang_t::KO
+                                && !dbname && !qualname;
         if (item_typ == CORPSE_BODY)
-            buff << "corpse";
+            buff << (ko_display ? "시체" : "corpse");
         else if (item_typ == CORPSE_SKELETON)
-            buff << "skeleton";
+            buff << (ko_display ? "해골" : "skeleton");
         else
             buff << "corpse bug";
 
@@ -2662,12 +2664,14 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         if (props.exists(ARTEFACT_NAME_KEY))
             buff << props[ARTEFACT_NAME_KEY].get_string();
         else
-            buff << "Unnamed gizmo";
+            buff << (Options.language == lang_t::KO && !dbname && !qualname
+                     ? "이름 없는 기계 장치" : "Unnamed gizmo");
     }
     break;
 
     case OBJ_BAUBLES:
-        buff << "flux bauble";
+        buff << (Options.language == lang_t::KO && !dbname && !qualname
+                 ? "유동 구슬" : "flux bauble");
     break;
 
     default:
