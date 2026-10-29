@@ -1407,6 +1407,37 @@ static string _ko_equipment_base_name(const string &name)
     return name;
 }
 
+
+static const char* _ko_talisman_name(int subtype)
+{
+    switch (static_cast<talisman_type>(subtype))
+    {
+    case TALISMAN_QUILL: return "깃펜 부적";
+    case TALISMAN_INKWELL: return "잉크병 부적";
+    case TALISMAN_PROTEAN: return "변환 부적";
+    case TALISMAN_RIMEHORN: return "서리뿔 부적";
+    case TALISMAN_SPIDER: return "거미 부적";
+    case TALISMAN_AQUA: return "샘물 부적";
+    case TALISMAN_SCARAB: return "풍뎅이 부적";
+    case TALISMAN_MEDUSA: return "메두사 부적";
+    case TALISMAN_SPORE: return "포자 부적";
+    case TALISMAN_MAW: return "아가리 부적";
+    case TALISMAN_SERPENT: return "뱀 부적";
+    case TALISMAN_EEL: return "장어 부적";
+    case TALISMAN_BLADE: return "칼날 부적";
+    case TALISMAN_WEREWOLF: return "늑대 부적";
+    case TALISMAN_FORTRESS: return "요새 부적";
+    case TALISMAN_STATUE: return "화강암 부적";
+    case TALISMAN_HIVE: return "벌집 부적";
+    case TALISMAN_DRAGON: return "용의 고리 부적";
+    case TALISMAN_SPHINX: return "수수께끼 부적";
+    case TALISMAN_VAMPIRE: return "피 부적";
+    case TALISMAN_DEATH: return "죽음 부적";
+    case TALISMAN_STORM: return "폭풍 부적";
+    default: return nullptr;
+    }
+}
+
 static const char* _ko_book_theme_name(int subtype)
 {
     switch (static_cast<book_type>(subtype))
@@ -2436,6 +2467,11 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
     case OBJ_TALISMANS:
         if (is_random_artefact(*this) && !dbname && !basename)
             buff << get_artefact_name(*this, ident);
+        else if (Options.language == lang_t::KO && !dbname && !qualname)
+        {
+            const char* label = _ko_talisman_name(item_typ);
+            buff << (label ? label : talisman_type_name(item_typ));
+        }
         else
             buff << talisman_type_name(item_typ);
         break;
