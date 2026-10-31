@@ -3197,7 +3197,7 @@ string get_cloud_desc(cloud_type cloud, bool include_title)
     if (cloud == CLOUD_NONE)
         return "";
     const string cl_name = _ko_cloud_display_name(cloud);
-    const string cl_desc = getLongDescription(cl_name + " cloud");
+    const string cl_desc = getLongDescription(cloud_type_name(cloud) + " cloud");
 
     string ret;
     if (include_title)
