@@ -1767,18 +1767,27 @@ void cloud_struct::announce_actor_engulfed(const actor *act,
     }
     else if (type == CLOUD_BATS)
     {
-        mprf("%s %s %s.",
-             act->name(DESC_THE).c_str(),
-             (act->conj_verb("are") + " swarmed by").c_str(),
-             cloud_name().c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) 박쥐 떼에 둘러싸입니다.",
+                 act->name(DESC_THE).c_str());
+        else
+            mprf("%s %s %s.",
+                 act->name(DESC_THE).c_str(),
+                 (act->conj_verb("are") + " swarmed by").c_str(),
+                 cloud_name().c_str());
     }
     else
     {
-        mprf("%s %s in %s.",
-             act->name(DESC_THE).c_str(),
-             beneficial ? act->conj_verb("bask").c_str()
-                        : (act->conj_verb("are") + " engulfed").c_str(),
-             cloud_name().c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) %s 속에서 %s.",
+                 act->name(DESC_THE).c_str(), cloud_name().c_str(),
+                 beneficial ? "기운을 받습니다" : "휩싸입니다");
+        else
+            mprf("%s %s in %s.",
+                 act->name(DESC_THE).c_str(),
+                 beneficial ? act->conj_verb("bask").c_str()
+                            : (act->conj_verb("are") + " engulfed").c_str(),
+                 cloud_name().c_str());
         return;
     }
 
