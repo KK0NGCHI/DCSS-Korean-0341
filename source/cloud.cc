@@ -1261,7 +1261,8 @@ static bool _actor_apply_cloud_side_effects(actor *act,
             if (mon->get_ench(ENCH_DROWSY).duration >= 100)
             {
                 mon->del_ench(ENCH_DROWSY);
-                simple_monster_message(*mon, " falls asleep!");
+                simple_monster_message(*mon, Options.language == lang_t::KO
+                    ? "이(가) 잠에 빠집니다!" : " falls asleep!");
                 mon->put_to_sleep(cloud.agent(), random_range(3, 5) * BASELINE_DELAY);
             }
         }
@@ -1754,10 +1755,15 @@ void cloud_struct::announce_actor_engulfed(const actor *act,
 
     if (type == CLOUD_RAIN)
     {
-        mprf("%s %s in the rain.",
-            act->name(DESC_THE).c_str(),
-            act->conj_verb(silenced(act->pos())?
-                        "steam" : "sizzle").c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) 비를 맞고 %s.",
+                 act->name(DESC_THE).c_str(),
+                 silenced(act->pos()) ? "김을 내뿜습니다" : "치익 소리를 냅니다");
+        else
+            mprf("%s %s in the rain.",
+                 act->name(DESC_THE).c_str(),
+                 act->conj_verb(silenced(act->pos())?
+                             "steam" : "sizzle").c_str());
     }
     else if (type == CLOUD_BATS)
     {
@@ -1938,7 +1944,8 @@ void start_still_winds()
 {
     delete_all_clouds();
     env.level_state |= LSTATE_STILL_WINDS;
-    mprf(MSGCH_WARN, "%s", "The air becomes perfectly still.");
+    mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO
+         ? "공기의 흐름이 완전히 멈춥니다." : "The air becomes perfectly still.");
 }
 
 void end_still_winds()
@@ -2161,7 +2168,9 @@ bool chaos_affects_actor(actor* victim, actor* source)
         if (victim->is_player() && have_passive(passive_t::no_haste)
             && beam.flavour == BEAM_HASTE)
         {
-            simple_god_message(" protects you from inadvertent hurry.");
+            simple_god_message(Options.language == lang_t::KO
+                ? "이(가) 뜻하지 않은 가속으로부터 당신을 보호합니다."
+                : " protects you from inadvertent hurry.");
             return true;
         }
 
