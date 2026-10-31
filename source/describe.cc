@@ -3109,11 +3109,14 @@ string get_item_description(const item_def &item,
     // a docs file you don't know to exist is tedious.
     if (verbose && mode != IDM_MONSTER)
     {
-        description << "\n\n" << "Stash search prefixes: "
+        description << "\n\n"
+                    << (Options.language == lang_t::KO ? "보관함 검색 접두어: " : "Stash search prefixes: ")
                     << userdef_annotate_item(STASH_LUA_SEARCH_ANNOTATE, &item);
         string menu_prefix = item_prefix(item, false);
         if (!menu_prefix.empty())
-            description << "\nMenu/colouring prefixes: " << menu_prefix;
+            description << (Options.language == lang_t::KO
+                            ? "\n메뉴/색상 지정 접두어: " : "\nMenu/colouring prefixes: ")
+                        << menu_prefix;
     }
 
     return description.str();
@@ -4402,21 +4405,30 @@ string get_skill_description(skill_type skill, bool need_title)
         if (you.has_mutation(MUT_FORLORN))
         {
             result += "\n";
-            result += "How on earth did you manage to pick this up?";
+            result += Options.language == lang_t::KO
+                ? "대체 어떻게 이 기술을 익힌 겁니까?"
+                : "How on earth did you manage to pick this up?";
         }
         else if (invo_skill(you.religion) != SK_INVOCATIONS)
         {
             result += "\n";
-            result += uppercase_first(apostrophise(god_name(you.religion)))
-                      + " powers are not affected by the Invocations skill.";
+            if (Options.language == lang_t::KO)
+                result += god_name(you.religion) + "의 권능은 기도술의 영향을 받지 않습니다.";
+            else
+                result += uppercase_first(apostrophise(god_name(you.religion)))
+                          + " powers are not affected by the Invocations skill.";
         }
     }
     else if (skill == invo_skill(you.religion))
     {
         result += "\n";
-        result += uppercase_first(apostrophise(god_name(you.religion)))
-                  + " powers are based on " + skill_name(skill) + " instead"
-                    " of Invocations skill.";
+        if (Options.language == lang_t::KO)
+            result += god_name(you.religion) + "의 권능은 기도술 대신 "
+                      + skill_name(skill) + " 기술을 기준으로 합니다.";
+        else
+            result += uppercase_first(apostrophise(god_name(you.religion)))
+                      + " powers are based on " + skill_name(skill) + " instead"
+                        " of Invocations skill.";
     }
 
     if (is_harmful_skill(skill))
