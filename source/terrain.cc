@@ -936,9 +936,16 @@ void slime_wall_damage(actor* act, int delay)
     const int dam = resist_adjust_damage(act, BEAM_ACID, base_dam);
     if (dam > 0 && you.see_cell_no_trans(act->pos()))
     {
-        const char *verb = act->is_icy() ? "melt" : "burn";
-        mprf((walls > 1) ? "The walls %s %s!" : "The wall %ss %s!",
-              verb, act->name(DESC_THE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("벽이 %s을(를) %s!",
+                 act->name(DESC_THE).c_str(),
+                 act->is_icy() ? "녹입니다" : "태웁니다");
+        else
+        {
+            const char *verb = act->is_icy() ? "melt" : "burn";
+            mprf((walls > 1) ? "The walls %s %s!" : "The wall %ss %s!",
+                 verb, act->name(DESC_THE).c_str());
+        }
         act->hurt(&you, dam, BEAM_ACID);
         if (act->alive())
             behaviour_event(act->as_monster(), ME_WHACK, &you, you.pos());
@@ -1788,10 +1795,15 @@ void fall_into_a_pool(dungeon_feature_type terrain)
         return;
     }
 
-    mprf("You fall into the %s!",
-         (terrain == DNGN_LAVA)       ? "lava" :
-         (terrain == DNGN_DEEP_WATER) ? "water"
-                                      : "programming rift");
+    if (Options.language == lang_t::KO)
+        mprf("%s에 빠집니다!",
+             terrain == DNGN_LAVA ? "용암" :
+             terrain == DNGN_DEEP_WATER ? "깊은 물" : "알 수 없는 균열");
+    else
+        mprf("You fall into the %s!",
+             (terrain == DNGN_LAVA)       ? "lava" :
+             (terrain == DNGN_DEEP_WATER) ? "water"
+                                          : "programming rift");
     // included in default force_more_message
     enable_emergency_flight();
 }
@@ -2618,10 +2630,16 @@ void ice_wall_damage(monster &mons, int delay)
     beam.flavour = BEAM_COLD;
     beam.thrower = KILL_YOU;
     int dam = mons_adjust_flavoured(&mons, beam, orig_dam);
-    mprf("The wall freezes %s%s%s",
-         you.can_see(mons) ? mons.name(DESC_THE).c_str() : "something",
-         dam ? "" : " but does no damage",
-         attack_strength_punctuation(dam).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("벽이 %s을(를) 얼립니다%s%s",
+             you.can_see(mons) ? mons.name(DESC_THE).c_str() : "무언가",
+             dam ? "" : "만 피해를 주지 못합니다",
+             attack_strength_punctuation(dam).c_str());
+    else
+        mprf("The wall freezes %s%s%s",
+             you.can_see(mons) ? mons.name(DESC_THE).c_str() : "something",
+             dam ? "" : " but does no damage",
+             attack_strength_punctuation(dam).c_str());
 
     if (dam > 0)
     {
