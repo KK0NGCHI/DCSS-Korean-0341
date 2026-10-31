@@ -329,7 +329,9 @@ bool fire_warn_if_impossible(bool silent, item_def *weapon)
         if (!weapon || !is_range_weapon(*weapon))
         {
             if (!silent)
-                mprf("You cannot throw/fire anything while %s.", held_status());
+                mprf(Options.language == lang_t::KO
+                    ? "%s 상태에서는 아무것도 던지거나 발사할 수 없습니다."
+                    : "You cannot throw/fire anything while %s.", held_status());
             return true;
         }
         else
@@ -339,8 +341,11 @@ bool fire_warn_if_impossible(bool silent, item_def *weapon)
         {
             if (!silent)
             {
-                mprf("You cannot shoot with your %s while %s.",
-                     weapon->name(DESC_BASENAME).c_str(), held_status());
+                mprf(Options.language == lang_t::KO
+                    ? "%s 상태에서는 %s(으)로 발사할 수 없습니다."
+                    : "You cannot shoot with your %s while %s.",
+                     Options.language == lang_t::KO ? held_status() : weapon->name(DESC_BASENAME).c_str(),
+                     Options.language == lang_t::KO ? weapon->name(DESC_BASENAME).c_str() : held_status());
             }
             return true;
         }

@@ -1103,8 +1103,11 @@ bool evoke_item(item_def& item, dist *preselect)
         if (!check_transform_into(transformation::flux, false))
             return false;
 
-        mprf("You crush the flux bauble in your %s and feel its energy "
-            "flooding your body.", you.hand_name(false).c_str());
+        if (Options.language == lang_t::KO)
+            mpr("손에 쥔 변이 장신품을 부수자 에너지가 몸속으로 밀려듭니다.");
+        else
+            mprf("You crush the flux bauble in your %s and feel its energy "
+                 "flooding your body.", you.hand_name(false).c_str());
         ASSERT(in_inventory(item));
         dec_inv_item_quantity(item.link, 1);
         transform(0, transformation::flux, true);
