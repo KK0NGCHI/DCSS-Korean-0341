@@ -3090,21 +3090,25 @@ string get_item_description(const item_def &item,
                 if (you.has_mutation(MUT_ARTEFACT_ENCHANTING))
                 {
                     if (!item.is_identified())
-                        description << "\nIt is an ancient artefact.";
+                        description << (Options.language == lang_t::KO ? "\n오래된 아티팩트입니다." : "\nIt is an ancient artefact.");
                     else if (is_unrandom_artefact(item)
                              || (item.base_type == OBJ_ARMOUR
                                  && item.plus >= armour_max_enchant(item))
                              || (item.base_type == OBJ_WEAPONS
                                  && item.plus >= MAX_WPN_ENCHANT))
                     {
-                        description << "\nEnchanting this artefact any further "
-                            "is beyond even your skills.";
+                        description << (Options.language == lang_t::KO
+                            ? "\n이 아티팩트는 당신의 능력으로도 더 이상 강화할 수 없습니다."
+                            : "\nEnchanting this artefact any further "
+                              "is beyond even your skills.");
                     }
                 }
                 else
                 {
-                    description << "\nThis ancient artefact cannot be changed "
-                        "by magic or mundane means.";
+                    description << (Options.language == lang_t::KO
+                        ? "\n이 오래된 아티팩트는 마법이나 일반적인 방법으로 변경할 수 없습니다."
+                        : "\nThis ancient artefact cannot be changed "
+                          "by magic or mundane means.");
                 }
             }
             // Randart jewellery has already displayed this line.
@@ -3112,15 +3116,19 @@ string get_item_description(const item_def &item,
             else if (item.base_type != OBJ_JEWELLERY && item.base_type != OBJ_GIZMOS
                      || (item.is_identified() && is_unrandom_artefact(item)))
             {
-                description << "\nIt is an ancient artefact.";
+                description << (Options.language == lang_t::KO ? "\n오래된 아티팩트입니다." : "\nIt is an ancient artefact.");
             }
         }
     }
 
     if (god_hates_item(item))
     {
-        description << "\n\n" << uppercase_first(god_name(you.religion))
-                    << " disapproves of the use of such an item.";
+        if (Options.language == lang_t::KO)
+            description << "\n\n" << god_name(you.religion)
+                        << "은(는) 이런 아이템의 사용을 못마땅하게 여깁니다.";
+        else
+            description << "\n\n" << uppercase_first(god_name(you.religion))
+                        << " disapproves of the use of such an item.";
     }
 
     if (verbose && origin_describable(item))
