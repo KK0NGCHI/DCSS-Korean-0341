@@ -1703,14 +1703,17 @@ bool maybe_warn_about_removing(const item_def& item)
     {
         prompt = item.name(DESC_INVENTORY);
         if (item.base_type == OBJ_WEAPONS || item.base_type == OBJ_STAVES)
-            prompt += "의 장비를 해제";
+            prompt += "을(를) 장비에서 해제";
         else if (item.base_type == OBJ_ARMOUR)
             prompt += "을(를) 벗";
         else
             prompt += "을(를) 제거";
         if (item.cursed())
-            prompt += "하고 파괴";
-        prompt += "하시겠습니까?";
+            prompt += "고 파괴";
+        if (item.base_type == OBJ_ARMOUR && !item.cursed())
+            prompt += "으시겠습니까?";
+        else
+            prompt += "하시겠습니까?";
         if (penance)
             prompt += " 신의 징벌을 받을 수 있습니다!";
     }
