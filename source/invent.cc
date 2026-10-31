@@ -1709,7 +1709,7 @@ bool maybe_warn_about_removing(const item_def& item)
         else
             prompt += "을(를) 제거";
         if (item.cursed())
-            prompt += "고 파괴";
+            prompt += item.base_type == OBJ_ARMOUR ? "고 파괴" : "하고 파괴";
         if (item.base_type == OBJ_ARMOUR && !item.cursed())
             prompt += "으시겠습니까?";
         else
