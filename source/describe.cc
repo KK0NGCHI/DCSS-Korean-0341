@@ -3160,7 +3160,9 @@ string get_cloud_desc(cloud_type cloud, bool include_title)
 
     string ret;
     if (include_title)
-        ret = "A cloud of " + cl_name + (cl_desc.empty() ? "." : ".\n\n");
+        ret = Options.language == lang_t::KO
+            ? cl_name + " 구름" + (cl_desc.empty() ? "." : ".\n\n")
+            : "A cloud of " + cl_name + (cl_desc.empty() ? "." : ".\n\n");
     ret += cl_desc + extra_cloud_info(cloud);
     return ret;
 }
@@ -3179,7 +3181,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
     if (feat_is_tree(feat) && env.forest_awoken_until)
     {
         ret.push_back({
-            "Awoken.",
+            Options.language == lang_t::KO ? "깨어남." : "Awoken.",
             getLongDescription("awoken"),
             tile_def(TILE_AWOKEN_OVERLAY)
         });
@@ -3187,7 +3189,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
     if (feat_is_wall(feat) && env.map_knowledge(pos).flags & MAP_ICY)
     {
         ret.push_back({
-            "A covering of ice.",
+            Options.language == lang_t::KO ? "얼음으로 덮여 있음." : "A covering of ice.",
             getLongDescription("ice covered"),
             tile_def(TILE_FLOOR_ICY)
         });
@@ -3197,7 +3199,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
         if (haloed(pos) && !umbraed(pos))
         {
             ret.push_back({
-                "A halo.",
+                Options.language == lang_t::KO ? "후광." : "A halo.",
                 getLongDescription("haloed"),
                 tile_def(TILE_HALO_RANGE)
             });
@@ -3205,7 +3207,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
         if (umbraed(pos) && !haloed(pos))
         {
             ret.push_back({
-                "An umbra.",
+                Options.language == lang_t::KO ? "그림자 기운." : "An umbra.",
                 getLongDescription("umbraed"),
                 tile_def(TILE_UMBRA)
             });
@@ -3213,7 +3215,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
         if (liquefied(pos, true))
         {
             ret.push_back({
-                "Liquefied ground.",
+                Options.language == lang_t::KO ? "액화된 지면." : "Liquefied ground.",
                 getLongDescription("liquefied"),
                 tile_def(TILE_LIQUEFACTION)
             });
@@ -3221,7 +3223,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
         if (disjunction_haloed(pos))
         {
             ret.push_back({
-                "Translocational energy.",
+                Options.language == lang_t::KO ? "공간 이동의 기운." : "Translocational energy.",
                 getLongDescription("disjunction haloed"),
                 tile_def(TILE_DISJUNCT)
             });
@@ -3230,7 +3232,9 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
     if (const auto cloud = env.map_knowledge(pos).cloudinfo())
     {
         ret.push_back({
-            "A cloud of " + cloud_type_name(cloud->type) + ".",
+            Options.language == lang_t::KO
+                ? cloud_type_name(cloud->type) + " 구름."
+                : "A cloud of " + cloud_type_name(cloud->type) + ".",
             get_cloud_desc(cloud->type, false),
             tile_def(tileidx_cloud(*cloud)),
         });
