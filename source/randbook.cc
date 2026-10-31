@@ -718,6 +718,26 @@ static string _maybe_gen_book_subject(string owner)
  * @param   disc2       A spellschool (discipline) associated with the book.
  * @return              A book name. May contain placeholders (@foo@).
  */
+// Database keys remain English. Only the visible fallback is localized.
+static string _ko_randbook_school_name(spschool school)
+{
+    switch (school)
+    {
+    case spschool::conjuration:   return "파괴술";
+    case spschool::hexes:        return "주술";
+    case spschool::fire:         return "화염술";
+    case spschool::ice:          return "냉기술";
+    case spschool::necromancy:   return "강령술";
+    case spschool::summoning:    return "소환술";
+    case spschool::forgecraft:   return "제작술";
+    case spschool::translocation:return "전이술";
+    case spschool::alchemy:      return "연금술";
+    case spschool::earth:        return "대지술";
+    case spschool::air:          return "대기술";
+    default:                     return spelltype_long_name(school);
+    }
+}
+
 static string _gen_randbook_name(string subject, string owner,
                                  spschool disc1,
                                  spschool disc2)
@@ -762,7 +782,7 @@ static string _gen_randbook_name(string subject, string owner,
         // No adjective found, use the normal method of combining two nouns.
         type_name = getRandNameString(spelltype_long_name(disc1));
         if (type_name.empty())
-            name += spelltype_long_name(disc1);
+            name += korean ? _ko_randbook_school_name(disc1) : spelltype_long_name(disc1);
         else
             name += type_name;
 
@@ -772,7 +792,7 @@ static string _gen_randbook_name(string subject, string owner,
             type_name = getRandNameString(spelltype_long_name(disc2));
 
             if (type_name.empty())
-                name += spelltype_long_name(disc2);
+                name += korean ? _ko_randbook_school_name(disc2) : spelltype_long_name(disc2);
             else
                 name += type_name;
         }
@@ -784,7 +804,7 @@ static string _gen_randbook_name(string subject, string owner,
         // Add the noun for the first discipline.
         type_name = getRandNameString(spelltype_long_name(disc1));
         if (type_name.empty())
-            bookname += spelltype_long_name(disc1);
+            bookname += korean ? _ko_randbook_school_name(disc1) : spelltype_long_name(disc1);
         else
         {
             if (type_name.find("the ", 0) != string::npos)
