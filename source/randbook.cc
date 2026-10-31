@@ -810,7 +810,8 @@ static string _gen_randbook_name(string subject, string owner,
             if (type_name.find("the ", 0) != string::npos)
             {
                 type_name = replace_all(type_name, "the ", "");
-                bookname = "the " + bookname;
+                if (!korean)
+                    bookname = "the " + bookname;
             }
             bookname += type_name;
         }
