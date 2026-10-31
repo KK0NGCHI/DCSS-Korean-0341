@@ -2321,14 +2321,27 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
         if (!monster && is_shield(item))
         {
             const int evp = -property(item, PARM_EVASION);
-            const char* cumber_desc = evp < 100 ? "slightly " :
-                                      evp > 100 ? "greatly " : "";
-            description += make_stringf(
-                "It is cumbersome to wear, and %simpedes the evasion, "
-                "spellcasting ability, and attack speed of the wearer. "
-                "These penalties are reduced by the wearer's Shields skill "
-                "and Strength; mastering Shields eliminates penalties.",
-                cumber_desc);
+            if (Options.language == lang_t::KO)
+            {
+                const char* degree = evp < 100 ? "조금 " :
+                                     evp > 100 ? "크게 " : "";
+                description += make_stringf(
+                    "이 방패는 착용하기 거추장스러우며, 회피와 주문 시전 능력, "
+                    "공격 속도를 %s저하시킵니다. 이 불이익은 방패술과 힘이 "
+                    "높을수록 감소하며, 방패술을 완전히 숙달하면 사라집니다.",
+                    degree);
+            }
+            else
+            {
+                const char* cumber_desc = evp < 100 ? "slightly " :
+                                          evp > 100 ? "greatly " : "";
+                description += make_stringf(
+                    "It is cumbersome to wear, and %simpedes the evasion, "
+                    "spellcasting ability, and attack speed of the wearer. "
+                    "These penalties are reduced by the wearer's Shields skill "
+                    "and Strength; mastering Shields eliminates penalties.",
+                    cumber_desc);
+            }
         }
         if (!monster)
             description += "\n\n";
