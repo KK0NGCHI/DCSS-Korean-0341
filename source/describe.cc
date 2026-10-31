@@ -2604,7 +2604,7 @@ static string _describe_gizmo(const item_def &item)
         {
             case SPGIZMO_SPELLMOTOR:
                 desc = Options.language == lang_t::KO
-                    ? "가속 단계가 높아질수록 주문의 MP 소모량이 감소합니다. 주문을 시전할 때마다 사거리 안의 무작위 적에게 근접 공격을 가합니다."
+                    ? "Rev 단계가 높아질수록 주문의 MP 소모량이 감소합니다. 주문을 시전할 때마다 사거리 안의 무작위 적에게 근접 공격을 가합니다."
                     : "Your spells cost less MP as you Rev up. Whenever you "
                       "cast a spell, you make a melee attack against a random "
                       "enemy in range.";
@@ -2619,7 +2619,7 @@ static string _describe_gizmo(const item_def &item)
 
             case SPGIZMO_REVGUARD:
                 desc = Options.language == lang_t::KO
-                    ? "가속 단계에 따라 방어력이 최대 +5 증가합니다. 가속 단계가 최대일 때는 공격으로 적의 무장을 해제할 수 있습니다."
+                    ? "Rev 단계에 따라 방어력이 최대 +5 증가합니다. Rev 단계가 최대일 때는 공격으로 적의 무장을 해제할 수 있습니다."
                     : "Your AC increases as you Rev (up to +5) and while "
                       "fully Revved, your attacks may disarm enemies.";
                 break;
