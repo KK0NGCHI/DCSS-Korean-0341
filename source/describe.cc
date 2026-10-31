@@ -3257,7 +3257,7 @@ static string _feat_action_desc(const vector<command_type>& actions,
     };
     const bool korean = Options.language == lang_t::KO;
     return comma_separated_fn(begin(actions), end(actions),
-        [feat, korean, &act_str] (command_type cmd)
+        [feat, korean] (command_type cmd)
         {
             if (cmd == CMD_GO_DOWNSTAIRS && feat_is_altar(feat))
                 return string(korean ? "(>)기도" : "(>)pray");
