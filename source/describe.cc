@@ -3255,26 +3255,38 @@ static string _feat_action_desc(const vector<command_type>& actions,
         { CMD_CLOSE_DOOR,       "(C)lose" },
 
     };
+    const bool korean = Options.language == lang_t::KO;
     return comma_separated_fn(begin(actions), end(actions),
-        [feat] (command_type cmd)
+        [feat, korean] (command_type cmd)
         {
             if (cmd == CMD_GO_DOWNSTAIRS && feat_is_altar(feat))
-                return string("(>)pray");
+                return string(korean ? "(>)기도" : "(>)pray");
             else if (cmd == CMD_GO_DOWNSTAIRS &&
                 (feat == DNGN_ENTER_SHOP
                     || feat_is_portal(feat)
                     || feat_is_gate(feat)
                     || feat == DNGN_TRANSPORTER))
             {
-                // XX disable for portals without item? The command still works.
-                return string("(>)enter");
+                return string(korean ? "(>)들어가기" : "(>)enter");
             }
             else if (cmd == CMD_GO_UPSTAIRS && feat_is_gate(feat))
-                return string("(<)exit");
-            else
-                return act_str.at(cmd);
+                return string(korean ? "(<)나가기" : "(<)exit");
+            if (korean)
+            {
+                switch (cmd)
+                {
+                case CMD_GO_UPSTAIRS:    return string("(<)올라가기");
+                case CMD_GO_DOWNSTAIRS:  return string("(>)내려가기");
+                case CMD_MAP_PREV_LEVEL: return string("([)목적지 보기");
+                case CMD_MAP_NEXT_LEVEL: return string("(])목적지 보기");
+                case CMD_OPEN_DOOR:      return string("(O)열기");
+                case CMD_CLOSE_DOOR:     return string("(C)닫기");
+                default: break;
+                }
+            }
+            return act_str.at(cmd);
         },
-        ", or ") + ".";
+        korean ? " 또는 " : ", or ") + ".";
 }
 
 static vector<command_type> _allowed_feat_actions(const coord_def &pos)
