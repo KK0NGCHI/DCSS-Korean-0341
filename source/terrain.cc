@@ -2679,10 +2679,16 @@ void frigid_walls_damage(int delay)
         beam.flavour = BEAM_COLD;
         beam.thrower = KILL_YOU;
         int dam = mons_adjust_flavoured(*mi, beam, orig_dam);
-        mprf("The frigid air chills %s%s%s",
-            you.can_see(**mi) ? mi->name(DESC_THE).c_str() : "something",
-            dam ? "" : " but does no damage",
-            attack_strength_punctuation(dam).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("차가운 공기가 %s을(를) 얼립니다%s%s",
+                 you.can_see(**mi) ? mi->name(DESC_THE).c_str() : "무언가",
+                 dam ? "" : "만 피해를 주지 못합니다",
+                 attack_strength_punctuation(dam).c_str());
+        else
+            mprf("The frigid air chills %s%s%s",
+                 you.can_see(**mi) ? mi->name(DESC_THE).c_str() : "something",
+                 dam ? "" : " but does no damage",
+                 attack_strength_punctuation(dam).c_str());
 
         if (dam > 0)
         {
