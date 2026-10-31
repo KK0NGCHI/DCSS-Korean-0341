@@ -1261,7 +1261,8 @@ static bool _actor_apply_cloud_side_effects(actor *act,
             if (mon->get_ench(ENCH_DROWSY).duration >= 100)
             {
                 mon->del_ench(ENCH_DROWSY);
-                simple_monster_message(*mon, " falls asleep!");
+                simple_monster_message(*mon, Options.language == lang_t::KO
+                    ? "이(가) 잠에 빠집니다!" : " falls asleep!");
                 mon->put_to_sleep(cloud.agent(), random_range(3, 5) * BASELINE_DELAY);
             }
         }
@@ -1613,6 +1614,47 @@ bool is_harmless_cloud(cloud_type type)
            && type != CLOUD_VORTEX;
 }
 
+// Preserve cloud_type_name() for internal English lookups; localize display only.
+string cloud_display_name(cloud_type cloud)
+{
+    if (Options.language != lang_t::KO)
+        return cloud_type_name(cloud);
+    switch (cloud)
+    {
+    case CLOUD_FIRE:          return "화염";
+    case CLOUD_MEPHITIC:      return "유독 가스";
+    case CLOUD_COLD:          return "냉기";
+    case CLOUD_POISON:        return "독가스";
+    case CLOUD_BLACK_SMOKE:   return "검은 연기";
+    case CLOUD_GREY_SMOKE:    return "회색 연기";
+    case CLOUD_BLUE_SMOKE:    return "푸른 연기";
+    case CLOUD_PURPLE_SMOKE:  return "보라색 연기";
+    case CLOUD_TLOC_ENERGY:   return "공간 이동 에너지";
+    case CLOUD_FOREST_FIRE:   return "번지는 불길";
+    case CLOUD_STEAM:         return "뜨거운 증기";
+    case CLOUD_INK:           return "먹물";
+    case CLOUD_PETRIFY:       return "석화 가루";
+    case CLOUD_HOLY:          return "신성한 불꽃";
+    case CLOUD_MIASMA:        return "역병 독기";
+    case CLOUD_MIST:          return "옅은 안개";
+    case CLOUD_CHAOS:         return "혼돈";
+    case CLOUD_RAIN:          return "비";
+    case CLOUD_MUTAGENIC:     return "돌연변이 안개";
+    case CLOUD_MAGIC_TRAIL:   return "마법 응축물";
+    case CLOUD_VORTEX:        return "소용돌이치는 서리";
+    case CLOUD_DUST:          return "먼지";
+    case CLOUD_SPECTRAL:      return "유령 안개";
+    case CLOUD_ACID:          return "산성 안개";
+    case CLOUD_STORM:         return "뇌우";
+    case CLOUD_MISERY:        return "극심한 고통";
+    case CLOUD_FLUFFY:        return "흰 솜털";
+    case CLOUD_XOM_TRAIL:     return "마법 응축물";
+    case CLOUD_SALT:          return "소금";
+    case CLOUD_GOLD_DUST:     return "금빛 가루";
+    default:                  return cloud_type_name(cloud);
+    }
+}
+
 string cloud_type_name(cloud_type type, bool terse)
 {
     if (type <= CLOUD_NONE || type >= NUM_CLOUD_TYPES)
@@ -1754,25 +1796,39 @@ void cloud_struct::announce_actor_engulfed(const actor *act,
 
     if (type == CLOUD_RAIN)
     {
-        mprf("%s %s in the rain.",
-            act->name(DESC_THE).c_str(),
-            act->conj_verb(silenced(act->pos())?
-                        "steam" : "sizzle").c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) 비를 맞고 %s.",
+                 act->name(DESC_THE).c_str(),
+                 silenced(act->pos()) ? "김을 내뿜습니다" : "치익 소리를 냅니다");
+        else
+            mprf("%s %s in the rain.",
+                 act->name(DESC_THE).c_str(),
+                 act->conj_verb(silenced(act->pos())?
+                             "steam" : "sizzle").c_str());
     }
     else if (type == CLOUD_BATS)
     {
-        mprf("%s %s %s.",
-             act->name(DESC_THE).c_str(),
-             (act->conj_verb("are") + " swarmed by").c_str(),
-             cloud_name().c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) 박쥐 떼에 둘러싸입니다.",
+                 act->name(DESC_THE).c_str());
+        else
+            mprf("%s %s %s.",
+                 act->name(DESC_THE).c_str(),
+                 (act->conj_verb("are") + " swarmed by").c_str(),
+                 cloud_name().c_str());
     }
     else
     {
-        mprf("%s %s in %s.",
-             act->name(DESC_THE).c_str(),
-             beneficial ? act->conj_verb("bask").c_str()
-                        : (act->conj_verb("are") + " engulfed").c_str(),
-             cloud_name().c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s이(가) %s 속에서 %s.",
+                 act->name(DESC_THE).c_str(), cloud_display_name(type).c_str(),
+                 beneficial ? "기운을 받습니다" : "휩싸입니다");
+        else
+            mprf("%s %s in %s.",
+                 act->name(DESC_THE).c_str(),
+                 beneficial ? act->conj_verb("bask").c_str()
+                            : (act->conj_verb("are") + " engulfed").c_str(),
+                 cloud_name().c_str());
         return;
     }
 
@@ -1938,7 +1994,8 @@ void start_still_winds()
 {
     delete_all_clouds();
     env.level_state |= LSTATE_STILL_WINDS;
-    mprf(MSGCH_WARN, "%s", "The air becomes perfectly still.");
+    mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO
+         ? "공기의 흐름이 완전히 멈춥니다." : "The air becomes perfectly still.");
 }
 
 void end_still_winds()
@@ -2161,7 +2218,9 @@ bool chaos_affects_actor(actor* victim, actor* source)
         if (victim->is_player() && have_passive(passive_t::no_haste)
             && beam.flavour == BEAM_HASTE)
         {
-            simple_god_message(" protects you from inadvertent hurry.");
+            simple_god_message(Options.language == lang_t::KO
+                ? "이(가) 뜻하지 않은 가속으로부터 당신을 보호합니다."
+                : " protects you from inadvertent hurry.");
             return true;
         }
 
