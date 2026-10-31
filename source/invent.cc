@@ -1699,20 +1699,40 @@ bool maybe_warn_about_removing(const item_def& item)
     if (!needs_handle_warning(item, OPER_UNEQUIP, penance))
         return true;
 
-    if (item.base_type == OBJ_WEAPONS || item.base_type == OBJ_STAVES)
-        prompt += "Really unwield ";
-    else if (item.base_type == OBJ_ARMOUR)
-        prompt += "Really take off ";
+    if (Options.language == lang_t::KO)
+    {
+        prompt = item.name(DESC_INVENTORY);
+        if (item.base_type == OBJ_WEAPONS || item.base_type == OBJ_STAVES)
+            prompt += "을(를) 장비에서 해제";
+        else if (item.base_type == OBJ_ARMOUR)
+            prompt += "을(를) 벗";
+        else
+            prompt += "을(를) 제거";
+        if (item.cursed())
+            prompt += item.base_type == OBJ_ARMOUR ? "고 파괴" : "하고 파괴";
+        if (item.base_type == OBJ_ARMOUR && !item.cursed())
+            prompt += "으시겠습니까?";
+        else
+            prompt += "하시겠습니까?";
+        if (penance)
+            prompt += " 신의 징벌을 받을 수 있습니다!";
+    }
     else
-        prompt += "Really remove ";
+    {
+        if (item.base_type == OBJ_WEAPONS || item.base_type == OBJ_STAVES)
+            prompt += "Really unwield ";
+        else if (item.base_type == OBJ_ARMOUR)
+            prompt += "Really take off ";
+        else
+            prompt += "Really remove ";
 
-    // now ask
-    if (item.cursed())
-        prompt += "and destroy ";
-    prompt += item.name(DESC_INVENTORY);
-    prompt += "?";
-    if (penance)
-        prompt += " This could place you under penance!";
+        if (item.cursed())
+            prompt += "and destroy ";
+        prompt += item.name(DESC_INVENTORY);
+        prompt += "?";
+        if (penance)
+            prompt += " This could place you under penance!";
+    }
     return yesno(prompt.c_str(), false, 'n');
 }
 
