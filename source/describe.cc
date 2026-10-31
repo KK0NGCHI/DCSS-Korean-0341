@@ -4455,8 +4455,11 @@ string get_skill_description(skill_type skill, bool need_title)
     if (is_harmful_skill(skill))
     {
         result += "\n";
-        result += uppercase_first(god_name(you.religion))
-                  + " strongly dislikes when you train this skill.";
+        if (Options.language == lang_t::KO)
+            result += god_name(you.religion) + "은(는) 이 기술을 수련하는 것을 매우 싫어합니다.";
+        else
+            result += uppercase_first(god_name(you.religion))
+                      + " strongly dislikes when you train this skill.";
     }
 
     return result;
@@ -4498,21 +4501,22 @@ int hex_chance(const spell_type spell, const monster_info* mi, bool is_wand)
  */
 static string _miscast_damage_string(spell_type spell)
 {
+    const bool korean = Options.language == lang_t::KO;
     const map <spschool, string> damage_flavor = {
-        { spschool::conjuration, "irresistible" },
-        { spschool::necromancy, "draining" },
-        { spschool::fire, "fire" },
-        { spschool::ice, "cold" },
-        { spschool::air, "electric" },
-        { spschool::earth, "fragmentation" },
+        { spschool::conjuration, korean ? "저항할 수 없는" : "irresistible" },
+        { spschool::necromancy, korean ? "생명력 흡수" : "draining" },
+        { spschool::fire, korean ? "화염" : "fire" },
+        { spschool::ice, korean ? "냉기" : "cold" },
+        { spschool::air, korean ? "전기" : "electric" },
+        { spschool::earth, korean ? "파편" : "fragmentation" },
     };
 
     const map <spschool, string> special_flavor = {
-        { spschool::summoning, "summons a nameless horror" },
-        { spschool::translocation, "anchors you in place" },
-        { spschool::hexes, "slows you" },
-        { spschool::alchemy, "poisons you" },
-        { spschool::forgecraft, "corrodes you" },
+        { spschool::summoning, korean ? "이름 없는 공포를 소환" : "summons a nameless horror" },
+        { spschool::translocation, korean ? "제자리에 고정" : "anchors you in place" },
+        { spschool::hexes, korean ? "둔화" : "slows you" },
+        { spschool::alchemy, korean ? "중독" : "poisons you" },
+        { spschool::forgecraft, korean ? "부식" : "corrodes you" },
     };
 
     spschools_type disciplines = get_spell_disciplines(spell);
@@ -4530,12 +4534,14 @@ static string _miscast_damage_string(spell_type spell)
 
     if (!dam_flavors.empty())
     {
-        descs.push_back(make_stringf("deals up to %d %s damage", dam,
-                                     comma_separated_line(dam_flavors.begin(),
-                                                         dam_flavors.end(),
-                                                         " or ").c_str()));
+        descs.push_back(make_stringf(
+            korean ? "최대 %d의 %s 피해" : "deals up to %d %s damage", dam,
+            comma_separated_line(dam_flavors.begin(), dam_flavors.end(),
+                                 korean ? " 또는 " : " or ").c_str()));
     }
 
+    if (korean)
+        return comma_separated_line(descs.begin(), descs.end(), " 또는 ", "; ");
     return (descs.size() > 1 ? "either " : "")
          + comma_separated_line(descs.begin(), descs.end(), " or ", "; ");
 }
@@ -4559,10 +4565,17 @@ static string _player_spell_desc(spell_type spell)
 
     ostringstream description;
 
-    description << "Miscasting this spell causes magic contamination"
-                << (fail_severity(spell) ?
-                    " and also " + _miscast_damage_string(spell) : "")
-                << ".\n";
+    if (Options.language == lang_t::KO)
+        description << "이 주문을 잘못 시전하면 마법 오염이 발생합니다."
+                    << (fail_severity(spell)
+                        ? " 추가로 " + _miscast_damage_string(spell) + " 효과가 발생할 수 있습니다."
+                        : "")
+                    << "\n";
+    else
+        description << "Miscasting this spell causes magic contamination"
+                    << (fail_severity(spell) ?
+                        " and also " + _miscast_damage_string(spell) : "")
+                    << ".\n";
 
     if (spell == SPELL_BATTLESPHERE)
     {
