@@ -671,8 +671,10 @@ static level_id _travel_destination(const dungeon_feature_type how,
             if (known_shaft)
             {
                 mpr((Options.language == lang_t::KO ? "이상하게도 수직 통로가 다시 이 층으로 이어지는 것 같습니다." : "Strange, the shaft seems to lead back to this level."));
-                mpr("The strain on the space-time continuum destroys the "
-                    "shaft!");
+                mpr(Options.language == lang_t::KO
+                    ? "시공간에 가해진 압력으로 수직 통로가 파괴됩니다!"
+                    : "The strain on the space-time continuum destroys the "
+                      "shaft!");
             }
             maybe_destroy_shaft(you.pos());
             return dest;
@@ -684,10 +686,14 @@ static level_id _travel_destination(const dungeon_feature_type how,
                                     + shaft_dest.describe() + ".");
         }
 
-        mprf("You %s into a shaft and drop %d floor%s!",
-             you.airborne() ? "are sucked" : "fall",
-             shaft_depth,
-             shaft_depth > 1 ? "s" : "");
+        if (Options.language == lang_t::KO)
+            mprf("수직 통로에 %s %d개 층을 떨어집니다!",
+                 you.airborne() ? "빨려 들어가" : "빠져", shaft_depth);
+        else
+            mprf("You %s into a shaft and drop %d floor%s!",
+                 you.airborne() ? "are sucked" : "fall",
+                 shaft_depth,
+                 shaft_depth > 1 ? "s" : "");
 
         // Shafts are one-time-use.
         mpr((Options.language == lang_t::KO ? "수직 통로가 무너져 내립니다." : "The shaft crumbles and collapses."));
