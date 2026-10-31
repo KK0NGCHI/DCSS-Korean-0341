@@ -3151,11 +3151,52 @@ string get_item_description(const item_def &item,
     return description.str();
 }
 
+// Preserve cloud_type_name() for internal English lookups; localize display only.
+static string _ko_cloud_display_name(cloud_type cloud)
+{
+    if (Options.language != lang_t::KO)
+        return cloud_type_name(cloud);
+    switch (cloud)
+    {
+    case CLOUD_FIRE:          return "화염";
+    case CLOUD_MEPHITIC:      return "유독 가스";
+    case CLOUD_COLD:          return "냉기";
+    case CLOUD_POISON:        return "독가스";
+    case CLOUD_BLACK_SMOKE:   return "검은 연기";
+    case CLOUD_GREY_SMOKE:    return "회색 연기";
+    case CLOUD_BLUE_SMOKE:    return "푸른 연기";
+    case CLOUD_PURPLE_SMOKE:  return "보라색 연기";
+    case CLOUD_TLOC_ENERGY:   return "공간 이동 에너지";
+    case CLOUD_FOREST_FIRE:   return "번지는 불길";
+    case CLOUD_STEAM:         return "뜨거운 증기";
+    case CLOUD_INK:           return "먹물";
+    case CLOUD_PETRIFY:       return "석화 가루";
+    case CLOUD_HOLY:          return "신성한 불꽃";
+    case CLOUD_MIASMA:        return "역병 독기";
+    case CLOUD_MIST:          return "옅은 안개";
+    case CLOUD_CHAOS:         return "혼돈";
+    case CLOUD_RAIN:          return "비";
+    case CLOUD_MUTAGENIC:     return "돌연변이 안개";
+    case CLOUD_MAGIC_TRAIL:   return "마법 응축물";
+    case CLOUD_VORTEX:        return "소용돌이치는 서리";
+    case CLOUD_DUST:          return "먼지";
+    case CLOUD_SPECTRAL:      return "유령 안개";
+    case CLOUD_ACID:          return "산성 안개";
+    case CLOUD_STORM:         return "뇌우";
+    case CLOUD_MISERY:        return "극심한 고통";
+    case CLOUD_FLUFFY:        return "흰 솜털";
+    case CLOUD_XOM_TRAIL:     return "마법 응축물";
+    case CLOUD_SALT:          return "소금";
+    case CLOUD_GOLD_DUST:     return "금빛 가루";
+    default:                  return cloud_type_name(cloud);
+    }
+}
+
 string get_cloud_desc(cloud_type cloud, bool include_title)
 {
     if (cloud == CLOUD_NONE)
         return "";
-    const string cl_name = cloud_type_name(cloud);
+    const string cl_name = _ko_cloud_display_name(cloud);
     const string cl_desc = getLongDescription(cl_name + " cloud");
 
     string ret;
@@ -3233,7 +3274,7 @@ static vector<extra_feature_desc> _get_feature_extra_descs(const coord_def &pos)
     {
         ret.push_back({
             Options.language == lang_t::KO
-                ? cloud_type_name(cloud->type) + " 구름."
+                ? _ko_cloud_display_name(cloud->type) + " 구름."
                 : "A cloud of " + cloud_type_name(cloud->type) + ".",
             get_cloud_desc(cloud->type, false),
             tile_def(tileidx_cloud(*cloud)),
