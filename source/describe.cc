@@ -2321,14 +2321,27 @@ static string _describe_armour(const item_def &item, bool verbose, bool monster)
         if (!monster && is_shield(item))
         {
             const int evp = -property(item, PARM_EVASION);
-            const char* cumber_desc = evp < 100 ? "slightly " :
-                                      evp > 100 ? "greatly " : "";
-            description += make_stringf(
-                "It is cumbersome to wear, and %simpedes the evasion, "
-                "spellcasting ability, and attack speed of the wearer. "
-                "These penalties are reduced by the wearer's Shields skill "
-                "and Strength; mastering Shields eliminates penalties.",
-                cumber_desc);
+            if (Options.language == lang_t::KO)
+            {
+                const char* degree = evp < 100 ? "조금 " :
+                                     evp > 100 ? "크게 " : "";
+                description += make_stringf(
+                    "이 방패는 착용하기 거추장스러우며, 회피와 주문 시전 능력, "
+                    "공격 속도를 %s저하시킵니다. 이 불이익은 방패술과 힘이 "
+                    "높을수록 감소하며, 방패술을 완전히 숙달하면 사라집니다.",
+                    degree);
+            }
+            else
+            {
+                const char* cumber_desc = evp < 100 ? "slightly " :
+                                          evp > 100 ? "greatly " : "";
+                description += make_stringf(
+                    "It is cumbersome to wear, and %simpedes the evasion, "
+                    "spellcasting ability, and attack speed of the wearer. "
+                    "These penalties are reduced by the wearer's Shields skill "
+                    "and Strength; mastering Shields eliminates penalties.",
+                    cumber_desc);
+            }
         }
         if (!monster)
             description += "\n\n";
@@ -2603,24 +2616,32 @@ static string _describe_gizmo(const item_def &item)
         switch (item.brand)
         {
             case SPGIZMO_SPELLMOTOR:
-                desc = "Your spells cost less MP as you Rev up. Whenever you "
-                       "cast a spell, you make a melee attack against a random "
-                       "enemy in range.";
+                desc = Options.language == lang_t::KO
+                    ? "Rev 단계가 높아질수록 주문의 MP 소모량이 감소합니다. 주문을 시전할 때마다 사거리 안의 무작위 적에게 근접 공격을 가합니다."
+                    : "Your spells cost less MP as you Rev up. Whenever you "
+                      "cast a spell, you make a melee attack against a random "
+                      "enemy in range.";
                 break;
 
             case SPGIZMO_GADGETEER:
-                desc = "Your evocable items recharge 30% faster and wands have "
-                       "a 30% chance to not spend a charge.";
+                desc = Options.language == lang_t::KO
+                    ? "발동형 아이템의 재충전 속도가 30% 빨라지며, 마법봉을 사용할 때 30% 확률로 충전 횟수가 소모되지 않습니다."
+                    : "Your evocable items recharge 30% faster and wands have "
+                      "a 30% chance to not spend a charge.";
                 break;
 
             case SPGIZMO_REVGUARD:
-                desc = "Your AC increases as you Rev (up to +5) and while "
-                       "fully Revved, your attacks may disarm enemies.";
+                desc = Options.language == lang_t::KO
+                    ? "Rev 단계에 따라 방어력이 최대 +5 증가합니다. Rev 단계가 최대일 때는 공격으로 적의 무장을 해제할 수 있습니다."
+                    : "Your AC increases as you Rev (up to +5) and while "
+                      "fully Revved, your attacks may disarm enemies.";
                 break;
 
             case SPGIZMO_AUTODAZZLE:
-                desc  = "It sometimes fires a blinding ray at enemies whose attacks "
-                       "you dodge.";
+                desc = Options.language == lang_t::KO
+                    ? "적의 공격을 회피하면 일정 확률로 그 적에게 눈을 멀게 하는 광선을 발사합니다."
+                    : "It sometimes fires a blinding ray at enemies whose attacks "
+                      "you dodge.";
                 break;
 
             default:
