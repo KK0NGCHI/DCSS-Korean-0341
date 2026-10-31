@@ -4227,8 +4227,13 @@ void inscribe_item(item_def &item)
     mprf_nocap(MSGCH_EQUIPMENT, "%s", item.name(DESC_INVENTORY).c_str());
 
     const bool is_inscribed = !item.inscription.empty();
-    string prompt = is_inscribed ? "Replace inscription with what? "
-                                 : "Inscribe with what? ";
+    string prompt;
+    if (Options.language == lang_t::KO)
+        prompt = is_inscribed ? "각인을 무엇으로 변경하시겠습니까? "
+                             : "무엇을 각인하시겠습니까? ";
+    else
+        prompt = is_inscribed ? "Replace inscription with what? "
+                             : "Inscribe with what? ";
 
     char buf[79];
     int ret = msgwin_get_line(prompt, buf, sizeof buf, nullptr,
