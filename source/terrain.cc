@@ -2631,9 +2631,8 @@ void ice_wall_damage(monster &mons, int delay)
     beam.thrower = KILL_YOU;
     int dam = mons_adjust_flavoured(&mons, beam, orig_dam);
     if (Options.language == lang_t::KO)
-        mprf("벽이 %s을(를) 얼립니다%s%s",
+        mprf(dam ? "벽이 %s을(를) 얼립니다%s" : "벽이 %s을(를) 얼리지만 피해를 주지 못합니다%s",
              you.can_see(mons) ? mons.name(DESC_THE).c_str() : "무언가",
-             dam ? "" : "만 피해를 주지 못합니다",
              attack_strength_punctuation(dam).c_str());
     else
         mprf("The wall freezes %s%s%s",
@@ -2680,9 +2679,8 @@ void frigid_walls_damage(int delay)
         beam.thrower = KILL_YOU;
         int dam = mons_adjust_flavoured(*mi, beam, orig_dam);
         if (Options.language == lang_t::KO)
-            mprf("차가운 공기가 %s을(를) 얼립니다%s%s",
+            mprf(dam ? "차가운 공기가 %s을(를) 얼립니다%s" : "차가운 공기가 %s을(를) 얼리지만 피해를 주지 못합니다%s",
                  you.can_see(**mi) ? mi->name(DESC_THE).c_str() : "무언가",
-                 dam ? "" : "만 피해를 주지 못합니다",
                  attack_strength_punctuation(dam).c_str());
         else
             mprf("The frigid air chills %s%s%s",
