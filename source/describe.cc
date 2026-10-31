@@ -2603,24 +2603,32 @@ static string _describe_gizmo(const item_def &item)
         switch (item.brand)
         {
             case SPGIZMO_SPELLMOTOR:
-                desc = "Your spells cost less MP as you Rev up. Whenever you "
-                       "cast a spell, you make a melee attack against a random "
-                       "enemy in range.";
+                desc = Options.language == lang_t::KO
+                    ? "가속 단계가 높아질수록 주문의 MP 소모량이 감소합니다. 주문을 시전할 때마다 사거리 안의 무작위 적에게 근접 공격을 가합니다."
+                    : "Your spells cost less MP as you Rev up. Whenever you "
+                      "cast a spell, you make a melee attack against a random "
+                      "enemy in range.";
                 break;
 
             case SPGIZMO_GADGETEER:
-                desc = "Your evocable items recharge 30% faster and wands have "
-                       "a 30% chance to not spend a charge.";
+                desc = Options.language == lang_t::KO
+                    ? "발동형 아이템의 재충전 속도가 30% 빨라지며, 마법봉을 사용할 때 30% 확률로 충전 횟수가 소모되지 않습니다."
+                    : "Your evocable items recharge 30% faster and wands have "
+                      "a 30% chance to not spend a charge.";
                 break;
 
             case SPGIZMO_REVGUARD:
-                desc = "Your AC increases as you Rev (up to +5) and while "
-                       "fully Revved, your attacks may disarm enemies.";
+                desc = Options.language == lang_t::KO
+                    ? "가속 단계에 따라 방어력이 최대 +5 증가합니다. 가속 단계가 최대일 때는 공격으로 적의 무장을 해제할 수 있습니다."
+                    : "Your AC increases as you Rev (up to +5) and while "
+                      "fully Revved, your attacks may disarm enemies.";
                 break;
 
             case SPGIZMO_AUTODAZZLE:
-                desc  = "It sometimes fires a blinding ray at enemies whose attacks "
-                       "you dodge.";
+                desc = Options.language == lang_t::KO
+                    ? "적의 공격을 회피하면 일정 확률로 그 적에게 눈을 멀게 하는 광선을 발사합니다."
+                    : "It sometimes fires a blinding ray at enemies whose attacks "
+                      "you dodge.";
                 break;
 
             default:
