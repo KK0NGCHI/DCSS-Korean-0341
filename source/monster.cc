@@ -5539,7 +5539,7 @@ void monster::finalise_movement(const actor* to_blame)
             {
                 string desc =
                     feature_description_at(pos(), false, DESC_THE);
-                mprf("The bloodstain on %s disappears!", desc.c_str());
+                mprf(Options.language == lang_t::KO ? "%s에 묻은 핏자국이 사라집니다!" : "The bloodstain on %s disappears!", desc.c_str());
             }
         }
     }
@@ -6381,8 +6381,11 @@ void monster::steal_item_from_player()
         you.attribute[ATTR_GOLD_FOUND] -= stolen_amount;
 
         you.del_gold(stolen_amount);
-        mprf("You now have %d gold piece%s.",
-             you.gold, you.gold != 1 ? "s" : "");
+        if (Options.language == lang_t::KO)
+            mprf("현재 금화는 %d개입니다.", you.gold);
+        else
+            mprf("You now have %d gold piece%s.",
+                 you.gold, you.gold != 1 ? "s" : "");
 
         return;
     }
