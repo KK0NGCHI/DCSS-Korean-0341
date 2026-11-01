@@ -3800,8 +3800,7 @@ static const map<god_type, function<void ()>> on_join = {
     { GOD_BEOGH, update_player_symbol },
     { GOD_CHEIBRIADOS, _join_cheibriados },
     { GOD_FEDHAS, []() {
-        mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "던전의 식물들이 적대 행위를 멈춥니다." : "The plants of the dungeon cease their ")
-             "hostilities.");
+        mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "던전의 식물들이 적대 행위를 멈춥니다." : "The plants of the dungeon cease their hostilities."));
         if (env.forest_awoken_until)
             for (monster_iterator mi; mi; ++mi)
                 mi->del_ench(ENCH_AWAKEN_FOREST);
