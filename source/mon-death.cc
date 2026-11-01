@@ -3026,19 +3026,29 @@ item_def* monster_die(monster& mons, killer_type killer,
                 if (killer == KILL_YOU_CONF
                     && (anon || !invalid_monster_index(killer_index)))
                 {
-                    mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s is %s!",
-                         mons.name(DESC_THE).c_str(),
-                         exploded   ? "blown up" :
-                         destroyed  ? "destroyed"
-                                    : "killed");
+                    if (Options.language == lang_t::KO)
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s이(가) %s!",
+                             mons.name(DESC_THE).c_str(),
+                             exploded ? "폭발했습니다" :
+                             destroyed ? "파괴됐습니다" : "죽었습니다");
+                    else
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s is %s!",
+                             mons.name(DESC_THE).c_str(),
+                             exploded ? "blown up" :
+                             destroyed ? "destroyed" : "killed");
                 }
                 else
                 {
-                    mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "You %s %s!",
-                         exploded  ? "blow up" :
-                         destroyed ? "destroy"
-                                   : "kill",
-                         mons.name(DESC_THE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s을(를) %s!",
+                             mons.name(DESC_THE).c_str(),
+                             exploded ? "폭발시켰습니다" :
+                             destroyed ? "파괴했습니다" : "죽였습니다");
+                    else
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "You %s %s!",
+                             exploded ? "blow up" :
+                             destroyed ? "destroy" : "kill",
+                             mons.name(DESC_THE).c_str());
                 }
             }
 

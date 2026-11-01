@@ -1325,7 +1325,7 @@ static monster* _place_monster_aux(const mgen_data &mg, const monster *leader,
     {
         mon->patrol_point = mon->pos();
 #ifdef DEBUG_PATHFIND
-        mprf("Monster %s is patrolling around (%d, %d).",
+        mprf(Options.language == lang_t::KO ? "몬스터 %s이(가) (%d, %d) 주변을 순찰합니다." : "Monster %s is patrolling around (%d, %d).",
              mon->name(DESC_PLAIN).c_str(), mon->pos().x, mon->pos().y);
 #endif
     }
@@ -1510,7 +1510,7 @@ static monster* _place_monster_aux(const mgen_data &mg, const monster *leader,
     // A rare case of a debug message NOT showing in the debug mode.
     if (mons_class_flag(mon->type, M_UNFINISHED))
     {
-        mprf(MSGCH_WARN, "Warning: monster '%s' is not yet fully coded.",
+        mprf(MSGCH_WARN, Options.language == lang_t::KO ? "경고: 몬스터 '%s'의 구현이 아직 완료되지 않았습니다." : "Warning: monster '%s' is not yet fully coded.",
              mon->name(DESC_PLAIN, true).c_str());
     }
 #endif
