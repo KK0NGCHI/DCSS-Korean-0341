@@ -49,10 +49,13 @@ completeness.
 - `source/monster.cc`: 4 additional item-ownership diagnostic outputs (diagnostic, not ordinary gameplay text).
 - `source/misc.cc`: 1 stasis teleport warning.
 - `source/player-equip.cc`: 2 equipment/hand interaction messages.
-- 20 output sites translated in total; English fallback preserved.
+- `source/monster.cc`: 15 further weapon aura, combat effect and sound messages.
+- `source/misc.cc`: 2 movement/swap messages.
+- `source/god-prayer.cc`: 2 prayer/tithe messages.
+- 39 output sites translated in total; English fallback preserved.
 - No PR opened yet: continue accumulating translations until a coherent large batch is ready.
 - CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
 - QA: monster diagnostics now use explicit field labels and plain `%s` formats to avoid ambiguous particles and positional printf portability issues.
 - QA: equipment messages still use literal `이(가)`; replace with context-aware output grammar before final language-quality acceptance.
 
-**Status:** 20 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 39 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
