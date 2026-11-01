@@ -1577,7 +1577,7 @@ static int _train(skill_type exsk, int &max_exp, bool simu, bool check_targets)
         you.skill_manual_points[exsk] -= bonus;
         if (!you.skill_manual_points[exsk] && !simu && !crawl_state.simulating_xp_gain)
         {
-            mprf("You have finished your manual of %s and %stoss it away.",
+            mprf((Options.language == lang_t::KO ? "%s 기술 교본을 다 읽고 %s버립니다." : "You have finished your manual of %s and %stoss it away."),
                  skill_name(exsk),
                  exsk == SK_THROWING ? "skilfully " : "");
         }
