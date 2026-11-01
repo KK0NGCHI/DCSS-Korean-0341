@@ -1970,7 +1970,10 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             bool plural = true;
             string hand = you.hand_name(true, &plural);
 
-            mprf("Your %s briefly %s through it before you manage "
+            if (Options.language == lang_t::KO)
+                mprf("%s이(가) 잠시 그것을 통과하지만, 곧 단단히 움켜쥡니다.", hand.c_str());
+            else
+                mprf("Your %s briefly %s through it before you manage "
                     "to get a firm grip on it.",
                     hand.c_str(), conjugate_verb("pass", plural).c_str());
             break;
@@ -2328,8 +2331,11 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             {
                 bool can_plural = false;
                 const string hands = you.hand_name(true, &can_plural);
-                mprf("Your %s feel%s oddly empty.",
-                     hands.c_str(), can_plural ? "" : "s");
+                if (Options.language == lang_t::KO)
+                    mprf("%s이(가) 이상하리만치 허전하게 느껴집니다.", hands.c_str());
+                else
+                    mprf("Your %s feel%s oddly empty.",
+                         hands.c_str(), can_plural ? "" : "s");
             }
             break;
 
