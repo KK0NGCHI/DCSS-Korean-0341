@@ -1960,8 +1960,9 @@ static void _on_enter_form(transformation which_trans)
     case transformation::maw:
         if (have_passive(passive_t::goldify_corpses))
         {
-            mprf(MSGCH_WARN, "Gozag's golden gift will leave your new mouth "
-                             "with nothing to eat.");
+            mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO
+                 ? "고자그의 황금 선물 때문에 새 입으로 먹을 것이 남지 않습니다."
+                 : "Gozag's golden gift will leave your new mouth with nothing to eat.");
         }
         break;
 
