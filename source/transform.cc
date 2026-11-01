@@ -1885,8 +1885,11 @@ bool check_transform_into(transformation which_trans, bool involuntary,
     const auto feat = env.grid(you.pos());
     if (!involuntary && feat_dangerous_for_form(which_trans, feat, talisman))
     {
-        mprf((Options.language == lang_t::KO ? "지금 변신하면 %s!" : "Transforming right now would cause you to %s!"),
-             feat == DNGN_DEEP_WATER ? "drown" : "burn");
+        if (Options.language == lang_t::KO)
+            mpr(feat == DNGN_DEEP_WATER ? "지금 변신하면 익사합니다!" : "지금 변신하면 불타 죽습니다!");
+        else
+            mprf("Transforming right now would cause you to %s!",
+                 feat == DNGN_DEEP_WATER ? "drown" : "burn");
         return false;
     }
 
