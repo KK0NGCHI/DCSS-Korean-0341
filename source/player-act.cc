@@ -670,7 +670,9 @@ bool player::go_berserk(bool intentional, bool potion)
     if (crawl_state.game_is_hints())
         Hints.hints_berserk_counter++;
 
-    mpr("A red film seems to cover your vision as you go berserk!");
+    mpr(Options.language == lang_t::KO
+        ? "광폭화하자 시야가 붉게 물드는 듯합니다!"
+        : "A red film seems to cover your vision as you go berserk!");
 
     if (you.duration[DUR_FINESSE] > 0)
     {
