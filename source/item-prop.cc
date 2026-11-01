@@ -3334,7 +3334,7 @@ void seen_item(item_def &item)
                 && you.inv[i].sub_type == item.sub_type)
             {
                 held = &you.inv[i];
-                mprf("You learned that %s %s actually %s.",
+                mprf((Options.language == lang_t::KO ? "%s의 정체는 %s이며 실제로 %s입니다." : "You learned that %s %s actually %s."),
                         held->name(DESC_YOUR).c_str(),
                         held->quantity > 1 ? "are" : "is",
                         held->name(DESC_A, false, true).c_str());
