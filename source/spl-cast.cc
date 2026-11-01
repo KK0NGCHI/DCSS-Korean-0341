@@ -751,7 +751,10 @@ bool can_cast_spells(bool quiet)
     {
         if (!quiet)
         {
-            mprf("You cannot cast spells while %s!", player_silenced_reason());
+            if (Options.language == lang_t::KO)
+                mpr("침묵 상태에서는 주문을 시전할 수 없습니다!");
+            else
+                mprf("You cannot cast spells while %s!", player_silenced_reason());
             // included in default force_more_message
         }
         return false;
@@ -1254,8 +1257,9 @@ static bool _spellcasting_aborted(spell_type spell, bool fake_spell)
     {
         if (failure_rate_to_int(raw_spell_fail(spell)) == 100)
         {
-            mprf(MSGCH_WARN, "It is impossible to cast this spell "
-                    "(100%% risk of failure)!");
+            mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO
+                 ? "이 주문은 시전할 수 없습니다. (실패 확률 100%!)"
+                 : "It is impossible to cast this spell (100% risk of failure)!");
             return true;
         }
 
