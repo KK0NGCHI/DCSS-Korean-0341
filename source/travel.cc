@@ -5110,21 +5110,42 @@ template <class C> void explore_discoveries::say_any(
 
     const int size = coll.size();
 
+    const char* ko_category = category;
+    if (Options.language == lang_t::KO)
+    {
+        const string kind(category);
+        if (kind == "item") ko_category = "아이템";
+        else if (kind == "shop") ko_category = "상점";
+        else if (kind == "altar") ko_category = "제단";
+        else if (kind == "portal") ko_category = "포털";
+        else if (kind == "stair") ko_category = "계단";
+        else if (kind == "transporter") ko_category = "이동 장치";
+        else if (kind == "runed door") ko_category = "룬 문";
+        else if (kind == "runelights") ko_category = "룬 불빛";
+    }
+
     string plural = pluralise(category);
     if (size != 1)
         category = plural.c_str();
 
     if (has_duplicates(coll.begin(), coll.end()))
     {
-        mprf("Found %s %s.", number_in_words(size).c_str(), category);
+        if (Options.language == lang_t::KO)
+            mprf("%s %d개를 발견했습니다.", ko_category, size);
+        else
+            mprf("Found %s %s.", number_in_words(size).c_str(), category);
         return;
     }
 
-    const auto message = "Found " +
-                           comma_separated_line(coll.begin(), coll.end()) + ".";
+    const auto message = Options.language == lang_t::KO
+        ? comma_separated_line(coll.begin(), coll.end()) + " 발견."
+        : "Found " + comma_separated_line(coll.begin(), coll.end()) + ".";
 
     if (formatted_string::parse_string(message).width() >= get_number_of_cols())
-        mprf("Found %s %s.", number_in_words(size).c_str(), category);
+        if (Options.language == lang_t::KO)
+            mprf("%s %d개를 발견했습니다.", ko_category, size);
+        else
+            mprf("Found %s %s.", number_in_words(size).c_str(), category);
     else
         mpr(message);
 }
