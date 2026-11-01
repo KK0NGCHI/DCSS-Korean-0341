@@ -2330,11 +2330,17 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
 
         if (feed && (healing || powering))
         {
-            mprf(Options.language == lang_t::KO ? "%s에게서 사그라지는 %s의 힘을 흡수합니다." : "You siphon power from %s's fading %s.",
-                  mons.name(DESC_THE).c_str(),
-                  mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
-                  "poison and negative energy" : (mons.has_ench(ENCH_POISON) ?
-                  "poison" : "negative energy"));
+            if (Options.language == lang_t::KO)
+                mprf("%s에게서 사그라지는 %s의 힘을 흡수합니다.",
+                     mons.name(DESC_THE).c_str(),
+                     mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
+                     "독과 음에너지" : (mons.has_ench(ENCH_POISON) ? "독" : "음에너지"));
+            else
+                mprf("You siphon power from %s's fading %s.",
+                     mons.name(DESC_THE).c_str(),
+                     mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
+                     "poison and negative energy" : (mons.has_ench(ENCH_POISON) ?
+                     "poison" : "negative energy"));
         }
 
         if (healing)
