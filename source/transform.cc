@@ -1929,11 +1929,11 @@ static void _on_enter_form(transformation which_trans)
     switch (which_trans)
     {
     case transformation::tree:
-        mpr("Your roots penetrate the ground.");
+        mpr((Options.language == lang_t::KO ? "뿌리가 땅속으로 뻗어 나갑니다." : "Your roots penetrate the ground."));
         if (you.duration[DUR_TELEPORT])
         {
             you.duration[DUR_TELEPORT] = 0;
-            mpr("You feel strangely stable.");
+            mpr((Options.language == lang_t::KO ? "기묘하게 안정된 느낌이 듭니다." : "You feel strangely stable."));
         }
         you.duration[DUR_FLIGHT] = 0;
         break;
@@ -2028,7 +2028,7 @@ static void _enter_form(int dur, transformation which_trans, bool using_talisman
 
     if (you.digging && form_changes_anatomy(which_trans))
     {
-        mpr("Your mandibles meld away.");
+        mpr((Options.language == lang_t::KO ? "큰턱이 몸속으로 녹아듭니다." : "Your mandibles meld away."));
         you.digging = false;
     }
 
@@ -2238,7 +2238,7 @@ void untransform(bool skip_move, bool scale_hp, bool preserve_equipment,
         if (monster* ember = get_solar_ember())
         {
             monster_die(*ember, KILL_RESET, NON_MONSTER);
-            mprf(MSGCH_DURATION, "Your tiny sun winks out.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "작은 태양이 사그라집니다." : "Your tiny sun winks out."));
         }
     }
     else if (old_form == transformation::rime_yak)
@@ -2381,7 +2381,7 @@ void merfolk_start_swimming()
     if (you.fishtail)
         return;
 
-    mpr("Your legs become a tail as you dive into the water.");
+    mpr((Options.language == lang_t::KO ? "물속으로 뛰어들자 다리가 꼬리로 변합니다." : "Your legs become a tail as you dive into the water."));
 
     if (you.invisible())
         mpr("...but don't expect to remain undetected.");
@@ -2557,8 +2557,9 @@ void sun_scarab_spawn_ember(bool first_time)
     if (monster* mon = create_monster(mg))
     {
         you.props[SOLAR_EMBER_MID_KEY].get_int() = mon->mid;
-        mprf(MSGCH_DURATION, first_time ? "A tiny sun coalesces beside you."
-                                        : "You reconstitute your solar ember.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO
+            ? (first_time ? "곁에 작은 태양이 형체를 이룹니다." : "태양의 불씨를 다시 만들어 냅니다.")
+            : (first_time ? "A tiny sun coalesces beside you." : "You reconstitute your solar ember."));
         you.props.erase(SOLAR_EMBER_REVIVAL_KEY);
     }
 }
@@ -2591,12 +2592,17 @@ bool maw_hunger_check(monster* mon)
     {
         if (!you.clarity())
         {
-            mprf("Your maw growls hungrily at the sight of %s.", mon->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO
+             ? "%s을(를) 보고 아가리가 굶주린 듯 으르렁거립니다."
+             : "Your maw growls hungrily at the sight of %s.",
+             mon->name(DESC_THE).c_str());
             you.add_beholder(*mon, true, random_range(6, 10));
         }
         else
         {
-            mprf("Your maw growls hungrily at the sight of %s, but you resist your urges.",
+            mprf(Options.language == lang_t::KO
+             ? "%s을(를) 보고 아가리가 굶주린 듯 으르렁거리지만, 충동을 억누릅니다."
+             : "Your maw growls hungrily at the sight of %s, but you resist your urges.",
                  mon->name(DESC_THE).c_str());
         }
 

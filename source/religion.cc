@@ -732,7 +732,7 @@ void dec_penance(god_type god, int val)
             }
             if (have_passive(passive_t::storm_shield))
             {
-                mprf(MSGCH_GOD, "A storm instantly forms around you!");
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "순식간에 폭풍이 주위를 감쌉니다!" : "A storm instantly forms around you!"));
                 you.redraw_armour_class = true; // also handles shields
             }
             // When you've worked through all your penance, you get
@@ -2406,7 +2406,7 @@ static void _handle_piety_gain(int old_piety)
                 }
             }
             if (rank == rank_for_passive(passive_t::halo))
-                mprf(MSGCH_GOD, "A divine halo surrounds you!");
+                mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "신성한 후광이 당신을 감쌉니다!" : "A divine halo surrounds you!"));
             if (rank == rank_for_passive(passive_t::umbra))
                 mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "어둠의 기운에 휩싸입니다!" : "You are shrouded in an aura of darkness!"));
             if (rank == rank_for_passive(passive_t::jelly_regen))
@@ -3800,8 +3800,7 @@ static const map<god_type, function<void ()>> on_join = {
     { GOD_BEOGH, update_player_symbol },
     { GOD_CHEIBRIADOS, _join_cheibriados },
     { GOD_FEDHAS, []() {
-        mprf(MSGCH_MONSTER_ENCHANT, "The plants of the dungeon cease their "
-             "hostilities.");
+        mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "던전의 식물들이 적대 행위를 멈춥니다." : "The plants of the dungeon cease their hostilities."));
         if (env.forest_awoken_until)
             for (monster_iterator mi; mi; ++mi)
                 mi->del_ench(ENCH_AWAKEN_FOREST);
