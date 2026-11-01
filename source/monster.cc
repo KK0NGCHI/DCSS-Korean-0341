@@ -727,29 +727,29 @@ void monster::equip_weapon_message(item_def &item)
     switch (brand)
     {
     case SPWPN_FLAMING:
-        mpr("It bursts into flame!");
+        mpr((Options.language == lang_t::KO ? "불길이 솟아오릅니다!" : "It bursts into flame!"));
         break;
     case SPWPN_FREEZING:
         mpr(is_range_weapon(item) ? "It is covered in frost."
                                   : "It glows with a cold blue light!");
         break;
     case SPWPN_HOLY_WRATH:
-        mpr("It softly glows with a divine radiance!");
+        mpr((Options.language == lang_t::KO ? "은은한 신성의 빛을 발합니다!" : "It softly glows with a divine radiance!"));
         break;
     case SPWPN_FOUL_FLAME:
-        mpr("It glows horrifically with a foul blackness!");
+        mpr((Options.language == lang_t::KO ? "불길한 검은빛으로 섬뜩하게 빛납니다!" : "It glows horrifically with a foul blackness!"));
         break;
     case SPWPN_ELECTROCUTION:
-        mprf(MSGCH_SOUND, "You hear the crackle of electricity.");
+        mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "전기가 지직거리는 소리가 들립니다." : "You hear the crackle of electricity."));
         break;
     case SPWPN_VENOM:
-        mpr("It begins to drip with poison!");
+        mpr((Options.language == lang_t::KO ? "독이 뚝뚝 떨어지기 시작합니다!" : "It begins to drip with poison!"));
         break;
     case SPWPN_DRAINING:
-        mpr("You sense an unholy aura.");
+        mpr((Options.language == lang_t::KO ? "불경한 기운이 느껴집니다." : "You sense an unholy aura."));
         break;
     case SPWPN_DISTORTION:
-        mpr("Its appearance distorts for a moment.");
+        mpr((Options.language == lang_t::KO ? "잠시 모습이 일그러집니다." : "Its appearance distorts for a moment."));
         break;
     case SPWPN_CHAOS:
         mpr("It is briefly surrounded by a scintillating aura of "
@@ -770,10 +770,10 @@ void monster::equip_weapon_message(item_def &item)
     }
         break;
     case SPWPN_REAPING:
-        mpr("It is briefly surrounded by shifting shadows.");
+        mpr((Options.language == lang_t::KO ? "잠시 움직이는 그림자에 휩싸입니다." : "It is briefly surrounded by shifting shadows."));
         break;
     case SPWPN_ACID:
-        mpr("It begins to drip corrosive slime!");
+        mpr((Options.language == lang_t::KO ? "부식성 점액이 뚝뚝 떨어지기 시작합니다!" : "It begins to drip corrosive slime!"));
         break;
 
     default:
@@ -852,24 +852,24 @@ void monster::unequip_weapon(item_def &item, bool msg)
         switch (brand)
         {
         case SPWPN_FLAMING:
-            mpr("It stops flaming.");
+            mpr((Options.language == lang_t::KO ? "불길이 사그라듭니다." : "It stops flaming."));
             break;
 
         case SPWPN_HOLY_WRATH:
         case SPWPN_FOUL_FLAME:
-            mpr("It stops glowing.");
+            mpr((Options.language == lang_t::KO ? "빛이 사라집니다." : "It stops glowing."));
             break;
 
         case SPWPN_ELECTROCUTION:
-            mpr("It stops crackling.");
+            mpr((Options.language == lang_t::KO ? "지직거리는 소리가 멎습니다." : "It stops crackling."));
             break;
 
         case SPWPN_VENOM:
-            mpr("It stops dripping with poison.");
+            mpr((Options.language == lang_t::KO ? "더는 독이 떨어지지 않습니다." : "It stops dripping with poison."));
             break;
 
         case SPWPN_DISTORTION:
-            mpr("Its appearance distorts for a moment.");
+            mpr((Options.language == lang_t::KO ? "잠시 모습이 일그러집니다." : "Its appearance distorts for a moment."));
             break;
 
         default:
@@ -2621,7 +2621,7 @@ bool monster::fumbles_attack()
                  : "splashes around in the water.");
         }
         else if (player_can_hear(pos(), LOS_RADIUS))
-            mprf(MSGCH_SOUND, "You hear a splashing noise.");
+            mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "물이 튀는 소리가 들립니다." : "You hear a splashing noise."));
 
         return true;
     }
