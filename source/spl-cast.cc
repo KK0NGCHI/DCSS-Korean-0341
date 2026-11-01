@@ -1014,8 +1014,9 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
     {
         // Abort if there are no hostiles within range, but flash the range
         // markers for a short while.
-        mpr((Options.language == lang_t::KO ? "사거리 안에 주문의 영향을 받을 몬스터가 보이지 않습니다! " : "You can't see any susceptible monsters within range! ")
-            "(Use <w>Z</w> to cast anyway.)");
+        mpr(Options.language == lang_t::KO
+            ? "사거리 안에 주문의 영향을 받을 몬스터가 보이지 않습니다! (그래도 시전하려면 <w>Z</w>를 누르세요.)"
+            : "You can't see any susceptible monsters within range! (Use <w>Z</w> to cast anyway.)");
 
         if ((Options.use_animations & UA_RANGE) && Options.darken_beyond_range)
         {
