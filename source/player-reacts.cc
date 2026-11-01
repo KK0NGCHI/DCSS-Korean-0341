@@ -914,7 +914,7 @@ static void _decrement_durations()
     }
 
     _decrement_a_duration(DUR_DETONATION_CATALYST, delay,
-        "Your catalyst becomes inert.");
+        Options.language == lang_t::KO ? "촉매가 비활성화됩니다." : "Your catalyst becomes inert.");
 
     if (you.duration[DUR_FLOODED])
     {
@@ -923,8 +923,11 @@ static void _decrement_durations()
             you.duration[DUR_FLOODED] = 0;
         else if (_decrement_a_duration(DUR_FLOODED, delay))
         {
-            mprf(MSGCH_RECOVERY, "You finish coughing all the %s out of your lungs.",
-                 you.props[WATER_HOLD_SUBSTANCE_KEY].get_string().c_str());
+            if (Options.language == lang_t::KO)
+                mprf(MSGCH_RECOVERY, "폐에 남은 이물질을 모두 기침으로 뱉어냅니다.");
+            else
+                mprf(MSGCH_RECOVERY, "You finish coughing all the %s out of your lungs.",
+                     you.props[WATER_HOLD_SUBSTANCE_KEY].get_string().c_str());
             you.duration[DUR_FLOODED_IMMUNITY] = you.time_taken + 1;
         }
         else
