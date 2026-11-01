@@ -2557,8 +2557,9 @@ void sun_scarab_spawn_ember(bool first_time)
     if (monster* mon = create_monster(mg))
     {
         you.props[SOLAR_EMBER_MID_KEY].get_int() = mon->mid;
-        mprf(MSGCH_DURATION, first_time ? "A tiny sun coalesces beside you."
-                                        : "You reconstitute your solar ember.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO
+            ? (first_time ? "곁에 작은 태양이 형체를 이룹니다." : "태양의 불씨를 다시 만들어 냅니다.")
+            : (first_time ? "A tiny sun coalesces beside you." : "You reconstitute your solar ember."));
         you.props.erase(SOLAR_EMBER_REVIVAL_KEY);
     }
 }
@@ -2591,12 +2592,17 @@ bool maw_hunger_check(monster* mon)
     {
         if (!you.clarity())
         {
-            mprf("Your maw growls hungrily at the sight of %s.", mon->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO
+             ? "%s을(를) 보고 아가리가 굶주린 듯 으르렁거립니다."
+             : "Your maw growls hungrily at the sight of %s.",
+             mon->name(DESC_THE).c_str());
             you.add_beholder(*mon, true, random_range(6, 10));
         }
         else
         {
-            mprf("Your maw growls hungrily at the sight of %s, but you resist your urges.",
+            mprf(Options.language == lang_t::KO
+             ? "%s을(를) 보고 아가리가 굶주린 듯 으르렁거리지만, 충동을 억누릅니다."
+             : "Your maw growls hungrily at the sight of %s, but you resist your urges.",
                  mon->name(DESC_THE).c_str());
         }
 
