@@ -6139,19 +6139,28 @@ void monster::react_to_damage(const actor *oppressor, int damage,
                 hit_points = 0;
                 if (observable())
                 {
-                    mprf("As %s mount dies, %s plunges down into %s!",
-                         pronoun(PRONOUN_POSSESSIVE).c_str(),
-                         name(DESC_THE).c_str(),
-                         env.grid(pos()) == DNGN_LAVA ?
-                             "lava and is incinerated" :
-                             "deep water and drowns");
+                    if (Options.language == lang_t::KO)
+                        mprf(env.grid(pos()) == DNGN_LAVA
+                             ? "탈것이 죽자 %s이(가) 용암에 추락해 불타 죽습니다!"
+                             : "탈것이 죽자 %s이(가) 깊은 물에 빠져 익사합니다!",
+                             name(DESC_THE).c_str());
+                    else
+                        mprf("As %s mount dies, %s plunges down into %s!",
+                             pronoun(PRONOUN_POSSESSIVE).c_str(),
+                             name(DESC_THE).c_str(),
+                             env.grid(pos()) == DNGN_LAVA ?
+                                 "lava and is incinerated" :
+                                 "deep water and drowns");
                 }
             }
             else if (fly_died && observable())
             {
-                mprf("%s falls from %s now dead mount.",
-                     name(DESC_THE).c_str(),
-                     pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("탈것이 죽자 %s이(가) 떨어집니다.", name(DESC_THE).c_str());
+                else
+                    mprf("%s falls from %s now dead mount.",
+                         name(DESC_THE).c_str(),
+                         pronoun(PRONOUN_POSSESSIVE).c_str());
             }
         }
     }
