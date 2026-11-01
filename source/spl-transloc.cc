@@ -258,14 +258,20 @@ static bool _find_cblink_target(dist &target, bool safe_cancel,
         const monster* beholder = you.get_beholder(target.target);
         if (beholder)
         {
-            mprf(Options.language == lang_t::KO ? "%s 때문에 멀어지는 방향으로 이동할 수 없습니다!" : "You cannot %s away from %s!", beholder->name(DESC_THE, true).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s에게서 멀어지는 방향으로 이동할 수 없습니다!", beholder->name(DESC_THE, true).c_str());
+            else
+                mprf("You cannot %s away from %s!", verb.c_str(), beholder->name(DESC_THE, true).c_str());
             continue;
         }
 
         const monster* fearmonger = you.get_fearmonger(target.target);
         if (fearmonger)
         {
-            mprf(Options.language == lang_t::KO ? "%s 때문에 가까워지는 방향으로 이동할 수 없습니다!" : "You cannot %s closer to %s!", fearmonger->name(DESC_THE, true).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s에게 가까워지는 방향으로 이동할 수 없습니다!", fearmonger->name(DESC_THE, true).c_str());
+            else
+                mprf("You cannot %s closer to %s!", verb.c_str(), fearmonger->name(DESC_THE, true).c_str());
             continue;
         }
 
