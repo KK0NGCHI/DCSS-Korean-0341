@@ -5116,15 +5116,22 @@ template <class C> void explore_discoveries::say_any(
 
     if (has_duplicates(coll.begin(), coll.end()))
     {
-        mprf("Found %s %s.", number_in_words(size).c_str(), category);
+        if (Options.language == lang_t::KO)
+            mprf("%s %d개를 발견했습니다.", category, size);
+        else
+            mprf("Found %s %s.", number_in_words(size).c_str(), category);
         return;
     }
 
-    const auto message = "Found " +
-                           comma_separated_line(coll.begin(), coll.end()) + ".";
+    const auto message = Options.language == lang_t::KO
+        ? comma_separated_line(coll.begin(), coll.end()) + "을(를) 발견했습니다."
+        : "Found " + comma_separated_line(coll.begin(), coll.end()) + ".";
 
     if (formatted_string::parse_string(message).width() >= get_number_of_cols())
-        mprf("Found %s %s.", number_in_words(size).c_str(), category);
+        if (Options.language == lang_t::KO)
+            mprf("%s %d개를 발견했습니다.", category, size);
+        else
+            mprf("Found %s %s.", number_in_words(size).c_str(), category);
     else
         mpr(message);
 }
