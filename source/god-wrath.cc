@@ -380,13 +380,13 @@ static bool _cheibriados_retribution()
     {
         if (you.hp >= (you.hp_max * 3 / 4))
         {
-            mprf(MSGCH_DANGER, "You lose track of time!");
+            mprf(MSGCH_DANGER, "%s", Options.language == lang_t::KO ? "시간 감각을 잃습니다!" : "You lose track of time!");
             you.put_to_sleep(nullptr, random_range(5, 10) * BASELINE_DELAY);
             dec_penance(god, 1);
         }
         else
         {
-            mprf(MSGCH_DANGER, "The world leaves you behind!");
+            mprf(MSGCH_DANGER, "%s", Options.language == lang_t::KO ? "세상이 당신을 뒤로하고 앞서 나갑니다!" : "The world leaves you behind!");
             dec_haste_player(10000);
             slow_player(81 + random2(10));
         }
@@ -1353,7 +1353,7 @@ static bool _dithmenos_retribution()
 
         if (coinflip())
         {
-            mpr("You feel lethargic.");
+            mpr(Options.language == lang_t::KO ? "몸이 나른해집니다." : "You feel lethargic.");
             you.increase_duration(DUR_SLOW, random_range(10, 20), 100);
         }
 
@@ -1821,13 +1821,13 @@ bool divine_retribution(god_type god, bool no_bonus, bool force)
         {
             if (!you.confused())
             {
-                mprf(MSGCH_WARN, "The divine experience confuses you!");
+                mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "신성한 체험으로 혼란에 빠집니다!" : "The divine experience confuses you!");
                 confuse_player(5 + random2(3));
             }
         }
         else
         {
-            mprf(MSGCH_WARN, "The divine experience drains your vigour!");
+            mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "신성한 체험으로 기력이 쇠합니다!" : "The divine experience drains your vigour!");
             slow_player(10 + random2(5));
         }
     }
