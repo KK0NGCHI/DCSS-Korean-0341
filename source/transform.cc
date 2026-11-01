@@ -1885,15 +1885,14 @@ bool check_transform_into(transformation which_trans, bool involuntary,
     const auto feat = env.grid(you.pos());
     if (!involuntary && feat_dangerous_for_form(which_trans, feat, talisman))
     {
-        mprf("Transforming right now would cause you to %s!",
+        mprf((Options.language == lang_t::KO ? "지금 변신하면 %s!" : "Transforming right now would cause you to %s!"),
              feat == DNGN_DEEP_WATER ? "drown" : "burn");
         return false;
     }
 
     if (!involuntary && get_form(which_trans)->mult_hp(100) < 90)
     {
-        if (!yesno("This transformation would significantly lower your maximum hit points. "
-                  "Transform anyway?", true, 'n'))
+        if (!yesno((Options.language == lang_t::KO ? "이 변신은 최대 체력을 크게 낮춥니다. 그래도 변신하시겠습니까?" : "This transformation would significantly lower your maximum hit points. Transform anyway?"), true, 'n'))
         {
             return false;
         }
