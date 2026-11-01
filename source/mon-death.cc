@@ -250,7 +250,7 @@ static int _calc_player_experience(const monster* mons)
 
     if (!mons->damage_total)
     {
-        mprf(MSGCH_WARN, "Error, exp for monster with no damage: %s",
+        mprf(MSGCH_WARN, Options.language == lang_t::KO ? "오류: 피해 기록이 없는 몬스터의 경험치 계산: %s" : "Error, exp for monster with no damage: %s",
              mons->name(DESC_PLAIN, true).c_str());
         return 0;
     }
