@@ -6156,7 +6156,7 @@ void monster::react_to_damage(const actor *oppressor, int damage,
             else if (fly_died && observable())
             {
                 if (Options.language == lang_t::KO)
-                    mprf("탈것이 죽자 %s이(가) 떨어집니다.", name(DESC_THE).c_str());
+                    mprf("탈것이 죽자 떨어지는 대상: %s.", name(DESC_THE).c_str());
                 else
                     mprf("%s falls from %s now dead mount.",
                          name(DESC_THE).c_str(),
