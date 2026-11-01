@@ -502,9 +502,9 @@ void wind_blast(actor* agent, int pow, coord_def target)
     {
         // Nemelex card only.
         if (pow > 120)
-            mpr("A mighty gale blasts forth from the card!");
+            mpr(Options.language == lang_t::KO ? "카드에서 강력한 돌풍이 뿜어져 나옵니다!" : "A mighty gale blasts forth from the card!");
         else
-            mpr("A fierce wind blows from the card.");
+            mpr(Options.language == lang_t::KO ? "카드에서 거센 바람이 불어옵니다." : "A fierce wind blows from the card.");
     }
 
     noisy(8, agent->pos());
@@ -1188,7 +1188,7 @@ bool evoke_item(item_def& item, dist *preselect)
             break;
 
         case MISC_QUAD_DAMAGE:
-            mpr("QUAD DAMAGE!");
+            mpr(Options.language == lang_t::KO ? "피해량 4배!" : "QUAD DAMAGE!");
             you.duration[DUR_QUAD_DAMAGE] = 30 * BASELINE_DELAY;
             ASSERT(in_inventory(item));
             dec_inv_item_quantity(item.link, 1);
