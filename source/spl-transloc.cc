@@ -1826,13 +1826,16 @@ spret cast_gravitas(int pow, const coord_def& where, bool fail)
     // XXX: If this is ever usable from elsewhere than the item, change this.
     mpr((Options.language == lang_t::KO ? "탬버린을 흔듭니다." : "You rattle the tambourine."));
 
-    mprf("Waves of gravity draw inward%s%s.",
-         mons || feat_is_solid(env.grid(where)) ? " around " : "",
-         mons ? mons->name(DESC_THE).c_str() :
-                feat_is_solid(env.grid(where)) ? feature_description(env.grid(where),
-                                                                     NUM_TRAPS, "",
-                                                                     DESC_THE)
-                                                                    .c_str() : "");
+    if (Options.language == lang_t::KO)
+        mpr("중력의 파동이 안쪽으로 몰려듭니다.");
+    else
+        mprf("Waves of gravity draw inward%s%s.",
+             mons || feat_is_solid(env.grid(where)) ? " around " : "",
+             mons ? mons->name(DESC_THE).c_str() :
+                    feat_is_solid(env.grid(where)) ? feature_description(env.grid(where),
+                                                                         NUM_TRAPS, "",
+                                                                         DESC_THE)
+                                                                        .c_str() : "");
 
     draw_ring_animation(where, radius, LIGHTMAGENTA);
     pull_monsters_inward(where, radius);
@@ -2247,7 +2250,7 @@ spret cast_piledriver(const coord_def& target, int pow, bool fail)
     }
 
     mons = _get_monster_line(target, true);
-    mprf("Space contracts around you and %s and then re-expands violently!",
+    mprf(Options.language == lang_t::KO ? "당신과 %s 주위의 공간이 수축했다가 격렬하게 다시 팽창합니다!" : "Space contracts around you and %s and then re-expands violently!",
             mons.size() == 1 ? mons[0]->name(DESC_THE).c_str()
                              : make_stringf("%s other creatures",
                                     number_in_words(mons.size()).c_str()).c_str());
@@ -2560,7 +2563,7 @@ spret do_bestial_takedown(coord_def target)
     if (monster_at(landing))
         _displace_charge_blocker(you, landing);
 
-    mprf("You pounce on %s with bestial fury!", targ->name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "야수의 맹렬한 기세로 %s에게 덤벼듭니다!" : "You pounce on %s with bestial fury!", targ->name(DESC_THE).c_str());
 
     you.move_to(landing, MV_DELIBERATE, true);
 

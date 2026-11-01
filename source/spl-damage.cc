@@ -4218,7 +4218,7 @@ void attempt_jinxbite_hit(actor& victim)
 
     if (you.can_see(victim))
     {
-        mprf("A giggling sprite leaps out and %s",
+        mprf(Options.language == lang_t::KO ? "낄낄거리는 요정이 튀어나와 %s" : "A giggling sprite leaps out and %s",
                 _get_jinxsprite_message(*mons).c_str());
     }
 
@@ -4671,8 +4671,7 @@ static void _discharge_maxwells_coupling()
     if (mon->type == MONS_ROYAL_JELLY && !mon->is_summoned())
     {
         // need to do this here, because react_to_damage is never called
-        mprf("A cloud of jellies burst out of %s as the current"
-             " ripples through it%s", mon->name(DESC_THE).c_str(), attack_punctuation.c_str());
+        mprf(Options.language == lang_t::KO ? "%s에게 전류가 흐르자 젤리 떼가 튀어나옵니다%s" : "A cloud of jellies burst out of %s as the current ripples through it%s", mon->name(DESC_THE).c_str(), attack_punctuation.c_str());
         schedule_trj_spawn_fineff(&you, mon, mon->pos(), mon->hit_points);
     }
     else
