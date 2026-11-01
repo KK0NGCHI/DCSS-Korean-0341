@@ -5271,7 +5271,7 @@ bool monster::doom(int amount)
     {
         stacks = 0;
         if (you.can_see(*this))
-            mprf("Doom befalls %s.", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "%s에게 파멸이 닥칩니다." : "Doom befalls %s.", name(DESC_THE).c_str());
 
         enchant_type ench = random_choose(ENCH_SLOW, ENCH_VITRIFIED, ENCH_WEAK, ENCH_BLIND, ENCH_DRAINED);
 
@@ -6005,7 +6005,7 @@ void monster::react_to_damage(const actor *oppressor, int damage,
             if (shared_damage > 0 && owner->alive())
             {
                 if (owner->is_player())
-                    mpr("Your spectral weapon shares its damage with you!");
+                    mpr(Options.language == lang_t::KO ? "유령 무기가 받은 피해가 자신에게도 전해집니다!" : "Your spectral weapon shares its damage with you!");
                 else if (you.can_see(*owner))
                 {
                     string buf = " shares ";
@@ -6062,7 +6062,7 @@ void monster::react_to_damage(const actor *oppressor, int damage,
     {
         mon_enchant i_f = get_ench(ENCH_INNER_FLAME);
         if (you.see_cell(pos()))
-            mprf("Flame seeps out of %s.", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "%s에게서 불꽃이 새어 나옵니다." : "Flame seeps out of %s.", name(DESC_THE).c_str());
         place_cloud(CLOUD_FIRE, pos(), 3, actor_by_mid(i_f.source));
     }
 
