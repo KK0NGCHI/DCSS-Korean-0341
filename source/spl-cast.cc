@@ -751,7 +751,10 @@ bool can_cast_spells(bool quiet)
     {
         if (!quiet)
         {
-            mprf("You cannot cast spells while %s!", player_silenced_reason());
+            if (Options.language == lang_t::KO)
+                mpr("침묵 상태에서는 주문을 시전할 수 없습니다!");
+            else
+                mprf("You cannot cast spells while %s!", player_silenced_reason());
             // included in default force_more_message
         }
         return false;
