@@ -258,33 +258,34 @@ static bool _find_cblink_target(dist &target, bool safe_cancel,
         const monster* beholder = you.get_beholder(target.target);
         if (beholder)
         {
-            mprf("You cannot %s away from %s!",
-                 verb.c_str(),
-                 beholder->name(DESC_THE, true).c_str());
+            mprf(Options.language == lang_t::KO ? "%s 때문에 멀어지는 방향으로 이동할 수 없습니다!" : "You cannot %s away from %s!", beholder->name(DESC_THE, true).c_str());
             continue;
         }
 
         const monster* fearmonger = you.get_fearmonger(target.target);
         if (fearmonger)
         {
-            mprf("You cannot %s closer to %s!",
-                 verb.c_str(),
-                 fearmonger->name(DESC_THE, true).c_str());
+            mprf(Options.language == lang_t::KO ? "%s 때문에 가까워지는 방향으로 이동할 수 없습니다!" : "You cannot %s closer to %s!", fearmonger->name(DESC_THE, true).c_str());
             continue;
         }
 
         if (cell_is_solid(target.target))
         {
             clear_messages();
-            mprf("You can't %s into that!", verb.c_str());
+            if (Options.language == lang_t::KO)
+                mpr("그곳으로 이동할 수 없습니다!");
+            else
+                mprf("You can't %s into that!", verb.c_str());
             continue;
         }
 
         monster* target_mons = monster_at(target.target);
         if (target_mons && you.can_see(*target_mons))
         {
-            mprf("You can't %s onto %s!", verb.c_str(),
-                 target_mons->name(DESC_THE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s이(가) 있는 칸으로 이동할 수 없습니다!", target_mons->name(DESC_THE).c_str());
+            else
+                mprf("You can't %s onto %s!", verb.c_str(), target_mons->name(DESC_THE).c_str());
             continue;
         }
 
