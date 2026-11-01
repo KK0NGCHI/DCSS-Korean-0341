@@ -3439,8 +3439,7 @@ spret cast_hellfire_mortar(const actor& agent, bolt& beam, int pow, bool fail)
         path.push_back(pos);
     }
 
-    mprf("With a deafening crack, the ground splits apart in the path of %s "
-        "chthonic artillery!", agent.name(DESC_ITS).c_str());
+    mprf(Options.language == lang_t::KO ? "%s의 지하 포격이 지나갈 길을 따라 귀청이 찢어질 듯한 소리와 함께 땅이 갈라집니다!" : "With a deafening crack, the ground splits apart in the path of %s chthonic artillery!", agent.name(DESC_ITS).c_str());
 
     if (agent.is_player())
         you.duration[DUR_HELLFIRE_MORTAR_COOLDOWN] = dur;
