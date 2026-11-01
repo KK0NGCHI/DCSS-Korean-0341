@@ -379,7 +379,7 @@ void jiyva_eat_offlevel_items()
                 dprf("Eating %s on %s",
                      si->name(DESC_PLAIN).c_str(), lid.describe().c_str());
 
-                mpr("You hear a distant slurping noise.");
+                mpr(Options.language == lang_t::KO ? "멀리서 무언가를 후루룩 삼키는 소리가 들립니다." : "You hear a distant slurping noise.");
                 item_was_destroyed(*si);
                 destroy_item(si.index());
             }
@@ -1906,7 +1906,7 @@ void wu_jian_end_heavenly_storm()
     you.duration[DUR_HEAVENLY_STORM] = 0;
     you.redraw_evasion = true;
     invalidate_agrid(true);
-    mprf(MSGCH_GOD, "The heavenly storm settles.");
+    mprf(MSGCH_GOD, "%s", Options.language == lang_t::KO ? "천상의 폭풍이 잦아듭니다." : "The heavenly storm settles.");
 }
 
 bool wu_jian_has_momentum(wu_jian_attack_type attack_type)
