@@ -2295,11 +2295,16 @@ void dock_piety(int piety_loss, int penance, bool no_lecture)
         if (last_piety_lecture != you.num_turns)
         {
             // output guilt message:
-            mprf(Options.language == lang_t::KO ? "죄책감이 듭니다." : "You feel%sguilty.",
-                 (piety_loss == 1) ? " a little " :
-                 (piety_loss <  5) ? " " :
-                 (piety_loss < 10) ? " very "
-                                   : " extremely ");
+            if (Options.language == lang_t::KO)
+                mpr(piety_loss == 1 ? "조금 죄책감이 듭니다." :
+                    piety_loss < 5 ? "죄책감이 듭니다." :
+                    piety_loss < 10 ? "매우 죄책감이 듭니다." :
+                    "극심한 죄책감이 듭니다.");
+            else
+                mprf("You feel%sguilty.",
+                     (piety_loss == 1) ? " a little " :
+                     (piety_loss < 5) ? " " :
+                     (piety_loss < 10) ? " very " : " extremely ");
         }
 
         last_piety_lecture = you.num_turns;
