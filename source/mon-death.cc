@@ -1633,8 +1633,7 @@ static void _druid_final_boon(const monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_SPELL, "With its final breath, %s offers up its power "
-                                  "to the beasts of the wild!",
+        mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO ? "%s이(가) 마지막 숨을 내쉬며 야생의 짐승들에게 힘을 나누어 줍니다!" : "With its final breath, %s offers up its power to the beasts of the wild!",
                                   mons->name(DESC_THE).c_str());
     }
 
@@ -1696,8 +1695,7 @@ static void _protean_explosion(monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_WARNING, "For just a moment, %s begins to "
-                                    "look like %s, then it explodes!",
+        mprf(MSGCH_MONSTER_WARNING, Options.language == lang_t::KO ? "%s이(가) 잠시 %s의 모습으로 변하기 시작하더니 폭발합니다!" : "For just a moment, %s begins to look like %s, then it explodes!",
                                     mons->name(DESC_THE).c_str(),
                                     mons_type_name(target, DESC_A).c_str());
     }
@@ -2332,7 +2330,7 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
 
         if (feed && (healing || powering))
         {
-            mprf("You siphon power from %s's fading %s.",
+            mprf(Options.language == lang_t::KO ? "%s에게서 사그라지는 %s의 힘을 흡수합니다." : "You siphon power from %s's fading %s.",
                   mons.name(DESC_THE).c_str(),
                   mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
                   "poison and negative energy" : (mons.has_ench(ENCH_POISON) ?
