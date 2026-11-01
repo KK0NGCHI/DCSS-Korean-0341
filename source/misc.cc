@@ -38,7 +38,7 @@ void transpose_with_monster(monster* mon_to_swap)
 
     if (you.stasis())
     {
-        mpr("Your stasis prevents you from teleporting.");
+        mpr(Options.language == lang_t::KO ? "정지 효과 때문에 순간이동할 수 없습니다." : "Your stasis prevents you from teleporting.");
         return;
     }
 
