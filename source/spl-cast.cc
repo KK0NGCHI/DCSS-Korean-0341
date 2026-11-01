@@ -1255,8 +1255,9 @@ static bool _spellcasting_aborted(spell_type spell, bool fake_spell)
     {
         if (failure_rate_to_int(raw_spell_fail(spell)) == 100)
         {
-            mprf(MSGCH_WARN, "It is impossible to cast this spell "
-                    "(100%% risk of failure)!");
+            mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO
+                 ? "이 주문은 시전할 수 없습니다. (실패 확률 100%!)"
+                 : "It is impossible to cast this spell (100% risk of failure)!");
             return true;
         }
 
