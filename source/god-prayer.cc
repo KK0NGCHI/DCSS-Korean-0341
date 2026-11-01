@@ -175,6 +175,10 @@ void try_god_conversion(god_type god)
     else
     {
         // Already worshipping this god - just print a message.
+        if (Options.language == lang_t::KO)
+        mprf(MSGCH_GOD, "%s에게 %s기도를 올립니다.", god_name(god).c_str(),
+             you.cannot_speak() ? "묵묵히 " : "");
+    else
         mprf(MSGCH_GOD, "You offer a %sprayer to %s.",
              you.cannot_speak() ? "silent " : "",
              god_name(god).c_str());
@@ -205,7 +209,7 @@ int zin_tithe(const item_def& item, int quant, bool converting)
         }
         taken = tithe;
         you.attribute[ATTR_DONATIONS] += tithe;
-        mprf("You pay a tithe of %d gold.", tithe);
+        mprf(Options.language == lang_t::KO ? "십일조로 금화 %d개를 바칩니다." : "You pay a tithe of %d gold.", tithe);
 
         if (item.tithe_state == TS_NO_PIETY) // seen before worshipping Zin
         {
