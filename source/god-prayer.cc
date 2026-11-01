@@ -61,9 +61,14 @@ static bool _prompt_ecu_worship(const vector<god_type> &gods)
                                                   god_name_list.end(), " or ");
     // This should be a proper menu, but I absolutely cannot be bothered with
     // webtiles menu code.
-    mprf(MSGCH_PROMPT, "This altar belongs to %s, but you can't tell which.\n"
-         "Press the corresponding letter to learn more about a god, "
-         "or press enter to convert or escape to cancel.", god_names.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_PROMPT, "이 제단은 %s 중 한 신을 모시지만, 어느 신인지는 알 수 없습니다.\n"
+             "해당 글자를 누르면 신에 관한 정보를 볼 수 있습니다. "
+             "Enter를 누르면 개종하고, Esc를 누르면 취소합니다.", god_names.c_str());
+    else
+        mprf(MSGCH_PROMPT, "This altar belongs to %s, but you can't tell which.\n"
+             "Press the corresponding letter to learn more about a god, "
+             "or press enter to convert or escape to cancel.", god_names.c_str());
     while (true) {
         flush_prev_message();
         int ch = getch_ck();
