@@ -3233,10 +3233,10 @@ item_def* monster_die(monster& mons, killer_type killer,
             else
             {
                 if (mons.props.exists(KIKU_WRETCH_KEY))
-                    mprf("A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
+                    mprf(Options.language == lang_t::KO ? "근처의 %s이(가) 비참하게 죽습니다." : "A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
                 else if (mons_class_is_fragile(mons.type))
                 {
-                    mprf(MSGCH_MONSTER_TIMEOUT, "A nearby %s withers and dies.",
+                    mprf(MSGCH_MONSTER_TIMEOUT, Options.language == lang_t::KO ? "근처의 %s이(가) 시들어 죽습니다." : "A nearby %s withers and dies.",
                          mons.name(DESC_PLAIN, false).c_str());
                 }
                 // Default message so that at least *something* is printed.
@@ -3360,7 +3360,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     {
         you.props.erase(TESSERACT_SPAWN_COUNTER_KEY);
 
-        mprf(MSGCH_ORB, "A wave of disorienting energy ripples outward as you feel the reach of Zot diminish.");
+        mprf(MSGCH_ORB, "%s", Options.language == lang_t::KO ? "혼란스러운 에너지의 파동이 퍼져 나가고 조트의 영향력이 약해지는 것이 느껴집니다." : "A wave of disorienting energy ripples outward as you feel the reach of Zot diminish.");
         mark_milestone("tesseract.kill", "destroyed the tesseracts.");
 
         draw_ring_animation(mons.pos(), LOS_RADIUS, MAGENTA, BLUE, true, 5);
@@ -3676,7 +3676,7 @@ void heal_flayed_effect(actor* act, bool quiet, bool blood_only)
 
         if (you.can_see(*act) && !quiet)
         {
-            mprf("The terrible wounds on %s body vanish.",
+            mprf(Options.language == lang_t::KO ? "%s의 끔찍한 상처가 사라집니다." : "The terrible wounds on %s body vanish.",
                  act->name(DESC_ITS).c_str());
         }
 
