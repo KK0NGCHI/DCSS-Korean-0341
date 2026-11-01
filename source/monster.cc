@@ -1006,30 +1006,27 @@ bool monster::pickup(item_def &item, mon_inv_type slot, bool msg)
         {
             if (inv[slot] == item.index())
             {
-                mprf(MSGCH_DIAGNOSTICS, "Monster %s already holding item %s.",
+                mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "몬스터 %s이(가) 이미 아이템 %s을(를) 들고 있습니다." : "Monster %s already holding item %s.",
                      name(DESC_PLAIN, true).c_str(),
                      item.name(DESC_PLAIN, false, true).c_str());
                 return false;
             }
             else
             {
-                mprf(MSGCH_DIAGNOSTICS, "Item %s thinks it's already held by "
-                                        "monster %s.",
+                mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "아이템 %s은(는) 이미 몬스터 %s에게 소지된 것으로 기록되어 있습니다." : "Item %s thinks it's already held by monster %s.",
                      item.name(DESC_PLAIN, false, true).c_str(),
                      name(DESC_PLAIN, true).c_str());
             }
         }
         else if (other_mon->type == MONS_NO_MONSTER)
         {
-            mprf(MSGCH_DIAGNOSTICS, "Item %s, held by dead monster, being "
-                                    "picked up by monster %s.",
+            mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "죽은 몬스터가 소지하던 아이템 %s을(를) 몬스터 %s이(가) 줍습니다." : "Item %s, held by dead monster, being picked up by monster %s.",
                  item.name(DESC_PLAIN, false, true).c_str(),
                  name(DESC_PLAIN, true).c_str());
         }
         else
         {
-            mprf(MSGCH_DIAGNOSTICS, "Item %s, held by monster %s, being "
-                                    "picked up by monster %s.",
+            mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "몬스터 %2$s이(가) 소지하던 아이템 %1$s을(를) 몬스터 %3$s이(가) 줍습니다." : "Item %s, held by monster %s, being picked up by monster %s.",
                  item.name(DESC_PLAIN, false, true).c_str(),
                  other_mon->name(DESC_PLAIN, true).c_str(),
                  name(DESC_PLAIN, true).c_str());
