@@ -3334,10 +3334,15 @@ void seen_item(item_def &item)
                 && you.inv[i].sub_type == item.sub_type)
             {
                 held = &you.inv[i];
-                mprf((Options.language == lang_t::KO ? "%s의 정체는 %s이며 실제로 %s입니다." : "You learned that %s %s actually %s."),
-                        held->name(DESC_YOUR).c_str(),
-                        held->quantity > 1 ? "are" : "is",
-                        held->name(DESC_A, false, true).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s의 실제 정체가 %s임을 알게 됩니다.",
+                         held->name(DESC_YOUR).c_str(),
+                         held->name(DESC_A, false, true).c_str());
+                else
+                    mprf("You learned that %s %s actually %s.",
+                         held->name(DESC_YOUR).c_str(),
+                         held->quantity > 1 ? "are" : "is",
+                         held->name(DESC_A, false, true).c_str());
                 break;
             }
         }
