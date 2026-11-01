@@ -237,6 +237,9 @@ static bool _find_cblink_target(dist &target, bool safe_cancel,
 
         if (crawl_state.seen_hups)
         {
+            if (Options.language == lang_t::KO)
+            mpr("연결이 끊겨 공간 이동을 취소합니다.");
+        else
             mprf("Cancelling %s due to HUP.", verb.c_str());
             return false;
         }
