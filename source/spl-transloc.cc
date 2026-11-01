@@ -1227,9 +1227,12 @@ bool hostile_teleport_player(monster* source)
                 break;
         }
 
-        mprf("You are hurled through space towards %s monster%s!",
-                mons_near_target > 1 ? "some" : "a",
-                mons_near_target > 1 ? "s" : "");
+        if (Options.language == lang_t::KO)
+            mpr(mons_near_target > 1 ? "여러 몬스터를 향해 공간을 가로질러 내던져집니다!" : "몬스터를 향해 공간을 가로질러 내던져집니다!");
+        else
+            mprf("You are hurled through space towards %s monster%s!",
+                 mons_near_target > 1 ? "some" : "a",
+                 mons_near_target > 1 ? "s" : "");
 
         large_change = _real_teleport_cleanup(oldpos, newpos, true);
         crawl_state.potential_pursuers.clear();
@@ -1465,7 +1468,7 @@ spret cast_manifold_assault(actor& agent, int pow, bool fail, bool real,
     if ((agent.is_player() || you.can_see(agent)) && !katana_defender)
     {
         if (weapon && is_unrandom_artefact(*weapon, UNRAND_AUTUMN_KATANA))
-            mprf("Space folds impossibly around %s blade!", agent.name(DESC_ITS).c_str());
+            mprf(Options.language == lang_t::KO ? "%s의 칼날 주위로 공간이 기이하게 접힙니다!" : "Space folds impossibly around %s blade!", agent.name(DESC_ITS).c_str());
         else if (!(agent.is_monster() && agent.as_monster()->has_ench(ENCH_PARADOX_TOUCHED)))
             mpr((Options.language == lang_t::KO ? "공간이 순간적으로 있을 수 없는 형태로 뒤틀립니다!" : "Space momentarily warps into an impossible shape!"));
     }
@@ -2062,16 +2065,14 @@ spret blinkbolt(int power, bolt &beam, bool fail)
     const monster* beholder = you.get_beholder(beam.target);
     if (beholder)
     {
-        mprf("You cannot blinkbolt away from %s!",
-            beholder->name(DESC_THE, true).c_str());
+        mprf(Options.language == lang_t::KO ? "%s에게서 멀어지는 방향으로 점멸 돌진할 수 없습니다!" : "You cannot blinkbolt away from %s!", beholder->name(DESC_THE, true).c_str());
         return spret::abort;
     }
 
     const monster* fearmonger = you.get_fearmonger(beam.target);
     if (fearmonger)
     {
-        mprf("You cannot blinkbolt closer to %s!",
-            fearmonger->name(DESC_THE, true).c_str());
+        mprf(Options.language == lang_t::KO ? "%s에게 가까워지는 방향으로 점멸 돌진할 수 없습니다!" : "You cannot blinkbolt closer to %s!", fearmonger->name(DESC_THE, true).c_str());
         return spret::abort;
     }
 
@@ -2377,7 +2378,10 @@ spret cast_gavotte(int pow, const coord_def dir, bool fail)
     else if (dir.x == 1 && dir.y == 1)
         dir_msg = "southeast";
 
-    mprf("Gravity reorients to the %s!", dir_msg.c_str());
+    if (Options.language == lang_t::KO)
+        mpr("중력의 방향이 바뀝니다!");
+    else
+        mprf("Gravity reorients to the %s!", dir_msg.c_str());
 
     if (you.stasis())
         canned_msg(MSG_STRANGE_STASIS);
