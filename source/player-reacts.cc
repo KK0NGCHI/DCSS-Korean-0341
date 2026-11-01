@@ -198,9 +198,9 @@ static void _decrement_petrification(int delay)
                                             get_form()->flesh_equivalent;
 
         if (Options.language == lang_t::KO)
-            mprf(MSGCH_DURATION, "%s로 돌아옵니다%s.",
-                 get_form()->flesh_equivalent.empty() ? "살과 피의 몸" : flesh_equiv.c_str(),
-                 you.paralysed() ? "" : ". 다시 움직일 수 있습니다");
+            mprf(MSGCH_DURATION, you.paralysed()
+                 ? "%s로 돌아옵니다." : "%s로 돌아옵니다. 다시 움직일 수 있습니다.",
+                 get_form()->flesh_equivalent.empty() ? "살과 피의 몸" : flesh_equiv.c_str());
         else
             mprf(MSGCH_DURATION, "You turn to %s%s.",
                  flesh_equiv.c_str(),
