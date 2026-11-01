@@ -1265,8 +1265,7 @@ level_id stair_destination(dungeon_feature_type feat, const string &dst,
         {
             if (for_real)
             {
-                mprf(MSGCH_ERROR, "Error: no Hell exit level, how in the "
-                                  "Vestibule did you get here? Let's go to D:1.");
+                mprf(MSGCH_ERROR, "%s", Options.language == lang_t::KO ? "오류: 지옥 출구의 목적지가 없습니다. 입구에 어떻게 왔는지 알 수 없어 던전 1층으로 이동합니다." : "Error: no Hell exit level, how in the Vestibule did you get here? Let's go to D:1.");
             }
             return level_id(BRANCH_DUNGEON, 1);
         }
@@ -1341,8 +1340,7 @@ level_id stair_destination(dungeon_feature_type feat, const string &dst,
             {
                 if (for_real)
                 {
-                    mprf(MSGCH_ERROR, "Error: no return path. You did create "
-                         "the exit manually, didn't you? Let's go to D:1.");
+                    mprf(MSGCH_ERROR, "%s", Options.language == lang_t::KO ? "오류: 돌아갈 경로가 없습니다. 출구를 수동으로 만든 것 같습니다. 던전 1층으로 이동합니다." : "Error: no return path. You did create the exit manually, didn't you? Let's go to D:1.");
                 }
                 return level_id(BRANCH_DUNGEON, 1);
             }
