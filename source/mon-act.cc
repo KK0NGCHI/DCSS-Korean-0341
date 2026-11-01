@@ -3070,6 +3070,9 @@ static void _mons_open_door(monster& mons, const coord_def &pos)
                 mprf("Something unseen %s", open_str.c_str());
             interrupt_activity(activity_interrupt::sense_monster);
         }
+        else if (Options.language == lang_t::KO)
+            mprf(broken ? "%s이(가) 문을 부숩니다." : "%s이(가) 문을 엽니다.",
+                 mons.name(DESC_A).c_str());
         else
             mprf("%s %s", mons.name(DESC_A).c_str(), open_str.c_str());
 
