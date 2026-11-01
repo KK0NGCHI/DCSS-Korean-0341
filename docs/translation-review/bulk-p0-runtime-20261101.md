@@ -43,9 +43,11 @@ completeness.
 - `source/god-passive.cc`: 5 fixed messages for Qazlal resistance expiration and supernatural speed ending.
 - `source/spl-transloc.cc`: 1 controlled teleport interruption diagnostic.
 - `source/god-wrath.cc`: 2 further divine warning outputs localized.
-- 8 output sites translated; English fallback preserved.
-- Additional candidate messages were identified in `source/monster.cc`, but changes to that file have not been committed.
+- `source/god-prayer.cc`: 1 ambiguous altar conversion prompt.
+- `source/monster.cc`: 3 monster effect outputs.
+- `source/spl-damage.cc`: 1 lightning arc output.
+- 13 output sites translated in total; English fallback preserved.
 - No PR opened yet: continue accumulating translations until a coherent large batch is ready.
 - CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
 
-**Status:** 8 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 13 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
