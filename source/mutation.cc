@@ -1380,9 +1380,13 @@ static void _maybe_remove_equipment(mutation_type mut)
     {
         if (mut == MUT_MISSING_HAND)
         {
-            mprf("You can no longer %s %s!",
-                    item->base_type == OBJ_JEWELLERY ? "wear" : "hold",
-                    item->name(DESC_YOUR).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s을(를) 더 이상 %s 수 없습니다!", item->name(DESC_YOUR).c_str(),
+                     item->base_type == OBJ_JEWELLERY ? "착용할" : "쥘");
+            else
+                mprf("You can no longer %s %s!",
+                     item->base_type == OBJ_JEWELLERY ? "wear" : "hold",
+                     item->name(DESC_YOUR).c_str());
         }
         else
         {
