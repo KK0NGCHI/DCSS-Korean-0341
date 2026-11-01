@@ -1373,8 +1373,7 @@ spret cast_dimensional_bullseye(int pow, monster *target, bool fail)
             old_targ->del_ench(ENCH_BULLSEYE_TARGET);
     }
 
-    mprf("You create a dimensional link between your ranged weaponry and %s.",
-         target->name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "%s와 원거리 무기 사이에 차원 연결을 만듭니다." : "You create a dimensional link between your ranged weaponry and %s.", target->name(DESC_THE).c_str());
 
     // So we can automatically end the status if the target dies or becomes
     // friendly
@@ -1621,8 +1620,11 @@ spret cast_apportation(int pow, bolt& beam, bool fail)
     dprf("Apport: new spot is %d/%d", new_spot.x, new_spot.y);
 
     // Actually move the item.
-    mprf("Yoink! You pull the item%s towards yourself.",
-         (item.quantity > 1) ? "s" : "");
+    if (Options.language == lang_t::KO)
+        mpr(item.quantity > 1 ? "아이템들을 자신에게 끌어당깁니다!" : "아이템을 자신에게 끌어당깁니다!");
+    else
+        mprf("Yoink! You pull the item%s towards yourself.",
+             item.quantity > 1 ? "s" : "");
 
     move_top_item(where, new_spot);
 
@@ -1644,8 +1646,7 @@ spret cast_golubrias_passage(int pow, const coord_def& where, bool fail)
 {
     if (player_in_branch(BRANCH_GAUNTLET))
     {
-        mprf(MSGCH_ORB, "A magic seal in the Gauntlet prevents you from "
-                "opening a passage!");
+        mprf(MSGCH_ORB, "%s", Options.language == lang_t::KO ? "건틀릿의 마법 봉인 때문에 통로를 열 수 없습니다!" : "A magic seal in the Gauntlet prevents you from opening a passage!");
         return spret::abort;
     }
 
@@ -1693,14 +1694,12 @@ spret cast_golubrias_passage(int pow, const coord_def& where, bool fail)
     {
         if (you.trans_wall_blocking(randomized_where))
         {
-            mpr("You cannot create a passage on the other side of the "
-                "transparent wall.");
+            mpr(Options.language == lang_t::KO ? "투명한 벽 반대편에는 통로를 만들 수 없습니다." : "You cannot create a passage on the other side of the transparent wall.");
         }
         else
         {
             // XXX: bleh, dumb message
-            mpr("Creating a passage of Golubria requires sufficient empty "
-                "space.");
+            mpr(Options.language == lang_t::KO ? "골루브리아의 통로를 만들려면 충분한 빈 공간이 필요합니다." : "Creating a passage of Golubria requires sufficient empty space.");
         }
 
         return spret::abort;

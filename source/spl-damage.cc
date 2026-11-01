@@ -1691,7 +1691,7 @@ static int _shatter_walls(coord_def where, actor *agent)
     {
         const dungeon_feature_type feat = env.grid(where);
         if (feat_is_door(feat))
-            mpr("A door shatters!");
+            mpr(Options.language == lang_t::KO ? "문이 산산조각 납니다!" : "A door shatters!");
         else if (feat == DNGN_GRATE)
             mpr((Options.language == lang_t::KO ? "쇠창살이 산산조각 납니다!" : "An iron grate is ripped into pieces!"));
     }
@@ -4339,7 +4339,7 @@ spret cast_hailstorm(int pow, bool fail, bool tracer)
 
     fail_check();
 
-    mpr("A cannonade of hail descends around you!");
+    mpr(Options.language == lang_t::KO ? "주위에 우박이 쏟아져 내립니다!" : "A cannonade of hail descends around you!");
 
     for (radius_iterator ri(you.pos(), range, C_SQUARE, LOS_NO_TRANS, true);
          ri; ++ri)
