@@ -976,7 +976,7 @@ spret cast_smiting(int pow, monster* mons, bool fail)
     // damage at 0 Invo ranges from 9-12 (avg 10), to 9-72 (avg 40) at 27.
     int damage = 6 + beogh_smiting_dice(pow).roll();
 
-    mprf("You smite %s%s",
+    mprf(Options.language == lang_t::KO ? "%s에게 신성한 일격을 가합니다%s" : "You smite %s%s",
          mons->name(DESC_THE).c_str(),
          attack_strength_punctuation(damage).c_str());
 
