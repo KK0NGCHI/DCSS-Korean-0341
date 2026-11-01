@@ -982,7 +982,27 @@ static void _handle_potion_fungus(potion_type potion)
                                                            targs.size() * 9 / 10 + 1));
 
 
-    mprf("Your fungus emits %s spores!", _spore_msg.at(potion).c_str());
+    if (Options.language == lang_t::KO)
+    {
+        const char* effect = "특별한";
+        switch (potion)
+        {
+        case POT_CURING:        effect = "치유"; break;
+        case POT_HEAL_WOUNDS:   effect = "상처 회복"; break;
+        case POT_HASTE:         effect = "가속"; break;
+        case POT_MIGHT:         effect = "힘 강화"; break;
+        case POT_BRILLIANCE:    effect = "마력 증폭"; break;
+        case POT_ENLIGHTENMENT: effect = "계몽"; break;
+        case POT_INVISIBILITY:  effect = "투명화"; break;
+        case POT_MAGIC:         effect = "마력 회복"; break;
+        case POT_BERSERK_RAGE:  effect = "광폭화"; break;
+        case POT_RESISTANCE:    effect = "저항 강화"; break;
+        default: break;
+        }
+        mprf("당신의 균류가 %s 포자를 내뿜습니다!", effect);
+    }
+    else
+        mprf("Your fungus emits %s spores!", _spore_msg.at(potion).c_str());
 
 
     for (int i = 0; i < num_affected; ++i)
