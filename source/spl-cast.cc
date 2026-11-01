@@ -797,7 +797,7 @@ static void _handle_energy_orb(int cost, spret cast_result)
         if (targs.empty())
             mpr((Options.language == lang_t::KO ? "마법의 에너지가 정신으로 흘러듭니다!" : "Magical energy flows into your mind!"));
         else
-            mprf("Magical energy flows from %s into your mind!",
+            mprf((Options.language == lang_t::KO ? "%s에게서 마법 에너지가 정신으로 흘러듭니다!" : "Magical energy flows from %s into your mind!"),
                  describe_monsters_condensed(targs).c_str());
         inc_mp(cost + drain);
     }
@@ -940,11 +940,10 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
                 }
                 else
                 {
-                    mprf(MSGCH_PROMPT, "Casting: <w>%s</w> <lightgrey>(%s)</lightgrey>",
+                    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "시전: <w>%s</w> <lightgrey>(%s)</lightgrey>" : "Casting: <w>%s</w> <lightgrey>(%s)</lightgrey>"),
                                        spell_title(you.last_cast_spell),
                                        _spell_failure_rate_description(you.last_cast_spell).c_str());
-                    mprf(MSGCH_PROMPT, "Confirm with . or Enter, or press "
-                                       "? or * to list all spells.");
+                    mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? ". 또는 Enter로 확정하고, ? 또는 *로 주문 목록을 표시합니다." : "Confirm with . or Enter, or press ? or * to list all spells."));
                 }
 
                 keyin = numpad_to_regular(get_ch());
@@ -3462,7 +3461,7 @@ void handle_channelled_spell()
     if ((spell == SPELL_FLAME_WAVE || spell == SPELL_SEARING_RAY)
         && turn > 1 && !enough_mp(1, true))
     {
-        mprf("Without enough magic to sustain it, your %s dissipates.",
+        mprf((Options.language == lang_t::KO ? "유지할 마력이 부족해 %s 주문이 소멸합니다." : "Without enough magic to sustain it, your %s dissipates."),
              spell_title(spell));
         stop_channelling_spells(true);
         return;
