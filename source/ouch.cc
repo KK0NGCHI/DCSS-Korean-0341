@@ -537,7 +537,10 @@ bool drain_player(int power, bool announce_full, bool ignore_protection, bool qu
             intensifier = "heavily ";
 
         if (!quiet)
-            mprf((Options.language == lang_t::KO ? "기력이 쇠약해지는 느낌입니다." : "You feel %sdrained."), intensifier.c_str());
+            if (Options.language == lang_t::KO)
+                mpr("기력이 쇠약해지는 느낌입니다.");
+            else
+                mprf("You feel %sdrained.", intensifier.c_str());
         xom_is_stimulated(15);
         return true;
     }
