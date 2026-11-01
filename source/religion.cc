@@ -2295,7 +2295,7 @@ void dock_piety(int piety_loss, int penance, bool no_lecture)
         if (last_piety_lecture != you.num_turns)
         {
             // output guilt message:
-            mprf("You feel%sguilty.",
+            mprf(Options.language == lang_t::KO ? "죄책감이 듭니다." : "You feel%sguilty.",
                  (piety_loss == 1) ? " a little " :
                  (piety_loss <  5) ? " " :
                  (piety_loss < 10) ? " very "
@@ -3032,7 +3032,7 @@ void excommunication(bool voluntary, god_type new_god)
 
     case GOD_NEMELEX_XOBEH:
         reset_cards();
-        mprf(MSGCH_GOD, old_god, "Your access to %s's decks is revoked.",
+        mprf(MSGCH_GOD, old_god, (Options.language == lang_t::KO ? "%s의 카드 덱을 더는 사용할 수 없습니다." : "Your access to %s's decks is revoked."),
              god_name(old_god).c_str());
         break;
 
@@ -3093,8 +3093,7 @@ void excommunication(bool voluntary, god_type new_god)
     case GOD_GOZAG:
         if (you.attribute[ATTR_GOZAG_SHOPS_CURRENT])
         {
-            mprf(MSGCH_GOD, old_god, "Your funded stores close, unable to pay "
-                                     "their debts without your funds.");
+            mprf(MSGCH_GOD, old_god, (Options.language == lang_t::KO ? "자금 지원이 끊겨 상점들이 빚을 갚지 못하고 문을 닫습니다." : "Your funded stores close, unable to pay their debts without your funds."));
             you.attribute[ATTR_GOZAG_SHOPS_CURRENT] = 0;
         }
         you.duration[DUR_GOZAG_GOLD_AURA] = 0;
