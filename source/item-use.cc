@@ -1319,9 +1319,13 @@ bool warn_about_changing_gear(const vector<item_def*>& to_remove, item_def* to_e
             {
                 if (++removed_flight >= equipped_flight)
                 {
-                    mprf(MSGCH_PROMPT, "Removing %s right now would cause you to %s!",
-                            item->name(DESC_YOUR).c_str(),
-                            env.grid(you.pos()) == DNGN_DEEP_WATER ? "drown" : "burn");
+                    mprf(MSGCH_PROMPT, Options.language == lang_t::KO
+                             ? "지금 %s을(를) 벗으면 %s!"
+                             : "Removing %s right now would cause you to %s!",
+                             item->name(DESC_YOUR).c_str(),
+                             Options.language == lang_t::KO
+                                 ? (env.grid(you.pos()) == DNGN_DEEP_WATER ? "익사합니다" : "불타 죽습니다")
+                                 : (env.grid(you.pos()) == DNGN_DEEP_WATER ? "drown" : "burn"));
                     return false;
                 }
             }
@@ -1498,8 +1502,10 @@ bool handle_chain_removal(vector<item_def*>& to_remove, bool interactive)
         {
             if ((int)chain_remove.size() < chain_remove_num)
             {
-                mprf(MSGCH_PROMPT, "A cursed item is preventing you from removing %s.",
-                        item.name(DESC_INVENTORY).c_str());
+                mprf(MSGCH_PROMPT, Options.language == lang_t::KO
+                         ? "저주받은 아이템 때문에 %s을(를) 벗을 수 없습니다."
+                         : "A cursed item is preventing you from removing %s.",
+                         item.name(DESC_INVENTORY).c_str());
                 return false;
             }
             // We must remove all of the items found.
@@ -1645,8 +1651,9 @@ bool can_unequip_item(item_def& item, bool silent)
     {
         if (!silent)
         {
-            mprf(MSGCH_PROMPT, "Your thirst for blood prevents you from unwielding "
-                               "your weapon!");
+            mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+                ? "피에 대한 갈망 때문에 무기를 내려놓을 수 없습니다!"
+                : "Your thirst for blood prevents you from unwielding your weapon!");
         }
         return false;
     }
@@ -1655,8 +1662,9 @@ bool can_unequip_item(item_def& item, bool silent)
     {
         if (!silent)
         {
-            mprf(MSGCH_PROMPT, "It would be unfitting for someone so glorious to "
-                               "remove their crown in front of an audience.");
+            mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+                ? "이토록 영광스러운 자가 관중 앞에서 왕관을 벗는 것은 어울리지 않습니다."
+                : "It would be unfitting for someone so glorious to remove their crown in front of an audience.");
         }
         return false;
     }
@@ -3256,9 +3264,13 @@ bool read(item_def* scroll, dist *target)
         && which_scroll != SCR_AMNESIA
         && which_scroll != SCR_ACQUIREMENT)
     {
-        mprf("It %s %s.",
-             scroll->quantity < prev_quantity ? "was" : "is",
-             article_a(scroll_name).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s 두루마리%s.", scroll_name.c_str(),
+                 scroll->quantity < prev_quantity ? "였습니다" : "입니다");
+        else
+            mprf("It %s %s.",
+                 scroll->quantity < prev_quantity ? "was" : "is",
+                 article_a(scroll_name).c_str());
     }
 
     if (!alreadyknown)
