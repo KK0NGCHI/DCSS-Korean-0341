@@ -824,8 +824,12 @@ void qazlal_element_adapt(beam_type flavour, int strength)
         you.redraw_armour_class = true;
     }
 
-    mprf(MSGCH_GOD, "You feel %sprotected from %s.",
-         you.duration[dur] > 0 ? "more " : "", descript.c_str());
+    if (Options.language == lang_t::KO)
+        mprf("%s에 대한 보호가 %s.", descript.c_str(),
+             you.duration[dur] > 0 ? "강해집니다" : "생깁니다");
+    else
+        mprf(MSGCH_GOD, "You feel %sprotected from %s.",
+             you.duration[dur] > 0 ? "more " : "", descript.c_str());
 
     // was scaled by 10 * strength. But the strength parameter is used so inconsistently that
     // it seems like a constant would be better, based on the typical value of 2.
