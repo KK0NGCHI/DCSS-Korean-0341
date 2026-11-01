@@ -38,5 +38,13 @@ completeness.
 - Report every subsequent batch with translated sites, files, CI status,
   remaining confirmed untranslated sites, and any unresolved cases.
 
-**Status:** Preparation committed; no additional message translations in
-this batch yet. Do not claim the 200–500 target has been reached.
+## Accumulated translations (first commit set)
+
+- `source/god-passive.cc`: 5 fixed messages for Qazlal resistance expiration and supernatural speed ending.
+- `source/spl-transloc.cc`: 1 controlled teleport interruption diagnostic.
+- 6 output sites translated; English fallback preserved.
+- Additional candidate messages were identified in `source/monster.cc`, but changes to that file have not been committed.
+- No PR opened yet: continue accumulating translations until a coherent large batch is ready.
+- CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
+
+**Status:** 6 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
