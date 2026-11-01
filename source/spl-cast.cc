@@ -1160,16 +1160,14 @@ static void _try_monster_cast(spell_type spell, int /*powc*/,
 {
     if (monster_at(you.pos()))
     {
-        mpr("Couldn't try casting monster spell because you're "
-            "on top of a monster.");
+        mpr(Options.language == lang_t::KO ? "몬스터와 같은 칸에 있어 몬스터 주문을 시험할 수 없습니다." : "Couldn't try casting monster spell because you're on top of a monster.");
         return;
     }
 
     monster* mon = get_free_monster();
     if (!mon)
     {
-        mpr("Couldn't try casting monster spell because there is "
-            "no empty monster slot.");
+        mpr(Options.language == lang_t::KO ? "빈 몬스터 슬롯이 없어 몬스터 주문을 시험할 수 없습니다." : "Couldn't try casting monster spell because there is no empty monster slot.");
         return;
     }
 

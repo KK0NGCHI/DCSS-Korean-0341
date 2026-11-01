@@ -1975,7 +1975,7 @@ bool mutate(mutation_type which_mutation, const string &reason, bool failMsg,
         {
         case MUT_STRONG: case MUT_AGILE:  case MUT_CLEVER:
         case MUT_WEAK:   case MUT_CLUMSY: case MUT_DOPEY:
-            mprf(MSGCH_MUTATION, "You feel %s.", _stat_mut_desc(mutat, true));
+            mprf(MSGCH_MUTATION, Options.language == lang_t::KO ? "능력치가 변화합니다. (%s)" : "You feel %s.", _stat_mut_desc(mutat, true));
             gain_msg = false;
             break;
 
@@ -2177,7 +2177,7 @@ bool _delete_single_mutation_level(mutation_type mutat,
     {
     case MUT_STRONG: case MUT_AGILE:  case MUT_CLEVER:
     case MUT_WEAK:   case MUT_CLUMSY: case MUT_DOPEY:
-        mprf(MSGCH_MUTATION, "You feel %s.", _stat_mut_desc(mutat, false));
+        mprf(MSGCH_MUTATION, Options.language == lang_t::KO ? "능력치가 다시 변화합니다. (%s)" : "You feel %s.", _stat_mut_desc(mutat, false));
         lose_msg = false;
         break;
 
@@ -3080,8 +3080,13 @@ bool temp_mutation_wanes()
 
     const int num_remove = min(starting_tmuts, random_range(2, 3));
 
-    mprf(MSGCH_DURATION, "You feel the corruption within you wane %s.",
-        (num_remove >= starting_tmuts ? "completely" : "somewhat"));
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_DURATION, "%s", num_remove >= starting_tmuts
+             ? "몸속의 타락이 완전히 사라지는 느낌입니다."
+             : "몸속의 타락이 조금 약해지는 느낌입니다.");
+    else
+        mprf(MSGCH_DURATION, "You feel the corruption within you wane %s.",
+             num_remove >= starting_tmuts ? "completely" : "somewhat");
 
     for (int i = 0; i < num_remove; ++i)
         delete_temp_mutation(); // chooses randomly
