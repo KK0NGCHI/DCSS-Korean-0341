@@ -111,9 +111,12 @@ void surge_power_wand(const int mp_cost)
     if (mp_cost)
     {
         const bool slight = mp_cost < 3;
-        mprf("You feel a %ssurge of power%s",
-             slight ? "slight " : "",
-             slight ? "."      : "!");
+        if (Options.language == lang_t::KO)
+            mpr(slight ? "약한 힘이 솟구치는 느낌입니다." : "강력한 힘이 솟구칩니다!");
+        else
+            mprf("You feel a %ssurge of power%s",
+                 slight ? "slight " : "",
+                 slight ? "." : "!");
     }
 }
 
