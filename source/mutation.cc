@@ -3207,7 +3207,7 @@ void check_demonic_guardian()
         // no more guardians for mutlevel+1 to mutlevel+20 turns
         you.duration[DUR_DEMONIC_GUARDIAN] = 10*(mutlevel + random2(20));
 
-        mpr("A demonic guardian appears!");
+        mpr((Options.language == lang_t::KO ? "악마 수호자가 나타납니다!" : "A demonic guardian appears!"));
     }
 }
 
