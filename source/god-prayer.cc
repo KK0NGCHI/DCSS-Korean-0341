@@ -176,10 +176,10 @@ void try_god_conversion(god_type god)
     {
         // Already worshipping this god - just print a message.
         if (Options.language == lang_t::KO)
-        mprf(MSGCH_GOD, "%s에게 %s기도를 올립니다.", god_name(god).c_str(),
-             you.cannot_speak() ? "묵묵히 " : "");
-    else
-        mprf(MSGCH_GOD, "You offer a %sprayer to %s.",
+            mprf(MSGCH_GOD, "%s에게 %s기도를 올립니다.", god_name(god).c_str(),
+                 you.cannot_speak() ? "말없이 " : "");
+            else
+            mprf(MSGCH_GOD, "You offer a %sprayer to %s.",
              you.cannot_speak() ? "silent " : "",
              god_name(god).c_str());
     }
