@@ -817,10 +817,15 @@ static void _maybe_spawn_monsters(int dam, kill_method_type death_type,
             }
             else
             {
-                mprf("You shudder from the %s and a %s!",
-                     death_type == KILLED_BY_MONSTER ? "blow" : "blast",
-                     count_created > 1 ? "flood of jellies pours out from you"
-                                       : "jelly pops out");
+                if (Options.language == lang_t::KO)
+                    mpr(count_created > 1
+                        ? "충격에 몸을 떨자 젤리 떼가 쏟아져 나옵니다!"
+                        : "충격에 몸을 떨자 젤리 한 마리가 튀어나옵니다!");
+                else
+                    mprf("You shudder from the %s and a %s!",
+                         death_type == KILLED_BY_MONSTER ? "blow" : "blast",
+                         count_created > 1 ? "flood of jellies pours out from you"
+                                           : "jelly pops out");
             }
         }
     }
