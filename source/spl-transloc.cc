@@ -1090,8 +1090,9 @@ static bool _teleport_player(bool wizard_tele, string reason="")
             // location, so cancel the teleport.
             if (crawl_state.seen_hups)
             {
-                mprf(MSGCH_ERROR, "Controlled teleport interrupted by HUP signal, "
-                                  "cancelling teleport.");
+                mprf(MSGCH_ERROR, "%s", Options.language == lang_t::KO
+                    ? "연결 종료 신호로 제어 순간이동이 중단되었습니다."
+                    : "Controlled teleport interrupted by HUP signal, cancelling teleport.");
                 return false;
             }
 
