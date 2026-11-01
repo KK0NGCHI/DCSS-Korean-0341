@@ -1929,11 +1929,11 @@ static void _on_enter_form(transformation which_trans)
     switch (which_trans)
     {
     case transformation::tree:
-        mpr("Your roots penetrate the ground.");
+        mpr((Options.language == lang_t::KO ? "뿌리가 땅속으로 뻗어 나갑니다." : "Your roots penetrate the ground."));
         if (you.duration[DUR_TELEPORT])
         {
             you.duration[DUR_TELEPORT] = 0;
-            mpr("You feel strangely stable.");
+            mpr((Options.language == lang_t::KO ? "기묘하게 안정된 느낌이 듭니다." : "You feel strangely stable."));
         }
         you.duration[DUR_FLIGHT] = 0;
         break;
@@ -2028,7 +2028,7 @@ static void _enter_form(int dur, transformation which_trans, bool using_talisman
 
     if (you.digging && form_changes_anatomy(which_trans))
     {
-        mpr("Your mandibles meld away.");
+        mpr((Options.language == lang_t::KO ? "큰턱이 몸속으로 녹아듭니다." : "Your mandibles meld away."));
         you.digging = false;
     }
 
@@ -2238,7 +2238,7 @@ void untransform(bool skip_move, bool scale_hp, bool preserve_equipment,
         if (monster* ember = get_solar_ember())
         {
             monster_die(*ember, KILL_RESET, NON_MONSTER);
-            mprf(MSGCH_DURATION, "Your tiny sun winks out.");
+            mprf(MSGCH_DURATION, (Options.language == lang_t::KO ? "작은 태양이 사그라집니다." : "Your tiny sun winks out."));
         }
     }
     else if (old_form == transformation::rime_yak)
@@ -2381,7 +2381,7 @@ void merfolk_start_swimming()
     if (you.fishtail)
         return;
 
-    mpr("Your legs become a tail as you dive into the water.");
+    mpr((Options.language == lang_t::KO ? "물속으로 뛰어들자 다리가 꼬리로 변합니다." : "Your legs become a tail as you dive into the water."));
 
     if (you.invisible())
         mpr("...but don't expect to remain undetected.");
