@@ -3071,7 +3071,7 @@ static void _mons_open_door(monster& mons, const coord_def &pos)
             interrupt_activity(activity_interrupt::sense_monster);
         }
         else if (Options.language == lang_t::KO)
-            mprf(broken ? "%s이(가) 문을 부숩니다." : "%s이(가) 문을 엽니다.",
+            mprf(broken ? "문을 부수는 몬스터: %s." : "문을 여는 몬스터: %s.",
                  mons.name(DESC_A).c_str());
         else
             mprf("%s %s", mons.name(DESC_A).c_str(), open_str.c_str());
