@@ -730,8 +730,9 @@ void monster::equip_weapon_message(item_def &item)
         mpr((Options.language == lang_t::KO ? "불길이 솟아오릅니다!" : "It bursts into flame!"));
         break;
     case SPWPN_FREEZING:
-        mpr(is_range_weapon(item) ? "It is covered in frost."
-                                  : "It glows with a cold blue light!");
+        mpr(Options.language == lang_t::KO
+            ? (is_range_weapon(item) ? "서리가 내려앉습니다." : "차가운 푸른빛으로 빛납니다!")
+            : (is_range_weapon(item) ? "It is covered in frost." : "It glows with a cold blue light!"));
         break;
     case SPWPN_HOLY_WRATH:
         mpr((Options.language == lang_t::KO ? "은은한 신성의 빛을 발합니다!" : "It softly glows with a divine radiance!"));
@@ -752,8 +753,9 @@ void monster::equip_weapon_message(item_def &item)
         mpr((Options.language == lang_t::KO ? "잠시 모습이 일그러집니다." : "Its appearance distorts for a moment."));
         break;
     case SPWPN_CHAOS:
-        mpr("It is briefly surrounded by a scintillating aura of "
-            "random colours.");
+        mpr(Options.language == lang_t::KO
+            ? "잠시 눈부신 여러 빛깔의 기운에 휩싸입니다."
+            : "It is briefly surrounded by a scintillating aura of random colours.");
         break;
     case SPWPN_PENETRATION:
     {
@@ -6141,8 +6143,8 @@ void monster::react_to_damage(const actor *oppressor, int damage,
                 {
                     if (Options.language == lang_t::KO)
                         mprf(env.grid(pos()) == DNGN_LAVA
-                             ? "탈것이 죽자 %s이(가) 용암에 추락해 불타 죽습니다!"
-                             : "탈것이 죽자 %s이(가) 깊은 물에 빠져 익사합니다!",
+                             ? "탈것이 죽어 용암에 떨어져 불타 죽는 대상: %s!"
+                             : "탈것이 죽어 깊은 물에 빠져 익사하는 대상: %s!",
                              name(DESC_THE).c_str());
                     else
                         mprf("As %s mount dies, %s plunges down into %s!",
