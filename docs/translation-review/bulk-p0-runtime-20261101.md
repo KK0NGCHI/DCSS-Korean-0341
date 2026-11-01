@@ -52,7 +52,7 @@ completeness.
 - 20 output sites translated in total; English fallback preserved.
 - No PR opened yet: continue accumulating translations until a coherent large batch is ready.
 - CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
-- QA: the new item-ownership and equipment texts currently use literal Korean particles `이(가)` / `을(를)`; replace them with context-aware output grammar before calling the language quality complete.
-- QA: verify numbered printf placeholders in monster diagnostics on the target C++ runtime.
+- QA: monster diagnostics now use explicit field labels and plain `%s` formats to avoid ambiguous particles and positional printf portability issues.
+- QA: equipment messages still use literal `이(가)`; replace with context-aware output grammar before final language-quality acceptance.
 
 **Status:** 20 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
