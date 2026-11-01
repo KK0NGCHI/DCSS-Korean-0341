@@ -673,7 +673,7 @@ static bool _kikubaaqudgha_retribution()
         int doom_pow = random_range(35, 50);
 
         if (!(you.attribute[ATTR_DOOM] + doom_pow >= 100))
-            mprf(MSGCH_DANGER, "Your doom draws closer.");
+            mprf(MSGCH_DANGER, "%s", Options.language == lang_t::KO ? "파멸이 가까워집니다." : "Your doom draws closer.");
 
         you.doom(doom_pow);
     }
@@ -1463,7 +1463,7 @@ static void _qazlal_elemental_vulnerability()
     if (banes.empty())
     {
         bane_type bane = random_choose(BANE_HEATSTROKE, BANE_SNOW_BLINDNESS, BANE_ELECTROSPASM);
-        mprf(MSGCH_WARN, "Your %s grows more durable.", bane_name(bane).c_str());
+        mprf(MSGCH_WARN, Options.language == lang_t::KO ? "%s의 내구력이 높아집니다." : "Your %s grows more durable.", bane_name(bane).c_str());
         you.banes[bane] += 1000;
     }
     else
