@@ -801,25 +801,25 @@ void qazlal_element_adapt(beam_type flavour, int strength)
 
     if (what != BEAM_FIRE && you.duration[DUR_QAZLAL_FIRE_RES])
     {
-        mprf(MSGCH_DURATION, "Your resistance to fire fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "화염 저항 효과가 사라집니다." : "Your resistance to fire fades away.");
         you.duration[DUR_QAZLAL_FIRE_RES] = 0;
     }
 
     if (what != BEAM_COLD && you.duration[DUR_QAZLAL_COLD_RES])
     {
-        mprf(MSGCH_DURATION, "Your resistance to cold fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "냉기 저항 효과가 사라집니다." : "Your resistance to cold fades away.");
         you.duration[DUR_QAZLAL_COLD_RES] = 0;
     }
 
     if (what != BEAM_ELECTRICITY && you.duration[DUR_QAZLAL_ELEC_RES])
     {
-        mprf(MSGCH_DURATION, "Your resistance to electricity fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "전기 저항 효과가 사라집니다." : "Your resistance to electricity fades away.");
         you.duration[DUR_QAZLAL_ELEC_RES] = 0;
     }
 
     if (what != BEAM_MISSILE && you.duration[DUR_QAZLAL_AC])
     {
-        mprf(MSGCH_DURATION, "Your resistance to physical damage fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "물리 피해 저항 효과가 사라집니다." : "Your resistance to physical damage fades away.");
         you.duration[DUR_QAZLAL_AC] = 0;
         you.redraw_armour_class = true;
     }
@@ -1862,7 +1862,7 @@ void wu_jian_trigger_serpents_lash(bool wall_jump)
     if (you.attribute[ATTR_SERPENTS_LASH] == 0)
     {
         you.increase_duration(DUR_EXHAUSTED, 12 + random2(5));
-        mpr("Your supernatural speed expires.");
+        mpr(Options.language == lang_t::KO ? "초자연적인 가속 효과가 끝납니다." : "Your supernatural speed expires.");
     }
 }
 
