@@ -1633,8 +1633,7 @@ static void _druid_final_boon(const monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_SPELL, "With its final breath, %s offers up its power "
-                                  "to the beasts of the wild!",
+        mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO ? "%s이(가) 마지막 숨을 내쉬며 야생의 짐승들에게 힘을 나누어 줍니다!" : "With its final breath, %s offers up its power to the beasts of the wild!",
                                   mons->name(DESC_THE).c_str());
     }
 
@@ -1696,8 +1695,7 @@ static void _protean_explosion(monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_WARNING, "For just a moment, %s begins to "
-                                    "look like %s, then it explodes!",
+        mprf(MSGCH_MONSTER_WARNING, Options.language == lang_t::KO ? "%s이(가) 잠시 %s의 모습으로 변하기 시작하더니 폭발합니다!" : "For just a moment, %s begins to look like %s, then it explodes!",
                                     mons->name(DESC_THE).c_str(),
                                     mons_type_name(target, DESC_A).c_str());
     }
@@ -2332,11 +2330,17 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
 
         if (feed && (healing || powering))
         {
-            mprf("You siphon power from %s's fading %s.",
-                  mons.name(DESC_THE).c_str(),
-                  mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
-                  "poison and negative energy" : (mons.has_ench(ENCH_POISON) ?
-                  "poison" : "negative energy"));
+            if (Options.language == lang_t::KO)
+                mprf("%s에게서 사그라지는 %s의 힘을 흡수합니다.",
+                     mons.name(DESC_THE).c_str(),
+                     mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
+                     "독과 음에너지" : (mons.has_ench(ENCH_POISON) ? "독" : "음에너지"));
+            else
+                mprf("You siphon power from %s's fading %s.",
+                     mons.name(DESC_THE).c_str(),
+                     mons.has_ench(ENCH_POISON) && mons.has_ench(ENCH_DRAINED) ?
+                     "poison and negative energy" : (mons.has_ench(ENCH_POISON) ?
+                     "poison" : "negative energy"));
         }
 
         if (healing)
@@ -3233,10 +3237,10 @@ item_def* monster_die(monster& mons, killer_type killer,
             else
             {
                 if (mons.props.exists(KIKU_WRETCH_KEY))
-                    mprf("A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
+                    mprf(Options.language == lang_t::KO ? "근처의 %s이(가) 비참하게 죽습니다." : "A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
                 else if (mons_class_is_fragile(mons.type))
                 {
-                    mprf(MSGCH_MONSTER_TIMEOUT, "A nearby %s withers and dies.",
+                    mprf(MSGCH_MONSTER_TIMEOUT, Options.language == lang_t::KO ? "근처의 %s이(가) 시들어 죽습니다." : "A nearby %s withers and dies.",
                          mons.name(DESC_PLAIN, false).c_str());
                 }
                 // Default message so that at least *something* is printed.
@@ -3360,7 +3364,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     {
         you.props.erase(TESSERACT_SPAWN_COUNTER_KEY);
 
-        mprf(MSGCH_ORB, "A wave of disorienting energy ripples outward as you feel the reach of Zot diminish.");
+        mprf(MSGCH_ORB, "%s", Options.language == lang_t::KO ? "혼란스러운 에너지의 파동이 퍼져 나가고 조트의 영향력이 약해지는 것이 느껴집니다." : "A wave of disorienting energy ripples outward as you feel the reach of Zot diminish.");
         mark_milestone("tesseract.kill", "destroyed the tesseracts.");
 
         draw_ring_animation(mons.pos(), LOS_RADIUS, MAGENTA, BLUE, true, 5);
@@ -3676,7 +3680,7 @@ void heal_flayed_effect(actor* act, bool quiet, bool blood_only)
 
         if (you.can_see(*act) && !quiet)
         {
-            mprf("The terrible wounds on %s body vanish.",
+            mprf(Options.language == lang_t::KO ? "%s의 끔찍한 상처가 사라집니다." : "The terrible wounds on %s body vanish.",
                  act->name(DESC_ITS).c_str());
         }
 
