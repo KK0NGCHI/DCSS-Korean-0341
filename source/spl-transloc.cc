@@ -2247,7 +2247,7 @@ spret cast_piledriver(const coord_def& target, int pow, bool fail)
     }
 
     mons = _get_monster_line(target, true);
-    mprf("Space contracts around you and %s and then re-expands violently!",
+    mprf(Options.language == lang_t::KO ? "당신과 %s 주위의 공간이 수축했다가 격렬하게 다시 팽창합니다!" : "Space contracts around you and %s and then re-expands violently!",
             mons.size() == 1 ? mons[0]->name(DESC_THE).c_str()
                              : make_stringf("%s other creatures",
                                     number_in_words(mons.size()).c_str()).c_str());
@@ -2560,7 +2560,7 @@ spret do_bestial_takedown(coord_def target)
     if (monster_at(landing))
         _displace_charge_blocker(you, landing);
 
-    mprf("You pounce on %s with bestial fury!", targ->name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "야수의 맹렬한 기세로 %s에게 덤벼듭니다!" : "You pounce on %s with bestial fury!", targ->name(DESC_THE).c_str());
 
     you.move_to(landing, MV_DELIBERATE, true);
 
