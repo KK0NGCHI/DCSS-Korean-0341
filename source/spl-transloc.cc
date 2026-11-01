@@ -1826,13 +1826,16 @@ spret cast_gravitas(int pow, const coord_def& where, bool fail)
     // XXX: If this is ever usable from elsewhere than the item, change this.
     mpr((Options.language == lang_t::KO ? "탬버린을 흔듭니다." : "You rattle the tambourine."));
 
-    mprf("Waves of gravity draw inward%s%s.",
-         mons || feat_is_solid(env.grid(where)) ? " around " : "",
-         mons ? mons->name(DESC_THE).c_str() :
-                feat_is_solid(env.grid(where)) ? feature_description(env.grid(where),
-                                                                     NUM_TRAPS, "",
-                                                                     DESC_THE)
-                                                                    .c_str() : "");
+    if (Options.language == lang_t::KO)
+        mpr("중력의 파동이 안쪽으로 몰려듭니다.");
+    else
+        mprf("Waves of gravity draw inward%s%s.",
+             mons || feat_is_solid(env.grid(where)) ? " around " : "",
+             mons ? mons->name(DESC_THE).c_str() :
+                    feat_is_solid(env.grid(where)) ? feature_description(env.grid(where),
+                                                                         NUM_TRAPS, "",
+                                                                         DESC_THE)
+                                                                        .c_str() : "");
 
     draw_ring_animation(where, radius, LIGHTMAGENTA);
     pull_monsters_inward(where, radius);
