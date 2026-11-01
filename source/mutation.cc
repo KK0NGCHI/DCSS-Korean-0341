@@ -3080,8 +3080,13 @@ bool temp_mutation_wanes()
 
     const int num_remove = min(starting_tmuts, random_range(2, 3));
 
-    mprf(MSGCH_DURATION, "You feel the corruption within you wane %s.",
-        (num_remove >= starting_tmuts ? "completely" : "somewhat"));
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_DURATION, "%s", num_remove >= starting_tmuts
+             ? "몸속의 타락이 완전히 사라지는 느낌입니다."
+             : "몸속의 타락이 조금 약해지는 느낌입니다.");
+    else
+        mprf(MSGCH_DURATION, "You feel the corruption within you wane %s.",
+             num_remove >= starting_tmuts ? "completely" : "somewhat");
 
     for (int i = 0; i < num_remove; ++i)
         delete_temp_mutation(); // chooses randomly
