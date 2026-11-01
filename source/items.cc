@@ -1746,8 +1746,13 @@ void get_gold(const item_def& item, int quant, bool quiet)
                             ? make_stringf(" (gained %d)", quant)
                             : "";
 
-        mprf("You now have %d gold piece%s%s.",
-             you.gold, you.gold != 1 ? "s" : "", gain.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("현재 금화 %d개를 보유하고 있습니다%s.",
+                 you.gold, quant != you.gold
+                     ? make_stringf(" (획득: %d개)", quant).c_str() : "");
+        else
+            mprf("You now have %d gold piece%s%s.",
+                 you.gold, you.gold != 1 ? "s" : "", gain.c_str());
         learned_something_new(HINT_SEEN_GOLD);
     }
 }
@@ -5087,8 +5092,12 @@ void maybe_name_weapon(item_def &item, bool silent)
     string full_name = get_weapon_name(item, true);
 
     // TODO: variant messages? (in the database?)
-    mprf("You welcome %s%s into your grasp.", full_name.c_str(),
-         new_name ? "" : " back");
+    if (Options.language == lang_t::KO)
+        mprf("%s을(를) %s손에 쥡니다.", full_name.c_str(),
+             new_name ? "" : "다시 ");
+    else
+        mprf("You welcome %s%s into your grasp.", full_name.c_str(),
+             new_name ? "" : " back");
 }
 
 void say_farewell_to_weapon(const item_def &item)
