@@ -197,9 +197,14 @@ static void _decrement_petrification(int delay)
                                             "flesh" :
                                             get_form()->flesh_equivalent;
 
-        mprf(MSGCH_DURATION, "You turn to %s%s.",
-             flesh_equiv.c_str(),
-             you.paralysed() ? "" : " and can act again");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_DURATION, "%s로 돌아옵니다%s.",
+                 get_form()->flesh_equivalent.empty() ? "살과 피의 몸" : flesh_equiv.c_str(),
+                 you.paralysed() ? "" : ". 다시 움직일 수 있습니다");
+        else
+            mprf(MSGCH_DURATION, "You turn to %s%s.",
+                 flesh_equiv.c_str(),
+                 you.paralysed() ? "" : " and can act again");
     }
 
     if (you.duration[DUR_PETRIFYING])
@@ -1043,12 +1048,15 @@ static void _decrement_durations()
         }
         if (!found)
         {
-            mprf(MSGCH_DURATION, "As the last of your armour is driven back to "
-                  "you, your cacophony ends.");
+            mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO
+                  ? "흩어진 갑옷이 모두 돌아오면서 불협화음이 끝납니다."
+                  : "As the last of your armour is driven back to you, your cacophony ends.");
             you.duration[DUR_CACOPHONY] = 0;
         }
         else if (_decrement_a_duration(DUR_CACOPHONY, delay,
-                "Your cacophony subsides and your armour settles down once more."))
+                Options.language == lang_t::KO
+                    ? "불협화음이 잦아들고 갑옷이 다시 제자리를 찾습니다."
+                    : "Your cacophony subsides and your armour settles down once more."))
         {
             for (monster_iterator mi; mi; ++mi)
                 if (mi->was_created_by(MON_SUMM_CACOPHONY))
