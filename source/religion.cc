@@ -3942,9 +3942,12 @@ void god_pitch(god_type which_god)
         mpr((Options.language == lang_t::KO ? "베오그의 선교사 앞에 머리를 숙입니다." : "You bow before the missionary of Beogh."));
     else
     {
-        mprf("You %s the altar of %s.",
-             get_form()->player_prayer_action().c_str(),
-             god_name(which_god).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s의 제단 앞에서 예를 올립니다.", god_name(which_god).c_str());
+        else
+            mprf("You %s the altar of %s.",
+                 get_form()->player_prayer_action().c_str(),
+                 god_name(which_god).c_str());
     }
     // these are included in default force_more_message
 
@@ -3987,13 +3990,15 @@ void print_god_rejection(god_type which_god)
         const int fee = gozag_service_fee();
         if (you.gold == 0)
         {
-            mprf("The service fee for joining is currently %d gold; you have"
-                 " none.", fee);
+            mprf(Options.language == lang_t::KO
+                 ? "현재 가입 비용은 금화 %d개이지만, 가진 금화가 없습니다."
+                 : "The service fee for joining is currently %d gold; you have none.", fee);
         }
         else
         {
-            mprf("The service fee for joining is currently %d gold; you only"
-                 " have %d.", fee, you.gold);
+            mprf(Options.language == lang_t::KO
+                 ? "현재 가입 비용은 금화 %d개이지만, 보유한 금화는 %d개뿐입니다."
+                 : "The service fee for joining is currently %d gold; you only have %d.", fee, you.gold);
         }
         return;
     }
