@@ -224,19 +224,27 @@ static void _climb_message(dungeon_feature_type stair, bool going_up,
     else if (feat_is_escape_hatch(stair))
     {
         if (going_up)
-            mpr("A mysterious force pulls you upwards.");
+            mpr(Options.language == lang_t::KO ? "신비한 힘이 당신을 위로 끌어당깁니다." : "A mysterious force pulls you upwards.");
         else
         {
-            mprf("You %s downwards.",
-                 you.airborne() ? "fly" : "slide");
+            if (Options.language == lang_t::KO)
+                mpr(you.airborne() ? "아래로 날아갑니다." : "아래로 미끄러져 내려갑니다.");
+            else
+                mprf("You %s downwards.",
+                     you.airborne() ? "fly" : "slide");
         }
         mpr((Options.language == lang_t::KO ? "뒤에서 해치가 쾅 닫힙니다." : "The hatch slams shut behind you."));
     }
     else if (feat_is_gate(stair))
     {
-        mprf("You %s %s through the gate.",
-             you.airborne() ? "fly" : "go",
-             going_up ? "up" : "down");
+        if (Options.language == lang_t::KO)
+            mprf("관문을 통과해 %s %s.",
+                 going_up ? "위로" : "아래로",
+                 you.airborne() ? "날아갑니다" : "이동합니다");
+        else
+            mprf("You %s %s through the gate.",
+                 you.airborne() ? "fly" : "go",
+                 going_up ? "up" : "down");
     }
     else if (old_branch == BRANCH_SLIME && !you.royal_jelly_dead)
     {
@@ -247,9 +255,14 @@ static void _climb_message(dungeon_feature_type stair, bool going_up,
     }
     else if (stair != DNGN_ALTAR_IGNIS)
     {
-        mprf("You %s %swards.",
-             you.airborne() ? "fly" : "climb",
-             going_up ? "up" : "down");
+        if (Options.language == lang_t::KO)
+            mprf("%s %s.",
+                 going_up ? "위로" : "아래로",
+                 you.airborne() ? "날아갑니다" : "계단을 이동합니다");
+        else
+            mprf("You %s %swards.",
+                 you.airborne() ? "fly" : "climb",
+                 going_up ? "up" : "down");
     }
 }
 
@@ -409,8 +422,12 @@ static bool _check_fall_down_stairs(const dungeon_feature_type ftype, bool going
         if (!feat_is_staircase(ftype))
             fall_where = "through the gate";
 
-        mprf("In your confused state, you trip and fall %s%s.",
-             going_up ? "back " : "", fall_where);
+        if (Options.language == lang_t::KO)
+            mprf("혼란에 빠져 발을 헛디디고 %s 넘어집니다.",
+                 going_up ? "뒤로" : "앞으로");
+        else
+            mprf("In your confused state, you trip and fall %s%s.",
+                 going_up ? "back " : "", fall_where);
         if (!feat_is_staircase(ftype))
             ouch(1, KILLED_BY_FALLING_THROUGH_GATE);
         else
@@ -763,8 +780,10 @@ void rise_through_ceiling()
     }
     if (!whither.is_valid())
     {
-        mpr("In a burst of heat and light, you rocket briefly upward... "
-            "but you can't rise from here.");
+        mpr(Options.language == lang_t::KO
+            ? "열기와 섬광을 내뿜으며 잠깐 위로 솟구치지만, 여기에서는 더 올라갈 수 없습니다."
+            : "In a burst of heat and light, you rocket briefly upward... "
+              "but you can't rise from here.");
         return;
     }
 
