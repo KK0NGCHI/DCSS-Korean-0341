@@ -46,8 +46,13 @@ completeness.
 - `source/god-prayer.cc`: 1 ambiguous altar conversion prompt.
 - `source/monster.cc`: 3 monster effect outputs.
 - `source/spl-damage.cc`: 1 lightning arc output.
-- 13 output sites translated in total; English fallback preserved.
+- `source/monster.cc`: 4 additional item-ownership diagnostic outputs (diagnostic, not ordinary gameplay text).
+- `source/misc.cc`: 1 stasis teleport warning.
+- `source/player-equip.cc`: 2 equipment/hand interaction messages.
+- 20 output sites translated in total; English fallback preserved.
 - No PR opened yet: continue accumulating translations until a coherent large batch is ready.
 - CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
+- QA: the new item-ownership and equipment texts currently use literal Korean particles `이(가)` / `을(를)`; replace them with context-aware output grammar before calling the language quality complete.
+- QA: verify numbered printf placeholders in monster diagnostics on the target C++ runtime.
 
-**Status:** 13 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 20 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
