@@ -2559,7 +2559,9 @@ static void _vulnerability_scroll()
     }
 
     you.strip_willpower(&you, dur, true);
-    mpr("A wave of despondency washes over your surroundings.");
+    mpr(Options.language == lang_t::KO
+        ? "주변에 깊은 절망의 파동이 퍼져 나갑니다."
+        : "A wave of despondency washes over your surroundings.");
 }
 
 static bool _handle_amnesia(bool alreadyknown)
