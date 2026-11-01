@@ -1597,8 +1597,12 @@ void do_equipment_change(item_def* to_equip, equipment_slot equip_slot,
                 start_delay<EquipOffDelay>(1, *item);
             else
             {
-                mprf("You %s %s.", item_unequip_verb(*item).c_str(),
-                                   item->name(DESC_YOUR).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s을(를) 장착 해제합니다.",
+                         item->name(DESC_YOUR).c_str());
+                else
+                    mprf("You %s %s.", item_unequip_verb(*item).c_str(),
+                         item->name(DESC_YOUR).c_str());
                 unequip_item(*item);
             }
         }
