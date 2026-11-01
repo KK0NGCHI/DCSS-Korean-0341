@@ -52,10 +52,12 @@ completeness.
 - `source/monster.cc`: 15 further weapon aura, combat effect and sound messages.
 - `source/misc.cc`: 2 movement/swap messages.
 - `source/god-prayer.cc`: 2 prayer/tithe messages.
-- 39 output sites translated in total; English fallback preserved.
+- `source/monster.cc`: 2 bloodstain/gold outputs and 2 mount death/fall outcomes.
+- `source/mon-act.cc`: 1 visible door interaction output.
+- 44 output sites translated in total; English fallback preserved.
 - No PR opened yet: continue accumulating translations until a coherent large batch is ready.
 - CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
 - QA: monster diagnostics now use explicit field labels and plain `%s` formats to avoid ambiguous particles and positional printf portability issues.
 - QA: equipment messages still use literal `이(가)`; replace with context-aware output grammar before final language-quality acceptance.
 
-**Status:** 39 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 44 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
