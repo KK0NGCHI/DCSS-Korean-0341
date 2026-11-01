@@ -285,8 +285,12 @@ public:
     {
         const bool were_mighty = you.duration[DUR_MIGHT] > 0;
 
-        mprf(MSGCH_DURATION, "You feel %s all of a sudden.",
-             were_mighty ? "mightier" : "very mighty");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_DURATION, "%s",
+                 were_mighty ? "갑자기 힘이 더욱 솟구칩니다." : "갑자기 엄청난 힘이 솟구칩니다.");
+        else
+            mprf(MSGCH_DURATION, "You feel %s all of a sudden.",
+                 were_mighty ? "mightier" : "very mighty");
         const int dur = _scale_pot_duration(35 + random2(pow), is_potion);
         you.increase_duration(DUR_MIGHT, dur);
         return true;
@@ -327,8 +331,12 @@ public:
     {
         const bool were_brilliant = you.duration[DUR_BRILLIANCE] > 0;
 
-        mprf(MSGCH_DURATION, "You feel %sclever all of a sudden.",
-             were_brilliant ? "more " : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_DURATION, "%s",
+                 were_brilliant ? "갑자기 정신이 더욱 명료해집니다." : "갑자기 정신이 명료해집니다.");
+        else
+            mprf(MSGCH_DURATION, "You feel %sclever all of a sudden.",
+                 were_brilliant ? "more " : "");
         const int dur = _scale_pot_duration(35 + random2(pow), is_potion);
         you.increase_duration(DUR_BRILLIANCE, dur);
         return true;
@@ -354,8 +362,12 @@ public:
     {
         const bool was_attractive = you.duration[DUR_ATTRACTIVE] > 0;
 
-        mprf(MSGCH_DURATION, "You feel %sattractive to monsters.",
-             was_attractive ? "more " : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_DURATION, "%s",
+                 was_attractive ? "몬스터들을 더욱 강하게 끌어당기는 느낌입니다." : "몬스터들을 끌어당기는 느낌입니다.");
+        else
+            mprf(MSGCH_DURATION, "You feel %sattractive to monsters.",
+                 was_attractive ? "more " : "");
 
         const int dur = _scale_pot_duration((20 + random2(pow)/2), is_potion);
         you.increase_duration(DUR_ATTRACTIVE, dur);
@@ -443,8 +455,12 @@ public:
         if (confuse_player(ambrosia_turns, false, true))
         {
             print_potion_heal_message();
-            mprf("You feel%s invigorated.",
-                 you.duration[DUR_AMBROSIA] ? " more" : "");
+            if (Options.language == lang_t::KO)
+                mpr(you.duration[DUR_AMBROSIA]
+                    ? "활력이 더욱 솟아납니다." : "활력이 솟아납니다.");
+            else
+                mprf("You feel%s invigorated.",
+                     you.duration[DUR_AMBROSIA] ? " more" : "");
             you.increase_duration(DUR_AMBROSIA, ambrosia_turns);
             return true;
         }
@@ -567,7 +583,9 @@ public:
             adjust_level(levels, true);
         }
         else
-            mpr("A flood of memories washes over you.");
+            mpr(Options.language == lang_t::KO
+                ? "수많은 기억이 밀려옵니다."
+                : "A flood of memories washes over you.");
 
         // these are included in default force_more_message
         const int exp = 7500 * you.experience_level * pow / 40;
@@ -986,7 +1004,10 @@ bool quaff_potion(item_def &potion, bool force)
     if (!was_known)
     {
         identify_item(potion);
-        mprf("It was %s.", article_a(potion.name(DESC_QUALNAME)).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("마신 물약은 %s이었습니다.", potion.name(DESC_QUALNAME).c_str());
+        else
+            mprf("It was %s.", article_a(potion.name(DESC_QUALNAME)).c_str());
     }
 
     const potion_type ptyp = static_cast<potion_type>(potion.sub_type);
