@@ -315,9 +315,12 @@ spret cast_chain_lightning(int pow, const actor &caster, bool fail)
         if (Options.language == lang_t::KO)
             mprf("%s의 손에서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
         else
-            mprf("Lightning arcs from %s %s!",
-                 apostrophise(caster.name(DESC_PLAIN)).c_str(),
-                 caster.hand_name(true).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s에게서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
+            else
+                mprf("Lightning arcs from %s %s!",
+                     apostrophise(caster.name(DESC_PLAIN)).c_str(),
+                     caster.hand_name(true).c_str());
     }
 
     vector<arc_victim> victims;
