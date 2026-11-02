@@ -246,7 +246,7 @@ static void _tso_shouts()
 static void _tso_squelches()
 {
     god_speaks(GOD_SHINING_ONE,
-               "You feel the Shining One's silent rage upon you!");
+               (Options.language == lang_t::KO ? "빛나는 자의 말없는 분노가 당신에게 닥칩니다!" : "You feel the Shining One's silent rage upon you!"));
     cast_silence(25);
 }
 
@@ -653,8 +653,8 @@ static bool _kikubaaqudgha_retribution()
 {
     // death/necromancy theme
     const god_type god = GOD_KIKUBAAQUDGHA;
-    god_speaks(god, coinflip() ? "You hear Kikubaaqudgha cackling."
-                               : "Kikubaaqudgha's malice focuses upon you.");
+    god_speaks(god, coinflip() ? (Options.language == lang_t::KO ? "키쿠바쿠드하가 낄낄 웃는 소리가 들립니다." : "You hear Kikubaaqudgha cackling.")
+                               : (Options.language == lang_t::KO ? "키쿠바쿠드하의 악의가 당신을 향합니다." : "Kikubaaqudgha's malice focuses upon you."));
 
     if (wrath_tension_check(true))
     {
@@ -1174,8 +1174,8 @@ static void _jiyva_summon_slimes()
             success = true;
     }
 
-    god_speaks(god, success ? "Some slimes ooze up out of the ground!"
-                            : "The ground quivers slightly.");
+    god_speaks(god, success ? (Options.language == lang_t::KO ? "땅속에서 슬라임들이 스며 나옵니다!" : "Some slimes ooze up out of the ground!")
+                            : (Options.language == lang_t::KO ? "땅이 약하게 떨립니다." : "The ground quivers slightly."));
 }
 
 /**
