@@ -3045,6 +3045,11 @@ item_def* monster_die(monster& mons, killer_type killer,
                              exploded ? "폭발시켰습니다" :
                              destroyed ? "파괴했습니다" : "죽였습니다");
                     else
+                        if (Options.language == lang_t::KO)
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD,
+                             exploded ? "%s을 폭파합니다!" : destroyed ? "%s을 파괴합니다!" : "%s을 처치합니다!",
+                             mons.name(DESC_THE).c_str());
+                    else
                         mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "You %s %s!",
                              exploded ? "blow up" :
                              destroyed ? "destroy" : "kill",
