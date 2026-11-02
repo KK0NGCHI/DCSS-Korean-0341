@@ -864,12 +864,12 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
             {
                 if (constricted_type == CONSTRICT_BVC)
                 {
-                    mprf("The zombie hands holding %s return to the earth.",
+                    mprf((Options.language == lang_t::KO ? "%s을 붙잡고 있던 좀비의 손이 땅속으로 사라집니다." : "The zombie hands holding %s return to the earth."),
                          name(DESC_THE).c_str());
                 }
                 else if (constricted_type == CONSTRICT_ROOTS)
                 {
-                    mprf("The roots around %s sink back into the ground.",
+                    mprf((Options.language == lang_t::KO ? "%s 주변의 뿌리가 땅속으로 다시 가라앉습니다." : "The roots around %s sink back into the ground."),
                          name(DESC_THE).c_str());
                 }
             }
@@ -998,7 +998,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_KINETIC_GRAPNEL:
         if (you.can_see(*this) && !quiet)
-            mprf("The grapnel comes loose from %s.", name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "%s에 걸렸던 갈고리가 풀립니다." : "The grapnel comes loose from %s."), name(DESC_THE).c_str());
         break;
 
     case ENCH_BLINKITIS:
@@ -1043,7 +1043,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_WARDING:
         if (!quiet && you.can_see(*this))
-            mprf("The ward upon %s fades away.", name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "%s에게 걸린 보호의 힘이 사라집니다." : "The ward upon %s fades away."), name(DESC_THE).c_str());
         break;
 
     case ENCH_DIMINISHED_SPELLS:
@@ -1203,7 +1203,7 @@ static bool _merfolk_avatar_movement_effect(const monster* mons)
             return true;
     }
 
-    mprf("The pull of %s song draws you forwards.", mons->name(DESC_ITS).c_str());
+    mprf((Options.language == lang_t::KO ? "%s의 노랫소리에 이끌려 앞으로 나아갑니다." : "The pull of %s song draws you forwards."), mons->name(DESC_ITS).c_str());
 
     if (swapping)
         player_displace_monster(mon, swapdest);
@@ -1252,7 +1252,7 @@ static void _merfolk_avatar_song(monster* mons)
             // during a song that has already summoned drowned souls (though is
             // technically possible if some existing ally gains HD instead)
             if (you.see_cell(mons->pos()))
-                mpr("The shadowy forms in the deep grow still as others approach.");
+                mpr((Options.language == lang_t::KO ? "다른 이들이 다가오자 깊은 물속의 그림자들이 움직임을 멈춥니다." : "The shadowy forms in the deep grow still as others approach."));
             mons->props.erase(MERFOLK_AVATAR_CALL_KEY);
         }
 
@@ -1271,7 +1271,7 @@ static void _merfolk_avatar_song(monster* mons)
         {
             if (you.see_cell(mons->pos()))
             {
-                mprf("Shadowy forms rise from the deep at %s song!",
+                mprf((Options.language == lang_t::KO ? "%s의 노래에 맞춰 깊은 물속에서 그림자들이 솟아오릅니다!" : "Shadowy forms rise from the deep at %s song!"),
                      mons->name(DESC_ITS).c_str());
             }
             mons->props[MERFOLK_AVATAR_CALL_KEY].get_bool() = true;
@@ -1466,7 +1466,7 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             if (you.can_see(*this))
             {
-                mprf("The flames covering %s go out.",
+                mprf((Options.language == lang_t::KO ? "%s을 뒤덮었던 불길이 꺼집니다." : "The flames covering %s go out."),
                      name(DESC_THE, false).c_str());
             }
             del_ench(ENCH_STICKY_FLAME);
@@ -1522,7 +1522,7 @@ void monster::apply_enchantment(const mon_enchant &me)
             coord_def base_position = props[BASE_POSITION_KEY].get_coord();
             // Do a thing.
             if (you.see_cell(base_position))
-                mprf("The portal closes; %s is severed.", name(DESC_THE).c_str());
+                mprf((Options.language == lang_t::KO ? "차원문이 닫히고 %s과의 연결이 끊어집니다." : "The portal closes; %s is severed."), name(DESC_THE).c_str());
 
             if (env.grid(base_position) == DNGN_MALIGN_GATEWAY)
                 env.grid(base_position) = DNGN_FLOOR;
@@ -1555,7 +1555,7 @@ void monster::apply_enchantment(const mon_enchant &me)
                 if (you.can_see(*this))
                     simple_monster_message(*this, " suddenly becomes enraged!");
                 else
-                    mpr("You hear a distant and violent thrashing sound.");
+                    mpr((Options.language == lang_t::KO ? "멀리서 거칠게 몸부림치는 소리가 들립니다." : "You hear a distant and violent thrashing sound."));
             }
 
             attitude = ATT_HOSTILE;
@@ -1617,7 +1617,7 @@ void monster::apply_enchantment(const mon_enchant &me)
             add_ench(ENCH_POLAR_VORTEX_COOLDOWN);
             if (you.can_see(*this))
             {
-                mprf("The winds around %s start to calm down.",
+                mprf((Options.language == lang_t::KO ? "%s 주변의 바람이 잦아들기 시작합니다." : "The winds around %s start to calm down."),
                      name(DESC_THE).c_str());
             }
         }
@@ -1738,7 +1738,7 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             remove_vortex_clouds(mid);
             if (you.can_see(*this))
-                mprf("The winds around %s calm down.", name(DESC_THE).c_str());
+                mprf((Options.language == lang_t::KO ? "%s 주변의 바람이 잦아듭니다." : "The winds around %s calm down."), name(DESC_THE).c_str());
         }
         break;
 
@@ -1821,7 +1821,7 @@ void monster::apply_enchantment(const mon_enchant &me)
                 if (!decay_enchantment(ENCH_SOUL_RIPE)
                     && me.duration <= 10)
                 {
-                    mprf("Your grip on %s soul is slipping...",
+                    mprf((Options.language == lang_t::KO ? "%s의 영혼에 대한 지배력이 약해지고 있습니다..." : "Your grip on %s soul is slipping..."),
                          name(DESC_ITS, true).c_str());
                 }
             }
