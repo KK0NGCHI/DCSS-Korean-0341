@@ -1320,9 +1320,14 @@ void shock_discharge_fineff::fire()
     }
     else if (you.can_see(oppressor))
     {
-        mprf("The air sparks with electricity, shocking %s%s",
-             oppressor.name(DESC_THE).c_str(),
-             attack_strength_punctuation(final_dmg).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("공기 중에 전기가 튀며 %s에게 충격을 가합니다%s",
+                 oppressor.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(final_dmg).c_str());
+        else
+            mprf("The air sparks with electricity, shocking %s%s",
+                 oppressor.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(final_dmg).c_str());
     }
 
     bolt beam;
