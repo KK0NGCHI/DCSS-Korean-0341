@@ -1126,7 +1126,7 @@ static bool _nemelex_retribution()
 static void _jiyva_mutate_player()
 {
     const god_type god = GOD_JIYVA;
-    god_speaks(god, "You feel Jiyva alter your body.");
+    god_speaks(god, (Options.language == lang_t::KO ? "지이바가 당신의 육체를 변형시키는 것이 느껴집니다." : "You feel Jiyva alter your body."));
 
     const int mutations = 1 + random2(3);
     for (int i = 0; i < mutations; ++i)
@@ -1139,7 +1139,7 @@ static void _jiyva_mutate_player()
 static void _jiyva_contaminate()
 {
     const god_type god = GOD_JIYVA;
-    god_speaks(god, "Mutagenic energy floods into your body!");
+    god_speaks(god, (Options.language == lang_t::KO ? "변이의 기운이 몸속으로 밀려듭니다!" : "Mutagenic energy floods into your body!"));
     contaminate_player(random2(you.penance[god] * 100));
 }
 
@@ -1204,7 +1204,7 @@ static bool _jiyva_retribution()
  */
 static void _fedhas_transform()
 {
-    god_speaks(GOD_FEDHAS, "Fedhas booms out: Become one with the cycle of life!");
+    god_speaks(GOD_FEDHAS, (Options.language == lang_t::KO ? "페다스가 외칩니다. 생명의 순환과 하나가 되어라!" : "Fedhas booms out: Become one with the cycle of life!"));
 
     const transformation form = random_choose(transformation::fungus,
                                               transformation::tree);
@@ -1276,7 +1276,7 @@ static bool _fedhas_summon_plants()
 
     if (oklob_count > 1)
     {
-        god_speaks(god, "Plants grow around you in an ominous manner.");
+        god_speaks(god, (Options.language == lang_t::KO ? "주변에서 식물들이 불길하게 자라납니다." : "Plants grow around you in an ominous manner."));
         return false;
     }
 
