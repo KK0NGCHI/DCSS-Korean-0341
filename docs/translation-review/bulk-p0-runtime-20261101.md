@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 129 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 147 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -116,3 +116,12 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - `source/mon-death.cc`: 16 monster defeat, death, falling, return, and pacification messages.
 - 23 new output sites, **129 cumulative** (5 developer/diagnostic sites), pending fresh CI at new head.
 - Next: check fresh CI, inspect output formatting and already-present Korean branches, continue scanning monster action/death messages in larger batches, and verify Windows Tiles behavior separately.
+
+## 2026-11-03 monster gameplay message batch II
+
+- Baseline `0160c87634cc6abd80442809ec0219e02e15ea21`: Linux console KO runtime and inventory checks successful.
+- `source/monster.cc`: 13 monster frenzy, berserk, banishment, movement, damage/weakening, and recollection messages.
+- `source/mon-death.cc`: 3 Beogh rescue, demise and flame-expiry messages.
+- `source/mon-cast.cc`: 2 god-protection messages.
+- 18 new output sites, cumulative **147** (5 diagnostic/developer sites); post-batch CI required.
+- Next: check new CI, review monster-message suffix formatting and dynamic grammar, continue scanning non-`mpr` output paths and translate further batches, then Windows Tiles spot checks.
