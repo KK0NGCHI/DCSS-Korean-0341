@@ -5506,8 +5506,9 @@ static int _monster_abjure_target(monster* target, int pow, bool actual)
         pow = pow * (30 - target->get_hit_dice()) / 30;
         if (pow < duration)
         {
-            simple_god_message(" protects your fellow warrior from evil "
-                               "magic!");
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 동료 전사를 사악한 마법에서 보호합니다!"
+                : " protects your fellow warrior from evil magic!");
             shielded = true;
         }
     }
