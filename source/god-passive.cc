@@ -2227,7 +2227,7 @@ void uskayaw_prepares_audience()
     int count = apply_area_visible(_check_for_uskayaw_targets, you.pos());
     if (count > 0)
     {
-        simple_god_message(" prepares the audience for your solo!");
+        simple_god_message((Options.language == lang_t::KO ? " — 당신의 독무대를 위해 관객을 준비시킵니다!" : " prepares the audience for your solo!"));
         apply_area_visible(_prepare_audience, you.pos());
 
         // Increment a delay timer to prevent players from spamming this ability
@@ -2268,7 +2268,7 @@ void uskayaw_bonds_audience()
     int count = apply_area_visible(_check_for_uskayaw_targets, you.pos());
     if (count > 1)
     {
-        simple_god_message(" links your audience in an emotional bond!");
+        simple_god_message((Options.language == lang_t::KO ? " — 관객들을 감정적 유대로 연결합니다!" : " links your audience in an emotional bond!"));
         apply_area_visible(_bond_audience, you.pos());
 
         // Increment a delay timer to prevent players from spamming this ability
