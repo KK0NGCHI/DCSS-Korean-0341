@@ -5516,7 +5516,7 @@ static int _monster_abjure_target(monster* target, int pow, bool actual)
         pow = pow / 2;
         if (pow < duration)
         {
-            simple_god_message(" shields your ally from puny magic!");
+            simple_god_message((Options.language == lang_t::KO ? " — 동료를 보잘것없는 마법에서 보호합니다!" : " shields your ally from puny magic!"));
             shielded = true;
         }
     }
