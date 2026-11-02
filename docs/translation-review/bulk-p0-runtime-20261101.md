@@ -59,7 +59,9 @@ completeness.
 - `source/god-passive.cc`: 3 divine passive/protection messages.
 - `source/god-passive.cc`: 3 Wu Jian attack announcements (lunge, whirlwind, wall jump).
 - Corrected the Korean divine protection output to retain `MSGCH_GOD`.
-- 57 output sites translated in total; English fallback preserved.
+- `source/spl-damage.cc`: 1 freezing damage/no-damage feedback output.
+- `source/mon-death.cc`: 1 death outcome output (explosion, destruction, kill variants).
+- 59 output sites translated in total; English fallback preserved.
 - Draft PR #174 opened for compiler verification; continue accumulating on this same PR rather than making small PRs.
 - CI for draft PR #174 was queued on 2026-11-02; no successful build or runtime verification established yet. Both build workflows now copy the modified `monster.cc`, `misc.cc`, `god-passive.cc`, `god-prayer.cc`, and `god-wrath.cc`.
 - QA: monster diagnostics now use explicit field labels and plain `%s` formats to avoid ambiguous particles and positional printf portability issues.
@@ -67,4 +69,8 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 57 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 59 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+
+## CI verification 2026-11-02
+
+Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-console-ko-runtime` and `inventory` checks. Subsequent translations in `spl-damage.cc` and `mon-death.cc` require fresh CI; do not carry the prior pass forward to newer commits. Korean death feedback currently uses field-label phrasing to avoid uninflected particles and requires natural-language QA.
