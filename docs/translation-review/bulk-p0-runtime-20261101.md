@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 58 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 73 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -80,3 +80,12 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - Removed a duplicate KO/else branch in `source/mon-death.cc`, restoring the source blob to its pre-batch state. The previous 59-site tally counted this already-localized site in error; revised cumulative count: **58** (including 4 diagnostic sites).
 - Reworded the 3 Wu Jian attack outputs in `source/god-passive.cc` into Korean sentences.
 - CI must be rerun after these corrections; no new successful check established for the corrected head yet.
+
+## 2026-11-02 additional monster effects batch
+
+- Latest previously checked head `e1d2d9c0832541a80a01160bbc447f7e181406cd` passed Linux KO runtime and inventory CI.
+- `source/mon-ench.cc`: 13 newly localized enchantment, grapnel, portal, merfolk and wind messages.
+- `source/spl-clouds.cc`: 1 rot cloud spell message.
+- `source/mon-cast.cc`: 1 wizard-only unsupported dummy monster message; an attempted additional chaos message was already localized and immediately reverted (do not count).
+- New sites: 15, cumulative **73** sites (including 5 diagnostics/developer messages); latest head still requires CI.
+- Next: CI status check, resolve particle grammar in `%s` monster output, translate remaining monster enchantment text, and Windows Tiles QA.
