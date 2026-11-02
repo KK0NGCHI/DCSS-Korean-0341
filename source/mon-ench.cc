@@ -917,7 +917,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
         if (props.exists(BINDING_SIGIL_DURATION_KEY))
         {
             if (!quiet)
-                simple_monster_message(*this, " lost momentum returns!", true);
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " — 잃었던 기세를 되찾습니다!" : " lost momentum returns!"), true);
             add_ench(mon_enchant(ENCH_SWIFT, &you,
                                  props[BINDING_SIGIL_DURATION_KEY].get_int()));
             props.erase(BINDING_SIGIL_DURATION_KEY);
@@ -1030,7 +1030,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_PYRRHIC_RECOLLECTION:
         if (!quiet)
-            simple_monster_message(*this, " memory burns away to nothing.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 기억이 완전히 불타 사라집니다." : " memory burns away to nothing."), true);
         spells.clear();
         spells.push_back({SPELL_PYRRHIC_RECOLLECTION, 0, MON_SPELL_NATURAL});
         spells.push_back({SPELL_BLINK_CLOSE, 15, MON_SPELL_WIZARD});
@@ -1061,12 +1061,12 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_ANTIMAGIC:
         if (!quiet)
-            simple_monster_message(*this, " magic is no longer disrupted.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 마법 방해 효과가 사라집니다." : " magic is no longer disrupted."), true);
         break;
 
     case ENCH_MIRROR_DAMAGE:
         if (!quiet)
-            simple_monster_message(*this, " dark mirror aura disappears.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 어두운 거울의 기운이 사라집니다." : " dark mirror aura disappears."), true);
         break;
 
     case ENCH_SLOWLY_DYING:
