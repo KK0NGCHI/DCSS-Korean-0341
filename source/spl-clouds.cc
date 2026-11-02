@@ -48,7 +48,7 @@ spret cast_putrefaction(monster* target, int pow, bool fail)
     env.markers.add(marker);
     env.markers.clear_need_activate();
 
-    mprf("Rot billows forth from %s wounds!", target->name(DESC_ITS).c_str());
+    mprf((Options.language == lang_t::KO ? "%s의 상처에서 부패한 기운이 뿜어져 나옵니다!" : "Rot billows forth from %s wounds!"), target->name(DESC_ITS).c_str());
 
     drain_player(75 - div_rand_round(pow * 4, 10), true, true);
 
