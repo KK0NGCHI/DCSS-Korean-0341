@@ -1671,19 +1671,24 @@ static bool _ignis_champion()
 
     // Message ordering is a bit touchy here.
     // First, we say what we're doing. TODO: more fun messages
-    simple_god_message(make_stringf(Options.language == lang_t::KO
-                                    ? " — %s을 복수의 도구로 축성합니다!"
-                                    : " anoints %s as %s of vengeance!",
-                                    multimonster_name_string(mons).c_str(),
-                                    mons.size() > 1 ? "" : "").c_str(),
-                                    false, GOD_IGNIS);
+    if (Options.language == lang_t::KO)
+        simple_god_message(make_stringf(" — 복수의 도구로 축성되는 대상: %s!",
+                                        multimonster_name_string(mons).c_str()).c_str(),
+                           false, GOD_IGNIS);
+    else
+        simple_god_message(make_stringf(" anoints %s as %s of vengeance!",
+                                        multimonster_name_string(mons).c_str(),
+                                        mons.size() > 1 ? "instruments" : "an instrument").c_str(),
+                           false, GOD_IGNIS);
 
     // Describe the effect on the monsters.
-    mprf(Options.language == lang_t::KO
-             ? "%s: 보호의 불꽃에 휩싸여 빠르게 이동하며 맹렬히 공격합니다!"
-             : "%s %s shrouded in protective flame, covering ground quickly, and attacking fiercely!",
-         mons.size() == 1 ? mons[0]->name(DESC_THE).c_str() : "The monsters",
-         mons.size() == 1 ? "is" : "are");
+    if (Options.language == lang_t::KO)
+        mprf("%s: 보호의 불꽃에 휩싸여 빠르게 이동하며 맹렬히 공격합니다!",
+             mons.size() == 1 ? mons[0]->name(DESC_THE).c_str() : "몬스터들");
+    else
+        mprf("%s %s shrouded in protective flame, covering ground quickly, and attacking fiercely!",
+             mons.size() == 1 ? mons[0]->name(DESC_THE).c_str() : "The monsters",
+             mons.size() == 1 ? "is" : "are");
 
     for (monster* mon : mons)
     {
