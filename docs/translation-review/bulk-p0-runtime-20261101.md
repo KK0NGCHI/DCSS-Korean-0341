@@ -57,11 +57,14 @@ completeness.
 - `source/monster.cc`: 2 additional weapon-brand aura output sites (freezing branch covers ranged and melee variants); mount death grammar corrected.
 - `source/god-wrath.cc`: 5 divine retribution messages.
 - `source/god-passive.cc`: 3 divine passive/protection messages.
-- 54 output sites translated in total; English fallback preserved.
+- `source/god-passive.cc`: 3 Wu Jian attack announcements (lunge, whirlwind, wall jump).
+- Corrected the Korean divine protection output to retain `MSGCH_GOD`.
+- 57 output sites translated in total; English fallback preserved.
 - No PR opened yet: continue accumulating translations until a coherent large batch is ready.
 - CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
 - QA: monster diagnostics now use explicit field labels and plain `%s` formats to avoid ambiguous particles and positional printf portability issues.
 - QA: equipment messages still use literal `이(가)`; replace with context-aware output grammar before final language-quality acceptance.
-- QA: the Korean divine protection branch in `god-passive.cc` uses the default message channel instead of `MSGCH_GOD`; correct before merging.
+- QA: divine protection channel mismatch fixed; verify compilation and display behavior.
+- QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 54 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 57 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
