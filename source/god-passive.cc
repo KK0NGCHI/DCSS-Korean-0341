@@ -825,7 +825,7 @@ void qazlal_element_adapt(beam_type flavour, int strength)
     }
 
     if (Options.language == lang_t::KO)
-        mprf("%s에 대한 보호가 %s.", descript.c_str(),
+        mprf(MSGCH_GOD, "%s에 대한 보호가 %s.", descript.c_str(),
              you.duration[dur] > 0 ? "강해집니다" : "생깁니다");
     else
         mprf(MSGCH_GOD, "You feel %sprotected from %s.",
