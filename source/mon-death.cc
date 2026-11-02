@@ -3047,7 +3047,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                     else
                         if (Options.language == lang_t::KO)
                         mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD,
-                             exploded ? "%s을 폭파합니다!" : destroyed ? "%s을 파괴합니다!" : "%s을 처치합니다!",
+                             exploded ? "폭파한 대상: %s!" : destroyed ? "파괴한 대상: %s!" : "처치한 대상: %s!",
                              mons.name(DESC_THE).c_str());
                     else
                         mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "You %s %s!",
