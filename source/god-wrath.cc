@@ -623,8 +623,8 @@ static bool _makhleb_summon_servants()
 
     if (summoned > 0)
     {
-        simple_god_message(summoned > 1 ? " sends minions to punish you." :
-                                          " sends a minion to punish you.",
+        simple_god_message(summoned > 1 ? (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 하수인들을 보냅니다." : " sends minions to punish you.") :
+                                          (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 하수인 하나를 보냅니다." : " sends a minion to punish you."),
                            false, GOD_MAKHLEB);
     }
     else
@@ -696,8 +696,8 @@ static bool _yredelemnul_retribution()
 
     if (count > 0)
     {
-        simple_god_message(count > 1 ? " sends servants to punish you." :
-                                       " sends a servant to punish you.",
+        simple_god_message(count > 1 ? (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 종복들을 보냅니다." : " sends servants to punish you.") :
+                                       (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 종복 하나를 보냅니다." : " sends a servant to punish you."),
                            false, god);
     }
     else
@@ -758,9 +758,9 @@ static bool _trog_retribution()
             }
         }
 
-        simple_god_message(count > 1 ? " sends monsters to punish you." :
-                           count > 0 ? " sends a monster to punish you."
-                                     : " has no time to punish you... now.",
+        simple_god_message(count > 1 ? (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 몬스터들을 보냅니다." : " sends monsters to punish you.") :
+                           count > 0 ? (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 몬스터 하나를 보냅니다." : " sends a monster to punish you.")
+                                     : (Options.language == lang_t::KO ? "  — 지금은 당신을 벌할 시간이 없습니다." : " has no time to punish you... now."),
                            false, god);
     }
     return true;
@@ -857,8 +857,8 @@ static bool _beogh_retribution()
             give_monster_proper_name(*mons);
 
         simple_god_message(
-            mons ? " sends forth an army of orcs."
-                 : " is still gathering forces against you.", false, god);
+            mons ? (Options.language == lang_t::KO ? "  — 오크 군대를 보냅니다." : " sends forth an army of orcs.")
+                 : (Options.language == lang_t::KO ? "  — 당신을 공격할 병력을 아직 모으고 있습니다." : " is still gathering forces against you."), false, god);
     }
     }
 
@@ -1001,7 +1001,7 @@ static void _lugonu_minion_retribution()
     }
 
     if (success)
-        simple_god_message(" sends minions to punish you.", false, god);
+        simple_god_message((Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 하수인들을 보냅니다." : " sends minions to punish you."), false, god);
     else
         simple_god_message((Options.language == lang_t::KO ? " 의 하수인들이 나타나지 않습니다." : " minions fail to arrive."), true, god);
 }
@@ -1348,8 +1348,8 @@ static bool _dithmenos_retribution()
             if (create_monster(mg, false))
                 count++;
         }
-        simple_god_message(count ? " weaves the shadows around you into monsters."
-                                 : " fails to incite the shadows against you.",
+        simple_god_message(count ? (Options.language == lang_t::KO ? "  — 주변의 그림자로 몬스터를 빚어냅니다." : " weaves the shadows around you into monsters.")
+                                 : (Options.language == lang_t::KO ? "  — 그림자들을 선동하는 데 실패합니다." : " fails to incite the shadows against you."),
                            false, god);
 
         if (coinflip())
@@ -1367,8 +1367,8 @@ static bool _dithmenos_retribution()
         if (!pos.origin())
         {
             monster* shadow = create_player_shadow(pos, false, spell);
-            simple_god_message(shadow ? " turns your shadow against you."
-                                      : " fails to turn your shadows against you.",
+            simple_god_message(shadow ? (Options.language == lang_t::KO ? "  — 당신의 그림자를 적으로 만듭니다." : " turns your shadow against you.")
+                                      : (Options.language == lang_t::KO ? "  — 당신의 그림자를 적으로 만드는 데 실패합니다." : " fails to turn your shadows against you."),
                                false, god);
         }
 
@@ -1740,7 +1740,7 @@ static bool _uskayaw_retribution()
         // else we intentionally fall through
 
     case 4:
-        simple_god_message(" booms out: Revellers, it's time to dance!",
+        simple_god_message((Options.language == lang_t::KO ? "  — 외칩니다. 흥청망청 즐기는 자들이여, 춤출 시간이다!" : " booms out: Revellers, it's time to dance!"),
                            false, god);
         noisy(35, you.pos());
         break;
@@ -1848,7 +1848,7 @@ static void _tso_blasts_cleansing_flame(const char *message)
     if (message)
         god_speaks(GOD_SHINING_ONE, message);
 
-    simple_god_message(" blasts you with cleansing flame!", false,
+    simple_god_message((Options.language == lang_t::KO ? "  — 정화의 불꽃으로 당신을 공격합니다!" : " blasts you with cleansing flame!"), false,
                        GOD_SHINING_ONE);
 
     // damage is 2d(pow), *3/2 for undead and demonspawn
@@ -1888,7 +1888,7 @@ static void _god_smites_you(god_type god, const char *message,
     for (int i = 0; i < 5; ++i)
         divine_hurt += random2(you.experience_level);
 
-    simple_god_message(" smites you!", false, god);
+    simple_god_message((Options.language == lang_t::KO ? "  — 당신에게 신벌을 내립니다!" : " smites you!"), false, god);
     ouch(divine_hurt, death_type, MID_NOBODY, aux.c_str());
 }
 
