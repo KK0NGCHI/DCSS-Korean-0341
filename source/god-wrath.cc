@@ -623,7 +623,7 @@ static bool _makhleb_summon_servants()
 
     if (summoned > 0)
     {
-        simple_god_message(summoned > 1 ? (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 하수인들을 보냅니다." : " sends minions to punish you.") :
+        simple_god_message(summoned > 1 ? (Options.language == lang_t::KO ? " — 당신을 벌하기 위해 하수인들을 보냅니다." : " sends minions to punish you.") :
                                           (Options.language == lang_t::KO ? "  — 당신을 벌하기 위해 하수인 하나를 보냅니다." : " sends a minion to punish you."),
                            false, GOD_MAKHLEB);
     }
@@ -1671,13 +1671,17 @@ static bool _ignis_champion()
 
     // Message ordering is a bit touchy here.
     // First, we say what we're doing. TODO: more fun messages
-    simple_god_message(make_stringf(" anoints %s as %s of "
-                                    "vengeance!", multimonster_name_string(mons).c_str(),
-                                    mons.size() > 1 ? "instruments" : "an instrument").c_str(),
+    simple_god_message(make_stringf(Options.language == lang_t::KO
+                                    ? " — %s을 복수의 도구로 축성합니다!"
+                                    : " anoints %s as %s of vengeance!",
+                                    multimonster_name_string(mons).c_str(),
+                                    mons.size() > 1 ? "" : "").c_str(),
                                     false, GOD_IGNIS);
 
     // Describe the effect on the monsters.
-    mprf("%s %s shrouded in protective flame, covering ground quickly, and attacking fiercely!",
+    mprf(Options.language == lang_t::KO
+             ? "%s: 보호의 불꽃에 휩싸여 빠르게 이동하며 맹렬히 공격합니다!"
+             : "%s %s shrouded in protective flame, covering ground quickly, and attacking fiercely!",
          mons.size() == 1 ? mons[0]->name(DESC_THE).c_str() : "The monsters",
          mons.size() == 1 ? "is" : "are");
 
@@ -1719,7 +1723,9 @@ static bool _uskayaw_retribution()
     case 1:
         if (mon && mon->can_go_berserk())
         {
-            simple_god_message(make_stringf(" drives %s into a dance frenzy!",
+            simple_god_message(make_stringf(Options.language == lang_t::KO
+                ? " — %s을 광란의 춤에 빠뜨립니다!"
+                : " drives %s into a dance frenzy!",
                                      mon->name(DESC_THE).c_str()).c_str(),
                                      false, god);
             mon->go_berserk(true);
@@ -1731,8 +1737,9 @@ static bool _uskayaw_retribution()
     case 3:
         if (mon && you.can_be_paralysed())
         {
-            simple_god_message(" booms out: Time for someone else to take a "
-                               "solo!", false, god);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 외칩니다. 이제 다른 누군가가 독무대를 차지할 시간이다!"
+                : " booms out: Time for someone else to take a solo!", false, god);
             you.paralyse(nullptr, random_range(2, 5), _god_wrath_name(god));
             dec_penance(god, 1);
             return false;
