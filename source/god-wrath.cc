@@ -224,7 +224,7 @@ static void _tso_summon_warriors()
     }
     else
     {
-        simple_god_message(" divine host fails to appear.",
+        simple_god_message((Options.language == lang_t::KO ? " 의 신성한 군세가 나타나지 않습니다." : " divine host fails to appear."),
                            true, GOD_SHINING_ONE);
     }
 }
@@ -234,7 +234,7 @@ static void _tso_summon_warriors()
  */
 static void _tso_shouts()
 {
-    simple_god_message(" booms out: Take the path of righteousness! REPENT!",
+    simple_god_message((Options.language == lang_t::KO ? " — 외칩니다. 의로운 길을 걸어라! 회개하라!" : " booms out: Take the path of righteousness! REPENT!"),
                        false, GOD_SHINING_ONE);
     noisy(25, you.pos()); // same as scroll of noise
 }
@@ -287,7 +287,7 @@ static bool _zin_remove_good_mutations()
     const god_type god = GOD_ZIN;
     bool success = false;
 
-    simple_god_message(" draws some chaos from your body!", false, god);
+    simple_god_message((Options.language == lang_t::KO ? " — 몸에서 혼돈을 일부 제거합니다!" : " draws some chaos from your body!"), false, god);
 
     bool failMsg = true;
 
@@ -305,7 +305,7 @@ static bool _zin_remove_good_mutations()
     }
 
     if (success && !you.how_mutated())
-        simple_god_message(" rids your body of chaos!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 몸속 혼돈을 제거합니다!" : " rids your body of chaos!"), false, god);
     return success;
 }
 
@@ -326,7 +326,7 @@ static bool _zin_retribution()
     case 2:
     case 3:
     case 4: // recital
-        simple_god_message(" recites the Axioms of Law to you!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 율법의 공리를 낭송합니다!" : " recites the Axioms of Law to you!"), false, god);
         switch (random2(4))
         {
         case 0:
@@ -352,7 +352,7 @@ static bool _zin_retribution()
         }
         break;
     case 5: // noisiness
-        simple_god_message(" booms out: Turn to the light! REPENT!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 외칩니다. 빛으로 돌아오라! 회개하라!" : " booms out: Turn to the light! REPENT!"), false, god);
         noisy(25, you.pos()); // same as scroll of noise
         break;
     }
@@ -393,7 +393,7 @@ static bool _cheibriados_retribution()
     }
     else
     {
-        simple_god_message(" strikes the hour, and time shudders.", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 시각을 알리자 시간이 떨립니다." : " strikes the hour, and time shudders."), false, god);
         noisy(40, you.pos());
     }
 
@@ -429,7 +429,7 @@ void lucy_check_meddling()
         {
             if (!banished)
             {
-                simple_god_message(" does not welcome meddling.");
+                simple_god_message((Options.language == lang_t::KO ? " — 간섭을 용납하지 않습니다." : " does not welcome meddling."));
                 banished = true;
             }
             mon->banish(&you);
@@ -440,7 +440,7 @@ void lucy_check_meddling()
 static void _spell_retribution(monster* avatar, spell_type spell, god_type god,
                                const char* message = nullptr)
 {
-    simple_god_message(message ? message : " rains destruction down upon you!",
+    simple_god_message(message ? message : (Options.language == lang_t::KO ? " — 파멸을 쏟아붓습니다!" : " rains destruction down upon you!"),
                        false, god);
     bolt beam;
     beam.source = you.pos();
@@ -542,7 +542,7 @@ static bool _makhleb_call_down_destruction()
 
     if (avatar == nullptr)
     {
-        simple_god_message(" has no time to deal with you just now.", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 지금 당신을 상대할 시간이 없습니다." : " has no time to deal with you just now."), false,
                            god);
         return false; // not a very dazzling divine experience...
     }
@@ -627,7 +627,7 @@ static bool _makhleb_summon_servants()
                            false, GOD_MAKHLEB);
     }
     else
-        simple_god_message(" minions fail to arrive.", true, GOD_MAKHLEB);
+        simple_god_message((Options.language == lang_t::KO ? " 의 하수인들이 나타나지 않습니다." : " minions fail to arrive."), true, GOD_MAKHLEB);
 
     return true;
 
@@ -700,11 +700,11 @@ static bool _yredelemnul_retribution()
                            false, god);
     }
     else
-        simple_god_message(" servants fail to arrive.", true, god);
+        simple_god_message((Options.language == lang_t::KO ? " 의 종복들이 나타나지 않습니다." : " servants fail to arrive."), true, god);
 
     if (coinflip())
     {
-        simple_god_message(" binds you in chains!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 당신을 사슬로 묶습니다!" : " binds you in chains!"), false, god);
         you.increase_duration(DUR_NO_MOMENTUM, random_range(3, 8));
     }
 
@@ -720,7 +720,7 @@ static bool _trog_retribution()
         // If the player is healthy and in a reasonable tension range,
         // make the player do a cruel mockery of berserk:
         // weakly thrashing in place, regularly hitting walls and floors.
-        simple_god_message(" tears away your strength and self-control!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 당신의 힘과 자제력을 앗아갑니다!" : " tears away your strength and self-control!"), false, god);
         int vex_max = max(4, you.experience_level / 4);
         you.weaken(nullptr, 25);
         you.vex(nullptr, random_range(3, vex_max), "Trog's wrath");
@@ -876,9 +876,9 @@ static bool _okawaru_retribution()
         count += _okawaru_random_servant();
 
     if (count > 0)
-        simple_god_message(" sends forces against you!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 병력을 보내 당신을 공격합니다!" : " sends forces against you!"), false, god);
     else
-        simple_god_message(" forces are busy with other wars.", true, god);
+        simple_god_message((Options.language == lang_t::KO ? " 의 병력은 다른 전쟁에 동원돼 있습니다." : " forces are busy with other wars."), true, god);
 
     return true;
 }
@@ -888,7 +888,7 @@ static bool _sif_muna_retribution()
     // magic/intelligence theme
     const god_type god = GOD_SIF_MUNA;
 
-    simple_god_message(" wrath finds you.", true, god);
+    simple_god_message((Options.language == lang_t::KO ? " 의 분노가 당신에게 닥칩니다." : " wrath finds you."), true, god);
 
     switch (random2(10))
     {
@@ -934,13 +934,13 @@ static void _lugonu_transloc_retribution()
     if (coinflip())
     {
         // Give extra opportunities for embarrassing teleports.
-        simple_god_message(" wrath scatters you!", true, god);
+        simple_god_message((Options.language == lang_t::KO ? " 의 분노로 당신은 흩어져 날아갑니다!" : " wrath scatters you!"), true, god);
         you.props[TELEPORTITIS_SOURCE].get_int() = MID_NOBODY;
         you_teleport_now(false, "Space warps around you!");
     }
     else if (coinflip())
     {
-        simple_god_message(" draws you home!", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 당신을 집으로 끌어당깁니다!" : " draws you home!"), false, god);
         you.banish(nullptr, "Lugonu's touch", true);
     }
 }
@@ -1002,7 +1002,7 @@ static void _lugonu_minion_retribution()
     if (success)
         simple_god_message(" sends minions to punish you.", false, god);
     else
-        simple_god_message(" minions fail to arrive.", true, god);
+        simple_god_message((Options.language == lang_t::KO ? " 의 하수인들이 나타나지 않습니다." : " minions fail to arrive."), true, god);
 }
 
 /**
@@ -1089,7 +1089,7 @@ static bool _vehumet_retribution()
     monster* avatar = _get_wrath_avatar(god);
     if (!avatar)
     {
-        simple_god_message(" has no time to deal with you just now.", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 지금 당신을 상대할 시간이 없습니다." : " has no time to deal with you just now."), false,
                            god);
         return false;
     }
@@ -1097,7 +1097,7 @@ static bool _vehumet_retribution()
     const spell_type spell = _vehumet_wrath_type();
     if (spell == SPELL_NO_SPELL)
     {
-        simple_god_message(" has no time to deal with you just now.", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 지금 당신을 상대할 시간이 없습니다." : " has no time to deal with you just now."), false,
                            god);
         _reset_avatar(*avatar);
         return false;
@@ -1113,7 +1113,7 @@ static bool _nemelex_retribution()
     // card theme
     const god_type god = GOD_NEMELEX_XOBEH;
 
-    simple_god_message(" makes you draw from the deck of Punishment.", false,
+    simple_god_message((Options.language == lang_t::KO ? " — 징벌의 덱에서 카드를 뽑게 합니다." : " makes you draw from the deck of Punishment."), false,
                        god);
     draw_from_deck_of_punishment();
     return true;
@@ -1381,7 +1381,7 @@ static bool _dithmenos_retribution()
         break;
     }
     case 3:
-        simple_god_message(" tears the darkness away from you.", false, god);
+        simple_god_message((Options.language == lang_t::KO ? " — 당신에게서 어둠을 떼어냅니다." : " tears the darkness away from you."), false, god);
         you.sentinel_mark();
         break;
     }
@@ -1432,12 +1432,12 @@ static void _qazlal_summon_elementals()
 
     if (success)
     {
-        simple_god_message(" incites the elements against you!", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 원소들을 선동하여 당신을 공격하게 합니다!" : " incites the elements against you!"), false,
                            god);
     }
     else
     {
-        simple_god_message(" fails to incite the elements against you.", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 원소들을 선동하는 데 실패합니다." : " fails to incite the elements against you."), false,
                            god);
     }
 }
@@ -1447,7 +1447,7 @@ static void _qazlal_summon_elementals()
  */
 static void _qazlal_elemental_vulnerability()
 {
-    simple_god_message(" strips away your elemental protection.", false, GOD_QAZLAL);
+    simple_god_message((Options.language == lang_t::KO ? " — 원소 보호 효과를 벗겨냅니다." : " strips away your elemental protection."), false, GOD_QAZLAL);
 
     // Pick a random elemental bane the player doesn't aready have.
     vector<bane_type> banes;
@@ -1481,7 +1481,7 @@ static bool _qazlal_retribution()
 {
     if (coinflip())
     {
-        simple_god_message(" causes a mighty clap of thunder!", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 거대한 천둥소리를 일으킵니다!" : " causes a mighty clap of thunder!"), false,
                            GOD_QAZLAL);
         noisy(25, you.pos());
     }
@@ -1570,7 +1570,7 @@ static bool _wu_jian_retribution()
         }
     }
     else
-        simple_god_message(" divine weapons fail to arrive.", true, god);
+        simple_god_message((Options.language == lang_t::KO ? " 의 신성한 무기들이 나타나지 않습니다." : " divine weapons fail to arrive."), true, god);
 
     return true;
 }
@@ -1590,7 +1590,7 @@ static void _summon_ignis_elementals()
         god_speaks(god, msg.c_str());
     }
     else
-        simple_god_message(" divine wrath fails to arrive.", true, god);
+        simple_god_message((Options.language == lang_t::KO ? " 의 신성한 분노가 나타나지 않습니다." : " divine wrath fails to arrive."), true, god);
 }
 
 static bool _ignis_shaft()
@@ -1600,7 +1600,7 @@ static bool _ignis_shaft()
     if (!you.shaftable())
         return false;
 
-    simple_god_message(" burns the ground from beneath your feet!", false,
+    simple_god_message((Options.language == lang_t::KO ? " — 당신 발밑의 땅을 불태웁니다!" : " burns the ground from beneath your feet!"), false,
                        GOD_IGNIS);
 
     // player::do_shaft() already checks resist_dislodge, but the message is a
