@@ -219,8 +219,9 @@ static void _tso_summon_warriors()
 
     if (success)
     {
-        simple_god_message(" sends the divine host to punish you for your evil "
-                           "ways!", false, GOD_SHINING_ONE);
+        simple_god_message(Options.language == lang_t::KO
+            ? " — 당신의 악행을 벌하기 위해 신성한 군세를 보냅니다!"
+            : " sends the divine host to punish you for your evil ways!", false, GOD_SHINING_ONE);
     }
     else
     {
