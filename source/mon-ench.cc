@@ -312,12 +312,15 @@ void monster::add_enchantment_effect(const mon_enchant &ench, bool quiet)
         {
             if (!quiet)
             {
-                mprf("You %sdetect the %s %s.",
-                     friendly() ? "" : "can no longer ",
-                     ench.ench == ENCH_HEXED ? "dominated" :
-                     ench.ench == ENCH_CHARM ? "charmed"
-                                             : "bribed",
-                     name(DESC_PLAIN, true).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf(friendly() ? "다시 감지되는 몬스터: %s." : "더 이상 감지할 수 없는 몬스터: %s.",
+                         name(DESC_PLAIN, true).c_str());
+                else
+                    mprf("You %sdetect the %s %s.",
+                         friendly() ? "" : "can no longer ",
+                         ench.ench == ENCH_HEXED ? "dominated" :
+                         ench.ench == ENCH_CHARM ? "charmed" : "bribed",
+                         name(DESC_PLAIN, true).c_str());
             }
 
             autotoggle_autopickup(!friendly());
@@ -593,9 +596,13 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
                         : me.ench == ENCH_HEXED ? "dominated"
                                                 : "bribed");
 
-                mprf("You can %s detect %s.",
-                     friendly() ? "once again" : "no longer",
-                     name(DESC_THE, true).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf(friendly() ? "다시 감지할 수 있는 몬스터: %s." : "더 이상 감지할 수 없는 몬스터: %s.",
+                         name(DESC_THE, true).c_str());
+                else
+                    mprf("You can %s detect %s.",
+                         friendly() ? "once again" : "no longer",
+                         name(DESC_THE, true).c_str());
             }
 
             if (!friendly())
@@ -677,7 +684,8 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     case ENCH_SOUL_RIPE:
         // Print message notifying the player, even if they cannot see us
         if (!quiet)
-            mprf("You lose your grip on %s soul.", name(DESC_ITS, true).c_str());
+            mprf(Options.language == lang_t::KO ? "%s의 영혼에 대한 지배력을 잃습니다." : "You lose your grip on %s soul.",
+                 name(DESC_ITS, true).c_str());
         break;
 
     case ENCH_AWAKEN_FOREST:
