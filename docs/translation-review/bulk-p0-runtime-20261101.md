@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 106 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 129 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -106,3 +106,13 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - **This batch: 30 distinct output sites. Cumulative: 106 output sites, including 5 diagnostic/developer sites.**
 - Previous head `5ec55e542cc229fee3c18961772bb310a1d7bfa8` was pending CI when work began. New head requires fresh Linux runtime compilation CI.
 - Next: check CI status; scan the bulk additions for overlapping Korean branches and placeholder mismatches; refine monster-name particle-free phrasing; translate further `simple_monster_message` instances in combat and enchantment subsystems.
+
+## 2026-11-03 bulk monster-message batch
+
+- Pre-batch head `d0030bed8cf3e7f51577b1d60d1ea843cf573eeb`: inventory and Linux Korean runtime smoke CI both passed.
+- `source/mon-ench.cc`: 4 additional effect-expiry messages.
+- `source/mon-act.cc`: 2 door-breaking/door-eating messages.
+- `source/mon-behv.cc`: 1 gate-passing message.
+- `source/mon-death.cc`: 16 monster defeat, death, falling, return, and pacification messages.
+- 23 new output sites, **129 cumulative** (5 developer/diagnostic sites), pending fresh CI at new head.
+- Next: check fresh CI, inspect output formatting and already-present Korean branches, continue scanning monster action/death messages in larger batches, and verify Windows Tiles behavior separately.
