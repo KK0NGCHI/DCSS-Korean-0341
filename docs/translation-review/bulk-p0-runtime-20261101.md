@@ -60,8 +60,8 @@ completeness.
 - `source/god-passive.cc`: 3 Wu Jian attack announcements (lunge, whirlwind, wall jump).
 - Corrected the Korean divine protection output to retain `MSGCH_GOD`.
 - 57 output sites translated in total; English fallback preserved.
-- No PR opened yet: continue accumulating translations until a coherent large batch is ready.
-- CI status for this cumulative branch has not been confirmed; do not claim successful build or runtime verification.
+- Draft PR #174 opened for compiler verification; continue accumulating on this same PR rather than making small PRs.
+- CI for draft PR #174 was queued on 2026-11-02; no successful build or runtime verification established yet. Both build workflows now copy the modified `monster.cc`, `misc.cc`, `god-passive.cc`, `god-prayer.cc`, and `god-wrath.cc`.
 - QA: monster diagnostics now use explicit field labels and plain `%s` formats to avoid ambiguous particles and positional printf portability issues.
 - QA: equipment messages still use literal `이(가)`; replace with context-aware output grammar before final language-quality acceptance.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
