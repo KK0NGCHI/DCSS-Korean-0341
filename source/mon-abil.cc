@@ -95,7 +95,7 @@ void boris_covet_orb(monster* boris)
         return;
 
     if (boris->observable())
-        simple_monster_message(*boris, " is empowered by the presence of the orb!");
+        simple_monster_message(*boris, (Options.language == lang_t::KO ? " — 오브의 존재로 힘이 강해집니다!" : " is empowered by the presence of the orb!"));
 
     boris->add_ench(mon_enchant(ENCH_HASTE, boris, INFINITE_DURATION));
     boris->add_ench(mon_enchant(ENCH_EMPOWERED_SPELLS, boris, INFINITE_DURATION));
@@ -994,18 +994,18 @@ void seismosaurus_egg_hatch(monster* mons)
 
     if (hatch.duration  == 4)
     {
-        simple_monster_message(*mons, " cracks slightly.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 표면에 작은 균열이 생깁니다." : " cracks slightly."));
         mons->number = 1;
     }
     else if (hatch.duration  == 2)
     {
-        simple_monster_message(*mons, " shakes eagerly.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 격렬하게 흔들립니다." : " shakes eagerly."));
         mons->number = 2;
     }
     // Hatching time!
     else if (hatch.duration  == 0)
     {
-        simple_monster_message(*mons, " hatches with a roar like a landslide!",
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 산사태 같은 포효와 함께 부화합니다!" : " hatches with a roar like a landslide!"),
                                 false, MSGCH_MONSTER_SPELL);
 
         const int old_hd = mons->get_experience_level();
@@ -1290,7 +1290,7 @@ bool mon_special_ability(monster* mons)
 
         if (mons->move_to(spot, MV_DELIBERATE | MV_TRANSLOCATION, true))
         {
-            simple_monster_message(*mons, " flows with the water.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 물결을 따라 움직입니다." : " flows with the water."));
             mons->finalise_movement();
             used = true;
         }
@@ -1314,7 +1314,7 @@ bool mon_special_ability(monster* mons)
         if (target.origin() || !mons->move_to(target, MV_DELIBERATE | MV_TRANSLOCATION, true))
             break;
 
-        simple_monster_message(*mons, " flows through the trees.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 나무 사이로 흘러갑니다." : " flows through the trees."));
         mons->finalise_movement();
         used = true;
     }
@@ -1546,7 +1546,7 @@ void solar_ember_blast()
 
     if (!ember->has_ench(ENCH_SPELL_CHARGED))
     {
-        simple_monster_message(*ember, " glows brighter.");
+        simple_monster_message(*ember, (Options.language == lang_t::KO ? " — 한층 밝게 빛납니다." : " glows brighter."));
         ember->add_ench(mon_enchant(ENCH_SPELL_CHARGED, ember, random_range(70, 90)));
         you.did_trigger(DID_SOLAR_EMBER);
         return;
@@ -1561,7 +1561,7 @@ void solar_ember_blast()
     if (targs.empty())
         return;
 
-    simple_monster_message(*ember, " blazes with a fierce heat.", false, MSGCH_FRIEND_SPELL);
+    simple_monster_message(*ember, (Options.language == lang_t::KO ? " — 맹렬한 열기를 내뿜습니다." : " blazes with a fierce heat."), false, MSGCH_FRIEND_SPELL);
 
     bolt beam;
     beam.flavour = BEAM_FIRE;
