@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 76 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 106 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -97,3 +97,12 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - New cumulative count: **76** sites, of which **71** are non-diagnostic messages.
 - QA: translated detection messages use target-label grammar to avoid unhandled Korean particles. Retain existing charm/bribe state context in later prose polish.
 - Next: check the new CI run, inspect remaining genuinely untranslated spell outputs, fix Korean water-attack particle placeholders and review natural wording, then continue translations on draft PR #174.
+
+## 2026-11-02 bulk combat/status update
+
+- `source/mon-ench.cc`: 20 `simple_monster_message` status expiry/impact messages localized; use appended label phrasing pending grammar QA.
+- `source/mon-abil.cc`: 8 monster ability and movement messages localized, in addition to the solar-flare hit message.
+- `source/fineff.cc`: 1 electrical discharge hit message localized.
+- **This batch: 30 distinct output sites. Cumulative: 106 output sites, including 5 diagnostic/developer sites.**
+- Previous head `5ec55e542cc229fee3c18961772bb310a1d7bfa8` was pending CI when work began. New head requires fresh Linux runtime compilation CI.
+- Next: check CI status; scan the bulk additions for overlapping Korean branches and placeholder mismatches; refine monster-name particle-free phrasing; translate further `simple_monster_message` instances in combat and enchantment subsystems.
