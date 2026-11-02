@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 147 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 178 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -125,3 +125,12 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - `source/mon-cast.cc`: 2 god-protection messages.
 - 18 new output sites, cumulative **147** (5 diagnostic/developer sites); post-batch CI required.
 - Next: check new CI, review monster-message suffix formatting and dynamic grammar, continue scanning non-`mpr` output paths and translate further batches, then Windows Tiles spot checks.
+
+## 2026-11-03 bulk divine messages
+
+- Previous baseline head `3bb32cd0896ace30bf0a9ebef36834ea38469ef4` passed `inventory` and `linux-console-ko-runtime`.
+- `source/god-wrath.cc`: 29 divine wrath, speech, failure, protection and punishment messages.
+- `source/god-passive.cc`: 2 audience-related deity passive messages.
+- This batch: **31** new output sites; cumulative **178** (5 developer/diagnostic).
+- New head requires CI rerun; output suffixes still need natural Korean particle/grammar QA. Do not merge until verified.
+- Next: check CI for this head, revise deity speech Korean particles and verbose strings, scan multiline and dynamic `simple_god_message` calls for more messages, and translate to at least 200 sites on this draft PR.
