@@ -3761,7 +3761,7 @@ static bool _do_move_monster(monster& mons, const coord_def& delta)
                     interrupt_activity(activity_interrupt::sense_monster);
                 }
                 else
-                    simple_monster_message(mons, " bursts through the door, destroying it!");
+                    simple_monster_message(mons, (Options.language == lang_t::KO ? " — 문을 부수고 뛰쳐나옵니다!" : " bursts through the door, destroying it!"));
 
                 update_monsters_in_view();
             }
@@ -3789,7 +3789,7 @@ static bool _do_move_monster(monster& mons, const coord_def& delta)
                     interrupt_activity(activity_interrupt::sense_monster);
                 }
                 else
-                    simple_monster_message(mons, " eats the door!");
+                    simple_monster_message(mons, (Options.language == lang_t::KO ? " — 문을 먹어 치웁니다!" : " eats the door!"));
 
                 update_monsters_in_view();
             }
