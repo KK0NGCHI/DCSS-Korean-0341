@@ -1971,7 +1971,7 @@ static bool _wu_jian_lunge(coord_def old_pos, coord_def new_pos,
     const int number_of_attacks = _wu_jian_number_of_attacks(dmg_mult, false);
 
     if (Options.language == lang_t::KO)
-        mprf("돌진 공격 대상: %s%s%s.", mons->name(DESC_THE).c_str(),
+        mprf("%s에게 돌진하여 공격합니다%s%s.", mons->name(DESC_THE).c_str(),
              number_of_attacks > 1 ? " (연속 공격)" : "",
              wu_jian_has_momentum(WU_JIAN_ATTACK_LUNGE) ? " (강력한 기세)" : "");
     else
@@ -2035,7 +2035,7 @@ static bool _wu_jian_whirlwind(coord_def old_pos, coord_def new_pos,
         int dmg_mult = 0;
         const int number_of_attacks = _wu_jian_number_of_attacks(dmg_mult, false);
         if (Options.language == lang_t::KO)
-            mprf("회전 공격 대상: %s%s%s.", mons->name(DESC_THE).c_str(),
+            mprf("회전하며 %s에게 공격을 가합니다%s%s.", mons->name(DESC_THE).c_str(),
                  number_of_attacks > 1 ? " (연속 공격)" : "",
                  wu_jian_has_momentum(WU_JIAN_ATTACK_WHIRLWIND) ? " (강력한 기세)" : "");
         else
@@ -2136,7 +2136,7 @@ void wu_jian_wall_jump_effects()
         int dmg_mult = 0;
         const int number_of_attacks = _wu_jian_number_of_attacks(dmg_mult, true);
         if (Options.language == lang_t::KO)
-            mprf("공중에서 공격하는 대상: %s%s%s.", target->name(DESC_THE).c_str(),
+            mprf("위에서 %s에게 공격을 가합니다%s%s.", target->name(DESC_THE).c_str(),
                  number_of_attacks > 1 ? " (연속 공격)" : "",
                  wu_jian_has_momentum(WU_JIAN_ATTACK_WALL_JUMP) ? " (강력한 기세)" : "");
         else
