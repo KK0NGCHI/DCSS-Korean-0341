@@ -2661,7 +2661,7 @@ bool monster::go_frenzy(actor *source)
 
     mons_att_changed(this);
 
-    if (simple_monster_message(*this, " flies into a frenzy!"))
+    if (simple_monster_message(*this, (Options.language == lang_t::KO ? " — 광란에 빠집니다!" : " flies into a frenzy!")))
         // Xom likes monsters going insane.
         xom_is_stimulated(friendly() ? 25 : 100);
 
@@ -2693,7 +2693,7 @@ bool monster::go_berserk(bool intentional, bool /* potion */)
         wield_melee_weapon();
 
     add_ench(ENCH_BERSERK);
-    if (simple_monster_message(*this, " goes berserk!"))
+    if (simple_monster_message(*this, (Options.language == lang_t::KO ? " — 광폭화합니다!" : " goes berserk!")))
         // Xom likes monsters going berserk.
         xom_is_stimulated(friendly() ? 25 : 100);
 
@@ -2746,7 +2746,7 @@ void monster::banish(const actor *agent, const string &, bool force)
     if (!force && player_in_branch(BRANCH_ABYSS)
         && x_chance_in_y(you.depth, brdepth[BRANCH_ABYSS]))
     {
-        simple_monster_message(*this, " wobbles for a moment.");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 잠시 비틀거립니다." : " wobbles for a moment."));
         return;
     }
 
@@ -2762,11 +2762,11 @@ void monster::banish(const actor *agent, const string &, bool force)
 
     if (mons_is_mons_class(this, MONS_ROYAL_JELLY))
     {
-        simple_monster_message(*this, " wobbles defiantly for a moment.");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 잠시 저항하듯 비틀거립니다." : " wobbles defiantly for a moment."));
         return;
     }
 
-    simple_monster_message(*this, " is devoured by a tear in reality.", false,
+    simple_monster_message(*this, (Options.language == lang_t::KO ? " — 현실의 균열에 삼켜집니다." : " is devoured by a tear in reality."), false,
                            MSGCH_BANISHMENT);
     if (agent && mons_gives_xp(*this, *agent) && damage_contributes_xp(*agent))
     {
@@ -4250,7 +4250,7 @@ int monster::hurt(const actor *agent, int amount, beam_type flavour,
 
     if (damage_immune(agent))
     {
-        simple_monster_message(*this, " is warded from harm.");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 피해를 막아내는 보호를 받습니다." : " is warded from harm."));
         return 0;
     }
 
@@ -4482,7 +4482,7 @@ bool monster::vex(const actor *who, int duration, string /* source */,
     if (!special_message.empty())
         simple_monster_message(*this, special_message.c_str());
     else
-        simple_monster_message(*this, " is overwhelmed by frustration!");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 좌절감에 휩싸입니다!" : " is overwhelmed by frustration!"));
     add_ench(mon_enchant(ENCH_VEXED, who, duration * BASELINE_DELAY));
 
     return true;
@@ -5214,7 +5214,7 @@ bool monster::malmutate(const actor* source, const string& /*reason*/)
         return true;
     }
 
-    simple_monster_message(*this, " twists and deforms.");
+    simple_monster_message(*this, (Options.language == lang_t::KO ? " — 뒤틀리고 변형됩니다." : " twists and deforms."));
     add_ench(mon_enchant(ENCH_WRETCHED, source));
     return true;
 }
@@ -5493,7 +5493,7 @@ void monster::finalise_movement(const actor* to_blame)
     if (has_ench(ENCH_AQUATIC_LAND))
     {
         if (!monster_habitable_grid(this, pos()))
-            simple_monster_message(*this, " flops around on dry land!");
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 마른 땅에서 퍼덕거립니다!" : " flops around on dry land!"));
         else if (!monster_habitable_grid(this, last_move_pos))
         {
             if (you.can_see(*this))
@@ -5740,9 +5740,9 @@ void monster::weaken(const actor *attacker, int pow)
         return;
 
     if (!has_ench(ENCH_WEAK))
-        simple_monster_message(*this, " looks weaker.");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 약해 보입니다." : " looks weaker."));
     else
-        simple_monster_message(*this, " looks even weaker.");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 더욱 약해 보입니다." : " looks even weaker."));
 
     add_ench(mon_enchant(ENCH_WEAK, attacker,
                          (pow + random2(pow + 3)) * BASELINE_DELAY));
@@ -5853,7 +5853,7 @@ void monster::stagger(int energy_loss)
 
     // Print a message if enough energy is lost to cost a normal-speed turn.
     if (speed_increment / 10 < old_energy / 10)
-        simple_monster_message(*this, " is staggered.");
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 비틀거립니다." : " is staggered."));
 }
 
 int monster::beam_resists(bolt &beam, int hurted, bool doEffects, string /*source*/)
@@ -6224,7 +6224,7 @@ void monster::react_to_damage(const actor *oppressor, int damage,
     else if (type == MONS_NAMELESS_REVENANT && has_ench(ENCH_PYRRHIC_RECOLLECTION)
              && hit_points * 2 < max_hit_points)
     {
-        simple_monster_message(*this, " blaze of memory is extinguished!", true, MSGCH_MONSTER_ENCHANT);
+        simple_monster_message(*this, (Options.language == lang_t::KO ? " — 기억의 불길이 꺼집니다!" : " blaze of memory is extinguished!"), true, MSGCH_MONSTER_ENCHANT);
         del_ench(ENCH_PYRRHIC_RECOLLECTION, true);
     }
 }
