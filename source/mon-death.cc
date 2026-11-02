@@ -1149,7 +1149,7 @@ static bool _monster_avoided_death(monster* mons, killer_type killer,
         {
             if (killer == KILL_BANISHED)
             {
-                simple_god_message(" pulls their child back from the Abyss.",
+                simple_god_message((Options.language == lang_t::KO ? " — 자신의 자식을 심연에서 끌어냅니다." : " pulls their child back from the Abyss."),
                                    false, GOD_BEOGH);
             }
 
@@ -3231,7 +3231,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                      || mons.type == MONS_WALKING_ALEMBIC
                      || mons.type == MONS_DIAMOND_SAWBLADE)
             {
-                msg = (Options.language == lang_t::KO ? " — 산산이 무너집니다." : " falls apart.");
+                msg = (Options.language == lang_t::KO ? " — 산산이 무너집니다." : (Options.language == lang_t::KO ? " — 산산이 부서집니다." : " falls apart."));
             }
             else if (mons.type == MONS_PLATINUM_PARAGON)
                 msg = " expends the last of its power.";
