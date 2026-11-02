@@ -1200,9 +1200,22 @@ static void _maybe_attune_regen_items()
     plural = plural || eq_list.size() > 1;
     string eq_str = comma_separated_line(eq_list.begin(), eq_list.end());
     string msg_str = comma_separated_line(msgs.begin(), msgs.end());
-    mprf("Your %s attune%s to your body, and you begin to %s.",
-         eq_str.c_str(), plural ? " themselves" : "s itself",
-         msg_str.c_str());
+    if (Options.language == lang_t::KO)
+    {
+        const string effects = gained_regen && gained_mana_regen
+            ? "체력과 마력 재생이 빨라집니다"
+            : gained_regen ? "체력 재생이 빨라집니다"
+            : gained_mana_regen ? "마력 재생이 빨라집니다" : "";
+        mprf("장비가 몸에 적응했습니다: %s.", eq_str.c_str());
+        if (!effects.empty())
+            mpr(effects + ".");
+        if (gained_chemistry)
+            mpr("물약을 마시면 마력을 추출할 수 있습니다.");
+    }
+    else
+        mprf("Your %s attune%s to your body, and you begin to %s.",
+             eq_str.c_str(), plural ? " themselves" : "s itself",
+             msg_str.c_str());
 }
 
 // cjo: Handles player hp and mp regeneration. If the counter
