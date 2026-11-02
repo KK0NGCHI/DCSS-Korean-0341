@@ -3166,7 +3166,7 @@ static bool _mons_awaken_flesh(const monster& caster, const int power,
                 ? "살덩이에서 혼돈의 기운이 솟구치며 새로운 언데드가 깨어납니다!"
                 : "살덩이들에서 혼돈의 기운이 솟구치며 새로운 언데드가 깨어납니다!");
         else
-            mprf((Options.language == lang_t::KO ? "살점 더미에서 혼돈이 솟구쳐 새로운 언데드가 깨어납니다!" : "Chaos surges forth from %s of flesh, awakening new unlife!"),
+            mprf((Options.language == lang_t::KO ? "살점 %s에서 혼돈이 솟구쳐 새로운 언데드가 깨어납니다!" : "Chaos surges forth from %s of flesh, awakening new unlife!"),
                  seen_affected == 1 ? "the pile" : "piles");
     }
 
