@@ -2743,8 +2743,9 @@ item_def* monster_die(monster& mons, killer_type killer,
         }
         else
         {
-            simple_monster_message(mons, " falls apart and the last of its fire"
-                                         " goes out.");
+            simple_monster_message(mons, Options.language == lang_t::KO
+                ? " — 몸이 무너져 내리고 마지막 불꽃이 꺼집니다."
+                : " falls apart and the last of its fire goes out.");
             silent = true;
         }
     }
