@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 203 translated output sites in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 209 translated output patterns in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -141,3 +141,11 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - `source/god-wrath.cc`: 25 distinct new localization patterns for conditional punishments, summoning results, divine speeches, Jiyva/Fedhas effects, Ignis anointing and protective fire. The conditional variants may occur at more than one callsite; cumulative site tally remains conservative.
 - Fixed English fallback argument handling for the Ignis anointing and fire effects and normalized duplicated spaces in Korean wrath suffixes.
 - Cumulative **203** localized patterns/output positions counted, including 5 developer/diagnostic messages. Latest changes require new CI. Next: check compile, verify dynamic format/grammar, then continue translation of conditional god_speaks and monster gameplay messages.
+
+## 2026-11-03 divine speech and equipment attunement
+
+- `source/god-wrath.cc`: five previously unlocalized English speech variants for The Shining One, Kikubaaqudgha, and Jiyva's slime summoning results (three call positions).
+- `source/player-reacts.cc`: one equipment-attunement output expanded into Korean status and regeneration/chemistry effect messages, avoiding English grammar suffixes.
+- **Six new translated patterns, cumulative 209 patterns (not necessarily 209 distinct source callsites)**. The source-count metric previously mixed alternatives and sites and needs a full audit before PR merge.
+- Linux runtime CI was in progress for prior head `9fb51c92c466426fe843549cb3c37c5582ba23fe` when work began; latest head requires separate validation.
+- Next: confirm CI, audit formatting and particles, scan other message constructors beyond mpr, and continue large batch translations across unreviewed gameplay modules.
