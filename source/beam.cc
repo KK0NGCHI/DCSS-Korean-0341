@@ -916,7 +916,7 @@ void bolt::burn_wall_effect()
 
     if (have_passive(passive_t::shoot_through_plants))
     {
-        emit_message("Fedhas protects the tree from harm.");
+        emit_message(Options.language == lang_t::KO ? "페다스가 나무를 보호합니다." : "Fedhas protects the tree from harm.");
         finish_beam();
         return;
     }
@@ -924,14 +924,14 @@ void bolt::burn_wall_effect()
     if (you.see_cell(pos()))
     {
         if (feat == DNGN_TREE)
-            emit_message("The tree burns like a torch!");
+            emit_message(Options.language == lang_t::KO ? "나무가 횃불처럼 타오릅니다!" : "The tree burns like a torch!");
         else if (feat == DNGN_MANGROVE)
-            emit_message("The mangrove smoulders and burns.");
+            emit_message(Options.language == lang_t::KO ? "맹그로브가 연기를 내며 타오릅니다." : "The mangrove smoulders and burns.");
         else if (feat == DNGN_DEMONIC_TREE)
-            emit_message("The demonic tree burns, releasing chaotic energy.");
+            emit_message(Options.language == lang_t::KO ? "악마의 나무가 타면서 혼돈의 에너지를 방출합니다." : "The demonic tree burns, releasing chaotic energy.");
     }
     else if (you.can_smell())
-        emit_message("You smell burning wood.");
+        emit_message(Options.language == lang_t::KO ? "나무 타는 냄새가 납니다." : "You smell burning wood.");
 
     // If the tree we're destroying is temporary, immediately revert
     // terrain changes on this tile rather than permanently changing it.
@@ -6883,7 +6883,7 @@ void bolt::refine_for_explosion(const string& explode_msg)
     if (!explode_msg.empty())
     {
         seeMsg  = explode_msg;
-        hearMsg = "You hear an explosion!";
+        hearMsg = Options.language == lang_t::KO ? "폭발음이 들립니다!" : "You hear an explosion!";
     }
     else
     {
@@ -6896,8 +6896,8 @@ void bolt::refine_for_explosion(const string& explode_msg)
         }
         else
         {
-            seeMsg  = "The beam explodes into a cloud of software bugs!";
-            hearMsg = "You hear the sound of one hand!";
+            seeMsg  = Options.language == lang_t::KO ? "광선이 소프트웨어 버그 구름으로 폭발합니다!" : "The beam explodes into a cloud of software bugs!";
+            hearMsg = Options.language == lang_t::KO ? "한 손으로 박수 치는 소리가 들립니다!" : "You hear the sound of one hand!";
         }
     }
 
