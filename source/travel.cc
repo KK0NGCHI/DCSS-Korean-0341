@@ -185,8 +185,9 @@ bool deviant_route_warning::warn_continue_travel(
         return true;
 
     target = dest;
-    const string prompt = make_stringf("Have to go through %s. Continue?",
-                                       deviant.describe().c_str());
+    const string prompt = Options.language == lang_t::KO
+        ? make_stringf("%s 경로를 지나야 합니다. 계속하시겠습니까?", deviant.describe().c_str())
+        : make_stringf("Have to go through %s. Continue?", deviant.describe().c_str());
     // If the user says "Yes, shut up and take me there", we won't ask
     // again for that destination. If the user says "No", we will
     // prompt again.
@@ -947,8 +948,11 @@ static void _find_travel_pos(const coord_def& youpos, int *move_x, int *move_y)
         *move_y = 0;
         if (!barrier.second.empty())
         {
-            mpr("Could not " + you.running.runmode_name() + ", "
-                + barrier.second + ".");
+            if (Options.language == lang_t::KO)
+                mpr("자동 이동을 계속할 수 없습니다: " + barrier.second + ".");
+            else
+                mpr("Could not " + you.running.runmode_name() + ", "
+                    + barrier.second + ".");
         }
         return;
     }
@@ -2329,7 +2333,7 @@ public:
                                               ", ", ", ");
             shortcuts += ") ";
         }
-        set_title(make_stringf("Where to? %s", shortcuts.c_str()));
+        set_title(make_stringf(Options.language == lang_t::KO ? "어디로 이동하시겠습니까? %s" : "Where to? %s", shortcuts.c_str()));
     }
 
     bool seen_altars() const
