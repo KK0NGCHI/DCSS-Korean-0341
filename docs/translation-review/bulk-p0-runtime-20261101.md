@@ -243,3 +243,10 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - Earlier provisional mixed tally 352 + 44 = **396 provisional edited translation units**. Do not use this as a precise distinct-callsite count or overall translation percentage.
 - Baseline PR head `2f897486d796485b787fc98ab3782544c13e6adb`: inventory and Linux console KO runtime checks both passed. The newly modified HEAD needs an independent CI pass.
 - Source-backed editing verified each old snippet was unique before replacing and retained English fallback; Windows Tiles gameplay remains untested and actual in-game phrasing/width needs QA.
+
+### 2026-11-04 spell-library modes follow-up (six further output alternatives)
+
+- `source/spl-book.cc`: all six conditional spell-library mode labels now have Korean text (cast, memorise, imbue, describe, hide, show); the original English switch remains intact.
+- **50 localized text positions/variants changed in this turn**, consisting of 49 potential independent UI/output description branches plus one reusable drowsiness suffix. Some are mutually exclusive branches in a single output site; this is not 49 unique callsites.
+- Revised **provisional historical mixed count: 352 + 50 = 402**, for tracking editing effort only. A fresh deduplicated callsite audit remains required before any translation-completion percentage can be reported.
+- Post-change Linux KO runtime CI and inventory must pass on the exact latest PR HEAD. Windows Tiles QA still pending.
