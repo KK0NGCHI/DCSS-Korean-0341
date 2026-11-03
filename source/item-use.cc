@@ -910,7 +910,7 @@ static bool _can_generically_use_armour(bool wear=true)
             mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아무것도 착용할 수 없습니다." : "You can't wear anything."));
         else
         {
-            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s을(를) 벗을 수 없습니다." : "You can't remove your %s, sorry."),
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "벗을 수 없는 신체 부위입니다: %s." : "You can't remove your %s, sorry."),
                 species::skin_name(you.species).c_str());
         }
         return false;
@@ -1902,7 +1902,7 @@ bool oni_drunken_swing()
         bool success = false;
         if (you.weapon())
         {
-            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 %s를 손안에서 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
+            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 손에 든 무기(%s)를 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
                  you.weapon()->name(DESC_YOUR).c_str());
         }
         else
