@@ -789,8 +789,9 @@ public:
             if (cloud_damages_over_time(cloud, false)
                 // Tree form is immune to these two.
                 && cloud != CLOUD_MEPHITIC && cloud != CLOUD_POISON
-                && !yesno(make_stringf("Really become a tree while standing in "
-                                       "a cloud of %s?",
+                && !yesno(make_stringf(Options.language == lang_t::KO
+                                       ? "현재 %s 구름 안에 있습니다. 그래도 나무로 변신하시겠습니까?"
+                                       : "Really become a tree while standing in a cloud of %s?",
                                        cloud_type_name(cloud).c_str()).c_str(),
                           false, 'n'))
             {
