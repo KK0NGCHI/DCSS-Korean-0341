@@ -844,7 +844,7 @@ static spret _tremorstone()
         return act && _valid_tremorstone_target(*act->as_monster());
     };
     if ((!see_target
-        && !yesno("You can't see anything, release a tremorstone anyway?",
+        && !yesno(Options.language == lang_t::KO ? "보이는 대상이 없습니다. 그래도 진동석을 사용하시겠습니까?" : "You can't see anything, release a tremorstone anyway?",
                  true, 'n'))
         || stop_attack_prompt(hitfunc, "release a tremorstone", vulnerable))
     {
@@ -915,7 +915,7 @@ static spret _condenser()
     }
 
     if (!see_targets
-        && !yesno("You can't see anything. Try to condense clouds anyway?",
+        && !yesno(Options.language == lang_t::KO ? "보이는 대상이 없습니다. 그래도 구름을 응축하시겠습니까?" : "You can't see anything. Try to condense clouds anyway?",
                   true, 'n'))
     {
         canned_msg(MSG_OK);
