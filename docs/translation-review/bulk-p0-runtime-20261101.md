@@ -199,3 +199,19 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - **2026-11-04 new translation total: 27 output sites** over 8 C++ files; existing-message grammar QA remains a separate 31-site count.
 - Previous running provisional mixed total **288 + 7 = 295**. This is not yet a canonical unique-output count.
 - Outstanding risk: `barrier.second` in blocked auto-travel and `deviant.describe()` in route warnings may still contain English or require Korean particles; inspect their producers. Validate full changed-file compile and Linux KO database runtime on the newest head; Windows Tiles QA pending.
+
+## 2026-11-04 follow-up: 25 further confirmed player-facing outputs
+
+- `shopping.cc`: 3 shopping-list prompts (replace cheaper item, remove entry, insufficient-funds travel confirmation).
+- `stairs.cc`: 2 staircase warnings (annotated next level, excluded stairs).
+- `player-stats.cc`: 2 attribute increase/stat-zero feedback messages.
+- `travel.cc`: 2 pickup failure and level display descriptions.
+- `item-use.cc`: 4 scroll-abort and dangerous-item-use confirmation prompts.
+- `spl-cast.cc`: 2 spell-casting warnings (god penance, dangerous contamination).
+- `god-prayer.cc`: 1 unknown-god conversion confirmation.
+- `player-equip.cc`: 9 equipment size, limb, and wings restrictions.
+- **New translations this turn: 25 distinct output sites in 8 C++ files**, no diagnostics. Do not mix these with the previous 31 grammar QA corrections or prior 27-site batch.
+- Prior provisional mixed tally 295 + 25 = **320 provisional units**; the historical 268 component mixes literal patterns and callsites, so a complete callsite audit is required.
+- All changes preserve English fallback and percent-format arguments. `player-equip.cc` English wings/size descriptors remain in the English-only branch.
+- Runtime QA still required for Korean item names supplied by `describe_thing()`, `stat_desc()`, level annotations and branch names. No Windows Tiles QA was performed.
+- Latest Linux runtime CI must be checked against the **exact newest PR HEAD**. Earlier green inventory jobs do not validate future revisions.
