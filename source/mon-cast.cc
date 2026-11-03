@@ -894,7 +894,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
                 if (you.can_see(caster))
                 {
                     if (Options.language == lang_t::KO)
-                        mprf("%s %s을(를) 갈기갈기 찢습니다%s",
+                        mprf("%s의 공격이 %s에게 찢어지는 듯한 상처를 입힙니다%s",
                              caster.name(DESC_THE).c_str(), victim->name(DESC_THE).c_str(),
                              final ? attack_strength_punctuation(final).c_str()
                                    : ", 하지만 피해를 주지 못합니다.");
@@ -1546,7 +1546,7 @@ static void _cast_beckoning_gale(monster &caster, mon_spell_slot, bolt&)
 
     if (moved)
     {
-        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s을(를) 앞으로 끌어당깁니다!" : "A beckoning whirlwind drags %s forward!"),
+        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s 쪽으로 몰려들어 대상을 앞으로 끌어당깁니다!" : "A beckoning whirlwind drags %s forward!"),
             foe->name(DESC_THE).c_str());
     }
     else
@@ -3931,7 +3931,7 @@ static bool _make_monster_angry(const monster* mon, monster* targ, bool actual)
                      mon->pronoun(PRONOUN_OBJECTIVE).c_str());
         }
         else
-            mprf(Options.language == lang_t::KO ? "%s %s을(를) 부추깁니다!" : "%s goads %s on!",
+            mprf(Options.language == lang_t::KO ? "%s의 부추김에 %s가 격분합니다!" : "%s goads %s on!",
                  mon->name(DESC_THE).c_str(), targ->name(DESC_THE).c_str());
     }
 
@@ -6808,7 +6808,7 @@ static void _cast_resonance_strike(monster &caster, mon_spell_slot, bolt&)
     if (you.see_cell(target->pos()))
     {
         if (Options.language == lang_t::KO)
-            mprf("대지에서 솟아난 강력한 충격파가 %s을(를) 강타합니다!",
+            mprf("대지에서 솟아난 강력한 충격파가 %s에게 적중합니다!",
                  target->name(DESC_THE).c_str());
         else
             mprf("A blast of power from the earth%s strikes %s!",
@@ -7102,7 +7102,7 @@ static void _mons_vortex(monster *mons)
         bool flying = mons->airborne();
         if (Options.language == lang_t::KO)
             mprf(flying ? "얼어붙는 소용돌이가 %s 주위에 나타납니다!"
-                         : "얼어붙는 소용돌이가 %s을(를) 들어 올립니다!",
+                         : "얼어붙는 소용돌이가 %s 주위를 휘감으며 대상을 들어 올립니다!",
                  mons->name(DESC_THE).c_str());
         else
             mprf("A freezing vortex appears %s%s%s!",
@@ -7278,7 +7278,7 @@ static void _cast_bestow_arms(monster& caster)
     if (you.can_see(caster))
     {
         mprf(MSGCH_MONSTER_SPELL,
-             Options.language == lang_t::KO ? "%s 아군에게 %s을(를) 지급합니다." : "%s arms its allies with %s.",
+             Options.language == lang_t::KO ? "%s의 아군들이 %s 무장을 받습니다." : "%s arms its allies with %s.",
              caster.name(DESC_THE).c_str(), pluralise(wpn.name(DESC_PLAIN, false, true)).c_str());
     }
 
@@ -7720,8 +7720,8 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
                 if (Options.language == lang_t::KO)
                     mprf(foe->airborne()
-                             ? "물이 솟아올라 %s을(를) 강타합니다%s"
-                             : "물이 소용돌이치며 %s을(를) 강타합니다%s",
+                             ? "물이 솟아올라 %s에게 충격을 줍니다%s"
+                             : "물이 소용돌이치며 %s에게 충격을 줍니다%s",
                          foe->name(DESC_THE).c_str(),
                          attack_strength_punctuation(damage_taken).c_str());
                 else
@@ -7761,8 +7761,8 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
             if (Options.language == lang_t::KO)
                 mprf(spell_cast == SPELL_SLEETSTRIKE
-                         ? "차가운 진눈깨비를 동반한 강풍이 %s을(를) 강타합니다%s"
-                         : "거센 바람이 %s을(를) 강타합니다%s",
+                         ? "차가운 진눈깨비를 동반한 강풍이 %s에게 몰아칩니다%s"
+                         : "거센 바람이 %s에게 몰아칩니다%s",
                      foe->name(DESC_THE).c_str(),
                      attack_strength_punctuation(damage_taken).c_str());
             else
