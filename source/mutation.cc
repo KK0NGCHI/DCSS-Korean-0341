@@ -663,8 +663,10 @@ static vector<pair<string,string>> _get_form_fakemuts()
     if (hp_mod > 10)
     {
         result.push_back({"boosted hp",
-                            _formmut(make_stringf("Your maximum health is %sincreased.",
-                                                    hp_mod < 13 ? "" : "greatly "))});
+                            _formmut(Options.language == lang_t::KO
+                                ? (hp_mod < 13 ? "최대 체력이 증가합니다." : "최대 체력이 크게 증가합니다.")
+                                : make_stringf("Your maximum health is %sincreased.",
+                                               hp_mod < 13 ? "" : "greatly "))});
     } // see badmuts section below for max health reduction
 
     // Bad effects
@@ -673,9 +675,12 @@ static vector<pair<string,string>> _get_form_fakemuts()
     if (hp_mod < 10)
     {
         result.push_back({"reduced hp",
-                            _badmut(make_stringf("Your maximum health is decreased%s.",
-                                form->underskilled() ? ", since you lack skill for your form"
-                                : ""))});
+                            _badmut(Options.language == lang_t::KO
+                                ? (form->underskilled()
+                                    ? "변신 숙련도가 부족하여 최대 체력이 감소합니다."
+                                    : "최대 체력이 감소합니다.")
+                                : make_stringf("Your maximum health is decreased%s.",
+                                    form->underskilled() ? ", since you lack skill for your form" : ""))});
     }
 
     if (!form->can_cast)
@@ -708,11 +713,13 @@ static vector<pair<string,string>> _get_form_fakemuts()
         if (penalty_percent < 0)
         {
             result.push_back({"blade armour",
-                    _badmut(make_stringf("Your body armour is %s at protecting you.",
-                          penalty_percent <=  -45 ? "much less effective"
-                        : penalty_percent <   -20 ? "less effective"
-                                                  : "slightly less effective"
-            ))});
+                    _badmut(Options.language == lang_t::KO
+                        ? (penalty_percent <= -45 ? "몸통 방어구의 방어 효과가 크게 감소합니다."
+                           : penalty_percent < -20 ? "몸통 방어구의 방어 효과가 감소합니다."
+                           : "몸통 방어구의 방어 효과가 조금 감소합니다.")
+                        : make_stringf("Your body armour is %s at protecting you.",
+                          penalty_percent <= -45 ? "much less effective"
+                        : penalty_percent < -20 ? "less effective" : "slightly less effective"))});
         }
     }
 
@@ -824,8 +831,10 @@ static vector<pair<string, string>> _get_fakemuts()
         result.push_back(_annotate_form_based(
             {
                 make_stringf("%d rings", arms),
-                make_stringf("You can wear up to %s rings at the same time.",
-                        number_in_words(arms).c_str())
+                (Options.language == lang_t::KO
+                    ? make_stringf("반지를 동시에 최대 %d개까지 착용할 수 있습니다.", arms)
+                    : make_stringf("You can wear up to %s rings at the same time.",
+                                   number_in_words(arms).c_str()))
             }, rings_melded));
     }
 
@@ -3354,7 +3363,9 @@ const string bane_desc(bane_type bane)
     if (bane == BANE_DILETTANTE && you.banes[bane])
     {
         CrawlVector& vec = you.props[DILETTANTE_SKILL_KEY].get_vector();
-        return make_stringf("Your skill with %s, %s, and %s is reduced.",
+        return make_stringf(Options.language == lang_t::KO
+                    ? "%s, %s, %s 기술 숙련도가 감소합니다."
+                    : "Your skill with %s, %s, and %s is reduced.",
                     skill_name(static_cast<skill_type>(vec[0].get_int())),
                     skill_name(static_cast<skill_type>(vec[1].get_int())),
                     skill_name(static_cast<skill_type>(vec[2].get_int())));
