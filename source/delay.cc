@@ -189,7 +189,7 @@ bool EquipOnDelay::try_interrupt(bool force)
         // yesno might call this function again, don't double prompt
         was_prompted = true;
         if (!crawl_state.disables[DIS_CONFIRMATIONS]
-            && !yesno("Keep equipping yourself?", false, 0, false))
+            && !yesno(Options.language == lang_t::KO ? "장비 착용을 계속하시겠습니까?" : "Keep equipping yourself?", false, 0, false))
         {
             interrupt = true;
         }
@@ -197,7 +197,10 @@ bool EquipOnDelay::try_interrupt(bool force)
 
     if (interrupt)
     {
-        mprf("You stop %s your %s.", get_verb(), _eq_category(equip).c_str());
+        if (Options.language == lang_t::KO)
+            mpr("장비 변경을 중단합니다.");
+        else
+            mprf("You stop %s your %s.", get_verb(), _eq_category(equip).c_str());
         return true;
     }
     return false;
@@ -244,7 +247,10 @@ bool EquipOffDelay::try_interrupt(bool force)
 
     if (interrupt)
     {
-        mprf("You stop %s your %s.", get_verb(), _eq_category(equip).c_str());
+        if (Options.language == lang_t::KO)
+            mpr("장비 변경을 중단합니다.");
+        else
+            mprf("You stop %s your %s.", get_verb(), _eq_category(equip).c_str());
         return true;
     }
     return false;
@@ -292,7 +298,7 @@ bool TransformDelay::try_interrupt(bool force)
         // yesno might call this function again, don't double prompt
         was_prompted = true;
         if (!crawl_state.disables[DIS_CONFIRMATIONS]
-            && !yesno("Keep transforming yourself?", false, 0, false))
+            && !yesno(Options.language == lang_t::KO ? "변신을 계속하시겠습니까?" : "Keep transforming yourself?", false, 0, false))
         {
             interrupt = true;
         }
@@ -315,7 +321,7 @@ bool ImbueDelay::try_interrupt(bool force)
         // yesno might call this function again, don't double prompt
         was_prompted = true;
         if (!crawl_state.disables[DIS_CONFIRMATIONS]
-            && !yesno("Keep imbuing your servitor?", false, 0, false))
+            && !yesno(Options.language == lang_t::KO ? "시종에게 힘을 불어넣는 작업을 계속하시겠습니까?" : "Keep imbuing your servitor?", false, 0, false))
         {
             interrupt = true;
         }
@@ -457,16 +463,20 @@ void clear_macro_process_key_delay()
 
 void EquipOnDelay::start()
 {
-    mprf(MSGCH_MULTITURN_ACTION, "You start %s your %s.",
-         get_verb(),
-         _eq_category(equip).c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_MULTITURN_ACTION, "%s", "장비 변경을 시작합니다.");
+    else
+        mprf(MSGCH_MULTITURN_ACTION, "You start %s your %s.",
+             get_verb(), _eq_category(equip).c_str());
 }
 
 void EquipOffDelay::start()
 {
-    mprf(MSGCH_MULTITURN_ACTION, "You start %s your %s.",
-         get_verb(),
-         _eq_category(equip).c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_MULTITURN_ACTION, "%s", "장비 변경을 시작합니다.");
+    else
+        mprf(MSGCH_MULTITURN_ACTION, "You start %s your %s.",
+             get_verb(), _eq_category(equip).c_str());
 }
 
 void MemoriseDelay::start()
@@ -729,7 +739,10 @@ bool EquipOnDelay::invalidated()
 
 void EquipOnDelay::finish()
 {
-    mprf("You finish %s %s.", get_verb(), equip.name(DESC_YOUR).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("장비 변경을 마쳤습니다: %s.", equip.name(DESC_YOUR).c_str());
+    else
+        mprf("You finish %s %s.", get_verb(), equip.name(DESC_YOUR).c_str());
 
     if (is_weapon(equip) && you.has_mutation(MUT_SLOW_WIELD))
         maybe_name_weapon(equip);
@@ -744,7 +757,10 @@ bool EquipOffDelay::invalidated()
 
 void EquipOffDelay::finish()
 {
-    mprf("You finish %s %s.", get_verb(), equip.name(DESC_YOUR).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("장비 변경을 마쳤습니다: %s.", equip.name(DESC_YOUR).c_str());
+    else
+        mprf("You finish %s %s.", get_verb(), equip.name(DESC_YOUR).c_str());
     unequip_item(equip);
 
     // Banishment via coglin distortion unwield might not happen until the turn
@@ -1110,7 +1126,7 @@ bool interrupt_activity(activity_interrupt ai, const activity_interrupt_data &at
     if (ai == activity_interrupt::full_hp && !you.running.notified_hp_full)
     {
         you.running.notified_hp_full = true;
-        mpr("HP restored.");
+        mpr(Options.language == lang_t::KO ? "체력이 모두 회복되었습니다." : "HP restored.");
     }
     else if (ai == activity_interrupt::full_mp && !you.running.notified_mp_full)
     {
