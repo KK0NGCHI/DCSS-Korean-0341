@@ -1267,13 +1267,18 @@ static bool _spellcasting_aborted(spell_type spell, bool fake_spell)
             return true;
         }
 
-        string prompt = make_stringf("The spell is %s to miscast "
-                                     "(%s risk of failure)%s",
-                                     fail_severity_adjs[severity],
-                                     failure_rate.c_str(),
-                                     severity > 1 ? "!" : ".");
-
-        prompt = make_stringf("%s Continue anyway?", prompt.c_str());
+        string prompt;
+        if (Options.language == lang_t::KO)
+            prompt = make_stringf("주문 시전 실패 확률: %s. 위험도: %d단계. 그래도 계속하시겠습니까?",
+                                  failure_rate.c_str(), severity);
+        else
+        {
+            prompt = make_stringf("The spell is %s to miscast (%s risk of failure)%s",
+                                  fail_severity_adjs[severity],
+                                  failure_rate.c_str(),
+                                  severity > 1 ? "!" : ".");
+            prompt = make_stringf("%s Continue anyway?", prompt.c_str());
+        }
         if (!yesno(prompt.c_str(), false, 'n'))
         {
             canned_msg(MSG_OK);
