@@ -2400,8 +2400,7 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     case SPARM_PONDEROUSNESS:
     {
         // XX can the noun here be derived from the species walking verb?
-        const string noun = you.species == SP_NAGA ? "slither" : "step";
-        mprf("다시 한결 가볍게 움직일 수 있을 것 같습니다.", noun.c_str());
+        mpr("다시 한결 가볍게 움직일 수 있을 것 같습니다.");
         break;
     }
 
