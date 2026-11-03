@@ -1164,7 +1164,7 @@ static bool _give_nemelex_gift(bool forced = false)
     if (gift_cards())
     {
         simple_god_message((Options.language == lang_t::KO ? " — 당신에게 카드를 나눠 줍니다!" : " deals you some cards!"));
-        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "현재 %s을(를) 가지고 있습니다." : "You now have %s."), deck_summary().c_str());
+        mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "현재 보유한 카드: %s." : "You now have %s."), deck_summary().c_str());
     }
     _inc_gift_timeout(5 + random2avg(9, 2));
     you.num_current_gifts[you.religion]++;
@@ -3763,7 +3763,7 @@ static void _join_makhleb()
 {
     // Re-active our Mark, if we gained one, then abandoned and rejoined.
     if (!makhleb_mark_name().empty())
-        mprf((Options.language == lang_t::KO ? "%s이(가) 다시 힘차게 타오릅니다." : "Your %s burns with power once more."), makhleb_mark_name().c_str());
+        mprf((Options.language == lang_t::KO ? "%s에 깃든 힘이 다시 맹렬히 타오릅니다." : "Your %s burns with power once more."), makhleb_mark_name().c_str());
 
     makhleb_initialize_marks();
 }
