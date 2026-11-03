@@ -610,17 +610,34 @@ private:
                               : default_action == action::imbue ? "Imbue" : "Cast");
         // line 2
         desc << menu_keyhelp_cmd(CMD_MENU_RIGHT) << " ";
-        desc << ( current_action == action::cast
-                            ? "<w>Cast</w>|Describe|Hide|Show"
-                 : current_action == action::memorise
-                            ? "<w>Memorise</w>|Describe|Hide|Show"
-                 : current_action == action::imbue
-                            ? "<w>Imbue</w>|Describe|Hide|Show"
-                 : current_action == action::describe
-                            ? act + "|<w>Describe</w>|Hide|Show"
-                 : current_action == action::hide
-                            ? act + "|Describe|<w>Hide</w>|Show"
-                 : act + "|Describe|Hide|<w>Show</w>");
+        if (Options.language == lang_t::KO)
+        {
+            desc << ( current_action == action::cast
+                                ? "<w>시전</w>|설명|숨기기|표시"
+                     : current_action == action::memorise
+                                ? "<w>암기</w>|설명|숨기기|표시"
+                     : current_action == action::imbue
+                                ? "<w>주입</w>|설명|숨기기|표시"
+                     : current_action == action::describe
+                                ? act + "|<w>설명</w>|숨기기|표시"
+                     : current_action == action::hide
+                                ? act + "|설명|<w>숨기기</w>|표시"
+                     : act + "|설명|숨기기|<w>표시</w>");
+        }
+        else
+        {
+            desc << ( current_action == action::cast
+                                ? "<w>Cast</w>|Describe|Hide|Show"
+                     : current_action == action::memorise
+                                ? "<w>Memorise</w>|Describe|Hide|Show"
+                     : current_action == action::imbue
+                                ? "<w>Imbue</w>|Describe|Hide|Show"
+                     : current_action == action::describe
+                                ? act + "|<w>Describe</w>|Hide|Show"
+                     : current_action == action::hide
+                                ? act + "|Describe|<w>Hide</w>|Show"
+                     : act + "|Describe|Hide|<w>Show</w>");
+        }
         desc << "   " << menu_keyhelp_cmd(CMD_MENU_SEARCH)
              << (Options.language == lang_t::KO ? " 검색   [<w>?</w>] 도움말"
                                                  : " search   [<w>?</w>] help"); // XX hardcoded for this menu
