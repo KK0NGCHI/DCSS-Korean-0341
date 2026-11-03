@@ -186,3 +186,9 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - PR #174 provisional cumulative translation count: **268 prior mixed units + 19 new distinct sites = 287 mixed provisional units**. Do not treat this as precise distinct-site total; comprehensive callsite recount still required.
 - All edits committed to the same draft PR. The prior Linux run was still in progress at the start of the batch. The newest code must pass fresh full-overlay compilation and runtime smoke before merge.
 - Known QA: neutral equipment-change text loses equip-on/off distinction; improve with safe Korean-specific message variants when practical. Windows Tiles in-game output and dynamic names remain unverified.
+
+### 2026-11-04 follow-up: equip-on/off clarity
+
+- `source/delay.cc`: localized the previously dynamic `EquipOffDelay::try_interrupt` confirmation (1 more new output site); distinguished equip-on from equip-off in 6 Korean start/stop/finish messages while preserving English fallback.
+- **Total new output sites for this 2026-11-04 batch: 20** (19 first group + 1 follow-up), across 8 C++ files. Existing Korean text refinements are not additional translations.
+- **Provisional cumulative mixed units: 288** (268 prior mixed + 20 new); still not a definitive distinct-callsite total.
