@@ -4089,11 +4089,14 @@ void hogs_to_humans()
     string final_msg;
     if (any > 0 && you.num_turns > 0)
     {
-        final_msg = make_stringf("No longer under Kirke's spell, the %s %s %s!",
-                                 any > 1 ? "hogs return to their"
-                                         : "hog returns to its",
-                                 any == human ? "human" : "original",
-                                 any > 1 ? "forms" : "form");
+        if (Options.language == lang_t::KO)
+            final_msg = make_stringf("키르케의 마법이 풀리면서 돼지 %d마리가 %s 모습으로 돌아옵니다!",
+                                     any, any == human ? "인간" : "원래");
+        else
+            final_msg = make_stringf("No longer under Kirke's spell, the %s %s %s!",
+                                      any > 1 ? "hogs return to their" : "hog returns to its",
+                                      any == human ? "human" : "original",
+                                      any > 1 ? "forms" : "form");
     }
     schedule_kirke_death_fineff(final_msg);
 }
