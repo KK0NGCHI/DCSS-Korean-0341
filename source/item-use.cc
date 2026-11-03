@@ -1320,7 +1320,7 @@ bool warn_about_changing_gear(const vector<item_def*>& to_remove, item_def* to_e
                 if (++removed_flight >= equipped_flight)
                 {
                     mprf(MSGCH_PROMPT, Options.language == lang_t::KO
-                             ? "지금 %s을(를) 벗으면 %s!"
+                             ? "지금 %s 장비를 벗으면 %s!"
                              : "Removing %s right now would cause you to %s!",
                              item->name(DESC_YOUR).c_str(),
                              Options.language == lang_t::KO
@@ -1503,7 +1503,7 @@ bool handle_chain_removal(vector<item_def*>& to_remove, bool interactive)
             if ((int)chain_remove.size() < chain_remove_num)
             {
                 mprf(MSGCH_PROMPT, Options.language == lang_t::KO
-                         ? "저주받은 아이템 때문에 %s을(를) 벗을 수 없습니다."
+                         ? "저주받은 아이템 때문에 다음 장비를 벗을 수 없습니다: %s."
                          : "A cursed item is preventing you from removing %s.",
                          item.name(DESC_INVENTORY).c_str());
                 return false;
@@ -1598,7 +1598,7 @@ void do_equipment_change(item_def* to_equip, equipment_slot equip_slot,
             else
             {
                 if (Options.language == lang_t::KO)
-                    mprf("%s을(를) 장착 해제합니다.",
+                    mprf("장비를 해제합니다: %s.",
                          item->name(DESC_YOUR).c_str());
                 else
                     mprf("You %s %s.", item_unequip_verb(*item).c_str(),
@@ -1902,7 +1902,7 @@ bool oni_drunken_swing()
         bool success = false;
         if (you.weapon())
         {
-            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 %s을(를) 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
+            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 %s를 손안에서 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
                  you.weapon()->name(DESC_YOUR).c_str());
         }
         else
