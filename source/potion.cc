@@ -567,7 +567,7 @@ public:
     {
         if (player_under_penance(GOD_HEPLIAKLQANA))
         {
-            simple_god_message(" appreciates the memories.", false,
+            simple_god_message((Options.language == lang_t::KO ? " — 기억을 기쁘게 받아들입니다." : " appreciates the memories."), false,
                                GOD_HEPLIAKLQANA);
             reduce_xp_penance(GOD_HEPLIAKLQANA,
                               750 * you.experience_level * pow / 40);
@@ -834,7 +834,7 @@ public:
     bool effect(bool = true, int = 40, bool = true) const override
     {
         if (have_passive(passive_t::cleanse_mut_potions))
-            simple_god_message(" cleanses your potion of mutation!");
+            simple_god_message((Options.language == lang_t::KO ? " — 변이의 물약을 정화합니다!" : " cleanses your potion of mutation!"));
         else
             mpr((Options.language == lang_t::KO ? "몸에 극도로 기묘한 느낌이 듭니다." : "You feel extremely strange."));
         bool mutated = false;
@@ -1130,17 +1130,17 @@ void mons_potion_effect(monster& mon, potion_type potion, const actor& source)
             break;
 
         case POT_BRILLIANCE:
-            simple_monster_message(mon, " magic is enhanced!", true);
+            simple_monster_message(mon, (Options.language == lang_t::KO ? " — 마력이 강화됩니다!" : " magic is enhanced!"), true);
             mon.add_ench(mon_enchant(ENCH_EMPOWERED_SPELLS, &source));
             break;
 
         case POT_HEAL_WOUNDS:
-            simple_monster_message(mon, " is healed!");
+            simple_monster_message(mon, (Options.language == lang_t::KO ? " — 상처가 치유됩니다!" : " is healed!"));
             mon.heal(random_range(30, 50));
             break;
 
         case POT_CURING:
-            simple_monster_message(mon, " is healed!");
+            simple_monster_message(mon, (Options.language == lang_t::KO ? " — 상처가 치유됩니다!" : " is healed!"));
             mon.heal(random_range(10, 20));
             mon.del_ench(ENCH_POISON);
             mon.del_ench(ENCH_CONFUSION);
@@ -1148,7 +1148,7 @@ void mons_potion_effect(monster& mon, potion_type potion, const actor& source)
 
         case POT_ENLIGHTENMENT:
         {
-            simple_monster_message(mon, " is enlightened!");
+            simple_monster_message(mon, (Options.language == lang_t::KO ? " — 깨달음을 얻습니다!" : " is enlightened!"));
             const int dur = random_range(300, 450);
             mon.add_ench(mon_enchant(ENCH_FLIGHT, &source, dur));
             mon.add_ench(mon_enchant(ENCH_STRONG_WILLED, &source, dur));
