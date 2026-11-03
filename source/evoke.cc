@@ -407,7 +407,7 @@ static bool _sack_of_spiders()
     }
 
     if (!made_mons)
-        mpr("...but only cobwebs fall out.");
+        mpr((Options.language == lang_t::KO ? "...하지만 거미줄만 떨어집니다." : "...but only cobwebs fall out."));
     return true;
 }
 
