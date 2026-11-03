@@ -241,7 +241,7 @@ int count = 0;
 
     case SLOT_AMULET:
         if (you.has_mutation(MUT_NO_JEWELLERY))
-            NO_SLOT("You can't wear amulets.")
+            NO_SLOT(Options.language == lang_t::KO ? "목걸이를 착용할 수 없습니다." : "You can't wear amulets.")
 
         if (_use_slots(UNRAND_JUSTICARS_REGALIA, count_melded_unrands, count_items))
             return 2;
@@ -250,7 +250,7 @@ int count = 0;
 
     case SLOT_GIZMO:
         if (you.species != SP_COGLIN)
-            NO_SLOT("You lack an exoframe to install that in.")
+            NO_SLOT(Options.language == lang_t::KO ? "해당 장비를 설치할 외골격이 없습니다." : "You lack an exoframe to install that in.")
 
         return 1;
 
@@ -471,7 +471,7 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
 #define NO_EQUIP(x) {if (veto_reason) { *veto_reason = x; }; return 0;}
 
     if (!item_type_is_equipment(item.base_type))
-        NO_EQUIP("That isn't an equippable item.")
+        NO_EQUIP(Options.language == lang_t::KO ? "장착할 수 없는 아이템입니다." : "That isn't an equippable item.")
 
     vector<equipment_slot> slots = get_all_item_slots(item);
 
@@ -532,19 +532,19 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
             if (you.form == transformation::serpent)
                 return true;
             if (player_size >= SIZE_LARGE)
-                NO_EQUIP("This helmet is too small for your head.")
+                NO_EQUIP(Options.language == lang_t::KO ? "머리에 비해 투구가 너무 작습니다." : "This helmet is too small for your head.")
             else if (player_size <= SIZE_LITTLE)
-                NO_EQUIP("This helmet is too large for your head.")
+                NO_EQUIP(Options.language == lang_t::KO ? "머리에 비해 투구가 너무 큽니다." : "This helmet is too large for your head.")
             else if (species::is_draconian(you.species))
-                NO_EQUIP("You can't wear that with your reptilian head.")
+                NO_EQUIP(Options.language == lang_t::KO ? "파충류 형태의 머리에는 착용할 수 없습니다." : "You can't wear that with your reptilian head.")
             else if (you.species == SP_OCTOPODE)
-                NO_EQUIP("Your can't wear that!")
+                NO_EQUIP(Options.language == lang_t::KO ? "해당 장비를 착용할 수 없습니다!" : "Your can't wear that!")
             else if (you.has_mutation(MUT_HORNS, include_form))
-                NO_EQUIP("You can't fit that over your horns.")
+                NO_EQUIP(Options.language == lang_t::KO ? "뿔 때문에 해당 장비를 착용할 수 없습니다." : "You can't fit that over your horns.")
             else if (you.has_mutation(MUT_ANTENNAE, include_form))
-                NO_EQUIP("You can't fit that over your antennae.")
+                NO_EQUIP(Options.language == lang_t::KO ? "더듬이 때문에 해당 장비를 착용할 수 없습니다." : "You can't fit that over your antennae.")
             else if (you.has_mutation(MUT_BEAK, include_form))
-                NO_EQUIP("You can't fit that over your beak.")
+                NO_EQUIP(Options.language == lang_t::KO ? "부리 때문에 해당 장비를 착용할 수 없습니다." : "You can't fit that over your beak.")
         }
     }
     else if (item.base_type == OBJ_WEAPONS)
@@ -553,7 +553,7 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
         if (is_weapon_too_large(item, bsize)
             && !you.has_mutation(MUT_QUADRUMANOUS))
         {
-            NO_EQUIP("That's too large for you to wield.");
+            NO_EQUIP(Options.language == lang_t::KO ? "너무 커서 무기로 들 수 없습니다." : "That's too large for you to wield.");
         }
     }
 
