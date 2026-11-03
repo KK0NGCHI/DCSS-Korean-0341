@@ -88,7 +88,7 @@ public:
     string get_error() override
     {
         if (you.confused())
-            return "You are confused and cannot control your aim.";
+            return Options.language == lang_t::KO ? "혼란 상태라 조준을 제어할 수 없습니다." : "You are confused and cannot control your aim.";
         else
             return targeting_behaviour::get_error();
     }
@@ -532,22 +532,22 @@ static void _throw_noise(actor* act, const item_def &ammo)
     switch (launcher->sub_type)
     {
     case WPN_SLING:
-        msg   = "You hear a sling whirr.";
+        msg   = Options.language == lang_t::KO ? "투석구가 휙 돌아가는 소리가 들립니다." : "You hear a sling whirr.";
         break;
     case WPN_SHORTBOW:
     case WPN_ORCBOW:
     case WPN_LONGBOW:
-        msg   = "You hear a bow twang.";
+        msg   = Options.language == lang_t::KO ? "활시위가 튕기는 소리가 들립니다." : "You hear a bow twang.";
         break;
     case WPN_ARBALEST:
-        msg   = "You hear a crossbow thunk.";
+        msg   = Options.language == lang_t::KO ? "쇠뇌가 철컥하는 소리가 들립니다." : "You hear a crossbow thunk.";
         break;
     case WPN_TRIPLE_CROSSBOW:
-        msg   = "You hear a triple crossbow go thunk-thunk-thunk.";
+        msg   = Options.language == lang_t::KO ? "삼연발 쇠뇌가 철컥철컥철컥 하는 소리가 들립니다." : "You hear a triple crossbow go thunk-thunk-thunk.";
         break;
     case WPN_HAND_CANNON:
         noise *= 2;
-        msg = "You hear a hand cannon's boom.";
+        msg = Options.language == lang_t::KO ? "휴대용 대포의 굉음이 들립니다." : "You hear a hand cannon's boom.";
         break;
 
     default:
