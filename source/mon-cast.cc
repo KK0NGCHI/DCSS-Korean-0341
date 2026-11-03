@@ -3931,7 +3931,7 @@ static bool _make_monster_angry(const monster* mon, monster* targ, bool actual)
                      mon->pronoun(PRONOUN_OBJECTIVE).c_str());
         }
         else
-            mprf(Options.language == lang_t::KO ? "%s의 부추김에 %s가 격분합니다!" : "%s goads %s on!",
+            mprf(Options.language == lang_t::KO ? "%s의 부추김에 %s에게 격분한 기운이 퍼집니다!" : "%s goads %s on!",
                  mon->name(DESC_THE).c_str(), targ->name(DESC_THE).c_str());
     }
 
