@@ -380,7 +380,7 @@ static void _do_merge_slimes(monster* initial_slime, monster* merge_to)
         if (you.can_see(*merge_to))
         {
             // cases 1 and 2
-            mprf((Options.language == lang_t::KO ? "슬라임 생물 2마리가 합쳐져 %s이(가) 됩니다." : "Two slime creatures merge to form %s."),
+            mprf((Options.language == lang_t::KO ? "슬라임 생물 2마리가 합쳐져 %s의 형상을 이룹니다." : "Two slime creatures merge to form %s."),
                  merge_to->name(DESC_A).c_str());
         }
         else
