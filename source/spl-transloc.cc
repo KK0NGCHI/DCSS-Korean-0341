@@ -292,7 +292,7 @@ static bool _find_cblink_target(dist &target, bool safe_cancel,
         if (target_mons && you.can_see(*target_mons))
         {
             if (Options.language == lang_t::KO)
-                mprf("%s이(가) 있는 칸으로 이동할 수 없습니다!", target_mons->name(DESC_THE).c_str());
+                mprf("대상 %s의 위치로 이동할 수 없습니다!", target_mons->name(DESC_THE).c_str());
             else
                 mprf("You can't %s onto %s!", verb.c_str(), target_mons->name(DESC_THE).c_str());
             continue;
