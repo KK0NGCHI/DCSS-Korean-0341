@@ -276,8 +276,13 @@ spret cast_jinxbite(int pow, bool fail)
 
     fail_check();
 
-    mprf((Options.language == lang_t::KO ? "공격에 동참할 성가신 요정들을 %s 불러냅니다." : "You beckon %s vexing sprites to accompany your attacks."),
-         you.duration[DUR_JINXBITE] ? "more" : "some");
+    if (Options.language == lang_t::KO)
+        mpr(you.duration[DUR_JINXBITE]
+            ? "공격에 동참할 성가신 요정들을 더 불러냅니다."
+            : "공격에 동참할 성가신 요정들을 불러냅니다.");
+    else
+        mprf("You beckon %s vexing sprites to accompany your attacks.",
+             you.duration[DUR_JINXBITE] ? "more" : "some");
 
     const int base_dur = random_range(9, 15);
     const int will_dur = random_range(base_dur, 15) +
