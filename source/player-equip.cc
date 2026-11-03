@@ -96,7 +96,7 @@ int count = 0;
                 NO_SLOT("You need the rest of your tentacles for walking.")
             else
             {
-                NO_SLOT(make_stringf("You'd need another %s to do that!",
+                NO_SLOT(make_stringf(Options.language == lang_t::KO ? "그러려면 %s이 하나 더 필요합니다!" : "You'd need another %s to do that!",
                                         you.hand_name(false).c_str()))
             }
         }
@@ -119,9 +119,10 @@ int count = 0;
             NO_SLOT("You can't haunt something so large.")
         if (species::is_draconian(you.species))
         {
-            NO_SLOT(make_stringf("Your wings%s won't fit in that.",
-                                    you.has_mutation(MUT_BIG_WINGS)
-                                    ? "" : ", even vestigial as they are,"))
+            NO_SLOT((Options.language == lang_t::KO ? string("날개 때문에 이 방어구를 착용할 수 없습니다.")
+                : make_stringf("Your wings%s won't fit in that.",
+                                you.has_mutation(MUT_BIG_WINGS)
+                                ? "" : ", even vestigial as they are,")))
         }
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
             NO_SLOT("You can't wear armour!");
@@ -159,13 +160,13 @@ int count = 0;
         if (you.has_mutation(MUT_FORMLESS))
             NO_SLOT("You don't have hands.")
         else if (player_size <= SIZE_LITTLE)
-            NO_SLOT(make_stringf("Those are too big for your %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 큽니다." : "Those are too big for your %s.", you.hand_name(true).c_str()))
         else if (player_size >= SIZE_LARGE)
-            NO_SLOT(make_stringf("Those are too small for your %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 작습니다." : "Those are too small for your %s.", you.hand_name(true).c_str()))
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT(make_stringf("Those can't fit on your %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용할 수 없습니다." : "Those can't fit on your %s.", you.hand_name(true).c_str()))
         else if (you.get_mutation_level(MUT_CLAWS, false) >= 3)
-            NO_SLOT(make_stringf("Those can't fit over your huge %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "거대한 %s에 착용할 수 없습니다." : "Those can't fit over your huge %s.", you.hand_name(true).c_str()))
         else if (you.get_mutation_level(MUT_DEMONIC_TOUCH, false) >= 3)
             NO_SLOT("Your demonic touch would destroy those.")
         else
@@ -177,9 +178,9 @@ int count = 0;
         if (species::wears_barding(you.species) || you.has_mutation(MUT_FORMLESS))
             NO_SLOT("You don't have any feet!")
         else if (player_size <= SIZE_LITTLE)
-            NO_SLOT(make_stringf("Those are too big for your %s.", you.foot_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 큽니다." : "Those are too big for your %s.", you.foot_name(true).c_str()))
         else if (player_size >= SIZE_LARGE)
-            NO_SLOT(make_stringf("Those are too small for your %s.", you.foot_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 작습니다." : "Those are too small for your %s.", you.foot_name(true).c_str()))
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
             NO_SLOT("You can't wear boots.")
         else if (you.get_mutation_level(MUT_HOOVES, false) >= 3)
@@ -514,8 +515,10 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
             int bad_size = fit_armour_size(item, player_size);
             if (bad_size != 0)
             {
-                NO_EQUIP(make_stringf("That is too %s for you to equip!",
-                                            (bad_size > 0) ? "large" : "small"))
+                NO_EQUIP((Options.language == lang_t::KO
+                    ? string(bad_size > 0 ? "너무 커서 장착할 수 없습니다!" : "너무 작아서 장착할 수 없습니다!")
+                    : make_stringf("That is too %s for you to equip!",
+                                   (bad_size > 0) ? "large" : "small")))
             }
         }
 
