@@ -1971,7 +1971,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             string hand = you.hand_name(true, &plural);
 
             if (Options.language == lang_t::KO)
-                mprf("%s이(가) 잠시 그것을 통과하지만, 곧 단단히 움켜쥡니다.", hand.c_str());
+                mprf("무기가 잠시 %s 사이로 빠져나가지만, 곧 단단히 움켜쥡니다.", hand.c_str());
             else
                 mprf("Your %s briefly %s through it before you manage "
                     "to get a firm grip on it.",
@@ -2332,7 +2332,7 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
                 bool can_plural = false;
                 const string hands = you.hand_name(true, &can_plural);
                 if (Options.language == lang_t::KO)
-                    mprf("%s이(가) 이상하리만치 허전하게 느껴집니다.", hands.c_str());
+                    mprf("마력이 사라진 듯 %s에 묘한 허전함이 느껴집니다.", hands.c_str());
                 else
                     mprf("Your %s feel%s oddly empty.",
                          hands.c_str(), can_plural ? "" : "s");
