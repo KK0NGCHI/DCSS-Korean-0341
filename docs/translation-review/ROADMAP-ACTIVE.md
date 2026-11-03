@@ -21,7 +21,7 @@ DCSS 0.34.1 Windows Tiles에서 일반 게임 플레이 전반을 자연스러�
 - [ ] 최신 `head_sha`와 Actions 결과를 재확인하고 성공/실패/진행 중을 구분하여 기록
 - [ ] 수정한 **모든** C++ 파일을 포함한 Linux KO runtime 빌드, source inventory와 테스트 결과 확인
 - [ ] 중복 `if (is_ko())` 분기, 영어 폴백, printf 인자 수·형식, 메시지 채널, 조합 문법 점검 및 수정
-- [ ] `이(가)` 등 임시 조사와 의미가 어색한 이름 접합 구문 목록 작성·수정
+- [ ] `이(가)` 등 임시 조사와 의미가 어색한 이름 접합 구문 목록 작성·수정 (2026-11-04: `player-equip.cc` 2곳 수정, 나머지 미완)
 - [ ] 모든 신규 변경분의 검증 후에만 PR Draft 해제/병합 여부 판단; **검증 실패·미완 시 병합 금지**
 
 ### P0-B. 실제 미번역 호출부 전수 감사
@@ -77,4 +77,5 @@ DCSS 0.34.1 Windows Tiles에서 일반 게임 플레이 전반을 자연스러�
 |---|---|---|---|
 | 2026-11-04 | 기존 상태 재분석 및 영속 로드맵 등록 | `main 4923edc` / PR #174 `b8071e8` | 로드맵 등록 |
 | 2026-11-04 | PR #174 최신 inventory | [run 41659699706](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/41659699706) | PASS |
-| 2026-11-04 | PR #174 최신 Linux KO runtime | [run 41659699691](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/41659699691) | 조회 시 진행 중; 재확인 필요 |
+| 2026-11-04 | PR #174 기존 HEAD `b8071e8`의 Linux KO runtime | [run 41659699691](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/41659699691) | 조회 시 진행 중; 재확인 필요 |
+| 2026-11-04 | `player-equip.cc`의 조사 표기 2곳 문장 교정 | [commit 83116e2](https://github.com/KK0NGCHI/DCSS-Korean-0341/commit/83116e25b9adff423e27bc48f883b2f59815c8f7) · PR #174 | 변경 반영, 새 HEAD 빌드 검증 필요 |
