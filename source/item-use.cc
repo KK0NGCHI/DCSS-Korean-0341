@@ -2259,7 +2259,7 @@ static item_def* _choose_target_item_for_scroll(bool scroll_known, object_select
                        {
                            if (scroll_known
                                || crawl_state.seen_hups
-                               || yesno("Really abort (and waste the scroll)?", false, 0))
+                               || yesno(Options.language == lang_t::KO ? "정말 취소하고 두루마리를 낭비하시겠습니까?" : "Really abort (and waste the scroll)?", false, 0))
                            {
                                return true;
                            }
@@ -2587,7 +2587,7 @@ static bool _handle_amnesia(bool alreadyknown)
         {
             if (crawl_state.seen_hups)
                 return false;
-            if (!yesno("Really abort (and waste the scroll)?", false, 0))
+            if (!yesno(Options.language == lang_t::KO ? "정말 취소하고 두루마리를 낭비하시겠습니까?" : "Really abort (and waste the scroll)?", false, 0))
                 continue;
         }
 
@@ -3364,7 +3364,7 @@ bool invisibility_target_check(const char* prompt)
     if (!found_any)
         return true;
     if (!found_susceptible)
-        return yesno("You can't see any enemy this would conceal you from. Use anyway?", true, 'n');
+        return yesno(Options.language == lang_t::KO ? "이 효과로 몸을 숨길 만한 적이 보이지 않습니다. 그래도 사용하시겠습니까?" : "You can't see any enemy this would conceal you from. Use anyway?", true, 'n');
 
     direction_chooser_args args;
     unique_ptr<targeter> hitfunc = make_unique<targeter_invisibility>();
@@ -3456,7 +3456,7 @@ bool use_talisman(item_def& talisman)
         return false;
     if (transforming_is_unsafe(trans))
         return false;
-    if (!i_feel_safe(true) && !yesno("Still begin transforming?", true, 'n'))
+    if (!i_feel_safe(true) && !yesno(Options.language == lang_t::KO ? "지금 상황에서도 변신을 시작하시겠습니까?" : "Still begin transforming?", true, 'n'))
     {
         canned_msg(MSG_OK);
         return false;
