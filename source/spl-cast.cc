@@ -1039,8 +1039,9 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
         && !crawl_state.disables[DIS_CONFIRMATIONS])
     {
         // None currently dock just piety, right?
-        if (!yesno("Casting this spell will place you under penance. "
-                   "Really cast?", true, 'n'))
+        if (!yesno((Options.language == lang_t::KO
+                     ? "이 주문을 시전하면 신의 징벌을 받게 됩니다. 그래도 시전하시겠습니까?"
+                     : "Casting this spell will place you under penance. Really cast?"), true, 'n'))
         {
             canned_msg(MSG_OK);
             crawl_state.zero_turns_taken();
@@ -3542,7 +3543,7 @@ bool warn_about_contam_cost(int max_contam)
     const int mul = you.has_mutation(MUT_CONTAMINATION_SUSCEPTIBLE) ? 2 : 1;
 
     if (you.magic_contamination + (max_contam * mul) >= 1000)
-        return !yesno("Casting this now could dangerously contaminate you. Continue?", true, 'n');
+        return !yesno(Options.language == lang_t::KO ? "지금 이 주문을 시전하면 위험할 정도로 마법 오염이 쌓일 수 있습니다. 계속하시겠습니까?" : "Casting this now could dangerously contaminate you. Continue?", true, 'n');
 
     return false;
 }
