@@ -69,7 +69,7 @@ completeness.
 - QA: divine protection channel mismatch fixed; verify compilation and display behavior.
 - QA: Wu Jian output retains target and momentum/count semantics but uses label-style Korean; polish after dynamic grammar support.
 
-**Status:** 209 translated output patterns in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
+**Status:** 268 translated output patterns in this batch, awaiting additional translations and verification. The 200–500 target has not been reached.
 
 ## CI verification 2026-11-02
 
@@ -149,3 +149,15 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - **Six new translated patterns, cumulative 209 patterns (not necessarily 209 distinct source callsites)**. The source-count metric previously mixed alternatives and sites and needs a full audit before PR merge.
 - Linux runtime CI was in progress for prior head `9fb51c92c466426fe843549cb3c37c5582ba23fe` when work began; latest head requires separate validation.
 - Next: confirm CI, audit formatting and particles, scan other message constructors beyond mpr, and continue large batch translations across unreviewed gameplay modules.
+
+## 2026-11-03 weapon brands, religion and effects bulk batch
+
+- Pre-batch PR head `64f708605c4d71aa5cc2039c796fa2b5fff3bcbc` passed `linux-console-ko-runtime` and `inventory` checks.
+- `source/item-use.cc`: 17 new weapon rebranding messages, preserving one `%s` item-name argument.
+- `source/religion.cc`: 30 new output positions across 25 single-literal patterns (26 uses) and 4 multiline god messages; covers gifts, conversion, deity refusals, and Slime Pits treasure unlock.
+- `source/potion.cc`: 6 outputs (5 patterns), covering god reactions and monster potion effects.
+- `source/mutation.cc`: 2 mutation/protection outputs.
+- `source/spl-selfench.cc`: 3 outputs, including a separately translated Jinx Bite message with `some/more` semantics intact.
+- `source/evoke.cc`: 1 cobweb output.
+- **This batch: 59 output positions across 6 C++ files. Previous reported 209 patterns + 59 new output positions = 268 provisional cumulative units.** Previous cumulative units mixed patterns and output sites, so a distinct-callsite inventory still needs to replace this provisional number.
+- Fresh CI required for the new head. Next: check compile/smoke results, review religion and item-use grammar/printf placeholders, enumerate untranslated messages in game UI and combat modules, and maintain the existing draft PR #174 without merging.
