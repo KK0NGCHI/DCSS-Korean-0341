@@ -1163,7 +1163,7 @@ static bool _give_nemelex_gift(bool forced = false)
 
     if (gift_cards())
     {
-        simple_god_message(" deals you some cards!");
+        simple_god_message((Options.language == lang_t::KO ? " — 당신에게 카드를 나눠 줍니다!" : " deals you some cards!"));
         mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "현재 %s을(를) 가지고 있습니다." : "You now have %s."), deck_summary().c_str());
     }
     _inc_gift_timeout(5 + random2avg(9, 2));
@@ -1175,7 +1175,7 @@ static bool _give_nemelex_gift(bool forced = false)
 
 static bool _jiyva_mutate()
 {
-    simple_god_message(" alters your body.");
+    simple_god_message((Options.language == lang_t::KO ? " — 당신의 육체를 변형합니다." : " alters your body."));
 
     bool deleted = false;
     // Go through each level of each existing non-temp, non-innate mutation.
@@ -1378,13 +1378,13 @@ static bool _give_trog_oka_gift(bool forced)
     switch (gift_type)
     {
     case OBJ_MISSILES:
-        simple_god_message(" grants you throwing weapons!");
+        simple_god_message((Options.language == lang_t::KO ? " — 투척 무기를 하사합니다!" : " grants you throwing weapons!"));
         break;
     case OBJ_WEAPONS:
-        simple_god_message(" grants you a weapon!");
+        simple_god_message((Options.language == lang_t::KO ? " — 무기를 하사합니다!" : " grants you a weapon!"));
         break;
     default:
-        simple_god_message(" grants you bugs!");
+        simple_god_message((Options.language == lang_t::KO ? " — 벌레를 하사합니다!" : " grants you bugs!"));
         break;
     }
 
@@ -1393,7 +1393,7 @@ static bool _give_trog_oka_gift(bool forced)
                 false, you.pos()) != NON_ITEM;
     if (!success)
     {
-        mpr("...but nothing appears.");
+        mpr((Options.language == lang_t::KO ? "...하지만 아무것도 나타나지 않습니다." : "...but nothing appears."));
         return false;
     }
     switch (gift_type)
@@ -1477,7 +1477,7 @@ static bool _give_sif_gift(bool forced)
     if (item_index == NON_ITEM)
         return false;
 
-    simple_god_message(" grants you a gift!");
+    simple_god_message((Options.language == lang_t::KO ? " — 선물을 내립니다!" : " grants you a gift!"));
     // included in default force_more_message
 
     you.num_current_gifts[you.religion]++;
@@ -1560,9 +1560,9 @@ static bool _give_kiku_gift(bool forced)
             new_spell = true;
 
     if (!new_spell)
-        simple_god_message(" has no new spells for you at this time.");
+        simple_god_message((Options.language == lang_t::KO ? " — 지금은 새로 내려줄 주문이 없습니다." : " has no new spells for you at this time."));
     else
-        simple_god_message(" grants you a gift!");
+        simple_god_message((Options.language == lang_t::KO ? " — 선물을 내립니다!" : " grants you a gift!"));
     // included in default force_more_message
 
     sort(chosen_spells.begin(), chosen_spells.end(), _sort_spell_level);
@@ -2858,7 +2858,7 @@ static void _jiyva_remove_slime_mutations()
             if (!slimy)
             {
                 slimy = true;
-                simple_god_message(" gift of slime is revoked.", true, GOD_JIYVA);
+                simple_god_message((Options.language == lang_t::KO ? " — 슬라임 선물이 회수됩니다." : " gift of slime is revoked."), true, GOD_JIYVA);
             }
             // XXX: replicates _god_wrath_name()
             while (_delete_single_mutation_level(static_cast<mutation_type>(i), reason, true));
@@ -2940,7 +2940,7 @@ void excommunication(bool voluntary, god_type new_god)
     update_whereis();
 
     if (old_god == GOD_IGNIS)
-        simple_god_message(" blazes with a vengeful fury!", false, old_god);
+        simple_god_message((Options.language == lang_t::KO ? " — 복수의 분노로 타오릅니다!" : " blazes with a vengeful fury!"), false, old_god);
     else if (god_hates_your_god(old_god, new_god))
     {
         simple_god_message(
@@ -3009,7 +3009,7 @@ void excommunication(bool voluntary, god_type new_god)
         break;
 
     case GOD_BEOGH:
-        simple_god_message(" voice booms out: Traitor to your kin!", true, old_god);
+        simple_god_message((Options.language == lang_t::KO ? " — 우렁차게 외칩니다. 동족의 배신자여!" : " voice booms out: Traitor to your kin!"), true, old_god);
         mprf(MSGCH_MONSTER_ENCHANT, (Options.language == lang_t::KO ? "모든 추종자가 당신을 떠나기로 합니다." : "All of your followers decide to abandon you."));
 
         add_daction(DACT_ALLY_BEOGH);
@@ -3150,7 +3150,7 @@ void excommunication(bool voluntary, god_type new_god)
 #endif
 
     case GOD_CHEIBRIADOS:
-        simple_god_message(" continues to slow your movements.", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 계속해서 당신의 움직임을 느리게 합니다." : " continues to slow your movements."), false,
                            old_god);
         break;
 
@@ -3178,7 +3178,7 @@ void excommunication(bool voluntary, god_type new_god)
         break;
 
     case GOD_IGNIS:
-        simple_god_message(" burns away your resistance to fire.", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 화염 저항을 태워 없앱니다." : " burns away your resistance to fire."), false,
                            old_god);
         if (you.duration[DUR_FIERY_ARMOUR])
         {
@@ -3371,7 +3371,7 @@ static void _god_welcome_handle_gear()
     {
         if (god_hates_item(*item))
         {
-            mprf(MSGCH_GOD, "%s warns you to remove %s.",
+            mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "%s — %s을 벗으라고 경고합니다." : "%s warns you to remove %s."),
                  uppercase_first(god_name(you.religion)).c_str(),
                  item->name(DESC_YOUR, false, false, false).c_str());
         }
@@ -3382,7 +3382,7 @@ static void _god_welcome_handle_gear()
         item_def wpn = you.props[PARAGON_WEAPON_KEY].get_item();
         if (god_hates_item(wpn))
         {
-            mprf(MSGCH_GOD, "%s removes the imprint of %s from your paragon.",
+            mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "%s — 당신의 귀감에서 %s의 흔적을 지웁니다." : "%s removes the imprint of %s from your paragon."),
                  god_name(you.religion).c_str(),
                  wpn.name(DESC_THE).c_str());
             you.props.erase(PARAGON_WEAPON_KEY);
@@ -3663,7 +3663,7 @@ static void _join_gozag()
         you.attribute[ATTR_GOZAG_GOLD_USED] += fee;
     }
     else
-        simple_god_message(" waives the service fee.");
+        simple_god_message((Options.language == lang_t::KO ? " — 봉사 비용을 면제합니다." : " waives the service fee."));
 
     // Note relevant powers.
     bool needs_redraw = false;
@@ -3834,12 +3834,12 @@ static void _print_good_god_brand_changes(item_def *weapon, bool joining_good)
     }
     if (joining_good)
     {
-        mprf("%s goes dull and lifeless in your grasp.",
+        mprf((Options.language == lang_t::KO ? "%s — 손안에서 빛과 생기를 잃습니다." : "%s goes dull and lifeless in your grasp."),
              weapon->name(DESC_YOUR).c_str());
     }
     else
     {
-        mprf("%s glows horrifically with a foul blackness!",
+        mprf((Options.language == lang_t::KO ? "%s — 불길한 검은빛으로 섬뜩하게 빛납니다!" : "%s glows horrifically with a foul blackness!"),
              uppercase_first(weapon->name(DESC_YOUR)).c_str());
     }
 }
@@ -3969,7 +3969,7 @@ void god_pitch(god_type which_god)
     if (!is_good_god(which_god) && you.penance[which_god])
     {
         you.turn_is_over = false;
-        simple_god_message(" refuses to forgive you so easily!", false,
+        simple_god_message((Options.language == lang_t::KO ? " — 당신을 그리 쉽게 용서하지 않습니다!" : " refuses to forgive you so easily!"), false,
                            which_god);
         return;
     }
@@ -3989,7 +3989,7 @@ void print_god_rejection(god_type which_god)
 
     if (which_god == GOD_GOZAG)
     {
-        simple_god_message(" does not accept service from beggars like you!",
+        simple_god_message((Options.language == lang_t::KO ? " — 당신 같은 빈털터리의 봉사는 받지 않습니다!" : " does not accept service from beggars like you!"),
                            false, which_god);
         const int fee = gozag_service_fee();
         if (you.gold == 0)
@@ -4008,7 +4008,7 @@ void print_god_rejection(god_type which_god)
     }
     if (you.get_mutation_level(MUT_NO_LOVE) && _god_rejects_loveless(which_god))
     {
-        simple_god_message(" does not accept worship from the loveless!",
+        simple_god_message((Options.language == lang_t::KO ? " — 사랑을 모르는 자의 숭배를 받지 않습니다!" : " does not accept worship from the loveless!"),
                            false, which_god);
         return;
     }
@@ -4027,7 +4027,7 @@ void print_god_rejection(god_type which_god)
         return;
     }
 
-    simple_god_message(" does not accept worship from those such as you!",
+    simple_god_message((Options.language == lang_t::KO ? " — 당신 같은 자의 숭배는 받지 않습니다!" : " does not accept worship from those such as you!"),
                        false, which_god);
 }
 
@@ -5003,17 +5003,17 @@ void ostracise_player(int amount)
     }
     else if (you.religion == GOD_GOZAG)
     {
-        mpr("...but the rich have no need for faith.");
+        mpr((Options.language == lang_t::KO ? "...하지만 부자에게는 신앙이 필요하지 않습니다." : "...but the rich have no need for faith."));
         return;
     }
     else if (you.religion == GOD_XOM)
     {
-        mpr("...but you know Xom will still be watching.");
+        mpr((Options.language == lang_t::KO ? "...하지만 좀은 여전히 지켜보고 있을 것입니다." : "...but you know Xom will still be watching."));
         return;
     }
     else if (you.attribute[ATTR_OSTRACISM] == MAX_OSTRACISM)
     {
-        mpr("...but the divine are already as distant as possible.");
+        mpr((Options.language == lang_t::KO ? "...하지만 신적인 존재들은 이미 가능한 한 멀리 떨어져 있습니다." : "...but the divine are already as distant as possible."));
         return;
     }
 
