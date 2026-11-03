@@ -101,7 +101,9 @@ static bool _pray_ecumenical_altar()
         return false;
     }
     if (!you_worship(GOD_NO_GOD)
-        && !yesno(make_stringf("Really abandon %s for an unknown god?",
+        && !yesno(make_stringf(Options.language == lang_t::KO
+                                  ? "%s 신앙을 버리고 정체를 알 수 없는 신을 섬기시겠습니까?"
+                                  : "Really abandon %s for an unknown god?",
                                god_name(you.religion).c_str()).c_str(),
                                false, 'n'))
     {
