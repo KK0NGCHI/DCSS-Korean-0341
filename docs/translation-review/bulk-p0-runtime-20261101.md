@@ -161,3 +161,12 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - `source/evoke.cc`: 1 cobweb output.
 - **This batch: 59 output positions across 6 C++ files. Previous reported 209 patterns + 59 new output positions = 268 provisional cumulative units.** Previous cumulative units mixed patterns and output sites, so a distinct-callsite inventory still needs to replace this provisional number.
 - Fresh CI required for the new head. Next: check compile/smoke results, review religion and item-use grammar/printf placeholders, enumerate untranslated messages in game UI and combat modules, and maintain the existing draft PR #174 without merging.
+
+## 2026-11-04 Korean particle/grammar QA batch
+
+- Corrected **31 existing localized output positions** across `player-equip.cc`, `mon-cast.cc`, `mon-death.cc`, `mon-abil.cc`, `mon-act.cc`, `religion.cc`, `item-use.cc`, and `spl-transloc.cc`. This includes two player-equipment positions in the first commit and 29 more positions in the follow-up batch.
+- Removed literal Korean `이(가)`, `을(를)`, and `와(과)` from these selected paths, using sentences without variable-dependent particles while preserving printf argument counts and English-language fallback.
+- Removed an unused English-only movement noun in `player-equip.cc` after the Korean message stopped interpolating it.
+- **QA changes, not new translated sites**: do not add 31 to the provisional 268 translation-unit tally.
+- Selected phrases that use labels or neutral constructions need in-game naturalness review; dynamic grammar infrastructure is still unfinished.
+- Compile on the latest PR head. Previous successful CI runs cannot validate these new modifications.
