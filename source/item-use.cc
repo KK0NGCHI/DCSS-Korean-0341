@@ -2147,87 +2147,87 @@ static void _brand_weapon(item_def &wpn)
     {
     case SPWPN_HEAVY:
         flash_colour = BROWN;
-        mprf("%s becomes incredibly heavy!",itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 무게가 엄청나게 무거워집니다!" : "%s becomes incredibly heavy!"),itname.c_str());
         break;
 
     case SPWPN_PROTECTION:
         flash_colour = YELLOW;
-        mprf("%s projects an invisible shield of force!",itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 보이지 않는 힘의 방패를 펼칩니다!" : "%s projects an invisible shield of force!"),itname.c_str());
         break;
 
     case SPWPN_FLAMING:
         flash_colour = RED;
-        mprf("%s is engulfed in flames!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 불길에 휩싸입니다!" : "%s is engulfed in flames!"), itname.c_str());
         break;
 
     case SPWPN_FREEZING:
         flash_colour = LIGHTCYAN;
-        mprf("%s is covered with a thin layer of ice!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 얇은 얼음막으로 뒤덮입니다!" : "%s is covered with a thin layer of ice!"), itname.c_str());
         break;
 
     case SPWPN_DRAINING:
         flash_colour = DARKGREY;
-        mprf("%s craves living souls!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 살아 있는 영혼을 갈망합니다!" : "%s craves living souls!"), itname.c_str());
         break;
 
     case SPWPN_VAMPIRISM:
         flash_colour = DARKGREY;
-        mprf("%s thirsts for the lives of mortals!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 필멸자의 생명을 갈망합니다!" : "%s thirsts for the lives of mortals!"), itname.c_str());
         break;
 
     case SPWPN_VENOM:
         flash_colour = GREEN;
-        mprf("%s drips with poison.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 독이 뚝뚝 떨어집니다." : "%s drips with poison."), itname.c_str());
         break;
 
     case SPWPN_ELECTROCUTION:
         flash_colour = LIGHTCYAN;
-        mprf("%s crackles with electricity.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 전기가 지직거립니다." : "%s crackles with electricity."), itname.c_str());
         break;
 
     case SPWPN_CHAOS:
         flash_colour = random_colour();
-        mprf("%s erupts in a glittering mayhem of colour.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 현란한 빛깔이 폭발하듯 퍼져 나옵니다." : "%s erupts in a glittering mayhem of colour."), itname.c_str());
         break;
 
     case SPWPN_ACID:
         flash_colour = ETC_SLIME;
-        mprf("%s oozes corrosive slime.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 부식성 점액을 흘립니다." : "%s oozes corrosive slime."), itname.c_str());
         break;
 
     case SPWPN_SPECTRAL:
         flash_colour = BLUE;
-        mprf("%s acquires a faint afterimage.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 희미한 잔상이 생깁니다." : "%s acquires a faint afterimage."), itname.c_str());
         break;
 
     case SPWPN_REBUKE:
         flash_colour = WHITE;
-        mprf("%s quivers with indignation.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 분노로 부르르 떨립니다." : "%s quivers with indignation."), itname.c_str());
         break;
 
     case SPWPN_VALOUR:
         flash_colour = WHITE;
-        mprf("%s thrums with vital power.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 생명력이 맥동합니다." : "%s thrums with vital power."), itname.c_str());
         break;
 
     case SPWPN_ENTANGLING:
         flash_colour = LIGHTGREEN;
-        mprf("%s erupts in a tangle of vines.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 뒤엉킨 덩굴이 솟아납니다." : "%s erupts in a tangle of vines."), itname.c_str());
         break;
 
     case SPWPN_SUNDERING:
         flash_colour = LIGHTRED;
-        mprf("%s becomes viciously sharp.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 무시무시하게 날카로워집니다." : "%s becomes viciously sharp."), itname.c_str());
         break;
 
     case SPWPN_CONCUSSION:
         flash_colour = YELLOW;
-        mprf("%s begins to exert an overwhelming pressure.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 압도적인 압력을 내뿜기 시작합니다." : "%s begins to exert an overwhelming pressure."), itname.c_str());
         break;
 
     case SPWPN_DEVIOUS:
         flash_colour = BLUE;
-        mprf("%s glints wickedly in the shadows.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 그림자 속에서 사악하게 번뜩입니다." : "%s glints wickedly in the shadows."), itname.c_str());
         break;
 
     default:
