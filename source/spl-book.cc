@@ -405,22 +405,19 @@ static spell_list _get_spell_list(bool just_check = false,
     if (num_memable || num_low_levels > 0 || num_low_xl > 0)
         unavail_reason = "";
     else if (num_known == total)
-        unavail_reason = "You already know all available spells.";
+        unavail_reason = Options.language == lang_t::KO ? "배울 수 있는 주문을 이미 모두 알고 있습니다." : "You already know all available spells.";
     else if (num_restricted == total || num_restricted + num_known == total)
     {
-        unavail_reason = "You cannot currently memorise any of the available "
-                         "spells because you cannot use those schools of "
-                         "magic.";
+        unavail_reason = Options.language == lang_t::KO ? "사용할 수 없는 마법 계열에 속하므로 현재 암기할 수 있는 주문이 없습니다." : "You cannot currently memorise any of the available spells because you cannot use those schools of magic.";
     }
     else if (num_misc == total || (num_known + num_misc) == total
              || num_misc + num_known + num_restricted == total)
     {
-        unavail_reason = "You cannot memorise any of the available spells.";
+        unavail_reason = Options.language == lang_t::KO ? "현재 암기할 수 있는 주문이 없습니다." : "You cannot memorise any of the available spells.";
     }
     else
     {
-        unavail_reason = "You can't memorise any new spells for an unknown "
-                         "reason; please file a bug report.";
+        unavail_reason = Options.language == lang_t::KO ? "알 수 없는 이유로 주문을 암기할 수 없습니다. 버그를 제보해 주십시오." : "You can't memorise any new spells for an unknown reason; please file a bug report.";
     }
 
     if (!just_check && *unavail_reason)
