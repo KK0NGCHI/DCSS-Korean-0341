@@ -250,3 +250,29 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - **50 localized text positions/variants changed in this turn**, consisting of 49 potential independent UI/output description branches plus one reusable drowsiness suffix. Some are mutually exclusive branches in a single output site; this is not 49 unique callsites.
 - Revised **provisional historical mixed count: 352 + 50 = 402**, for tracking editing effort only. A fresh deduplicated callsite audit remains required before any translation-completion percentage can be reported.
 - Post-change Linux KO runtime CI and inventory must pass on the exact latest PR HEAD. Windows Tiles QA still pending.
+
+## 2026-11-04 batch: spells, mutation UI, ranged sounds and explosion SFX
+
+**Baseline:** PR #174 head `d26544132b8a4f695407c7fefab8ae6a78cc7c89` passed translation inventory; Linux KO runtime build was still running when the batch started. Do not carry any check conclusion to a newer commit.
+
+### Newly localized direct outputs and descriptions — 34 positions
+
+- `spl-book.cc`: 4 spell memorisation refusal reasons (already known, restricted school, unavailable, unexpected error).
+- `throw.cc`: 6 ranged action/sound outputs (confused aim, sling, bow, crossbow, triple crossbow, hand cannon).
+- `mon-cast.cc`: 5 monster environmental spell messages (magma, ice, wind, rubble, hostile forest).
+- `mutation.cc`: 9 mutation menu and intrinsic-description outputs (header, mundane message in two contexts, suppressed/transient/future-level legend, HP wand cost, tentacle grappling, claws), plus 2 forced equipment-removal outputs from mutations.
+- `beam.cc`: 8 direct player-visible tree-burning and generic explosion feedback messages.
+
+### Explosion SFX table — 44 fields, not 44 independent callsites
+
+- `beam.cc`: created a separate Korean `spell_explosions_ko` map parallel to the original `spell_explosions` for **22 spell types × 2 fields** (visible explosion text and audible sound description). The map lookup selects based on `Options.language`, preserving English and identifiers. Generic sound formatting also has a separate Korean branch.
+- Fields are **data entries**, not directly invoked message callsites; the actual output paths are shared. Do not add all 44 fields to a callsite count.
+
+### Existing Korean QA — 3 fixes
+
+- `mutation.cc`: revised the forced-unwield/unequip Korean object-particle message to use a label-style structure.
+- `terrain.cc`: revised two preexisting ice-damage Korean messages to avoid the literal `을(를)` particle.
+
+**Accounting:** 34 newly localized direct output/description positions, 44 explosion message/sound data fields, one shared sound message formatting change, and 3 revisions to existing Korean outputs. Historical previous provisional mixed total was 402; because table data and direct outputs cannot be added to a single completion denominator, retain **402 as the pre-batch historical tally** until a proper recount. No overall completion percentage is claimed.
+
+**QA and verification:** Validate latest HEAD of draft PR #174 with source inventory and Linux KO runtime compile/smoke. The localized explosion sound values are sound-label fragments and are rendered by a separate Korean sentence. Player-generated names and Windows Tiles output still need in-game validation. Do not merge without passing fresh checks.
