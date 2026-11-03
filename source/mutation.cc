@@ -1849,7 +1849,7 @@ bool mutate(mutation_type which_mutation, const string &reason, bool failMsg,
         if (have_passive(passive_t::resist_mutation)
             && x_chance_in_y(you.piety(), piety_breakpoint(5)))
         {
-            simple_god_message(" protects your body from mutation!");
+            simple_god_message((Options.language == lang_t::KO ? " — 육체를 변이로부터 보호합니다!" : " protects your body from mutation!"));
             return false;
         }
     }
@@ -3596,7 +3596,7 @@ void maybe_apply_bane_to_monster(monster& mons)
         && mons_has_attacks(mons)
         && one_chance_in(7))
     {
-        simple_monster_message(mons, " is touched by paradox!");
+        simple_monster_message(mons, (Options.language == lang_t::KO ? " — 역설의 기운에 물듭니다!" : " is touched by paradox!"));
         mons.add_ench(mon_enchant(ENCH_PARADOX_TOUCHED, nullptr, INFINITE_DURATION));
     }
 
