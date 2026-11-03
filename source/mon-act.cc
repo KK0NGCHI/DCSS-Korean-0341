@@ -2488,7 +2488,7 @@ void monster::struggle_against_net()
         {
             if (visible_to(&you))
             {
-                mprf((Options.language == lang_t::KO ? "그물이 찢어지면서 %s이(가) 풀려납니다!" : "The net rips apart, and %s comes free!"),
+                mprf((Options.language == lang_t::KO ? "그물이 찢어지면서 %s에게서 속박이 풀립니다!" : "The net rips apart, and %s comes free!"),
                      name(DESC_THE).c_str());
             }
             else
