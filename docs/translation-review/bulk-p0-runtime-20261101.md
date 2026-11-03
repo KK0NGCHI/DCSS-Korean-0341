@@ -230,3 +230,16 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - Previous provisional mixed units 295 + 57 = **352 provisional units**. The historical figure mixes translated patterns and callsites and must not be presented as a precise completed-string count.
 - QA: variable data from `describe_thing`, `stat_desc`, branch names and item-name generators can remain untranslated. Prompt semantics and English fallback preserved; full Linux compilation and Windows Tiles runtime QA must be rerun for latest head.
 - Current HEAD before recording this section: `325d648392f2f72059657c7a0c254dfeb118a38b`. Both inventory and Linux KO runtime checks were still in progress when checked. Do not merge draft PR #174 until compiler and runtime validation are confirmed.
+
+## 2026-11-04 batch: transformation, species, spell UI and dream sheep QA (44 changed localization positions)
+
+- `mutation.cc`: **28 new Korean localization points** for transformation/innate ability descriptions, AC/HP modifiers, equipment restrictions, water walking, flight, cold-bloodedness, poison immunity, ancestor essence, ring count, and a bane name/skill impact. Dynamic English descriptions outside this specific set remain to be audited.
+- `spl-book.cc`: **7 points** spanning newly learned spell message, search matched terms, Divine Exegesis MP display, hidden spells, action help label, menu search/help, and Esc clear-search hint. Several mode labels are still built as separate dynamic fragments; review in Windows UI.
+- `spl-cast.cc`: 1 spell miscast failure-risk and confirmation prompt rewritten to use Korean `failure_rate` and numeric severity (original English fallback retained).
+- `ouch.cc`: 1 wizard/test death confirmation.
+- `mon-death.cc`: 1 Kirke polymorph expiration message for singular/plural hogs and original/human forms.
+- `mon-cast.cc`: 6 localized expressions for dream-sheep sleep effects: **5 standalone message or branch texts and 1 shared drowsiness suffix**. The suffix is *not* counted as a unique output callsite.
+- **44 modified translation positions total = 43 potential output/description sites or branches + 1 dynamic suffix**. The number is an edit count, **not** a verified distinct callsite count. This batch introduces no diagnostic translations.
+- Earlier provisional mixed tally 352 + 44 = **396 provisional edited translation units**. Do not use this as a precise distinct-callsite count or overall translation percentage.
+- Baseline PR head `2f897486d796485b787fc98ab3782544c13e6adb`: inventory and Linux console KO runtime checks both passed. The newly modified HEAD needs an independent CI pass.
+- Source-backed editing verified each old snippet was unique before replacing and retained English fallback; Windows Tiles gameplay remains untested and actual in-game phrasing/width needs QA.
