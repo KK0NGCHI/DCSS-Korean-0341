@@ -504,8 +504,9 @@ void ShaftSelfDelay::start()
 
 void ImbueDelay::start()
 {
-    mprf(MSGCH_MULTITURN_ACTION, "You begin to imbue your servitor with "
-         "knowledge of %s.",
+    mprf(MSGCH_MULTITURN_ACTION, Options.language == lang_t::KO
+         ? "시종에게 %s 주문의 지식을 불어넣기 시작합니다."
+         : "You begin to imbue your servitor with knowledge of %s.",
          spell_title(spell));
 }
 
