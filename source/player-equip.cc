@@ -85,7 +85,7 @@ int count = 0;
 
     case SLOT_WEAPON:
         if (you.has_mutation(MUT_NO_GRASPING))
-            NO_SLOT("You can't wield any weapon.")
+            NO_SLOT(Options.language == lang_t::KO ? "무기를 들 수 없습니다." : "You can't wield any weapon.")
         else
             return 1;
 
@@ -93,15 +93,17 @@ int count = 0;
         if (you.has_mutation(MUT_MISSING_HAND))
         {
             if (you.has_innate_mutation(MUT_TENTACLE_ARMS))
-                NO_SLOT("You need the rest of your tentacles for walking.")
+                NO_SLOT(Options.language == lang_t::KO ? "나머지 촉수는 이동하는 데 필요합니다." : "You need the rest of your tentacles for walking.")
             else
             {
-                NO_SLOT(make_stringf(Options.language == lang_t::KO ? "그러려면 %s이 하나 더 필요합니다!" : "You'd need another %s to do that!",
-                                        you.hand_name(false).c_str()))
+                NO_SLOT(Options.language == lang_t::KO
+                    ? string("다른 손이 하나 더 필요합니다!")
+                    : make_stringf("You'd need another %s to do that!",
+                                   you.hand_name(false).c_str()))
             }
         }
         else if (you.has_mutation(MUT_NO_GRASPING))
-            NO_SLOT("You can't hold anything in your paws.")
+            NO_SLOT(Options.language == lang_t::KO ? "발로는 물건을 쥘 수 없습니다." : "You can't hold anything in your paws.")
         // Coglins get a SLOT_WEAPON_OR_OFFHAND instead.
         else if (you.has_mutation(MUT_WIELD_OFFHAND))
             return 0;
@@ -116,7 +118,7 @@ int count = 0;
 
     case SLOT_BODY_ARMOUR:
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You can't haunt something so large.")
+            NO_SLOT(Options.language == lang_t::KO ? "그렇게 큰 물체에는 깃들 수 없습니다." : "You can't haunt something so large.")
         if (species::is_draconian(you.species))
         {
             NO_SLOT((Options.language == lang_t::KO ? string("날개 때문에 이 방어구를 착용할 수 없습니다.")
@@ -125,7 +127,7 @@ int count = 0;
                                 ? "" : ", even vestigial as they are,")))
         }
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("You can't wear armour!");
+            NO_SLOT(Options.language == lang_t::KO ? "방어구를 착용할 수 없습니다!" : "You can't wear armour!");
 
         return 1;
 
@@ -136,15 +138,15 @@ int count = 0;
             ++count;
 
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have a head.")
+            NO_SLOT(Options.language == lang_t::KO ? "머리가 없습니다." : "You don't have a head.")
         else if (you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("That is much too large for your head.")
+            NO_SLOT(Options.language == lang_t::KO ? "머리에 착용하기에는 너무 큽니다." : "That is much too large for your head.")
         else if (you.form == transformation::serpent)
             return 2;
         else if (you.get_mutation_level(MUT_HORNS, false) >= 3)
-            NO_SLOT("You can't wear any headgear with your large horns!")
+            NO_SLOT(Options.language == lang_t::KO ? "커다란 뿔 때문에 머리 장비를 착용할 수 없습니다!" : "You can't wear any headgear with your large horns!")
         else if (you.get_mutation_level(MUT_ANTENNAE, false) >= 3)
-            NO_SLOT("You can't wear any headgear with your large antennae!")
+            NO_SLOT(Options.language == lang_t::KO ? "커다란 더듬이 때문에 머리 장비를 착용할 수 없습니다!" : "You can't wear any headgear with your large antennae!")
         else
             ++count;
 
@@ -158,7 +160,7 @@ int count = 0;
             ++count;
 
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have hands.")
+            NO_SLOT(Options.language == lang_t::KO ? "손이 없습니다." : "You don't have hands.")
         else if (player_size <= SIZE_LITTLE)
             NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 큽니다." : "Those are too big for your %s.", you.hand_name(true).c_str()))
         else if (player_size >= SIZE_LARGE)
@@ -168,7 +170,7 @@ int count = 0;
         else if (you.get_mutation_level(MUT_CLAWS, false) >= 3)
             NO_SLOT(make_stringf(Options.language == lang_t::KO ? "거대한 %s에 착용할 수 없습니다." : "Those can't fit over your huge %s.", you.hand_name(true).c_str()))
         else if (you.get_mutation_level(MUT_DEMONIC_TOUCH, false) >= 3)
-            NO_SLOT("Your demonic touch would destroy those.")
+            NO_SLOT(Options.language == lang_t::KO ? "악마의 손길 때문에 해당 장비가 파괴됩니다." : "Your demonic touch would destroy those.")
         else
             ++count;
 
@@ -176,19 +178,19 @@ int count = 0;
 
     case SLOT_BOOTS:
         if (species::wears_barding(you.species) || you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have any feet!")
+            NO_SLOT(Options.language == lang_t::KO ? "발이 없습니다!" : "You don't have any feet!")
         else if (player_size <= SIZE_LITTLE)
             NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 큽니다." : "Those are too big for your %s.", you.foot_name(true).c_str()))
         else if (player_size >= SIZE_LARGE)
             NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 작습니다." : "Those are too small for your %s.", you.foot_name(true).c_str()))
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("You can't wear boots.")
+            NO_SLOT(Options.language == lang_t::KO ? "장화를 착용할 수 없습니다." : "You can't wear boots.")
         else if (you.get_mutation_level(MUT_HOOVES, false) >= 3)
-            NO_SLOT("Your hooves can't fit into boots.")
+            NO_SLOT(Options.language == lang_t::KO ? "발굽 때문에 장화를 착용할 수 없습니다." : "Your hooves can't fit into boots.")
         else if (you.get_mutation_level(MUT_TALONS, false) >= 3)
-            NO_SLOT("Your talons can't fit into boots.")
+            NO_SLOT(Options.language == lang_t::KO ? "날카로운 발톱 때문에 장화를 착용할 수 없습니다." : "Your talons can't fit into boots.")
         else if (you.has_mutation(MUT_FLOAT))
-            NO_SLOT("You have no feet!")
+            NO_SLOT(Options.language == lang_t::KO ? "발이 없습니다!" : "You have no feet!")
 
         return 1;
 
@@ -199,7 +201,7 @@ int count = 0;
         if (you.form == transformation::sphinx && !you.has_mutation(MUT_NO_ARMOUR))
             return 1;
 
-        NO_SLOT("You can't fit into that!")
+        NO_SLOT(Options.language == lang_t::KO ? "몸에 맞지 않아 착용할 수 없습니다!" : "You can't fit into that!")
 
     case SLOT_CLOAK:
         // If octopodes are allowed to wear bardings, then surely they can also
@@ -208,18 +210,18 @@ int count = 0;
             return 1;
 
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have any shoulders.")
+            NO_SLOT(Options.language == lang_t::KO ? "어깨가 없습니다." : "You don't have any shoulders.")
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("You can't wear that.")
+            NO_SLOT(Options.language == lang_t::KO ? "해당 장비를 착용할 수 없습니다." : "You can't wear that.")
         else if (you.get_mutation_level(MUT_WEAKNESS_STINGER, false) >= 3)
-            NO_SLOT("You can't wear that with your sharp stinger!")
+            NO_SLOT(Options.language == lang_t::KO ? "날카로운 독침 때문에 해당 장비를 착용할 수 없습니다!" : "You can't wear that with your sharp stinger!")
 
         return 1;
 
     case SLOT_RING:
     {
         if (you.has_mutation(MUT_NO_JEWELLERY))
-            NO_SLOT("You can't wear any rings.")
+            NO_SLOT(Options.language == lang_t::KO ? "반지를 착용할 수 없습니다." : "You can't wear any rings.")
 
         int ring_count = 2;
         if (you.species == SP_OCTOPODE)
