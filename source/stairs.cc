@@ -108,8 +108,11 @@ static string _bezotting_warning(branch_type branch)
         return "";
 
     const int turns = turns_until_zot_in(branch);
-    return make_stringf("You have just %d turns in %s to find a new floor before Zot consumes you.",
-                        turns, branches[branch].longname);
+    return Options.language == lang_t::KO
+        ? make_stringf("%s에서 새 층을 찾을 수 있는 시간이 %d턴밖에 남지 않았습니다. 그 후에는 조트에게 삼켜집니다.",
+                       branches[branch].longname, turns)
+        : make_stringf("You have just %d turns in %s to find a new floor before Zot consumes you.",
+                       turns, branches[branch].longname);
 }
 
 bool check_next_floor_warning()
