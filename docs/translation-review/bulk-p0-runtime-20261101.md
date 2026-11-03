@@ -215,3 +215,18 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - All changes preserve English fallback and percent-format arguments. `player-equip.cc` English wings/size descriptors remain in the English-only branch.
 - Runtime QA still required for Korean item names supplied by `describe_thing()`, `stat_desc()`, level annotations and branch names. No Windows Tiles QA was performed.
 - Latest Linux runtime CI must be checked against the **exact newest PR HEAD**. Earlier green inventory jobs do not validate future revisions.
+
+## 2026-11-04 batch: shopping, risk prompts and equipment restrictions (57 new sites)
+
+- Shopping list: 3 prompts (replace an expensive entry, remove an item, travel even when unaffordable).
+- Stairs: 2 warnings (annotated next floor, excluded staircase).
+- Player attributes: 2 messages (stat gain and stat drained to zero).
+- Travel: 2 outputs (uncollected items, branch level title).
+- Item use: 4 confirmations (scroll wasted on cancel ×2, invisibility-effect warning, unsafe transformation).
+- Spell cast: 2 warnings (penance and magical contamination).
+- God prayer: 1 unknown-god conversion warning.
+- Player equipment: **41 distinct failure/restriction outputs**, covering sizing, appendages, equipment slots, helmets, amulets, exoframes, and anatomical constraints. The original `NO_SLOT`/`NO_EQUIP` macros still receive `string` or literal English fallbacks.
+- **Total: 57 new output sites across 8 C++ files**. Diagnostics not counted. Previous grammar corrections (31 positions) are not new translations.
+- Previous provisional mixed units 295 + 57 = **352 provisional units**. The historical figure mixes translated patterns and callsites and must not be presented as a precise completed-string count.
+- QA: variable data from `describe_thing`, `stat_desc`, branch names and item-name generators can remain untranslated. Prompt semantics and English fallback preserved; full Linux compilation and Windows Tiles runtime QA must be rerun for latest head.
+- Current HEAD before recording this section: `325d648392f2f72059657c7a0c254dfeb118a38b`. Both inventory and Linux KO runtime checks were still in progress when checked. Do not merge draft PR #174 until compiler and runtime validation are confirmed.
