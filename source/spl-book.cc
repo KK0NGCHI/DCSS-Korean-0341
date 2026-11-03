@@ -446,10 +446,13 @@ bool library_add_spells(vector<spell_type> spells, bool quiet)
     {
         vector<string> spellnames(new_spells.size());
         transform(new_spells.begin(), new_spells.end(), spellnames.begin(), spell_title);
-        mprf("You add the spell%s %s to your library.",
-             spellnames.size() > 1 ? "s" : "",
-             comma_separated_line(spellnames.begin(),
-                                  spellnames.end()).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("주문 목록에 다음 주문을 추가합니다: %s.",
+                 comma_separated_line(spellnames.begin(), spellnames.end()).c_str());
+        else
+            mprf("You add the spell%s %s to your library.",
+                 spellnames.size() > 1 ? "s" : "",
+                 comma_separated_line(spellnames.begin(), spellnames.end()).c_str());
     }
     return !new_spells.empty();
 }
@@ -588,7 +591,9 @@ private:
                 max_size -= 19;
             const bool search_overflow =
                             static_cast<int>(search_text.size()) > max_size;
-            desc << make_stringf("Matches: <w>%.*s%s</w>",
+            desc << make_stringf(Options.language == lang_t::KO
+                                  ? "검색 일치: <w>%.*s%s</w>"
+                                  : "Matches: <w>%.*s%s</w>",
                             search_overflow ? max_size - 2 : max_size,
                             replace_all(search_text, "<", "<<").c_str(),
                             search_overflow ? ".." : "");
