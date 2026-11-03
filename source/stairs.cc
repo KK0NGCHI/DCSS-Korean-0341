@@ -69,15 +69,17 @@ static string _annotation_exclusion_warning(level_id next_level_id)
         && is_connected_branch(next_level_id))
     {
         crawl_state.level_annotation_shown = true;
-        return make_stringf("Warning, next level annotated: <yellow>%s</yellow>",
-                            get_level_annotation(next_level_id).c_str());
+        return make_stringf(Options.language == lang_t::KO
+                    ? "경고: 다음 층에 지정된 메모: <yellow>%s</yellow>"
+                    : "Warning, next level annotated: <yellow>%s</yellow>",
+                    get_level_annotation(next_level_id).c_str());
     }
 
     if (is_exclude_root(you.pos())
              && feat_is_travelable_stair(env.grid(you.pos()))
              && !strstr(get_exclusion_desc(you.pos()).c_str(), "cloud"))
     {
-        return "This staircase is marked as excluded!";
+        return Options.language == lang_t::KO ? "이 계단은 제외 구역으로 지정되어 있습니다!" : "This staircase is marked as excluded!";
     }
 
     return "";
