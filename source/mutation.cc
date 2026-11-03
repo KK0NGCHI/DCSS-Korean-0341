@@ -646,18 +646,18 @@ static vector<pair<string,string>> _get_form_fakemuts()
         if (!species::is_draconian(you.species)
             || you.species == SP_BASE_DRACONIAN) // ugh
         {
-            result.push_back({ "golden breath", _formmut("You can breathe a blast of fire, cold, and poison.")});
+            result.push_back({ "golden breath", _formmut(Options.language == lang_t::KO ? "화염, 냉기, 독을 섞은 숨결을 내뿜을 수 있습니다." : "You can breathe a blast of fire, cold, and poison.")});
         }
         else if (species::draconian_breath(you.species) != ABIL_NON_ABILITY)
-            result.push_back({ "", _formmut("Your breath weapon is enhanced in this form.")});
+            result.push_back({ "", _formmut(Options.language == lang_t::KO ? "이 형태에서는 브레스 공격이 강화됩니다." : "Your breath weapon is enhanced in this form.")});
     }
 
     // form-based flying can't be stopped, so don't print amphibiousness
     if (form->player_can_fly())
-        result.push_back({"flying", _formmut("You are flying.")});
+        result.push_back({"flying", _formmut(Options.language == lang_t::KO ? "비행 중입니다." : "You are flying.")});
     // n.b. this could cause issues for non-dragon giant forms if they exist
     else if (form->player_can_swim() && !species::can_swim(you.species))
-        result.push_back({"amphibious", _formmut("You are amphibious.")});
+        result.push_back({"amphibious", _formmut(Options.language == lang_t::KO ? "물과 육지 양쪽에서 생활할 수 있습니다." : "You are amphibious.")});
 
     const int hp_mod = form->mult_hp(10);
     if (hp_mod > 10)
@@ -679,7 +679,7 @@ static vector<pair<string,string>> _get_form_fakemuts()
     }
 
     if (!form->can_cast)
-        result.push_back({"no casting", _badmut("You cannot cast spells.")});
+        result.push_back({"no casting", _badmut(Options.language == lang_t::KO ? "주문을 시전할 수 없습니다." : "You cannot cast spells.")});
 
     vector<pair<string,string>> form_badmuts = form->get_bad_fakemuts();
     for (const auto &p : form_badmuts)
@@ -697,7 +697,7 @@ static vector<pair<string,string>> _get_form_fakemuts()
         else
         {
             result.push_back({"cold-blooded",
-                _badmut("You are cold-blooded and may be slowed by cold attacks.")});
+                _badmut(Options.language == lang_t::KO ? "냉혈 동물이므로 냉기 공격을 받으면 느려질 수 있습니다." : "You are cold-blooded and may be slowed by cold attacks.")});
         }
     }
 
@@ -719,7 +719,7 @@ static vector<pair<string,string>> _get_form_fakemuts()
     if (!form->can_wield() && !you.has_mutation(MUT_NO_GRASPING))
     {
         // same as MUT_NO_GRASPING
-        result.push_back({"", _badmut("You are incapable of wielding weapons or throwing items.")});
+        result.push_back({"", _badmut(Options.language == lang_t::KO ? "무기를 들거나 아이템을 던질 수 없습니다." : "You are incapable of wielding weapons or throwing items.")});
     }
 
     // XX say something about AC? Best would be to compare it to AC without
@@ -753,16 +753,16 @@ static vector<pair<string, string>> _get_fakemuts()
     {
         result.push_back({"walk on water",
                     have_passive(passive_t::water_walk)
-                        ? _formmut("You can walk on water.")
-                        : _formmut("You can walk on water until reaching land.")});
+                        ? _formmut(Options.language == lang_t::KO ? "물 위를 걸을 수 있습니다." : "You can walk on water.")
+                        : _formmut(Options.language == lang_t::KO ? "육지에 닿기 전까지 물 위를 걸을 수 있습니다." : "You can walk on water until reaching land.")});
     }
 
     if (you.props.exists(ORCIFICATION_LEVEL_KEY))
     {
         result.push_back({"",
                     you.props[ORCIFICATION_LEVEL_KEY].get_int() == 1
-                        ? _formmut("Your facial features look somewhat orcish.")
-                        : _formmut("Your facial features are unmistakably orcish.")});
+                        ? _formmut(Options.language == lang_t::KO ? "얼굴에 오크를 닮은 특징이 조금 나타납니다." : "Your facial features look somewhat orcish.")
+                        : _formmut(Options.language == lang_t::KO ? "얼굴이 누가 보아도 오크의 모습입니다." : "Your facial features are unmistakably orcish.")});
     }
 
     if (have_passive(passive_t::frail)
@@ -770,7 +770,7 @@ static vector<pair<string, string>> _get_fakemuts()
     {
         // XX message is probably wrong for penance?
         result.push_back({"reduced essence",
-                          _badmut("Your life essence is reduced to manifest your ancestor. (-10% HP)")});
+                          _badmut(Options.language == lang_t::KO ? "선조를 현현시키기 위해 생명력이 감소합니다. (최대 HP -10%)" : "Your life essence is reduced to manifest your ancestor. (-10% HP)")});
     }
 
     // Innate abilities which haven't been implemented as mutations yet.
@@ -813,7 +813,7 @@ static vector<pair<string, string>> _get_fakemuts()
     // amphibiousness.
     if (species::can_swim(you.species) && !you.has_innate_mutation(MUT_MERTAIL))
     {
-        result.push_back(_annotate_form_based({"amphibious", "You are amphibious."},
+        result.push_back(_annotate_form_based({"amphibious", Options.language == lang_t::KO ? "물과 육지 양쪽에서 생활할 수 있습니다." : "You are amphibious."},
                                               !form_can_swim()));
     }
 
@@ -844,17 +844,17 @@ static vector<pair<string, string>> _get_fakemuts()
     {
     case SIZE_LITTLE:
         armour_mut = {"unfitting armour",
-                      _innatemut("You are too small for most types of armour.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 너무 작아 대부분의 방어구를 착용할 수 없습니다." : "You are too small for most types of armour.")};
         weapon_mut = {"no large weapons",
-                      _innatemut("You are very small and have problems with some larger weapons.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 아주 작아 일부 대형 무기를 사용하기 어렵습니다." : "You are very small and have problems with some larger weapons.")};
         break;
     case SIZE_SMALL:
         weapon_mut = {"no large weapons",
-                      _innatemut("You are small and have problems with some larger weapons.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 작아 일부 대형 무기를 사용하기 어렵습니다." : "You are small and have problems with some larger weapons.")};
         break;
     case SIZE_LARGE:
         armour_mut = {"unfitting armour",
-                      _innatemut("You are too large for most types of armour.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 너무 커서 대부분의 방어구를 착용할 수 없습니다." : "You are too large for most types of armour.")};
         break;
     default: // no giant species
         break;
@@ -864,7 +864,7 @@ static vector<pair<string, string>> _get_fakemuts()
     if (species::is_draconian(you.species))
     {
         armour_mut = {"unfitting armour",
-                      _innatemut("You cannot fit into any form of body armour or wear helmets.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸통 방어구와 투구를 착용할 수 없습니다." : "You cannot fit into any form of body armour or wear helmets.")};
     }
     if (!weapon_mut.first.empty() && !you.has_mutation(MUT_NO_GRASPING))
         result.push_back(weapon_mut);
@@ -872,7 +872,7 @@ static vector<pair<string, string>> _get_fakemuts()
         result.push_back(armour_mut);
 
     if (player_res_poison(false, false, false, false) == 3)
-        result.push_back({"", _innatemut("You are immune to poison.")});
+        result.push_back({"", _innatemut(Options.language == lang_t::KO ? "독에 면역입니다." : "You are immune to poison.")});
 
     return result;
 }
