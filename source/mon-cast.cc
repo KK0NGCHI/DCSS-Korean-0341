@@ -7016,27 +7016,27 @@ static void _mons_upheaval(monster& mons, actor& /*foe*/, bool randomize)
             beam.colour    = RED;
             beam.tile_beam = TILE_BOLT_MAGMA;
             beam.hit_verb  = "engulfs";
-            message        = "Magma suddenly erupts from the ground!";
+            message        = Options.language == lang_t::KO ? "땅에서 갑자기 용암이 솟구칩니다!" : "Magma suddenly erupts from the ground!";
             break;
         case 1:
             beam.name      = "blast of ice";
             beam.flavour   = BEAM_ICE;
             beam.colour    = WHITE;
             beam.tile_beam = TILE_BOLT_ICEBLAST;
-            message        = "A blizzard blasts the area with ice!";
+            message        = Options.language == lang_t::KO ? "눈보라가 주변을 얼음으로 뒤덮습니다!" : "A blizzard blasts the area with ice!";
             break;
         case 2:
             beam.name      = "cutting wind";
             beam.flavour   = BEAM_AIR;
             beam.colour    = LIGHTGRAY;
             beam.tile_beam = TILE_BOLT_STRONG_AIR;
-            message        = "A storm cloud blasts the area with cutting wind!";
+            message        = Options.language == lang_t::KO ? "폭풍 구름에서 날카로운 강풍이 몰아칩니다!" : "A storm cloud blasts the area with cutting wind!";
             break;
         case 3:
             beam.name    = "blast of rubble";
             beam.flavour = BEAM_FRAG;
             beam.colour  = BROWN;
-            message      = "The ground shakes violently, spewing rubble!";
+            message      = Options.language == lang_t::KO ? "땅이 격렬하게 흔들리며 돌무더기를 뿜어냅니다!" : "The ground shakes violently, spewing rubble!";
             break;
         default:
             break;
@@ -8329,7 +8329,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         env.forest_is_hostile = !mons->friendly();
 
         // You may be unable to see the monster, but notice an affected tree.
-        forest_message(mons->pos(), "The forest starts to sway and rumble!");
+        forest_message(mons->pos(), Options.language == lang_t::KO ? "숲이 흔들리며 요동치기 시작합니다!" : "The forest starts to sway and rumble!");
         return;
 
     case SPELL_SUMMON_DRAGON:
