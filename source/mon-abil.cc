@@ -633,13 +633,19 @@ bool slymdra_polymorph(monster& slymdra, poly_power_type power)
     {
         if (count == 1)
         {
-            mprf("A slime creature is ejected from %s body as it begins to warp and change.",
+            mprf(Options.language == lang_t::KO
+                     ? "%s의 몸이 뒤틀리며 슬라임 생물 1마리가 튀어나옵니다."
+                     : "A slime creature is ejected from %s body as it begins to warp and change.",
                  slymdra.name(DESC_ITS).c_str());
         }
         else
         {
-            mprf("%d slime creatures are ejected from %s body as it begins to warp and change.",
-                 count, slymdra.name(DESC_ITS).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s의 몸이 뒤틀리며 슬라임 생물 %d마리가 튀어나옵니다.",
+                     slymdra.name(DESC_ITS).c_str(), count);
+            else
+                mprf("%d slime creatures are ejected from %s body as it begins to warp and change.",
+                     count, slymdra.name(DESC_ITS).c_str());
         }
     }
 
