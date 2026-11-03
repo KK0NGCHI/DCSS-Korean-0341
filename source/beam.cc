@@ -6863,6 +6863,98 @@ const map<spell_type, explosion_sfx> spell_explosions = {
     } },
 };
 
+// Korean explosion descriptions; keep the original table as English fallback.
+const map<spell_type, explosion_sfx> spell_explosions_ko = {
+    { SPELL_HURL_DAMNATION, {
+        "파멸의 구체가 폭발합니다!",
+        "저주받은 자들의 통곡",
+    } },
+    { SPELL_CALL_DOWN_DAMNATION, {
+        "파멸의 구체가 폭발합니다!",
+        "저주받은 자들의 통곡",
+    } },
+    { SPELL_FIREBALL, {
+        "화염구가 폭발합니다!",
+        "폭발음",
+    } },
+    { SPELL_ORB_OF_ELECTRICITY, {
+        "전기 구체가 폭발합니다!",
+        "천둥소리",
+    } },
+    { SPELL_FIRE_STORM, {
+        "맹렬한 화염 폭풍이 나타납니다!",
+        "거센 폭풍 소리",
+    } },
+    { SPELL_MEPHITIC_CLOUD, {
+        "혼합물이 든 병이 깨져 끔찍한 구름이 퍼집니다!",
+        "유리가 크게 깨지는 소리",
+    } },
+    { SPELL_GHOSTLY_FIREBALL, {
+        "유령의 불꽃이 폭발합니다!",
+        "섬뜩한 불꽃의 비명",
+    } },
+    { SPELL_VIOLENT_UNRAVELLING, {
+        "마법 효과가 폭발합니다!",
+        "날카로운 파직거림", // radiation = geiger counter
+    } },
+    { SPELL_ICEBLAST, {
+        "얼음 덩어리가 폭발합니다!",
+        "폭발음",
+    } },
+    { SPELL_PERMAFROST_ERUPTION, {
+        "살을 에는 냉기가 사방으로 뿜어져 나갑니다!",
+        "폭발음", // maybe?
+    } },
+    { SPELL_GHOSTLY_SACRIFICE, {
+        "유령의 불꽃이 폭발합니다!",
+        "섬뜩한 불꽃의 비명",
+    } },
+    { SPELL_SERACFALL, {
+        "얼음 덩어리가 폭발합니다!",
+        "폭발음",
+    } },
+    { SPELL_FLAME_WAVE, {
+        "화염의 파도가 퍼져 나갑니다!",
+        "불길이 포효하는 소리",
+    } },
+    { SPELL_FASTROOT, {
+        "뿌리들이 격렬하게 자라나며 솟구칩니다!",
+        "삐걱거리고 부서지는 소리",
+    } },
+    { SPELL_BLASTMOTE, {
+        "폭발 입자의 구름이 터집니다!",
+        "강한 충격을 동반한 폭발음",
+    } },
+    { SPELL_HURL_TORCHLIGHT, {
+        "어둠의 불길이 터져 나옵니다!",
+        "어둠의 불꽃이 내는 비명",
+    } },
+    { SPELL_WARP_SPACE, {
+        "공간이 격렬하게 뒤틀립니다!",
+        "날카로운 메아리",
+    } },
+    { SPELL_COMBUSTION_BREATH, {
+        "불씨가 폭발합니다!",
+        "화염 폭발음",
+    } },
+    { SPELL_NULLIFYING_BREATH, {
+        "반마법의 파동이 사방으로 퍼집니다!",
+        "희미한 메아리",
+    } },
+    { SPELL_HOARFROST_BULLET, {
+        "파편이 산산조각 나며 흩어집니다!",
+        "폭발음",
+    } },
+    { SPELL_SHADOW_BALL, {
+        "일렁이는 그림자가 폭발합니다!",
+        "조용한 휘파람 소리",
+    } },
+    { SPELL_ACID_BALL, {
+        "산성 구체가 폭발합니다!",
+        "격렬하고 질척한 소리",
+    } },
+};
+
 // Takes a bolt and refines it for use in the explosion function.
 // Explosions which do not follow from beams bypass this function.
 void bolt::refine_for_explosion(const string& explode_msg)
@@ -6887,7 +6979,8 @@ void bolt::refine_for_explosion(const string& explode_msg)
     }
     else
     {
-        const explosion_sfx *explosion = map_find(spell_explosions,
+        const explosion_sfx *explosion = map_find(Options.language == lang_t::KO
+                                                      ? spell_explosions_ko : spell_explosions,
                                                   origin_spell);
         if (explosion)
         {
