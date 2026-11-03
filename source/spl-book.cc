@@ -567,7 +567,9 @@ private:
         if (you.divine_exegesis)
         {
             desc << make_stringf(
-                "<lightgreen>Casting with Divine Exegesis: %d MP available</lightgreen>",
+                Options.language == lang_t::KO
+                    ? "<lightgreen>신성한 해석으로 시전: 사용 가능한 MP %d</lightgreen>"
+                    : "<lightgreen>Casting with Divine Exegesis: %d MP available</lightgreen>",
                 you.magic_points);
         }
         else
@@ -578,7 +580,7 @@ private:
         {
             desc << std::right << std::setw(5)
                  << hidden_count
-                 << (hidden_count > 1 ? " spells hidden" : " spell hidden ")
+                 << (Options.language == lang_t::KO ? "개 주문 숨김" : (hidden_count > 1 ? " spells hidden" : " spell hidden "))
                  << "   ";
         }
         else
@@ -601,8 +603,11 @@ private:
 
         desc << "\n";
 
-        const string act = default_action == action::memorise ? "Memorise"
-                           : default_action == action::imbue ? "Imbue" : "Cast";
+        const string act = Options.language == lang_t::KO
+                           ? (default_action == action::memorise ? "암기"
+                              : default_action == action::imbue ? "주입" : "시전")
+                           : (default_action == action::memorise ? "Memorise"
+                              : default_action == action::imbue ? "Imbue" : "Cast");
         // line 2
         desc << menu_keyhelp_cmd(CMD_MENU_RIGHT) << " ";
         desc << ( current_action == action::cast
@@ -616,11 +621,13 @@ private:
                  : current_action == action::hide
                             ? act + "|Describe|<w>Hide</w>|Show"
                  : act + "|Describe|Hide|<w>Show</w>");
-        desc << "   " << menu_keyhelp_cmd(CMD_MENU_SEARCH) << " search"
-                "   [<w>?</w>] help"; // XX hardcoded for this menu
+        desc << "   " << menu_keyhelp_cmd(CMD_MENU_SEARCH)
+             << (Options.language == lang_t::KO ? " 검색   [<w>?</w>] 도움말"
+                                                 : " search   [<w>?</w>] help"); // XX hardcoded for this menu
 
         if (search_text.size())
-            return pad_more_with(desc.str(), "[<w>Esc</w>] clear"); // esc is hardcoded for this case
+            return pad_more_with(desc.str(), Options.language == lang_t::KO
+                                     ? "[<w>Esc</w>] 검색 해제" : "[<w>Esc</w>] clear"); // esc is hardcoded for this case
         else
             return pad_more_with_esc(desc.str());
     }
