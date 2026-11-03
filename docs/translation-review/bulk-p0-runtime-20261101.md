@@ -170,3 +170,19 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - **QA changes, not new translated sites**: do not add 31 to the provisional 268 translation-unit tally.
 - Selected phrases that use labels or neutral constructions need in-game naturalness review; dynamic grammar infrastructure is still unfinished.
 - Compile on the latest PR head. Previous successful CI runs cannot validate these new modifications.
+
+## 2026-11-04 bulk P0 player-facing outputs (19 new positions)
+
+- `source/evoke.cc`: 2 no-target confirmation prompts (tremorstone/cloud condenser).
+- `source/spl-clouds.cc`: 1 blastmote cloud warning.
+- `source/stairs.cc`: 1 dangerous transition confirmation prompt.
+- `source/delay.cc`: 10 equipment/transform/servitor prompts, start/stop/finish and HP recovery outputs.
+- `source/travel.cc`: 1 Zot proximity autoexploration prompt.
+- `source/mon-abil.cc`: 2 Slymdra metamorphosis/splitting outputs, single and multiple spawn.
+- `source/shopping.cc`: 1 shopping list header with quantity and cost.
+- `source/potion.cc`: 1 lethal-cloud tree transformation prompt.
+- **19 newly localized output sites**, 8 C++ files. All retain English fallback. Diagnostics excluded from count.
+- This is separate from the previous 31-site grammar QA batch, which was **not** counted as new translations.
+- PR #174 provisional cumulative translation count: **268 prior mixed units + 19 new distinct sites = 287 mixed provisional units**. Do not treat this as precise distinct-site total; comprehensive callsite recount still required.
+- All edits committed to the same draft PR. The prior Linux run was still in progress at the start of the batch. The newest code must pass fresh full-overlay compilation and runtime smoke before merge.
+- Known QA: neutral equipment-change text loses equip-on/off distinction; improve with safe Korean-specific message variants when practical. Windows Tiles in-game output and dynamic names remain unverified.
