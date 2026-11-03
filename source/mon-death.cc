@@ -1633,7 +1633,7 @@ static void _druid_final_boon(const monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO ? "%s이(가) 마지막 숨을 내쉬며 야생의 짐승들에게 힘을 나누어 줍니다!" : "With its final breath, %s offers up its power to the beasts of the wild!",
+        mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO ? "마지막 숨을 내쉬는 %s에게서 야생의 짐승들에게 힘이 흘러갑니다!" : "With its final breath, %s offers up its power to the beasts of the wild!",
                                   mons->name(DESC_THE).c_str());
     }
 
@@ -1695,7 +1695,7 @@ static void _protean_explosion(monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_WARNING, Options.language == lang_t::KO ? "%s이(가) 잠시 %s의 모습으로 변하기 시작하더니 폭발합니다!" : "For just a moment, %s begins to look like %s, then it explodes!",
+        mprf(MSGCH_MONSTER_WARNING, Options.language == lang_t::KO ? "%s의 형체가 잠시 %s처럼 변하더니 폭발합니다!" : "For just a moment, %s begins to look like %s, then it explodes!",
                                     mons->name(DESC_THE).c_str(),
                                     mons_type_name(target, DESC_A).c_str());
     }
@@ -3028,7 +3028,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                     && (anon || !invalid_monster_index(killer_index)))
                 {
                     if (Options.language == lang_t::KO)
-                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s이(가) %s!",
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "대상 %s: %s!",
                              mons.name(DESC_THE).c_str(),
                              exploded ? "폭발했습니다" :
                              destroyed ? "파괴됐습니다" : "죽었습니다");
@@ -3041,7 +3041,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                 else
                 {
                     if (Options.language == lang_t::KO)
-                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s을(를) %s!",
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "대상 %s: %s!",
                              mons.name(DESC_THE).c_str(),
                              exploded ? "폭발시켰습니다" :
                              destroyed ? "파괴했습니다" : "죽였습니다");
@@ -3248,10 +3248,10 @@ item_def* monster_die(monster& mons, killer_type killer,
             else
             {
                 if (mons.props.exists(KIKU_WRETCH_KEY))
-                    mprf(Options.language == lang_t::KO ? "근처의 %s이(가) 비참하게 죽습니다." : "A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
+                    mprf(Options.language == lang_t::KO ? "근처에 있던 %s에게 비참한 죽음이 찾아옵니다." : "A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
                 else if (mons_class_is_fragile(mons.type))
                 {
-                    mprf(MSGCH_MONSTER_TIMEOUT, Options.language == lang_t::KO ? "근처의 %s이(가) 시들어 죽습니다." : "A nearby %s withers and dies.",
+                    mprf(MSGCH_MONSTER_TIMEOUT, Options.language == lang_t::KO ? "근처에 있던 %s의 생명이 시들어 사라집니다." : "A nearby %s withers and dies.",
                          mons.name(DESC_PLAIN, false).c_str());
                 }
                 // Default message so that at least *something* is printed.
