@@ -2434,8 +2434,9 @@ static void _handle_piety_gain(int old_piety)
             if (have_passive(passive_t::unlock_slime_vaults)
                 && can_do_capstone_ability(you.religion))
             {
-                simple_god_message(" will now unseal the treasures of the "
-                                "Slime Pits.");
+                simple_god_message(Options.language == lang_t::KO
+                    ? " — 이제 슬라임 구덩이의 보물 봉인을 해제합니다."
+                    : " will now unseal the treasures of the Slime Pits.");
                 dlua.callfn("dgn_set_persistent_var", "sb",
                             "fix_slime_vaults", true);
                 // If we're on Slime:$, pretend we just entered the level
@@ -3752,8 +3753,9 @@ static void _join_zin()
 // Setup for joining the easygoing followers of Cheibriados.
 static void _join_cheibriados()
 {
-    simple_god_message(" begins to support your attributes as your "
-                       "movement slows.");
+    simple_god_message(Options.language == lang_t::KO
+        ? " — 움직임이 느려지면서 능력치를 보조하기 시작합니다."
+        : " begins to support your attributes as your movement slows.");
     notify_stat_change();
 }
 
@@ -4016,13 +4018,15 @@ void print_god_rejection(god_type which_god)
     {
         if (which_god == GOD_OKAWARU)
         {
-            simple_god_message(" says: You must forswear the aid of any and all "
-                               "before you are fit to worship.", false, which_god);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 선언합니다. 누구의 도움도 받지 않겠다고 맹세해야 숭배할 자격이 있다."
+                : " says: You must forswear the aid of any and all before you are fit to worship.", false, which_god);
         }
         else
         {
-            simple_god_message(" says: How dare you approach in such a loathsome "
-                               "form!", false, which_god);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 외칩니다. 어찌 그런 혐오스러운 모습으로 감히 다가오느냐!"
+                : " says: How dare you approach in such a loathsome form!", false, which_god);
         }
         return;
     }
