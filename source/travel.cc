@@ -3460,7 +3460,7 @@ void start_explore(bool grab_items, bool skip_autorest)
     if (!i_feel_safe(true, true))
         return;
 
-    if (should_fear_zot() && !yesno("Really explore while Zot is near?", false, 'n'))
+    if (should_fear_zot() && !yesno(Options.language == lang_t::KO ? "조트가 가까이 있습니다. 그래도 자동 탐색을 계속하시겠습니까?" : "Really explore while Zot is near?", false, 'n'))
     {
         canned_msg(MSG_OK);
         return;
