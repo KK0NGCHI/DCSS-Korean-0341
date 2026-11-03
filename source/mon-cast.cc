@@ -6873,29 +6873,36 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
 
     // Determine messaging based on sleep strength.
     if (sleep_pow >= 125)
-        message = "You are overwhelmed by glittering dream dust!";
+        message = Options.language == lang_t::KO ? "반짝이는 꿈의 먼지가 당신을 휩쌉니다!" : "You are overwhelmed by glittering dream dust!";
     else if (sleep_pow >= 75)
-        message = "The dream sheep are wreathed in dream dust.";
+        message = Options.language == lang_t::KO ? "꿈의 양들이 꿈의 먼지에 둘러싸입니다." : "The dream sheep are wreathed in dream dust.";
     else if (sleep_pow >= MIN_DREAM_SUCCESS_POWER)
     {
-        message = make_stringf("The dream sheep shake%s wool and sparkle%s.",
-                               num_sheep == 1 ? "s its" : " their",
-                               num_sheep == 1 ? "s": "");
+        message = Options.language == lang_t::KO
+            ? "꿈의 양들이 양털을 털며 반짝입니다."
+            : make_stringf("The dream sheep shake%s wool and sparkle%s.",
+                           num_sheep == 1 ? "s its" : " their",
+                           num_sheep == 1 ? "s": "");
     }
     else // if sleep fails
     {
-        message = make_stringf("The dream sheep ruffle%s wool and motes of "
-                               "dream dust sparkle, to no effect.",
-                               num_sheep == 1 ? "s its" : " their");
+        message = Options.language == lang_t::KO
+            ? "꿈의 양들이 양털을 부풀리며 꿈의 먼지를 흩날리지만, 아무 일도 일어나지 않습니다."
+            : make_stringf("The dream sheep ruffle%s wool and motes of "
+                           "dream dust sparkle, to no effect.",
+                           num_sheep == 1 ? "s its" : " their");
     }
 
     if (foe.is_player())
     {
-        const char* drowsy = sleep_pow ? " You feel drowsy..." : "";
+        const char* drowsy = sleep_pow
+            ? (Options.language == lang_t::KO ? " 졸음이 밀려옵니다..." : " You feel drowsy...") : "";
         if (!seen)
         {
             mprf(MSGCH_MONSTER_SPELL,
-                 "Motes of dream dust float from an unseen source.%s",
+                 Options.language == lang_t::KO
+                     ? "보이지 않는 곳에서 꿈의 먼지가 흩날립니다.%s"
+                     : "Motes of dream dust float from an unseen source.%s",
                  drowsy);
             return;
         }
