@@ -198,7 +198,7 @@ bool EquipOnDelay::try_interrupt(bool force)
     if (interrupt)
     {
         if (Options.language == lang_t::KO)
-            mpr("장비 변경을 중단합니다.");
+            mpr("장비 착용을 중단합니다.");
         else
             mprf("You stop %s your %s.", get_verb(), _eq_category(equip).c_str());
         return true;
@@ -235,7 +235,9 @@ bool EquipOffDelay::try_interrupt(bool force)
                                // Shields and orbs aren't clothes.
                                && get_armour_slot(equip) != SLOT_OFFHAND;
         const char* verb = is_armour ? "disrobing" : "removing your equipment";
-        const string prompt = make_stringf("Keep %s?", verb);
+        const string prompt = Options.language == lang_t::KO
+            ? "장비 해제를 계속하시겠습니까?"
+            : make_stringf("Keep %s?", verb);
         // yesno might call this function again, don't double prompt
         was_prompted = true;
         if (!crawl_state.disables[DIS_CONFIRMATIONS]
@@ -248,7 +250,7 @@ bool EquipOffDelay::try_interrupt(bool force)
     if (interrupt)
     {
         if (Options.language == lang_t::KO)
-            mpr("장비 변경을 중단합니다.");
+            mpr("장비 해제를 중단합니다.");
         else
             mprf("You stop %s your %s.", get_verb(), _eq_category(equip).c_str());
         return true;
@@ -464,7 +466,7 @@ void clear_macro_process_key_delay()
 void EquipOnDelay::start()
 {
     if (Options.language == lang_t::KO)
-        mprf(MSGCH_MULTITURN_ACTION, "%s", "장비 변경을 시작합니다.");
+        mprf(MSGCH_MULTITURN_ACTION, "%s", "장비 착용을 시작합니다.");
     else
         mprf(MSGCH_MULTITURN_ACTION, "You start %s your %s.",
              get_verb(), _eq_category(equip).c_str());
@@ -473,7 +475,7 @@ void EquipOnDelay::start()
 void EquipOffDelay::start()
 {
     if (Options.language == lang_t::KO)
-        mprf(MSGCH_MULTITURN_ACTION, "%s", "장비 변경을 시작합니다.");
+        mprf(MSGCH_MULTITURN_ACTION, "%s", "장비 해제를 시작합니다.");
     else
         mprf(MSGCH_MULTITURN_ACTION, "You start %s your %s.",
              get_verb(), _eq_category(equip).c_str());
@@ -740,7 +742,7 @@ bool EquipOnDelay::invalidated()
 void EquipOnDelay::finish()
 {
     if (Options.language == lang_t::KO)
-        mprf("장비 변경을 마쳤습니다: %s.", equip.name(DESC_YOUR).c_str());
+        mprf("장비 착용을 마쳤습니다: %s.", equip.name(DESC_YOUR).c_str());
     else
         mprf("You finish %s %s.", get_verb(), equip.name(DESC_YOUR).c_str());
 
@@ -758,7 +760,7 @@ bool EquipOffDelay::invalidated()
 void EquipOffDelay::finish()
 {
     if (Options.language == lang_t::KO)
-        mprf("장비 변경을 마쳤습니다: %s.", equip.name(DESC_YOUR).c_str());
+        mprf("장비 해제를 마쳤습니다: %s.", equip.name(DESC_YOUR).c_str());
     else
         mprf("You finish %s %s.", get_verb(), equip.name(DESC_YOUR).c_str());
     unequip_item(equip);
