@@ -1562,7 +1562,7 @@ void ouch(int dam, kill_method_type death_type, mid_t source, const char *aux,
 
             dprf("Damage: %d; Hit points: %d", dam, you.hp);
 
-            if (crawl_state.test || !yesno("Die?", false, 'n'))
+            if (crawl_state.test || !yesno(Options.language == lang_t::KO ? "죽으시겠습니까?" : "Die?", false, 'n'))
             {
                 mpr((Options.language == lang_t::KO ? "역시 그럴 줄 알았습니다." : "Thought so."));
                 take_note(Note(NOTE_DEATH, you.hp, you.hp_max,
