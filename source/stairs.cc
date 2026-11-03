@@ -134,7 +134,7 @@ bool check_next_floor_warning()
                                  || bezotting_warning != "";
 
     if (might_be_dangerous
-        && !yesno("Enter next level anyway?", true, 'n', true, false))
+        && !yesno(Options.language == lang_t::KO ? "그래도 다음 층으로 이동하시겠습니까?" : "Enter next level anyway?", true, 'n', true, false))
     {
         canned_msg(MSG_OK);
         interrupt_activity(activity_interrupt::force);
