@@ -1952,7 +1952,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             }
             else
             {
-                mprf("%s을(를) 따라 타는 듯한 고통이 치솟는다!",
+                mprf("%s에서 타는 듯한 고통이 치솟습니다!",
                         your_arm.c_str());
             }
             break;
@@ -2003,7 +2003,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_SPECTRAL:
-            mprf("%s와(과) 유대감이 느껴져.", item_name.c_str());
+            mprf("%s에 묘한 유대감이 느껴집니다.", item_name.c_str());
             break;
 
         case SPWPN_REBUKE:
@@ -2401,7 +2401,7 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     {
         // XX can the noun here be derived from the species walking verb?
         const string noun = you.species == SP_NAGA ? "slither" : "step";
-        mprf("덕분에 %s이(가) 다시 한결 가벼워진 것 같아.", noun.c_str());
+        mprf("다시 한결 가볍게 움직일 수 있을 것 같습니다.", noun.c_str());
         break;
     }
 
