@@ -852,9 +852,12 @@ void explore_pickup_event(int did_pickup, int tried_pickup)
             // XX [A] doesn't make sense for items being picked up only because
             // of an =g inscription
             const string prompt =
-                make_stringf("Could not pick up %s here; Ignore %s?",
-                             wishlist.c_str(),
-                             tried_pickup == 1 ? "it" : "them");
+                Options.language == lang_t::KO
+                 ? make_stringf("여기에서 다음 아이템을 주울 수 없습니다: %s. 무시하시겠습니까?",
+                                wishlist.c_str())
+                 : make_stringf("Could not pick up %s here; Ignore %s?",
+                                wishlist.c_str(),
+                                tried_pickup == 1 ? "it" : "them");
 
             // Make Escape => 'n' and stop run.
             explicit_keymap map;
@@ -3556,8 +3559,9 @@ string level_id::describe(bool long_name, bool with_number) const
             // decapitalise 'the'
             if (starts_with(result, "The"))
                 result[0] = 't';
-            result = make_stringf("Level %d of %s",
-                      depth, result.c_str());
+            result = Options.language == lang_t::KO
+                ? make_stringf("%s %d층", result.c_str(), depth)
+                : make_stringf("Level %d of %s", depth, result.c_str());
         }
         else if (depth)
             result = make_stringf("%s:%d", result.c_str(), depth);
