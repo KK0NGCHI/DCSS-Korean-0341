@@ -697,7 +697,9 @@ static vector<pair<string,string>> _get_form_fakemuts()
         if (you.res_cold())
         {
             result.push_back({"(cold-blooded)",
-                "<darkgray>((You are cold-blooded and may be slowed by cold attacks.))</darkgray>"});
+                (Options.language == lang_t::KO
+                     ? "<darkgray>((냉혈 동물이므로 냉기 공격을 받으면 느려질 수 있습니다.))</darkgray>"
+                     : "<darkgray>((You are cold-blooded and may be slowed by cold attacks.))</darkgray>")});
         }
         else
         {
@@ -805,10 +807,13 @@ static vector<pair<string, string>> _get_fakemuts()
         const string scale_clause = string(species::scale_type(you.species))
                   + " scales are hard";
 
-        string ac_str = make_stringf("Your %s. (AC +%d)", you.species == SP_NAGA
-                                        ? "serpentine skin is tough"
-                                        : scale_clause.c_str(),
-                                        ac);
+        string ac_str = Options.language == lang_t::KO
+            ? make_stringf("%s (AC +%d)",
+                           you.species == SP_NAGA
+                               ? "질긴 뱀 비늘 피부" : "단단한 비늘", ac)
+            : make_stringf("Your %s. (AC +%d)",
+                           you.species == SP_NAGA
+                               ? "serpentine skin is tough" : scale_clause.c_str(), ac);
         result.push_back(_annotate_form_based({"AC +" + to_string(ac), ac_str},
                             (form_changes_anatomy() || form_changes_substance())
                                 && !(species::is_draconian(you.species)
@@ -830,7 +835,7 @@ static vector<pair<string, string>> _get_fakemuts()
         const int arms = you.arm_count();
         result.push_back(_annotate_form_based(
             {
-                make_stringf("%d rings", arms),
+                make_stringf(Options.language == lang_t::KO ? "반지 %d개" : "%d rings", arms),
                 (Options.language == lang_t::KO
                     ? make_stringf("반지를 동시에 최대 %d개까지 착용할 수 있습니다.", arms)
                     : make_stringf("You can wear up to %s rings at the same time.",
@@ -3350,7 +3355,8 @@ const string bane_name(bane_type bane, bool dbkey)
         return lowercase(short_name);
     }
     else
-        return make_stringf("Bane of %s", short_name.c_str());
+        return make_stringf(Options.language == lang_t::KO ? "%s의 저주" : "Bane of %s",
+                            short_name.c_str());
 }
 
 int bane_base_duration(bane_type bane)
