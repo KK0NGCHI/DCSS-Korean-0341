@@ -2393,10 +2393,13 @@ formatted_string ShoppingListMenu::calc_title()
     const int total_cost = you.props[SHOPPING_LIST_COST_KEY];
 
     fs.textcolour(title->colour);
-    fs.cprintf("Shopping list: %d %s%s, total cost %d gold pieces",
-                title->quantity, title->text.c_str(),
-                title->quantity > 1 ? "s" : "",
-                total_cost);
+    if (Options.language == lang_t::KO)
+        fs.cprintf("쇼핑 목록: %s %d개, 총 %d골드",
+                   title->text.c_str(), title->quantity, total_cost);
+    else
+        fs.cprintf("Shopping list: %d %s%s, total cost %d gold pieces",
+                   title->quantity, title->text.c_str(),
+                   title->quantity > 1 ? "s" : "", total_cost);
 
     return fs;
 }
