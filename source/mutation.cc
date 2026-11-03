@@ -984,14 +984,14 @@ string describe_mutations(bool drop_title)
     if (!drop_title)
     {
         result += "<white>";
-        result += "Innate Abilities, Weirdness & Mutations";
+        result += Options.language == lang_t::KO ? "선천적 능력, 특이 체질 및 돌연변이" : "Innate Abilities, Weirdness & Mutations";
         result += "</white>\n\n";
     }
 
     const vector<string> mutations = _get_mutations_descs(false);
 
     if (mutations.empty())
-        result += "You are rather mundane.\n";
+        result += Options.language == lang_t::KO ? "특별한 특징이 없습니다.\n" : "You are rather mundane.\n";
     else
         result += join_strings(mutations.begin(), mutations.end(), "\n");
 
@@ -1161,7 +1161,7 @@ private:
 
         if (items.empty())
         {
-            add_entry(new MenuEntry("You are rather mundane.",
+            add_entry(new MenuEntry(Options.language == lang_t::KO ? "특별한 특징이 없습니다." : "You are rather mundane.",
                                     MEL_ITEM, 1, 0));
         }
     }
@@ -1171,11 +1171,11 @@ private:
         string extra = "";
         // TODO: also handle suppressed fakemuts
         if (_has_suppressed_muts())
-            extra += "<darkgrey>()</darkgrey>: Suppressed.\n";
+            extra += Options.language == lang_t::KO ? "<darkgrey>()</darkgrey>: 억제됨.\n" : "<darkgrey>()</darkgrey>: Suppressed.\n";
         if (_has_transient_muts())
-            extra += "<magenta>[]</magenta>: Transient mutations.\n";
+            extra += Options.language == lang_t::KO ? "<magenta>[]</magenta>: 일시적 돌연변이.\n" : "<magenta>[]</magenta>: Transient mutations.\n";
         if (has_future_muts)
-            extra += "<darkgrey>[]</darkgrey>: Gained at a future XL.\n";
+            extra += Options.language == lang_t::KO ? "<darkgrey>[]</darkgrey>: 이후 경험 레벨에서 획득.\n" : "<darkgrey>[]</darkgrey>: Gained at a future XL.\n";
         set_more(extra);
     }
 
@@ -2681,16 +2681,16 @@ string mutation_desc(mutation_type mut, int level, bool colour,
         result = ostr.str();
     }
     else if (mut == MUT_MP_WANDS && you.has_mutation(MUT_HP_CASTING))
-        result = "You expend health (3 HP) to strengthen your wands.";
+        result = Options.language == lang_t::KO ? "체력 3을 소모해 마법봉을 강화합니다." : "You expend health (3 HP) to strengthen your wands.";
     else if (!ignore_player && mut == MUT_TENTACLE_ARMS)
     {
         const string num_tentacles = number_in_words(you.has_tentacles(false));
-        result = make_stringf(
-            "You have tentacles for arms and can constrict up to %s enemies at once.",
-            num_tentacles.c_str());
+        result = Options.language == lang_t::KO
+            ? make_stringf("팔 대신 촉수가 있으며, 한 번에 최대 %d명의 적을 조일 수 있습니다.", you.has_tentacles(false))
+            : make_stringf("You have tentacles for arms and can constrict up to %s enemies at once.", num_tentacles.c_str());
     }
     else if (!ignore_player && you.has_innate_mutation(MUT_PAWS) && mut == MUT_CLAWS)
-        result = "You have sharp claws."; // XX ugly override
+        result = Options.language == lang_t::KO ? "날카로운 발톱이 있습니다." : "You have sharp claws."; // XX ugly override
     else if (result.empty() && level > 0)
         result = mdef.have[level - 1];
 
