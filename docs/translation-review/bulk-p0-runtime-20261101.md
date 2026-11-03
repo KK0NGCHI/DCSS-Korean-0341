@@ -192,3 +192,10 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - `source/delay.cc`: localized the previously dynamic `EquipOffDelay::try_interrupt` confirmation (1 more new output site); distinguished equip-on from equip-off in 6 Korean start/stop/finish messages while preserving English fallback.
 - **Total new output sites for this 2026-11-04 batch: 20** (19 first group + 1 follow-up), across 8 C++ files. Existing Korean text refinements are not additional translations.
 - **Provisional cumulative mixed units: 288** (268 prior mixed + 20 new); still not a definitive distinct-callsite total.
+
+### 2026-11-04 further travel, equipment and evocation follow-up
+
+- Seven **additional** newly localized output sites: Zot deadline warning (`stairs.cc`), soundlessness and inert evoker feedback (`evoke.cc`), servitor spell imbuing (`delay.cc`), route-warning confirmation, destination menu title, and blocked auto-travel feedback (`travel.cc`).
+- **2026-11-04 new translation total: 27 output sites** over 8 C++ files; existing-message grammar QA remains a separate 31-site count.
+- Previous running provisional mixed total **288 + 7 = 295**. This is not yet a canonical unique-output count.
+- Outstanding risk: `barrier.second` in blocked auto-travel and `deviant.describe()` in route warnings may still contain English or require Korean particles; inspect their producers. Validate full changed-file compile and Linux KO database runtime on the newest head; Windows Tiles QA pending.
