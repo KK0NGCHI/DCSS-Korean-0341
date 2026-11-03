@@ -1395,8 +1395,9 @@ static void _maybe_remove_equipment(mutation_type mut)
         if (mut == MUT_MISSING_HAND)
         {
             if (Options.language == lang_t::KO)
-                mprf("%s을(를) 더 이상 %s 수 없습니다!", item->name(DESC_YOUR).c_str(),
-                     item->base_type == OBJ_JEWELLERY ? "착용할" : "쥘");
+                mprf("다음 아이템을 더 이상 %s 수 없습니다: %s!",
+                     item->base_type == OBJ_JEWELLERY ? "착용할" : "쥘",
+                     item->name(DESC_YOUR).c_str());
             else
                 mprf("You can no longer %s %s!",
                      item->base_type == OBJ_JEWELLERY ? "wear" : "hold",
@@ -1406,14 +1407,24 @@ static void _maybe_remove_equipment(mutation_type mut)
         {
             if (item_is_melded(*item))
             {
-                mprf("%s is forced from your body%s!",
-                        item->name(DESC_YOUR).c_str(),
-                        item->cursed() ? ", shattering the curse!" : "");
+                if (Options.language == lang_t::KO)
+                    mprf("몸에서 장비가 강제로 떨어져 나갑니다: %s%s!",
+                         item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? " (저주도 깨집니다)" : "");
+                else
+                    mprf("%s is forced from your body%s!",
+                         item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? ", shattering the curse!" : "");
             }
             else
             {
-                mprf("%s falls away%s!", item->name(DESC_YOUR).c_str(),
-                        item->cursed() ? ", shattering the curse!" : "");
+                if (Options.language == lang_t::KO)
+                    mprf("장비가 떨어져 나갑니다: %s%s!",
+                         item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? " (저주도 깨집니다)" : "");
+                else
+                    mprf("%s falls away%s!", item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? ", shattering the curse!" : "");
             }
 
             // A mutation made us not only lose an equipment slot
