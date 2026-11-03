@@ -1058,14 +1058,15 @@ string cannot_evoke_item_reason(const item_def *item, bool temp, bool ident)
         && item->sub_type == MISC_HORN_OF_GERYON
         && you.is_silenced())
     {
-        return "You can't produce a sound!";
+        return Options.language == lang_t::KO ? "소리를 낼 수 없습니다!" : "You can't produce a sound!";
     }
 
     if (temp && is_xp_evoker(*item) && evoker_charges(item->sub_type) <= 0)
     {
         // DESC_THE prints "The tin of tremorstones (inert) is presently inert."
-        return make_stringf("The %s is presently inert.",
-                                            item->name(DESC_DBNAME).c_str());
+        return Options.language == lang_t::KO
+            ? make_stringf("%s: 현재 사용할 수 없습니다.", item->name(DESC_DBNAME).c_str())
+            : make_stringf("The %s is presently inert.", item->name(DESC_DBNAME).c_str());
     }
 
     return "";
