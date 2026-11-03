@@ -6985,7 +6985,7 @@ void bolt::refine_for_explosion(const string& explode_msg)
         if (explosion)
         {
             seeMsg = explosion->seeMsg;
-            hearMsg = make_stringf("You hear %s!", explosion->sound);
+            hearMsg = make_stringf(Options.language == lang_t::KO ? "%s 들립니다!" : "You hear %s!", explosion->sound);
         }
         else
         {
