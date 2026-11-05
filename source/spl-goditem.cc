@@ -94,16 +94,16 @@ string unpacifiable_reason(const monster_info& mi)
     if (mi.intel() <= I_BRAINLESS // no self-awareness
         || mons_is_tentacle_or_tentacle_segment(mi.type)) // body part
     {
-        return "You cannot pacify mindless monsters!";
+        return Options.language == lang_t::KO ? "정신이 없는 몬스터는 평화롭게 만들 수 없습니다!" : "You cannot pacify mindless monsters!";
     }
 
     const mon_holy_type holiness = mi.holi;
 
     if (holiness & MH_NONLIVING)
-        return "You cannot pacify nonliving monsters!";
+        return Options.language == lang_t::KO ? "생명이 없는 몬스터는 평화롭게 만들 수 없습니다!" : "You cannot pacify nonliving monsters!";
 
     if (mons_class_is_stationary(mi.type)) // not able to leave the level
-        return "You cannot pacify immobile monsters!";
+        return Options.language == lang_t::KO ? "움직일 수 없는 몬스터는 평화롭게 만들 수 없습니다!" : "You cannot pacify immobile monsters!";
 
     if (mi.is(MB_SLEEPING) || mi.is(MB_DORMANT)) // unaware of what's happening
     {
