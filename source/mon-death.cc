@@ -1486,16 +1486,16 @@ static string _derived_undead_message(const monster &mons, monster_type which_z,
     case MONS_ZOMBIE:
         break;
     default:
-        return "A buggy dead thing appears!";
+        return Options.language == lang_t::KO ? "알 수 없는 언데드가 나타납니다!" : "A buggy dead thing appears!";
     }
 
     const habitat_type habitat = mons_class_habitat(mons.type);
     const habitat_type swimming_habitats = (habitat_type)(HT_WATER | HT_LAVA);
     if ((habitat & swimming_habitats) == habitat)
-        return "The dead are swimming!";
+        return Options.language == lang_t::KO ? "언데드가 헤엄치고 있습니다!" : "The dead are swimming!";
 
     if (mons_class_flag(mons.type, M_FLIES))
-        return "The dead are flying!";
+        return Options.language == lang_t::KO ? "언데드가 날고 있습니다!" : "The dead are flying!";
 
     const auto shape = get_mon_shape(mons);
     if (shape == MON_SHAPE_SNAKE || shape == MON_SHAPE_SNAIL)
@@ -2706,7 +2706,9 @@ item_def* monster_die(monster& mons, killer_type killer,
         // No "the Enchantress".
         string name = remove_prepended_the(mons_type_name(simu.base_type, DESC_PLAIN));
 
-        string msg = "Your " + name + " simulacrum begins to move.";
+        string msg = Options.language == lang_t::KO
+            ? "움직이기 시작하는 당신의 시뮬라크럼: " + name
+            : "Your " + name + " simulacrum begins to move.";
         schedule_make_derived_undead_fineff(simu.pos, simu,
                                             get_monster_data(simu.base_type)->HD,
                                             "the player",
