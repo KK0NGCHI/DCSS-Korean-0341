@@ -2186,7 +2186,9 @@ int silver_damages_victim(actor* victim, int damage, string &dmg_msg)
     else
         return 0;
 
-    dmg_msg = "The silver sears " + victim->name(DESC_THE) + "!";
+    dmg_msg = Options.language == lang_t::KO
+        ? "은빛이 " + victim->name(DESC_THE) + "에게 작열합니다!"
+        : "The silver sears " + victim->name(DESC_THE) + "!";
     return ret;
 }
 
@@ -4306,8 +4308,12 @@ void bolt::affect_player()
         {
             if (hit_verb.empty())
                 hit_verb = engulfs ? "engulfs" : "hits";
-            mprf("The %s %s %s!", name.c_str(), hit_verb.c_str(),
-                you.hp > 0 ? "you" : "your lifeless body");
+            if (Options.language == lang_t::KO)
+                mprf("%s 효과가 %s 명중합니다!", name.c_str(),
+                     you.hp > 0 ? "당신에게" : "당신의 시신에");
+            else
+                mprf("The %s %s %s!", name.c_str(), hit_verb.c_str(),
+                     you.hp > 0 ? "you" : "your lifeless body");
         }
 
         affect_player_enchantment();
@@ -5599,8 +5605,12 @@ void bolt::affect_monster(monster* mon)
                 hit_verb = engulfs ? "engulfs" : "hits";
             if (you.see_cell(mon->pos()))
             {
-                mprf("The %s %s %s.", name.c_str(), hit_verb.c_str(),
-                     mon->name(DESC_THE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s 효과가 %s에게 명중합니다.", name.c_str(),
+                         mon->name(DESC_THE).c_str());
+                else
+                    mprf("The %s %s %s.", name.c_str(), hit_verb.c_str(),
+                         mon->name(DESC_THE).c_str());
             }
             else if (heard && !hit_noise_msg.empty())
                 mprf(MSGCH_SOUND, "%s", hit_noise_msg.c_str());
