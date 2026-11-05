@@ -1946,7 +1946,7 @@ bool drink(item_def* potion)
     }
 
     bool penance = god_hates_item(*potion);
-    string prompt = make_stringf("Really quaff the %s?%s",
+    string prompt = make_stringf(Options.language == lang_t::KO ? "%s 물약을 정말 마시시겠습니까?%s" : "Really quaff the %s?%s",
                                  potion->name(DESC_DBNAME).c_str(),
                                  penance ? " This action would place"
                                            " you under penance!" : "");
