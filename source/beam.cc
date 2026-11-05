@@ -1297,8 +1297,9 @@ void bolt::do_fire()
                         feature_description_at(pos(), false, DESC_A) :
                         monster_at(pos())->name(DESC_A);
 
-            tracer->blocked("Your line of fire to " + blockee
-                            + " is blocked by " + blocker + ".");
+            tracer->blocked(Options.language == lang_t::KO
+                ? "목표 " + blockee + " 방향의 사격 경로가 " + blocker + " 때문에 막혀 있습니다."
+                : "Your line of fire to " + blockee + " is blocked by " + blocker + ".");
             finish_beam();
             return;
         }
@@ -3675,7 +3676,7 @@ void bolt::affect_player_enchantment(bool resistible)
             if (mon && mon->alive())
             {
                 const int dam = 3 + random2(1 + div_rand_round(ench_power, 10));
-                mprf("당신의 의지가 %s을(를) 강타한다%s",
+                mprf("당신의 의지가 %s에게 반격합니다%s",
                      mon->name(DESC_THE).c_str(),
                      attack_strength_punctuation(dam).c_str());
                 mon->hurt(&you, dam);
