@@ -3114,7 +3114,7 @@ void level_change(bool skip_attribute_increase)
                     init_player_doll();
 #endif
                     mprf(MSGCH_INTRINSIC_GAIN,
-                         "Your scales start taking on %s colour.",
+                         Options.language == lang_t::KO ? "비늘의 색깔이 변하기 시작합니다: %s." : "Your scales start taking on %s colour.",
                          article_a(species::scale_type(you.species)).c_str());
 
                     // Produce messages about skill increases/decreases. We
@@ -5269,7 +5269,7 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
 
     if (you.backlit(true, false))
     {
-        msg = "Your body glows too brightly to become invisible.";
+        msg = Options.language == lang_t::KO ? "몸에서 빛이 너무 강하게 나서 투명해질 수 없습니다." : "Your body glows too brightly to become invisible.";
         success = false;
     }
     else if (you.haloed() && you.halo_radius() != -1)
@@ -5303,7 +5303,7 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
     }
     else if (you.backlit(true, temp))
     {
-        msg = "You are backlit; invisibility will do you no good right now";
+        msg = Options.language == lang_t::KO ? "몸에 빛이 비치고 있어 지금은 투명화가 도움이 되지 않습니다" : "You are backlit; invisibility will do you no good right now";
         if (quiet)
             success = false;
         else if (!quiet && !yesno((msg + "; 그래도 사용할까?").c_str(), false, 'n'))
@@ -5333,8 +5333,9 @@ bool flight_allowed(bool quiet, string *fail_reason)
 
     if (get_form()->forbids_flight())
     {
-        msg = you.form == transformation::tree ? "Your roots keep you in place."
-            : "You can't fly in this form.";
+        msg = Options.language == lang_t::KO
+            ? (you.form == transformation::tree ? "뿌리 때문에 움직일 수 없습니다." : "이 모습으로는 날 수 없습니다.")
+            : (you.form == transformation::tree ? "Your roots keep you in place." : "You can't fly in this form.");
         success = false;
     }
 
