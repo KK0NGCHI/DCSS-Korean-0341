@@ -717,11 +717,10 @@ static spret _cast_los_attack_spell(spell_type spell, int pow,
     switch (spell)
     {
         case SPELL_OZOCUBUS_REFRIGERATION:
-            player_msg = "The heat is drained from your surroundings.";
-            global_msg = "Something drains the heat from around you.";
-            mons_vis_msg = " drains the heat from the surrounding"
-                           " environment!";
-            mons_invis_msg = "The ambient heat is drained!";
+            player_msg = Options.language == lang_t::KO ? "주위의 열기를 빨아들입니다." : "The heat is drained from your surroundings.";
+            global_msg = Options.language == lang_t::KO ? "무언가가 주위의 열기를 빨아들입니다." : "Something drains the heat from around you.";
+            mons_vis_msg = Options.language == lang_t::KO ? "의 주위에서 열기가 빠져나갑니다!" : " drains the heat from the surrounding environment!";
+            mons_invis_msg = Options.language == lang_t::KO ? "주위의 열기가 사라집니다!" : "The ambient heat is drained!";
             prompt_verb = "refrigerate";
             vulnerable = [](const actor *caster, const actor *act) {
                 return act != caster
@@ -733,20 +732,19 @@ static spret _cast_los_attack_spell(spell_type spell, int pow,
             break;
 
         case SPELL_DRAIN_LIFE:
-            player_msg = "You draw life from your surroundings.";
-            global_msg = "Something draws the life force from your"
-                         " surroundings.";
-            mons_vis_msg = " draws from the surrounding life force!";
-            mons_invis_msg = "The surrounding life force dissipates!";
+            player_msg = Options.language == lang_t::KO ? "주위의 생명력을 흡수합니다." : "You draw life from your surroundings.";
+            global_msg = Options.language == lang_t::KO ? "무언가가 주위의 생명력을 흡수합니다." : "Something draws the life force from your surroundings.";
+            mons_vis_msg = Options.language == lang_t::KO ? "의 주위로 생명력이 빨려 들어갑니다!" : " draws from the surrounding life force!";
+            mons_invis_msg = Options.language == lang_t::KO ? "주위의 생명력이 사라집니다!" : "The surrounding life force dissipates!";
             prompt_verb = "drain life";
             vulnerable = &_drain_lifeable;
             break;
 
         case SPELL_SONIC_WAVE:
-            player_msg = "You send a blast of sound all around you.";
-            global_msg = "Something sends a blast of sound all around you.";
-            mons_vis_msg = " sends a blast of sound all around you!";
-            mons_invis_msg = "Sound blasts the surrounding area!";
+            player_msg = Options.language == lang_t::KO ? "사방으로 강력한 음파를 내뿜습니다." : "You send a blast of sound all around you.";
+            global_msg = Options.language == lang_t::KO ? "무언가가 사방으로 강력한 음파를 내뿜습니다." : "Something sends a blast of sound all around you.";
+            mons_vis_msg = Options.language == lang_t::KO ? "에게서 강력한 음파가 사방으로 퍼집니다!" : " sends a blast of sound all around you!";
+            mons_invis_msg = Options.language == lang_t::KO ? "주위를 뒤흔드는 음파가 터져 나옵니다!" : "Sound blasts the surrounding area!";
             // prompt_verb = "sing" The singing sword prompts in melee-attack
             vulnerable = [](const actor *caster, const actor *act) {
                 return act != caster && could_harm(caster, act);
@@ -2397,7 +2395,7 @@ static int _ignite_enemy_harm(const coord_def &where, actor* agent)
  */
 static bool maybe_abort_ignite()
 {
-    string prompt = "You are standing ";
+    string prompt = Options.language == lang_t::KO ? "현재 " : "You are standing ";
 
     // XXX XXX XXX major code duplication (ChrisOelmueller)
     if (const cloud_struct* cloud = cloud_at(you.pos()))
@@ -2405,9 +2403,9 @@ static bool maybe_abort_ignite()
         if ((cloud->type == CLOUD_MEPHITIC || cloud->type == CLOUD_POISON)
             && !actor_cloud_immune(you, CLOUD_FIRE))
         {
-            prompt += "in a cloud of ";
+            prompt += Options.language == lang_t::KO ? "" : "in a cloud of ";
             prompt += cloud->cloud_name(true);
-            prompt += "! Ignite poison anyway?";
+            prompt += Options.language == lang_t::KO ? " 구름 속에 있습니다! 그래도 독을 점화하시겠습니까?" : "! Ignite poison anyway?";
             if (!yesno(prompt.c_str(), false, 'n'))
                 return true;
         }
@@ -3723,17 +3721,17 @@ spret cast_unravelling(coord_def target, int pow, bool fail)
 string mons_inner_flame_immune_reason(const monster *mons)
 {
     if (!mons || !you.can_see(*mons))
-        return "You can't see anything there.";
+        return Options.language == lang_t::KO ? "그곳에는 보이는 대상이 없습니다." : "You can't see anything there.";
 
     if (mons->has_ench(ENCH_INNER_FLAME))
     {
-        return make_stringf("%s is already burning with an inner flame!",
+        return make_stringf(Options.language == lang_t::KO ? "%s에게는 이미 내면의 불꽃이 타오르고 있습니다!" : "%s is already burning with an inner flame!",
                             mons->name(DESC_THE).c_str());
     }
 
     if (mons->willpower() == WILL_INVULN)
     {
-        return make_stringf("%s has infinite will and cannot be affected.",
+        return make_stringf(Options.language == lang_t::KO ? "%s의 의지가 무한하여 영향을 받지 않습니다." : "%s has infinite will and cannot be affected.",
                             mons->name(DESC_THE).c_str());
     }
 
