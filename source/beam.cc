@@ -4362,7 +4362,7 @@ void bolt::affect_player()
         && !(damage.num == 0 && is_big_cloud()))
     {
         if (Options.language == lang_t::KO)
-            mprf("%s 효과가 %s 명중합니다%s%s",
+            mprf("%s 효과가 %s 명중합니다%s%s%s",
                  name.c_str(), you.hp > 0 ? "당신에게" : "당신의 시신에",
                  real_flavour != BEAM_CHAOS ? ""
                      : make_stringf(" (%s 속성)", _beam_type_name(flavour).c_str()).c_str(),
