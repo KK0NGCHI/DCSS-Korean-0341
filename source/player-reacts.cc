@@ -993,8 +993,11 @@ static void _decrement_durations()
         && !you.confused())
     {
         extract_barbs(
-            make_stringf("You %s the barbed spikes from your body.",
-                you.berserk() ? "rip and tear" : "carefully extract").c_str());
+            (Options.language == lang_t::KO
+                ? (you.berserk() ? string("몸에 박힌 가시를 거칠게 뜯어냅니다.")
+                                : string("몸에 박힌 가시를 조심스럽게 뽑아냅니다."))
+                : make_stringf("You %s the barbed spikes from your body.",
+                               you.berserk() ? "rip and tear" : "carefully extract")).c_str());
     }
 
     if (you.wearing_jewellery(AMU_WILDSHAPE))
