@@ -3726,7 +3726,7 @@ void monster_cleanup(monster* mons)
 
     if (mons->has_ench(ENCH_AWAKEN_FOREST))
     {
-        forest_message(mons->pos(), "The forest abruptly stops moving.");
+        forest_message(mons->pos(), Options.language == lang_t::KO ? "숲의 움직임이 갑자기 멈춥니다." : "The forest abruptly stops moving.");
         env.forest_awoken_until = 0;
     }
 
