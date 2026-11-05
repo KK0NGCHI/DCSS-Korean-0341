@@ -5753,14 +5753,21 @@ void bolt::affect_monster(monster* mon)
         // no need to also say "does no damage" here.
         if (damage.num > 0 || !is_big_cloud())
         {
-            mprf("The %s %s %s%s%s%s",
-                name.c_str(),
-                hit_verb.c_str(),
-                mon->name(DESC_THE).c_str(),
-                real_flavour != BEAM_CHAOS ? ""
-                    : make_stringf(" with %s", _beam_type_name(flavour).c_str()).c_str(),
-                postac ? "" : " but does no damage",
-                attack_strength_punctuation(final).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s 효과가 %s에게 명중합니다%s%s%s",
+                     name.c_str(), mon->name(DESC_THE).c_str(),
+                     real_flavour != BEAM_CHAOS ? ""
+                         : make_stringf(" (%s 속성)", _beam_type_name(flavour).c_str()).c_str(),
+                     postac ? "" : " (피해 없음)",
+                     attack_strength_punctuation(final).c_str());
+            else
+                mprf("The %s %s %s%s%s%s",
+                     name.c_str(), hit_verb.c_str(),
+                     mon->name(DESC_THE).c_str(),
+                     real_flavour != BEAM_CHAOS ? ""
+                         : make_stringf(" with %s", _beam_type_name(flavour).c_str()).c_str(),
+                     postac ? "" : " but does no damage",
+                     attack_strength_punctuation(final).c_str());
         }
     }
     else if (heard && !hit_noise_msg.empty())
