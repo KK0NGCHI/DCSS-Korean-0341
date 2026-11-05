@@ -709,27 +709,27 @@ static void _display_diag()
         webtiles_client;
 #endif
 
-    s += make_stringf("Display type: <w>%s</w>\n", info.type.c_str());
+    s += make_stringf(Options.language == lang_t::KO ? "표시 방식: <w>%s</w>\n" : "Display type: <w>%s</w>\n", info.type.c_str());
     if (!suppress_unix_stuff)
     {
-        s += make_stringf("Terminal type (`TERM`): <w>%s</w>\n",
+        s += make_stringf(Options.language == lang_t::KO ? "터미널 종류 (`TERM`): <w>%s</w>\n" : "Terminal type (`TERM`): <w>%s</w>\n",
                                                         info.term.c_str());
     }
-    s += make_stringf("Terminal colours: %d foreground, %d background\n\n",
+    s += make_stringf(Options.language == lang_t::KO ? "터미널 색상: 전경 %d개, 배경 %d개\n\n" : "Terminal colours: %d foreground, %d background\n\n",
         info.fg_colors, info.bg_colors);
 
     if (webtiles_client)
-        s+= "The webtiles client will display 16 colors.\n\n";
+        s+= Options.language == lang_t::KO ? "웹 타일 클라이언트는 16색으로 표시합니다.\n\n" : "The webtiles client will display 16 colors.\n\n";
 
     // TODO: should any of this be shown ever in webtiles?
     if (!suppress_unix_stuff && (info.fg_colors < 16
             || info.bg_colors < 16
             || info.term == "xterm")) // hack for putty. Maybe should set a compat flag in the lib?
     {
-        s += "Your terminal is in <red>compatibility mode</red> and may not display full colours.\n";
+        s += Options.language == lang_t::KO ? "터미널이 <red>호환 모드</red>이므로 모든 색상이 표시되지 않을 수 있습니다.\n" : "Your terminal is in <red>compatibility mode</red> and may not display full colours.\n";
         // hint for the putty users:
         if (info.term == "xterm")
-            s += "For full 16-colour-mode, try setting a better TERM value than `xterm`, e.g. `xterm-256color` (most terminals) or `putty-256color` (for PuTTY).\n";
+            s += Options.language == lang_t::KO ? "16색을 온전히 표시하려면 `TERM`을 `xterm` 대신 `xterm-256color` 또는 PuTTY에서는 `putty-256color`로 설정하십시오.\n" : "For full 16-colour-mode, try setting a better TERM value than `xterm`, e.g. `xterm-256color` (most terminals) or `putty-256color` (for PuTTY).\n";
 
         // XX is there really value in showing all of these? In 2021 in 99% of
         // scenarios, I think people shouldn't mess with anything except the
@@ -763,11 +763,11 @@ static void _display_diag()
         }
     }
     else if (!suppress_unix_stuff && bool(Options.bold_brightens_foreground))
-        s += "Option `bold_brightens_foreground`: force\n\n";
+        s += Options.language == lang_t::KO ? "옵션 `bold_brightens_foreground`: 강제 적용\n\n" : "Option `bold_brightens_foreground`: force\n\n";
 
 #ifndef USE_TILE_LOCAL
     // no need to show this twice on local tiles
-    s += "Foreground palette:\n";
+    s += Options.language == lang_t::KO ? "전경 색상 팔레트:\n" : "Foreground palette:\n";
 
     // XX should black on black -> blue be explained?
     s += _palette_with_bg(BLACK);
