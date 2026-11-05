@@ -2977,10 +2977,15 @@ bool read(item_def* scroll, dist *target)
     // For cancellable scrolls leave printing this message to their
     // respective functions.
     const string pre_succ_msg =
-            make_stringf("As you %s the %s, it %s.",
-                          is_loud ? "thunderously recite" : "read",
-                          scroll->name(DESC_QUALNAME).c_str(),
-                         which_scroll == SCR_FOG ? "dissolves into smoke" : "crumbles to dust");
+            (Options.language == lang_t::KO
+                ? make_stringf("%s 두루마리를 %s, 두루마리가 %s.",
+                               scroll->name(DESC_QUALNAME).c_str(),
+                               is_loud ? "우렁차게 읽자" : "읽자",
+                               which_scroll == SCR_FOG ? "연기로 흩어집니다" : "먼지로 부서집니다")
+                : make_stringf("As you %s the %s, it %s.",
+                               is_loud ? "thunderously recite" : "read",
+                               scroll->name(DESC_QUALNAME).c_str(),
+                               which_scroll == SCR_FOG ? "dissolves into smoke" : "crumbles to dust"));
     if (!_is_cancellable_scroll(which_scroll))
     {
         mpr(pre_succ_msg);
