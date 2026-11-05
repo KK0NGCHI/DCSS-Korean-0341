@@ -896,8 +896,8 @@ static void _add_formatted_keyhelp(column_composer &cols)
             0,
             "<h>Rest:\n");
 
-    _add_command(cols, 0, CMD_WAIT, "wait a turn (also <w>s</w>, <w>Del</w>)", 2);
-    _add_command(cols, 0, CMD_REST, "rest and long wait; stops when", 2);
+    _add_command(cols, 0, CMD_WAIT, (Options.language == lang_t::KO ? "한 턴 대기 (<w>s</w>, <w>Del</w>도 가능)" : "wait a turn (also <w>s</w>, <w>Del</w>)"), 2);
+    _add_command(cols, 0, CMD_REST, (Options.language == lang_t::KO ? "휴식·장기 대기, 다음 조건에서 중단" : "rest and long wait; stops when"), 2);
     cols.add_formatted(
             0,
             "    Health or Magic become full or\n"
@@ -1181,8 +1181,8 @@ static void _add_formatted_hints_help(column_composer &cols)
             0,
             "<h>Rest:\n");
 
-    _add_command(cols, 0, CMD_WAIT, "wait a turn (also <w>s</w>, <w>Del</w>)", 2);
-    _add_command(cols, 0, CMD_REST, "rest and long wait; stops when", 2);
+    _add_command(cols, 0, CMD_WAIT, (Options.language == lang_t::KO ? "한 턴 대기 (<w>s</w>, <w>Del</w>도 가능)" : "wait a turn (also <w>s</w>, <w>Del</w>)"), 2);
+    _add_command(cols, 0, CMD_REST, (Options.language == lang_t::KO ? "휴식·장기 대기, 다음 조건에서 중단" : "rest and long wait; stops when"), 2);
     cols.add_formatted(
             0,
             "    Health or Magic become full or\n"
