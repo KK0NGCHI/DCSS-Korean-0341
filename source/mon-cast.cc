@@ -9494,7 +9494,9 @@ static void _siren_sing(monster* mons, bool avatar)
     {
         const char * const song_adj = already_mesmerised ? "its luring"
                                                          : "a haunting";
-        const string song_desc = make_stringf(" chants %s song.", song_adj);
+        const string song_desc = Options.language == lang_t::KO
+            ? (already_mesmerised ? "이(가) 유혹하는 노래를 부릅니다." : "이(가) 으스스한 노래를 부릅니다.")
+            : make_stringf(" chants %s song.", song_adj);
         simple_monster_message(*mons, song_desc.c_str(), false, spl);
     }
     else
