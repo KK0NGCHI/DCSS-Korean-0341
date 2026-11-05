@@ -548,7 +548,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
     if (agent.pos() == target)
     {
         if (fail_reason)
-            *fail_reason = "You can't charge at yourself.";
+            *fail_reason = Options.language == lang_t::KO ? "자신에게 돌진할 수 없습니다." : "You can't charge at yourself.";
 
         return false;
     }
@@ -574,7 +574,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
            && fedhas_passthrough(act->as_monster()))
     {
         if (fail_reason)
-            *fail_reason = "You can't see anything there to charge at.";
+            *fail_reason = Options.language == lang_t::KO ? "그곳에는 돌진할 만한 대상이 보이지 않습니다." : "You can't see anything there to charge at.";
 
         return false;
     }
