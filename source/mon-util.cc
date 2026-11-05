@@ -5819,7 +5819,7 @@ bool could_harm(const actor* agent, const actor* target, bool announce_important
     {
         if (announce_important)
         {
-            string msg = make_stringf("The Sanctuary denies your attempt to harm %s.",
+            string msg = make_stringf(Options.language == lang_t::KO ? "성역이 %s에게 피해를 주려는 시도를 막습니다." : "The Sanctuary denies your attempt to harm %s.",
                                         target->name(DESC_THE).c_str());
             god_speaks(GOD_ZIN, msg.c_str());
         }
