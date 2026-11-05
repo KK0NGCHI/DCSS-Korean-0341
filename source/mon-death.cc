@@ -1093,11 +1093,13 @@ static void _blorkula_bat_merge_message(monster* blork, int bat_count)
 {
     if (you.can_see(*blork))
     {
-        string msg = bat_count == 1 ? "The bat shimmers"
-                                    : "The bats swarm back together";
+        string msg = Options.language == lang_t::KO
+                   ? (bat_count == 1 ? "박쥐가 아른거리더니" : "박쥐 떼가 다시 모이더니")
+                   : (bat_count == 1 ? "The bat shimmers" : "The bats swarm back together");
 
-        msg += " and " + blork->name(DESC_THE)
-            +  " reappears in a puff of iridescent mist.";
+        msg += Options.language == lang_t::KO
+            ? " 오색빛 안개 속에서 " + blork->name(DESC_THE) + " 다시 나타납니다."
+            : " and " + blork->name(DESC_THE) + " reappears in a puff of iridescent mist.";
 
         mprf(MSGCH_MONSTER_SPELL, "%s", msg.c_str());
     }
@@ -1499,19 +1501,19 @@ static string _derived_undead_message(const monster &mons, monster_type which_z,
 
     const auto shape = get_mon_shape(mons);
     if (shape == MON_SHAPE_SNAKE || shape == MON_SHAPE_SNAIL)
-        return "The dead are slithering!";
+        return Options.language == lang_t::KO ? "언데드가 미끄러지듯 기어갑니다!" : "The dead are slithering!";
     if (shape == MON_SHAPE_ARACHNID || shape == MON_SHAPE_CENTIPEDE)
-        return "The dead are crawling!"; // to say nothing of creeping
+        return Options.language == lang_t::KO ? "언데드가 기어갑니다!" : "The dead are crawling!"; // to say nothing of creeping
 
     const monster_type genus = mons_genus(mons.type);
     // XXX: Prince Ribbit is in his human shape after he dies.
     if ((genus == MONS_FROG && mons.type != MONS_PRINCE_RIBBIT)
          || genus == MONS_QUOKKA)
     {
-        return "The dead are hopping!";
+        return Options.language == lang_t::KO ? "언데드가 깡충깡충 뛰어다닙니다!" : "The dead are hopping!";
     }
 
-    return "The dead are walking!"; // a classic for sure
+    return Options.language == lang_t::KO ? "언데드가 걸어갑니다!" : "The dead are walking!"; // a classic for sure
 }
 
 /**
@@ -1586,10 +1588,18 @@ static void _make_derived_undead(monster* mons, bool quiet,
                                                    : "glowing";
 
     if (msg.empty())
-        msg = "A " + mist + " mist starts to gather...";
+        msg = Options.language == lang_t::KO
+            ? (which_z == MONS_SIMULACRUM ? "얼어붙는 안개가 모여듭니다..."
+               : god == GOD_YREDELEMNUL ? "검은 안개가 모여듭니다..."
+                                         : "빛나는 안개가 모여듭니다...")
+            : "A " + mist + " mist starts to gather...";
 
     if (fail_msg.empty())
-        fail_msg = "A " + mist + " mist gathers momentarily, then fades.";
+        fail_msg = Options.language == lang_t::KO
+            ? (which_z == MONS_SIMULACRUM ? "얼어붙는 안개가 잠시 모였다가 사라집니다."
+               : god == GOD_YREDELEMNUL ? "검은 안개가 잠시 모였다가 사라집니다."
+                                         : "빛나는 안개가 잠시 모였다가 사라집니다.")
+            : "A " + mist + " mist gathers momentarily, then fades.";
 
     if (mons->mons_species() == MONS_HYDRA || mons->type == MONS_SLYMDRA)
     {
