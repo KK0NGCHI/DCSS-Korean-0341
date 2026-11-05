@@ -3531,15 +3531,16 @@ static string _good_god_wrath_message(god_type good_god)
     switch (good_god)
     {
         case GOD_ELYVILON:
-            return "Your evil deeds will not go unpunished";
+            return Options.language == lang_t::KO ? "당신의 악행은 반드시 벌을 받으리라" : "Your evil deeds will not go unpunished";
         case GOD_SHINING_ONE:
-            return "You will pay for your evil ways, mortal";
+            return Options.language == lang_t::KO ? "필멸자여, 악행의 대가를 치르게 되리라" : "You will pay for your evil ways, mortal";
         case GOD_ZIN:
-            return make_stringf("You will suffer for embracing such %s",
-                                is_chaotic_god(you.religion) ? "chaos"
-                                                             : "evil");
+            return Options.language == lang_t::KO
+                ? (is_chaotic_god(you.religion) ? "혼돈을 받아들인 대가로 고통받으리라" : "악을 받아들인 대가로 고통받으리라")
+                : make_stringf("You will suffer for embracing such %s",
+                               is_chaotic_god(you.religion) ? "chaos" : "evil");
         default:
-            return "You will be buggily punished for this";
+            return Options.language == lang_t::KO ? "이 일로 벌을 받게 되리라" : "You will be buggily punished for this";
     }
 }
 
@@ -4047,9 +4048,10 @@ god_type choose_god(god_type def_god)
 {
     char specs[80];
 
-    string help = def_god == NUM_GODS ? "by name"
-                                      : "default " + god_name(def_god);
-    string prompt = make_stringf("Which god (%s)? ", help.c_str());
+    string help = Options.language == lang_t::KO
+        ? (def_god == NUM_GODS ? "신 이름 입력" : "기본값: " + god_name(def_god))
+        : (def_god == NUM_GODS ? "by name" : "default " + god_name(def_god));
+    string prompt = make_stringf(Options.language == lang_t::KO ? "어느 신을 선택하시겠습니까? (%s) " : "Which god (%s)? ", help.c_str());
 
     if (msgwin_get_line(prompt, specs, sizeof(specs)) != 0)
         return NUM_GODS; // FIXME: distinguish cancellation from no match
