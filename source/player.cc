@@ -5295,7 +5295,9 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
             success = true;
         else
         {
-            msg = "Your " + comma_separated_line(sources.begin(), sources.end())
+            msg = Options.language == lang_t::KO
+                ? "착용한 장비나 신성한 후광에서 너무 강한 빛이 나서 투명해질 수 없습니다."
+                : "Your " + comma_separated_line(sources.begin(), sources.end())
                   + " glow" + (sources.size() == 1 ? "s" : "")
                   + " too brightly for you to become invisible.";
             success = false;
@@ -5306,7 +5308,7 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
         msg = Options.language == lang_t::KO ? "몸에 빛이 비치고 있어 지금은 투명화가 도움이 되지 않습니다" : "You are backlit; invisibility will do you no good right now";
         if (quiet)
             success = false;
-        else if (!quiet && !yesno((msg + "; 그래도 사용할까?").c_str(), false, 'n'))
+        else if (!quiet && !yesno((msg + (Options.language == lang_t::KO ? "; 그래도 사용하시겠습니까?" : "; 그래도 사용할까?")).c_str(), false, 'n'))
         {
             // XX this shouldn't be here. Currently used only for evoke invis.
             canned_msg(MSG_OK);
