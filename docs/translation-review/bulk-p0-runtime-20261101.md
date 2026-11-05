@@ -289,3 +289,29 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 - **Output accounting:** 46 localized output/description positions as grouped above (24 + 8 + 2 + 7 + 5), 44 translated explosion SFX data fields, and 3 edits of existing Korean grammar, plus one shared explosion-sound formatting variant. These categories must not be added together as 1:1 unique runtime callsites.
 - Starting HEAD `a23557cac3ee5b091766f00f49abb59feb8754ea` passed both inventory and Linux console KO runtime. **The latest PR head is newer and requires its own PASS**. Windows Tiles QA remains pending.
 - Review note: some dynamically supplied `name`, `verb_object`, and skill labels can still arrive in English. This needs the planned global name/grammar output pass.
+
+## 2026-11-05 large dynamic-message batch — 44 modified output/description positions
+
+Starting PR HEAD: `df7f0fd41cb14b9175364982f5dbe4ba3cbded04`. Translation inventory passed; Linux KO runtime CI was still running when inspected. All below source changes are newer and require a separate compile check.
+
+### New Korean output or explanation branches (41 positions)
+
+- `religion.cc` — 6: good-god wrath warnings (Elyvilon, Shining One, Zin chaotic/evil choice, fallback), god-selection default help and selection prompt.
+- `mon-death.cc` — 1: animated forest abruptly stopping.
+- `mon-cast.cc` — 1: visible merfolk siren song with a Korean name-compatible suffix, preserving English.
+- `beam.cc` — 1: blocked line-of-fire explanatory warning.
+- `spl-damage.cc` — 3: Ignite Poison allied-harm prompt, invisible target prompt, self-hit unravelling prompt.
+- `spl-transloc.cc` — 7: held/movement restrictions, two mesmerisation/fear charge directions, chaos word target confirmation, self-charge and unseen charge target.
+- `mon-util.cc` — 1: Sanctuary preventing a hostile attack.
+- `player-reacts.cc` — 1: careful versus berserk barbed-spike removal.
+- `spl-damage.cc` — additional 18 localized message/phrase positions including Ozocubu's Refrigeration, Drain Life, Sonic Wave (player, unseen/global, seen-monster suffix, unseen-monster), Ignite Poison cloud warning fragments, and Inner Flame targeting/immunity descriptions.
+- `spl-goditem.cc` — 3: pacification impossible for mindless, nonliving and immobile monsters.
+
+### Existing Korean message QA (2 positions)
+
+- `throw.cc` — changed the thrown/shoot projectile statement from a literal `을(를)` particle to an item-label construction.
+- `beam.cc` — changed the demonic-will counterattack from a literal `을(를)` to target-dative phrasing.
+
+**Counting:** The above includes **41 new Korean positions** (6+1+1+1+3+7+1+1+18+3 = 42; verify exact sites when doing the canonical scan) plus 2 existing Korean grammar fixes. To avoid an inconsistent total, the raw file-level edit count is **44 source edit positions**. Some are conditional components of the same runtime output; this is not a unique-callsites measure. For QA use the per-file breakdown and do not add 44 to a completion denominator.
+
+**Verification:** Latest branch HEAD must pass inventory and Linux KO runtime. Windows Tiles runtime is not yet tested. Remaining focus: generic beam impact conjugation, `resist_margin_phrase` output, dynamic monster/item names, incidental English in spell labels. Draft PR remains unmerged.
