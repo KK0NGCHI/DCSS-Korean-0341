@@ -555,7 +555,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
     else if (adjacent(agent.pos(), target))
     {
         if (fail_reason)
-            *fail_reason = "You're already next to there.";
+            *fail_reason = Options.language == lang_t::KO ? "이미 대상 바로 옆에 있습니다." : "You're already next to there.";
 
         return false;
     }
@@ -605,7 +605,7 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
     if (!find_ray(agent.pos(), target, ray, opc_solid))
     {
         if (fail_reason)
-            *fail_reason = "There's something in the way.";
+            *fail_reason = Options.language == lang_t::KO ? "이동 경로에 장애물이 있습니다." : "There's something in the way.";
 
         return coord_def(0, 0);
     }
@@ -622,9 +622,9 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
             {
                 if (fail_reason)
                 {
-                    *fail_reason = "There's "
-                                   + feature_description_at(ray.pos())
-                                   + " in the way.";
+                    *fail_reason = Options.language == lang_t::KO
+                        ? "이동 경로를 가로막는 장애물: " + feature_description_at(ray.pos())
+                        : "There's " + feature_description_at(ray.pos()) + " in the way.";
                 }
 
                 return coord_def(0, 0);
@@ -635,8 +635,9 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
             {
                 if (fail_reason)
                 {
-                    *fail_reason = mon->name(DESC_THE)
-                                   + " is immovably fixed in your path.";
+                    *fail_reason = Options.language == lang_t::KO
+                        ? "이동 경로를 막고 있는 고정된 대상: " + mon->name(DESC_THE)
+                        : mon->name(DESC_THE) + " is immovably fixed in your path.";
                 }
 
                 return coord_def(0, 0);
