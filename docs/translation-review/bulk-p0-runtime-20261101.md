@@ -315,3 +315,27 @@ Starting PR HEAD: `df7f0fd41cb14b9175364982f5dbe4ba3cbded04`. Translation invent
 **Counting:** The above includes **42 new Korean translation text positions** (6+1+1+1+3+7+1+1+18+3 = 42) plus 2 existing Korean grammar fixes. To avoid an inconsistent total, the raw file-level edit count is **44 source edit positions**. Some are conditional components of the same runtime output; this is not a unique-callsites measure. For QA use the per-file breakdown and do not add 44 to a completion denominator.
 
 **Verification:** Latest branch HEAD must pass inventory and Linux KO runtime. Windows Tiles runtime is not yet tested. Remaining focus: generic beam impact conjugation, `resist_margin_phrase` output, dynamic monster/item names, incidental English in spell labels. Draft PR remains unmerged.
+
+## 2026-11-05 bulk output and help translation: 104 newly localized source text positions
+
+**Baseline:** PR #174 head `52a30073682261132c02a13277b965fcff7cde16` passed both Linux KO runtime and inventory. The revised head requires fresh CI.
+
+### Newly added Korean text positions (8 C++ source files)
+
+| Source | Count | Scope |
+| --- | ---: | --- |
+| `source/spl-transloc.cc` | 5 | charge range / adjacent targets / immovable or terrain obstacles / allied target refusal |
+| `source/player.cc` | 6 | draconian scale colour, invisibility denied by light and equipment, flight denied by form |
+| `source/mon-death.cc` | 12 | derived-undead gait and habitat descriptions, mist summon success/failure, vampire bat rejoining, moving simulacrum |
+| `source/spl-damage.cc` | 4 | airstrike strength explanations, arc blade/static discharge risk prompts |
+| `source/spl-other.cc` | 7 | Passwall invalid destinations, thick rock, dangerous water/lava beyond rocks |
+| `source/mon-abil.cc` | 5 | starcursed-mass screams varying with chorus size and victim state |
+| `source/stairs.cc` | 2 | excluded destination stairs, invalid/fallback Hell environmental effect |
+| `source/command.cc` | 63 | console/tiles diagnostics headings and more importantly **55** command-help action strings: gameplay, movement, inventory, saving, character status and notes |
+| **Total** | **104** | **edited literal/conditional text positions, NOT canonical unique callsites** |
+
+All translated strings retain the original English fallback except where the source already supplied a partial localized component; command hotkeys, `%s`/numeric format specifiers, style tags, and command identifiers are unchanged. The `command.cc` output may need screen-width wrapping in Windows Tiles; the 55 help entries are not verified with the actual font/viewport.
+
+**Risk review:** `source/player.cc` draconian `species::scale_type` and some item/monster names are generated in other functions and might remain English. Some localized generic movement failures intentionally omit English-only fragment morphology. For further translation work, prioritise `resist_margin_phrase`, dynamic beam hit verbs and god/monster templated output; do not translate English fallback branches as missing strings.
+
+**Verification:** Linux KO runtime and inventory checks need to pass for the *latest* PR HEAD after these edits. Draft PR #174 must remain unmerged until full checks and relevant Windows Tiles runtime QA. A definitive coverage percentage requires a stable deduplicated output-site inventory.
