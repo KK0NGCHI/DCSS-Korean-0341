@@ -99,7 +99,7 @@ static string _target_exclusion_warning()
         return "";
 
     if (stairs_destination_is_excluded(*si))
-        return "This staircase leads to a travel-excluded area!";
+        return Options.language == lang_t::KO ? "이 계단은 자동 이동 제외 구역으로 이어집니다!" : "This staircase leads to a travel-excluded area!";
 
     return "";
 }
@@ -544,7 +544,7 @@ static void _hell_effects()
     string msg = getMiscString(loud ? "hell_effect_noisy"
                                     : "hell_effect_quiet");
     if (msg.empty())
-        msg = "Something hellishly buggy happens.";
+        msg = Options.language == lang_t::KO ? "지옥에서 설명할 수 없는 일이 벌어집니다." : "Something hellishly buggy happens.";
 
     mprf(MSGCH_HELL_EFFECT, "%s", msg.c_str());
     if (loud)
