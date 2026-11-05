@@ -276,3 +276,16 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 **Accounting:** 34 newly localized direct output/description positions, 44 explosion message/sound data fields, one shared sound message formatting change, and 3 revisions to existing Korean outputs. Historical previous provisional mixed total was 402; because table data and direct outputs cannot be added to a single completion denominator, retain **402 as the pre-batch historical tally** until a proper recount. No overall completion percentage is claimed.
 
 **QA and verification:** Validate latest HEAD of draft PR #174 with source inventory and Linux KO runtime compile/smoke. The localized explosion sound values are sound-label fragments and are rendered by a separate Korean sentence. Player-generated names and Windows Tiles output still need in-game validation. Do not merge without passing fresh checks.
+
+## 2026-11-05 follow-up: dynamic item/beam output QA
+
+- Previous batch (documented immediately above): 24 directly localized positions in `spl-book.cc` (4), `throw.cc` (6), `mon-cast.cc` (5), and `mutation.cc` (9).
+- `beam.cc`: eight previously untranslated tree/explosion feedback strings and five beam/silver-impact outputs; a Korean branch for the generic localized explosion sound announcement was also added.
+- `beam.cc`: full parallel `spell_explosions_ko` map with **22 spell types and 44 translated visual/audio data fields**. The original English map remains selected for non-Korean game language.
+- `mutation.cc`: two forced-equipment-loss outputs translated; preexisting Korean grammar corrected at one forced item output.
+- `terrain.cc`: two preexisting Korean ice-effect messages revised to avoid literal ambiguous particles.
+- `item-use.cc`: seven logical confirmation/scroll-read output positions translated (potion warning, Victory-armour potion prompt, Victory-armour scroll prompt, scroll penance prompt, scroll bad-item confirmation, target-not-visible prompt, and successful scroll read). Some compose conditional appended phrases in the same output position, and their English fallback was retained.
+- `beam.cc`: two further hit-on-player and hit-on-monster messages translated, preserving chaos extra effect, zero-damage indication, and punctuation. A temporary wrong count of printf format placeholders in the new player message was fixed in the immediately succeeding source commit.
+- **Output accounting:** 46 localized output/description positions as grouped above (24 + 8 + 2 + 7 + 5), 44 translated explosion SFX data fields, and 3 edits of existing Korean grammar, plus one shared explosion-sound formatting variant. These categories must not be added together as 1:1 unique runtime callsites.
+- Starting HEAD `a23557cac3ee5b091766f00f49abb59feb8754ea` passed both inventory and Linux console KO runtime. **The latest PR head is newer and requires its own PASS**. Windows Tiles QA remains pending.
+- Review note: some dynamically supplied `name`, `verb_object`, and skill labels can still arrive in English. This needs the planned global name/grammar output pass.
