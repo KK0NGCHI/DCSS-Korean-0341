@@ -2880,11 +2880,9 @@ bool read(item_def* scroll, dist *target)
         bool penance = god_hates_item(*scroll);
         string verb_object = "read the " + scroll->name(DESC_DBNAME);
 
-        string penance_prompt = make_stringf("Really %s? This action would"
-                                             " place you under penance%s!",
+        string penance_prompt = make_stringf(Options.language == lang_t::KO ? "다음 행동을 계속하시겠습니까: %s? 신의 징벌을 받게 됩니다!%s" : "Really %s? This action would place you under penance%s!",
                                              verb_object.c_str(),
-                                             hostile_check ? ""
-                    : " and you can't even see any enemies this would affect");
+                                             hostile_check ? "" : (Options.language == lang_t::KO ? " 영향을 받는 적도 보이지 않습니다." : " and you can't even see any enemies this would affect"));
 
         targeter_radius hitfunc(&you, LOS_NO_TRANS);
 
@@ -2909,10 +2907,10 @@ bool read(item_def* scroll, dist *target)
             return false;
         }
         else if (bad_item
-                 && !yesno(make_stringf("Really %s?%s",
+                 && !yesno(make_stringf(Options.language == lang_t::KO ? "다음 행동을 계속하시겠습니까: %s?%s" : "Really %s?%s",
                                         verb_object.c_str(),
                                         hostile_check ? ""
-                        : " You can't even see any enemies this would affect."
+                         : (Options.language == lang_t::KO ? " 영향을 받는 적도 보이지 않습니다." : " You can't even see any enemies this would affect.")
                                         ).c_str(),
                            false, 'n'))
         {
@@ -2920,7 +2918,7 @@ bool read(item_def* scroll, dist *target)
             return false;
         }
         else if (!bad_item && !hostile_check && !yesno(make_stringf(
-            "You can't see any enemies this would affect, really %s?",
+            Options.language == lang_t::KO ? "이 행동의 영향을 받을 적이 보이지 않습니다. 그래도 %s 행동을 진행하시겠습니까?" : "You can't see any enemies this would affect, really %s?",
                                         verb_object.c_str()).c_str(),
                                                 false, 'n'))
         {
