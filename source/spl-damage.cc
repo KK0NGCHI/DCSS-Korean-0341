@@ -2415,7 +2415,7 @@ static bool maybe_abort_ignite()
 
     if (apply_area_visible(_ignite_ally_harm, you.pos()) > 0)
     {
-        return !yesno("You might harm nearby allies! Ignite poison anyway?",
+        return !yesno(Options.language == lang_t::KO ? "근처 아군이 피해를 입을 수 있습니다! 그래도 독을 점화하시겠습니까?" : "You might harm nearby allies! Ignite poison anyway?",
                       false, 'n');
     }
 
@@ -3674,7 +3674,7 @@ spret cast_unravelling(coord_def target, int pow, bool fail)
 
     const actor* victim = actor_at(target);
     if ((!victim || !you.can_see(*victim))
-        && !yesno("You can't see anything there. Cast anyway?", false, 'n'))
+        && !yesno(Options.language == lang_t::KO ? "그곳에 보이는 대상이 없습니다. 그래도 시전하시겠습니까?" : "You can't see anything there. Cast anyway?", false, 'n'))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -3694,7 +3694,7 @@ spret cast_unravelling(coord_def target, int pow, bool fail)
     hitfunc.set_aim(target);
 
     if (hitfunc.is_affected(you.pos()) >= AFF_MAYBE
-        && !yesno("The unravelling is likely to hit you. Continue anyway?",
+        && !yesno(Options.language == lang_t::KO ? "마법 해제가 자신에게도 적중할 수 있습니다. 그래도 계속하시겠습니까?" : "The unravelling is likely to hit you. Continue anyway?",
                   false, 'n'))
     {
         canned_msg(MSG_OK);
