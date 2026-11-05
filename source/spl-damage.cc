@@ -962,17 +962,17 @@ string airstrike_intensity_display(int empty_space, tileidx_t& tile)
     if (empty_space < 3)
     {
         tile = TILE_BOLT_WEAK_AIR;
-        return "The confined air twists around weakly";
+        return Options.language == lang_t::KO ? "갇힌 공기가 약하게 소용돌이칩니다" : "The confined air twists around weakly";
     }
     else if (empty_space < 6)
     {
         tile = TILE_BOLT_MEDIUM_AIR;
-        return "The air twists around";
+        return Options.language == lang_t::KO ? "공기가 소용돌이칩니다" : "The air twists around";
     }
     else
     {
         tile = TILE_BOLT_STRONG_AIR;
-        return "The open air twists around violently";
+        return Options.language == lang_t::KO ? "탁 트인 공기가 격렬하게 소용돌이칩니다" : "The open air twists around violently";
     }
 }
 
@@ -2784,9 +2784,13 @@ bool safe_discharge(coord_def where, bool check_only, bool exclude_center,
         for (const actor* act : exclude)
             targs.push_back(act->pos());
 
-        return !warn_about_bad_targets(arc_blade ? "The arc blade's discharge" : "Static Discharge",
+        return !warn_about_bad_targets(Options.language == lang_t::KO
+                                           ? (arc_blade ? "전기 검의 방전" : "정전기 방출")
+                                           : (arc_blade ? "The arc blade's discharge" : "Static Discharge"),
                                        targs, nullptr,
-                                       arc_blade ? "Attack anyway?" : "Cast it anyway?");
+                                       Options.language == lang_t::KO
+                                           ? (arc_blade ? "그래도 공격하시겠습니까?" : "그래도 시전하시겠습니까?")
+                                           : (arc_blade ? "Attack anyway?" : "Cast it anyway?"));
     }
 }
 
