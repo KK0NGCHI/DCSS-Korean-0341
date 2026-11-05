@@ -532,9 +532,9 @@ string electric_charge_impossible_reason(bool allow_safe_monsters)
 string movement_impossible_reason()
 {
     if (you.attribute[ATTR_HELD])
-        return make_stringf("You cannot do that while %s.", held_status());
+        return make_stringf(Options.language == lang_t::KO ? "붙잡힌 상태라 행동할 수 없습니다: %s." : "You cannot do that while %s.", held_status());
     if (you.cannot_move())
-        return "You cannot move."; // MSG_CANNOT_MOVE
+        return Options.language == lang_t::KO ? "움직일 수 없습니다." : "You cannot move."; // MSG_CANNOT_MOVE
     return "";
 }
 
@@ -650,7 +650,7 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
                 {
                     if (fail_reason)
                     {
-                        *fail_reason = make_stringf("You cannot charge away from %s!",
+                        *fail_reason = make_stringf(Options.language == lang_t::KO ? "%s에게서 멀어지는 방향으로 돌진할 수 없습니다!" : "You cannot charge away from %s!",
                                                     beholder->name(DESC_THE, true).c_str());
                     }
 
@@ -662,7 +662,7 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
                 {
                     if (fail_reason)
                     {
-                        *fail_reason = make_stringf("You cannot charge closer to %s!",
+                        *fail_reason = make_stringf(Options.language == lang_t::KO ? "%s에게 가까워지는 방향으로 돌진할 수 없습니다!" : "You cannot charge closer to %s!",
                                                     fearmonger->name(DESC_THE, true).c_str());
                     }
 
@@ -2021,8 +2021,7 @@ spret word_of_chaos(int pow, bool fail)
     vector<monster *> targets = find_chaos_targets();
     if (visible_targets.empty())
     {
-        if (!yesno("You cannot see any enemies that you can affect. Speak a "
-                   "word of chaos anyway?", true, 'n'))
+        if (!yesno(Options.language == lang_t::KO ? "영향을 줄 수 있는 적이 보이지 않습니다. 그래도 혼돈의 말을 외치시겠습니까?" : "You cannot see any enemies that you can affect. Speak a word of chaos anyway?", true, 'n'))
         {
             canned_msg(MSG_OK);
             return spret::abort;
