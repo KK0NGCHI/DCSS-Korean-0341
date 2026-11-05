@@ -294,7 +294,7 @@ Draft PR #174 head `590cc639b1a5c39cf5c246c92a2e1e97ef76898a` passed `linux-cons
 
 Starting PR HEAD: `df7f0fd41cb14b9175364982f5dbe4ba3cbded04`. Translation inventory passed; Linux KO runtime CI was still running when inspected. All below source changes are newer and require a separate compile check.
 
-### New Korean output or explanation branches (41 positions)
+### New Korean output or explanation branches (42 positions)
 
 - `religion.cc` — 6: good-god wrath warnings (Elyvilon, Shining One, Zin chaotic/evil choice, fallback), god-selection default help and selection prompt.
 - `mon-death.cc` — 1: animated forest abruptly stopping.
@@ -312,6 +312,6 @@ Starting PR HEAD: `df7f0fd41cb14b9175364982f5dbe4ba3cbded04`. Translation invent
 - `throw.cc` — changed the thrown/shoot projectile statement from a literal `을(를)` particle to an item-label construction.
 - `beam.cc` — changed the demonic-will counterattack from a literal `을(를)` to target-dative phrasing.
 
-**Counting:** The above includes **41 new Korean positions** (6+1+1+1+3+7+1+1+18+3 = 42; verify exact sites when doing the canonical scan) plus 2 existing Korean grammar fixes. To avoid an inconsistent total, the raw file-level edit count is **44 source edit positions**. Some are conditional components of the same runtime output; this is not a unique-callsites measure. For QA use the per-file breakdown and do not add 44 to a completion denominator.
+**Counting:** The above includes **42 new Korean translation text positions** (6+1+1+1+3+7+1+1+18+3 = 42) plus 2 existing Korean grammar fixes. To avoid an inconsistent total, the raw file-level edit count is **44 source edit positions**. Some are conditional components of the same runtime output; this is not a unique-callsites measure. For QA use the per-file breakdown and do not add 44 to a completion denominator.
 
 **Verification:** Latest branch HEAD must pass inventory and Linux KO runtime. Windows Tiles runtime is not yet tested. Remaining focus: generic beam impact conjugation, `resist_margin_phrase` output, dynamic monster/item names, incidental English in spell labels. Draft PR remains unmerged.
