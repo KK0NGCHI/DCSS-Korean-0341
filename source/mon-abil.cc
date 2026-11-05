@@ -693,20 +693,20 @@ static void _starcursed_scream(monster* mon, actor* target)
 
     if (n > 7)
     {
-        message = "A cacophony of accursed wailing tears at your sanity!";
+        message = Options.language == lang_t::KO ? "저주받은 울부짖음의 불협화음이 정신을 갈기갈기 찢습니다!" : "A cacophony of accursed wailing tears at your sanity!";
         if (coinflip())
             stun = 2;
     }
     else if (n > 4)
     {
-        message = "A deafening chorus of shrieks assaults your mind!";
+        message = Options.language == lang_t::KO ? "귀를 찢는 비명의 합창이 정신을 공격합니다!" : "A deafening chorus of shrieks assaults your mind!";
         if (one_chance_in(3))
             stun = 1;
     }
     else if (n > 1)
-        message = "A chorus of shrieks assaults your mind.";
+        message = Options.language == lang_t::KO ? "비명의 합창이 정신을 공격합니다." : "A chorus of shrieks assaults your mind.";
     else
-        message = "The starcursed mass shrieks in your mind.";
+        message = Options.language == lang_t::KO ? "별의 저주를 받은 덩어리가 당신의 정신 속에서 비명을 지릅니다." : "The starcursed mass shrieks in your mind.";
 
     dam = 4 + random2(5) + random2(n * 3 / 2);
 
@@ -714,11 +714,17 @@ static void _starcursed_scream(monster* mon, actor* target)
     {
         if (you.see_cell(target->pos()))
         {
-            mprf(target->as_monster()->friendly() ? MSGCH_FRIEND_SPELL
-                                                  : MSGCH_MONSTER_SPELL,
-                 "%s writhes in pain as voices assail %s mind.",
-                 target->name(DESC_THE).c_str(),
-                 target->pronoun(PRONOUN_POSSESSIVE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf(target->as_monster()->friendly() ? MSGCH_FRIEND_SPELL
+                                                     : MSGCH_MONSTER_SPELL,
+                     "비명에 정신을 공격당한 대상이 고통에 몸부림칩니다: %s.",
+                     target->name(DESC_THE).c_str());
+            else
+                mprf(target->as_monster()->friendly() ? MSGCH_FRIEND_SPELL
+                                                     : MSGCH_MONSTER_SPELL,
+                     "%s writhes in pain as voices assail %s mind.",
+                     target->name(DESC_THE).c_str(),
+                     target->pronoun(PRONOUN_POSSESSIVE).c_str());
         }
     }
     else
