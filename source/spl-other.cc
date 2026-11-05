@@ -304,32 +304,32 @@ bool passwall_path::is_valid(string *fail_msg) const
     if (delta.zero())
     {
         if (fail_msg)
-            *fail_msg = "Please select a wall.";
+            *fail_msg = Options.language == lang_t::KO ? "벽을 지정하십시오." : "Please select a wall.";
         return false;
     }
     if (actual_walls() == 0)
     {
         if (fail_msg)
-            *fail_msg = "There is no adjacent passable wall in that direction.";
+            *fail_msg = Options.language == lang_t::KO ? "그 방향에는 통과할 수 있는 인접 벽이 없습니다." : "There is no adjacent passable wall in that direction.";
         return false;
     }
     if (!dest_found)
     {
         if (fail_msg)
-            *fail_msg = "This rock feels extremely deep.";
+            *fail_msg = Options.language == lang_t::KO ? "이 암벽은 너무 두껍게 느껴집니다." : "This rock feels extremely deep.";
         return false;
     }
     if (!in_bounds(actual_dest))
     {
         if (fail_msg)
-            *fail_msg = "You sense an overwhelming volume of rock.";
+            *fail_msg = Options.language == lang_t::KO ? "엄청난 양의 암석이 느껴집니다." : "You sense an overwhelming volume of rock.";
         return false;
     }
     const monster *mon = monster_at(actual_dest);
     if (cell_is_solid(actual_dest) || (mon && mon->is_stationary()))
     {
         if (fail_msg)
-            *fail_msg = "Something is blocking your path through the rock.";
+            *fail_msg = Options.language == lang_t::KO ? "암벽을 통과하는 경로에 무언가가 가로막고 있습니다." : "Something is blocking your path through the rock.";
         return false;
     }
     return true;
@@ -356,9 +356,9 @@ bool passwall_path::check_moveto() const
 
     string terrain_msg;
     if (env.grid(actual_dest) == DNGN_DEEP_WATER)
-        terrain_msg = "You sense a deep body of water on the other side of the rock.";
+        terrain_msg = Options.language == lang_t::KO ? "암벽 너머에 깊은 물이 느껴집니다." : "You sense a deep body of water on the other side of the rock.";
     else if (env.grid(actual_dest) == DNGN_LAVA)
-        terrain_msg = "You sense an intense heat on the other side of the rock.";
+        terrain_msg = Options.language == lang_t::KO ? "암벽 너머에서 강렬한 열기가 느껴집니다." : "You sense an intense heat on the other side of the rock.";
 
     // Pre-confirm exclusions in unseen squares as well as the actual dest
     // even if seen, so that this doesn't leak information.
