@@ -583,7 +583,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
     if (mons_aligned(act, &agent) || act->is_firewood())
     {
         if (fail_reason)
-            *fail_reason = "Why would you want to do that?";
+            *fail_reason = Options.language == lang_t::KO ? "아군 또는 공격할 수 없는 대상에게 돌진할 수 없습니다." : "Why would you want to do that?";
 
         return false;
     }
