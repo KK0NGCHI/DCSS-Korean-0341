@@ -749,7 +749,7 @@ static void _player_shoot(ranged_attack_beam &pbolt)
 
     // Create message.
     if (Options.language == lang_t::KO)
-        mprf("%s을(를) %s%s.",
+        mprf("발사체 %s: %s%s.",
              pbolt.atk.projectile_name().c_str(),
              is_thrown ? "던집니다" : "발사합니다",
              you.current_vision == 0 ? " (어둠 속으로)" : "");
