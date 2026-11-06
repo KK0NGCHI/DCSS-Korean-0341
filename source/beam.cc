@@ -5440,8 +5440,12 @@ void bolt::pull_actor(actor *act, int dam)
 
     if (you.can_see(*act))
     {
-        mprf("%s %s yanked forward by the %s.", act->name(DESC_THE).c_str(),
-             act->conj_verb("are").c_str(), name.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("발사체에 의해 앞으로 끌려온 대상: %s (발사체: %s).",
+                 act->name(DESC_THE).c_str(), name.c_str());
+        else
+            mprf("%s %s yanked forward by the %s.", act->name(DESC_THE).c_str(),
+                 act->conj_verb("are").c_str(), name.c_str());
     }
 
     if (act->pos() != newpos)
