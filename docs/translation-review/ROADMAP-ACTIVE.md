@@ -1,5 +1,7 @@
 # DCSS 0.34.1 한국어화 — 상시 작업 계획 및 인수인계
 
+> **상태 재확인 (2026-11-06 KST):** `main` 기준 최신 확인 HEAD `1285359c`, PR #174 `c71a046c` (196 commits / 42 changed files). PR 최신 SHA의 [Linux KO runtime](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/42031343493) 및 [translation inventory](https://github.com/KK0NGCHI/DCSS-Korean-0341/actions/runs/42031343523) 모두 **PASS**. `main`의 추가 13커밋은 이 문서만 변경하여 소스 충돌은 확인되지 않음. **Windows Tiles/동적 조사 QA 미검증, PR Draft·미병합 유지.** [사전 검토 보고서](pr174-premerge-audit-20261106.md).
+
 > **최종 갱신:** 2026-11-04 (KST) · **기준:** `main` `4923edc`, [PR #174](https://github.com/KK0NGCHI/DCSS-Korean-0341/pull/174) `b8071e8` · **이 문서가 현재 작업 순서의 기준이다.** 다음 세션은 작업 시작 시 이 파일과 최신 PR/Actions를 다시 조회한다. 이 문서를 업데이트하지 않은 상태에서 '완료'라고 보고하지 않는다.
 
 ## 목표와 완료 정의
@@ -60,6 +62,17 @@ DCSS 0.34.1 Windows Tiles에서 일반 게임 플레이 전반을 자연스러�
 ### P2. 배포
 - [ ] 재현 가능한 Windows 패키지 빌드, 설치 안내, 라이선스·크레딧, 알려진 미완료 목록
 - [ ] 릴리스 후보 태그 및 최종 스모크 테스트
+
+## 2026-11-06 실행 점검
+
+- [x] PR #174의 실제 HEAD 확인: `c71a046c` / 196 commits / 42 files.
+- [x] 정확히 해당 SHA에 대한 Linux KO runtime + translation source inventory 성공 확인.
+- [x] `main` 대비 13커밋의 변경 대상은 로드맵 1개 파일뿐임을 확인; GitHub mergeability `clean`.
+- [x] 별도 [PR #174 병합 전 감사 보고서](pr174-premerge-audit-20261106.md) 작성.
+- [ ] 42개 변경 파일 전수 의미·치환 변수 QA 및 Windows Tiles 런타임 시나리오 점검.
+- [ ] QA 수정 후 새 SHA에 대한 재검증, Draft 해제 및 병합.
+- [ ] 병합된 최신 main에서 가시 미번역 호출부 재집계 및 다음 대량 번역.
+- **주의:** 아래 2026-11-04 스냅샷은 당시 기록으로 보존. 위의 최신 SHA/CI 정보를 우선 적용.
 
 ## 작업 운영 규칙
 
