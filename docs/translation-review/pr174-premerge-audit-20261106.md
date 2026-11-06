@@ -31,3 +31,8 @@ The GitHub PR files list and sample C++ patches were inspected. This is a **part
 
 ## Counting discipline
 3,778/3,778 translated description keys is data coverage, not total game translation. The historical PR log mixes translated text variants and output positions. The 104 changes on 2026-11-05 are edited literal/conditional text positions, **not** canonical distinct callsites.
+
+## Targeted diff scan (2026-11-06)
+- Examined the GitHub-provided patches for all 42 changed PR files, searching newly added lines for literal particle placeholders `이(가)`, `을(를)`, `은(는)`, `와(과)`.
+- **0 matches in added C++ lines.** Five matches were found only in the added work-log document, referring to past corrections. This reduces one specific risk but **does not** establish that unchanged source contains no such strings, or that generated Korean grammar is correct.
+- Retain the above runtime QA targets; the scan is not a substitute for testing with generated names.
