@@ -207,8 +207,11 @@ static bool _stair_moves_pre(dungeon_feature_type stair)
 
     string verb = stair_climb_verb(stair);
 
-    mprf("%s moves away as you attempt to %s it!", stair_str.c_str(),
-         verb.c_str());
+    if (Options.language == lang_t::KO)
+        mprf("멀어지는 계단: %s!", stair_str.c_str());
+    else
+        mprf("%s moves away as you attempt to %s it!", stair_str.c_str(),
+             verb.c_str());
 
     you.turn_is_over = true;
 
@@ -536,7 +539,9 @@ static void _hell_effects()
     if (have_passive(passive_t::resist_hell_effects)
         && x_chance_in_y(you.piety(), MAX_PIETY * 2))
     {
-        simple_god_message(" power protects you from the chaos of Hell!", true);
+        simple_god_message(Options.language == lang_t::KO
+            ? "의 힘이 지옥의 혼돈으로부터 당신을 보호합니다!"
+            : " power protects you from the chaos of Hell!", true);
         return;
     }
 
