@@ -591,10 +591,12 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
         {
             if (!quiet)
             {
-                mprf("%s is no longer %s.", name(DESC_THE, true).c_str(),
-                        me.ench == ENCH_CHARM   ? "charmed"
-                        : me.ench == ENCH_HEXED ? "dominated"
-                                                : "bribed");
+                if (Options.language == lang_t::KO)
+                    mprf("%s — %s 효과가 사라집니다.", name(DESC_THE, true).c_str(),
+                         me.ench == ENCH_CHARM ? "매혹" : me.ench == ENCH_HEXED ? "지배" : "매수");
+                else
+                    mprf("%s is no longer %s.", name(DESC_THE, true).c_str(),
+                         me.ench == ENCH_CHARM ? "charmed" : me.ench == ENCH_HEXED ? "dominated" : "bribed");
 
                 if (Options.language == lang_t::KO)
                     mprf(friendly() ? "다시 감지할 수 있는 몬스터: %s." : "더 이상 감지할 수 없는 몬스터: %s.",
@@ -899,11 +901,14 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     case ENCH_FLOODED:
         if (!quiet && you.can_see(*this))
         {
-            mprf("%s finishes expelling the %s from %s %s.",
-                    name(DESC_THE).c_str(),
-                    props[WATER_HOLD_SUBSTANCE_KEY].get_string().c_str(),
-                    pronoun(PRONOUN_POSSESSIVE).c_str(),
-                    get_mon_shape(*this) >= MON_SHAPE_INSECT ? "airways" : "lungs");
+            if (Options.language == lang_t::KO)
+                mprf("호흡 기관에서 이물질을 모두 내뱉은 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s finishes expelling the %s from %s %s.",
+                     name(DESC_THE).c_str(),
+                     props[WATER_HOLD_SUBSTANCE_KEY].get_string().c_str(),
+                     pronoun(PRONOUN_POSSESSIVE).c_str(),
+                     get_mon_shape(*this) >= MON_SHAPE_INSECT ? "airways" : "lungs");
         }
         props.erase(WATER_HOLD_SUBSTANCE_KEY);
         break;
@@ -947,9 +952,10 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
         if (you.can_see(*this))
         {
-            mprf(MSGCH_MONSTER_SPELL, "%s shapes itself into a furious %s!",
-                    name(DESC_THE).c_str(),
-                    mons_type_name(poly_target, DESC_PLAIN).c_str());
+            mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO
+                 ? "격렬하게 변신하는 몬스터: %s → %s!"
+                 : "%s shapes itself into a furious %s!",
+                 name(DESC_THE).c_str(), mons_type_name(poly_target, DESC_PLAIN).c_str());
         }
 
         change_monster_type(this, poly_target, true);
@@ -1002,9 +1008,11 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
             if (can_see(you))
             {
                 target = you.pos();
-                mprf("%s turns %s attention back to you.",
-                        name(DESC_THE).c_str(),
-                        pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("다시 당신에게 주의를 돌린 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s turns %s attention back to you.",
+                         name(DESC_THE).c_str(), pronoun(PRONOUN_POSSESSIVE).c_str());
             }
         }
         break;
@@ -1687,8 +1695,11 @@ void monster::apply_enchantment(const mon_enchant &me)
             del_ench(en, true, false);
             if (you.can_see(*this))
             {
-                mprf("%s stops winding %s clockwork bee.", name(DESC_ITS).c_str(),
-                     pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("태엽벌을 감는 동작을 멈춘 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s stops winding %s clockwork bee.", name(DESC_ITS).c_str(),
+                         pronoun(PRONOUN_POSSESSIVE).c_str());
             }
             break;
         }
