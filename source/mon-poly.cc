@@ -247,7 +247,7 @@ void change_monster_type(monster* mons, monster_type targetc, bool do_seen)
     // trj spills out jellies when polied, as if he'd been hit for mhp.
     if (mons->type == MONS_ROYAL_JELLY)
     {
-        simple_monster_message(*mons, " form twists and warps, and jellies "
+        simple_monster_message(*mons, Options.language == lang_t::KO ? " — 몸이 뒤틀리고 변형되며 젤리가 " : " form twists and warps, and jellies "
                                "spill out!", true);
         schedule_trj_spawn_fineff(nullptr, mons, mons->pos(),
                                   mons->hit_points);
