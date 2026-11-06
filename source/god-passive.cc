@@ -2347,7 +2347,7 @@ void makhleb_tyrant_buff()
                 break;
         }
 
-        simple_monster_message(*demon, " is spurred on by your onslaught.");
+        simple_monster_message(*demon, Options.language == lang_t::KO ? " — 당신의 맹공에 고무됩니다." : " is spurred on by your onslaught.");
     }
 }
 
