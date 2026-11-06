@@ -610,7 +610,7 @@ bool monster_polymorph(monster* mons, monster_type targetc,
     if (mons_demon_tier(mons->type) == -1)
     {
         return simple_monster_message(*mons,
-            " appearance momentarily alters.", true);
+            Options.language == lang_t::KO ? " — 모습이 잠깐 변합니다." : " appearance momentarily alters.", true);
     }
 
     targetc = _concretize_target(*mons, targetc, power);
