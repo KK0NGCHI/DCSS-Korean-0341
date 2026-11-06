@@ -747,7 +747,7 @@ void attack::stab_message()
     case 4:     // confused/fleeing/distracted
         if (!one_chance_in(3))
         {
-            mprf("You catch %s completely off-guard!",
+            mprf(Options.language == lang_t::KO ? "완전히 방심한 틈을 잡았습니다: %s!" : "You catch %s completely off-guard!",
                   defender->name(DESC_THE).c_str());
         }
         else
@@ -1244,7 +1244,7 @@ bool attack::apply_damage_brand(const char *what)
             {
                 if (defender->is_player())
                 {
-                    mprf("%s draws strength from your wounds!",
+                    mprf(Options.language == lang_t::KO ? "당신의 상처에서 힘을 얻는 몬스터: %s!" : "%s draws strength from your wounds!",
                          attacker->name(DESC_THE).c_str());
                 }
                 else
@@ -1627,8 +1627,11 @@ bool attack::paragon_defends_player()
     if (defender->is_player() && paragon_defense_bonus_active()
         && one_chance_in(3))
     {
-        mprf("Your paragon deflects %s attack away from you.",
-                    attacker->name(DESC_ITS).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("수호자가 공격을 막아냅니다: %s.", attacker->name(DESC_THE).c_str());
+        else
+            mprf("Your paragon deflects %s attack away from you.",
+                 attacker->name(DESC_ITS).c_str());
         return true;
     }
 
