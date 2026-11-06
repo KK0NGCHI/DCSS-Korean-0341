@@ -668,10 +668,14 @@ void attack::drain_defender_speed()
 {
     if (needs_message)
     {
-        mprf("%s %s %s vigour!",
-             atk_name(DESC_THE).c_str(),
-             attacker->conj_verb("drain").c_str(),
-             def_name(DESC_ITS).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("활력을 빼앗는 공격자: %s, 대상: %s!",
+                 atk_name(DESC_THE).c_str(), def_name(DESC_THE).c_str());
+        else
+            mprf("%s %s %s vigour!",
+                 atk_name(DESC_THE).c_str(),
+                 attacker->conj_verb("drain").c_str(),
+                 def_name(DESC_ITS).c_str());
     }
     defender->slow_down(attacker, 5 + random2(7));
 }
@@ -764,9 +768,12 @@ void attack::stab_message()
                  defender->name(DESC_PLAIN).c_str());
             break;
         }
-        mprf("%s fails to defend %s.",
-              defender->name(DESC_THE).c_str(),
-              defender->pronoun(PRONOUN_REFLEXIVE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("방어할 틈을 놓친 몬스터: %s.", defender->name(DESC_THE).c_str());
+        else
+            mprf("%s fails to defend %s.",
+                 defender->name(DESC_THE).c_str(),
+                 defender->pronoun(PRONOUN_REFLEXIVE).c_str());
         break;
     }
 
