@@ -223,7 +223,7 @@ void debug_list_monsters()
         snprintf(buf, sizeof(buf), "%s", prev_name.c_str());
     mons.emplace_back(buf);
 
-    mpr_comma_separated_list("Monsters: ", mons);
+    mpr_comma_separated_list(Options.language == lang_t::KO ? "몬스터: " : "Monsters: ", mons);
 
     if (total_adj_exp == total_exp)
     {
@@ -730,7 +730,7 @@ void wizard_make_monster_summoned(monster* mon)
     {
         char specs[80];
 
-        msgwin_get_line("Cast which spell by name? ",
+        msgwin_get_line(Options.language == lang_t::KO ? "시전할 주문 이름: " : "Cast which spell by name? ",
                         specs, sizeof(specs));
 
         if (specs[0] == '\0')
