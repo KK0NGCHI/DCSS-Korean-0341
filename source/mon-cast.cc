@@ -1412,7 +1412,7 @@ static void _cast_smiting(monster &caster, mon_spell_slot slot, bolt&)
     ASSERT(foe);
 
     if (foe->is_player())
-        mprf("%s smites you!", _god_name(god).c_str());
+        mprf(Options.language == lang_t::KO ? "신벌이 당신을 내리칩니다: %s!" : "%s smites you!", _god_name(god).c_str());
     else
         simple_monster_message(*foe->as_monster(), (Options.language == lang_t::KO ? " 신벌을 받습니다." : " is smitten."));
 
@@ -8313,7 +8313,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
             if (you.can_see(*mons))
             {
-                mprf("%s commands the forest to attack, but nothing happens.",
+                mprf(Options.language == lang_t::KO ? "숲에 공격을 명령하지만 아무 일도 일어나지 않습니다: %s." : "%s commands the forest to attack, but nothing happens.",
                      mons->name(DESC_THE).c_str());
             }
             return;
