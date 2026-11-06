@@ -439,7 +439,7 @@ spret cast_sphinx_sisters(const actor& caster, int pow, bool fail)
 
     if (marauder && guardian && you.can_see(*marauder) && you.can_see(*guardian))
     {
-        mprf("스핑크스 2마리가 %s의 부름에 응답한다!",
+        mprf("스핑크스 2마리가 부름에 응답합니다: %s!",
                     caster.name(DESC_ITS).c_str());
     }
     else if (marauder && you.can_see(*marauder) || guardian && you.can_see(*guardian))
@@ -2705,7 +2705,7 @@ static void _overgrow_wall(const coord_def &pos)
 
     if (monster_at(pos))
     {
-        mprf("보이지 않는 무언가가 %s에서 자라는 것을 막고 있어.", what.c_str());
+        mprf("보이지 않는 무언가가 그곳에서 자라는 것을 막고 있습니다: %s.", what.c_str());
         return;
     }
 
