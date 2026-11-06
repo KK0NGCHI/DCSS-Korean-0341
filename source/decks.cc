@@ -1712,7 +1712,7 @@ void card_effect(card_type which_card,
         if (transform(roll_dice(10, 10), transformation::pig, true))
             you.transform_uncancellable = true;
         else
-            mpr("You feel a momentary urge to oink.");
+            mpr(Options.language == lang_t::KO ? "잠깐 꿀꿀거리고 싶은 충동이 듭니다." : "You feel a momentary urge to oink.");
         break;
 
 #if TAG_MAJOR_VERSION == 34
