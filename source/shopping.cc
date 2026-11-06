@@ -1541,7 +1541,7 @@ void shop()
     // Quick out, if no inventory
     if (shop.stock.empty())
     {
-        mprf("%s appears to be closed.", shopname.c_str());
+        mprf(Options.language == lang_t::KO ? "문을 닫은 상점: %s." : "%s appears to be closed.", shopname.c_str());
         destroy_shop_at(you.pos());
         return;
     }
