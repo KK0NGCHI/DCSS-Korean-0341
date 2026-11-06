@@ -313,14 +313,11 @@ spret cast_chain_lightning(int pow, const actor &caster, bool fail)
     if (you.can_see(caster))
     {
         if (Options.language == lang_t::KO)
-            mprf("%s의 손에서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
+            mprf("%s에게서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
         else
-            if (Options.language == lang_t::KO)
-                mprf("%s에게서 번개가 뻗어 나갑니다!", caster.name(DESC_PLAIN).c_str());
-            else
-                mprf("Lightning arcs from %s %s!",
-                     apostrophise(caster.name(DESC_PLAIN)).c_str(),
-                     caster.hand_name(true).c_str());
+            mprf("Lightning arcs from %s %s!",
+                 apostrophise(caster.name(DESC_PLAIN)).c_str(),
+                 caster.hand_name(true).c_str());
     }
 
     vector<arc_victim> victims;
@@ -904,17 +901,13 @@ spret cast_freeze(int pow, monster* mons, bool fail)
     // calculate the resist adjustment to punctuate
     int hurted = mons_adjust_flavoured(mons, beam, orig_hurted, false);
     if (Options.language == lang_t::KO)
-        mprf("%s을(를) 얼립니다%s%s", mons->name(DESC_THE).c_str(),
-             hurted ? "" : ", 하지만 피해를 주지 못합니다",
+        mprf(hurted ? "%s에게 냉기 피해를 입힙니다%s" : "%s에게 냉기를 가하지만 피해는 없습니다%s",
+             mons->name(DESC_THE).c_str(),
              attack_strength_punctuation(hurted).c_str());
     else
-        if (Options.language == lang_t::KO)
-            mprf(hurted ? "%s에게 냉기 피해를 입힙니다!" : "%s에게 냉기를 가하지만 피해는 없습니다.",
-                 mons->name(DESC_THE).c_str());
-        else
-            mprf("You freeze %s%s%s", mons->name(DESC_THE).c_str(),
-                 hurted ? "" : " but do no damage",
-                 attack_strength_punctuation(hurted).c_str());
+        mprf("You freeze %s%s%s", mons->name(DESC_THE).c_str(),
+             hurted ? "" : " but do no damage",
+             attack_strength_punctuation(hurted).c_str());
 
     // print the resist message and expose to the cold
     mons_adjust_flavoured(mons, beam, orig_hurted);
