@@ -283,12 +283,12 @@ void wizard_set_piety_to(int newpiety, bool force)
 {
     if (newpiety < 0 || newpiety > MAX_PIETY)
     {
-        mprf("Piety needs to be between 0 and %d.", MAX_PIETY);
+        mprf(Options.language == lang_t::KO ? "신앙심은 0에서 %d 사이여야 합니다." : "Piety needs to be between 0 and %d.", MAX_PIETY);
         return;
     }
     if (newpiety > piety_breakpoint(5) && you_worship(GOD_RU))
     {
-        mprf("Ru piety can't be greater than %d.", piety_breakpoint(5));
+        mprf(Options.language == lang_t::KO ? "루의 신앙심은 %d을 초과할 수 없습니다." : "Ru piety can't be greater than %d.", piety_breakpoint(5));
         return;
     }
 
@@ -333,7 +333,7 @@ void wizard_set_piety_to(int newpiety, bool force)
 
     if (newpiety < 1 && !force)
     {
-        if (yesno("Are you sure you want to be excommunicated?", false, 'n'))
+        if (yesno(Options.language == lang_t::KO ? "정말 신앙을 버리시겠습니까?" : "Are you sure you want to be excommunicated?", false, 'n'))
         {
             you.raw_piety = 0;
             excommunication();
@@ -342,7 +342,7 @@ void wizard_set_piety_to(int newpiety, bool force)
             canned_msg(MSG_OK);
         return;
     }
-    mprf("Setting piety to %d.", newpiety);
+    mprf(Options.language == lang_t::KO ? "신앙심을 %d로 설정합니다." : "Setting piety to %d.", newpiety);
     set_piety(newpiety);
 
     // Automatically reduce penance to 0.
@@ -353,7 +353,7 @@ void wizard_set_piety_to(int newpiety, bool force)
 void wizard_set_gold()
 {
     const int default_gold = you.gold + 1000;
-    mprf(MSGCH_PROMPT, "Enter new gold value (current = %d, Enter for %d): ",
+    mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "새 금화 수량 (현재 %d, Enter: %d): " : "Enter new gold value (current = %d, Enter for %d): ",
          you.gold, default_gold);
 
     char buf[30];
@@ -381,12 +381,12 @@ void wizard_set_piety()
 
     if (you_worship(GOD_RU))
     {
-        mprf("Current progress to next sacrifice: %d  Progress needed: %d",
+        mprf(Options.language == lang_t::KO ? "다음 희생 진행도: %d / 필요 진행도: %d" : "Current progress to next sacrifice: %d  Progress needed: %d",
             you.props[RU_SACRIFICE_PROGRESS_KEY].get_int(),
             you.props[RU_SACRIFICE_DELAY_KEY].get_int());
     }
 
-    mprf(MSGCH_PROMPT, "Enter new piety value (current = %d, Enter for 0): ",
+    mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "새 신앙심 (현재 %d, Enter: 0): " : "Enter new piety value (current = %d, Enter for 0): ",
          you.raw_piety);
     char buf[30];
     if (cancellable_get_line_autohist(buf, sizeof buf))
@@ -689,7 +689,7 @@ static bool _wizard_enter_duration_name(duration_type &choice)
     char buf[80];
     vector<string> match_names;
 
-    mprf(MSGCH_PROMPT, "Edit which duration (name)? ");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "변경할 지속 효과의 이름: " : "Edit which duration (name)? ");
 
     if (cancellable_get_line_autohist(buf, sizeof buf) || !*buf
         || !strlcpy(buf, lowercase_string(trimmed_string(buf)).c_str(),
@@ -764,7 +764,7 @@ void wizard_edit_durations()
 
     if (num == 0)
     {
-        mprf(MSGCH_PROMPT, "Can't set duration directly to 0, setting it to 1 instead.");
+        mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "지속시간을 0으로 지정할 수 없어 1로 설정합니다." : "Can't set duration directly to 0, setting it to 1 instead.");
         num = 1;
     }
     you.duration[choice] = num;
@@ -870,7 +870,7 @@ static void debug_downtick_xl(int newxl)
 
 void wizard_set_xl(bool change_skills)
 {
-    mprf(MSGCH_PROMPT, "Enter new experience level: ");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "새 경험 레벨 입력: " : "Enter new experience level: ");
     char buf[30];
     if (cancellable_get_line_autohist(buf, sizeof buf))
     {
@@ -886,7 +886,7 @@ void wizard_set_xl(bool change_skills)
     }
 
     set_xl(newxl, change_skills);
-    mprf("Experience level set to %d.", newxl);
+    mprf(Options.language == lang_t::KO ? "경험 레벨을 %d로 설정했습니다." : "Experience level set to %d.", newxl);
 }
 
 void set_xl(const int newxl, const bool train, const bool silent)
@@ -920,13 +920,16 @@ void wizard_get_god_gift()
     }
 
     if (!do_god_gift(true))
-        mpr("Nothing happens.");
+        mpr(Options.language == lang_t::KO ? "아무 일도 일어나지 않습니다." : "Nothing happens.");
 }
 
 void wizard_toggle_xray_vision()
 {
     you.wizard_vision = !you.wizard_vision;
-    mprf("X-ray vision %s.", you.wizard_vision ? "enabled" : "disabled");
+    if (Options.language == lang_t::KO)
+        mpr(you.wizard_vision ? "투시 시야를 활성화했습니다." : "투시 시야를 비활성화했습니다.");
+    else
+        mprf("X-ray vision %s.", you.wizard_vision ? "enabled" : "disabled");
     viewwindow(true);
     update_screen();
 }
@@ -938,12 +941,12 @@ void wizard_freeze_time()
     if (props.exists(FREEZE_TIME_KEY))
     {
         props.erase(FREEZE_TIME_KEY);
-        mpr("You allow the flow of time to resume.");
+        mpr(Options.language == lang_t::KO ? "시간이 다시 흐르기 시작합니다." : "You allow the flow of time to resume.");
     }
     else
     {
         props[FREEZE_TIME_KEY] = true;
-        mpr("You bring the flow of time to a stop.");
+        mpr(Options.language == lang_t::KO ? "시간의 흐름을 멈춥니다." : "You bring the flow of time to a stop.");
     }
 }
 
@@ -951,9 +954,9 @@ void wizard_god_wrath()
 {
     const god_type god = choose_god(you.religion);
     if (god == NUM_GODS)
-        mpr("That god doesn't seem to exist!");
+        mpr(Options.language == lang_t::KO ? "그런 신은 존재하지 않습니다!" : "That god doesn't seem to exist!");
     else if (god == GOD_NO_GOD)
-        mpr("You suffer the terrible wrath of No God.");
+        mpr(Options.language == lang_t::KO ? "어떤 신도 아닌 존재의 끔찍한 진노를 받습니다." : "You suffer the terrible wrath of No God.");
     else if (!divine_retribution(god, true, true))
     {
         // Dead Jiyva, or Ru/Gozag/Ashenzari.
@@ -973,7 +976,7 @@ void wizard_god_mollify()
         }
     }
     if (!mollified)
-        mpr("You are not under penance.");
+        mpr(Options.language == lang_t::KO ? "현재 신의 징벌을 받고 있지 않습니다." : "You are not under penance.");
 }
 
 void wizard_transform()
@@ -1014,19 +1017,19 @@ void wizard_transform()
         you.cur_talisman = -1;
     }
     if (!transform(200, form, true) && you.form != form)
-        mpr("Transformation failed.");
+        mpr(Options.language == lang_t::KO ? "변신에 실패했습니다." : "Transformation failed.");
 }
 
 void wizard_join_religion()
 {
     if (you.has_mutation(MUT_FORLORN))
     {
-        mpr("Not even in wizmode may divine creatures worship a god!");
+        mpr(Options.language == lang_t::KO ? "마법사 모드에서도 신성한 존재는 신을 섬길 수 없습니다!" : "Not even in wizmode may divine creatures worship a god!");
         return;
     }
     god_type god = choose_god();
     if (god == NUM_GODS)
-        mpr("That god doesn't seem to exist!");
+        mpr(Options.language == lang_t::KO ? "그런 신은 존재하지 않습니다!" : "That god doesn't seem to exist!");
     else if (god == GOD_NO_GOD)
     {
         if (you_worship(GOD_NO_GOD))
@@ -1046,10 +1049,10 @@ void wizard_join_religion()
 
 void wizard_get_god_tension()
 {
-    mpr("(Tension uses a given god's perspective to check on their summons; use 'No God' to ignore this.)");
+    mpr(Options.language == lang_t::KO ? "(긴장도는 선택한 신이 자신의 소환물을 평가하는 관점으로 계산합니다. 이를 무시하려면 신 없음 선택.)" : "(Tension uses a given god's perspective to check on their summons; use 'No God' to ignore this.)");
     god_type god = choose_god(you.religion);
     int tension = get_tension(god);
-    mprf("%s tension value: %d", !(god == GOD_NO_GOD) ? god_name(god).c_str()
+    mprf(Options.language == lang_t::KO ? "긴장도 (%s): %d" : "%s tension value: %d", !(god == GOD_NO_GOD) ? god_name(god).c_str()
                                                       : "General", tension);
 }
 
