@@ -1030,7 +1030,7 @@ void discover_mimic(const coord_def& pos)
                                                              false, true);
 
     if (you.see_cell(pos))
-        mprf("%s의 정체는 흉내쟁이였다!", name.c_str());
+        mprf("흉내쟁이의 정체가 드러납니다: %s!", name.c_str());
 
     const string shortname = feature_mimic ? feat_type_name(feat)
                                            : item->name(DESC_BASENAME);
@@ -5844,7 +5844,7 @@ bool could_harm(const actor* agent, const actor* target, bool announce_important
         && target->wont_attack())
     {
         if (announce_mundane && you.can_see(*target))
-            simple_god_message("이(가) 당신의 점액이 피해를 입지 않도록 보호한다.", false, GOD_JIYVA);
+            simple_god_message(" — 당신의 점액이 피해를 입지 않도록 보호합니다.", false, GOD_JIYVA);
         return false;
     }
 
