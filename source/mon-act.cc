@@ -819,7 +819,7 @@ static bool _handle_swoop_or_flank(monster& mons)
         {
             if (is_swoop)
             {
-                mprf("%s swoops through the air toward %s!",
+                mprf(Options.language == lang_t::KO ? "%s — 공중을 가로질러 %s에게 급강하합니다!" : "%s swoops through the air toward %s!",
                 mons.name(DESC_THE).c_str(),
                 defender->name(DESC_THE).c_str());
             }
@@ -916,7 +916,7 @@ static void _handle_boulder_movement(monster& boulder)
     {
         if (you.can_see(boulder))
         {
-            mprf("%s slams into %s and falls apart!",
+            mprf(Options.language == lang_t::KO ? "%s — %s에 충돌해 산산이 부서집니다!" : "%s slams into %s and falls apart!",
                  boulder.name(DESC_THE).c_str(),
                  article_a(feat_type_name(env.grid(targ))).c_str());
         }
@@ -971,7 +971,7 @@ static void _handle_boulder_movement(monster& boulder)
             {
                 if (you.can_see(boulder) || you.can_see(*obstruction))
                 {
-                    mprf("%s crushes %s against %s and falls apart!",
+                    mprf(Options.language == lang_t::KO ? "%s — %s을 %s에 짓누르고 산산이 부서집니다!" : "%s crushes %s against %s and falls apart!",
                             boulder.name(DESC_THE).c_str(),
                             obstruction->name(DESC_THE).c_str(),
                             blocker_name.c_str());
@@ -986,7 +986,7 @@ static void _handle_boulder_movement(monster& boulder)
             {
                 if (you.can_see(boulder))
                 {
-                    mprf("%s crumbles against %s.",
+                    mprf(Options.language == lang_t::KO ? "%s — %s에 부딪혀 부서집니다." : "%s crumbles against %s.",
                             boulder.name(DESC_THE).c_str(),
                             obstruction->name(DESC_THE).c_str());
                 }
@@ -1020,7 +1020,7 @@ static void _handle_boulder_movement(monster& boulder)
         const int self_dmg = roll_dice(solid_count, BOULDER_ABRASION_DAMAGE);
         if (self_dmg > boulder.hit_points)
         {
-            mprf("%s is abraded by the %s and falls apart.",
+            mprf(Options.language == lang_t::KO ? "%s — %s에 마모되어 산산이 부서집니다." : "%s is abraded by the %s and falls apart.",
                     boulder.name(DESC_THE).c_str(), solid_name.c_str());
             monster_die(boulder, nullptr, true);
         }
@@ -2604,7 +2604,7 @@ static void _post_monster_move(monster* mons)
                     && env.grid(*ai) != DNGN_FLOOR
                     && you.see_cell(*ai))
                 {
-                    mprf("%s watery aura covers %s.",
+                    mprf(Options.language == lang_t::KO ? "%s 물의 기운이 %s을 뒤덮습니다." : "%s watery aura covers %s.",
                          apostrophise(mons->name(DESC_THE)).c_str(),
                          feature_description_at(*ai, false, DESC_THE).c_str());
                 }
@@ -2741,7 +2741,7 @@ void print_mons_left_view_messages()
             // The monster should be visible to be in this queue.
             if (in_bounds(m->pos()) && !you.see_cell(m->pos()))
             {
-                mprf(MSGCH_PLAIN, "%s leaves your sight.",
+                mprf(MSGCH_PLAIN, Options.language == lang_t::KO ? "시야에서 사라진 몬스터: %s." : "%s leaves your sight.",
                      m->name(DESC_THE, true).c_str());
             }
         }
@@ -3830,7 +3830,7 @@ static bool _monster_move(monster* mons, coord_def& delta)
 
     // TODO: move the below logic out of move code.
     if (one_chance_in(10) && you.can_see(*mons) && mons->berserk())
-        mprf(MSGCH_TALK_VISUAL, "%s rages.", mons->name(DESC_THE).c_str());
+        mprf(MSGCH_TALK_VISUAL, Options.language == lang_t::KO ? "격분한 몬스터: %s." : "%s rages.", mons->name(DESC_THE).c_str());
     // Look, this is silly.
     if (one_chance_in(5)
         && mons->has_ench(ENCH_FRENZIED)
@@ -4013,7 +4013,7 @@ static bool _monster_move(monster* mons, coord_def& delta)
             if (you.see_cell(target))
             {
                 const bool actor_visible = you.can_see(*mons);
-                mprf("%s knocks down a tree!",
+                mprf(Options.language == lang_t::KO ? "나무를 쓰러뜨린 몬스터: %s!" : "%s knocks down a tree!",
                         actor_visible?
                         mons->name(DESC_THE).c_str() : "Something");
                 noisy(25, target);
