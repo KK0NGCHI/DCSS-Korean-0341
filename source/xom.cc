@@ -588,7 +588,7 @@ static void _try_brand_switch(const int item_index)
         return;
 
     // TODO: shared code with _do_chaos_upgrade
-    mprf("%s erupts in a glittering mayhem of colour.",
+    mprf(Options.language == lang_t::KO ? "현란한 빛깔을 뿜어내는 아이템: %s." : "%s erupts in a glittering mayhem of colour.",
                             item.name(DESC_THE, false, false, false).c_str());
     if (is_random_artefact(item))
         artefact_set_property(item, ARTP_BRAND, SPWPN_CHAOS);
@@ -1485,7 +1485,7 @@ static void _xom_snakes_to_sticks(int /*sever*/)
         item.quantity = 1;
 
         // Output some text since otherwise snakes will disappear silently.
-        mprf("%s reforms as %s.", mi->name(DESC_THE).c_str(),
+        mprf(Options.language == lang_t::KO ? "변형되는 몬스터: %s → %s." : "%s reforms as %s.", mi->name(DESC_THE).c_str(),
              item.name(DESC_A).c_str());
 
         // Dismiss monster silently.
@@ -4218,7 +4218,7 @@ static void _xom_grants_word_of_recall(int /*sever*/)
         xom_speech = "grant voiceless word of recall";
 
     god_speaks(GOD_XOM, _get_xom_speech(xom_speech).c_str());
-    mprf(MSGCH_WARN, "%s is forced to slowly start %s a word of recall!",
+    mprf(MSGCH_WARN, Options.language == lang_t::KO ? "강제로 귀환의 주문을 천천히 시작하는 몬스터: %s (%s)!" : "%s is forced to slowly start %s a word of recall!",
                      targetable[0]->name(DESC_A, true, false).c_str(),
                      phrasing.c_str());
     mon_enchant chant_timer = mon_enchant(ENCH_WORD_OF_RECALL, targetable[0], duration);
