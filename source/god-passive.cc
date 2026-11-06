@@ -2367,7 +2367,9 @@ void makhleb_execution_activate()
 {
     string talk = getSpeakString("Makhleb executioner chatter");
     mprf(MSGCH_TALK, "<lightred>%s</lightred>", talk.c_str());
-    mprf(MSGCH_DURATION, "A whirlwind of blades manifests around you!");
+    mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO
+         ? "칼날의 회오리가 주위에 나타납니다!"
+         : "A whirlwind of blades manifests around you!");
 
     you.duration[DUR_EXECUTION] = random_range(50, 70);
 #ifdef USE_TILE
