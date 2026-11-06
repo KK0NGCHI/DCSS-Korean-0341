@@ -2326,8 +2326,9 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
                  && one_chance_in(20))
         {
             // And you thought you'd Haunt your way out of penance...
-            simple_god_message(" does not allow the disloyal to dabble in "
-                               "death!", false, GOD_KIKUBAAQUDGHA);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 불충한 자가 죽음의 마법을 다루는 것을 허락하지 않습니다!"
+                : " does not allow the disloyal to dabble in death!", false, GOD_KIKUBAAQUDGHA);
 
             // The spell still goes through, but you get a miscast anyway.
             miscast_effect(you, nullptr,
@@ -2343,8 +2344,9 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
                  && one_chance_in(20))
         {
             // And you thought you'd Fire Storm your way out of penance...
-            simple_god_message(" does not allow the disloyal to dabble in "
-                               "destruction!", false, GOD_VEHUMET);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 불충한 자가 파괴 마법을 다루는 것을 허락하지 않습니다!"
+                : " does not allow the disloyal to dabble in destruction!", false, GOD_VEHUMET);
 
             // The spell still goes through, but you get a miscast anyway.
             miscast_effect(you, nullptr, {miscast_source::god, GOD_VEHUMET},
