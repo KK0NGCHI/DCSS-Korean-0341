@@ -236,7 +236,7 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
     wpn.flags |= ISFLAG_NOTED_ID;
     wpn.props[FORCED_ITEM_COLOUR_KEY] = colour;
 
-    mprf(MSGCH_GOD, "%s이(가) 밝게 빛난다!", wpn.name(DESC_QUALNAME).c_str());
+    mprf(MSGCH_GOD, "밝게 빛나는 무기: %s!", wpn.name(DESC_QUALNAME).c_str());
     flash_view(UA_PLAYER, colour);
     simple_god_message("이(가) 우렁차게 외친다. 이 선물을 현명하게 사용해라!");
     you.one_time_ability_used.set(you.religion);
@@ -2319,12 +2319,16 @@ void ashenzari_offer_new_curse()
     const string offer_string = curse_names.empty() ? "" :
                                 (" of " + curse_names);
 
-    mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있다%s.", offer_string.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있습니다%s.",
+             curse_names.empty() ? "" : make_stringf(" (지식: %s)", curse_names.c_str()).c_str());
+    else
+        mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있다%s.", offer_string.c_str());
 }
 
 static void _do_curse_item(item_def &item)
 {
-    mprf("%s이(가) 잠시 검게 빛난다.", item.name(DESC_PLAIN).c_str());
+    mprf("잠시 검게 빛나는 아이템: %s.", item.name(DESC_PLAIN).c_str());
     item.flags |= ISFLAG_CURSED;
 
     if (item.base_type == OBJ_WEAPONS)
@@ -4967,7 +4971,7 @@ static void _apply_ru_sacrifice(mutation_type sacrifice)
 
 static bool _execute_sacrifice(ability_type sac, const char* message)
 {
-    mprf("루가 당신에게 %s을(를) 요구한다.", message);
+    mprf("루가 요구하는 희생: %s.", message);
     mpr(ru_sacrifice_description(sac));
     if (!yesno("정말 이 희생을 바칠까?",
                false, 'n'))
@@ -5327,7 +5331,7 @@ void ru_do_retribution(monster* mons, int damage)
 
     if (power > 50 && (mons->antimagic_susceptible()))
     {
-        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s의 마력을 빼앗았다!", mons->name(DESC_THE).c_str());
+        mprf(MSGCH_GOD, "응징의 힘으로 마력을 빼앗은 대상: %s!", mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_ANTIMAGIC, act, power+random2(320)));
     }
     else if (power > 35)
