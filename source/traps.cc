@@ -396,7 +396,7 @@ void trap_def::trigger(actor& triggerer)
         }
         else if (you_trigger)
         {
-            mprf("This passage %s!", search_result == passage_type::blocked ?
+            mprf(Options.language == lang_t::KO ? "통로에 문제가 있습니다: %s!" : "This passage %s!", search_result == passage_type::blocked ?
                  "seems to be blocked by something" : "doesn't lead anywhere");
         }
         break;
@@ -407,7 +407,7 @@ void trap_def::trigger(actor& triggerer)
         if (you_trigger)
             mprf(Options.language == lang_t::KO ? "함정으로 들어갑니다: %s!" : "You enter %s!", name(DESC_A).c_str());
         else
-            mprf("%s enters %s!", triggerer.name(DESC_THE).c_str(),
+            mprf(Options.language == lang_t::KO ? "함정에 들어가는 대상: %s, 함정: %s!" : "%s enters %s!", triggerer.name(DESC_THE).c_str(),
                     name(DESC_A).c_str());
 
         for (monster_near_iterator mi(pos, LOS_NO_TRANS); mi; ++mi)
