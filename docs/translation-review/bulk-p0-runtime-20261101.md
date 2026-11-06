@@ -372,3 +372,38 @@ All 46 new positions explicitly select Korean only when `Options.language == lan
 **Verification:** source patches committed but latest branch head has **not** yet been compiled or run. The previously passing Linux KO runtime and inventory workflows at `c71a046c` do not validate these new commits. Check the exact latest head before removing Draft status or merging.
 
 **Next:** Linux full-overlay compilation + inventory on latest PR head, inspect any failures, dynamic particle/render QA, then resume a verified P0 inventory-based batch. Continue using the same PR, not a new small PR.
+
+
+## 2026-11-06 large follow-up: 64 new gameplay output positions
+
+Continuation after the 46-site batch. The following commits have been applied to the same draft PR #174 branch, not to `main`.
+
+| Source | New Korean output positions | Scope |
+|---|---:|---|
+| `mon-ench.cc` | 5 | charm/domination/bribe expiry, flooding, protean monster shape, refocusing, clockwork bee |
+| `item-use.cc` | 3 | weapon/armour enchantment and protean talisman transformation |
+| `mon-act.cc` | 2 | passing another creature and obscured tree-felling feedback |
+| `player-equip.cc` | 2 | faith equipment removal and distortion-brand safety |
+| `movement.cc` | 16 | door interaction, ocean and forest restrictions, confusion, command help, solar ember |
+| `timed-effects.cc` | 16 | contamination, slime/jelly speech, changing mutations, walls, sigils, enchantment cessation, monster splitting |
+| `teleport.cc` | 4 | monster teleport, appearance and disappearance |
+| `nearby-danger.cc` | 2 | frailty/death and revival |
+| `mon-poly.cc` | 4 | monster polymorph and temporary appearance changes |
+| `mon-clone.cc` | 2 | player duplicate, monster clone |
+| `skill-menu.cc` | 1 | omnipotence feedback |
+| `ranged-attack.cc` | 5 | projectile repulsion, jelly interception, resistance and spatial untethering |
+| `mon-aura.cc` | 2 | torpor/visibility aura |
+| **Total** | **64** | **translated output positions** |
+
+Combined for this date: **110 new positions (46 preceding + 64 here)**. These are source output positions; several are alternative branches or duplicated literal values, and do not establish a game-wide completion percentage.
+
+### CI overlay coverage correction
+The Linux runtime workflow and the manual C++ verification workflow previously only copied a fixed list of translated C++ files over pristine upstream. The following newly edited files were added to **both** overlays so successful builds cannot silently omit them: `movement.cc`, `timed-effects.cc`, `teleport.cc`, `nearby-danger.cc`, `mon-poly.cc`, `mon-clone.cc`, `skill-menu.cc`, `ranged-attack.cc`, `mon-aura.cc`.
+
+### Verification and remaining work
+All substitutions were guarded by exact source-snippet match counts. Original English-language output remains available in non-Korean branches. This guards editing precision but does **not** prove C++ compilation or correct runtime grammar.
+
+- Confirm Linux KO smoke and lexical inventory results for the exact final head.
+- Correct any compiler errors and revalidate; do not claim passing status for an earlier SHA.
+- Continue reviewing formatted movement warnings, projectile hit grammar, monster names and generated item names. Some label-style Korean sentences avoid unreliable particles but need naturalness QA.
+- Windows Tiles gameplay rendering remains unverified. PR remains Draft and unmerged.
