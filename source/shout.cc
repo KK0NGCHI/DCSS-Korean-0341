@@ -574,7 +574,7 @@ static bool _issue_order(int keyn, int &mons_targd)
             if (!_allies_can_see(*m))
             {
                 if (Options.language == lang_t::KO)
-                    mprf("투명한 대상 %s(을)를 볼 수 있는 아군이 없습니다.", m->name(DESC_THE).c_str());
+                    mprf("투명한 대상을 볼 수 있는 아군이 없습니다: %s.", m->name(DESC_THE).c_str());
                 else
                     mprf("%s is invisible, and you have no allies that can see %s.",
                          m->name(DESC_THE).c_str(),
