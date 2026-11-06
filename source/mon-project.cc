@@ -248,7 +248,7 @@ static void _iood_stop(monster& mon, bool msg = true)
         return;
 
     if (msg)
-        simple_monster_message(mon, " dissipates.");
+        simple_monster_message(mon, Options.language == lang_t::KO ? " — 흩어져 사라집니다." : " dissipates.");
     dprf("iood: dissipating");
     monster_die(mon, KILL_RESET, NON_MONSTER);
 }
@@ -417,7 +417,7 @@ static bool _iood_hit(monster& mon, const coord_def &pos, bool big_boom = false)
         _iood_hit_setup(mon, beam);
 
     if (mon.type == MONS_GLOBE_OF_ANNIHILATION && you.can_see(mon) && big_boom)
-        simple_monster_message(mon, " detonates violently!");
+        simple_monster_message(mon, Options.language == lang_t::KO ? " — 격렬하게 폭발합니다!" : " detonates violently!");
 
     monster_die(mon, KILL_RESET, NON_MONSTER);
 
@@ -595,7 +595,7 @@ move_again:
                 if (mons->props[IOOD_DIST].get_int() < 2)
                 {
                     if (you.see_cell(pos))
-                        mpr("The orb fizzles.");
+                        mpr(Options.language == lang_t::KO ? "구체가 힘없이 사라집니다." : "The orb fizzles.");
                     monster_die(*mons, KILL_RESET, NON_MONSTER);
                 }
 
@@ -603,7 +603,7 @@ move_again:
                 if (mon.props[IOOD_DIST].get_int() < 2)
                 {
                     if (you.see_cell(pos))
-                        mpr("The orb fizzles.");
+                        mpr(Options.language == lang_t::KO ? "구체가 힘없이 사라집니다." : "The orb fizzles.");
                     monster_die(mon, KILL_RESET, NON_MONSTER);
                     return true;
                 }
@@ -611,9 +611,9 @@ move_again:
             else
             {
                 if (mon.observable())
-                    mpr("The orbs collide in a blinding explosion!");
+                    mpr(Options.language == lang_t::KO ? "구체들이 충돌하며 눈부신 폭발을 일으킵니다!" : "The orbs collide in a blinding explosion!");
                 else
-                    mpr("You hear a loud magical explosion!");
+                    mpr(Options.language == lang_t::KO ? "커다란 마법 폭발음이 들립니다!" : "You hear a loud magical explosion!");
                 noisy(25, pos);
                 monster_die(*mons, KILL_RESET, NON_MONSTER);
                 _iood_hit(mon, pos, true);
@@ -626,7 +626,7 @@ move_again:
             if (!victim->reflection())
             {
                 if (victim->is_player())
-                    mprf("You block %s.", mon.name(DESC_THE, true).c_str());
+                    mprf(Options.language == lang_t::KO ? "구체를 막아냅니다: %s." : "You block %s.", mon.name(DESC_THE, true).c_str());
                 else
                 {
                     simple_monster_message(*mons, (" blocks "
