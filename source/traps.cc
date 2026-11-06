@@ -1327,7 +1327,7 @@ void player::struggle_against_net()
         }
         else
         {
-            mpr("You disentangle yourself.");
+            mpr(Options.language == lang_t::KO ? "속박에서 벗어납니다." : "You disentangle yourself.");
             stop_being_caught();
             return;
         }
