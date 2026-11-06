@@ -269,7 +269,7 @@ static monster* _do_split(monster* thing, const coord_def & target, bool quiet =
     {
         if (thing->type == MONS_SLYMDRA)
         {
-            mprf("%s separates from %s.", new_slime->name(DESC_A).c_str(),
+            mprf(Options.language == lang_t::KO ? "분리되어 나온 점액: %s (원래 몸체: %s)." : "%s separates from %s.", new_slime->name(DESC_A).c_str(),
                                           thing->name(DESC_A).c_str());
         }
         else
@@ -395,7 +395,7 @@ static void _do_merge_slimes(monster* initial_slime, monster* merge_to)
     else if (you.can_see(*initial_slime))
     {
         // case 4
-        mprf("%s merges with something you can't see.",
+        mprf(Options.language == lang_t::KO ? "보이지 않는 무언가와 합쳐지는 점액: %s." : "%s merges with something you can't see.",
              initial_slime->name(DESC_A).c_str());
     }
     // case 5 (no-op)
@@ -876,7 +876,7 @@ bool lost_soul_revive(monster& mons, killer_type killer)
         {
             if (!was_alive)
             {
-                mprf("%s sacrifices itself to reknit %s!",
+                mprf(Options.language == lang_t::KO ? "자신을 희생해 대상을 복구하는 몬스터: %s → %s!" : "%s sacrifices itself to reknit %s!",
                      mi->name(DESC_THE).c_str(),
                      revivee_name.c_str());
             }
