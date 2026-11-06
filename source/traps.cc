@@ -430,7 +430,7 @@ void trap_def::trigger(actor& triggerer)
             // can't use trap_destroyed, as we might recurse into a shaft
             // or be banished by a Zot trap
             env.map_knowledge(pos).set_feature(DNGN_FLOOR);
-            mprf("%s disappears.", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "사라지는 함정: %s." : "%s disappears.", name(DESC_THE).c_str());
             destroy();
         }
         if (!triggerer.no_tele())
@@ -498,7 +498,7 @@ void trap_def::trigger(actor& triggerer)
             string m_list = describe_monsters_condensed(buffed_mons);
 
             if (drain == 0)
-                mprf("The spells of %s are empowered!", m_list.c_str());
+                mprf(Options.language == lang_t::KO ? "주문이 강화된 몬스터: %s!" : "The spells of %s are empowered!", m_list.c_str());
             else
             {
                 mprf(MSGCH_WARN, "Your power is siphoned away as the spells of %s are empowered!",
@@ -1038,7 +1038,7 @@ void do_trap_effects()
             if (have_passive(passive_t::avoid_traps))
             {
                 mpr(msg);
-                simple_god_message(" warns you in time for you to avoid it.");
+                simple_god_message(Options.language == lang_t::KO ? " — 위험을 피할 수 있도록 제때 경고합니다." : " warns you in time for you to avoid it.");
                 return;
             }
             mpr(msg);
@@ -1231,7 +1231,7 @@ bool player::trap_in_web()
     you.redraw_evasion      = true;
     quiver::set_needs_redraw();
 
-    mpr("You are caught in a web!");
+    mpr(Options.language == lang_t::KO ? "거미줄에 걸렸습니다!" : "You are caught in a web!");
 
     return true;
 }
@@ -1241,7 +1241,7 @@ bool monster::trap_in_web()
     if (is_web_immune() || caught())
         return false;
 
-    simple_monster_message(*this, " is caught in a web!");
+    simple_monster_message(*this, Options.language == lang_t::KO ? " — 거미줄에 걸립니다!" : " is caught in a web!");
     add_ench(ENCH_HELD);
 
     return true;
