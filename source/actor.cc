@@ -466,9 +466,13 @@ void actor::end_constriction(mid_t whom, bool intentional, bool quiet,
         // blinking or similar
         if (!escape_verb.empty())
         {
-            mprf("%s %s free of %s!",
-                 constrictee->name(DESC_THE).c_str(), escape_verb.c_str(),
-                 lowercase(attacker_desc).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("속박에서 탈출한 대상: %s (속박자: %s)!",
+                     constrictee->name(DESC_THE).c_str(), attacker_desc.c_str());
+            else
+                mprf("%s %s free of %s!",
+                     constrictee->name(DESC_THE).c_str(), escape_verb.c_str(),
+                     lowercase(attacker_desc).c_str());
         }
         else
         {
@@ -1129,9 +1133,9 @@ bool actor::stumble_away_from(coord_def targ, string src)
     }
 
     if (is_player() && !src.empty())
-        mprf("%s sends you backwards.", uppercase_first(src).c_str());
+        mprf(Options.language == lang_t::KO ? "뒤로 밀려납니다: %s." : "%s sends you backwards.", uppercase_first(src).c_str());
     else if (you.can_see(*this) && !src.empty())
-        mprf("%s is knocked back by %s.", name(DESC_THE).c_str(), src.c_str());
+        mprf(Options.language == lang_t::KO ? "뒤로 밀려난 대상: %s (원인: %s)." : "%s is knocked back by %s.", name(DESC_THE).c_str(), src.c_str());
 
     move_to(newpos);
 
