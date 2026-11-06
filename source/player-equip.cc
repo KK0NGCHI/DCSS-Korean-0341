@@ -1878,10 +1878,11 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_FREEZING:
-            mprf("%s %s", item_name.c_str(),
-                is_range_weapon(item) ?
-                    "is covered in frost." :
-                    "glows with a cold blue light!");
+            if (Options.language == lang_t::KO)
+                mprf(is_range_weapon(item) ? "서리가 덮인 무기: %s." : "차갑고 푸른빛으로 빛나는 무기: %s!", item_name.c_str());
+            else
+                mprf("%s %s", item_name.c_str(),
+                     is_range_weapon(item) ? "is covered in frost." : "glows with a cold blue light!");
             break;
 
         case SPWPN_HOLY_WRATH:
