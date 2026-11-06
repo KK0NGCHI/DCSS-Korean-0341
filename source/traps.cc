@@ -1259,7 +1259,7 @@ bool player::trap_in_net(bool real, bool quiet)
     quiver::set_needs_redraw();
 
     if (!quiet)
-        mpr("You become entangled in the net!");
+        mpr(Options.language == lang_t::KO ? "그물에 얽혀 버렸습니다!" : "You become entangled in the net!");
 
     stop_running();
     stop_delay(true); // even stair delays
@@ -1284,7 +1284,7 @@ bool monster::trap_in_net(bool real, bool quiet)
         if (!quiet && you.can_see(*this))
         {
             if (is_insubstantial())
-                mprf("The net passes right through %s!", name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "그물이 그대로 통과한 몬스터: %s!" : "The net passes right through %s!", name(DESC_THE).c_str());
             else
                 mprf("%s effortlessly oozes through the net!", name(DESC_THE).c_str());
         }
@@ -1301,7 +1301,7 @@ bool monster::trap_in_net(bool real, bool quiet)
     if (!quiet && you.see_cell(pos()))
     {
         if (!visible_to(&you))
-            mpr("Something gets caught in the net!");
+            mpr(Options.language == lang_t::KO ? "무언가가 그물에 걸립니다!" : "Something gets caught in the net!");
         else
             simple_monster_message(*this, " is caught in the net!");
     }
@@ -1317,7 +1317,7 @@ void player::struggle_against_net()
         // Roll a chance to escape the web.
         if (x_chance_in_y(3, 10))
         {
-            mpr("You struggle to detach yourself from the web.");
+            mpr(Options.language == lang_t::KO ? "거미줄에서 벗어나려고 몸부림칩니다." : "You struggle to detach yourself from the web.");
             return;
         }
         else
@@ -1338,7 +1338,7 @@ void player::struggle_against_net()
     }
 
     if (damage > 3)
-        mpr("You tear a large gash into the net.");
+        mpr(Options.language == lang_t::KO ? "그물을 크게 찢어 놓습니다." : "You tear a large gash into the net.");
     else
         mpr("You struggle against the net.");
 
