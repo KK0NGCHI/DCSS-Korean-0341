@@ -4018,9 +4018,11 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
 
             if (defender_visible)
             {
-                mprf(Options.language == lang_t::KO ? "어지럼증을 일으키는 포자 구름에 휩싸인 대상: %s!" : "%s %s engulfed in a cloud of dizzying spores!",
-                     defender->name(DESC_THE).c_str(),
-                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("어지럼증을 일으키는 포자 구름에 휩싸인 대상: %s!", defender->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s engulfed in a cloud of dizzying spores!",
+                         defender->name(DESC_THE).c_str(), defender->conj_verb("are").c_str());
             }
         }
 
@@ -4028,9 +4030,11 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         {
             if (attk_type != AT_SPORE && defender_visible)
             {
-                mprf(Options.language == lang_t::KO ? "어지럼증을 일으키는 기운에 휩싸인 대상: %s!" : "%s %s afflicted by dizzying energies!",
-                     defender->name(DESC_THE).c_str(),
-                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("어지럼증을 일으키는 기운에 휩싸인 대상: %s!", defender->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s afflicted by dizzying energies!",
+                         defender->name(DESC_THE).c_str(), defender->conj_verb("are").c_str());
             }
             defender->confuse(attacker,
                               1 + random2(3+attacker->get_hit_dice()));
@@ -4051,9 +4055,11 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         {
             if (defender_visible)
             {
-                mprf(Options.language == lang_t::KO ? "날카로운 가시에 찔린 대상: %s." : "%s %s skewered by barbed spikes.",
-                     defender->name(DESC_THE).c_str(),
-                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("날카로운 가시에 찔린 대상: %s.", defender->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s skewered by barbed spikes.",
+                         defender->name(DESC_THE).c_str(), defender->conj_verb("are").c_str());
             }
             defender->as_monster()->add_ench(mon_enchant(ENCH_BARBS, attacker,
                                         random_range(5, 7) * BASELINE_DELAY, 1));
@@ -4396,9 +4402,11 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
 
             if (defender_visible)
             {
-                mprf(Options.language == lang_t::KO ? "수면 포자 구름에 휩싸인 대상: %s!" : "%s %s engulfed in a cloud of soporific spores!",
-                     defender->name(DESC_THE).c_str(),
-                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("수면 포자 구름에 휩싸인 대상: %s!", defender->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s engulfed in a cloud of soporific spores!",
+                         defender->name(DESC_THE).c_str(), defender->conj_verb("are").c_str());
             }
         }
         defender->put_to_sleep(attacker, random_range(3, 5) * BASELINE_DELAY);
@@ -4930,9 +4938,11 @@ bool melee_attack::do_knockback(bool slippery)
         {
             if (defender->is_constricted())
             {
-                mprf(Options.language == lang_t::KO ? "그 자리에 붙잡힌 대상: %s!" : "%s %s held in place!",
-                     defender_name(false).c_str(),
-                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("그 자리에 붙잡힌 대상: %s!", defender_name(false).c_str());
+                else
+                    mprf("%s %s held in place!",
+                         defender_name(false).c_str(), defender->conj_verb("are").c_str());
             }
             else if (!slippery)
             {
@@ -4953,9 +4963,10 @@ bool melee_attack::do_knockback(bool slippery)
         const string verb = slippery ? "slip" :
                          can_stumble ? "stumble"
                                      : "are shoved";
-        mprf(Options.language == lang_t::KO ? "뒤로 밀려나는 대상: %s!" : "%s %s backwards!",
-             defender_name(false).c_str(),
-             Options.language == lang_t::KO ? "" : defender->conj_verb(verb).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("뒤로 밀려나는 대상: %s!", defender_name(false).c_str());
+        else
+            mprf("%s %s backwards!", defender_name(false).c_str(), defender->conj_verb(verb).c_str());
     }
 
     // Schedule following _before_ actually trampling -- if the defender
