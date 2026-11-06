@@ -752,7 +752,7 @@ void melee_attack::maybe_do_mesmerism()
     const int max_dur = defender->is_player() ? 5 + you.skill_rdiv(SK_EVOCATIONS, 1, 5)
                                               : 3 + defender->get_hit_dice() / 4;
 
-    mprf(Options.language == lang_t::KO ? "현기증을 일으키는 파동을 방출하는 구체: %s." : "%s orb emits a pulse of dizzying energy.", defender->name(DESC_ITS).c_str());
+    mprf(Options.language == lang_t::KO ? "현기증을 일으키는 파동이 발생합니다: %s." : "%s orb emits a pulse of dizzying energy.", defender->name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
     draw_ring_animation(defender->pos(), radius, LIGHTMAGENTA, MAGENTA, true, 30);
 
     for (radius_iterator ri(defender->pos(), radius, C_SQUARE, LOS_NO_TRANS); ri; ++ri)
