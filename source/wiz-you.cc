@@ -459,10 +459,12 @@ void wizard_set_skill_level(skill_type skill)
 
     redraw_skill(skill);
 
-    mprf("%s %s to skill level %.1f.", (old_amount < amount ? "Increased" :
-                                      old_amount > amount ? "Lowered"
-                                                          : "Reset"),
-         skill_name(skill), amount);
+    if (Options.language == lang_t::KO)
+        mprf("기술 수준을 %.1f로 설정했습니다: %s.", amount, skill_name(skill));
+    else
+        mprf("%s %s to skill level %.1f.",
+             (old_amount < amount ? "Increased" : old_amount > amount ? "Lowered" : "Reset"),
+             skill_name(skill), amount);
 }
 
 void wizard_set_all_skills()
@@ -674,7 +676,7 @@ void wizard_set_stats()
 
     sscanf(buf, "%d %d %d", &sstr, &sint, &sdex);
 
-    mprf("Setting attributes (Str, Int, Dex) to: %i, %i, %i", sstr, sint, sdex);
+    mprf(Options.language == lang_t::KO ? "능력치 설정 (힘, 지능, 민첩): %i, %i, %i" : "Setting attributes (Str, Int, Dex) to: %i, %i, %i", sstr, sint, sdex);
     you.base_stats[STAT_STR] = debug_cap_stat(sstr);
     you.base_stats[STAT_INT] = debug_cap_stat(sint);
     you.base_stats[STAT_DEX] = debug_cap_stat(sdex);
