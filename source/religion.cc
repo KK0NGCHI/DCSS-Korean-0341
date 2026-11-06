@@ -2407,9 +2407,13 @@ static void _handle_piety_gain(int old_piety)
                 // In exchange for your hp, you get an ancestor!
                 const mgen_data mg = hepliaklqana_ancestor_gen_data();
                 delayed_monster(mg);
-                simple_god_message(make_stringf(" forms a fragment of your life essence"
-                                                " into the memory of your ancestor, %s!",
-                                                mg.mname.c_str()).c_str());
+                if (Options.language == lang_t::KO)
+                    simple_god_message(make_stringf(" — 생명력의 일부를 조상의 기억으로 만듭니다: %s!",
+                                                     mg.mname.c_str()).c_str());
+                else
+                    simple_god_message(make_stringf(" forms a fragment of your life essence"
+                                                     " into the memory of your ancestor, %s!",
+                                                     mg.mname.c_str()).c_str());
             }
 
             for (const auto& power : get_god_powers(you.religion))
@@ -3893,9 +3897,9 @@ void join_religion(god_type which_god)
     set_god_ability_slots();    // remove old god's slots, reserve new god's
 
     // included in default force_more_message
-    simple_god_message(make_stringf(" welcomes you%s!",
-                                    you.worshipped[which_god] ? " back"
-                                                              : "").c_str());
+    simple_god_message(Options.language == lang_t::KO
+        ? (you.worshipped[which_god] ? " — 당신의 귀환을 환영합니다!" : " — 당신을 환영합니다!")
+        : make_stringf(" welcomes you%s!", you.worshipped[which_god] ? " back" : "").c_str());
     update_whereis();
 
     _set_initial_god_piety();
