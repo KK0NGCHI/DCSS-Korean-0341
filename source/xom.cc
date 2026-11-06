@@ -797,9 +797,14 @@ static void _do_chaos_upgrade(item_def &item, const monster* mon)
     {
         const description_level_type desc = mon->friendly() ? DESC_YOUR
                                                             : DESC_THE;
-        mprf("%s %s erupts in a glittering mayhem of colour.",
-            apostrophise(mon->name(desc)).c_str(),
-            item.name(DESC_PLAIN, false, false, false).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("현란한 빛깔을 뿜어내는 무기: %s (소유자: %s).",
+                 item.name(DESC_PLAIN, false, false, false).c_str(),
+                 mon->name(desc).c_str());
+        else
+            mprf("%s %s erupts in a glittering mayhem of colour.",
+                 apostrophise(mon->name(desc)).c_str(),
+                 item.name(DESC_PLAIN, false, false, false).c_str());
     }
 
     const int brand = (item.base_type == OBJ_WEAPONS) ? (int) SPWPN_CHAOS
@@ -1614,9 +1619,14 @@ static void _xom_animate_monster_weapon(int sever)
     // Make the monster unwield its weapon.
     mon->unequip(MSLOT_WEAPON, false, true);
 
-    mprf("%s %s dances into the air!",
-         apostrophise(mon->name(DESC_THE)).c_str(),
-         env.item[wpn].name(DESC_PLAIN).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("공중으로 뛰어오르는 무기: %s (소유자: %s)!",
+             env.item[wpn].name(DESC_PLAIN).c_str(),
+             mon->name(DESC_THE).c_str());
+    else
+        mprf("%s %s dances into the air!",
+             apostrophise(mon->name(DESC_THE)).c_str(),
+             env.item[wpn].name(DESC_PLAIN).c_str());
 
     destroy_item(dancing->inv[MSLOT_WEAPON]);
 
@@ -2680,10 +2690,14 @@ static void _xom_enchant_monster(int sever, bool helpful)
         if (affected == cap)
             break;
 
-        mprf("%s suddenly %s %s!",
-              application->name(DESC_THE).c_str(),
-              (ench == ENCH_PETRIFYING || ench == ENCH_REGENERATION) ? "starts" : "looks",
-              ench_name.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("갑자기 상태가 변한 몬스터: %s (%s)!",
+                 application->name(DESC_THE).c_str(), ench_name.c_str());
+        else
+            mprf("%s suddenly %s %s!",
+                 application->name(DESC_THE).c_str(),
+                 (ench == ENCH_PETRIFYING || ench == ENCH_REGENERATION) ? "starts" : "looks",
+                 ench_name.c_str());
 
         application->add_ench(mon_enchant(ench, &you, time));
         affected++;
@@ -3678,8 +3692,12 @@ bool move_stair(coord_def stair_pos, bool away, bool allow_under)
 
     string stair_str = feature_description_at(stair_pos, false, DESC_THE);
 
-    mprf("%s slides %s you!", stair_str.c_str(),
-         away ? "away from" : "towards");
+    if (Options.language == lang_t::KO)
+        mprf(away ? "당신에게서 멀어지는 계단: %s!" : "당신 쪽으로 미끄러져 오는 계단: %s!",
+             stair_str.c_str());
+    else
+        mprf("%s slides %s you!", stair_str.c_str(),
+             away ? "away from" : "towards");
 
     // Animate stair moving.
     const feature_def &feat_def = get_feature_def(feat);
