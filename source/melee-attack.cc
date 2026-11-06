@@ -596,7 +596,7 @@ void melee_attack::try_parry_disarm()
         item_def *wpn = defender->as_monster()->disarm();
         if (wpn)
         {
-            mprf("You knock %s out of %s grip!",
+            mprf(Options.language == lang_t::KO ? "상대의 손에서 무기를 떨어뜨립니다: %s, 상대: %s!" : "You knock %s out of %s grip!",
                 wpn->name(DESC_THE).c_str(),
                 defender->name(DESC_ITS).c_str());
         }
@@ -752,7 +752,7 @@ void melee_attack::maybe_do_mesmerism()
     const int max_dur = defender->is_player() ? 5 + you.skill_rdiv(SK_EVOCATIONS, 1, 5)
                                               : 3 + defender->get_hit_dice() / 4;
 
-    mprf("%s orb emits a pulse of dizzying energy.", defender->name(DESC_ITS).c_str());
+    mprf(Options.language == lang_t::KO ? "현기증을 일으키는 파동을 방출하는 구체: %s." : "%s orb emits a pulse of dizzying energy.", defender->name(DESC_ITS).c_str());
     draw_ring_animation(defender->pos(), radius, LIGHTMAGENTA, MAGENTA, true, 30);
 
     for (radius_iterator ri(defender->pos(), radius, C_SQUARE, LOS_NO_TRANS); ri; ++ri)
@@ -1809,7 +1809,7 @@ bool melee_attack::attack()
     if (attacker->is_player() && defender &&
         you.afraid_of(defender->as_monster()) && one_chance_in(3))
     {
-        mprf("You attempt to attack %s, but flinch away in fear!",
+        mprf(Options.language == lang_t::KO ? "두려움에 움찔해 공격하지 못한 대상: %s!" : "You attempt to attack %s, but flinch away in fear!",
              defender->name(DESC_THE).c_str());
 
         bool success = false;
@@ -2533,7 +2533,7 @@ bool melee_attack::player_aux_test_hit()
         return true;
     }
 
-    mprf("Your %s misses %s.", aux_attack.c_str(),
+    mprf(Options.language == lang_t::KO ? "보조 공격이 빗나갑니다: %s, 대상: %s." : "Your %s misses %s.", aux_attack.c_str(),
          defender->name(DESC_THE).c_str());
 
     return false;
@@ -3693,7 +3693,7 @@ bool melee_attack::mons_do_poison()
 
     if (needs_message)
     {
-        mprf("%s poisons %s!",
+        mprf(Options.language == lang_t::KO ? "독을 가한 공격자: %s, 대상: %s!" : "%s poisons %s!",
                 atk_name(DESC_THE).c_str(),
                 defender_name(true).c_str());
     }
@@ -4623,7 +4623,7 @@ void melee_attack::mons_do_tendril_disarm()
         item_def* mons_wpn = mon->disarm();
         if (mons_wpn)
         {
-            mprf("Your tendrils lash around %s %s and pull it to the ground!",
+            mprf(Options.language == lang_t::KO ? "덩굴손이 대상을 휘감아 땅으로 끌어내립니다: %s %s!" : "Your tendrils lash around %s %s and pull it to the ground!",
                  apostrophise(mon->name(DESC_THE)).c_str(),
                  mons_wpn->name(DESC_PLAIN).c_str());
         }
@@ -4730,7 +4730,7 @@ void melee_attack::do_foul_flame()
 
             dprf(DIAG_COMBAT, "Foul flame damage: raw_dmg %d, dmg %d", raw_dmg,
                  dmg);
-            mprf("%s is seared by the foul flame within you%s",
+            mprf(Options.language == lang_t::KO ? "체내의 불길로 타격을 입은 대상: %s%s" : "%s is seared by the foul flame within you%s",
                  attacker->name(DESC_THE).c_str(),
                  attack_strength_punctuation(dmg).c_str());
 
@@ -4961,7 +4961,7 @@ bool melee_attack::do_drag()
     // We should be okay to move, then.
     if (needs_message)
     {
-        mprf("%s drags %s backwards!",
+        mprf(Options.language == lang_t::KO ? "대상을 뒤로 끌어당기는 공격자: %s, 대상: %s!" : "%s drags %s backwards!",
              attacker->name(DESC_THE).c_str(),
              defender_name(true).c_str());
     }
