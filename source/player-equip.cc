@@ -2503,7 +2503,9 @@ static void _remove_amulet_of_faith(item_def &item)
         return;
     }
 
-    simple_god_message(" seems less interested in you.");
+    simple_god_message(Options.language == lang_t::KO
+        ? " — 당신에 대한 관심이 줄어든 듯합니다."
+        : " seems less interested in you.");
 
     const int piety_loss = div_rand_round(you.raw_piety, 3);
     // Piety penalty for removing the Amulet of Faith.
@@ -2805,9 +2807,14 @@ void unwield_distortion(bool brand)
 {
     if (have_passive(passive_t::safe_distortion))
     {
-        simple_god_message(make_stringf(" absorbs the residual spatial "
-                           "distortion as you %s your "
-                           "weapon.", brand ? "rebrand" : "unwield").c_str());
+        if (Options.language == lang_t::KO)
+            simple_god_message(brand
+                ? " — 무기의 속성을 바꾸는 동안 남은 공간 왜곡을 흡수합니다."
+                : " — 무기를 내려놓는 동안 남은 공간 왜곡을 흡수합니다.");
+        else
+            simple_god_message(make_stringf(" absorbs the residual spatial "
+                               "distortion as you %s your "
+                               "weapon.", brand ? "rebrand" : "unwield").c_str());
         return;
     }
 
