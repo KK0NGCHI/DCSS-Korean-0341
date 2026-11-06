@@ -247,7 +247,7 @@ bool melee_attack::handle_phase_attempted()
     {
         if (you.see_cell(attack_position))
         {
-            mprf("%s strikes at %s from the darkness!",
+            mprf(Options.language == lang_t::KO ? "어둠 속에서 기습하는 몬스터: %s, 대상: %s!" : "%s strikes at %s from the darkness!",
                  attacker->name(DESC_THE, true).c_str(),
                  defender->name(DESC_THE).c_str());
         }
@@ -312,7 +312,7 @@ void melee_attack::handle_phase_blocked()
         {
             if (you.see_cell(defender->pos()))
             {
-                mprf("%s turn%s aside %s attack!",
+                mprf(Options.language == lang_t::KO ? "%s(이)가 %s의 공격을 흘려보냅니다!" : "%s turn%s aside %s attack!",
                         defender->name(DESC_THE).c_str(),
                         defender->is_monster() ? "s" : "",
                         attacker->name(DESC_ITS).c_str());
@@ -3113,7 +3113,7 @@ void melee_attack::sear_defender()
 
     if (needs_message && visible_effect)
     {
-        mprf("%s fire resistance is stripped away!",
+        mprf(Options.language == lang_t::KO ? "화염 저항이 약화된 대상: %s!" : "%s fire resistance is stripped away!",
              def_name(DESC_ITS).c_str());
     }
 }
@@ -4313,7 +4313,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         {
             if (needs_message)
             {
-                mprf("Faint brimstone surges around %s!",
+                mprf(Options.language == lang_t::KO ? "희미한 유황 연기가 피어오르는 대상: %s!" : "Faint brimstone surges around %s!",
                     defender_name(true).c_str());
             }
         }
@@ -4598,7 +4598,7 @@ void melee_attack::mons_do_eyeball_confusion()
 
         if (mon->check_willpower(&you, ench_pow) <= 0)
         {
-            mprf("The eyeballs on your body gaze at %s.",
+            mprf(Options.language == lang_t::KO ? "몸에 난 눈들이 대상을 바라봅니다: %s." : "The eyeballs on your body gaze at %s.",
                  mon->name(DESC_THE).c_str());
 
             if (!mon->clarity())
