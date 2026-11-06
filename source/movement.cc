@@ -74,7 +74,7 @@ void player_displace_monster(monster* mons, const coord_def &loc)
 
     // Friendly seekers dissipate when the player swaps into them.
     if (loc != you.pos())
-        mprf("You push %s out of the way.", mons->name(DESC_THE).c_str());
+        mprf(Options.language == lang_t::KO ? "길을 비키도록 밀어낸 몬스터: %s." : "You push %s out of the way.", mons->name(DESC_THE).c_str());
     else if (mons_is_seeker(*mons))
     {
         simple_monster_message(*mons, " dissipates!", false,
@@ -203,8 +203,7 @@ void remove_ice_movement()
 {
     if (you.duration[DUR_ICY_ARMOUR])
     {
-        mprf(MSGCH_DURATION, "Your icy armour cracks and falls away as "
-                             "you move.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "움직이자 얼음 갑옷이 갈라져 떨어집니다." : "Your icy armour cracks and falls away as you move.");
         you.duration[DUR_ICY_ARMOUR] = 0;
         you.redraw_armour_class = true;
     }
@@ -213,7 +212,7 @@ void remove_ice_movement()
     {
         you.duration[DUR_FROZEN_RAMPARTS] = 0;
         end_frozen_ramparts();
-        mprf(MSGCH_DURATION, "The frozen ramparts melt away as you move.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "움직이자 얼어붙은 방벽이 녹아내립니다." : "The frozen ramparts melt away as you move.");
     }
 }
 
@@ -466,7 +465,7 @@ void close_door_action(coord_def move)
             if (_check_adjacent(DNGN_BROKEN_DOOR, move)
                 || _check_adjacent(DNGN_BROKEN_CLEAR_DOOR, move))
             {
-                mpr("It's broken and can't be closed.");
+                mpr(Options.language == lang_t::KO ? "고장 나서 닫을 수 없습니다." : "It's broken and can't be closed.");
             }
             else
                 mpr(Options.language == lang_t::KO ? "근처에 닫을 수 있는 것이 없습니다." : "There's nothing to close nearby.");
@@ -505,7 +504,7 @@ void close_door_action(coord_def move)
         break;
     case DNGN_BROKEN_DOOR:
     case DNGN_BROKEN_CLEAR_DOOR:
-        mpr("It's broken and can't be closed!");
+        mpr(Options.language == lang_t::KO ? "고장 나서 닫을 수 없습니다!" : "It's broken and can't be closed!");
         break;
     default:
         mpr(Options.language == lang_t::KO ? "그곳에는 닫을 수 있는 것이 없습니다!" : "There isn't anything that you can close there!");
@@ -703,7 +702,7 @@ static bool _adjust_confused_movement(coord_def& move)
     // Test if our new location is somewhere we cannot move, and abort early if so.
     if (!in_bounds(new_targ) || !you.can_pass_through(new_targ))
     {
-        mprf("You bump into %s.",
+        mprf(Options.language == lang_t::KO ? "앞을 가로막는 지형: %s." : "You bump into %s.",
                     feature_description_at(new_targ, false,
                                         DESC_THE).c_str());
         you.turn_is_over = true;
@@ -769,8 +768,10 @@ static bool _handle_player_step(const coord_def& targ, int& delay, bool rampagin
             && !you.confused()
             && mon->visible_to(&you))
         {
-            simple_monster_message(*mon, " refuses to make way for you. "
-                            "(Use ctrl+direction or * direction to attack.)");
+            simple_monster_message(*mon, Options.language == lang_t::KO
+            ? " — 길을 비켜 주지 않습니다. (공격: Ctrl+방향키 또는 * 후 방향키)"
+            : " refuses to make way for you. "
+              "(Use ctrl+direction or * direction to attack.)");
             return false;
         }
 
@@ -854,7 +855,7 @@ static bool _handle_player_step(const coord_def& targ, int& delay, bool rampagin
         {
             if (monster* beholder = you.get_beholder(targ))
             {
-                mprf("You cannot move away from %s!",
+                mprf(Options.language == lang_t::KO ? "시선을 떨칠 수 없어 멀어지지 못합니다: %s!" : "You cannot move away from %s!",
                      beholder->name(DESC_THE).c_str());
                 return false;
             }
@@ -1026,7 +1027,10 @@ void move_player_action(coord_def move)
     // Print a message, if rampaging.
     if (num_steps > 1)
     {
-        mprf("You %s towards %s!", move_verb.c_str(), mon_target->name(DESC_THE, true).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("대상을 향해 돌진합니다: %s!", mon_target->name(DESC_THE, true).c_str());
+        else
+            mprf("You %s towards %s!", move_verb.c_str(), mon_target->name(DESC_THE, true).c_str());
 
         // Prevent full-LoS stabbing with Seven League Boots.
         if (you.unrand_equipped(UNRAND_SEVEN_LEAGUE_BOOTS))
