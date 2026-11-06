@@ -2424,13 +2424,13 @@ bool ashenzari_uncurse_item()
     if (!handle_chain_removal(to_remove, true))
         return false;
 
-    mprf("%s을(를) 속박하던 저주를 깨뜨렸다!", item.name(DESC_THE).c_str());
+    mprf("속박하던 저주를 깨뜨린 아이템: %s!", item.name(DESC_THE).c_str());
     item_skills(item, you.skills_to_hide);
 
     for (item_def* _item : to_remove)
     {
         if (_item-> link != item_slot)
-            mprf("%s이(가) 몸에서 떨어져 나간다.", _item->name(DESC_YOUR).c_str());
+            mprf("몸에서 떨어져 나가는 장비: %s.", _item->name(DESC_YOUR).c_str());
         unequip_item(*_item);
     }
 
@@ -7011,7 +7011,7 @@ void makhleb_infernal_servant()
             beam.is_explosion = true;
             beam.ex_size = 2;
 
-            mprf("%s이(가) %s의 폭발 속에서 나타난다!", demon->name(DESC_A).c_str(),
+            mprf("폭발 속에서 나타난 악마: %s (폭발: %s)!", demon->name(DESC_A).c_str(),
                                         beam.get_short_name().c_str());
 
             beam.explode();
