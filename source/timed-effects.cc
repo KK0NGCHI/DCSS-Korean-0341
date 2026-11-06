@@ -84,8 +84,7 @@ static void _apply_contam_over_time()
 // Bad effects from magic contamination.
 static void _magic_contamination_effects()
 {
-    mprf(MSGCH_WARN, "Your body shudders with the violent release "
-                     "of wild energies!");
+    mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "거친 마력이 폭발적으로 방출되면서 몸이 떨립니다!" : "Your body shudders with the violent release of wild energies!");
 
     const bool severe = you.magic_contamination >= 2000;
 
@@ -316,7 +315,7 @@ static void _maybe_mortality_summon()
 
     if (created)
     {
-        mprf("Death has come for you....");
+        mprf("%s", Options.language == lang_t::KO ? "죽음이 당신을 찾아왔습니다..." : "Death has come for you....");
         you.props[MORTALITY_TIME_KEY] = you.elapsed_time + random_range(2250, 4500);
     }
 }
@@ -366,7 +365,7 @@ static void _bane_triggers(int /*time_delta*/)
         if (seen)
         {
             flash_tile(mon->pos(), LIGHTBLUE, 150);
-            mprf("%s shimmers and splits apart.", mon->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "반짝이더니 여러 개로 나뉘는 몬스터: %s." : "%s shimmers and splits apart.", mon->name(DESC_THE).c_str());
         }
     }
 
