@@ -221,10 +221,13 @@ void ranged_attack::handle_phase_dodged()
 
     if (needs_message)
     {
-        mprf("The %s%s misses %s.",
-             proj_name.c_str(),
-             evasion_margin_adverb().c_str(),
-             defender_name(false).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("빗나간 발사체: %s, 대상: %s.", proj_name.c_str(), defender_name(false).c_str());
+        else
+            mprf("The %s%s misses %s.",
+                 proj_name.c_str(),
+                 evasion_margin_adverb().c_str(),
+                 defender_name(false).c_str());
     }
 
     if (!weapon->is_type(OBJ_MISSILES, MI_DART)
