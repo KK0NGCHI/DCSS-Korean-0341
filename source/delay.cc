@@ -802,8 +802,10 @@ void PasswallDelay::finish()
     default:
         if (!you.is_habitable(dest))
         {
-            mpr("...yet there is something new on the other side. "
-                "You quickly turn back.");
+            mpr(Options.language == lang_t::KO
+                ? "...하지만 반대편에 무언가 달라져 있습니다. 서둘러 돌아옵니다."
+                : "...yet there is something new on the other side. "
+                  "You quickly turn back.");
             redraw_screen();
             update_screen();
             return;
@@ -837,7 +839,9 @@ void PasswallDelay::finish()
         // If we failed to move them, cancel.
         if (m->pos() == dest)
         {
-            mpr("...and sense your way blocked. You quickly turn back.");
+            mpr(Options.language == lang_t::KO
+                ? "...하지만 통로가 막힌 것이 느껴집니다. 서둘러 돌아옵니다."
+                : "...and sense your way blocked. You quickly turn back.");
             redraw_screen();
             update_screen();
             return;
@@ -1095,9 +1099,13 @@ void monster_interrupt_message(activity_interrupt ai, const activity_interrupt_d
     ASSERT(mon);
 
     if (at.context == SC_ALREADY_IN_VIEW)
-        mprf(MSGCH_MONSTER_WARNING, "%s is now too close for your liking.", mon->name(DESC_THE).c_str());
+        mprf(MSGCH_MONSTER_WARNING,
+             Options.language == lang_t::KO ? "위험할 만큼 가까워진 몬스터: %s." : "%s is now too close for your liking.",
+             mon->name(DESC_THE).c_str());
     else
-        mprf(MSGCH_MONSTER_WARNING, "%s comes into view.", mon->name(DESC_A).c_str());
+        mprf(MSGCH_MONSTER_WARNING,
+             Options.language == lang_t::KO ? "시야에 나타난 몬스터: %s." : "%s comes into view.",
+             mon->name(DESC_A).c_str());
 }
 
 // Returns true if any activity was stopped. Not reentrant.
