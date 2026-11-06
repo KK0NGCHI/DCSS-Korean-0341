@@ -2344,7 +2344,10 @@ bool enchant_weapon(item_def &wpn, bool quiet)
         if (!quiet)
         {
             const char* dur = wpn.plus < MAX_WPN_ENCHANT ? "moment" : "while";
-            mprf("%s glows red for a %s.", iname.c_str(), dur);
+            if (Options.language == lang_t::KO)
+                mprf(wpn.plus < MAX_WPN_ENCHANT ? "무기에 붉은빛이 잠깐 감돕니다: %s." : "무기에 붉은빛이 계속 감돕니다: %s.", iname.c_str());
+            else
+                mprf("%s glows red for a %s.", iname.c_str(), dur);
         }
     }
 
@@ -2501,7 +2504,10 @@ bool enchant_armour(item_def &arm, bool quiet)
                             && arm.sub_type != ARM_TROLL_LEATHER_ARMOUR;
         string glow = conjugate_verb("glow", plural);
         const char* dur = is_enchantable_armour(arm) ? "moment" : "while";
-        mprf("%s %s green for a %s.", name.c_str(), glow.c_str(), dur);
+        if (Options.language == lang_t::KO)
+            mprf(is_enchantable_armour(arm) ? "방어구에 초록빛이 잠깐 감돕니다: %s." : "방어구에 초록빛이 계속 감돕니다: %s.", name.c_str());
+        else
+            mprf("%s %s green for a %s.", name.c_str(), glow.c_str(), dur);
     }
 
     return true;
@@ -3446,7 +3452,9 @@ bool use_talisman(item_def& talisman)
                                                      TALISMAN_MEDUSA,
                                                      TALISMAN_SPORE);
 
-        mprf("%s responds to your shapeshifting skill and transforms into a %s!",
+        mprf(Options.language == lang_t::KO
+             ? "변신술에 반응하여 변형된 변이 장신품: %s → %s!"
+             : "%s responds to your shapeshifting skill and transforms into a %s!",
              real_item.name(DESC_YOUR).c_str(), talisman_type_name(new_type).c_str());
 
         real_item.sub_type = new_type;
