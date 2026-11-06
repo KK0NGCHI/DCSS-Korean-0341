@@ -669,7 +669,7 @@ static void _try_to_respawn_ancestor()
     if (!ancestor)
         return;
 
-    mprf("%s emerges from the mists of memory!",
+    mprf(Options.language == lang_t::KO ? "기억의 안개 속에서 나타난 조상: %s!" : "%s emerges from the mists of memory!",
          ancestor->name(DESC_YOUR).c_str());
     add_companion(ancestor);
     place_cloud(CLOUD_MIST, ancestor->pos(), random_range(1,2), ancestor); // ;)
