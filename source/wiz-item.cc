@@ -305,7 +305,7 @@ static void _tweak_randart(item_def &item)
              props[prop] ? ego_type_string(item, false).c_str() : "normal");
 
         char specs[80];
-        msgwin_get_line("New ego? ", specs, sizeof(specs));
+        msgwin_get_line(Options.language == lang_t::KO ? "새 장비 속성: " : "New ego? ", specs, sizeof(specs));
         if (specs[0] == '\0')
         {
             canned_msg(MSG_OK);
@@ -384,11 +384,11 @@ void wizard_tweak_object()
         }
 
         if (keyin != 'e')
-            mprf("Old value: %" PRId64" (0x%04" PRIx64")", old_val, old_val);
+            mprf(Options.language == lang_t::KO ? "이전 값: %" PRId64" (0x%04" PRIx64")" : "Old value: %" PRId64" (0x%04" PRIx64")", old_val, old_val);
         else
-            mprf("Old value: 0x%08" PRIx64, old_val);
+            mprf(Options.language == lang_t::KO ? "이전 값: 0x%08" PRIx64 : "Old value: 0x%08" PRIx64, old_val);
 
-        msgwin_get_line("New value? ", specs, sizeof(specs));
+        msgwin_get_line(Options.language == lang_t::KO ? "새 값: " : "New value? ", specs, sizeof(specs));
         if (specs[0] == '\0')
         {
             canned_msg(MSG_OK);
@@ -678,7 +678,7 @@ void wizard_list_items()
     {
         if (item.defined() && !item.held_by_monster() && item.link != NON_ITEM)
         {
-            mprf("(%2d,%2d): %s%s", item.pos.x, item.pos.y,
+            mprf(Options.language == lang_t::KO ? "(%2d,%2d): %s%s" : "(%2d,%2d): %s%s", item.pos.x, item.pos.y,
                  item.name(DESC_PLAIN, false, false, false).c_str(),
                  item.flags & ISFLAG_MIMIC ? " mimic" : "");
         }
@@ -693,7 +693,7 @@ void wizard_list_items()
         int item = env.igrid(*ri);
         if (item != NON_ITEM)
         {
-            mprf("%3d at (%2d,%2d): %s%s", item, ri->x, ri->y,
+            mprf(Options.language == lang_t::KO ? "아이템 %3d, 위치 (%2d,%2d): %s%s" : "%3d at (%2d,%2d): %s%s", item, ri->x, ri->y,
                  env.item[item].name(DESC_PLAIN, false, false, false).c_str(),
                  env.item[item].flags & ISFLAG_MIMIC ? " mimic" : "");
         }
