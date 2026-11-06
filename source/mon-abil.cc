@@ -1586,7 +1586,7 @@ void solar_ember_blast()
         flash_tile(mon->pos(), RED, 0);
         const int damage_done = mons_adjust_flavoured(mon, beam, mon->apply_ac(dmg.roll()));
         if (Options.language == lang_t::KO)
-            mprf(damage_done ? "태양의 섬광이 %s을 뒤덮습니다!" : "태양의 섬광이 %s을 뒤덮지만 피해는 없습니다.",
+            mprf(damage_done ? "태양의 섬광이 %s에게 피해를 입힙니다!" : "태양의 섬광이 %s에게 닿지만 피해는 없습니다.",
                  mon->name(DESC_THE).c_str());
         else
             mprf("The solar flare engulfs %s%s.", mon->name(DESC_THE).c_str(),
