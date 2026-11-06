@@ -997,7 +997,7 @@ void bolt::sporangium_wall_effect()
     mg.set_summoned(orig_plasmodium, SPELL_LAUNCH_SPORANGIUM, INFINITE_DURATION, false);
 
     if (monster* plasm = create_monster(mg))
-        simple_monster_message(*plasm, "이(가) 벽에서 자라기 시작한다!", false, MSGCH_PLAIN, 0, DESC_A);
+        simple_monster_message(*plasm, " — 벽에서 자라기 시작합니다!", false, MSGCH_PLAIN, 0, DESC_A);
 }
 
 int bolt::range_used(bool leg_only) const
@@ -2321,7 +2321,7 @@ static void _malign_offering_effect(actor* victim, const actor* agent, int damag
     coord_def c = victim->pos();
 
     if (you.see_cell(c) || you.see_cell(agent->pos()))
-        mprf("%s의 생명력이 제물로 바쳐진다.", victim->name(DESC_ITS).c_str());
+        mprf("생명력이 제물로 바쳐지는 대상: %s.", victim->name(DESC_ITS).c_str());
     damage = victim->hurt(agent, damage, BEAM_MALIGN_OFFERING, KILLED_BY_BEAM,
                           "", "by a malign offering");
 
@@ -3621,7 +3621,7 @@ bool bolt::misses_player()
     {
         if (hit_margin > -repel)
         {
-            mprf("%s이(가) 튕겨 나갔다.", name.c_str());
+            mprf("튕겨 나간 발사체: %s.", name.c_str());
             count_action(CACT_DODGE, DODGE_REPEL);
         }
         else
@@ -5576,7 +5576,7 @@ void bolt::affect_monster(monster* mon)
     if (flavour == BEAM_WATER && mon->type == MONS_WATER_ELEMENTAL && !is_tracer())
     {
         if (you.see_cell(mon->pos()))
-            mprf("%s이(가) %s을(를) 통과한다.", name.c_str(), mon->name(DESC_THE).c_str());
+            mprf("발사체가 대상을 통과합니다: %s → %s.", name.c_str(), mon->name(DESC_THE).c_str());
     }
 
     if (ignores_monster(mon) || should_skip)
@@ -6427,7 +6427,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             if (mon->hit_points == mon->max_hit_points)
             {
-                if (simple_monster_message(*mon, "의 상처가 저절로 아문다!", true))
+                if (simple_monster_message(*mon, " — 상처가 저절로 아뭅니다!", true))
                     obvious_effect = true;
             }
             else if (simple_monster_message(*mon, "의 상처가 조금 회복된다."))
@@ -6728,7 +6728,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         if (!mon->has_ench(ENCH_CONCENTRATE_VENOM)
             && mon->add_ench(ENCH_CONCENTRATE_VENOM))
         {
-            if (simple_monster_message(*mon, "의 독성이 더욱 강해진다.", true))
+            if (simple_monster_message(*mon, " — 독성이 더욱 강해집니다.", true))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6760,7 +6760,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
 
     case BEAM_WARP_BODY:
         obvious_effect = true;
-        simple_monster_message(*mon, "의 몸이 고통스럽게 뒤틀린다!", true);
+        simple_monster_message(*mon, " — 몸이 고통스럽게 뒤틀립니다!", true);
         if (mon->has_ench(ENCH_WRETCHED))
             mon->vitrify(agent(), random_range(8, 12), true);
         else
