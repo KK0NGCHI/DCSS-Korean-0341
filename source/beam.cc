@@ -5479,21 +5479,25 @@ bool bolt::attempt_block(monster* mon)
         {
             if (shield && shield_reflects(*shield))
             {
-                mprf("%s blocks the %s with %s %s... and reflects it back!",
-                     mon->name(DESC_THE).c_str(),
-                     name.c_str(),
-                     mon->pronoun(PRONOUN_POSSESSIVE).c_str(),
-                     shield->name(DESC_PLAIN).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("발사체를 방패로 막고 반사한 몬스터: %s (발사체: %s, 방패: %s)!",
+                         mon->name(DESC_THE).c_str(), name.c_str(),
+                         shield->name(DESC_PLAIN).c_str());
+                else
+                    mprf("%s blocks the %s with %s %s... and reflects it back!",
+                         mon->name(DESC_THE).c_str(), name.c_str(),
+                         mon->pronoun(PRONOUN_POSSESSIVE).c_str(),
+                         shield->name(DESC_PLAIN).c_str());
             }
             else
             {
-                mprf("%s이(가) %s 주위의 보이지 않는 방패에 반사됐다!",
+                mprf("보이지 않는 방패에 반사된 발사체: %s, 방어자: %s!",
                      name.c_str(),
                      mon->name(DESC_THE).c_str());
             }
         }
         else if (you.see_cell(pos()))
-            mprf("%s이(가) 허공에 부딪혀 튕겨 나갔다!", name.c_str());
+            mprf("허공에 부딪혀 튕겨 나간 발사체: %s!", name.c_str());
 
         reflect();
     }
