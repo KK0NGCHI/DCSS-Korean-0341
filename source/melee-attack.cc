@@ -1154,7 +1154,7 @@ static void _devour(monster &victim)
     // give a clearer message for eating invisible things
     if (!you.can_see(victim))
     {
-        mprf("It tastes like %s.",
+        mprf(Options.language == lang_t::KO ? "먹어 보니 이런 맛이 납니다: %s." : "It tastes like %s.",
              mons_type_name(mons_genus(victim.type), DESC_PLAIN).c_str());
         // this could be the actual creature name, but it feels more
         // 'flavourful' this way??
@@ -2674,8 +2674,11 @@ bool melee_attack::player_aux_apply(unarmed_attack_type atk)
             {
                 if (defender->strip_willpower(&you, random_range(4, 8), true))
                 {
-                    mprf("You sap %s willpower!",
-                         defender->as_monster()->pronoun(PRONOUN_POSSESSIVE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mpr("상대의 의지력을 약화시킵니다!");
+                    else
+                        mprf("You sap %s willpower!",
+                             defender->as_monster()->pronoun(PRONOUN_POSSESSIVE).c_str());
                 }
             }
 
