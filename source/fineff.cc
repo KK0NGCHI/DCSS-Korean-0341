@@ -1009,7 +1009,7 @@ void mirror_damage_fineff::fire()
                                    defender()->as_monster() : nullptr;
         if (reflector)
         {
-            mprf("%s reflects your damage back at you!",
+            mprf(Options.language == lang_t::KO ? "당신이 가한 피해를 되돌리는 몬스터: %s!" : "%s reflects your damage back at you!",
                  reflector->name(DESC_THE).c_str());
         }
         else
@@ -1153,7 +1153,7 @@ void trj_spawn_fineff::fire()
              spawned > 1 ? " vigorously" : "");
 
         if (spawned == 1)
-            mprf("%s spits out another jelly.", monnam.c_str());
+            mprf(Options.language == lang_t::KO ? "젤리를 1마리 더 내뱉는 몬스터: %s." : "%s spits out another jelly.", monnam.c_str());
         else
         {
             mprf("%s spits out %s more jellies.",
@@ -1284,7 +1284,7 @@ void starcursed_merge_fineff::fire()
 
             if (moved)
             {
-                simple_monster_message(*mon, " shudders and withdraws towards its neighbour.");
+                simple_monster_message(*mon, Options.language == lang_t::KO ? " — 몸을 떨며 이웃 쪽으로 물러납니다." : " shudders and withdraws towards its neighbour.");
                 mon->speed_increment -= 10;
                 mon->finalise_movement();
             }
@@ -1484,7 +1484,7 @@ void infestation_death_fineff::fire()
     {
         if (you.see_cell(posn) || you.can_see(*scarab))
         {
-            mprf("%s bursts from %s!", scarab->name(DESC_A, true).c_str(),
+            mprf(Options.language == lang_t::KO ? "몸속에서 튀어나온 몬스터: %s (숙주: %s)!" : "%s bursts from %s!", scarab->name(DESC_A, true).c_str(),
                                        name.c_str());
         }
     }
