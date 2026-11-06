@@ -876,7 +876,7 @@ void move_solo_tentacle(monster* tentacle)
     {
         if (you.can_see(*tentacle))
         {
-            mprf("The vine drags %s backwards!",
+            mprf(Options.language == lang_t::KO ? "덩굴에 뒤로 끌려가는 대상: %s!" : "The vine drags %s backwards!",
                     constrictee->name(DESC_THE).c_str());
         }
         constrictee->move_to(shift_pos);
@@ -1061,7 +1061,7 @@ void move_child_tentacles(monster* mons)
         {
             if (you.can_see(*tentacle))
             {
-                mprf("The tentacle pulls %s backwards!",
+                mprf(Options.language == lang_t::KO ? "촉수에 뒤로 끌려가는 대상: %s!" : "The tentacle pulls %s backwards!",
                      constrictee->name(DESC_THE).c_str());
             }
             constrictee->move_to(old_pos);
