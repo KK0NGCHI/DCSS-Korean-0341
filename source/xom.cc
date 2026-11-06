@@ -378,7 +378,7 @@ void xom_tick()
         }
 
         if (you.gift_timeout == 1)
-            simple_god_message(" is getting BORED.");
+            simple_god_message(Options.language == lang_t::KO ? " — 점점 지루해합니다." : " is getting BORED.");
     }
 
     if (x_chance_in_y(2 + you.faith(), 6))
@@ -404,7 +404,7 @@ void xom_tick()
             if (interest > 0)
             {
                 if (interest < 25)
-                    simple_god_message(" is interested.");
+                    simple_god_message(Options.language == lang_t::KO ? " — 관심을 보입니다." : " is interested.");
                 else
                     simple_god_message(" is intrigued.");
 
@@ -554,12 +554,12 @@ static void _xom_divination(int sever)
         // still on the map when the original one has been killed. Then
         // another one is spawned, so the number is the same as before.
         // There's no way we can check this, however.
-        mpr("You detect items, but no nearby creatures.");
+        mpr(Options.language == lang_t::KO ? "아이템은 감지되지만 주변에 생물은 없습니다." : "You detect items, but no nearby creatures.");
     }
     else
     {
         if (num_items > 0)
-            mpr("You detect items and creatures!");
+            mpr(Options.language == lang_t::KO ? "아이템과 생물을 감지합니다!" : "You detect items and creatures!");
         else
             mpr("You detect creatures, but no further items.");
     }
@@ -621,7 +621,7 @@ static void _xom_make_item(object_class_type base, int subtype, int power)
     move_item_to_grid(&thing_created, you.pos());
 
     if (thing_created == NON_ITEM) // if it fell into lava
-        simple_god_message(" snickers.", false, GOD_XOM);
+        simple_god_message(Options.language == lang_t::KO ? " — 킥킥 웃습니다." : " snickers.", false, GOD_XOM);
 
     stop_running();
 }
@@ -1117,7 +1117,7 @@ static void _confuse_monster(monster* mons, int sever)
           &env.mons[ANON_FRIENDLY_MONSTER], random2(sever) * 10)))
     {
         if (was_confused)
-            simple_monster_message(*mons, " looks rather more confused.");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 더욱 혼란스러워 보입니다." : " looks rather more confused.");
         else
             simple_monster_message(*mons, " looks rather confused.");
     }
@@ -1400,7 +1400,7 @@ static void _xom_rearrange_pieces(int sever)
             {
                 if (!did_message)
                 {
-                    mpr("Some monsters swap places.");
+                    mpr(Options.language == lang_t::KO ? "일부 몬스터들이 서로 자리를 바꿉니다." : "Some monsters swap places.");
                     did_message = true;
                 }
                 if (one_chance_in(4))
@@ -1660,7 +1660,7 @@ static void _xom_harmless_flora(int /*sever*/)
     {
         god_speaks(GOD_XOM, _get_xom_speech("flora ring").c_str());
         if (mon_type == MONS_DEMONIC_PLANT)
-            mpr("Demonic plants sprout up around you!");
+            mpr(Options.language == lang_t::KO ? "주위에 악마의 식물이 돋아납니다!" : "Demonic plants sprout up around you!");
         else
             mpr("Toadstools sprout up around you!");
 
@@ -1723,7 +1723,7 @@ static int _xom_count_and_move_group(int min_range, int max_range,
 
             if (moving_mons->blink_to(empty, true))
             {
-                simple_monster_message(*moving_mons, " is shoved forward by the hand of Xom!");
+                simple_monster_message(*moving_mons, Options.language == lang_t::KO ? " — 좀의 손에 떠밀려 앞으로 나아갑니다!" : " is shoved forward by the hand of Xom!");
                 moving_mons->drain_action_energy();
                 behaviour_event(moving_mons, ME_DISTURB, nullptr, you.pos());
                 ++moved;
@@ -1943,7 +1943,7 @@ static int _xom_shatter_walls(coord_def where, bool more_than_dig)
     if (you.see_cell(where))
     {
         if (feat_is_door(feat))
-            mpr("A door shatters!");
+            mpr(Options.language == lang_t::KO ? "문이 산산이 부서집니다!" : "A door shatters!");
         else if (feat == DNGN_GRATE)
             mpr("An iron grate is ripped into pieces!");
     }
@@ -1973,11 +1973,11 @@ static void _xom_fake_shatter(int /*sever*/)
     god_speaks(GOD_XOM, _get_xom_speech("fake shatter").c_str());
 
     if (silenced(you.pos()))
-        mpr("The dungeon shakes... harmlessly?");
+        mpr(Options.language == lang_t::KO ? "던전이 흔들립니다... 아무 일도 없었던 걸까요?" : "The dungeon shakes... harmlessly?");
     else
     {
         noisy(spell_effect_noise(SPELL_SHATTER), you.pos());
-        mprf(MSGCH_SOUND, "The dungeon rumbles... harmlessly?");
+        mprf(MSGCH_SOUND, "%s", Options.language == lang_t::KO ? "던전이 우르릉거립니다... 별일 없는 걸까요?" : "The dungeon rumbles... harmlessly?");
     }
 
     run_animation(ANIMATION_SHAKE_VIEWPORT, UA_PLAYER);
@@ -2006,7 +2006,7 @@ static void _xom_fake_shatter(int /*sever*/)
     }
 
     if (rocks)
-        mpr("Some rocks are dislodged from the ceiling.");
+        mpr(Options.language == lang_t::KO ? "천장에서 바위 몇 개가 떨어집니다." : "Some rocks are dislodged from the ceiling.");
 
     if (dest)
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, "fake shatter"), true);
@@ -2032,7 +2032,7 @@ static void _xom_give_mutations(bool good)
              num_tries > 1 ? "s" : "");
 
     take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, note), true);
-    mpr("Your body is suffused with distortional energy.");
+    mpr(Options.language == lang_t::KO ? "몸속에 공간 왜곡의 에너지가 가득 찹니다." : "Your body is suffused with distortional energy.");
 
     bool failMsg = true;
 
@@ -2887,7 +2887,7 @@ static void _xom_mass_charm(int sever)
         if (iters == 0 || (iters > 1 && affected <= target_count / 2
             && application->get_hit_dice() + random_range(-1, 1) <= hd_target))
         {
-            simple_monster_message(*application, " is charmed.");
+            simple_monster_message(*application, Options.language == lang_t::KO ? " — 매혹됩니다." : " is charmed.");
             application->add_ench(mon_enchant(ENCH_CHARM, &you, time));
             affected++;
         }
@@ -2928,10 +2928,10 @@ static void _xom_wave_of_despair(int sever)
     }
 
     if (skeleton_count)
-        mpr("Skeletons, inanimate yet cursed, drop down from the ceiling.");
+        mpr(Options.language == lang_t::KO ? "저주받은 해골들이 천장에서 떨어집니다." : "Skeletons, inanimate yet cursed, drop down from the ceiling.");
 
     draw_ring_animation(you.pos(), you.current_vision, DARKGRAY, MAGENTA, true, 35);
-    mprf(MSGCH_DANGER, "A draining tide of despair and horror washes over you and your surroundings!");
+    mprf(MSGCH_DANGER, "%s", Options.language == lang_t::KO ? "절망과 공포의 파도가 주변을 휩쓸며 생명력을 앗아갑니다!" : "A draining tide of despair and horror washes over you and your surroundings!");
 
     const int pow = 50 + random_range(sever / 2, sever);
 
@@ -3763,7 +3763,7 @@ static void _xom_repel_stairs(bool unclimbable)
     if (!count_moved)
     {
         if (one_chance_in(8))
-            mpr("Nothing appears to happen... Ominous!");
+            mpr(Options.language == lang_t::KO ? "아무 일도 일어나지 않습니다... 불길합니다!" : "Nothing appears to happen... Ominous!");
         else
             canned_msg(MSG_NOTHING_HAPPENS);
     }
