@@ -1914,7 +1914,7 @@ static void _print_death_brand_changes(item_def *weapon, bool entering_death)
     }
     if (entering_death)
     {
-        mprf("%s goes dull and lifeless in your grasp.",
+        mprf(Options.language == lang_t::KO ? "손에 쥔 무기의 빛이 사라집니다: %s." : "%s goes dull and lifeless in your grasp.",
              weapon->name(DESC_YOUR).c_str());
     }
     else
@@ -2140,7 +2140,7 @@ bool transform(int dur, transformation which_trans, bool involuntary,
         && x_chance_in_y(you.piety(), piety_breakpoint(5))
         && which_trans != transformation::none)
     {
-        simple_god_message(" protects your body from unnatural transformation!");
+        simple_god_message(Options.language == lang_t::KO ? " — 부자연스러운 변신으로부터 몸을 보호합니다!" : " protects your body from unnatural transformation!");
         return false;
     }
 
@@ -2387,7 +2387,7 @@ void merfolk_start_swimming()
     mpr((Options.language == lang_t::KO ? "물속으로 뛰어들자 다리가 꼬리로 변합니다." : "Your legs become a tail as you dive into the water."));
 
     if (you.invisible())
-        mpr("...but don't expect to remain undetected.");
+        mpr(Options.language == lang_t::KO ? "...하지만 들키지 않을 거라고 기대하지는 마십시오." : "...but don't expect to remain undetected.");
 
     you.fishtail = true;
     you.redraw_evasion = true;
