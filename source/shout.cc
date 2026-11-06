@@ -715,39 +715,48 @@ void yell(const actor* target)
         {
             if (silenced(you.pos()))
             {
-                mprf("You feel %s rip itself from your throat, "
-                     "but you make no sound!",
-                     article_a(shout_verb).c_str());
+                if (Options.language == lang_t::KO)
+                    mpr("목구멍에서 외침이 터져 나오려 하지만 아무 소리도 나지 않습니다!");
+                else
+                    mprf("You feel %s rip itself from your throat, but you make no sound!",
+                         article_a(shout_verb).c_str());
             }
             else
             {
-                mprf("You feel a strong urge to %s, but "
-                     "you are unable to make a sound!",
-                     shout_verb.c_str());
+                if (Options.language == lang_t::KO)
+                    mpr("고함을 지르고 싶지만 소리를 낼 수 없습니다!");
+                else
+                    mprf("You feel a strong urge to %s, but you are unable to make a sound!",
+                         shout_verb.c_str());
             }
         }
         else
-            mpr("You are unable to make a sound!");
+            mpr(Options.language == lang_t::KO ? "아무 소리도 낼 수 없습니다!" : "You are unable to make a sound!");
 
         return;
     }
 
     if (target)
     {
-        mprf("You %s%s at %s!",
-             shout_verb.c_str(),
-             you.duration[DUR_RECITE] ? " your recitation" : "",
-             target && target->is_player() ? "yourself"
-                                           : target->name(DESC_THE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("대상을 향해 소리칩니다: %s!",
+                 target->is_player() ? "자기 자신" : target->name(DESC_THE).c_str());
+        else
+            mprf("You %s%s at %s!",
+                 shout_verb.c_str(), you.duration[DUR_RECITE] ? " your recitation" : "",
+                 target && target->is_player() ? "yourself" : target->name(DESC_THE).c_str());
     }
     else
     {
         const char *fugue_suff = you.duration[DUR_FUGUE] ?
             ", and the damned howl along" : "";
-        mprf(MSGCH_SOUND, "You %s%s%s!",
-             shout_verb.c_str(),
-             you.berserk() ? " wildly" : " for attention",
-             fugue_suff);
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_SOUND, "%s", you.berserk() ? "격렬하게 고함을 지릅니다!"
+                 : you.duration[DUR_FUGUE] ? "고함을 지르자 저주받은 자들도 함께 울부짖습니다!"
+                                           : "주의를 끌려고 고함을 지릅니다!");
+        else
+            mprf(MSGCH_SOUND, "You %s%s%s!", shout_verb.c_str(),
+                 you.berserk() ? " wildly" : " for attention", fugue_suff);
     }
 
     noisy(noise_level, you.pos());
