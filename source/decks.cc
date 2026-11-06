@@ -658,8 +658,7 @@ spret deck_stack(bool fail)
     for (int i = FIRST_PLAYER_DECK; i <= LAST_PLAYER_DECK; ++i)
         total_cards += deck_cards((deck_type) i);
 
-    if (deck_cards(DECK_STACK) && !yesno("Replace your current stack?",
-                                          false, 0))
+    if (deck_cards(DECK_STACK) && !yesno(Options.language == lang_t::KO ? "현재 카드 묶음을 교체하시겠습니까?" : "Replace your current stack?", false, 0))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -671,8 +670,7 @@ spret deck_stack(bool fail)
         return spret::abort;
     }
 
-    if (total_cards < 5 && !yesno("You have fewer than five cards, "
-                                  "stack them anyway?", false, 0))
+    if (total_cards < 5 && !yesno(Options.language == lang_t::KO ? "카드가 5장보다 적습니다. 그래도 쌓으시겠습니까?" : "You have fewer than five cards, stack them anyway?", false, 0))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -915,8 +913,7 @@ spret deck_triple_draw(bool fail)
         return spret::abort;
     }
 
-    if (num_cards < 3 && !yesno("There's fewer than three cards, "
-                                "still triple draw?", false, 0))
+    if (num_cards < 3 && !yesno(Options.language == lang_t::KO ? "카드가 3장보다 적습니다. 그래도 3장 뽑기를 사용하시겠습니까?" : "There's fewer than three cards, still triple draw?", false, 0))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -1167,7 +1164,7 @@ static void _damaging_card(card_type card, int power,
             && player_tracer(ZAP_SEARING_RAY, power/6, beam)))
     {
         if (crawl_state.seen_hups
-            || yesno("Really abort (and waste the card)?", false, 0))
+            || yesno(Options.language == lang_t::KO ? "취소하면 카드가 소모됩니다. 정말 취소하시겠습니까?" : "Really abort (and waste the card)?", false, 0))
         {
             canned_msg(MSG_OK);
             return;
@@ -1517,11 +1514,14 @@ static void _storm_card(int power)
         vector<string> thunder_adjectives = { "mighty",
                                               "violent",
                                               "cataclysmic" };
-        mprf("You %s %s%s peal%s of thunder!",
-              heard ? "hear" : "feel",
-              targets.size() > 1 ? "" : "a ",
-              thunder_adjectives[power_level].c_str(),
-              targets.size() > 1 ? "s" : "");
+        if (Options.language == lang_t::KO)
+            mprf("%s 천둥소리가 %s!", targets.size() > 1 ? "연이어 울리는" : "울려 퍼지는",
+                 heard ? "들립니다" : "느껴집니다");
+        else
+            mprf("You %s %s%s peal%s of thunder!",
+                 heard ? "hear" : "feel", targets.size() > 1 ? "" : "a ",
+                 thunder_adjectives[power_level].c_str(),
+                 targets.size() > 1 ? "s" : "");
     }
 }
 
@@ -1672,7 +1672,10 @@ void card_effect(card_type which_card,
             && which_card != CARD_PAIN
             && which_card != CARD_ORB)
         {
-            mprf("You have %s %s.", participle, card_name(which_card));
+            if (Options.language == lang_t::KO)
+                mprf("카드를 사용했습니다: %s.", card_name(which_card));
+            else
+                mprf("You have %s %s.", participle, card_name(which_card));
         }
     }
 
@@ -1719,7 +1722,7 @@ void card_effect(card_type which_card,
 #endif
     case NUM_CARDS:
         // The compiler will complain if any card remains unhandled.
-        mprf("You have %s a buggy card!", participle);
+        mprf("%s", Options.language == lang_t::KO ? "처리할 수 없는 카드가 나왔습니다!" : make_stringf("You have %s a buggy card!", participle).c_str());
         break;
     }
 }
