@@ -430,7 +430,7 @@ void wizard_list_branches()
                 comma_separated_line(god_names.begin(), god_names.end()));
         }
 
-        mprf(MSGCH_DIAGNOSTICS, "%u on D:%u (%s)", temples.size(),
+        mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "사원 %u개, 던전 %u층 (%s)" : "%u on D:%u (%s)", temples.size(),
              i + 1,
              comma_separated_line(temple_strings.begin(),
                                   temple_strings.end(), "; ", "; ").c_str()
@@ -800,7 +800,7 @@ void wizard_list_levels()
     for (int j = 0; j < NUM_DACTION_COUNTERS; j++)
         cnts += make_stringf("%d/", query_daction_counter((daction_type)j));
 
-    mprf("%-10s : %s", "`- total", cnts.c_str());
+    mprf(Options.language == lang_t::KO ? "%-10s : %s" : "%-10s : %s", Options.language == lang_t::KO ? "`- 합계" : "`- total", cnts.c_str());
 }
 
 void wizard_recreate_level()
