@@ -678,7 +678,7 @@ void wizard_list_items()
     {
         if (item.defined() && !item.held_by_monster() && item.link != NON_ITEM)
         {
-            mprf(Options.language == lang_t::KO ? "(%2d,%2d): %s%s" : "(%2d,%2d): %s%s", item.pos.x, item.pos.y,
+            mprf(Options.language == lang_t::KO ? "좌표 (%2d,%2d): %s%s" : "(%2d,%2d): %s%s", item.pos.x, item.pos.y,
                  item.name(DESC_PLAIN, false, false, false).c_str(),
                  item.flags & ISFLAG_MIMIC ? " mimic" : "");
         }
