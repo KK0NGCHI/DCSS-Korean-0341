@@ -502,3 +502,43 @@ Translation conditions preserve the English text branch and retain player warnin
 Added `source/actor.cc` to both fixed-list C++ overlay workflows so the new file is exercised in the Linux Korean executable smoke. Newest SHA requires **its own CI validation**; previously passing runs only cover the baseline `07c191e`. No Windows Tiles QA has been performed for these changes. PR #174 remains Draft, unmerged.
 
 Next: examine Linux build/inventory for latest head, fix any compile/runtime error; then continue difficult message formatting in `melee-attack.cc`, `ranged-attack.cc`, Xom and remaining language-independent data sources.
+
+
+## 2026-11-06: 69 additional English-to-Korean runtime outputs + 47 Korean grammar repairs
+
+Starting verified PR #174 HEAD: `51649f77ed6457de74ad5ffef20c0db9815bb65c`; both the Linux Korean executable/database runtime smoke and translation source inventory checks **passed on this starting commit**.
+
+This batch changes **116 distinct source output positions**, with a deliberately separated count:
+
+| Source | Previously English outputs translated | Existing Korean outputs corrected |
+|---|---:|---:|
+| `mon-death.cc` | 11 | 0 |
+| `items.cc` | 4 | 0 |
+| `mon-cast.cc` | 6 | 0 |
+| `religion.cc` | 4 | 0 |
+| `god-abil.cc` | 2 | 15 |
+| `mon-abil.cc` | 6 | 0 |
+| `fineff.cc` | 9 | 0 |
+| `player-reacts.cc` | 1 | 0 |
+| `god-passive.cc` | 1 | 0 |
+| `player-act.cc` | 1 | 0 |
+| `ability.cc` | 1 | 0 |
+| `potion.cc` | 1 | 0 |
+| `directn.cc` | 15 | 0 |
+| `god-prayer.cc` | 3 | 0 |
+| `spl-cast.cc` | 2 | 0 |
+| `mon-behv.cc` | 2 | 0 |
+| `spl-summoning.cc` | 0 | 23 |
+| `beam.cc` | 0 | 7 |
+| `mon-util.cc` | 0 | 2 |
+| **Total** | **69** | **47** |
+
+Changes include targeting/self-target prompts and exclusions, corpses and revival, divine and ancestor effects, monster spells and temporary effects, projectile reactions and summons. Existing Korean messages were corrected where generated names were joined to particles such as `%s이(가)` and `%s을(를)`, or where monster names were constructed with English possessive forms.
+
+The prior diary counted **370** new source output locations on this calendar day. Adding **69 newly English-to-Korean outputs** gives a running diary count of **439 newly translated positions**. The **47 corrections are not counted** as newly translated positions, to avoid inflating progress. These figures measure source locations, not game-wide completion percentage.
+
+### Runtime compilation coverage
+Added `directn.cc` to both Linux C++ overlay file lists, covering all **19** C++ files modified by this batch (`directn.cc` appears immediately before the shell `; do` terminator). The English fallback remains available for the newly localized source sites, and dynamic `printf` messages with differing numbers of arguments have separate English and Korean calls where necessary.
+
+### Pending verification
+The latest head's Linux executable compile + Korean database loader and translation inventory workflow results must be confirmed **after** this commit. Windows Tiles rendering, generated-name grammar, and complete in-game scenario coverage remain pending. PR #174 stays Draft and unmerged.
