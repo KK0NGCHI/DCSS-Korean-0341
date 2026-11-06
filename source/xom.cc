@@ -561,7 +561,7 @@ static void _xom_divination(int sever)
         if (num_items > 0)
             mpr(Options.language == lang_t::KO ? "아이템과 생물을 감지합니다!" : "You detect items and creatures!");
         else
-            mpr("You detect creatures, but no further items.");
+            mpr(Options.language == lang_t::KO ? "생물은 감지되지만 추가로 감지되는 아이템은 없습니다." : "You detect creatures, but no further items.");
     }
 
     take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, "divination: all"), true);
@@ -1675,7 +1675,7 @@ static void _xom_harmless_flora(int /*sever*/)
         if (mon_type == MONS_DEMONIC_PLANT)
             mpr(Options.language == lang_t::KO ? "주위에 악마의 식물이 돋아납니다!" : "Demonic plants sprout up around you!");
         else
-            mpr("Toadstools sprout up around you!");
+            mpr(Options.language == lang_t::KO ? "주위에 버섯들이 돋아납니다!" : "Toadstools sprout up around you!");
 
         const string note = make_stringf("made a garden");
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, note), true);
@@ -1958,7 +1958,7 @@ static int _xom_shatter_walls(coord_def where, bool more_than_dig)
         if (feat_is_door(feat))
             mpr(Options.language == lang_t::KO ? "문이 산산이 부서집니다!" : "A door shatters!");
         else if (feat == DNGN_GRATE)
-            mpr("An iron grate is ripped into pieces!");
+            mpr(Options.language == lang_t::KO ? "철창이 산산이 찢겨 나갑니다!" : "An iron grate is ripped into pieces!");
     }
 
     noisy(spell_effect_noise(SPELL_SHATTER), where);
