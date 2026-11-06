@@ -1797,8 +1797,11 @@ void yred_make_bound_soul(monster* mon, bool force_hostile)
     // schedule our actual revival for the end of this combat round
     schedule_avoided_death_fineff(mon);
 
-    mprf("%s soul %s.", whose.c_str(),
-         !force_hostile ? "is now yours" : "fights you");
+    if (Options.language == lang_t::KO)
+        mprf(!force_hostile ? "당신의 편이 된 영혼: %s." : "당신에게 맞서 싸우는 영혼: %s.", whose.c_str());
+    else
+        mprf("%s soul %s.", whose.c_str(),
+             !force_hostile ? "is now yours" : "fights you");
 }
 
 bool kiku_gift_capstone_spells()
@@ -5882,7 +5885,7 @@ spret uskayaw_grand_finale(bool fail)
         else if (cell_is_solid(beam.target))
         {
             clear_messages();
-            mprf("%s에는 자리 잡을 수 없어.", article_a(feat_type_name(env.grid(beam.target))).c_str());
+            mprf("그곳에는 자리 잡을 수 없어: %s.", article_a(feat_type_name(env.grid(beam.target))).c_str());
         }
         else if (you.see_cell_no_trans(beam.target))
         {
@@ -6019,7 +6022,7 @@ spret hepliaklqana_idealise(bool fail)
     monster *ancestor = monster_by_mid(ancestor_mid);
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
+        mprf("근처에 없는 조상: %s!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
@@ -6106,7 +6109,7 @@ spret hepliaklqana_transference(bool fail)
     monster *ancestor = hepliaklqana_ancestor_mon();
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
+        mprf("근처에 없는 조상: %s!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
@@ -6151,7 +6154,7 @@ spret hepliaklqana_transference(bool fail)
     const bool uninhabitable = victim && !victim->is_habitable(destination);
     if (uninhabitable && victim_visible)
     {
-        mprf("%s은(는) 그곳으로 이동시킬 수 없어.", victim->name(DESC_THE).c_str());
+        mprf("그곳으로 이동시킬 수 없는 대상: %s.", victim->name(DESC_THE).c_str());
         return spret::abort;
     }
 
@@ -6218,7 +6221,7 @@ static void _hepliaklqana_choose_name()
     }
 
     you.props[HEPLIAKLQANA_ALLY_NAME_KEY] = new_name;
-    mprf("그래, %s이(가) 확실히 더 좋은 이름이야.", new_name.c_str());
+    mprf("그래, 이 이름이 확실히 더 좋아: %s.", new_name.c_str());
     upgrade_hepliaklqana_ancestor(true);
 }
 
@@ -7304,7 +7307,7 @@ void makhleb_enter_crucible_of_flesh(int debt)
     for (int i = 0; i < num_victims; ++i)
         _spawn_crucible_victim(true);
 
-    simple_god_message("이(가) 명한다. 이곳을 떠날 자격을 얻고 싶다면 살을 벗기고 피를 흘려 스스로를 정화하라!", false,
+    simple_god_message(" — 명한다. 이곳을 떠날 자격을 얻고 싶다면 살을 벗기고 피를 흘려 스스로를 정화하라!", false,
                        GOD_MAKHLEB);
 
     mpr("(필멸자와 때때로 악마까지 제물로 바치면 마크레브를 만족시켜 출구를 만들 수 있다.)");
@@ -7359,7 +7362,7 @@ void makhleb_crucible_kill(monster& victim)
         }
 
         dungeon_terrain_changed(pos, DNGN_EXIT_CRUCIBLE);
-        simple_god_message("이(가) 당신의 참회를 인정하고 도가니에서 떠나는 것을 허락한다.", false, GOD_MAKHLEB);
+        simple_god_message(" — 당신의 참회를 인정하고 도가니에서 떠나는 것을 허락한다.", false, GOD_MAKHLEB);
 
         env.map_knowledge(pos).set_feature(DNGN_EXIT_CRUCIBLE);
 #ifdef USE_TILE
