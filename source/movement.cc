@@ -143,8 +143,7 @@ static void _apply_barbs_damage()
 {
     if (you.duration[DUR_BARBS])
     {
-        mprf(MSGCH_WARN, "The barbed spikes dig painfully into your body "
-                         "as you move.");
+        mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "움직일 때마다 가시가 몸을 파고들어 고통스럽습니다." : "The barbed spikes dig painfully into your body as you move.");
         ouch(roll_dice(2, you.attribute[ATTR_BARBS_POW]), KILLED_BY_BARBS);
         bleed_onto_floor(you.pos(), MONS_PLAYER, 2, false);
 
@@ -520,13 +519,15 @@ bool prompt_dangerous_portal(dungeon_feature_type ftype)
     {
     case DNGN_ENTER_PANDEMONIUM:
     case DNGN_ENTER_ZIGGURAT:
-        return yesno("If you enter this portal you might not be able to return "
-                     "immediately. Continue?", false, 'n');
+        return yesno(Options.language == lang_t::KO
+            ? "이 차원문에 들어가면 당분간 돌아오지 못할 수 있습니다. 계속하시겠습니까?"
+            : "If you enter this portal you might not be able to return immediately. Continue?", false, 'n');
     case DNGN_ENTER_ABYSS:
     {
-        return yesno(make_stringf("If you enter this portal you could be pulled as "
-                     "deep as Abyss:%d and might not be able to return immediately. "
-                     "Continue?", abyss_default_depth(true)).c_str(), false, 'n');
+        return yesno(make_stringf(Options.language == lang_t::KO
+            ? "이 차원문에 들어가면 심연 %d층까지 끌려가 당분간 돌아오지 못할 수 있습니다. 계속하시겠습니까?"
+            : "If you enter this portal you could be pulled as deep as Abyss:%d and might not be able to return immediately. Continue?",
+            abyss_default_depth(true)).c_str(), false, 'n');
     }
     default:
         return true;
@@ -538,8 +539,9 @@ bool prompt_descent_shortcut(dungeon_feature_type ftype)
     if (ftype == DNGN_ENTER_DEPTHS && !player_in_branch(BRANCH_SLIME)
         || ftype == DNGN_ENTER_SLIME && !player_in_branch(BRANCH_VAULTS))
     {
-        return yesno("This entrance appears to skip some branches and may be "
-                     "quite dangerous. Continue anyway?", false, 'n');
+        return yesno(Options.language == lang_t::KO
+            ? "이 입구는 일부 던전 구역을 건너뛰므로 상당히 위험할 수 있습니다. 계속하시겠습니까?"
+            : "This entrance appears to skip some branches and may be quite dangerous. Continue anyway?", false, 'n');
     }
     return true;
 }
@@ -897,10 +899,14 @@ static bool _handle_player_step(const coord_def& targ, int& delay, bool rampagin
             const monster* current = monster_at(you.pos());
             if (!current || !fedhas_passthrough(current))
             {
-                mprf("You %s carefully through the %s.",
-                        _get_move_verb(rampaging).c_str(),
-                    mons_genus(mon->type) == MONS_FUNGUS ? "fungus"
-                                                         : "plants");
+                if (Options.language == lang_t::KO)
+                    mpr(mons_genus(mon->type) == MONS_FUNGUS
+                        ? "버섯 사이를 조심스럽게 지나갑니다."
+                        : "식물 사이를 조심스럽게 지나갑니다.");
+                else
+                    mprf("You %s carefully through the %s.",
+                         _get_move_verb(rampaging).c_str(),
+                         mons_genus(mon->type) == MONS_FUNGUS ? "fungus" : "plants");
             }
         }
         else
