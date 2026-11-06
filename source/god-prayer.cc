@@ -125,7 +125,7 @@ static bool _pray_ecumenical_altar()
             return true;
         }
 
-        mprf(MSGCH_GOD, "%s accepts your prayer!",
+        mprf(MSGCH_GOD, Options.language == lang_t::KO ? "기도를 받아들이는 신: %s!" : "%s accepts your prayer!",
                         god_name(altar_god).c_str());
         if (you_worship(altar_god))
             return true;
@@ -156,7 +156,7 @@ void try_god_conversion(god_type god)
 
     if (you.has_mutation(MUT_FORLORN))
     {
-        mpr("A being of your status worships no god.");
+        mpr(Options.language == lang_t::KO ? "당신과 같은 존재는 어떤 신도 섬길 수 없습니다." : "A being of your status worships no god.");
         return;
     }
 
@@ -216,7 +216,7 @@ int zin_tithe(const item_def& item, int quant, bool converting)
         if (item.tithe_state == TS_NO_PIETY) // seen before worshipping Zin
         {
             tithe = 0;
-            simple_god_message(" ignores your late donation.");
+            simple_god_message(Options.language == lang_t::KO ? " — 뒤늦은 기부를 무시합니다." : " ignores your late donation.");
         }
         // A single scroll can give you more than D:1-18, Lair and Orc
         // together, limit the gains. You're still required to pay from
