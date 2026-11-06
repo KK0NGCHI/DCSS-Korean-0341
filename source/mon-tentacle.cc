@@ -1223,16 +1223,16 @@ void mons_create_tentacles(monster* head)
     if (mons_base_type(*head) == MONS_KRAKEN)
     {
         if (visible_count == 1)
-            mpr("A tentacle reaches out from the kraken!");
+            mpr(Options.language == lang_t::KO ? "크라켄에게서 촉수 하나가 뻗어 나옵니다!" : "A tentacle reaches out from the kraken!");
         else if (visible_count > 1)
-            mpr("Tentacles reach out from the kraken!");
+            mpr(Options.language == lang_t::KO ? "크라켄에게서 촉수들이 뻗어 나옵니다!" : "Tentacles reach out from the kraken!");
     }
     else if (head->type == MONS_TENTACLED_STARSPAWN)
     {
         if (visible_count == 1)
-            mpr("A tentacle flies out from the starspawn's body!");
+            mpr(Options.language == lang_t::KO ? "별의 후손의 몸에서 촉수 하나가 튀어나옵니다!" : "A tentacle flies out from the starspawn's body!");
         else if (visible_count > 1)
-            mpr("Tentacles burst from the starspawn's body!");
+            mpr(Options.language == lang_t::KO ? "별의 후손의 몸에서 촉수들이 튀어나옵니다!" : "Tentacles burst from the starspawn's body!");
     }
     return;
 }
