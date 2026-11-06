@@ -289,12 +289,16 @@ static bool _box_of_beasts()
     if (!mons)
     {
         // Failed to create monster for some reason
-        mpr("...but nothing happens.");
+        mpr(Options.language == lang_t::KO ? "...하지만 아무 일도 일어나지 않습니다." : "...but nothing happens.");
         return true;
     }
 
-    mprf("...and %s %s out!",
-         mons->name(DESC_A).c_str(), mons->airborne() ? "flies" : "leaps");
+    if (Options.language == lang_t::KO)
+        mprf(mons->airborne() ? "...그리고 날아 나오는 몬스터: %s!" : "...그리고 뛰쳐나오는 몬스터: %s!",
+             mons->name(DESC_A).c_str());
+    else
+        mprf("...and %s %s out!",
+             mons->name(DESC_A).c_str(), mons->airborne() ? "flies" : "leaps");
     did_god_conduct(DID_CHAOS, random_range(5,10));
 
     return true;
@@ -397,12 +401,12 @@ static bool _sack_of_spiders()
 
     const bool made_mons = _spill_out_spiders();
     if (made_mons)
-        mpr("...and things crawl out!");
+        mpr(Options.language == lang_t::KO ? "...그리고 무언가가 기어 나옵니다!" : "...and things crawl out!");
 
     const bool webbed = _place_webs();
     if (!made_mons && !webbed)
     {
-        mpr("...but nothing happens.");
+        mpr(Options.language == lang_t::KO ? "...하지만 아무 일도 일어나지 않습니다." : "...but nothing happens.");
         return true;
     }
 
