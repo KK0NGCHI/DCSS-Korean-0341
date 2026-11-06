@@ -407,3 +407,34 @@ All substitutions were guarded by exact source-snippet match counts. Original En
 - Correct any compiler errors and revalidate; do not claim passing status for an earlier SHA.
 - Continue reviewing formatted movement warnings, projectile hit grammar, monster names and generated item names. Some label-style Korean sentences avoid unreliable particles but need naturalness QA.
 - Windows Tiles gameplay rendering remains unverified. PR remains Draft and unmerged.
+
+
+## 2026-11-06 further large batch: 100 new gameplay output positions
+
+This batch begins after the previously recorded 110 new positions on this date. Initial PR head: `0ff2cb0f9553a10acad0b48246c53f01a1885751`. That starting head's Linux Korean-runtime smoke and translation inventory CI were both verified successful.
+
+| Changed file | New localized positions |
+|---|---:|
+| `traps.cc` | 38 |
+| `xom.cc` | 19 |
+| `melee-attack.cc` | 15 |
+| `movement.cc` | 9 |
+| `mon-tentacle.cc` | 6 |
+| `attack.cc` | 8 |
+| `transform.cc` | 3 |
+| `ranged-attack.cc` | 1 |
+| `mon-clone.cc` | 1 |
+| **Total** | **100** |
+
+Count check: first wave = 20 traps + 18 Xom + 12 melee = 50; second wave = 9 movement + 8 traps + 2 melee + 1 mon-clone + 1 Xom + 3 transform = 24; third wave = 5 attack + 4 mon-tentacle + 1 melee + 1 ranged = 11; fourth wave = 3 attack + 2 mon-tentacle + 10 traps = 15. Total = **100**. Thus the date's sequential logged new positions are **210** (previous 46 + 64 + current 100), not a project-wide total.
+
+The new messages preserve the original English branch and retain conditional message channels where present. Particle-neutral Korean translations are used for generated names. Review quality of variable-dependent sentences during Windows Tiles tests.
+
+### Build verification coverage
+Added `traps.cc`, `xom.cc`, `melee-attack.cc`, `transform.cc`, `attack.cc`, and `mon-tentacle.cc` to the explicit C++ overlay file lists for both the Linux KO runtime workflow and manual C++ build workflow. Changes to the build workflow should be checked at the final head, not an earlier commit.
+
+### Pending acceptance criteria
+- Exact latest-head Linux executable and KO database runtime build result.
+- Review dynamic grammar for generated monster/item names and combat output.
+- Windows Tiles visual/interaction QA.
+- Keep draft PR #174 unmerged until acceptance checks are complete.
