@@ -48,7 +48,7 @@ spret cast_putrefaction(monster* target, int pow, bool fail)
     env.markers.add(marker);
     env.markers.clear_need_activate();
 
-    mprf("Rot billows forth from %s wounds!", target->name(DESC_ITS).c_str());
+    mprf((Options.language == lang_t::KO ? "%s의 상처에서 부패한 기운이 뿜어져 나옵니다!" : "Rot billows forth from %s wounds!"), target->name(DESC_ITS).c_str());
 
     drain_player(75 - div_rand_round(pow * 4, 10), true, true);
 
@@ -71,7 +71,7 @@ spret kindle_blastmotes(int pow, bool fail)
     // Longish duration to support setting up silly traps.
     you.props[BLASTMOTE_IMMUNE_KEY] = true;
     place_cloud(CLOUD_BLASTMOTES, you.pos(), random_range(20, 30), &you);
-    mpr("A cloud of volatile blastmotes flares up around you! Run!");
+    mpr(Options.language == lang_t::KO ? "주위에 불안정한 폭발 입자의 구름이 피어오릅니다! 도망치십시오!" : "A cloud of volatile blastmotes flares up around you! Run!");
 
     return spret::success;
 }

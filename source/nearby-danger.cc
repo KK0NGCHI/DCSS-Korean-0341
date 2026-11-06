@@ -492,12 +492,12 @@ void revive()
     if (you.hp_max <= 0)
     {
         you.lives = 0;
-        mpr("You are too frail to live.");
+        mpr(Options.language == lang_t::KO ? "너무 쇠약해 살아남을 수 없습니다." : "You are too frail to live.");
         // possible only with an extreme abuse of Borgnjor's
         // might be impossible now that felids don't level down on death?
         ouch(INSTANT_DEATH, KILLED_BY_DRAINING);
     }
 
-    mpr("You rejoin the land of the living...");
+    mpr(Options.language == lang_t::KO ? "다시 살아 있는 자들의 세계로 돌아옵니다..." : "You rejoin the land of the living...");
     // included in default force_more_message
 }

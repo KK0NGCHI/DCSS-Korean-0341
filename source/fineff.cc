@@ -1009,7 +1009,7 @@ void mirror_damage_fineff::fire()
                                    defender()->as_monster() : nullptr;
         if (reflector)
         {
-            mprf("%s reflects your damage back at you!",
+            mprf(Options.language == lang_t::KO ? "당신이 가한 피해를 되돌리는 몬스터: %s!" : "%s reflects your damage back at you!",
                  reflector->name(DESC_THE).c_str());
         }
         else
@@ -1147,18 +1147,24 @@ void trj_spawn_fineff::fire()
     if (trj)
     {
         const string monnam = trj->name(DESC_THE);
-        mprf("%s shudders%s.", monnam.c_str(),
-             spawned >= 5 ? " alarmingly" :
-             spawned >= 3 ? " violently" :
-             spawned > 1 ? " vigorously" : "");
+        if (Options.language == lang_t::KO)
+            mprf(spawned >= 5 ? "몹시 불안하게 몸을 떠는 몬스터: %s."
+                 : spawned >= 3 ? "격렬하게 몸을 떠는 몬스터: %s."
+                 : "몸을 떠는 몬스터: %s.", monnam.c_str());
+        else
+            mprf("%s shudders%s.", monnam.c_str(),
+                 spawned >= 5 ? " alarmingly" : spawned >= 3 ? " violently"
+                 : spawned > 1 ? " vigorously" : "");
 
         if (spawned == 1)
-            mprf("%s spits out another jelly.", monnam.c_str());
+            mprf(Options.language == lang_t::KO ? "젤리를 1마리 더 내뱉는 몬스터: %s." : "%s spits out another jelly.", monnam.c_str());
         else
         {
-            mprf("%s spits out %s more jellies.",
-                 monnam.c_str(),
-                 number_in_words(spawned).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("젤리 %d마리를 더 내뱉는 몬스터: %s.", spawned, monnam.c_str());
+            else
+                mprf("%s spits out %s more jellies.",
+                     monnam.c_str(), number_in_words(spawned).c_str());
         }
     }
     else if (spawned == 1)
@@ -1284,7 +1290,7 @@ void starcursed_merge_fineff::fire()
 
             if (moved)
             {
-                simple_monster_message(*mon, " shudders and withdraws towards its neighbour.");
+                simple_monster_message(*mon, Options.language == lang_t::KO ? " — 몸을 떨며 이웃 쪽으로 물러납니다." : " shudders and withdraws towards its neighbour.");
                 mon->speed_increment -= 10;
                 mon->finalise_movement();
             }
@@ -1320,9 +1326,14 @@ void shock_discharge_fineff::fire()
     }
     else if (you.can_see(oppressor))
     {
-        mprf("The air sparks with electricity, shocking %s%s",
-             oppressor.name(DESC_THE).c_str(),
-             attack_strength_punctuation(final_dmg).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("공기 중에 전기가 튀며 %s에게 충격을 가합니다%s",
+                 oppressor.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(final_dmg).c_str());
+        else
+            mprf("The air sparks with electricity, shocking %s%s",
+                 oppressor.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(final_dmg).c_str());
     }
 
     bolt beam;
@@ -1385,9 +1396,11 @@ void explosion_fineff::fire()
             act->move_to(newpos, MV_DEFAULT, true);
             if (you.can_see(*act))
             {
-                mprf("%s %s knocked back by the blast.",
-                     act->name(DESC_THE).c_str(),
-                     act->conj_verb("are").c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("폭발에 뒤로 밀려난 대상: %s.", act->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s knocked back by the blast.",
+                         act->name(DESC_THE).c_str(), act->conj_verb("are").c_str());
             }
             act->finalise_movement();
         }
@@ -1479,7 +1492,7 @@ void infestation_death_fineff::fire()
     {
         if (you.see_cell(posn) || you.can_see(*scarab))
         {
-            mprf("%s bursts from %s!", scarab->name(DESC_A, true).c_str(),
+            mprf(Options.language == lang_t::KO ? "몸속에서 튀어나온 몬스터: %s (숙주: %s)!" : "%s bursts from %s!", scarab->name(DESC_A, true).c_str(),
                                        name.c_str());
         }
     }
@@ -1712,9 +1725,11 @@ void stardust_fineff::fire()
         return;
 
     if (is_star_jelly)
-        mprf("A flurry of magic pours from %s injured body!", agent->name(DESC_ITS).c_str());
+        mprf(Options.language == lang_t::KO ? "상처 입은 몸에서 마력이 쏟아져 나옵니다: %s!" : "A flurry of magic pours from %s injured body!",
+             agent->name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
     else
-        mprf("%s orb unleashes a flurry of shooting stars!", agent->name(DESC_ITS).c_str());
+        mprf(Options.language == lang_t::KO ? "구체가 별똥별을 연달아 쏘아냅니다: %s!" : "%s orb unleashes a flurry of shooting stars!",
+             agent->name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
 
     count = is_star_jelly ? max_stars : min(max_stars, count + 1);
     const int foe = agent->is_player() ? int{MHITYOU} : agent->as_monster()->foe;

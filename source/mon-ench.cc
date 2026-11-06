@@ -312,12 +312,15 @@ void monster::add_enchantment_effect(const mon_enchant &ench, bool quiet)
         {
             if (!quiet)
             {
-                mprf("You %sdetect the %s %s.",
-                     friendly() ? "" : "can no longer ",
-                     ench.ench == ENCH_HEXED ? "dominated" :
-                     ench.ench == ENCH_CHARM ? "charmed"
-                                             : "bribed",
-                     name(DESC_PLAIN, true).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf(friendly() ? "다시 감지되는 몬스터: %s." : "더 이상 감지할 수 없는 몬스터: %s.",
+                         name(DESC_PLAIN, true).c_str());
+                else
+                    mprf("You %sdetect the %s %s.",
+                         friendly() ? "" : "can no longer ",
+                         ench.ench == ENCH_HEXED ? "dominated" :
+                         ench.ench == ENCH_CHARM ? "charmed" : "bribed",
+                         name(DESC_PLAIN, true).c_str());
             }
 
             autotoggle_autopickup(!friendly());
@@ -573,7 +576,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
                 break;
 
             if (!quiet)
-                mprf("%s appears from thin air!", name(DESC_A, true).c_str());
+                mprf(Options.language == lang_t::KO ? "허공에서 모습을 드러낸 몬스터: %s!" : "%s appears from thin air!", name(DESC_A, true).c_str());
 
             maybe_notice_monster(*this);
         }
@@ -588,14 +591,20 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
         {
             if (!quiet)
             {
-                mprf("%s is no longer %s.", name(DESC_THE, true).c_str(),
-                        me.ench == ENCH_CHARM   ? "charmed"
-                        : me.ench == ENCH_HEXED ? "dominated"
-                                                : "bribed");
+                if (Options.language == lang_t::KO)
+                    mprf("%s — %s 효과가 사라집니다.", name(DESC_THE, true).c_str(),
+                         me.ench == ENCH_CHARM ? "매혹" : me.ench == ENCH_HEXED ? "지배" : "매수");
+                else
+                    mprf("%s is no longer %s.", name(DESC_THE, true).c_str(),
+                         me.ench == ENCH_CHARM ? "charmed" : me.ench == ENCH_HEXED ? "dominated" : "bribed");
 
-                mprf("You can %s detect %s.",
-                     friendly() ? "once again" : "no longer",
-                     name(DESC_THE, true).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf(friendly() ? "다시 감지할 수 있는 몬스터: %s." : "더 이상 감지할 수 없는 몬스터: %s.",
+                         name(DESC_THE, true).c_str());
+                else
+                    mprf("You can %s detect %s.",
+                         friendly() ? "once again" : "no longer",
+                         name(DESC_THE, true).c_str());
             }
 
             if (!friendly())
@@ -677,7 +686,8 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     case ENCH_SOUL_RIPE:
         // Print message notifying the player, even if they cannot see us
         if (!quiet)
-            mprf("You lose your grip on %s soul.", name(DESC_ITS, true).c_str());
+            mprf(Options.language == lang_t::KO ? "%s의 영혼에 대한 지배력을 잃습니다." : "You lose your grip on %s soul.",
+                 name(DESC_ITS, true).c_str());
         break;
 
     case ENCH_AWAKEN_FOREST:
@@ -779,7 +789,10 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_TOXIC_RADIANCE:
         if (!quiet && you.can_see(*this))
-            mprf("%s toxic aura wanes.", name(DESC_ITS).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("독성 기운이 약해지는 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s toxic aura wanes.", name(DESC_ITS).c_str());
         break;
 
     case ENCH_FIRE_VULN:
@@ -818,42 +831,45 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_CORROSION:
         if (!quiet)
-           simple_monster_message(*this, " is no longer corroded.");
+           simple_monster_message(*this, Options.language == lang_t::KO ? " —  부식 효과가 사라집니다." : " is no longer corroded.");
         break;
 
     case ENCH_DRAINED:
         if (!quiet)
-            simple_monster_message(*this, " seems less drained.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  능력 흡수 효과가 약해집니다." : " seems less drained.");
         break;
 
     case ENCH_DEFLECT_MISSILES:
         if (!quiet)
-            simple_monster_message(*this, " is no longer deflecting missiles.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  투사체 반사 효과가 사라집니다." : " is no longer deflecting missiles.");
         break;
 
     case ENCH_RESISTANCE:
         if (!quiet)
-            simple_monster_message(*this, " is no longer unusually resistant.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  비정상적인 저항력이 사라집니다." : " is no longer unusually resistant.");
         break;
 
     case ENCH_EMPOWERED_SPELLS:
         if (!quiet)
-            simple_monster_message(*this, " seems less brilliant.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  광채가 약해집니다." : " seems less brilliant.");
         break;
 
     case ENCH_IDEALISED:
         if (!quiet)
-            simple_monster_message(*this, " loses the glow of perfection.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  완전무결한 광채가 사라집니다." : " loses the glow of perfection.");
         break;
 
     case ENCH_BOUND_SOUL:
         if (!quiet && you.can_see(*this))
-            mprf("%s soul is no longer bound.", name(DESC_ITS).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("영혼의 속박이 풀린 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s soul is no longer bound.", name(DESC_ITS).c_str());
         break;
 
     case ENCH_INFESTATION:
         if (!quiet)
-            simple_monster_message(*this, " is no longer infested.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  기생 효과가 사라집니다." : " is no longer infested.");
         break;
 
     case ENCH_CONSTRICTED:
@@ -864,12 +880,12 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
             {
                 if (constricted_type == CONSTRICT_BVC)
                 {
-                    mprf("The zombie hands holding %s return to the earth.",
+                    mprf((Options.language == lang_t::KO ? "%s을 붙잡고 있던 좀비의 손이 땅속으로 사라집니다." : "The zombie hands holding %s return to the earth."),
                          name(DESC_THE).c_str());
                 }
                 else if (constricted_type == CONSTRICT_ROOTS)
                 {
-                    mprf("The roots around %s sink back into the ground.",
+                    mprf((Options.language == lang_t::KO ? "%s 주변의 뿌리가 땅속으로 다시 가라앉습니다." : "The roots around %s sink back into the ground."),
                          name(DESC_THE).c_str());
                 }
             }
@@ -885,23 +901,26 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     case ENCH_FLOODED:
         if (!quiet && you.can_see(*this))
         {
-            mprf("%s finishes expelling the %s from %s %s.",
-                    name(DESC_THE).c_str(),
-                    props[WATER_HOLD_SUBSTANCE_KEY].get_string().c_str(),
-                    pronoun(PRONOUN_POSSESSIVE).c_str(),
-                    get_mon_shape(*this) >= MON_SHAPE_INSECT ? "airways" : "lungs");
+            if (Options.language == lang_t::KO)
+                mprf("호흡 기관에서 이물질을 모두 내뱉은 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s finishes expelling the %s from %s %s.",
+                     name(DESC_THE).c_str(),
+                     props[WATER_HOLD_SUBSTANCE_KEY].get_string().c_str(),
+                     pronoun(PRONOUN_POSSESSIVE).c_str(),
+                     get_mon_shape(*this) >= MON_SHAPE_INSECT ? "airways" : "lungs");
         }
         props.erase(WATER_HOLD_SUBSTANCE_KEY);
         break;
 
     case ENCH_ROLLING:
         if (!quiet)
-            simple_monster_message(*this, " stops rolling and uncurls.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  구르기가 멈추고 몸이 펴집니다." : " stops rolling and uncurls.");
         break;
 
     case ENCH_CONCENTRATE_VENOM:
         if (!quiet)
-            simple_monster_message(*this, " no longer looks unusually toxic.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  독성이 강해 보이던 모습이 사라집니다." : " no longer looks unusually toxic.");
         break;
 
     case ENCH_BOUND:
@@ -909,7 +928,7 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
         if (props.exists(BINDING_SIGIL_DURATION_KEY))
         {
             if (!quiet)
-                simple_monster_message(*this, " lost momentum returns!", true);
+                simple_monster_message(*this, (Options.language == lang_t::KO ? " — 잃었던 기세를 되찾습니다!" : " lost momentum returns!"), true);
             add_ench(mon_enchant(ENCH_SWIFT, &you,
                                  props[BINDING_SIGIL_DURATION_KEY].get_int()));
             props.erase(BINDING_SIGIL_DURATION_KEY);
@@ -933,9 +952,10 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
         if (you.can_see(*this))
         {
-            mprf(MSGCH_MONSTER_SPELL, "%s shapes itself into a furious %s!",
-                    name(DESC_THE).c_str(),
-                    mons_type_name(poly_target, DESC_PLAIN).c_str());
+            mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO
+                 ? "격렬하게 변신하는 몬스터: %s → %s!"
+                 : "%s shapes itself into a furious %s!",
+                 name(DESC_THE).c_str(), mons_type_name(poly_target, DESC_PLAIN).c_str());
         }
 
         change_monster_type(this, poly_target, true);
@@ -952,8 +972,11 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
     case ENCH_CURSE_OF_AGONY:
         if (you.can_see(*this) && !quiet)
         {
-            mprf("%s is freed from %s curse.", name(DESC_THE).c_str(),
-                 pronoun(PRONOUN_POSSESSIVE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("저주에서 풀려난 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s is freed from %s curse.", name(DESC_THE).c_str(),
+                     pronoun(PRONOUN_POSSESSIVE).c_str());
         }
         break;
 
@@ -985,9 +1008,11 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
             if (can_see(you))
             {
                 target = you.pos();
-                mprf("%s turns %s attention back to you.",
-                        name(DESC_THE).c_str(),
-                        pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("다시 당신에게 주의를 돌린 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s turns %s attention back to you.",
+                         name(DESC_THE).c_str(), pronoun(PRONOUN_POSSESSIVE).c_str());
             }
         }
         break;
@@ -998,31 +1023,31 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_KINETIC_GRAPNEL:
         if (you.can_see(*this) && !quiet)
-            mprf("The grapnel comes loose from %s.", name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "%s에 걸렸던 갈고리가 풀립니다." : "The grapnel comes loose from %s."), name(DESC_THE).c_str());
         break;
 
     case ENCH_BLINKITIS:
         if (!quiet)
-            simple_monster_message(*this, " looks more stable.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  상태가 더욱 안정됩니다." : " looks more stable.");
         break;
 
     case ENCH_CHAOS_LACE:
         if (!quiet)
-            simple_monster_message(*this, " is no longer laced with chaos.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  혼돈 효과가 사라집니다." : " is no longer laced with chaos.");
         break;
 
     case ENCH_DEEP_SLEEP:
         if (behaviour == BEH_SLEEP)
         {
             if (!quiet)
-                simple_monster_message(*this, " wakes up again.");
+                simple_monster_message(*this, Options.language == lang_t::KO ? " — 다시 깨어납니다." : " wakes up again.");
             behaviour_event(this, coinflip() ? ME_DISTURB : ME_ALERT, me.agent(), pos());
         }
         break;
 
     case ENCH_PYRRHIC_RECOLLECTION:
         if (!quiet)
-            simple_monster_message(*this, " memory burns away to nothing.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 기억이 완전히 불타 사라집니다." : " memory burns away to nothing."), true);
         spells.clear();
         spells.push_back({SPELL_PYRRHIC_RECOLLECTION, 0, MON_SPELL_NATURAL});
         spells.push_back({SPELL_BLINK_CLOSE, 15, MON_SPELL_WIZARD});
@@ -1030,7 +1055,9 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_PARADOX_TOUCHED:
         if (!quiet)
-            simple_monster_message(*this, "is no longer touched by paradox.");
+            simple_monster_message(*this, Options.language == lang_t::KO
+                ? " — 더 이상 역설의 영향을 받지 않습니다."
+                : "is no longer touched by paradox.");
         for (size_t i = 0; i < spells.size(); ++i)
         {
             if (spells[i].spell == SPELL_MANIFOLD_ASSAULT && spells[i].flags | MON_SPELL_NATURAL)
@@ -1043,22 +1070,22 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_WARDING:
         if (!quiet && you.can_see(*this))
-            mprf("The ward upon %s fades away.", name(DESC_THE).c_str());
+            mprf((Options.language == lang_t::KO ? "%s에게 걸린 보호의 힘이 사라집니다." : "The ward upon %s fades away."), name(DESC_THE).c_str());
         break;
 
     case ENCH_DIMINISHED_SPELLS:
         if (!quiet)
-            simple_monster_message(*this, " spells are no longer diminished.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  주문 약화 효과가 사라집니다." : " spells are no longer diminished.");
         break;
 
     case ENCH_ANTIMAGIC:
         if (!quiet)
-            simple_monster_message(*this, " magic is no longer disrupted.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 마법 방해 효과가 사라집니다." : " magic is no longer disrupted."), true);
         break;
 
     case ENCH_MIRROR_DAMAGE:
         if (!quiet)
-            simple_monster_message(*this, " dark mirror aura disappears.", true);
+            simple_monster_message(*this, (Options.language == lang_t::KO ? " — 어두운 거울의 기운이 사라집니다." : " dark mirror aura disappears."), true);
         break;
 
     case ENCH_SLOWLY_DYING:
@@ -1203,7 +1230,7 @@ static bool _merfolk_avatar_movement_effect(const monster* mons)
             return true;
     }
 
-    mprf("The pull of %s song draws you forwards.", mons->name(DESC_ITS).c_str());
+    mprf((Options.language == lang_t::KO ? "%s의 노랫소리에 이끌려 앞으로 나아갑니다." : "The pull of %s song draws you forwards."), mons->name(DESC_ITS).c_str());
 
     if (swapping)
         player_displace_monster(mon, swapdest);
@@ -1252,7 +1279,7 @@ static void _merfolk_avatar_song(monster* mons)
             // during a song that has already summoned drowned souls (though is
             // technically possible if some existing ally gains HD instead)
             if (you.see_cell(mons->pos()))
-                mpr("The shadowy forms in the deep grow still as others approach.");
+                mpr((Options.language == lang_t::KO ? "다른 이들이 다가오자 깊은 물속의 그림자들이 움직임을 멈춥니다." : "The shadowy forms in the deep grow still as others approach."));
             mons->props.erase(MERFOLK_AVATAR_CALL_KEY);
         }
 
@@ -1271,7 +1298,7 @@ static void _merfolk_avatar_song(monster* mons)
         {
             if (you.see_cell(mons->pos()))
             {
-                mprf("Shadowy forms rise from the deep at %s song!",
+                mprf((Options.language == lang_t::KO ? "%s의 노래에 맞춰 깊은 물속에서 그림자들이 솟아오릅니다!" : "Shadowy forms rise from the deep at %s song!"),
                      mons->name(DESC_ITS).c_str());
             }
             mons->props[MERFOLK_AVATAR_CALL_KEY].get_bool() = true;
@@ -1466,7 +1493,7 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             if (you.can_see(*this))
             {
-                mprf("The flames covering %s go out.",
+                mprf((Options.language == lang_t::KO ? "%s을 뒤덮었던 불길이 꺼집니다." : "The flames covering %s go out."),
                      name(DESC_THE, false).c_str());
             }
             del_ench(ENCH_STICKY_FLAME);
@@ -1477,7 +1504,7 @@ void monster::apply_enchantment(const mon_enchant &me)
 
         if (dam > 0)
         {
-            simple_monster_message(*this, " burns!");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " — 불탑니다!" : " burns!");
             dprf("sticky flame damage: %d", dam);
             hurt(me.agent(), dam, BEAM_STICKY_FLAME);
         }
@@ -1522,7 +1549,7 @@ void monster::apply_enchantment(const mon_enchant &me)
             coord_def base_position = props[BASE_POSITION_KEY].get_coord();
             // Do a thing.
             if (you.see_cell(base_position))
-                mprf("The portal closes; %s is severed.", name(DESC_THE).c_str());
+                mprf((Options.language == lang_t::KO ? "차원문이 닫히고 %s과의 연결이 끊어집니다." : "The portal closes; %s is severed."), name(DESC_THE).c_str());
 
             if (env.grid(base_position) == DNGN_MALIGN_GATEWAY)
                 env.grid(base_position) = DNGN_FLOOR;
@@ -1553,9 +1580,9 @@ void monster::apply_enchantment(const mon_enchant &me)
             if (!silenced(you.pos()))
             {
                 if (you.can_see(*this))
-                    simple_monster_message(*this, " suddenly becomes enraged!");
+                    simple_monster_message(*this, Options.language == lang_t::KO ? " — 갑자기 격분합니다!" : " suddenly becomes enraged!");
                 else
-                    mpr("You hear a distant and violent thrashing sound.");
+                    mpr((Options.language == lang_t::KO ? "멀리서 거칠게 몸부림치는 소리가 들립니다." : "You hear a distant and violent thrashing sound."));
             }
 
             attitude = ATT_HOSTILE;
@@ -1568,7 +1595,7 @@ void monster::apply_enchantment(const mon_enchant &me)
 
     case ENCH_SEVERED:
     {
-        simple_monster_message(*this, " writhes!");
+        simple_monster_message(*this, Options.language == lang_t::KO ? " — 몸부림칩니다!" : " writhes!");
         coord_def base_position = props[BASE_POSITION_KEY].get_coord();
         maybe_bloodify_square(base_position);
         hurt(me.agent(), 20);
@@ -1617,7 +1644,7 @@ void monster::apply_enchantment(const mon_enchant &me)
             add_ench(ENCH_POLAR_VORTEX_COOLDOWN);
             if (you.can_see(*this))
             {
-                mprf("The winds around %s start to calm down.",
+                mprf((Options.language == lang_t::KO ? "%s 주변의 바람이 잦아들기 시작합니다." : "The winds around %s start to calm down."),
                      name(DESC_THE).c_str());
             }
         }
@@ -1628,7 +1655,7 @@ void monster::apply_enchantment(const mon_enchant &me)
         if (how_chaotic())
         {
             int dam = roll_dice(2, 4) - 1;
-            simple_monster_message(*this, " is seared!");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " — 타들어 갑니다!" : " is seared!");
             dprf("Zin's Corona damage: %d", dam);
             hurt(me.agent(), dam);
         }
@@ -1644,7 +1671,10 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             del_ench(en, true, false);
             if (you.can_see(*this))
-                mprf("%s chant is interrupted.", name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("영창이 중단된 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s chant is interrupted.", name(DESC_ITS).c_str());
             break;
         }
 
@@ -1665,8 +1695,11 @@ void monster::apply_enchantment(const mon_enchant &me)
             del_ench(en, true, false);
             if (you.can_see(*this))
             {
-                mprf("%s stops winding %s clockwork bee.", name(DESC_ITS).c_str(),
-                     pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("태엽벌을 감는 동작을 멈춘 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s stops winding %s clockwork bee.", name(DESC_ITS).c_str(),
+                         pronoun(PRONOUN_POSSESSIVE).c_str());
             }
             break;
         }
@@ -1695,7 +1728,7 @@ void monster::apply_enchantment(const mon_enchant &me)
     case ENCH_FLOODED:
         if (!decay_enchantment(en))
         {
-            simple_monster_message(*this, " gasps for air!");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " — 숨을 헐떡입니다!" : " gasps for air!");
             hurt(me.agent(), roll_dice(3, 2));
         }
         break;
@@ -1738,7 +1771,7 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             remove_vortex_clouds(mid);
             if (you.can_see(*this))
-                mprf("The winds around %s calm down.", name(DESC_THE).c_str());
+                mprf((Options.language == lang_t::KO ? "%s 주변의 바람이 잦아듭니다." : "The winds around %s calm down."), name(DESC_THE).c_str());
         }
         break;
 
@@ -1751,8 +1784,10 @@ void monster::apply_enchantment(const mon_enchant &me)
             del_ench(ENCH_MERFOLK_AVATAR_SONG, true, false);
             if (you.can_see(*this))
             {
-                mprf("%s song is interrupted.",
-                     name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("노래가 중단된 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s song is interrupted.", name(DESC_ITS).c_str());
             }
             break;
         }
@@ -1777,7 +1812,7 @@ void monster::apply_enchantment(const mon_enchant &me)
 
     case ENCH_ANGUISH:
         if (decay_enchantment(en))
-            simple_monster_message(*this, " is no longer haunted by guilt.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  죄책감 효과가 사라집니다." : " is no longer haunted by guilt.");
         break;
 
     case ENCH_CHANNEL_SEARING_RAY:
@@ -1787,7 +1822,10 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             del_ench(en, true, false);
             if (you.can_see(*this))
-                mprf("%s searing ray is interrupted.", name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("작열 광선이 중단된 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s searing ray is interrupted.", name(DESC_ITS).c_str());
         }
         break;
 
@@ -1821,7 +1859,7 @@ void monster::apply_enchantment(const mon_enchant &me)
                 if (!decay_enchantment(ENCH_SOUL_RIPE)
                     && me.duration <= 10)
                 {
-                    mprf("Your grip on %s soul is slipping...",
+                    mprf((Options.language == lang_t::KO ? "%s의 영혼에 대한 지배력이 약해지고 있습니다..." : "Your grip on %s soul is slipping..."),
                          name(DESC_ITS, true).c_str());
                 }
             }
@@ -1851,7 +1889,7 @@ void monster::apply_enchantment(const mon_enchant &me)
             monster_die(*this, KILL_YOU, NON_MONSTER);
         }
         else if (decay_enchantment(en))
-            simple_monster_message(*this, " recovers from rimeblight.");
+            simple_monster_message(*this, Options.language == lang_t::KO ? " —  서리 역병이 회복됩니다." : " recovers from rimeblight.");
         break;
 
     case ENCH_ARMED:

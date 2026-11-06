@@ -277,7 +277,7 @@ static void _tweak_randart(item_def &item)
 
     case ARTP_VAL_POS:
     {
-        mprf(MSGCH_PROMPT, "%s was %d.", artp_name(prop), props[prop]);
+        mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "%s의 이전 값: %d." : "%s was %d.", artp_name(prop), props[prop]);
         const int val = prompt_for_int("New value? ", true);
 
         if (val < 0)
@@ -292,7 +292,7 @@ static void _tweak_randart(item_def &item)
     }
     case ARTP_VAL_ANY:
     {
-        mprf(MSGCH_PROMPT, "%s was %d.", artp_name(prop), props[prop]);
+        mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "%s의 이전 값: %d." : "%s was %d.", artp_name(prop), props[prop]);
         const int val = prompt_for_int("New value? ", false);
         artefact_set_property(item, static_cast<artefact_prop_type>(prop),
                              val);
@@ -301,11 +301,11 @@ static void _tweak_randart(item_def &item)
 
     case ARTP_VAL_BRAND:
     {
-        mprf(MSGCH_PROMPT, "%s was %s.", artp_name(prop),
+        mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "%s의 이전 값: %s." : "%s was %s.", artp_name(prop),
              props[prop] ? ego_type_string(item, false).c_str() : "normal");
 
         char specs[80];
-        msgwin_get_line("New ego? ", specs, sizeof(specs));
+        msgwin_get_line(Options.language == lang_t::KO ? "새 장비 속성: " : "New ego? ", specs, sizeof(specs));
         if (specs[0] == '\0')
         {
             canned_msg(MSG_OK);
@@ -384,11 +384,11 @@ void wizard_tweak_object()
         }
 
         if (keyin != 'e')
-            mprf("Old value: %" PRId64" (0x%04" PRIx64")", old_val, old_val);
+            mprf(Options.language == lang_t::KO ? "이전 값: %" PRId64" (0x%04" PRIx64")" : "Old value: %" PRId64" (0x%04" PRIx64")", old_val, old_val);
         else
-            mprf("Old value: 0x%08" PRIx64, old_val);
+            mprf(Options.language == lang_t::KO ? "이전 값: 0x%08" PRIx64 : "Old value: 0x%08" PRIx64, old_val);
 
-        msgwin_get_line("New value? ", specs, sizeof(specs));
+        msgwin_get_line(Options.language == lang_t::KO ? "새 값: " : "New value? ", specs, sizeof(specs));
         if (specs[0] == '\0')
         {
             canned_msg(MSG_OK);
@@ -590,7 +590,7 @@ void wizard_make_object_randart()
 
     if (is_random_artefact(item))
     {
-        if (!yesno("Is already a randart; wipe and re-use?", true, 'n'))
+        if (!yesno(Options.language == lang_t::KO ? "이미 무작위 아티팩트입니다. 초기화 후 재사용하시겠습니까?" : "Is already a randart; wipe and re-use?", true, 'n'))
         {
             canned_msg(MSG_OK);
             return;
@@ -678,7 +678,7 @@ void wizard_list_items()
     {
         if (item.defined() && !item.held_by_monster() && item.link != NON_ITEM)
         {
-            mprf("(%2d,%2d): %s%s", item.pos.x, item.pos.y,
+            mprf(Options.language == lang_t::KO ? "좌표 (%2d,%2d): %s%s" : "(%2d,%2d): %s%s", item.pos.x, item.pos.y,
                  item.name(DESC_PLAIN, false, false, false).c_str(),
                  item.flags & ISFLAG_MIMIC ? " mimic" : "");
         }
@@ -693,7 +693,7 @@ void wizard_list_items()
         int item = env.igrid(*ri);
         if (item != NON_ITEM)
         {
-            mprf("%3d at (%2d,%2d): %s%s", item, ri->x, ri->y,
+            mprf(Options.language == lang_t::KO ? "아이템 %3d, 위치 (%2d,%2d): %s%s" : "%3d at (%2d,%2d): %s%s", item, ri->x, ri->y,
                  env.item[item].name(DESC_PLAIN, false, false, false).c_str(),
                  env.item[item].flags & ISFLAG_MIMIC ? " mimic" : "");
         }
@@ -873,7 +873,7 @@ static void _debug_acquirement_stats()
         if (num_itrs >= 10 && (i + 1) % (num_itrs / 10) == 0)
         {
             clear_messages();
-            mprf("%d%% done.", 100 * (i + 1) / num_itrs);
+            mprf(Options.language == lang_t::KO ? "%d%% 완료." : "%d%% done.", 100 * (i + 1) / num_itrs);
             viewwindow();
             update_screen();
         }
@@ -1265,7 +1265,7 @@ static void _debug_randart_stats()
         if (num_itrs >= 10 && (i + 1) % (num_itrs / 10) == 0)
         {
             clear_messages();
-            mprf("%d%% done.", 100 * (i + 1) / num_itrs);
+            mprf(Options.language == lang_t::KO ? "%d%% 완료." : "%d%% done.", 100 * (i + 1) / num_itrs);
             viewwindow();
             update_screen();
         }

@@ -228,7 +228,7 @@ dungeon_feature_type wizard_select_feature(bool mimic, bool allow_fprop)
                 if (fprop != FPROP_NONE && allow_fprop)
                 {
                     env.pgrid(you.pos()) |= fprop;
-                    mprf("Set fprops \"%s\" at (%d,%d)",
+                    mprf(Options.language == lang_t::KO ? "지형 속성 \"%s\" 설정: (%d,%d)" : "Set fprops \"%s\" at (%d,%d)",
                          name.c_str(), you.pos().x, you.pos().y);
                 }
                 else
@@ -262,7 +262,7 @@ dungeon_feature_type wizard_select_feature(bool mimic, bool allow_fprop)
     }
 
     if (mimic && !feat_is_mimicable(feat, false)
-        && !yesno("This isn't a valid feature mimic. Create it anyway? ",
+        && !yesno(Options.language == lang_t::KO ? "이 지형은 흉내 낼 수 없습니다. 그래도 생성하시겠습니까? " : "This isn't a valid feature mimic. Create it anyway? ",
                   true, 'n'))
     {
         feat = DNGN_UNSEEN;
@@ -430,7 +430,7 @@ void wizard_list_branches()
                 comma_separated_line(god_names.begin(), god_names.end()));
         }
 
-        mprf(MSGCH_DIAGNOSTICS, "%u on D:%u (%s)", temples.size(),
+        mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "사원 %u개, 던전 %u층 (%s)" : "%u on D:%u (%s)", temples.size(),
              i + 1,
              comma_separated_line(temple_strings.begin(),
                                   temple_strings.end(), "; ", "; ").c_str()
@@ -442,7 +442,7 @@ void wizard_map_level()
 {
     if (!is_map_persistent())
     {
-        if (!yesno("Force level to be mappable?", true, 'n'))
+        if (!yesno(Options.language == lang_t::KO ? "현재 층을 강제로 지도화할 수 있게 만드시겠습니까?" : "Force level to be mappable?", true, 'n'))
         {
             canned_msg(MSG_OK);
             return;
@@ -502,7 +502,7 @@ bool debug_make_trap(const coord_def& pos, trap_type trap)
             : trap_at(pos)->name(DESC_A).c_str());
 
     if (trap == TRAP_SHAFT && !is_valid_shaft_level())
-        mpr("NOTE: Shaft traps aren't valid on this level.");
+        mpr(Options.language == lang_t::KO ? "참고: 이 층에서는 수직 통로 함정을 사용할 수 없습니다." : "NOTE: Shaft traps aren't valid on this level.");
 
     return true;
 }
@@ -599,8 +599,7 @@ static void debug_load_map_by_name(string name, bool primary)
             {
                 if (!in_bounds(*ri))
                 {
-                    mprf("Placing %s on top of you would put part of the "
-                         "map outside of the level, cancelling.",
+                    mprf(Options.language == lang_t::KO ? "지도를 배치하면 일부가 층 경계를 벗어납니다. 취소합니다: %s." : "Placing %s on top of you would put part of the map outside of the level, cancelling.",
                          toplace->name.c_str());
                     return;
                 }
@@ -620,12 +619,9 @@ static void debug_load_map_by_name(string name, bool primary)
         if (toplace->orient == MAP_ENCOMPASS
             && !toplace->is_usable_in(level_id::current())
             && !toplace->place.is_usable_in(level_id::current())
-            && !yesno("Warning: this is an encompass vault not designed "
-                       "for this location; placing it with &P may result in "
-                       "crashes and save corruption. Continue?", true, 'y'))
+            && !yesno(Options.language == lang_t::KO ? "경고: 이 장소에 맞지 않는 전체 지도입니다. &P로 배치하면 충돌이나 저장 데이터 손상이 발생할 수 있습니다. 계속하시겠습니까?" : "Warning: this is an encompass vault not designed for this location; placing it with &P may result in crashes and save corruption. Continue?", true, 'y'))
         {
-            mpr("Ok; try placing with &L or go to the relevant location to "
-                "safely place with &P.");
+            mpr(Options.language == lang_t::KO ? "이 지도는 &L로 배치하거나 해당 장소로 이동한 후 &P로 배치하십시오." : "Ok; try placing with &L or go to the relevant location to safely place with &P.");
             return;
         }
         if (toplace->is_minivault())
@@ -673,8 +669,9 @@ void debug_place_map(bool primary)
 {
     char what_to_make[100];
     clear_messages();
-    mprf(MSGCH_PROMPT, primary ? "Enter map name: " :
-         "Enter map name (prefix it with * for local placement): ");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+         ? (primary ? "지도 이름 입력: " : "지도 이름 입력 (현재 위치에 배치하려면 * 접두사): ")
+         : (primary ? "Enter map name: " : "Enter map name (prefix it with * for local placement): "));
     if (cancellable_get_line(what_to_make, sizeof what_to_make,
                             primary ? &primary_hist : &mini_hist))
     {
@@ -803,7 +800,7 @@ void wizard_list_levels()
     for (int j = 0; j < NUM_DACTION_COUNTERS; j++)
         cnts += make_stringf("%d/", query_daction_counter((daction_type)j));
 
-    mprf("%-10s : %s", "`- total", cnts.c_str());
+    mprf(Options.language == lang_t::KO ? "%-10s : %s" : "%-10s : %s", Options.language == lang_t::KO ? "`- 합계" : "`- total", cnts.c_str());
 }
 
 void wizard_recreate_level()
@@ -872,8 +869,7 @@ void wizard_clear_used_vaults()
 void wizard_abyss_speed()
 {
     char specs[256];
-    mprf(MSGCH_PROMPT, "Set Abyss speed to what? (now %d, higher value = "
-                       "higher speed) ", you.abyss_speed);
+    mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "심연 속도 설정 (현재 %d, 높을수록 빠름): " : "Set Abyss speed to what? (now %d, higher value = higher speed) ", you.abyss_speed);
 
     if (!cancellable_get_line(specs, sizeof(specs)))
     {

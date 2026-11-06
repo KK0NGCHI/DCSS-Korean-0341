@@ -379,7 +379,7 @@ void jiyva_eat_offlevel_items()
                 dprf("Eating %s on %s",
                      si->name(DESC_PLAIN).c_str(), lid.describe().c_str());
 
-                mpr("You hear a distant slurping noise.");
+                mpr(Options.language == lang_t::KO ? "멀리서 무언가를 후루룩 삼키는 소리가 들립니다." : "You hear a distant slurping noise.");
                 item_was_destroyed(*si);
                 destroy_item(si.index());
             }
@@ -801,31 +801,35 @@ void qazlal_element_adapt(beam_type flavour, int strength)
 
     if (what != BEAM_FIRE && you.duration[DUR_QAZLAL_FIRE_RES])
     {
-        mprf(MSGCH_DURATION, "Your resistance to fire fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "화염 저항 효과가 사라집니다." : "Your resistance to fire fades away.");
         you.duration[DUR_QAZLAL_FIRE_RES] = 0;
     }
 
     if (what != BEAM_COLD && you.duration[DUR_QAZLAL_COLD_RES])
     {
-        mprf(MSGCH_DURATION, "Your resistance to cold fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "냉기 저항 효과가 사라집니다." : "Your resistance to cold fades away.");
         you.duration[DUR_QAZLAL_COLD_RES] = 0;
     }
 
     if (what != BEAM_ELECTRICITY && you.duration[DUR_QAZLAL_ELEC_RES])
     {
-        mprf(MSGCH_DURATION, "Your resistance to electricity fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "전기 저항 효과가 사라집니다." : "Your resistance to electricity fades away.");
         you.duration[DUR_QAZLAL_ELEC_RES] = 0;
     }
 
     if (what != BEAM_MISSILE && you.duration[DUR_QAZLAL_AC])
     {
-        mprf(MSGCH_DURATION, "Your resistance to physical damage fades away.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "물리 피해 저항 효과가 사라집니다." : "Your resistance to physical damage fades away.");
         you.duration[DUR_QAZLAL_AC] = 0;
         you.redraw_armour_class = true;
     }
 
-    mprf(MSGCH_GOD, "You feel %sprotected from %s.",
-         you.duration[dur] > 0 ? "more " : "", descript.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_GOD, "%s에 대한 보호가 %s.", descript.c_str(),
+             you.duration[dur] > 0 ? "강해집니다" : "생깁니다");
+    else
+        mprf(MSGCH_GOD, "You feel %sprotected from %s.",
+             you.duration[dur] > 0 ? "more " : "", descript.c_str());
 
     // was scaled by 10 * strength. But the strength parameter is used so inconsistently that
     // it seems like a constant would be better, based on the typical value of 2.
@@ -1862,7 +1866,7 @@ void wu_jian_trigger_serpents_lash(bool wall_jump)
     if (you.attribute[ATTR_SERPENTS_LASH] == 0)
     {
         you.increase_duration(DUR_EXHAUSTED, 12 + random2(5));
-        mpr("Your supernatural speed expires.");
+        mpr(Options.language == lang_t::KO ? "초자연적인 가속 효과가 끝납니다." : "Your supernatural speed expires.");
     }
 }
 
@@ -1906,7 +1910,7 @@ void wu_jian_end_heavenly_storm()
     you.duration[DUR_HEAVENLY_STORM] = 0;
     you.redraw_evasion = true;
     invalidate_agrid(true);
-    mprf(MSGCH_GOD, "The heavenly storm settles.");
+    mprf(MSGCH_GOD, "%s", Options.language == lang_t::KO ? "천상의 폭풍이 잦아듭니다." : "The heavenly storm settles.");
 }
 
 bool wu_jian_has_momentum(wu_jian_attack_type attack_type)
@@ -1966,11 +1970,16 @@ static bool _wu_jian_lunge(coord_def old_pos, coord_def new_pos,
     int dmg_mult = 0;
     const int number_of_attacks = _wu_jian_number_of_attacks(dmg_mult, false);
 
-    mprf("You lunge%s at %s%s.",
-            wu_jian_has_momentum(WU_JIAN_ATTACK_LUNGE) ?
-                " with incredible momentum" : "",
-            mons->name(DESC_THE).c_str(),
-            number_of_attacks > 1 ? ", in a flurry of attacks" : "");
+    if (Options.language == lang_t::KO)
+        mprf("%s에게 돌진하여 공격합니다%s%s.", mons->name(DESC_THE).c_str(),
+             number_of_attacks > 1 ? " (연속 공격)" : "",
+             wu_jian_has_momentum(WU_JIAN_ATTACK_LUNGE) ? " (강력한 기세)" : "");
+    else
+        mprf("You lunge%s at %s%s.",
+             wu_jian_has_momentum(WU_JIAN_ATTACK_LUNGE) ?
+                 " with incredible momentum" : "",
+             mons->name(DESC_THE).c_str(),
+             number_of_attacks > 1 ? ", in a flurry of attacks" : "");
 
     count_action(CACT_ATTACK, ATTACK_LUNGE);
 
@@ -2025,11 +2034,16 @@ static bool _wu_jian_whirlwind(coord_def old_pos, coord_def new_pos,
 
         int dmg_mult = 0;
         const int number_of_attacks = _wu_jian_number_of_attacks(dmg_mult, false);
-        mprf("You spin and attack %s%s%s.",
-                mons->name(DESC_THE).c_str(),
-                number_of_attacks > 1 ? " repeatedly" : "",
-                wu_jian_has_momentum(WU_JIAN_ATTACK_WHIRLWIND) ?
-                    ", with incredible momentum" : "");
+        if (Options.language == lang_t::KO)
+            mprf("회전하며 %s에게 공격을 가합니다%s%s.", mons->name(DESC_THE).c_str(),
+                 number_of_attacks > 1 ? " (연속 공격)" : "",
+                 wu_jian_has_momentum(WU_JIAN_ATTACK_WHIRLWIND) ? " (강력한 기세)" : "");
+        else
+            mprf("You spin and attack %s%s%s.",
+                 mons->name(DESC_THE).c_str(),
+                 number_of_attacks > 1 ? " repeatedly" : "",
+                 wu_jian_has_momentum(WU_JIAN_ATTACK_WHIRLWIND) ?
+                     ", with incredible momentum" : "");
 
         count_action(CACT_ATTACK, ATTACK_WHIRLWIND);
 
@@ -2121,11 +2135,16 @@ void wu_jian_wall_jump_effects()
         // Twice the attacks as Wall Jump spends twice the time
         int dmg_mult = 0;
         const int number_of_attacks = _wu_jian_number_of_attacks(dmg_mult, true);
-        mprf("You %sattack %s from above%s.",
-                number_of_attacks > 1 ? "repeatedly " : "",
-                target->name(DESC_THE).c_str(),
-                wu_jian_has_momentum(WU_JIAN_ATTACK_WALL_JUMP) ?
-                    ", with incredible momentum" : "");
+        if (Options.language == lang_t::KO)
+            mprf("위에서 %s에게 공격을 가합니다%s%s.", target->name(DESC_THE).c_str(),
+                 number_of_attacks > 1 ? " (연속 공격)" : "",
+                 wu_jian_has_momentum(WU_JIAN_ATTACK_WALL_JUMP) ? " (강력한 기세)" : "");
+        else
+            mprf("You %sattack %s from above%s.",
+                 number_of_attacks > 1 ? "repeatedly " : "",
+                 target->name(DESC_THE).c_str(),
+                 wu_jian_has_momentum(WU_JIAN_ATTACK_WALL_JUMP) ?
+                     ", with incredible momentum" : "");
 
         for (int i = 0; i < number_of_attacks; i++)
         {
@@ -2208,7 +2227,7 @@ void uskayaw_prepares_audience()
     int count = apply_area_visible(_check_for_uskayaw_targets, you.pos());
     if (count > 0)
     {
-        simple_god_message(" prepares the audience for your solo!");
+        simple_god_message((Options.language == lang_t::KO ? " — 당신의 독무대를 위해 관객을 준비시킵니다!" : " prepares the audience for your solo!"));
         apply_area_visible(_prepare_audience, you.pos());
 
         // Increment a delay timer to prevent players from spamming this ability
@@ -2249,7 +2268,7 @@ void uskayaw_bonds_audience()
     int count = apply_area_visible(_check_for_uskayaw_targets, you.pos());
     if (count > 1)
     {
-        simple_god_message(" links your audience in an emotional bond!");
+        simple_god_message((Options.language == lang_t::KO ? " — 관객들을 감정적 유대로 연결합니다!" : " links your audience in an emotional bond!"));
         apply_area_visible(_bond_audience, you.pos());
 
         // Increment a delay timer to prevent players from spamming this ability
@@ -2328,7 +2347,7 @@ void makhleb_tyrant_buff()
                 break;
         }
 
-        simple_monster_message(*demon, " is spurred on by your onslaught.");
+        simple_monster_message(*demon, Options.language == lang_t::KO ? " — 당신의 맹공에 고무됩니다." : " is spurred on by your onslaught.");
     }
 }
 
@@ -2348,7 +2367,9 @@ void makhleb_execution_activate()
 {
     string talk = getSpeakString("Makhleb executioner chatter");
     mprf(MSGCH_TALK, "<lightred>%s</lightred>", talk.c_str());
-    mprf(MSGCH_DURATION, "A whirlwind of blades manifests around you!");
+    mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO
+         ? "칼날의 회오리가 주위에 나타납니다!"
+         : "A whirlwind of blades manifests around you!");
 
     you.duration[DUR_EXECUTION] = random_range(50, 70);
 #ifdef USE_TILE

@@ -119,9 +119,12 @@ static void _handle_monster_leashing(monster& mon, bool using_stairs)
     {
         if (using_stairs && you.can_see(mon))
         {
-            mprf("%s abandons %s pursuit.",
-            mon.name(DESC_THE).c_str(),
-            mon.pronoun(PRONOUN_POSSESSIVE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("추적을 포기한 몬스터: %s.", mon.name(DESC_THE).c_str());
+            else
+                mprf("%s abandons %s pursuit.",
+                     mon.name(DESC_THE).c_str(),
+                     mon.pronoun(PRONOUN_POSSESSIVE).c_str());
         }
         mon.set_transit(mon.origin_level);
         mon.destroy_inventory();

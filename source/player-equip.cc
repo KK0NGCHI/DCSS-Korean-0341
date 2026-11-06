@@ -85,7 +85,7 @@ int count = 0;
 
     case SLOT_WEAPON:
         if (you.has_mutation(MUT_NO_GRASPING))
-            NO_SLOT("You can't wield any weapon.")
+            NO_SLOT(Options.language == lang_t::KO ? "무기를 들 수 없습니다." : "You can't wield any weapon.")
         else
             return 1;
 
@@ -93,15 +93,17 @@ int count = 0;
         if (you.has_mutation(MUT_MISSING_HAND))
         {
             if (you.has_innate_mutation(MUT_TENTACLE_ARMS))
-                NO_SLOT("You need the rest of your tentacles for walking.")
+                NO_SLOT(Options.language == lang_t::KO ? "나머지 촉수는 이동하는 데 필요합니다." : "You need the rest of your tentacles for walking.")
             else
             {
-                NO_SLOT(make_stringf("You'd need another %s to do that!",
-                                        you.hand_name(false).c_str()))
+                NO_SLOT(Options.language == lang_t::KO
+                    ? string("다른 손이 하나 더 필요합니다!")
+                    : make_stringf("You'd need another %s to do that!",
+                                   you.hand_name(false).c_str()))
             }
         }
         else if (you.has_mutation(MUT_NO_GRASPING))
-            NO_SLOT("You can't hold anything in your paws.")
+            NO_SLOT(Options.language == lang_t::KO ? "발로는 물건을 쥘 수 없습니다." : "You can't hold anything in your paws.")
         // Coglins get a SLOT_WEAPON_OR_OFFHAND instead.
         else if (you.has_mutation(MUT_WIELD_OFFHAND))
             return 0;
@@ -116,15 +118,16 @@ int count = 0;
 
     case SLOT_BODY_ARMOUR:
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You can't haunt something so large.")
+            NO_SLOT(Options.language == lang_t::KO ? "그렇게 큰 물체에는 깃들 수 없습니다." : "You can't haunt something so large.")
         if (species::is_draconian(you.species))
         {
-            NO_SLOT(make_stringf("Your wings%s won't fit in that.",
-                                    you.has_mutation(MUT_BIG_WINGS)
-                                    ? "" : ", even vestigial as they are,"))
+            NO_SLOT((Options.language == lang_t::KO ? string("날개 때문에 이 방어구를 착용할 수 없습니다.")
+                : make_stringf("Your wings%s won't fit in that.",
+                                you.has_mutation(MUT_BIG_WINGS)
+                                ? "" : ", even vestigial as they are,")))
         }
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("You can't wear armour!");
+            NO_SLOT(Options.language == lang_t::KO ? "방어구를 착용할 수 없습니다!" : "You can't wear armour!");
 
         return 1;
 
@@ -135,15 +138,15 @@ int count = 0;
             ++count;
 
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have a head.")
+            NO_SLOT(Options.language == lang_t::KO ? "머리가 없습니다." : "You don't have a head.")
         else if (you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("That is much too large for your head.")
+            NO_SLOT(Options.language == lang_t::KO ? "머리에 착용하기에는 너무 큽니다." : "That is much too large for your head.")
         else if (you.form == transformation::serpent)
             return 2;
         else if (you.get_mutation_level(MUT_HORNS, false) >= 3)
-            NO_SLOT("You can't wear any headgear with your large horns!")
+            NO_SLOT(Options.language == lang_t::KO ? "커다란 뿔 때문에 머리 장비를 착용할 수 없습니다!" : "You can't wear any headgear with your large horns!")
         else if (you.get_mutation_level(MUT_ANTENNAE, false) >= 3)
-            NO_SLOT("You can't wear any headgear with your large antennae!")
+            NO_SLOT(Options.language == lang_t::KO ? "커다란 더듬이 때문에 머리 장비를 착용할 수 없습니다!" : "You can't wear any headgear with your large antennae!")
         else
             ++count;
 
@@ -157,17 +160,17 @@ int count = 0;
             ++count;
 
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have hands.")
+            NO_SLOT(Options.language == lang_t::KO ? "손이 없습니다." : "You don't have hands.")
         else if (player_size <= SIZE_LITTLE)
-            NO_SLOT(make_stringf("Those are too big for your %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 큽니다." : "Those are too big for your %s.", you.hand_name(true).c_str()))
         else if (player_size >= SIZE_LARGE)
-            NO_SLOT(make_stringf("Those are too small for your %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 작습니다." : "Those are too small for your %s.", you.hand_name(true).c_str()))
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT(make_stringf("Those can't fit on your %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용할 수 없습니다." : "Those can't fit on your %s.", you.hand_name(true).c_str()))
         else if (you.get_mutation_level(MUT_CLAWS, false) >= 3)
-            NO_SLOT(make_stringf("Those can't fit over your huge %s.", you.hand_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "거대한 %s에 착용할 수 없습니다." : "Those can't fit over your huge %s.", you.hand_name(true).c_str()))
         else if (you.get_mutation_level(MUT_DEMONIC_TOUCH, false) >= 3)
-            NO_SLOT("Your demonic touch would destroy those.")
+            NO_SLOT(Options.language == lang_t::KO ? "악마의 손길 때문에 해당 장비가 파괴됩니다." : "Your demonic touch would destroy those.")
         else
             ++count;
 
@@ -175,19 +178,19 @@ int count = 0;
 
     case SLOT_BOOTS:
         if (species::wears_barding(you.species) || you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have any feet!")
+            NO_SLOT(Options.language == lang_t::KO ? "발이 없습니다!" : "You don't have any feet!")
         else if (player_size <= SIZE_LITTLE)
-            NO_SLOT(make_stringf("Those are too big for your %s.", you.foot_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 큽니다." : "Those are too big for your %s.", you.foot_name(true).c_str()))
         else if (player_size >= SIZE_LARGE)
-            NO_SLOT(make_stringf("Those are too small for your %s.", you.foot_name(true).c_str()))
+            NO_SLOT(make_stringf(Options.language == lang_t::KO ? "%s에 착용하기에는 너무 작습니다." : "Those are too small for your %s.", you.foot_name(true).c_str()))
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("You can't wear boots.")
+            NO_SLOT(Options.language == lang_t::KO ? "장화를 착용할 수 없습니다." : "You can't wear boots.")
         else if (you.get_mutation_level(MUT_HOOVES, false) >= 3)
-            NO_SLOT("Your hooves can't fit into boots.")
+            NO_SLOT(Options.language == lang_t::KO ? "발굽 때문에 장화를 착용할 수 없습니다." : "Your hooves can't fit into boots.")
         else if (you.get_mutation_level(MUT_TALONS, false) >= 3)
-            NO_SLOT("Your talons can't fit into boots.")
+            NO_SLOT(Options.language == lang_t::KO ? "날카로운 발톱 때문에 장화를 착용할 수 없습니다." : "Your talons can't fit into boots.")
         else if (you.has_mutation(MUT_FLOAT))
-            NO_SLOT("You have no feet!")
+            NO_SLOT(Options.language == lang_t::KO ? "발이 없습니다!" : "You have no feet!")
 
         return 1;
 
@@ -198,7 +201,7 @@ int count = 0;
         if (you.form == transformation::sphinx && !you.has_mutation(MUT_NO_ARMOUR))
             return 1;
 
-        NO_SLOT("You can't fit into that!")
+        NO_SLOT(Options.language == lang_t::KO ? "몸에 맞지 않아 착용할 수 없습니다!" : "You can't fit into that!")
 
     case SLOT_CLOAK:
         // If octopodes are allowed to wear bardings, then surely they can also
@@ -207,18 +210,18 @@ int count = 0;
             return 1;
 
         if (you.has_mutation(MUT_FORMLESS))
-            NO_SLOT("You don't have any shoulders.")
+            NO_SLOT(Options.language == lang_t::KO ? "어깨가 없습니다." : "You don't have any shoulders.")
         else if (you.species == SP_OCTOPODE || you.has_mutation(MUT_NO_ARMOUR))
-            NO_SLOT("You can't wear that.")
+            NO_SLOT(Options.language == lang_t::KO ? "해당 장비를 착용할 수 없습니다." : "You can't wear that.")
         else if (you.get_mutation_level(MUT_WEAKNESS_STINGER, false) >= 3)
-            NO_SLOT("You can't wear that with your sharp stinger!")
+            NO_SLOT(Options.language == lang_t::KO ? "날카로운 독침 때문에 해당 장비를 착용할 수 없습니다!" : "You can't wear that with your sharp stinger!")
 
         return 1;
 
     case SLOT_RING:
     {
         if (you.has_mutation(MUT_NO_JEWELLERY))
-            NO_SLOT("You can't wear any rings.")
+            NO_SLOT(Options.language == lang_t::KO ? "반지를 착용할 수 없습니다." : "You can't wear any rings.")
 
         int ring_count = 2;
         if (you.species == SP_OCTOPODE)
@@ -238,7 +241,7 @@ int count = 0;
 
     case SLOT_AMULET:
         if (you.has_mutation(MUT_NO_JEWELLERY))
-            NO_SLOT("You can't wear amulets.")
+            NO_SLOT(Options.language == lang_t::KO ? "목걸이를 착용할 수 없습니다." : "You can't wear amulets.")
 
         if (_use_slots(UNRAND_JUSTICARS_REGALIA, count_melded_unrands, count_items))
             return 2;
@@ -247,7 +250,7 @@ int count = 0;
 
     case SLOT_GIZMO:
         if (you.species != SP_COGLIN)
-            NO_SLOT("You lack an exoframe to install that in.")
+            NO_SLOT(Options.language == lang_t::KO ? "해당 장비를 설치할 외골격이 없습니다." : "You lack an exoframe to install that in.")
 
         return 1;
 
@@ -468,7 +471,7 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
 #define NO_EQUIP(x) {if (veto_reason) { *veto_reason = x; }; return 0;}
 
     if (!item_type_is_equipment(item.base_type))
-        NO_EQUIP("That isn't an equippable item.")
+        NO_EQUIP(Options.language == lang_t::KO ? "장착할 수 없는 아이템입니다." : "That isn't an equippable item.")
 
     vector<equipment_slot> slots = get_all_item_slots(item);
 
@@ -514,8 +517,10 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
             int bad_size = fit_armour_size(item, player_size);
             if (bad_size != 0)
             {
-                NO_EQUIP(make_stringf("That is too %s for you to equip!",
-                                            (bad_size > 0) ? "large" : "small"))
+                NO_EQUIP((Options.language == lang_t::KO
+                    ? string(bad_size > 0 ? "너무 커서 장착할 수 없습니다!" : "너무 작아서 장착할 수 없습니다!")
+                    : make_stringf("That is too %s for you to equip!",
+                                   (bad_size > 0) ? "large" : "small")))
             }
         }
 
@@ -527,19 +532,19 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
             if (you.form == transformation::serpent)
                 return true;
             if (player_size >= SIZE_LARGE)
-                NO_EQUIP("This helmet is too small for your head.")
+                NO_EQUIP(Options.language == lang_t::KO ? "머리에 비해 투구가 너무 작습니다." : "This helmet is too small for your head.")
             else if (player_size <= SIZE_LITTLE)
-                NO_EQUIP("This helmet is too large for your head.")
+                NO_EQUIP(Options.language == lang_t::KO ? "머리에 비해 투구가 너무 큽니다." : "This helmet is too large for your head.")
             else if (species::is_draconian(you.species))
-                NO_EQUIP("You can't wear that with your reptilian head.")
+                NO_EQUIP(Options.language == lang_t::KO ? "파충류 형태의 머리에는 착용할 수 없습니다." : "You can't wear that with your reptilian head.")
             else if (you.species == SP_OCTOPODE)
-                NO_EQUIP("Your can't wear that!")
+                NO_EQUIP(Options.language == lang_t::KO ? "해당 장비를 착용할 수 없습니다!" : "Your can't wear that!")
             else if (you.has_mutation(MUT_HORNS, include_form))
-                NO_EQUIP("You can't fit that over your horns.")
+                NO_EQUIP(Options.language == lang_t::KO ? "뿔 때문에 해당 장비를 착용할 수 없습니다." : "You can't fit that over your horns.")
             else if (you.has_mutation(MUT_ANTENNAE, include_form))
-                NO_EQUIP("You can't fit that over your antennae.")
+                NO_EQUIP(Options.language == lang_t::KO ? "더듬이 때문에 해당 장비를 착용할 수 없습니다." : "You can't fit that over your antennae.")
             else if (you.has_mutation(MUT_BEAK, include_form))
-                NO_EQUIP("You can't fit that over your beak.")
+                NO_EQUIP(Options.language == lang_t::KO ? "부리 때문에 해당 장비를 착용할 수 없습니다." : "You can't fit that over your beak.")
         }
     }
     else if (item.base_type == OBJ_WEAPONS)
@@ -548,7 +553,7 @@ bool can_equip_item(const item_def& item, bool include_form, string* veto_reason
         if (is_weapon_too_large(item, bsize)
             && !you.has_mutation(MUT_QUADRUMANOUS))
         {
-            NO_EQUIP("That's too large for you to wield.");
+            NO_EQUIP(Options.language == lang_t::KO ? "너무 커서 무기로 들 수 없습니다." : "That's too large for you to wield.");
         }
     }
 
@@ -1873,10 +1878,11 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_FREEZING:
-            mprf("%s %s", item_name.c_str(),
-                is_range_weapon(item) ?
-                    "is covered in frost." :
-                    "glows with a cold blue light!");
+            if (Options.language == lang_t::KO)
+                mprf(is_range_weapon(item) ? "서리가 덮인 무기: %s." : "차갑고 푸른빛으로 빛나는 무기: %s!", item_name.c_str());
+            else
+                mprf("%s %s", item_name.c_str(),
+                     is_range_weapon(item) ? "is covered in frost." : "glows with a cold blue light!");
             break;
 
         case SPWPN_HOLY_WRATH:
@@ -1952,7 +1958,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             }
             else
             {
-                mprf("%s을(를) 따라 타는 듯한 고통이 치솟는다!",
+                mprf("%s에서 타는 듯한 고통이 치솟습니다!",
                         your_arm.c_str());
             }
             break;
@@ -1970,7 +1976,10 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             bool plural = true;
             string hand = you.hand_name(true, &plural);
 
-            mprf("Your %s briefly %s through it before you manage "
+            if (Options.language == lang_t::KO)
+                mprf("무기가 잠시 %s 사이로 빠져나가지만, 곧 단단히 움켜쥡니다.", hand.c_str());
+            else
+                mprf("Your %s briefly %s through it before you manage "
                     "to get a firm grip on it.",
                     hand.c_str(), conjugate_verb("pass", plural).c_str());
             break;
@@ -2000,7 +2009,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_SPECTRAL:
-            mprf("%s와(과) 유대감이 느껴져.", item_name.c_str());
+            mprf("%s에 묘한 유대감이 느껴집니다.", item_name.c_str());
             break;
 
         case SPWPN_REBUKE:
@@ -2328,8 +2337,11 @@ static void _equip_armour_effect(item_def& arm, bool unmeld)
             {
                 bool can_plural = false;
                 const string hands = you.hand_name(true, &can_plural);
-                mprf("Your %s feel%s oddly empty.",
-                     hands.c_str(), can_plural ? "" : "s");
+                if (Options.language == lang_t::KO)
+                    mprf("마력이 사라진 듯 %s에 묘한 허전함이 느껴집니다.", hands.c_str());
+                else
+                    mprf("Your %s feel%s oddly empty.",
+                         hands.c_str(), can_plural ? "" : "s");
             }
             break;
 
@@ -2394,8 +2406,7 @@ static void _unequip_armour_effect(item_def& item, bool meld)
     case SPARM_PONDEROUSNESS:
     {
         // XX can the noun here be derived from the species walking verb?
-        const string noun = you.species == SP_NAGA ? "slither" : "step";
-        mprf("덕분에 %s이(가) 다시 한결 가벼워진 것 같아.", noun.c_str());
+        mpr("다시 한결 가볍게 움직일 수 있을 것 같습니다.");
         break;
     }
 
@@ -2493,7 +2504,9 @@ static void _remove_amulet_of_faith(item_def &item)
         return;
     }
 
-    simple_god_message(" seems less interested in you.");
+    simple_god_message(Options.language == lang_t::KO
+        ? " — 당신에 대한 관심이 줄어든 듯합니다."
+        : " seems less interested in you.");
 
     const int piety_loss = div_rand_round(you.raw_piety, 3);
     // Piety penalty for removing the Amulet of Faith.
@@ -2795,9 +2808,14 @@ void unwield_distortion(bool brand)
 {
     if (have_passive(passive_t::safe_distortion))
     {
-        simple_god_message(make_stringf(" absorbs the residual spatial "
-                           "distortion as you %s your "
-                           "weapon.", brand ? "rebrand" : "unwield").c_str());
+        if (Options.language == lang_t::KO)
+            simple_god_message(brand
+                ? " — 무기의 속성을 바꾸는 동안 남은 공간 왜곡을 흡수합니다."
+                : " — 무기를 내려놓는 동안 남은 공간 왜곡을 흡수합니다.");
+        else
+            simple_god_message(make_stringf(" absorbs the residual spatial "
+                               "distortion as you %s your "
+                               "weapon.", brand ? "rebrand" : "unwield").c_str());
         return;
     }
 

@@ -217,7 +217,7 @@ void monster_teleport(monster* mons, bool instan, bool silent, bool away_from_pl
         if (mons->del_ench(ENCH_TP))
         {
             if (!silent)
-                simple_monster_message(*mons, " seems more stable.");
+                simple_monster_message(*mons, Options.language == lang_t::KO ? " — 더욱 안정된 듯합니다." : " seems more stable.");
         }
         else
         {
@@ -239,13 +239,13 @@ void monster_teleport(monster* mons, bool instan, bool silent, bool away_from_pl
         if (!away_from_player
             || !_monster_random_space(mons, newpos, !mons->wont_attack(), false))
         {
-            simple_monster_message(*mons, " flickers for a moment.");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 잠깐 깜빡입니다." : " flickers for a moment.");
             return;
         }
     }
 
     if (!silent)
-        simple_monster_message(*mons, " disappears!");
+        simple_monster_message(*mons, Options.language == lang_t::KO ? " — 사라집니다!" : " disappears!");
 
     const coord_def oldplace = mons->pos();
 
@@ -255,7 +255,7 @@ void monster_teleport(monster* mons, bool instan, bool silent, bool away_from_pl
     if (!silent && you.can_see(*mons))
     {
         if (was_seen)
-            simple_monster_message(*mons, " reappears nearby!");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 근처에 다시 나타납니다!" : " reappears nearby!");
         else
             mprf("%s appears out of thin air!", mons->name(DESC_A).c_str());
     }

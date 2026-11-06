@@ -3120,7 +3120,7 @@ void check_lovelessness(monster &mons)
     mons.attitude = ATT_HOSTILE;
     mons.del_ench(ENCH_CHARM);
     behaviour_event(&mons, ME_ALERT, &you);
-    mprf("%s feels only hate for you!", mons.name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "당신을 증오하게 된 몬스터: %s!" : "%s feels only hate for you!", mons.name(DESC_THE).c_str());
 }
 
 /**

@@ -208,7 +208,7 @@ void ranged_attack::handle_phase_dodged()
     if (ev_margin > -defender->missile_repulsion())
     {
         if (needs_message && defender_visible)
-            mprf("The %s is repelled.", proj_name.c_str());
+            mprf(Options.language == lang_t::KO ? "튕겨 나간 발사체: %s." : "The %s is repelled.", proj_name.c_str());
 
         if (defender->is_player())
             count_action(CACT_DODGE, DODGE_REPEL);
@@ -221,10 +221,13 @@ void ranged_attack::handle_phase_dodged()
 
     if (needs_message)
     {
-        mprf("The %s%s misses %s.",
-             proj_name.c_str(),
-             evasion_margin_adverb().c_str(),
-             defender_name(false).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("빗나간 발사체: %s, 대상: %s.", proj_name.c_str(), defender_name(false).c_str());
+        else
+            mprf("The %s%s misses %s.",
+                 proj_name.c_str(),
+                 evasion_margin_adverb().c_str(),
+                 defender_name(false).c_str());
     }
 
     if (!weapon->is_type(OBJ_MISSILES, MI_DART)
@@ -243,7 +246,7 @@ static bool _jelly_eat_missile(const string& proj_name, int damage_done)
         && !you.duration[DUR_DEATHS_DOOR]
         && !one_chance_in(3))
     {
-        mprf("Your attached jelly eats the %s!", proj_name.c_str());
+        mprf(Options.language == lang_t::KO ? "몸에 붙은 젤리가 발사체를 먹어 치웁니다: %s!" : "Your attached jelly eats the %s!", proj_name.c_str());
         inc_hp(1 + random2(damage_done));
         canned_msg(MSG_GAIN_HEALTH);
         return true;
@@ -299,11 +302,16 @@ bool ranged_attack::handle_phase_hit()
         {
             if (needs_message)
             {
-                mprf("The %s %s %s%s but does no damage.",
-                    proj_name.c_str(),
-                    attack_verb.c_str(),
-                    defender->name(DESC_THE).c_str(),
-                    mulch_bonus() ? " and shatters," : "");
+                if (Options.language == lang_t::KO)
+                    mprf(mulch_bonus()
+                         ? "발사체가 부서지지만 피해를 입히지 못합니다: %s, 대상: %s."
+                         : "발사체가 맞았지만 피해를 입히지 못합니다: %s, 대상: %s.",
+                         proj_name.c_str(), defender->name(DESC_THE).c_str());
+                else
+                    mprf("The %s %s %s%s but does no damage.",
+                         proj_name.c_str(), attack_verb.c_str(),
+                         defender->name(DESC_THE).c_str(),
+                         mulch_bonus() ? " and shatters," : "");
             }
         }
 
@@ -564,7 +572,7 @@ bool ranged_attack::dart_check(special_missile_type type)
         if (needs_message)
         {
             if (defender->is_monster())
-                simple_monster_message(*defender->as_monster(), " resists.");
+                simple_monster_message(*defender->as_monster(), Options.language == lang_t::KO ? " — 저항합니다." : " resists.");
             else
                 canned_msg(MSG_YOU_RESIST);
         }
@@ -697,7 +705,7 @@ bool ranged_attack::apply_missile_brand()
 
         if (defender->is_player())
         {
-            mprf(MSGCH_WARN, "You become untethered in space!");
+            mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "공간에 고정되어 있던 상태가 풀립니다!" : "You become untethered in space!");
             you.duration[DUR_BLINKITIS] = random_range(30, 40);
             you.props[BLINKITIS_SOURCE_KEY] = attacker->name(DESC_A, true);
             you.props[BLINKITIS_AUX_KEY] = proj_name;
@@ -707,7 +715,7 @@ bool ranged_attack::apply_missile_brand()
             monster* dmon = defender->as_monster();
             if (!dmon->has_ench(ENCH_BLINKITIS))
             {
-                simple_monster_message(*dmon, " becomes untethered in space!");
+                simple_monster_message(*dmon, Options.language == lang_t::KO ? " — 공간에 고정되어 있던 상태가 풀립니다!" : " becomes untethered in space!");
                 dmon->add_ench(mon_enchant(ENCH_BLINKITIS, attacker,
                                            random_range(3, 4) * BASELINE_DELAY));
                 // Trigger immediately once so that monster can't make an attack

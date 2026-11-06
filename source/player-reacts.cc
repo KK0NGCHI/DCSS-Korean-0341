@@ -669,7 +669,7 @@ static void _try_to_respawn_ancestor()
     if (!ancestor)
         return;
 
-    mprf("%s emerges from the mists of memory!",
+    mprf(Options.language == lang_t::KO ? "기억의 안개 속에서 나타난 조상: %s!" : "%s emerges from the mists of memory!",
          ancestor->name(DESC_YOUR).c_str());
     add_companion(ancestor);
     place_cloud(CLOUD_MIST, ancestor->pos(), random_range(1,2), ancestor); // ;)
@@ -993,8 +993,11 @@ static void _decrement_durations()
         && !you.confused())
     {
         extract_barbs(
-            make_stringf("You %s the barbed spikes from your body.",
-                you.berserk() ? "rip and tear" : "carefully extract").c_str());
+            (Options.language == lang_t::KO
+                ? (you.berserk() ? string("몸에 박힌 가시를 거칠게 뜯어냅니다.")
+                                : string("몸에 박힌 가시를 조심스럽게 뽑아냅니다."))
+                : make_stringf("You %s the barbed spikes from your body.",
+                               you.berserk() ? "rip and tear" : "carefully extract")).c_str());
     }
 
     if (you.wearing_jewellery(AMU_WILDSHAPE))
@@ -1200,9 +1203,22 @@ static void _maybe_attune_regen_items()
     plural = plural || eq_list.size() > 1;
     string eq_str = comma_separated_line(eq_list.begin(), eq_list.end());
     string msg_str = comma_separated_line(msgs.begin(), msgs.end());
-    mprf("Your %s attune%s to your body, and you begin to %s.",
-         eq_str.c_str(), plural ? " themselves" : "s itself",
-         msg_str.c_str());
+    if (Options.language == lang_t::KO)
+    {
+        const string effects = gained_regen && gained_mana_regen
+            ? "체력과 마력 재생이 빨라집니다"
+            : gained_regen ? "체력 재생이 빨라집니다"
+            : gained_mana_regen ? "마력 재생이 빨라집니다" : "";
+        mprf("장비가 몸에 적응했습니다: %s.", eq_str.c_str());
+        if (!effects.empty())
+            mpr(effects + ".");
+        if (gained_chemistry)
+            mpr("물약을 마시면 마력을 추출할 수 있습니다.");
+    }
+    else
+        mprf("Your %s attune%s to your body, and you begin to %s.",
+             eq_str.c_str(), plural ? " themselves" : "s itself",
+             msg_str.c_str());
 }
 
 // cjo: Handles player hp and mp regeneration. If the counter

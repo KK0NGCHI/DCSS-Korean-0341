@@ -668,10 +668,14 @@ void attack::drain_defender_speed()
 {
     if (needs_message)
     {
-        mprf("%s %s %s vigour!",
-             atk_name(DESC_THE).c_str(),
-             attacker->conj_verb("drain").c_str(),
-             def_name(DESC_ITS).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("활력을 빼앗는 공격자: %s, 대상: %s!",
+                 atk_name(DESC_THE).c_str(), def_name(DESC_THE).c_str());
+        else
+            mprf("%s %s %s vigour!",
+                 atk_name(DESC_THE).c_str(),
+                 attacker->conj_verb("drain").c_str(),
+                 def_name(DESC_ITS).c_str());
     }
     defender->slow_down(attacker, 5 + random2(7));
 }
@@ -747,7 +751,7 @@ void attack::stab_message()
     case 4:     // confused/fleeing/distracted
         if (!one_chance_in(3))
         {
-            mprf("You catch %s completely off-guard!",
+            mprf(Options.language == lang_t::KO ? "완전히 방심한 틈을 잡았습니다: %s!" : "You catch %s completely off-guard!",
                   defender->name(DESC_THE).c_str());
         }
         else
@@ -760,13 +764,16 @@ void attack::stab_message()
     case 1:
         if (you.has_mutation(MUT_PAWS) && coinflip())
         {
-            mprf("You pounce on the unaware %s!",
+            mprf(Options.language == lang_t::KO ? "방심한 적에게 뛰어듭니다: %s!" : "You pounce on the unaware %s!",
                  defender->name(DESC_PLAIN).c_str());
             break;
         }
-        mprf("%s fails to defend %s.",
-              defender->name(DESC_THE).c_str(),
-              defender->pronoun(PRONOUN_REFLEXIVE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("방어할 틈을 놓친 몬스터: %s.", defender->name(DESC_THE).c_str());
+        else
+            mprf("%s fails to defend %s.",
+                 defender->name(DESC_THE).c_str(),
+                 defender->pronoun(PRONOUN_REFLEXIVE).c_str());
         break;
     }
 
@@ -1244,7 +1251,7 @@ bool attack::apply_damage_brand(const char *what)
             {
                 if (defender->is_player())
                 {
-                    mprf("%s draws strength from your wounds!",
+                    mprf(Options.language == lang_t::KO ? "당신의 상처에서 힘을 얻는 몬스터: %s!" : "%s draws strength from your wounds!",
                          attacker->name(DESC_THE).c_str());
                 }
                 else
@@ -1317,7 +1324,7 @@ bool attack::apply_damage_brand(const char *what)
             else if (!ench_flavour_affects_monster(attacker, beam_temp.flavour, mon)
                      || mons_invuln_will(*mon))
             {
-                mprf("%s is completely immune to your confusing touch!",
+                mprf(Options.language == lang_t::KO ? "혼란의 손길에 완전히 면역인 몬스터: %s!" : "%s is completely immune to your confusing touch!",
                      mon->name(DESC_THE).c_str());
                 you.duration[DUR_CONFUSING_TOUCH] = 1;
             }
@@ -1350,7 +1357,7 @@ bool attack::apply_damage_brand(const char *what)
         if (coinflip() && attacker->can_constrict(*defender, CONSTRICT_ENTANGLE))
         {
             if (you.can_see(*defender))
-                mprf("%s becomes entangled by vines.", defender->name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "덩굴에 휘감긴 몬스터: %s." : "%s becomes entangled by vines.", defender->name(DESC_THE).c_str());
             attacker->start_constricting(*defender, CONSTRICT_ENTANGLE);
         }
         break;
@@ -1468,7 +1475,7 @@ int attack::player_stab(int damage)
         {
             if (!you.duration[DUR_DEVIOUS])
             {
-                mprf(MSGCH_DURATION, "You feel devious.");
+                mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "교활한 기운이 감돕니다." : "You feel devious.");
                 you.props.erase(DEVIOUS_KEY);
             }
 
@@ -1615,7 +1622,7 @@ void attack::maybe_trigger_autodazzler()
         proj.fire(tracer);
         if (tracer.friend_info.count == 0)
         {
-            mpr("Your autodazzler retaliates!");
+            mpr(Options.language == lang_t::KO ? "자동 섬광기가 반격합니다!" : "Your autodazzler retaliates!");
 
             proj.fire();
         }
@@ -1627,8 +1634,11 @@ bool attack::paragon_defends_player()
     if (defender->is_player() && paragon_defense_bonus_active()
         && one_chance_in(3))
     {
-        mprf("Your paragon deflects %s attack away from you.",
-                    attacker->name(DESC_ITS).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("수호자가 공격을 막아냅니다: %s.", attacker->name(DESC_THE).c_str());
+        else
+            mprf("Your paragon deflects %s attack away from you.",
+                 attacker->name(DESC_ITS).c_str());
         return true;
     }
 

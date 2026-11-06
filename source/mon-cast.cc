@@ -894,7 +894,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
                 if (you.can_see(caster))
                 {
                     if (Options.language == lang_t::KO)
-                        mprf("%s %s을(를) 갈기갈기 찢습니다%s",
+                        mprf("%s의 공격이 %s에게 찢어지는 듯한 상처를 입힙니다%s",
                              caster.name(DESC_THE).c_str(), victim->name(DESC_THE).c_str(),
                              final ? attack_strength_punctuation(final).c_str()
                                    : ", 하지만 피해를 주지 못합니다.");
@@ -1412,7 +1412,7 @@ static void _cast_smiting(monster &caster, mon_spell_slot slot, bolt&)
     ASSERT(foe);
 
     if (foe->is_player())
-        mprf("%s smites you!", _god_name(god).c_str());
+        mprf(Options.language == lang_t::KO ? "신벌이 당신을 내리칩니다: %s!" : "%s smites you!", _god_name(god).c_str());
     else
         simple_monster_message(*foe->as_monster(), (Options.language == lang_t::KO ? " 신벌을 받습니다." : " is smitten."));
 
@@ -1546,7 +1546,7 @@ static void _cast_beckoning_gale(monster &caster, mon_spell_slot, bolt&)
 
     if (moved)
     {
-        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s을(를) 앞으로 끌어당깁니다!" : "A beckoning whirlwind drags %s forward!"),
+        mprf((Options.language == lang_t::KO ? "휘몰아치는 회오리바람이 %s 쪽으로 몰려들어 대상을 앞으로 끌어당깁니다!" : "A beckoning whirlwind drags %s forward!"),
             foe->name(DESC_THE).c_str());
     }
     else
@@ -3931,7 +3931,7 @@ static bool _make_monster_angry(const monster* mon, monster* targ, bool actual)
                      mon->pronoun(PRONOUN_OBJECTIVE).c_str());
         }
         else
-            mprf(Options.language == lang_t::KO ? "%s %s을(를) 부추깁니다!" : "%s goads %s on!",
+            mprf(Options.language == lang_t::KO ? "%s의 부추김에 %s에게 격분한 기운이 퍼집니다!" : "%s goads %s on!",
                  mon->name(DESC_THE).c_str(), targ->name(DESC_THE).c_str());
     }
 
@@ -4115,7 +4115,7 @@ static bool _awaken_vines(monster* mon, bool test_only = false)
 {
     if (_is_wiz_cast())
     {
-        mpr("Sorry, this spell isn't supported for dummies!"); //mons dummy
+        mpr((Options.language == lang_t::KO ? "이 주문은 임시 몬스터에 지원되지 않습니다!" : "Sorry, this spell isn't supported for dummies!")); //mons dummy
         return false;
     }
 
@@ -5506,8 +5506,9 @@ static int _monster_abjure_target(monster* target, int pow, bool actual)
         pow = pow * (30 - target->get_hit_dice()) / 30;
         if (pow < duration)
         {
-            simple_god_message(" protects your fellow warrior from evil "
-                               "magic!");
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 동료 전사를 사악한 마법에서 보호합니다!"
+                : " protects your fellow warrior from evil magic!");
             shielded = true;
         }
     }
@@ -5516,7 +5517,7 @@ static int _monster_abjure_target(monster* target, int pow, bool actual)
         pow = pow / 2;
         if (pow < duration)
         {
-            simple_god_message(" shields your ally from puny magic!");
+            simple_god_message((Options.language == lang_t::KO ? " — 동료를 보잘것없는 마법에서 보호합니다!" : " shields your ally from puny magic!"));
             shielded = true;
         }
     }
@@ -5885,9 +5886,13 @@ static bool _mons_cast_freeze(monster* mons)
 
     if (you.can_see(*target))
     {
-        mprf("%s %s frozen%s", target->name(DESC_THE).c_str(),
-                              target->conj_verb("are").c_str(),
-                              attack_strength_punctuation(damage).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("얼어붙는 대상: %s%s", target->name(DESC_THE).c_str(),
+                 attack_strength_punctuation(damage).c_str());
+        else
+            mprf("%s %s frozen%s", target->name(DESC_THE).c_str(),
+                 target->conj_verb("are").c_str(),
+                 attack_strength_punctuation(damage).c_str());
     }
 
     // Resist messaging, needs to happen after so we get the correct message
@@ -6807,7 +6812,7 @@ static void _cast_resonance_strike(monster &caster, mon_spell_slot, bolt&)
     if (you.see_cell(target->pos()))
     {
         if (Options.language == lang_t::KO)
-            mprf("대지에서 솟아난 강력한 충격파가 %s을(를) 강타합니다!",
+            mprf("대지에서 솟아난 강력한 충격파가 %s에게 적중합니다!",
                  target->name(DESC_THE).c_str());
         else
             mprf("A blast of power from the earth%s strikes %s!",
@@ -6872,29 +6877,36 @@ static void _sheep_message(int num_sheep, int sleep_pow, bool seen, actor& foe)
 
     // Determine messaging based on sleep strength.
     if (sleep_pow >= 125)
-        message = "You are overwhelmed by glittering dream dust!";
+        message = Options.language == lang_t::KO ? "반짝이는 꿈의 먼지가 당신을 휩쌉니다!" : "You are overwhelmed by glittering dream dust!";
     else if (sleep_pow >= 75)
-        message = "The dream sheep are wreathed in dream dust.";
+        message = Options.language == lang_t::KO ? "꿈의 양들이 꿈의 먼지에 둘러싸입니다." : "The dream sheep are wreathed in dream dust.";
     else if (sleep_pow >= MIN_DREAM_SUCCESS_POWER)
     {
-        message = make_stringf("The dream sheep shake%s wool and sparkle%s.",
-                               num_sheep == 1 ? "s its" : " their",
-                               num_sheep == 1 ? "s": "");
+        message = Options.language == lang_t::KO
+            ? "꿈의 양들이 양털을 털며 반짝입니다."
+            : make_stringf("The dream sheep shake%s wool and sparkle%s.",
+                           num_sheep == 1 ? "s its" : " their",
+                           num_sheep == 1 ? "s": "");
     }
     else // if sleep fails
     {
-        message = make_stringf("The dream sheep ruffle%s wool and motes of "
-                               "dream dust sparkle, to no effect.",
-                               num_sheep == 1 ? "s its" : " their");
+        message = Options.language == lang_t::KO
+            ? "꿈의 양들이 양털을 부풀리며 꿈의 먼지를 흩날리지만, 아무 일도 일어나지 않습니다."
+            : make_stringf("The dream sheep ruffle%s wool and motes of "
+                           "dream dust sparkle, to no effect.",
+                           num_sheep == 1 ? "s its" : " their");
     }
 
     if (foe.is_player())
     {
-        const char* drowsy = sleep_pow ? " You feel drowsy..." : "";
+        const char* drowsy = sleep_pow
+            ? (Options.language == lang_t::KO ? " 졸음이 밀려옵니다..." : " You feel drowsy...") : "";
         if (!seen)
         {
             mprf(MSGCH_MONSTER_SPELL,
-                 "Motes of dream dust float from an unseen source.%s",
+                 Options.language == lang_t::KO
+                     ? "보이지 않는 곳에서 꿈의 먼지가 흩날립니다.%s"
+                     : "Motes of dream dust float from an unseen source.%s",
                  drowsy);
             return;
         }
@@ -7008,27 +7020,27 @@ static void _mons_upheaval(monster& mons, actor& /*foe*/, bool randomize)
             beam.colour    = RED;
             beam.tile_beam = TILE_BOLT_MAGMA;
             beam.hit_verb  = "engulfs";
-            message        = "Magma suddenly erupts from the ground!";
+            message        = Options.language == lang_t::KO ? "땅에서 갑자기 용암이 솟구칩니다!" : "Magma suddenly erupts from the ground!";
             break;
         case 1:
             beam.name      = "blast of ice";
             beam.flavour   = BEAM_ICE;
             beam.colour    = WHITE;
             beam.tile_beam = TILE_BOLT_ICEBLAST;
-            message        = "A blizzard blasts the area with ice!";
+            message        = Options.language == lang_t::KO ? "눈보라가 주변을 얼음으로 뒤덮습니다!" : "A blizzard blasts the area with ice!";
             break;
         case 2:
             beam.name      = "cutting wind";
             beam.flavour   = BEAM_AIR;
             beam.colour    = LIGHTGRAY;
             beam.tile_beam = TILE_BOLT_STRONG_AIR;
-            message        = "A storm cloud blasts the area with cutting wind!";
+            message        = Options.language == lang_t::KO ? "폭풍 구름에서 날카로운 강풍이 몰아칩니다!" : "A storm cloud blasts the area with cutting wind!";
             break;
         case 3:
             beam.name    = "blast of rubble";
             beam.flavour = BEAM_FRAG;
             beam.colour  = BROWN;
-            message      = "The ground shakes violently, spewing rubble!";
+            message      = Options.language == lang_t::KO ? "땅이 격렬하게 흔들리며 돌무더기를 뿜어냅니다!" : "The ground shakes violently, spewing rubble!";
             break;
         default:
             break;
@@ -7101,7 +7113,7 @@ static void _mons_vortex(monster *mons)
         bool flying = mons->airborne();
         if (Options.language == lang_t::KO)
             mprf(flying ? "얼어붙는 소용돌이가 %s 주위에 나타납니다!"
-                         : "얼어붙는 소용돌이가 %s을(를) 들어 올립니다!",
+                         : "얼어붙는 소용돌이가 %s 주위를 휘감으며 대상을 들어 올립니다!",
                  mons->name(DESC_THE).c_str());
         else
             mprf("A freezing vortex appears %s%s%s!",
@@ -7277,7 +7289,7 @@ static void _cast_bestow_arms(monster& caster)
     if (you.can_see(caster))
     {
         mprf(MSGCH_MONSTER_SPELL,
-             Options.language == lang_t::KO ? "%s 아군에게 %s을(를) 지급합니다." : "%s arms its allies with %s.",
+             Options.language == lang_t::KO ? "%s의 아군들이 %s 무장을 받습니다." : "%s arms its allies with %s.",
              caster.name(DESC_THE).c_str(), pluralise(wpn.name(DESC_PLAIN, false, true)).c_str());
     }
 
@@ -7719,8 +7731,8 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
                 if (Options.language == lang_t::KO)
                     mprf(foe->airborne()
-                             ? "물이 솟아올라 %s을(를) 강타합니다%s"
-                             : "물이 소용돌이치며 %s을(를) 강타합니다%s",
+                             ? "물이 솟아올라 %s에게 충격을 줍니다%s"
+                             : "물이 소용돌이치며 %s에게 충격을 줍니다%s",
                          foe->name(DESC_THE).c_str(),
                          attack_strength_punctuation(damage_taken).c_str());
                 else
@@ -7760,8 +7772,8 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
             if (Options.language == lang_t::KO)
                 mprf(spell_cast == SPELL_SLEETSTRIKE
-                         ? "차가운 진눈깨비를 동반한 강풍이 %s을(를) 강타합니다%s"
-                         : "거센 바람이 %s을(를) 강타합니다%s",
+                         ? "차가운 진눈깨비를 동반한 강풍이 %s에게 몰아칩니다%s"
+                         : "거센 바람이 %s에게 몰아칩니다%s",
                      foe->name(DESC_THE).c_str(),
                      attack_strength_punctuation(damage_taken).c_str());
             else
@@ -7965,9 +7977,13 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
         if (you.can_see(*mons))
         {
-            mprf("%s shimmers and seems to become %s!",
-                 mons->name(DESC_THE).c_str(),
-                 number_in_words(n_wanted + 1).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("반짝이며 %d개의 모습으로 늘어나는 몬스터: %s!",
+                     n_wanted + 1, mons->name(DESC_THE).c_str());
+            else
+                mprf("%s shimmers and seems to become %s!",
+                     mons->name(DESC_THE).c_str(),
+                     number_in_words(n_wanted + 1).c_str());
         }
     }
 
@@ -8305,7 +8321,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         {
             if (you.can_see(*mons))
             {
-                mprf("%s commands the forest to attack, but nothing happens.",
+                mprf(Options.language == lang_t::KO ? "숲에 공격을 명령하지만 아무 일도 일어나지 않습니다: %s." : "%s commands the forest to attack, but nothing happens.",
                      mons->name(DESC_THE).c_str());
             }
             return;
@@ -8321,7 +8337,7 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
         env.forest_is_hostile = !mons->friendly();
 
         // You may be unable to see the monster, but notice an affected tree.
-        forest_message(mons->pos(), "The forest starts to sway and rumble!");
+        forest_message(mons->pos(), Options.language == lang_t::KO ? "숲이 흔들리며 요동치기 시작합니다!" : "The forest starts to sway and rumble!");
         return;
 
     case SPELL_SUMMON_DRAGON:
@@ -9377,10 +9393,15 @@ static void _throw_ally_to(const monster &thrower, monster &throwee,
                                                 foe->name(DESC_THE).c_str()) :
                                    "out of sight";
 
-        mprf("%s throws %s %s!",
-             (thrower_seen ? thrower.name(DESC_THE).c_str() : "Something"),
-             (throwee_seen ? throwee.name(DESC_THE, true).c_str() : "something"),
-             destination.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("던지는 대상: %s, 날아가는 대상: %s!",
+                 thrower_seen ? thrower.name(DESC_THE).c_str() : "무언가",
+                 throwee_seen ? throwee.name(DESC_THE, true).c_str() : "무언가");
+        else
+            mprf("%s throws %s %s!",
+                 thrower_seen ? thrower.name(DESC_THE).c_str() : "Something",
+                 throwee_seen ? throwee.name(DESC_THE, true).c_str() : "something",
+                 destination.c_str());
 
         bolt beam;
         beam.range   = INFINITE_DISTANCE;
@@ -9450,10 +9471,13 @@ static void _oblivion_howl(monster &mon)
                             make_stringf("but you%s",
                                          you.resist_margin_phrase(willpower).c_str()) :
                             "and it begins to echo in your mind!";
-    mprf("%s unleashes a %s howl, %s",
-         mon.name(DESC_THE).c_str(),
-         silenced(mon.pos()) ? "silent" : "terrible",
-         effect.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(silenced(mon.pos())
+             ? "소리 없는 울부짖음을 내뿜는 몬스터: %s!"
+             : "끔찍한 울부짖음을 내뿜는 몬스터: %s!", mon.name(DESC_THE).c_str());
+    else
+        mprf("%s unleashes a %s howl, %s", mon.name(DESC_THE).c_str(),
+             silenced(mon.pos()) ? "silent" : "terrible", effect.c_str());
     noisy(spell_effect_noise(SPELL_OBLIVION_HOWL), mon.pos(), mon.mid);
     if (willpower <= 0)
     {
@@ -9486,7 +9510,9 @@ static void _siren_sing(monster* mons, bool avatar)
     {
         const char * const song_adj = already_mesmerised ? "its luring"
                                                          : "a haunting";
-        const string song_desc = make_stringf(" chants %s song.", song_adj);
+        const string song_desc = Options.language == lang_t::KO
+            ? (already_mesmerised ? "의 유혹하는 노랫소리가 울려 퍼집니다." : "의 으스스한 노랫소리가 울려 퍼집니다.")
+            : make_stringf(" chants %s song.", song_adj);
         simple_monster_message(*mons, song_desc.c_str(), false, spl);
     }
     else

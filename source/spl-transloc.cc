@@ -292,7 +292,7 @@ static bool _find_cblink_target(dist &target, bool safe_cancel,
         if (target_mons && you.can_see(*target_mons))
         {
             if (Options.language == lang_t::KO)
-                mprf("%s이(가) 있는 칸으로 이동할 수 없습니다!", target_mons->name(DESC_THE).c_str());
+                mprf("대상 %s의 위치로 이동할 수 없습니다!", target_mons->name(DESC_THE).c_str());
             else
                 mprf("You can't %s onto %s!", verb.c_str(), target_mons->name(DESC_THE).c_str());
             continue;
@@ -532,9 +532,9 @@ string electric_charge_impossible_reason(bool allow_safe_monsters)
 string movement_impossible_reason()
 {
     if (you.attribute[ATTR_HELD])
-        return make_stringf("You cannot do that while %s.", held_status());
+        return make_stringf(Options.language == lang_t::KO ? "붙잡힌 상태라 행동할 수 없습니다: %s." : "You cannot do that while %s.", held_status());
     if (you.cannot_move())
-        return "You cannot move."; // MSG_CANNOT_MOVE
+        return Options.language == lang_t::KO ? "움직일 수 없습니다." : "You cannot move."; // MSG_CANNOT_MOVE
     return "";
 }
 
@@ -548,14 +548,14 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
     if (agent.pos() == target)
     {
         if (fail_reason)
-            *fail_reason = "You can't charge at yourself.";
+            *fail_reason = Options.language == lang_t::KO ? "자신에게 돌진할 수 없습니다." : "You can't charge at yourself.";
 
         return false;
     }
     else if (adjacent(agent.pos(), target))
     {
         if (fail_reason)
-            *fail_reason = "You're already next to there.";
+            *fail_reason = Options.language == lang_t::KO ? "이미 대상 바로 옆에 있습니다." : "You're already next to there.";
 
         return false;
     }
@@ -574,7 +574,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
            && fedhas_passthrough(act->as_monster()))
     {
         if (fail_reason)
-            *fail_reason = "You can't see anything there to charge at.";
+            *fail_reason = Options.language == lang_t::KO ? "그곳에는 돌진할 만한 대상이 보이지 않습니다." : "You can't see anything there to charge at.";
 
         return false;
     }
@@ -583,7 +583,7 @@ bool valid_electric_charge_target(const actor& agent, coord_def target, string* 
     if (mons_aligned(act, &agent) || act->is_firewood())
     {
         if (fail_reason)
-            *fail_reason = "Why would you want to do that?";
+            *fail_reason = Options.language == lang_t::KO ? "아군 또는 공격할 수 없는 대상에게 돌진할 수 없습니다." : "Why would you want to do that?";
 
         return false;
     }
@@ -605,7 +605,7 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
     if (!find_ray(agent.pos(), target, ray, opc_solid))
     {
         if (fail_reason)
-            *fail_reason = "There's something in the way.";
+            *fail_reason = Options.language == lang_t::KO ? "이동 경로에 장애물이 있습니다." : "There's something in the way.";
 
         return coord_def(0, 0);
     }
@@ -622,9 +622,9 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
             {
                 if (fail_reason)
                 {
-                    *fail_reason = "There's "
-                                   + feature_description_at(ray.pos())
-                                   + " in the way.";
+                    *fail_reason = Options.language == lang_t::KO
+                        ? "이동 경로를 가로막는 장애물: " + feature_description_at(ray.pos())
+                        : "There's " + feature_description_at(ray.pos()) + " in the way.";
                 }
 
                 return coord_def(0, 0);
@@ -635,8 +635,9 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
             {
                 if (fail_reason)
                 {
-                    *fail_reason = mon->name(DESC_THE)
-                                   + " is immovably fixed in your path.";
+                    *fail_reason = Options.language == lang_t::KO
+                        ? "이동 경로를 막고 있는 고정된 대상: " + mon->name(DESC_THE)
+                        : mon->name(DESC_THE) + " is immovably fixed in your path.";
                 }
 
                 return coord_def(0, 0);
@@ -650,7 +651,7 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
                 {
                     if (fail_reason)
                     {
-                        *fail_reason = make_stringf("You cannot charge away from %s!",
+                        *fail_reason = make_stringf(Options.language == lang_t::KO ? "%s에게서 멀어지는 방향으로 돌진할 수 없습니다!" : "You cannot charge away from %s!",
                                                     beholder->name(DESC_THE, true).c_str());
                     }
 
@@ -662,7 +663,7 @@ coord_def get_electric_charge_landing_spot(const actor& agent, coord_def target,
                 {
                     if (fail_reason)
                     {
-                        *fail_reason = make_stringf("You cannot charge closer to %s!",
+                        *fail_reason = make_stringf(Options.language == lang_t::KO ? "%s에게 가까워지는 방향으로 돌진할 수 없습니다!" : "You cannot charge closer to %s!",
                                                     fearmonger->name(DESC_THE, true).c_str());
                     }
 
@@ -767,7 +768,7 @@ spret electric_charge(actor& agent, int powc, bool fail, const coord_def &target
     if (invalid_dest)
     {
         if (agent.is_player())
-            mprf("%s is immovably fixed there.", dest_mon->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "그 자리에 단단히 고정된 몬스터: %s." : "%s is immovably fixed there.", dest_mon->name(DESC_THE).c_str());
         return spret::success;
     }
 
@@ -795,8 +796,11 @@ spret electric_charge(actor& agent, int powc, bool fail, const coord_def &target
     {
         if (agent.is_player() || (agent.is_monster() && you.can_see(agent)))
         {
-            mprf("...but somehow remain%s in the same place.",
-                                                agent.is_monster() ? "s" : "");
+            if (Options.language == lang_t::KO)
+                mpr("...하지만 어찌 된 일인지 제자리에 그대로 남습니다.");
+            else
+                mprf("...but somehow remain%s in the same place.",
+                     agent.is_monster() ? "s" : "");
         }
 
         return spret::success;
@@ -1090,8 +1094,9 @@ static bool _teleport_player(bool wizard_tele, string reason="")
             // location, so cancel the teleport.
             if (crawl_state.seen_hups)
             {
-                mprf(MSGCH_ERROR, "Controlled teleport interrupted by HUP signal, "
-                                  "cancelling teleport.");
+                mprf(MSGCH_ERROR, "%s", Options.language == lang_t::KO
+                    ? "연결 종료 신호로 제어 순간이동이 중단되었습니다."
+                    : "Controlled teleport interrupted by HUP signal, cancelling teleport.");
                 return false;
             }
 
@@ -1261,7 +1266,9 @@ bool hostile_teleport_player(monster* source)
             _place_tloc_cloud(source->pos());
             source->move_to(source_newpos, MV_DELIBERATE | MV_TRANSLOCATION, true);
             source->target = you.pos();
-            mprf(MSGCH_WARN, "%s tunnels through space-time and arrives with you!",
+            mprf(MSGCH_WARN, Options.language == lang_t::KO
+                     ? "시공간을 뚫고 함께 도착한 몬스터: %s!"
+                     : "%s tunnels through space-time and arrives with you!",
                  source->name(DESC_THE).c_str());
             source->finalise_movement();
         }
@@ -1867,7 +1874,7 @@ spret cast_gravitas(int pow, const coord_def& where, bool fail)
             dmg = mon->apply_ac(dmg);
 
             if (you.can_see(*mon))
-                mprf("%s is pinned by gravity.", mon->name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "중력에 짓눌린 몬스터: %s." : "%s is pinned by gravity.", mon->name(DESC_THE).c_str());
             mon->hurt(&you, dmg);
             mon->add_ench(mon_enchant(ENCH_BOUND, &you, dur));
             behaviour_event(mon, ME_WHACK, &you, you.pos());
@@ -1932,9 +1939,12 @@ bool beckon(actor &beckoned, const bolt &path)
     if (!beckoned.move_to(dest, MV_TRANSLOCATION, true))
         return false;
 
-    mprf("%s %s suddenly forward!",
-         beckoned.name(DESC_THE).c_str(),
-         beckoned.conj_verb("hurl").c_str());
+    if (Options.language == lang_t::KO)
+        mprf("갑자기 앞으로 내던져진 몬스터: %s!", beckoned.name(DESC_THE).c_str());
+    else
+        mprf("%s %s suddenly forward!",
+             beckoned.name(DESC_THE).c_str(),
+             beckoned.conj_verb("hurl").c_str());
 
     beckoned.finalise_movement();
 
@@ -1972,7 +1982,7 @@ void attract_monster(monster &mon, int max_move)
     if (!mon.move_to(ray.pos(), MV_TRANSLOCATION, true))
         return;
 
-    mprf("%s is attracted toward you.", mon.name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "당신 쪽으로 끌려오는 몬스터: %s." : "%s is attracted toward you.", mon.name(DESC_THE).c_str());
 
     _place_tloc_cloud(old_pos);
     _place_tloc_cloud(ray.pos());
@@ -2020,8 +2030,7 @@ spret word_of_chaos(int pow, bool fail)
     vector<monster *> targets = find_chaos_targets();
     if (visible_targets.empty())
     {
-        if (!yesno("You cannot see any enemies that you can affect. Speak a "
-                   "word of chaos anyway?", true, 'n'))
+        if (!yesno(Options.language == lang_t::KO ? "영향을 줄 수 있는 적이 보이지 않습니다. 그래도 혼돈의 말을 외치시겠습니까?" : "You cannot see any enemies that you can affect. Speak a word of chaos anyway?", true, 'n'))
         {
             canned_msg(MSG_OK);
             return spret::abort;

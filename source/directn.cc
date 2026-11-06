@@ -889,7 +889,7 @@ void full_describe_view()
 
     if (list_mons.empty() && list_items.empty() && list_features.empty())
     {
-        mpr("No monsters, items or features are visible.");
+        mpr(Options.language == lang_t::KO ? "시야에 보이는 몬스터, 아이템, 지형이 없습니다." : "No monsters, items or features are visible.");
         return;
     }
 
@@ -978,7 +978,7 @@ bool direction_chooser::move_is_ok() const
             if (hitfunc && hitfunc->can_affect_unseen())
                 return true; // is this too broad?
             if (you.see_cell(target()))
-                mprf(MSGCH_EXAMINE_FILTER, "There's something in the way.");
+                mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "무언가가 앞을 가로막고 있습니다." : "There's something in the way.");
             // XXX: Hack to let bump attack with a ranged weapon still work
             //      when Primordial Nightfall is active. Hopefully doesn't
             //      affect anything else?
@@ -1004,7 +1004,7 @@ bool direction_chooser::move_is_ok() const
                     if (moves.interactive)
                     {
                         if (harmful_to_player)
-                            mprf(MSGCH_EXAMINE_FILTER, "That would be overly suicidal.");
+                            mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "그렇게 하는 것은 지나치게 위험합니다." : "That would be overly suicidal.");
                         else
                             mprf(MSGCH_EXAMINE_FILTER, "That would be pointless.");
                     }
@@ -1018,7 +1018,7 @@ bool direction_chooser::move_is_ok() const
                     // calling in non-interactive mode
                     if (!moves.interactive)
                         return false;
-                    return yesno("Really target yourself?", false, 'n',
+                    return yesno(Options.language == lang_t::KO ? "정말 자신을 대상으로 지정하시겠습니까?" : "Really target yourself?", false, 'n',
                                  true, true, false, nullptr, false);
                 }
             }
@@ -1028,7 +1028,7 @@ bool direction_chooser::move_is_ok() const
                 // avoid printing this message when autotargeting -- it doesn't
                 // make much sense
                 if (moves.interactive)
-                    mprf(MSGCH_EXAMINE_FILTER, "Sorry, you can't target yourself.");
+                    mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "자기 자신을 대상으로 지정할 수 없습니다." : "Sorry, you can't target yourself.");
                 return false;
             }
         }
@@ -1036,7 +1036,7 @@ bool direction_chooser::move_is_ok() const
 
     // Some odd cases
     if (!moves.isValid && !moves.isCancel)
-        return yesno("Are you sure you want to fizzle?", false, 'n');
+        return yesno(Options.language == lang_t::KO ? "효과 없이 실패하더라도 진행하시겠습니까?" : "Are you sure you want to fizzle?", false, 'n');
 
     return true;
 }
@@ -1655,7 +1655,7 @@ bool direction_chooser::pickup_item()
         ii = env.map_knowledge(target()).item();
     if (!ii || !ii->is_valid(true))
     {
-        mprf(MSGCH_EXAMINE_FILTER, "You can't see any item there.");
+        mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "그곳에는 보이는 아이템이 없습니다." : "You can't see any item there.");
         return false;
     }
     ii->flags |= ISFLAG_THROWN; // make autoexplore greedy
@@ -1684,7 +1684,7 @@ bool direction_chooser::pickup_item()
 
     if (!just_looking) // firing/casting prompt
     {
-        mprf(MSGCH_EXAMINE_FILTER, "Marked for pickup.");
+        mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "줍기 대상으로 지정했습니다." : "Marked for pickup.");
         return false;
     }
 
@@ -2012,7 +2012,7 @@ void direction_chooser::toggle_beam()
 {
     if (!needs_path)
     {
-        mprf(MSGCH_EXAMINE_FILTER, "This spell doesn't need a beam path.");
+        mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "이 주문에는 발사 경로가 필요하지 않습니다." : "This spell doesn't need a beam path.");
         return;
     }
 
@@ -2151,7 +2151,7 @@ void direction_chooser::handle_wizard_command(command_type key_command,
 
     case CMD_TARGET_WIZARD_HURT_MONSTER:
         m->hit_points = 1;
-        mpr("Brought monster down to 1 HP.");
+        mpr(Options.language == lang_t::KO ? "몬스터의 체력을 1로 만들었습니다." : "Brought monster down to 1 HP.");
         flush_prev_message();
         break;
 
@@ -2287,7 +2287,7 @@ void direction_chooser::full_describe()
 
     if (list_mons.empty() && list_items.empty() && list_features.empty())
     {
-        mprf(MSGCH_EXAMINE_FILTER, "There are no valid targets to list.");
+        mprf(MSGCH_EXAMINE_FILTER, "%s", Options.language == lang_t::KO ? "표시할 수 있는 유효한 대상이 없습니다." : "There are no valid targets to list.");
         flush_prev_message();
         return;
     }
@@ -2338,7 +2338,7 @@ bool direction_chooser::process_command(command_type command)
             break;
 
         if (!is_map_persistent())
-            mpr("You cannot set exclusions on this level.");
+            mpr(Options.language == lang_t::KO ? "현재 층에서는 제외 구역을 지정할 수 없습니다." : "You cannot set exclusions on this level.");
         else
         {
             const bool was_excluded = is_exclude_root(target());
@@ -2346,11 +2346,11 @@ bool direction_chooser::process_command(command_type command)
             need_viewport_redraw   = true;
             const bool is_excluded = is_exclude_root(target());
             if (!was_excluded && is_excluded)
-                mpr("Placed new exclusion.");
+                mpr(Options.language == lang_t::KO ? "새로운 제외 구역을 지정했습니다." : "Placed new exclusion.");
             else if (was_excluded && !is_excluded)
-                mpr("Removed exclusion.");
+                mpr(Options.language == lang_t::KO ? "제외 구역을 해제했습니다." : "Removed exclusion.");
             else
-                mpr("Reduced exclusion size to a single square.");
+                mpr(Options.language == lang_t::KO ? "제외 구역을 한 칸으로 줄였습니다." : "Reduced exclusion size to a single square.");
         }
 
         need_cursor_redraw = true;

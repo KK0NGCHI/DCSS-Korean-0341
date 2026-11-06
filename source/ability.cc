@@ -3803,8 +3803,9 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
     }
 
     case ABIL_LUGONU_BLESS_WEAPON:
-        simple_god_message(" will brand one of your weapons with the "
-                           "corruption of the Abyss.");
+        simple_god_message(Options.language == lang_t::KO
+            ? " — 당신의 무기 하나에 심연의 타락한 힘을 부여합니다."
+            : " will brand one of your weapons with the corruption of the Abyss.");
         // included in default force_more_message
         if (!bless_weapon(GOD_LUGONU, SPWPN_DISTORTION, MAGENTA))
             return spret::abort;

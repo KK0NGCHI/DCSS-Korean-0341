@@ -236,7 +236,7 @@ bool bless_weapon(god_type god, brand_type brand, colour_t colour)
     wpn.flags |= ISFLAG_NOTED_ID;
     wpn.props[FORCED_ITEM_COLOUR_KEY] = colour;
 
-    mprf(MSGCH_GOD, "%s이(가) 밝게 빛난다!", wpn.name(DESC_QUALNAME).c_str());
+    mprf(MSGCH_GOD, "밝게 빛나는 무기: %s!", wpn.name(DESC_QUALNAME).c_str());
     flash_view(UA_PLAYER, colour);
     simple_god_message("이(가) 우렁차게 외친다. 이 선물을 현명하게 사용해라!");
     you.one_time_ability_used.set(you.religion);
@@ -1797,8 +1797,11 @@ void yred_make_bound_soul(monster* mon, bool force_hostile)
     // schedule our actual revival for the end of this combat round
     schedule_avoided_death_fineff(mon);
 
-    mprf("%s soul %s.", whose.c_str(),
-         !force_hostile ? "is now yours" : "fights you");
+    if (Options.language == lang_t::KO)
+        mprf(!force_hostile ? "당신의 편이 된 영혼: %s." : "당신에게 맞서 싸우는 영혼: %s.", whose.c_str());
+    else
+        mprf("%s soul %s.", whose.c_str(),
+             !force_hostile ? "is now yours" : "fights you");
 }
 
 bool kiku_gift_capstone_spells()
@@ -2316,12 +2319,16 @@ void ashenzari_offer_new_curse()
     const string offer_string = curse_names.empty() ? "" :
                                 (" of " + curse_names);
 
-    mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있다%s.", offer_string.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있습니다%s.",
+             curse_names.empty() ? "" : make_stringf(" (지식: %s)", curse_names.c_str()).c_str());
+    else
+        mprf(MSGCH_GOD, "아셴자리의 환영과 저주를 받아들일 수 있다%s.", offer_string.c_str());
 }
 
 static void _do_curse_item(item_def &item)
 {
-    mprf("%s이(가) 잠시 검게 빛난다.", item.name(DESC_PLAIN).c_str());
+    mprf("잠시 검게 빛나는 아이템: %s.", item.name(DESC_PLAIN).c_str());
     item.flags |= ISFLAG_CURSED;
 
     if (item.base_type == OBJ_WEAPONS)
@@ -2421,13 +2428,13 @@ bool ashenzari_uncurse_item()
     if (!handle_chain_removal(to_remove, true))
         return false;
 
-    mprf("%s을(를) 속박하던 저주를 깨뜨렸다!", item.name(DESC_THE).c_str());
+    mprf("속박하던 저주를 깨뜨린 아이템: %s!", item.name(DESC_THE).c_str());
     item_skills(item, you.skills_to_hide);
 
     for (item_def* _item : to_remove)
     {
         if (_item-> link != item_slot)
-            mprf("%s이(가) 몸에서 떨어져 나간다.", _item->name(DESC_YOUR).c_str());
+            mprf("몸에서 떨어져 나가는 장비: %s.", _item->name(DESC_YOUR).c_str());
         unequip_item(*_item);
     }
 
@@ -2769,11 +2776,15 @@ void beogh_ally_healing()
         mon->heal(value);
     }
 
-    mprf("%s %s%sinvigorated by your prowess.",
-          heal_list.size() == 1 ? heal_list[0]->name(DESC_THE).c_str()
-                                : "Your followers are",
-          heal_list.size() == 1 ? "is " : "",
-          healing_done > 25 ? " greatly " : "");
+    if (Options.language == lang_t::KO)
+        mprf(heal_list.size() == 1
+             ? (healing_done > 25 ? "당신의 활약에 크게 고무된 아군: %s." : "당신의 활약에 고무된 아군: %s.")
+             : (healing_done > 25 ? "아군들이 당신의 활약에 크게 고무됩니다." : "아군들이 당신의 활약에 고무됩니다."),
+             heal_list.size() == 1 ? heal_list[0]->name(DESC_THE).c_str() : "");
+    else
+        mprf("%s %s%sinvigorated by your prowess.",
+             heal_list.size() == 1 ? heal_list[0]->name(DESC_THE).c_str() : "Your followers are",
+             heal_list.size() == 1 ? "is " : "", healing_done > 25 ? " greatly " : "");
 }
 
 // Prompts the player for reasons they may not wish to leave a floor.
@@ -4960,7 +4971,7 @@ static void _apply_ru_sacrifice(mutation_type sacrifice)
 
 static bool _execute_sacrifice(ability_type sac, const char* message)
 {
-    mprf("루가 당신에게 %s을(를) 요구한다.", message);
+    mprf("루가 요구하는 희생: %s.", message);
     mpr(ru_sacrifice_description(sac));
     if (!yesno("정말 이 희생을 바칠까?",
                false, 'n'))
@@ -5320,7 +5331,7 @@ void ru_do_retribution(monster* mons, int damage)
 
     if (power > 50 && (mons->antimagic_susceptible()))
     {
-        mprf(MSGCH_GOD, "내면의 힘을 모아 응징으로 %s의 마력을 빼앗았다!", mons->name(DESC_THE).c_str());
+        mprf(MSGCH_GOD, "응징의 힘으로 마력을 빼앗은 대상: %s!", mons->name(DESC_THE).c_str());
         mons->add_ench(mon_enchant(ENCH_ANTIMAGIC, act, power+random2(320)));
     }
     else if (power > 35)
@@ -5882,7 +5893,7 @@ spret uskayaw_grand_finale(bool fail)
         else if (cell_is_solid(beam.target))
         {
             clear_messages();
-            mprf("%s에는 자리 잡을 수 없어.", article_a(feat_type_name(env.grid(beam.target))).c_str());
+            mprf("그곳에는 자리 잡을 수 없어: %s.", article_a(feat_type_name(env.grid(beam.target))).c_str());
         }
         else if (you.see_cell_no_trans(beam.target))
         {
@@ -6019,7 +6030,7 @@ spret hepliaklqana_idealise(bool fail)
     monster *ancestor = monster_by_mid(ancestor_mid);
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
+        mprf("근처에 없는 조상: %s!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
@@ -6106,7 +6117,7 @@ spret hepliaklqana_transference(bool fail)
     monster *ancestor = hepliaklqana_ancestor_mon();
     if (!ancestor || !you.can_see(*ancestor))
     {
-        mprf("%s은(는) 근처에 없어!", hepliaklqana_ally_name().c_str());
+        mprf("근처에 없는 조상: %s!", hepliaklqana_ally_name().c_str());
         return spret::abort;
     }
 
@@ -6151,7 +6162,7 @@ spret hepliaklqana_transference(bool fail)
     const bool uninhabitable = victim && !victim->is_habitable(destination);
     if (uninhabitable && victim_visible)
     {
-        mprf("%s은(는) 그곳으로 이동시킬 수 없어.", victim->name(DESC_THE).c_str());
+        mprf("그곳으로 이동시킬 수 없는 대상: %s.", victim->name(DESC_THE).c_str());
         return spret::abort;
     }
 
@@ -6218,7 +6229,7 @@ static void _hepliaklqana_choose_name()
     }
 
     you.props[HEPLIAKLQANA_ALLY_NAME_KEY] = new_name;
-    mprf("그래, %s이(가) 확실히 더 좋은 이름이야.", new_name.c_str());
+    mprf("그래, 이 이름이 확실히 더 좋아: %s.", new_name.c_str());
     upgrade_hepliaklqana_ancestor(true);
 }
 
@@ -7008,7 +7019,7 @@ void makhleb_infernal_servant()
             beam.is_explosion = true;
             beam.ex_size = 2;
 
-            mprf("%s이(가) %s의 폭발 속에서 나타난다!", demon->name(DESC_A).c_str(),
+            mprf("폭발 속에서 나타난 악마: %s (폭발: %s)!", demon->name(DESC_A).c_str(),
                                         beam.get_short_name().c_str());
 
             beam.explode();
@@ -7304,7 +7315,7 @@ void makhleb_enter_crucible_of_flesh(int debt)
     for (int i = 0; i < num_victims; ++i)
         _spawn_crucible_victim(true);
 
-    simple_god_message("이(가) 명한다. 이곳을 떠날 자격을 얻고 싶다면 살을 벗기고 피를 흘려 스스로를 정화하라!", false,
+    simple_god_message(" — 명한다. 이곳을 떠날 자격을 얻고 싶다면 살을 벗기고 피를 흘려 스스로를 정화하라!", false,
                        GOD_MAKHLEB);
 
     mpr("(필멸자와 때때로 악마까지 제물로 바치면 마크레브를 만족시켜 출구를 만들 수 있다.)");
@@ -7359,7 +7370,7 @@ void makhleb_crucible_kill(monster& victim)
         }
 
         dungeon_terrain_changed(pos, DNGN_EXIT_CRUCIBLE);
-        simple_god_message("이(가) 당신의 참회를 인정하고 도가니에서 떠나는 것을 허락한다.", false, GOD_MAKHLEB);
+        simple_god_message(" — 당신의 참회를 인정하고 도가니에서 떠나는 것을 허락한다.", false, GOD_MAKHLEB);
 
         env.map_knowledge(pos).set_feature(DNGN_EXIT_CRUCIBLE);
 #ifdef USE_TILE

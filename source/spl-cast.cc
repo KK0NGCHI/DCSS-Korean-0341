@@ -1039,8 +1039,9 @@ spret cast_a_spell(bool check_range, spell_type spell, dist *_target,
         && !crawl_state.disables[DIS_CONFIRMATIONS])
     {
         // None currently dock just piety, right?
-        if (!yesno("Casting this spell will place you under penance. "
-                   "Really cast?", true, 'n'))
+        if (!yesno((Options.language == lang_t::KO
+                     ? "이 주문을 시전하면 신의 징벌을 받게 됩니다. 그래도 시전하시겠습니까?"
+                     : "Casting this spell will place you under penance. Really cast?"), true, 'n'))
         {
             canned_msg(MSG_OK);
             crawl_state.zero_turns_taken();
@@ -1266,13 +1267,18 @@ static bool _spellcasting_aborted(spell_type spell, bool fake_spell)
             return true;
         }
 
-        string prompt = make_stringf("The spell is %s to miscast "
-                                     "(%s risk of failure)%s",
-                                     fail_severity_adjs[severity],
-                                     failure_rate.c_str(),
-                                     severity > 1 ? "!" : ".");
-
-        prompt = make_stringf("%s Continue anyway?", prompt.c_str());
+        string prompt;
+        if (Options.language == lang_t::KO)
+            prompt = make_stringf("주문 시전 실패 확률: %s. 위험도: %d단계. 그래도 계속하시겠습니까?",
+                                  failure_rate.c_str(), severity);
+        else
+        {
+            prompt = make_stringf("The spell is %s to miscast (%s risk of failure)%s",
+                                  fail_severity_adjs[severity],
+                                  failure_rate.c_str(),
+                                  severity > 1 ? "!" : ".");
+            prompt = make_stringf("%s Continue anyway?", prompt.c_str());
+        }
         if (!yesno(prompt.c_str(), false, 'n'))
         {
             canned_msg(MSG_OK);
@@ -2320,8 +2326,9 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
                  && one_chance_in(20))
         {
             // And you thought you'd Haunt your way out of penance...
-            simple_god_message(" does not allow the disloyal to dabble in "
-                               "death!", false, GOD_KIKUBAAQUDGHA);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 불충한 자가 죽음의 마법을 다루는 것을 허락하지 않습니다!"
+                : " does not allow the disloyal to dabble in death!", false, GOD_KIKUBAAQUDGHA);
 
             // The spell still goes through, but you get a miscast anyway.
             miscast_effect(you, nullptr,
@@ -2337,8 +2344,9 @@ spret your_spells(spell_type spell, int powc, bool actual_spell,
                  && one_chance_in(20))
         {
             // And you thought you'd Fire Storm your way out of penance...
-            simple_god_message(" does not allow the disloyal to dabble in "
-                               "destruction!", false, GOD_VEHUMET);
+            simple_god_message(Options.language == lang_t::KO
+                ? " — 불충한 자가 파괴 마법을 다루는 것을 허락하지 않습니다!"
+                : " does not allow the disloyal to dabble in destruction!", false, GOD_VEHUMET);
 
             // The spell still goes through, but you get a miscast anyway.
             miscast_effect(you, nullptr, {miscast_source::god, GOD_VEHUMET},
@@ -3542,7 +3550,7 @@ bool warn_about_contam_cost(int max_contam)
     const int mul = you.has_mutation(MUT_CONTAMINATION_SUSCEPTIBLE) ? 2 : 1;
 
     if (you.magic_contamination + (max_contam * mul) >= 1000)
-        return !yesno("Casting this now could dangerously contaminate you. Continue?", true, 'n');
+        return !yesno(Options.language == lang_t::KO ? "지금 이 주문을 시전하면 위험할 정도로 마법 오염이 쌓일 수 있습니다. 계속하시겠습니까?" : "Casting this now could dangerously contaminate you. Continue?", true, 'n');
 
     return false;
 }

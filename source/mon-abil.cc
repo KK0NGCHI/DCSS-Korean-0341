@@ -95,7 +95,7 @@ void boris_covet_orb(monster* boris)
         return;
 
     if (boris->observable())
-        simple_monster_message(*boris, " is empowered by the presence of the orb!");
+        simple_monster_message(*boris, (Options.language == lang_t::KO ? " — 오브의 존재로 힘이 강해집니다!" : " is empowered by the presence of the orb!"));
 
     boris->add_ench(mon_enchant(ENCH_HASTE, boris, INFINITE_DURATION));
     boris->add_ench(mon_enchant(ENCH_EMPOWERED_SPELLS, boris, INFINITE_DURATION));
@@ -269,7 +269,7 @@ static monster* _do_split(monster* thing, const coord_def & target, bool quiet =
     {
         if (thing->type == MONS_SLYMDRA)
         {
-            mprf("%s separates from %s.", new_slime->name(DESC_A).c_str(),
+            mprf(Options.language == lang_t::KO ? "분리되어 나온 점액: %s (원래 몸체: %s)." : "%s separates from %s.", new_slime->name(DESC_A).c_str(),
                                           thing->name(DESC_A).c_str());
         }
         else
@@ -380,7 +380,7 @@ static void _do_merge_slimes(monster* initial_slime, monster* merge_to)
         if (you.can_see(*merge_to))
         {
             // cases 1 and 2
-            mprf((Options.language == lang_t::KO ? "슬라임 생물 2마리가 합쳐져 %s이(가) 됩니다." : "Two slime creatures merge to form %s."),
+            mprf((Options.language == lang_t::KO ? "슬라임 생물 2마리가 합쳐져 %s의 형상을 이룹니다." : "Two slime creatures merge to form %s."),
                  merge_to->name(DESC_A).c_str());
         }
         else
@@ -395,7 +395,7 @@ static void _do_merge_slimes(monster* initial_slime, monster* merge_to)
     else if (you.can_see(*initial_slime))
     {
         // case 4
-        mprf("%s merges with something you can't see.",
+        mprf(Options.language == lang_t::KO ? "보이지 않는 무언가와 합쳐지는 점액: %s." : "%s merges with something you can't see.",
              initial_slime->name(DESC_A).c_str());
     }
     // case 5 (no-op)
@@ -633,13 +633,19 @@ bool slymdra_polymorph(monster& slymdra, poly_power_type power)
     {
         if (count == 1)
         {
-            mprf("A slime creature is ejected from %s body as it begins to warp and change.",
+            mprf(Options.language == lang_t::KO
+                     ? "%s의 몸이 뒤틀리며 슬라임 생물 1마리가 튀어나옵니다."
+                     : "A slime creature is ejected from %s body as it begins to warp and change.",
                  slymdra.name(DESC_ITS).c_str());
         }
         else
         {
-            mprf("%d slime creatures are ejected from %s body as it begins to warp and change.",
-                 count, slymdra.name(DESC_ITS).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s의 몸이 뒤틀리며 슬라임 생물 %d마리가 튀어나옵니다.",
+                     slymdra.name(DESC_ITS).c_str(), count);
+            else
+                mprf("%d slime creatures are ejected from %s body as it begins to warp and change.",
+                     count, slymdra.name(DESC_ITS).c_str());
         }
     }
 
@@ -687,20 +693,20 @@ static void _starcursed_scream(monster* mon, actor* target)
 
     if (n > 7)
     {
-        message = "A cacophony of accursed wailing tears at your sanity!";
+        message = Options.language == lang_t::KO ? "저주받은 울부짖음의 불협화음이 정신을 갈기갈기 찢습니다!" : "A cacophony of accursed wailing tears at your sanity!";
         if (coinflip())
             stun = 2;
     }
     else if (n > 4)
     {
-        message = "A deafening chorus of shrieks assaults your mind!";
+        message = Options.language == lang_t::KO ? "귀를 찢는 비명의 합창이 정신을 공격합니다!" : "A deafening chorus of shrieks assaults your mind!";
         if (one_chance_in(3))
             stun = 1;
     }
     else if (n > 1)
-        message = "A chorus of shrieks assaults your mind.";
+        message = Options.language == lang_t::KO ? "비명의 합창이 정신을 공격합니다." : "A chorus of shrieks assaults your mind.";
     else
-        message = "The starcursed mass shrieks in your mind.";
+        message = Options.language == lang_t::KO ? "별의 저주를 받은 덩어리가 당신의 정신 속에서 비명을 지릅니다." : "The starcursed mass shrieks in your mind.";
 
     dam = 4 + random2(5) + random2(n * 3 / 2);
 
@@ -708,11 +714,17 @@ static void _starcursed_scream(monster* mon, actor* target)
     {
         if (you.see_cell(target->pos()))
         {
-            mprf(target->as_monster()->friendly() ? MSGCH_FRIEND_SPELL
-                                                  : MSGCH_MONSTER_SPELL,
-                 "%s writhes in pain as voices assail %s mind.",
-                 target->name(DESC_THE).c_str(),
-                 target->pronoun(PRONOUN_POSSESSIVE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf(target->as_monster()->friendly() ? MSGCH_FRIEND_SPELL
+                                                     : MSGCH_MONSTER_SPELL,
+                     "비명에 정신을 공격당한 대상이 고통에 몸부림칩니다: %s.",
+                     target->name(DESC_THE).c_str());
+            else
+                mprf(target->as_monster()->friendly() ? MSGCH_FRIEND_SPELL
+                                                     : MSGCH_MONSTER_SPELL,
+                     "%s writhes in pain as voices assail %s mind.",
+                     target->name(DESC_THE).c_str(),
+                     target->pronoun(PRONOUN_POSSESSIVE).c_str());
         }
     }
     else
@@ -864,7 +876,7 @@ bool lost_soul_revive(monster& mons, killer_type killer)
         {
             if (!was_alive)
             {
-                mprf("%s sacrifices itself to reknit %s!",
+                mprf(Options.language == lang_t::KO ? "자신을 희생해 대상을 복구하는 몬스터: %s → %s!" : "%s sacrifices itself to reknit %s!",
                      mi->name(DESC_THE).c_str(),
                      revivee_name.c_str());
             }
@@ -994,18 +1006,18 @@ void seismosaurus_egg_hatch(monster* mons)
 
     if (hatch.duration  == 4)
     {
-        simple_monster_message(*mons, " cracks slightly.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 표면에 작은 균열이 생깁니다." : " cracks slightly."));
         mons->number = 1;
     }
     else if (hatch.duration  == 2)
     {
-        simple_monster_message(*mons, " shakes eagerly.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 격렬하게 흔들립니다." : " shakes eagerly."));
         mons->number = 2;
     }
     // Hatching time!
     else if (hatch.duration  == 0)
     {
-        simple_monster_message(*mons, " hatches with a roar like a landslide!",
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 산사태 같은 포효와 함께 부화합니다!" : " hatches with a roar like a landslide!"),
                                 false, MSGCH_MONSTER_SPELL);
 
         const int old_hd = mons->get_experience_level();
@@ -1076,13 +1088,21 @@ static bool _slymdra_try_merge(monster* mons)
                                                       : make_stringf("sprouts %d new heads", gained_heads);
             if (did_merge > 1)
             {
-                mprf("%s absorbs %d nearby slime creatures and %s.",
-                        mons->name(DESC_THE).c_str(), did_merge, head_msg.c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("주변 점액 생물 %d마리를 흡수한 몬스터: %s (머리 %d개 증가).",
+                         did_merge, mons->name(DESC_THE).c_str(), gained_heads);
+                else
+                    mprf("%s absorbs %d nearby slime creatures and %s.",
+                         mons->name(DESC_THE).c_str(), did_merge, head_msg.c_str());
             }
             else
             {
-                mprf("%s absorbs a nearby slime creature and %s.",
-                        mons->name(DESC_THE).c_str(), head_msg.c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("주변 점액 생물을 흡수한 몬스터: %s (머리 %d개 증가).",
+                         mons->name(DESC_THE).c_str(), gained_heads);
+                else
+                    mprf("%s absorbs a nearby slime creature and %s.",
+                         mons->name(DESC_THE).c_str(), head_msg.c_str());
             }
         }
         mons->num_heads = new_heads;
@@ -1290,7 +1310,7 @@ bool mon_special_ability(monster* mons)
 
         if (mons->move_to(spot, MV_DELIBERATE | MV_TRANSLOCATION, true))
         {
-            simple_monster_message(*mons, " flows with the water.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 물결을 따라 움직입니다." : " flows with the water."));
             mons->finalise_movement();
             used = true;
         }
@@ -1314,7 +1334,7 @@ bool mon_special_ability(monster* mons)
         if (target.origin() || !mons->move_to(target, MV_DELIBERATE | MV_TRANSLOCATION, true))
             break;
 
-        simple_monster_message(*mons, " flows through the trees.");
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 나무 사이로 흘러갑니다." : " flows through the trees."));
         mons->finalise_movement();
         used = true;
     }
@@ -1476,10 +1496,17 @@ bool pyrrhic_recollection(monster& nobody)
 
     if (can_see)
     {
-        mprf(MSGCH_MONSTER_SPELL, "%s ignites a memory of %s%s.",
-                nobody.name(DESC_THE).c_str(),
-                comma_separated_line(spell_names.begin(), spell_names.end()).c_str(),
-                was_injured ? " to re-knit themselves" : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_MONSTER_SPELL, was_injured
+                 ? "기억을 불태워 몸을 복구하는 몬스터: %s (기억: %s)."
+                 : "기억을 불태우는 몬스터: %s (기억: %s).",
+                 nobody.name(DESC_THE).c_str(),
+                 comma_separated_line(spell_names.begin(), spell_names.end()).c_str());
+        else
+            mprf(MSGCH_MONSTER_SPELL, "%s ignites a memory of %s%s.",
+                 nobody.name(DESC_THE).c_str(),
+                 comma_separated_line(spell_names.begin(), spell_names.end()).c_str(),
+                 was_injured ? " to re-knit themselves" : "");
         string speech = make_stringf("\"We remember... %s...\"",
                             getSpeakString("nobody_recollection " + recollection.key).c_str());
         mons_speaks_msg(&nobody, speech, MSGCH_TALK);
@@ -1546,7 +1573,7 @@ void solar_ember_blast()
 
     if (!ember->has_ench(ENCH_SPELL_CHARGED))
     {
-        simple_monster_message(*ember, " glows brighter.");
+        simple_monster_message(*ember, (Options.language == lang_t::KO ? " — 한층 밝게 빛납니다." : " glows brighter."));
         ember->add_ench(mon_enchant(ENCH_SPELL_CHARGED, ember, random_range(70, 90)));
         you.did_trigger(DID_SOLAR_EMBER);
         return;
@@ -1561,7 +1588,7 @@ void solar_ember_blast()
     if (targs.empty())
         return;
 
-    simple_monster_message(*ember, " blazes with a fierce heat.", false, MSGCH_FRIEND_SPELL);
+    simple_monster_message(*ember, (Options.language == lang_t::KO ? " — 맹렬한 열기를 내뿜습니다." : " blazes with a fierce heat."), false, MSGCH_FRIEND_SPELL);
 
     bolt beam;
     beam.flavour = BEAM_FIRE;
@@ -1573,8 +1600,12 @@ void solar_ember_blast()
 
         flash_tile(mon->pos(), RED, 0);
         const int damage_done = mons_adjust_flavoured(mon, beam, mon->apply_ac(dmg.roll()));
-        mprf("The solar flare engulfs %s%s.", mon->name(DESC_THE).c_str(),
-                damage_done ? "" : " but does no damage");
+        if (Options.language == lang_t::KO)
+            mprf(damage_done ? "태양의 섬광이 %s에게 피해를 입힙니다!" : "태양의 섬광이 %s에게 닿지만 피해는 없습니다.",
+                 mon->name(DESC_THE).c_str());
+        else
+            mprf("The solar flare engulfs %s%s.", mon->name(DESC_THE).c_str(),
+                 damage_done ? "" : " but does no damage");
         mon->hurt(ember, damage_done, BEAM_FIRE);
     }
 

@@ -646,25 +646,27 @@ static vector<pair<string,string>> _get_form_fakemuts()
         if (!species::is_draconian(you.species)
             || you.species == SP_BASE_DRACONIAN) // ugh
         {
-            result.push_back({ "golden breath", _formmut("You can breathe a blast of fire, cold, and poison.")});
+            result.push_back({ "golden breath", _formmut(Options.language == lang_t::KO ? "화염, 냉기, 독을 섞은 숨결을 내뿜을 수 있습니다." : "You can breathe a blast of fire, cold, and poison.")});
         }
         else if (species::draconian_breath(you.species) != ABIL_NON_ABILITY)
-            result.push_back({ "", _formmut("Your breath weapon is enhanced in this form.")});
+            result.push_back({ "", _formmut(Options.language == lang_t::KO ? "이 형태에서는 브레스 공격이 강화됩니다." : "Your breath weapon is enhanced in this form.")});
     }
 
     // form-based flying can't be stopped, so don't print amphibiousness
     if (form->player_can_fly())
-        result.push_back({"flying", _formmut("You are flying.")});
+        result.push_back({"flying", _formmut(Options.language == lang_t::KO ? "비행 중입니다." : "You are flying.")});
     // n.b. this could cause issues for non-dragon giant forms if they exist
     else if (form->player_can_swim() && !species::can_swim(you.species))
-        result.push_back({"amphibious", _formmut("You are amphibious.")});
+        result.push_back({"amphibious", _formmut(Options.language == lang_t::KO ? "물과 육지 양쪽에서 생활할 수 있습니다." : "You are amphibious.")});
 
     const int hp_mod = form->mult_hp(10);
     if (hp_mod > 10)
     {
         result.push_back({"boosted hp",
-                            _formmut(make_stringf("Your maximum health is %sincreased.",
-                                                    hp_mod < 13 ? "" : "greatly "))});
+                            _formmut(Options.language == lang_t::KO
+                                ? (hp_mod < 13 ? "최대 체력이 증가합니다." : "최대 체력이 크게 증가합니다.")
+                                : make_stringf("Your maximum health is %sincreased.",
+                                               hp_mod < 13 ? "" : "greatly "))});
     } // see badmuts section below for max health reduction
 
     // Bad effects
@@ -673,13 +675,16 @@ static vector<pair<string,string>> _get_form_fakemuts()
     if (hp_mod < 10)
     {
         result.push_back({"reduced hp",
-                            _badmut(make_stringf("Your maximum health is decreased%s.",
-                                form->underskilled() ? ", since you lack skill for your form"
-                                : ""))});
+                            _badmut(Options.language == lang_t::KO
+                                ? (form->underskilled()
+                                    ? "변신 숙련도가 부족하여 최대 체력이 감소합니다."
+                                    : "최대 체력이 감소합니다.")
+                                : make_stringf("Your maximum health is decreased%s.",
+                                    form->underskilled() ? ", since you lack skill for your form" : ""))});
     }
 
     if (!form->can_cast)
-        result.push_back({"no casting", _badmut("You cannot cast spells.")});
+        result.push_back({"no casting", _badmut(Options.language == lang_t::KO ? "주문을 시전할 수 없습니다." : "You cannot cast spells.")});
 
     vector<pair<string,string>> form_badmuts = form->get_bad_fakemuts();
     for (const auto &p : form_badmuts)
@@ -692,12 +697,14 @@ static vector<pair<string,string>> _get_form_fakemuts()
         if (you.res_cold())
         {
             result.push_back({"(cold-blooded)",
-                "<darkgray>((You are cold-blooded and may be slowed by cold attacks.))</darkgray>"});
+                (Options.language == lang_t::KO
+                     ? "<darkgray>((냉혈 동물이므로 냉기 공격을 받으면 느려질 수 있습니다.))</darkgray>"
+                     : "<darkgray>((You are cold-blooded and may be slowed by cold attacks.))</darkgray>")});
         }
         else
         {
             result.push_back({"cold-blooded",
-                _badmut("You are cold-blooded and may be slowed by cold attacks.")});
+                _badmut(Options.language == lang_t::KO ? "냉혈 동물이므로 냉기 공격을 받으면 느려질 수 있습니다." : "You are cold-blooded and may be slowed by cold attacks.")});
         }
     }
 
@@ -708,18 +715,20 @@ static vector<pair<string,string>> _get_form_fakemuts()
         if (penalty_percent < 0)
         {
             result.push_back({"blade armour",
-                    _badmut(make_stringf("Your body armour is %s at protecting you.",
-                          penalty_percent <=  -45 ? "much less effective"
-                        : penalty_percent <   -20 ? "less effective"
-                                                  : "slightly less effective"
-            ))});
+                    _badmut(Options.language == lang_t::KO
+                        ? (penalty_percent <= -45 ? "몸통 방어구의 방어 효과가 크게 감소합니다."
+                           : penalty_percent < -20 ? "몸통 방어구의 방어 효과가 감소합니다."
+                           : "몸통 방어구의 방어 효과가 조금 감소합니다.")
+                        : make_stringf("Your body armour is %s at protecting you.",
+                          penalty_percent <= -45 ? "much less effective"
+                        : penalty_percent < -20 ? "less effective" : "slightly less effective"))});
         }
     }
 
     if (!form->can_wield() && !you.has_mutation(MUT_NO_GRASPING))
     {
         // same as MUT_NO_GRASPING
-        result.push_back({"", _badmut("You are incapable of wielding weapons or throwing items.")});
+        result.push_back({"", _badmut(Options.language == lang_t::KO ? "무기를 들거나 아이템을 던질 수 없습니다." : "You are incapable of wielding weapons or throwing items.")});
     }
 
     // XX say something about AC? Best would be to compare it to AC without
@@ -753,16 +762,16 @@ static vector<pair<string, string>> _get_fakemuts()
     {
         result.push_back({"walk on water",
                     have_passive(passive_t::water_walk)
-                        ? _formmut("You can walk on water.")
-                        : _formmut("You can walk on water until reaching land.")});
+                        ? _formmut(Options.language == lang_t::KO ? "물 위를 걸을 수 있습니다." : "You can walk on water.")
+                        : _formmut(Options.language == lang_t::KO ? "육지에 닿기 전까지 물 위를 걸을 수 있습니다." : "You can walk on water until reaching land.")});
     }
 
     if (you.props.exists(ORCIFICATION_LEVEL_KEY))
     {
         result.push_back({"",
                     you.props[ORCIFICATION_LEVEL_KEY].get_int() == 1
-                        ? _formmut("Your facial features look somewhat orcish.")
-                        : _formmut("Your facial features are unmistakably orcish.")});
+                        ? _formmut(Options.language == lang_t::KO ? "얼굴에 오크를 닮은 특징이 조금 나타납니다." : "Your facial features look somewhat orcish.")
+                        : _formmut(Options.language == lang_t::KO ? "얼굴이 누가 보아도 오크의 모습입니다." : "Your facial features are unmistakably orcish.")});
     }
 
     if (have_passive(passive_t::frail)
@@ -770,7 +779,7 @@ static vector<pair<string, string>> _get_fakemuts()
     {
         // XX message is probably wrong for penance?
         result.push_back({"reduced essence",
-                          _badmut("Your life essence is reduced to manifest your ancestor. (-10% HP)")});
+                          _badmut(Options.language == lang_t::KO ? "선조를 현현시키기 위해 생명력이 감소합니다. (최대 HP -10%)" : "Your life essence is reduced to manifest your ancestor. (-10% HP)")});
     }
 
     // Innate abilities which haven't been implemented as mutations yet.
@@ -798,10 +807,13 @@ static vector<pair<string, string>> _get_fakemuts()
         const string scale_clause = string(species::scale_type(you.species))
                   + " scales are hard";
 
-        string ac_str = make_stringf("Your %s. (AC +%d)", you.species == SP_NAGA
-                                        ? "serpentine skin is tough"
-                                        : scale_clause.c_str(),
-                                        ac);
+        string ac_str = Options.language == lang_t::KO
+            ? make_stringf("%s (AC +%d)",
+                           you.species == SP_NAGA
+                               ? "질긴 뱀 비늘 피부" : "단단한 비늘", ac)
+            : make_stringf("Your %s. (AC +%d)",
+                           you.species == SP_NAGA
+                               ? "serpentine skin is tough" : scale_clause.c_str(), ac);
         result.push_back(_annotate_form_based({"AC +" + to_string(ac), ac_str},
                             (form_changes_anatomy() || form_changes_substance())
                                 && !(species::is_draconian(you.species)
@@ -813,7 +825,7 @@ static vector<pair<string, string>> _get_fakemuts()
     // amphibiousness.
     if (species::can_swim(you.species) && !you.has_innate_mutation(MUT_MERTAIL))
     {
-        result.push_back(_annotate_form_based({"amphibious", "You are amphibious."},
+        result.push_back(_annotate_form_based({"amphibious", Options.language == lang_t::KO ? "물과 육지 양쪽에서 생활할 수 있습니다." : "You are amphibious."},
                                               !form_can_swim()));
     }
 
@@ -823,9 +835,11 @@ static vector<pair<string, string>> _get_fakemuts()
         const int arms = you.arm_count();
         result.push_back(_annotate_form_based(
             {
-                make_stringf("%d rings", arms),
-                make_stringf("You can wear up to %s rings at the same time.",
-                        number_in_words(arms).c_str())
+                make_stringf(Options.language == lang_t::KO ? "반지 %d개" : "%d rings", arms),
+                (Options.language == lang_t::KO
+                    ? make_stringf("반지를 동시에 최대 %d개까지 착용할 수 있습니다.", arms)
+                    : make_stringf("You can wear up to %s rings at the same time.",
+                                   number_in_words(arms).c_str()))
             }, rings_melded));
     }
 
@@ -844,17 +858,17 @@ static vector<pair<string, string>> _get_fakemuts()
     {
     case SIZE_LITTLE:
         armour_mut = {"unfitting armour",
-                      _innatemut("You are too small for most types of armour.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 너무 작아 대부분의 방어구를 착용할 수 없습니다." : "You are too small for most types of armour.")};
         weapon_mut = {"no large weapons",
-                      _innatemut("You are very small and have problems with some larger weapons.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 아주 작아 일부 대형 무기를 사용하기 어렵습니다." : "You are very small and have problems with some larger weapons.")};
         break;
     case SIZE_SMALL:
         weapon_mut = {"no large weapons",
-                      _innatemut("You are small and have problems with some larger weapons.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 작아 일부 대형 무기를 사용하기 어렵습니다." : "You are small and have problems with some larger weapons.")};
         break;
     case SIZE_LARGE:
         armour_mut = {"unfitting armour",
-                      _innatemut("You are too large for most types of armour.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸집이 너무 커서 대부분의 방어구를 착용할 수 없습니다." : "You are too large for most types of armour.")};
         break;
     default: // no giant species
         break;
@@ -864,7 +878,7 @@ static vector<pair<string, string>> _get_fakemuts()
     if (species::is_draconian(you.species))
     {
         armour_mut = {"unfitting armour",
-                      _innatemut("You cannot fit into any form of body armour or wear helmets.")};
+                      _innatemut(Options.language == lang_t::KO ? "몸통 방어구와 투구를 착용할 수 없습니다." : "You cannot fit into any form of body armour or wear helmets.")};
     }
     if (!weapon_mut.first.empty() && !you.has_mutation(MUT_NO_GRASPING))
         result.push_back(weapon_mut);
@@ -872,7 +886,7 @@ static vector<pair<string, string>> _get_fakemuts()
         result.push_back(armour_mut);
 
     if (player_res_poison(false, false, false, false) == 3)
-        result.push_back({"", _innatemut("You are immune to poison.")});
+        result.push_back({"", _innatemut(Options.language == lang_t::KO ? "독에 면역입니다." : "You are immune to poison.")});
 
     return result;
 }
@@ -970,14 +984,14 @@ string describe_mutations(bool drop_title)
     if (!drop_title)
     {
         result += "<white>";
-        result += "Innate Abilities, Weirdness & Mutations";
+        result += Options.language == lang_t::KO ? "선천적 능력, 특이 체질 및 돌연변이" : "Innate Abilities, Weirdness & Mutations";
         result += "</white>\n\n";
     }
 
     const vector<string> mutations = _get_mutations_descs(false);
 
     if (mutations.empty())
-        result += "You are rather mundane.\n";
+        result += Options.language == lang_t::KO ? "특별한 특징이 없습니다.\n" : "You are rather mundane.\n";
     else
         result += join_strings(mutations.begin(), mutations.end(), "\n");
 
@@ -1147,7 +1161,7 @@ private:
 
         if (items.empty())
         {
-            add_entry(new MenuEntry("You are rather mundane.",
+            add_entry(new MenuEntry(Options.language == lang_t::KO ? "특별한 특징이 없습니다." : "You are rather mundane.",
                                     MEL_ITEM, 1, 0));
         }
     }
@@ -1157,11 +1171,11 @@ private:
         string extra = "";
         // TODO: also handle suppressed fakemuts
         if (_has_suppressed_muts())
-            extra += "<darkgrey>()</darkgrey>: Suppressed.\n";
+            extra += Options.language == lang_t::KO ? "<darkgrey>()</darkgrey>: 억제됨.\n" : "<darkgrey>()</darkgrey>: Suppressed.\n";
         if (_has_transient_muts())
-            extra += "<magenta>[]</magenta>: Transient mutations.\n";
+            extra += Options.language == lang_t::KO ? "<magenta>[]</magenta>: 일시적 돌연변이.\n" : "<magenta>[]</magenta>: Transient mutations.\n";
         if (has_future_muts)
-            extra += "<darkgrey>[]</darkgrey>: Gained at a future XL.\n";
+            extra += Options.language == lang_t::KO ? "<darkgrey>[]</darkgrey>: 이후 경험 레벨에서 획득.\n" : "<darkgrey>[]</darkgrey>: Gained at a future XL.\n";
         set_more(extra);
     }
 
@@ -1381,8 +1395,9 @@ static void _maybe_remove_equipment(mutation_type mut)
         if (mut == MUT_MISSING_HAND)
         {
             if (Options.language == lang_t::KO)
-                mprf("%s을(를) 더 이상 %s 수 없습니다!", item->name(DESC_YOUR).c_str(),
-                     item->base_type == OBJ_JEWELLERY ? "착용할" : "쥘");
+                mprf("다음 아이템을 더 이상 %s 수 없습니다: %s!",
+                     item->base_type == OBJ_JEWELLERY ? "착용할" : "쥘",
+                     item->name(DESC_YOUR).c_str());
             else
                 mprf("You can no longer %s %s!",
                      item->base_type == OBJ_JEWELLERY ? "wear" : "hold",
@@ -1392,14 +1407,24 @@ static void _maybe_remove_equipment(mutation_type mut)
         {
             if (item_is_melded(*item))
             {
-                mprf("%s is forced from your body%s!",
-                        item->name(DESC_YOUR).c_str(),
-                        item->cursed() ? ", shattering the curse!" : "");
+                if (Options.language == lang_t::KO)
+                    mprf("몸에서 장비가 강제로 떨어져 나갑니다: %s%s!",
+                         item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? " (저주도 깨집니다)" : "");
+                else
+                    mprf("%s is forced from your body%s!",
+                         item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? ", shattering the curse!" : "");
             }
             else
             {
-                mprf("%s falls away%s!", item->name(DESC_YOUR).c_str(),
-                        item->cursed() ? ", shattering the curse!" : "");
+                if (Options.language == lang_t::KO)
+                    mprf("장비가 떨어져 나갑니다: %s%s!",
+                         item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? " (저주도 깨집니다)" : "");
+                else
+                    mprf("%s falls away%s!", item->name(DESC_YOUR).c_str(),
+                         item->cursed() ? ", shattering the curse!" : "");
             }
 
             // A mutation made us not only lose an equipment slot
@@ -1849,7 +1874,7 @@ bool mutate(mutation_type which_mutation, const string &reason, bool failMsg,
         if (have_passive(passive_t::resist_mutation)
             && x_chance_in_y(you.piety(), piety_breakpoint(5)))
         {
-            simple_god_message(" protects your body from mutation!");
+            simple_god_message((Options.language == lang_t::KO ? " — 육체를 변이로부터 보호합니다!" : " protects your body from mutation!"));
             return false;
         }
     }
@@ -2667,16 +2692,16 @@ string mutation_desc(mutation_type mut, int level, bool colour,
         result = ostr.str();
     }
     else if (mut == MUT_MP_WANDS && you.has_mutation(MUT_HP_CASTING))
-        result = "You expend health (3 HP) to strengthen your wands.";
+        result = Options.language == lang_t::KO ? "체력 3을 소모해 마법봉을 강화합니다." : "You expend health (3 HP) to strengthen your wands.";
     else if (!ignore_player && mut == MUT_TENTACLE_ARMS)
     {
         const string num_tentacles = number_in_words(you.has_tentacles(false));
-        result = make_stringf(
-            "You have tentacles for arms and can constrict up to %s enemies at once.",
-            num_tentacles.c_str());
+        result = Options.language == lang_t::KO
+            ? make_stringf("팔 대신 촉수가 있으며, 한 번에 최대 %d명의 적을 조일 수 있습니다.", you.has_tentacles(false))
+            : make_stringf("You have tentacles for arms and can constrict up to %s enemies at once.", num_tentacles.c_str());
     }
     else if (!ignore_player && you.has_innate_mutation(MUT_PAWS) && mut == MUT_CLAWS)
-        result = "You have sharp claws."; // XX ugly override
+        result = Options.language == lang_t::KO ? "날카로운 발톱이 있습니다." : "You have sharp claws."; // XX ugly override
     else if (result.empty() && level > 0)
         result = mdef.have[level - 1];
 
@@ -3341,7 +3366,8 @@ const string bane_name(bane_type bane, bool dbkey)
         return lowercase(short_name);
     }
     else
-        return make_stringf("Bane of %s", short_name.c_str());
+        return make_stringf(Options.language == lang_t::KO ? "%s의 저주" : "Bane of %s",
+                            short_name.c_str());
 }
 
 int bane_base_duration(bane_type bane)
@@ -3354,7 +3380,9 @@ const string bane_desc(bane_type bane)
     if (bane == BANE_DILETTANTE && you.banes[bane])
     {
         CrawlVector& vec = you.props[DILETTANTE_SKILL_KEY].get_vector();
-        return make_stringf("Your skill with %s, %s, and %s is reduced.",
+        return make_stringf(Options.language == lang_t::KO
+                    ? "%s, %s, %s 기술 숙련도가 감소합니다."
+                    : "Your skill with %s, %s, and %s is reduced.",
                     skill_name(static_cast<skill_type>(vec[0].get_int())),
                     skill_name(static_cast<skill_type>(vec[1].get_int())),
                     skill_name(static_cast<skill_type>(vec[2].get_int())));
@@ -3596,7 +3624,7 @@ void maybe_apply_bane_to_monster(monster& mons)
         && mons_has_attacks(mons)
         && one_chance_in(7))
     {
-        simple_monster_message(mons, " is touched by paradox!");
+        simple_monster_message(mons, (Options.language == lang_t::KO ? " — 역설의 기운에 물듭니다!" : " is touched by paradox!"));
         mons.add_ench(mon_enchant(ENCH_PARADOX_TOUCHED, nullptr, INFINITE_DURATION));
     }
 

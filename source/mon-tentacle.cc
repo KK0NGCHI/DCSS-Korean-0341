@@ -876,7 +876,7 @@ void move_solo_tentacle(monster* tentacle)
     {
         if (you.can_see(*tentacle))
         {
-            mprf("The vine drags %s backwards!",
+            mprf(Options.language == lang_t::KO ? "덩굴에 뒤로 끌려가는 대상: %s!" : "The vine drags %s backwards!",
                     constrictee->name(DESC_THE).c_str());
         }
         constrictee->move_to(shift_pos);
@@ -1061,7 +1061,7 @@ void move_child_tentacles(monster* mons)
         {
             if (you.can_see(*tentacle))
             {
-                mprf("The tentacle pulls %s backwards!",
+                mprf(Options.language == lang_t::KO ? "촉수에 뒤로 끌려가는 대상: %s!" : "The tentacle pulls %s backwards!",
                      constrictee->name(DESC_THE).c_str());
             }
             constrictee->move_to(old_pos);
@@ -1223,16 +1223,16 @@ void mons_create_tentacles(monster* head)
     if (mons_base_type(*head) == MONS_KRAKEN)
     {
         if (visible_count == 1)
-            mpr("A tentacle reaches out from the kraken!");
+            mpr(Options.language == lang_t::KO ? "크라켄에게서 촉수 하나가 뻗어 나옵니다!" : "A tentacle reaches out from the kraken!");
         else if (visible_count > 1)
-            mpr("Tentacles reach out from the kraken!");
+            mpr(Options.language == lang_t::KO ? "크라켄에게서 촉수들이 뻗어 나옵니다!" : "Tentacles reach out from the kraken!");
     }
     else if (head->type == MONS_TENTACLED_STARSPAWN)
     {
         if (visible_count == 1)
-            mpr("A tentacle flies out from the starspawn's body!");
+            mpr(Options.language == lang_t::KO ? "별의 후손의 몸에서 촉수 하나가 튀어나옵니다!" : "A tentacle flies out from the starspawn's body!");
         else if (visible_count > 1)
-            mpr("Tentacles burst from the starspawn's body!");
+            mpr(Options.language == lang_t::KO ? "별의 후손의 몸에서 촉수들이 튀어나옵니다!" : "Tentacles burst from the starspawn's body!");
     }
     return;
 }
