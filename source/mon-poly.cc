@@ -615,7 +615,7 @@ bool monster_polymorph(monster* mons, monster_type targetc,
 
     targetc = _concretize_target(*mons, targetc, power);
     if (targetc == MONS_NO_MONSTER)
-        return simple_monster_message(*mons, " shudders.");
+        return simple_monster_message(*mons, Options.language == lang_t::KO ? " — 몸을 떱니다." : " shudders.");
 
     const bool was_invisible = mons->has_ench(ENCH_INVIS) && !mons->friendly();
     bool could_see = you.can_see(*mons);
@@ -625,7 +625,7 @@ bool monster_polymorph(monster* mons, monster_type targetc,
     monster_type oldc = mons->type;
 
     if (power != PPT_SLIME && !_valid_morph(mons, targetc))
-        return simple_monster_message(*mons, " looks momentarily different.");
+        return simple_monster_message(*mons, Options.language == lang_t::KO ? " — 잠깐 모습이 달라집니다." : " looks momentarily different.");
 
     change_monster_type(mons, targetc, false);
 
@@ -741,7 +741,7 @@ void slimify_monster(monster* mon)
     // Bail out if jellies can't live here.
     if (!monster_habitable_grid(target, mon->pos()))
     {
-        simple_monster_message(*mon, " quivers momentarily.");
+        simple_monster_message(*mon, Options.language == lang_t::KO ? " — 잠깐 몸을 떱니다." : " quivers momentarily.");
         return;
     }
 
