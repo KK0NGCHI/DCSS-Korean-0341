@@ -346,7 +346,7 @@ void melee_attack::handle_phase_blocked()
                                         random_range(3, 5) * BASELINE_DELAY))
             && need_msg)
         {
-            mprf("%s is struck blind by the light of your shield.",
+            mprf(Options.language == lang_t::KO ? "방패의 빛에 눈이 먼 대상: %s." : "%s is struck blind by the light of your shield.",
                     attacker->name(DESC_THE).c_str());
         }
     }
@@ -801,7 +801,7 @@ static void _grow_mushrooms(const monster& mon)
     }
 
     if (created)
-        mprf("Mushrooms sprout behind %s.", mon.name(DESC_THE).c_str());
+        mprf(Options.language == lang_t::KO ? "버섯이 돋아나는 몬스터의 뒤편: %s." : "Mushrooms sprout behind %s.", mon.name(DESC_THE).c_str());
 }
 
 /* An attack has been determined to have hit something
@@ -988,7 +988,7 @@ bool melee_attack::handle_phase_hit()
             && mons_has_attacks(*defender->as_monster(), false)
             && coinflip())
         {
-            mprf("%s is engulfed in spores.", defender->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "포자에 휩싸인 대상: %s." : "%s is engulfed in spores.", defender->name(DESC_THE).c_str());
             defender->weaken(&you, 3);
         }
     }
@@ -3175,7 +3175,7 @@ bool melee_attack::consider_decapitation(int dam)
     if (damage_brand == SPWPN_FLAMING)
     {
         if (defender_visible)
-            mpr("The flame cauterises the wound!");
+            mpr(Options.language == lang_t::KO ? "불꽃이 상처를 지져 봉합합니다!" : "The flame cauterises the wound!");
         return false;
     }
 
@@ -3183,7 +3183,7 @@ bool melee_attack::consider_decapitation(int dam)
     if (heads >= limit - 1)
         return false; // don't overshoot the head limit!
 
-    simple_monster_message(*defender->as_monster(), " grows two more!");
+    simple_monster_message(*defender->as_monster(), Options.language == lang_t::KO ? " — 머리 2개가 더 자라납니다!" : " grows two more!");
     defender->as_monster()->num_heads += 2;
 
     if (defender->type == MONS_SLYMDRA)
@@ -3482,7 +3482,7 @@ bool melee_attack::apply_staff_damage()
     if (you.wearing_ego(OBJ_ARMOUR, SPARM_ATTUNEMENT)
         && you.magic_points < you.max_magic_points)
     {
-        mpr("You draw in some of the released energy.");
+        mpr(Options.language == lang_t::KO ? "방출된 에너지 일부를 흡수합니다." : "You draw in some of the released energy.");
         inc_mp(1 + one_chance_in(3) + one_chance_in(3));
     }
 
@@ -4027,7 +4027,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         // Doesn't affect the poison-immune.
         if (defender->is_player() && you.duration[DUR_DIVINE_STAMINA] > 0)
         {
-            mpr("Your divine stamina protects you from poison!");
+            mpr(Options.language == lang_t::KO ? "신성한 활력이 독으로부터 당신을 보호합니다!" : "Your divine stamina protects you from poison!");
             break;
         }
         if (defender->res_poison() >= 3)
@@ -4044,7 +4044,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         // Doesn't affect the poison-immune.
         if (defender->is_player() && you.duration[DUR_DIVINE_STAMINA] > 0)
         {
-            mpr("Your divine stamina protects you from poison!");
+            mpr(Options.language == lang_t::KO ? "신성한 활력이 독으로부터 당신을 보호합니다!" : "Your divine stamina protects you from poison!");
             break;
         }
         else if (defender->res_poison() >= 3)
@@ -4300,7 +4300,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
                           attacker->get_hit_dice() * 12))
         {
             if (needs_message)
-                mpr("A spider bursts forth from the wound!");
+                mpr(Options.language == lang_t::KO ? "상처에서 거미가 튀어나옵니다!" : "A spider bursts forth from the wound!");
         }
         break;
     }
@@ -4335,12 +4335,12 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         {
             mon->del_ench(ENCH_MIGHT, true);
             mon->add_ench(mon_enchant(ENCH_BERSERK, mon, random_range(100, 200)));
-            simple_monster_message(*mon, " enters a blood-rage!");
+            simple_monster_message(*mon, Options.language == lang_t::KO ? " — 피에 굶주린 광란에 빠집니다!" : " enters a blood-rage!");
         }
         else
         {
             mon->add_ench(mon_enchant(ENCH_MIGHT, mon, random_range(100, 200)));
-            simple_monster_message(*mon, " tastes blood and grows stronger!");
+            simple_monster_message(*mon, Options.language == lang_t::KO ? " — 피 맛을 보고 더욱 강해집니다!" : " tastes blood and grows stronger!");
         }
         break;
     }
@@ -4378,7 +4378,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
                 // Zin's protection blocks this from the start, since having the
                 // passive will stop the transformation at the end.
                 if (have_passive(passive_t::resist_polymorph))
-                    simple_god_message(" protects your body from unnatural transformation!");
+                    simple_god_message(Options.language == lang_t::KO ? " — 부자연스러운 변신으로부터 당신의 몸을 보호합니다!" : " protects your body from unnatural transformation!");
                 else
                 {
                     bool initial = you.duration[DUR_SLIMIFYING] == 0;
@@ -4403,7 +4403,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
     case AF_ALEMBIC:
     {
         if (needs_message)
-            mprf("%s vents fumes.", attacker->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "연기를 내뿜는 대상: %s." : "%s vents fumes.", attacker->name(DESC_THE).c_str());
 
         int dur = random_range(3, 7);
         place_cloud(CLOUD_POISON, defender->pos(), dur, attacker);
@@ -4497,7 +4497,7 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
                                         8 + attacker->get_hit_dice());
         const bool caused_bane = defender->doom(amount);
         if (!caused_bane && defender->is_player())
-            mpr("Your doom draws closer.");
+            mpr(Options.language == lang_t::KO ? "파멸이 더욱 가까워집니다." : "Your doom draws closer.");
         break;
     }
 
@@ -4538,7 +4538,7 @@ void melee_attack::do_fiery_armour_burn()
     if (!hurted)
         return;
 
-    simple_monster_message(*mon, " is burned by your cloak of flames.");
+    simple_monster_message(*mon, Options.language == lang_t::KO ? " — 당신의 화염 망토에 화상을 입습니다." : " is burned by your cloak of flames.");
 
     // ...until now, since we know damage was done.
     mons_adjust_flavoured(mon, beam, post_ac);
@@ -4571,7 +4571,7 @@ void melee_attack::do_passive_freeze()
         if (!hurted)
             return;
 
-        simple_monster_message(*mon, " is very cold.");
+        simple_monster_message(*mon, Options.language == lang_t::KO ? " — 극심한 냉기를 느낍니다." : " is very cold.");
 
         // ...until now, since we know damage was done.
         mons_adjust_flavoured(mon, beam, orig_hurted);
@@ -4752,7 +4752,7 @@ void melee_attack::emit_foul_stench()
 
         if (damage_done > 0 && x_chance_in_y(mut * 3 - 1, 20))
         {
-            mpr("You emit a cloud of foul miasma!");
+            mpr(Options.language == lang_t::KO ? "악취 나는 독기 구름을 내뿜습니다!" : "You emit a cloud of foul miasma!");
             place_cloud(CLOUD_MIASMA, mon->pos(), 5 + random2(6), &you);
         }
     }
@@ -5289,7 +5289,7 @@ bool coglin_spellmotor_attack()
         return false;
 
     melee_attack attk(&you, targs[random2(targs.size())]);
-    mpr("Your spellmotor activates!");
+    mpr(Options.language == lang_t::KO ? "주문 구동기가 작동합니다!" : "Your spellmotor activates!");
     attk.launch_attack_set();
 
     count_action(CACT_ATTACK, ATTACK_SPELLMOTOR);
@@ -5363,7 +5363,7 @@ bool spellclaws_attack(int spell_level)
 
     if (you.duration[DUR_ENKINDLED] && you.hp < you.hp_max)
     {
-        mprf("You rip the existence from %s to re-knit yourself!", targ_name.c_str());
+        mprf(Options.language == lang_t::KO ? "몸을 회복하기 위해 존재의 일부를 빼앗습니다: %s!" : "You rip the existence from %s to re-knit yourself!", targ_name.c_str());
         you.heal(attk.total_damage_done * 3 / 4);
     }
 
