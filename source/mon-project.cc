@@ -577,7 +577,8 @@ move_again:
             && you.see_cell(pos)
             && you.see_cell(starting_pos))
         {
-            mprf("%s hits %s.", mon.name(DESC_THE, true).c_str(),
+            mprf(Options.language == lang_t::KO ? "구체가 지형에 충돌합니다: %s, %s." : "%s hits %s.",
+                 mon.name(DESC_THE, true).c_str(),
                  feature_description_at(pos, false, DESC_A).c_str());
         }
 
@@ -642,7 +643,7 @@ move_again:
             {
                 if (shield && shield_reflects(*shield))
                 {
-                    mprf("Your %s blocks %s... and reflects it back!",
+                    mprf(Options.language == lang_t::KO ? "방패가 구체를 막고 되돌려 보냅니다: %s, %s!" : "Your %s blocks %s... and reflects it back!",
                          shield->name(DESC_PLAIN).c_str(),
                          mon.name(DESC_THE, true).c_str());
                 }
@@ -658,11 +659,17 @@ move_again:
                 {
                     if (shield && shield_reflects(*shield))
                     {
-                        mprf("%s blocks %s with %s %s... and reflects it back!",
-                             victim->name(DESC_THE, true).c_str(),
-                             mon.name(DESC_THE, true).c_str(),
-                             victim->pronoun(PRONOUN_POSSESSIVE).c_str(),
-                             shield->name(DESC_PLAIN).c_str());
+                        if (Options.language == lang_t::KO)
+                            mprf("구체를 방패로 막고 반사한 대상: %s, 구체: %s, 방패: %s!",
+                                 victim->name(DESC_THE, true).c_str(),
+                                 mon.name(DESC_THE, true).c_str(),
+                                 shield->name(DESC_PLAIN).c_str());
+                        else
+                            mprf("%s blocks %s with %s %s... and reflects it back!",
+                                 victim->name(DESC_THE, true).c_str(),
+                                 mon.name(DESC_THE, true).c_str(),
+                                 victim->pronoun(PRONOUN_POSSESSIVE).c_str(),
+                                 shield->name(DESC_PLAIN).c_str());
                     }
                     else
                     {
