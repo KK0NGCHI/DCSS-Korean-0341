@@ -336,11 +336,13 @@ void melee_attack::handle_phase_blocked()
 
     if (needs_block_message)
     {
-        mprf("%s %s %s attack.",
+        if (Options.language == lang_t::KO)
+            mprf("공격을 막아낸 대상: %s.", defender_name(false).c_str());
+        else
+            mprf("%s %s %s attack.",
                  defender_name(false).c_str(),
                  defender->conj_verb("block").c_str(),
-                 attacker == defender ? "its own"
-                                      : atk_name(DESC_ITS).c_str());
+                 attacker == defender ? "its own" : atk_name(DESC_ITS).c_str());
     }
 
     if (defender->is_player() && you.duration[DUR_DIVINE_SHIELD]
@@ -624,10 +626,12 @@ void melee_attack::do_vampire_lifesteal()
 
         if (can_heal && !can_enthrall)
         {
-            mprf("You sink your fangs into %s and drink %s %s.",
-                    mon->name(DESC_THE, true).c_str(),
-                    mon->pronoun(PRONOUN_POSSESSIVE).c_str(),
-                    mon->blood_name().c_str());
+            if (Options.language == lang_t::KO)
+                mprf("송곳니를 박고 피를 마십니다: %s.", mon->name(DESC_THE, true).c_str());
+            else
+                mprf("You sink your fangs into %s and drink %s %s.",
+                     mon->name(DESC_THE, true).c_str(),
+                     mon->pronoun(PRONOUN_POSSESSIVE).c_str(), mon->blood_name().c_str());
         }
         else if (can_enthrall)
         {
@@ -670,13 +674,18 @@ void melee_attack::handle_concussion_brand()
             special_damage = random2(damage_done) * 3 / 4 + 1;
             if (needs_message)
             {
-                mprf("%s crush%s %s against the %s%s",
-                        attacker->name(DESC_THE).c_str(),
-                        attacker->is_monster() ? "es" : "",
-                        defender->name(DESC_THE).c_str(),
-                        feat_is_wall(env.grid(back)) ? "wall"
-                                                    : raw_feature_description(back).c_str(),
-                        attack_strength_punctuation(special_damage).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("대상을 지형에 짓누릅니다: %s → %s%s",
+                         attacker->name(DESC_THE).c_str(),
+                         defender->name(DESC_THE).c_str(),
+                         attack_strength_punctuation(special_damage).c_str());
+                else
+                    mprf("%s crush%s %s against the %s%s",
+                         attacker->name(DESC_THE).c_str(),
+                         attacker->is_monster() ? "es" : "",
+                         defender->name(DESC_THE).c_str(),
+                         feat_is_wall(env.grid(back)) ? "wall" : raw_feature_description(back).c_str(),
+                         attack_strength_punctuation(special_damage).c_str());
             }
             inflict_damage(special_damage);
         }
@@ -729,12 +738,11 @@ static void _apply_flux_contam(monster &m)
 
     if (energy <= 0)
     {
-        mprf(MSGCH_DURATION, "The last of your unstable energy dissipates and "
-                             "you return to your previous form.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "불안정한 에너지가 모두 사라지면서 원래 모습으로 돌아옵니다." : "The last of your unstable energy dissipates and you return to your previous form.");
         return_to_default_form();
     }
     else if (above_warning && energy < FLUX_ENERGY_WARNING)
-        mprf(MSGCH_DURATION, "You feel the transmutational energy in your body is nearly expended.");
+        mprf(MSGCH_DURATION, "%s", Options.language == lang_t::KO ? "몸속의 변신 에너지가 거의 소진되었습니다." : "You feel the transmutational energy in your body is nearly expended.");
 }
 
 void melee_attack::maybe_do_mesmerism()
@@ -918,11 +926,14 @@ bool melee_attack::handle_phase_hit()
                                     : attacker->conj_verb(mons_attack_verb());
 
             // TODO: Clean this up if possible, checking atype for do / does is ugly
-            mprf("%s %s %s but %s no damage.",
-                attacker->name(DESC_THE).c_str(),
-                attack_verb.c_str(),
-                defender_name(true).c_str(),
-                attacker->is_player() ? "do" : "does");
+            if (Options.language == lang_t::KO)
+                mprf("공격했지만 피해를 입히지 못합니다: %s → %s.",
+                     attacker->name(DESC_THE).c_str(), defender_name(true).c_str());
+            else
+                mprf("%s %s %s but %s no damage.",
+                     attacker->name(DESC_THE).c_str(),
+                     attack_verb.c_str(), defender_name(true).c_str(),
+                     attacker->is_player() ? "do" : "does");
         }
     }
 
@@ -1089,9 +1100,14 @@ bool melee_attack::handle_phase_damaged()
         && !you.duration[DUR_SHROUD_TIMEOUT] && one_chance_in(4))
     {
         you.duration[DUR_SHROUD_TIMEOUT] = 100 + random2(damage_done) * 10;
-        mprf("your slimy shroud breaks as it bends %s attack away%s",
-                     atk_name(DESC_ITS).c_str(),
-                     attack_strength_punctuation(damage_done).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("점액 장막이 공격을 막고 부서집니다: %s%s",
+                 atk_name(DESC_THE).c_str(),
+                 attack_strength_punctuation(damage_done).c_str());
+        else
+            mprf("your slimy shroud breaks as it bends %s attack away%s",
+                 atk_name(DESC_ITS).c_str(),
+                 attack_strength_punctuation(damage_done).c_str());
         did_hit = false;
         damage_done = 0;
         return false;
@@ -1150,11 +1166,15 @@ static void _devour(monster &victim)
     // Sometimes, one's eyes are larger than one's stomach-mouth.
     const int size_delta = victim.body_size(PSIZE_BODY)
                             - you.body_size(PSIZE_BODY);
-    mprf("You devour %s%s!",
-         size_delta <= 0 ? "" :
-         size_delta <= 1 ? "half of " :
-                           "a chunk of ",
-         victim.name(DESC_THE).c_str());
+    if (Options.language == lang_t::KO)
+        mprf(size_delta <= 0 ? "대상을 집어삼킵니다: %s!"
+             : size_delta <= 1 ? "대상의 절반을 집어삼킵니다: %s!"
+                               : "대상의 살점 일부를 집어삼킵니다: %s!",
+             victim.name(DESC_THE).c_str());
+    else
+        mprf("You devour %s%s!",
+             size_delta <= 0 ? "" : size_delta <= 1 ? "half of " : "a chunk of ",
+             victim.name(DESC_THE).c_str());
 
     // give a clearer message for eating invisible things
     if (!you.can_see(victim))
@@ -1213,11 +1233,15 @@ static void _consider_devouring(monster &defender)
     if (defender.is_shapeshifter())
     {
         // handle this carefully, so the player knows what's going on
-        mprf("You spit out %s as %s %s & %s in your maw!",
-             defender.name(DESC_THE).c_str(),
-             defender.pronoun(PRONOUN_SUBJECTIVE).c_str(),
-             conjugate_verb("twist", defender.pronoun_plurality()).c_str(),
-             conjugate_verb("change", defender.pronoun_plurality()).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("입속에서 몸을 뒤틀며 변형되는 대상을 뱉어냅니다: %s!",
+                 defender.name(DESC_THE).c_str());
+        else
+            mprf("You spit out %s as %s %s & %s in your maw!",
+                 defender.name(DESC_THE).c_str(),
+                 defender.pronoun(PRONOUN_SUBJECTIVE).c_str(),
+                 conjugate_verb("twist", defender.pronoun_plurality()).c_str(),
+                 conjugate_verb("change", defender.pronoun_plurality()).c_str());
         return;
     }
 
@@ -2752,10 +2776,12 @@ void melee_attack::player_warn_miss()
 {
     did_hit = false;
 
-    mprf("You%s miss %s%s.",
-         evasion_margin_adverb().c_str(),
-         defender->name(DESC_THE).c_str(),
-         weapon_desc().c_str());
+    if (Options.language == lang_t::KO)
+        mprf("공격이 빗나갑니다: %s.", defender->name(DESC_THE).c_str());
+    else
+        mprf("You%s miss %s%s.",
+             evasion_margin_adverb().c_str(), defender->name(DESC_THE).c_str(),
+             weapon_desc().c_str());
 }
 
 // A couple additive modifiers that should be applied to both unarmed and
@@ -3879,10 +3905,13 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
 
         if (needs_message && base_damage)
         {
-            mprf("%s %s engulfed in flames%s",
-                 defender_name(false).c_str(),
-                 defender->conj_verb("are").c_str(),
-                 attack_strength_punctuation(special_damage).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("불길에 휩싸인 대상: %s%s", defender_name(false).c_str(),
+                     attack_strength_punctuation(special_damage).c_str());
+            else
+                mprf("%s %s engulfed in flames%s",
+                     defender_name(false).c_str(), defender->conj_verb("are").c_str(),
+                     attack_strength_punctuation(special_damage).c_str());
 
             _print_resist_messages(defender, base_damage, BEAM_FIRE);
         }
@@ -3952,6 +3981,10 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
                 attacker->heal(healed);
                 if (needs_message)
                 {
+                    if (Options.language == lang_t::KO)
+                    mprf("상처에서 활력을 흡수합니다: %s → %s!",
+                         def_name(DESC_THE).c_str(), atk_name(DESC_THE).c_str());
+                else
                     mprf("%s %s vitality from %s injuries!",
                          atk_name(DESC_THE).c_str(),
                          attacker->conj_verb("draw").c_str(),
@@ -3985,9 +4018,9 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
 
             if (defender_visible)
             {
-                mprf("%s %s engulfed in a cloud of dizzying spores!",
+                mprf(Options.language == lang_t::KO ? "어지럼증을 일으키는 포자 구름에 휩싸인 대상: %s!" : "%s %s engulfed in a cloud of dizzying spores!",
                      defender->name(DESC_THE).c_str(),
-                     defender->conj_verb("are").c_str());
+                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
             }
         }
 
@@ -3995,9 +4028,9 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         {
             if (attk_type != AT_SPORE && defender_visible)
             {
-                mprf("%s %s afflicted by dizzying energies!",
+                mprf(Options.language == lang_t::KO ? "어지럼증을 일으키는 기운에 휩싸인 대상: %s!" : "%s %s afflicted by dizzying energies!",
                      defender->name(DESC_THE).c_str(),
-                     defender->conj_verb("are").c_str());
+                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
             }
             defender->confuse(attacker,
                               1 + random2(3+attacker->get_hit_dice()));
@@ -4018,9 +4051,9 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
         {
             if (defender_visible)
             {
-                mprf("%s %s skewered by barbed spikes.",
+                mprf(Options.language == lang_t::KO ? "날카로운 가시에 찔린 대상: %s." : "%s %s skewered by barbed spikes.",
                      defender->name(DESC_THE).c_str(),
-                     defender->conj_verb("are").c_str());
+                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
             }
             defender->as_monster()->add_ench(mon_enchant(ENCH_BARBS, attacker,
                                         random_range(5, 7) * BASELINE_DELAY, 1));
@@ -4168,10 +4201,14 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
 
             if (you.can_see(*attacker) || you.can_see(*defender))
             {
-                mprf("%s drains %s %s.",
-                     attacker->name(DESC_THE).c_str(),
-                     defender->pronoun(PRONOUN_POSSESSIVE).c_str(),
-                     spell_user ? "magic" : "power");
+                if (Options.language == lang_t::KO)
+                    mprf(spell_user ? "마력을 흡수하는 공격자: %s." : "힘을 흡수하는 공격자: %s.",
+                         attacker->name(DESC_THE).c_str());
+                else
+                    mprf("%s drains %s %s.",
+                         attacker->name(DESC_THE).c_str(),
+                         defender->pronoun(PRONOUN_POSSESSIVE).c_str(),
+                         spell_user ? "magic" : "power");
             }
 
             monster* vine = attacker->as_monster();
@@ -4359,9 +4396,9 @@ void melee_attack::mons_apply_attack_flavour(attack_flavour flavour)
 
             if (defender_visible)
             {
-                mprf("%s %s engulfed in a cloud of soporific spores!",
+                mprf(Options.language == lang_t::KO ? "수면 포자 구름에 휩싸인 대상: %s!" : "%s %s engulfed in a cloud of soporific spores!",
                      defender->name(DESC_THE).c_str(),
-                     defender->conj_verb("are").c_str());
+                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
             }
         }
         defender->put_to_sleep(attacker, random_range(3, 5) * BASELINE_DELAY);
@@ -4692,11 +4729,16 @@ void melee_attack::do_spines()
                 return;
             if (you.can_see(*defender) || attacker->is_player())
             {
-                mprf("%s %s struck by %s %s.", attacker->name(DESC_THE).c_str(),
-                     attacker->conj_verb("are").c_str(),
-                     defender->name(DESC_ITS).c_str(),
-                     defender->type == MONS_BRIAR_PATCH ? "thorns"
-                                                        : "spines");
+                if (Options.language == lang_t::KO)
+                    mprf(defender->type == MONS_BRIAR_PATCH
+                         ? "가시에 찔린 대상: %s (공격자: %s)."
+                         : "뾰족한 가시에 찔린 대상: %s (공격자: %s).",
+                         attacker->name(DESC_THE).c_str(), defender->name(DESC_THE).c_str());
+                else
+                    mprf("%s %s struck by %s %s.",
+                         attacker->name(DESC_THE).c_str(), attacker->conj_verb("are").c_str(),
+                         defender->name(DESC_ITS).c_str(),
+                         defender->type == MONS_BRIAR_PATCH ? "thorns" : "spines");
             }
             attacker->hurt(defender, hurt, BEAM_MISSILE, KILLED_BY_SPINES);
         }
@@ -4798,8 +4840,11 @@ void melee_attack::riposte()
 {
     if (you.see_cell(defender->pos()))
     {
-        mprf("%s riposte%s.", defender->name(DESC_THE).c_str(),
-             defender->is_player() ? "" : "s");
+        if (Options.language == lang_t::KO)
+            mprf("받아치기로 반격하는 대상: %s.", defender->name(DESC_THE).c_str());
+        else
+            mprf("%s riposte%s.", defender->name(DESC_THE).c_str(),
+                 defender->is_player() ? "" : "s");
     }
     melee_attack attck(defender, attacker, 0, effective_attack_number + 1);
     attck.is_riposte = true;
@@ -4885,9 +4930,9 @@ bool melee_attack::do_knockback(bool slippery)
         {
             if (defender->is_constricted())
             {
-                mprf("%s %s held in place!",
+                mprf(Options.language == lang_t::KO ? "그 자리에 붙잡힌 대상: %s!" : "%s %s held in place!",
                      defender_name(false).c_str(),
-                     defender->conj_verb("are").c_str());
+                     Options.language == lang_t::KO ? "" : defender->conj_verb("are").c_str());
             }
             else if (!slippery)
             {
@@ -4908,9 +4953,9 @@ bool melee_attack::do_knockback(bool slippery)
         const string verb = slippery ? "slip" :
                          can_stumble ? "stumble"
                                      : "are shoved";
-        mprf("%s %s backwards!",
+        mprf(Options.language == lang_t::KO ? "뒤로 밀려나는 대상: %s!" : "%s %s backwards!",
              defender_name(false).c_str(),
-             defender->conj_verb(verb).c_str());
+             Options.language == lang_t::KO ? "" : defender->conj_verb(verb).c_str());
     }
 
     // Schedule following _before_ actually trampling -- if the defender
