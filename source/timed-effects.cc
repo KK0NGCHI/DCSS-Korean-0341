@@ -732,7 +732,7 @@ static void _drop_tomb(const coord_def& pos, bool premature, bool zin)
         else
         {
             if (!silenced(you.pos()))
-                mprf(MSGCH_SOUND, "You hear a deep rumble.");
+                mprf(MSGCH_SOUND, "%s", Options.language == lang_t::KO ? "깊은 곳에서 우르릉거리는 소리가 들립니다." : "You hear a deep rumble.");
             else
                 mpr("You feel the ground shudder.");
         }
