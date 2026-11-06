@@ -365,7 +365,7 @@ void open_door_action(coord_def move)
 
         if (num == 0)
         {
-            mpr("There's nothing to open nearby.");
+            mpr(Options.language == lang_t::KO ? "근처에 열 수 있는 것이 없습니다." : "There's nothing to open nearby.");
             return;
         }
 
@@ -392,7 +392,7 @@ void open_door_action(coord_def move)
                                                                  MAT_ANY,
                                                                  "veto_reason");
         if (door_veto_message.empty())
-            mpr("The door is shut tight!");
+            mpr(Options.language == lang_t::KO ? "문이 단단히 닫혀 있습니다!" : "The door is shut tight!");
         else
             mpr(door_veto_message);
         if (you.confused())
@@ -429,10 +429,10 @@ void open_door_action(coord_def move)
     }
     case DNGN_SEALED_DOOR:
     case DNGN_SEALED_CLEAR_DOOR:
-        mpr("That door is sealed shut!"); // should use door noun?
+        mpr(Options.language == lang_t::KO ? "봉인된 문입니다!" : "That door is sealed shut!"); // should use door noun?
         break;
     default:
-        mpr("There isn't anything that you can open there!");
+        mpr(Options.language == lang_t::KO ? "그곳에는 열 수 있는 것이 없습니다!" : "There isn't anything that you can open there!");
         break;
     }
 }
@@ -441,7 +441,10 @@ void close_door_action(coord_def move)
 {
     if (you.attribute[ATTR_HELD])
     {
-        mprf("You can't close doors while %s.", held_status());
+        if (Options.language == lang_t::KO)
+            mpr("현재 구속된 상태에서는 문을 닫을 수 없습니다.");
+        else
+            mprf("You can't close doors while %s.", held_status());
         return;
     }
 
@@ -466,7 +469,7 @@ void close_door_action(coord_def move)
                 mpr("It's broken and can't be closed.");
             }
             else
-                mpr("There's nothing to close nearby.");
+                mpr(Options.language == lang_t::KO ? "근처에 닫을 수 있는 것이 없습니다." : "There's nothing to close nearby.");
             return;
         }
         // move got set in _check_adjacent
@@ -498,14 +501,14 @@ void close_door_action(coord_def move)
     case DNGN_RUNED_CLEAR_DOOR:
     case DNGN_SEALED_DOOR:
     case DNGN_SEALED_CLEAR_DOOR:
-        mpr("It's already closed!");
+        mpr(Options.language == lang_t::KO ? "이미 닫혀 있습니다!" : "It's already closed!");
         break;
     case DNGN_BROKEN_DOOR:
     case DNGN_BROKEN_CLEAR_DOOR:
         mpr("It's broken and can't be closed!");
         break;
     default:
-        mpr("There isn't anything that you can close there!");
+        mpr(Options.language == lang_t::KO ? "그곳에는 닫을 수 있는 것이 없습니다!" : "There isn't anything that you can close there!");
         break;
     }
 }
@@ -623,15 +626,15 @@ monster* get_rampage_target(coord_def move)
 static void _handle_trying_to_move_into_unpassable_terrain(coord_def targ)
 {
     if (env.grid(targ) == DNGN_OPEN_SEA)
-        mpr("The ferocious winds and tides of the open sea thwart your progress.");
+        mpr(Options.language == lang_t::KO ? "거센 바람과 파도 때문에 바다로 나아갈 수 없습니다." : "The ferocious winds and tides of the open sea thwart your progress.");
     else if (env.grid(targ) == DNGN_LAVA_SEA)
-        mpr("The endless sea of lava is not a nice place.");
+        mpr(Options.language == lang_t::KO ? "끝없이 펼쳐진 용암 바다에는 들어갈 수 없습니다." : "The endless sea of lava is not a nice place.");
     else if (feat_is_tree(env.grid(targ)) && you_worship(GOD_FEDHAS))
     {
         if (you.digging)
-            mpr("You cannot dig through the dense trees.");
+            mpr(Options.language == lang_t::KO ? "빽빽한 나무를 파고 지나갈 수 없습니다." : "You cannot dig through the dense trees.");
         else
-            mpr("You cannot walk through the dense trees.");
+            mpr(Options.language == lang_t::KO ? "빽빽한 나무 사이로 걸어갈 수 없습니다." : "You cannot walk through the dense trees.");
     }
     else if (env.grid(targ) == DNGN_MALIGN_GATEWAY)
         mpr("The malign portal rejects you as you step towards it.");
@@ -669,8 +672,10 @@ static bool _adjust_confused_movement(coord_def& move)
         // Don't choose a random location to try to attack into - allows
         // abuse, since trying to move (not attack) takes no time, and
         // shouldn't. Just force confused trees to use ctrl.
-        mpr("You cannot move. (Use ctrl+direction or * direction to "
-            "attack while stationary and confused.)");
+        mpr(Options.language == lang_t::KO
+            ? "움직일 수 없습니다. (혼란 상태에서 제자리 공격: Ctrl+방향키 또는 * 후 방향키)"
+            : "You cannot move. (Use ctrl+direction or * direction to "
+              "attack while stationary and confused.)");
         return false;
     }
 
@@ -686,7 +691,7 @@ static bool _adjust_confused_movement(coord_def& move)
         move.y = random2(3) - 1;
         if (move.origin())
         {
-            mpr("You're too confused to move!");
+            mpr(Options.language == lang_t::KO ? "너무 혼란스러워 움직일 수 없습니다!" : "You're too confused to move!");
             you.turn_is_over = true;
             crawl_state.cancel_cmd_repeat();
             return false;
@@ -840,7 +845,7 @@ static bool _handle_player_step(const coord_def& targ, int& delay, bool rampagin
     {
         if (you.is_nervous())
         {
-            mpr("You're too terrified to move while being watched!");
+            mpr(Options.language == lang_t::KO ? "시선이 느껴져 너무 두려운 나머지 움직일 수 없습니다!" : "You're too terrified to move while being watched!");
             return false;
         }
         // If we're rampaging, we've already determined that the endpoint is at
@@ -925,7 +930,7 @@ static bool _handle_player_step(const coord_def& targ, int& delay, bool rampagin
             && mon->hit_points < mon->max_hit_points)
         {
             mon->heal(mon->max_hit_points * 3 / 4);
-            mprf("You weave more energy into your solar ember.");
+            mprf("%s", Options.language == lang_t::KO ? "태양의 불씨에 에너지를 더 불어넣습니다." : "You weave more energy into your solar ember.");
         }
 
         mon->finalise_movement();
