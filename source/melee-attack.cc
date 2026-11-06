@@ -271,7 +271,7 @@ bool melee_attack::handle_phase_attempted()
             flat_dmg_bonus = random_range(0, 3);
             defender->as_monster()->del_ench(ENCH_KINETIC_GRAPNEL, true);
             if (attacker->is_player())
-                mpr("The grapnel guides your strike.");
+                mpr(Options.language == lang_t::KO ? "갈고리가 공격을 유도합니다." : "The grapnel guides your strike.");
         }
     }
 
@@ -409,7 +409,7 @@ void melee_attack::handle_phase_dodged()
                 {
                     you.track_reprisal(REPRISAL_HEADBUTT, attacker->mid);
 
-                    mpr("You furiously retaliate!");
+                    mpr(Options.language == lang_t::KO ? "격렬하게 반격합니다!" : "You furiously retaliate!");
                     melee_attack headbutt(&you, attacker);
                     headbutt.player_aux_setup(UNAT_HEADBUTT);
                     headbutt.player_aux_apply(UNAT_HEADBUTT);
@@ -558,7 +558,7 @@ void melee_attack::apply_sign_of_ruin_effects()
                 {
                     defender->as_monster()->add_ench(mon_enchant(ENCH_BLIND, attacker,
                                                     random_range(5, 8) * BASELINE_DELAY));
-                    simple_monster_message(*defender->as_monster(), " is struck blind.");
+                    simple_monster_message(*defender->as_monster(), Options.language == lang_t::KO ? " — 눈이 멉니다." : " is struck blind.");
                 }
                 else
                     blind_player(random_range(5, 8));
@@ -713,7 +713,7 @@ static void _apply_flux_contam(monster &m)
 
     m.add_ench(mon_enchant(ENCH_CONTAM, &you, 0, 1));
     if (!old_glow.degree)
-        simple_monster_message(m, " begins to glow.");
+        simple_monster_message(m, Options.language == lang_t::KO ? " — 빛나기 시작합니다." : " begins to glow.");
     else
         simple_monster_message(m, " glows dangerously bright.");
 
@@ -1075,7 +1075,7 @@ static void _inflict_deathly_blight(monster &m)
     if (m.holiness() & (MH_NATURAL | MH_PLANT))
         worked = m.add_ench(mon_enchant(ENCH_DRAINED, &you, dur, 2)) || worked;
     if (worked && you.can_see(m))
-        simple_monster_message(m, " decays.");
+        simple_monster_message(m, Options.language == lang_t::KO ? " — 부패합니다." : " decays.");
 }
 
 bool melee_attack::handle_phase_damaged()
@@ -1160,7 +1160,7 @@ static void _devour(monster &victim)
         // 'flavourful' this way??
     }
     if (victim.has_ench(ENCH_STICKY_FLAME))
-        mpr("Spicy!");
+        mpr(Options.language == lang_t::KO ? "매콤합니다!" : "Spicy!");
 
     // Devour the corpse.
     victim.props[NEVER_CORPSE_KEY] = true;
@@ -1230,7 +1230,7 @@ static void _handle_werewolf_kill_bonus(const monster& victim, bool takedown)
     int& power = you.props[WEREFURY_KEY].get_int();
     if (!you.duration[DUR_WEREFURY])
     {
-        mpr("You revel in your kill!");
+        mpr(Options.language == lang_t::KO ? "적을 쓰러뜨린 기쁨에 도취됩니다!" : "You revel in your kill!");
         power = div_rand_round(get_form()->get_werefury_kill_bonus() * 3 / 2, 10);
     }
     else
@@ -1246,12 +1246,12 @@ static void _handle_werewolf_kill_bonus(const monster& victim, bool takedown)
     {
         if (you.is_silenced())
         {
-            mpr("You raise your head to howl, but no sound comes out.");
+            mpr(Options.language == lang_t::KO ? "울부짖으려 고개를 들지만 아무 소리도 나오지 않습니다." : "You raise your head to howl, but no sound comes out.");
             return;
         }
 
         const int howl_power = get_form()->get_howl_power();
-        mpr("You let out a blood-chilling howl!");
+        mpr(Options.language == lang_t::KO ? "피가 얼어붙을 듯한 울음소리를 내지릅니다!" : "You let out a blood-chilling howl!");
         draw_ring_animation(you.pos(), you.current_vision, DARKGRAY, 0, true, 10);
         for (monster_near_iterator mi(you.pos()); mi; ++mi)
         {
@@ -1259,7 +1259,7 @@ static void _handle_werewolf_kill_bonus(const monster& victim, bool takedown)
                 && mi->can_feel_fear(true) && !mi->has_ench(ENCH_FEAR)
                 && mi->check_willpower(&you, howl_power) <= 0)
             {
-                mprf("%s freezes in fear!", mi->name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "공포에 얼어붙은 몬스터: %s!" : "%s freezes in fear!", mi->name(DESC_THE).c_str());
                 int dur = random_range(40, 70);
                 mi->add_ench(mon_enchant(ENCH_FEAR, &you, dur));
                 mi->add_ench(mon_enchant(ENCH_BOUND, &you, dur));
@@ -1771,7 +1771,7 @@ bool melee_attack::attack()
             && !is_followup
             && one_chance_in(20))
         {
-            simple_god_message(" prevents your attack.", false, GOD_ELYVILON);
+            simple_god_message(Options.language == lang_t::KO ? " — 당신의 공격을 막습니다." : " prevents your attack.", false, GOD_ELYVILON);
             return false;
         }
 
@@ -2701,7 +2701,7 @@ bool melee_attack::player_aux_apply(unarmed_attack_type atk)
                                   * drain);
                     if (drain)
                     {
-                        mpr("You feel invigorated.");
+                        mpr(Options.language == lang_t::KO ? "활력이 솟아납니다." : "You feel invigorated.");
                         inc_mp(drain);
                     }
                 }
