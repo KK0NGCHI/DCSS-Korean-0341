@@ -302,11 +302,16 @@ bool ranged_attack::handle_phase_hit()
         {
             if (needs_message)
             {
-                mprf("The %s %s %s%s but does no damage.",
-                    proj_name.c_str(),
-                    attack_verb.c_str(),
-                    defender->name(DESC_THE).c_str(),
-                    mulch_bonus() ? " and shatters," : "");
+                if (Options.language == lang_t::KO)
+                    mprf(mulch_bonus()
+                         ? "발사체가 부서지지만 피해를 입히지 못합니다: %s, 대상: %s."
+                         : "발사체가 맞았지만 피해를 입히지 못합니다: %s, 대상: %s.",
+                         proj_name.c_str(), defender->name(DESC_THE).c_str());
+                else
+                    mprf("The %s %s %s%s but does no damage.",
+                         proj_name.c_str(), attack_verb.c_str(),
+                         defender->name(DESC_THE).c_str(),
+                         mulch_bonus() ? " and shatters," : "");
             }
         }
 
