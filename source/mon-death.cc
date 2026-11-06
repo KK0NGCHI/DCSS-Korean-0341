@@ -405,7 +405,7 @@ static void _create_monster_hide(monster_type mtyp, monster_type montype,
     if (you.see_cell(pos) && !silent && !feat_eliminates_items(env.grid(pos)))
     {
         // XXX: tweak for uniques/named monsters, somehow?
-        mprf("%s %s intact enough to wear.",
+        mprf(Options.language == lang_t::KO ? "착용할 수 있을 만큼 온전하게 남은 장비: %s (%s)." : "%s %s intact enough to wear.",
              item.name(DESC_THE).c_str(),
              mons_genus(mtyp) == MONS_DRAGON ? "are"  // scales are
                                              : "is"); // troll armour is
@@ -433,7 +433,7 @@ static void _create_monster_wand(monster_type mtyp, coord_def pos, bool silent)
 
     if (you.see_cell(pos) && !silent && !feat_eliminates_items(env.grid(pos)))
     {
-        mprf("%s bone magically twists into %s.",
+        mprf(Options.language == lang_t::KO ? "뼈가 마법으로 변형됩니다: %s → %s." : "%s bone magically twists into %s.",
              mons_type_name(mtyp, DESC_A).c_str(),
              item.name(DESC_A).c_str());
     }
@@ -782,7 +782,7 @@ static bool _vampire_make_thrall(monster* mons, killer_type killer)
     const unsigned int exp = exp_value(*mons);
 
     // Okay, let's try to make them for real!
-    mprf("%s rises to serve you!", mons->name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "당신을 섬기기 위해 일어나는 몬스터: %s!" : "%s rises to serve you!", mons->name(DESC_THE).c_str());
     record_monster_defeat(mons, KILL_YOU);
 
     mons->hit_points = mons->max_hit_points;
@@ -935,7 +935,7 @@ static bool _blorkula_bat_split(monster& blorkula, killer_type ktype)
     {
         if (you.can_see(blorkula))
         {
-            mprf("%s attempts to avoid another deathblow, but is too exhausted to transform.",
+            mprf(Options.language == lang_t::KO ? "다시 죽음을 피하려 하지만 변신할 기력이 없는 몬스터: %s." : "%s attempts to avoid another deathblow, but is too exhausted to transform.",
                 blorkula.name(DESC_THE).c_str());
         }
         return false;
@@ -1658,7 +1658,7 @@ static void _druid_final_boon(const monster* mons)
         if (beasts[i]->heal(roll_dice(3, mons->get_hit_dice()))
             && you.can_see(*beasts[i]))
         {
-            mprf("%s %s healed.", beasts[i]->name(DESC_THE).c_str(),
+            mprf(Options.language == lang_t::KO ? "치유된 몬스터: %s (%s)." : "%s %s healed.", beasts[i]->name(DESC_THE).c_str(),
                                   beasts[i]->conj_verb("are").c_str());
         }
     }
@@ -2489,7 +2489,7 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
         }
 
         if (visible_effect)
-            mprf("%s allies are healed!", mons.name(DESC_ITS).c_str());
+            mprf(Options.language == lang_t::KO ? "주변 아군이 치유됩니다: %s." : "%s allies are healed!", mons.name(DESC_ITS).c_str());
     }
 
     if (gives_player_xp && you.attribute[ATTR_TEMP_MUTATIONS]
@@ -2731,7 +2731,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         // Only blow up if non-dormant
         if (grid_distance(mons.pos(), you.pos()) <= 1)
         {
-            mprf(MSGCH_WARN, "%s falls apart, revealing its core!",
+            mprf(MSGCH_WARN, Options.language == lang_t::KO ? "몸체가 무너지면서 핵을 드러내는 몬스터: %s!" : "%s falls apart, revealing its core!",
                  mons.name(DESC_YOUR).c_str());
 
             int old_hd = mons.get_hit_dice();
@@ -3642,7 +3642,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         {
             if (!you.can_see(mons))
             {
-                mprf("%s has departed this plane of existence.",
+                mprf(Options.language == lang_t::KO ? "이 세계를 떠난 조상: %s." : "%s has departed this plane of existence.",
                      hepliaklqana_ally_name().c_str());
             }
 
