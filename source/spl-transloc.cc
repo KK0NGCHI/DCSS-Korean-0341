@@ -768,7 +768,7 @@ spret electric_charge(actor& agent, int powc, bool fail, const coord_def &target
     if (invalid_dest)
     {
         if (agent.is_player())
-            mprf("%s is immovably fixed there.", dest_mon->name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "그 자리에 단단히 고정된 몬스터: %s." : "%s is immovably fixed there.", dest_mon->name(DESC_THE).c_str());
         return spret::success;
     }
 
@@ -796,8 +796,11 @@ spret electric_charge(actor& agent, int powc, bool fail, const coord_def &target
     {
         if (agent.is_player() || (agent.is_monster() && you.can_see(agent)))
         {
-            mprf("...but somehow remain%s in the same place.",
-                                                agent.is_monster() ? "s" : "");
+            if (Options.language == lang_t::KO)
+                mpr("...하지만 어찌 된 일인지 제자리에 그대로 남습니다.");
+            else
+                mprf("...but somehow remain%s in the same place.",
+                     agent.is_monster() ? "s" : "");
         }
 
         return spret::success;
@@ -1263,7 +1266,9 @@ bool hostile_teleport_player(monster* source)
             _place_tloc_cloud(source->pos());
             source->move_to(source_newpos, MV_DELIBERATE | MV_TRANSLOCATION, true);
             source->target = you.pos();
-            mprf(MSGCH_WARN, "%s tunnels through space-time and arrives with you!",
+            mprf(MSGCH_WARN, Options.language == lang_t::KO
+                     ? "시공간을 뚫고 함께 도착한 몬스터: %s!"
+                     : "%s tunnels through space-time and arrives with you!",
                  source->name(DESC_THE).c_str());
             source->finalise_movement();
         }
@@ -1869,7 +1874,7 @@ spret cast_gravitas(int pow, const coord_def& where, bool fail)
             dmg = mon->apply_ac(dmg);
 
             if (you.can_see(*mon))
-                mprf("%s is pinned by gravity.", mon->name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "중력에 짓눌린 몬스터: %s." : "%s is pinned by gravity.", mon->name(DESC_THE).c_str());
             mon->hurt(&you, dmg);
             mon->add_ench(mon_enchant(ENCH_BOUND, &you, dur));
             behaviour_event(mon, ME_WHACK, &you, you.pos());
@@ -1934,9 +1939,12 @@ bool beckon(actor &beckoned, const bolt &path)
     if (!beckoned.move_to(dest, MV_TRANSLOCATION, true))
         return false;
 
-    mprf("%s %s suddenly forward!",
-         beckoned.name(DESC_THE).c_str(),
-         beckoned.conj_verb("hurl").c_str());
+    if (Options.language == lang_t::KO)
+        mprf("갑자기 앞으로 내던져진 몬스터: %s!", beckoned.name(DESC_THE).c_str());
+    else
+        mprf("%s %s suddenly forward!",
+             beckoned.name(DESC_THE).c_str(),
+             beckoned.conj_verb("hurl").c_str());
 
     beckoned.finalise_movement();
 
@@ -1974,7 +1982,7 @@ void attract_monster(monster &mon, int max_move)
     if (!mon.move_to(ray.pos(), MV_TRANSLOCATION, true))
         return;
 
-    mprf("%s is attracted toward you.", mon.name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "당신 쪽으로 끌려오는 몬스터: %s." : "%s is attracted toward you.", mon.name(DESC_THE).c_str());
 
     _place_tloc_cloud(old_pos);
     _place_tloc_cloud(ray.pos());
