@@ -475,7 +475,7 @@ static int _issue_orders_prompt()
     {
         string cap_shout = you.shout_verb(false);
         cap_shout[0] = toupper_safe(cap_shout[0]);
-        mprf(" t - %s!", cap_shout.c_str());
+        mprf(Options.language == lang_t::KO ? " t - 외치기 (%s)!" : " t - %s!", cap_shout.c_str());
     }
 
     if (!you.berserk() && !you.confused())
@@ -573,9 +573,12 @@ static bool _issue_order(int keyn, int &mons_targd)
 
             if (!_allies_can_see(*m))
             {
-                mprf("%s is invisible, and you have no allies that can see %s.",
-                     m->name(DESC_THE).c_str(),
-                     m->pronoun(PRONOUN_OBJECTIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("투명한 대상 %s(을)를 볼 수 있는 아군이 없습니다.", m->name(DESC_THE).c_str());
+                else
+                    mprf("%s is invisible, and you have no allies that can see %s.",
+                         m->name(DESC_THE).c_str(),
+                         m->pronoun(PRONOUN_OBJECTIVE).c_str());
                 return false;
             }
 
@@ -645,10 +648,13 @@ static void _check_unseen_target(int mindex)
     const string allies = _allies_who_cant_see_invis();
     if (allies.empty())
         return;
-    mprf("%s is invisible, and %s can't see %s.",
-         target.name(DESC_THE).c_str(),
-         allies.c_str(),
-         target.pronoun(PRONOUN_OBJECTIVE).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("투명한 대상: %s. 이를 볼 수 없는 아군: %s.",
+             target.name(DESC_THE).c_str(), allies.c_str());
+    else
+        mprf("%s is invisible, and %s can't see %s.",
+             target.name(DESC_THE).c_str(), allies.c_str(),
+             target.pronoun(PRONOUN_OBJECTIVE).c_str());
 }
 
 /**
