@@ -2772,11 +2772,15 @@ void beogh_ally_healing()
         mon->heal(value);
     }
 
-    mprf("%s %s%sinvigorated by your prowess.",
-          heal_list.size() == 1 ? heal_list[0]->name(DESC_THE).c_str()
-                                : "Your followers are",
-          heal_list.size() == 1 ? "is " : "",
-          healing_done > 25 ? " greatly " : "");
+    if (Options.language == lang_t::KO)
+        mprf(heal_list.size() == 1
+             ? (healing_done > 25 ? "당신의 활약에 크게 고무된 아군: %s." : "당신의 활약에 고무된 아군: %s.")
+             : (healing_done > 25 ? "아군들이 당신의 활약에 크게 고무됩니다." : "아군들이 당신의 활약에 고무됩니다."),
+             heal_list.size() == 1 ? heal_list[0]->name(DESC_THE).c_str() : "");
+    else
+        mprf("%s %s%sinvigorated by your prowess.",
+             heal_list.size() == 1 ? heal_list[0]->name(DESC_THE).c_str() : "Your followers are",
+             heal_list.size() == 1 ? "is " : "", healing_done > 25 ? " greatly " : "");
 }
 
 // Prompts the player for reasons they may not wish to leave a floor.
