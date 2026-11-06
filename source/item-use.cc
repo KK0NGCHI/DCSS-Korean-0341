@@ -1188,9 +1188,12 @@ static item_def* _item_swap_prompt(const vector<item_def*>& candidates)
 
     clear_messages();
 
-    mprf(MSGCH_PROMPT,
-         "To do this, you must remove one of the following items:");
-    mprf(MSGCH_PROMPT, "(<w>?</w> for menu, <w>Esc</w> to cancel)");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+         ? "이 행동을 하려면 다음 장비 중 하나를 벗어야 합니다:"
+         : "To do this, you must remove one of the following items:");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+         ? "(<w>?</w>: 메뉴, <w>Esc</w>: 취소)"
+         : "(<w>?</w> for menu, <w>Esc</w> to cancel)");
 
     for (size_t i = 0; i < candidates.size(); i++)
     {
@@ -1635,7 +1638,7 @@ bool can_unequip_item(item_def& item, bool silent)
     {
         if (!silent)
         {
-            mprf(MSGCH_PROMPT, "%s is melded into your body!",
+            mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "몸에 융합되어 벗을 수 없는 장비: %s!" : "%s is melded into your body!",
                                item.name(DESC_YOUR).c_str());
         }
         return false;
@@ -1645,7 +1648,7 @@ bool can_unequip_item(item_def& item, bool silent)
     {
         if (!silent)
         {
-            mprf(MSGCH_PROMPT, "%s is stuck to your body!",
+            mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "몸에 달라붙어 벗을 수 없는 장비: %s!" : "%s is stuck to your body!",
                                 item.name(DESC_YOUR).c_str());
         }
         return false;
@@ -1983,7 +1986,9 @@ bool drink(item_def* potion)
 
     if (player_under_penance(GOD_GOZAG) && one_chance_in(3))
     {
-        simple_god_message(" petitions for your drink to fail.", false,
+        simple_god_message(Options.language == lang_t::KO
+                               ? " — 물약의 효과를 방해합니다."
+                               : " petitions for your drink to fail.", false,
                            GOD_GOZAG);
         you.turn_is_over = true;
         return false;
