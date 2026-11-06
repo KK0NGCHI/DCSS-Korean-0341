@@ -971,7 +971,7 @@ static void _handle_boulder_movement(monster& boulder)
             {
                 if (you.can_see(boulder) || you.can_see(*obstruction))
                 {
-                    mprf(Options.language == lang_t::KO ? "%s — %s을 %s에 짓누르고 산산이 부서집니다!" : "%s crushes %s against %s and falls apart!",
+                    mprf(Options.language == lang_t::KO ? "%s — 충돌 대상: %s, 장애물: %s. 충돌 후 산산이 부서집니다!" : "%s crushes %s against %s and falls apart!",
                             boulder.name(DESC_THE).c_str(),
                             obstruction->name(DESC_THE).c_str(),
                             blocker_name.c_str());
@@ -2604,9 +2604,14 @@ static void _post_monster_move(monster* mons)
                     && env.grid(*ai) != DNGN_FLOOR
                     && you.see_cell(*ai))
                 {
-                    mprf(Options.language == lang_t::KO ? "%s 물의 기운이 %s을 뒤덮습니다." : "%s watery aura covers %s.",
-                         apostrophise(mons->name(DESC_THE)).c_str(),
-                         feature_description_at(*ai, false, DESC_THE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mprf("물의 기운이 지형을 뒤덮습니다: %s, %s.",
+                             mons->name(DESC_THE).c_str(),
+                             feature_description_at(*ai, false, DESC_THE).c_str());
+                    else
+                        mprf("%s watery aura covers %s.",
+                             apostrophise(mons->name(DESC_THE)).c_str(),
+                             feature_description_at(*ai, false, DESC_THE).c_str());
                 }
                 temp_change_terrain(*ai, DNGN_SHALLOW_WATER,
                                     random_range(50, 80),
