@@ -227,12 +227,12 @@ void debug_list_monsters()
 
     if (total_adj_exp == total_exp)
     {
-        mprf("%d monsters, %d total exp value (%d non-uniq)",
+        mprf(Options.language == lang_t::KO ? "몬스터 %d마리, 총 경험치 %d (일반 몬스터 %d)" : "%d monsters, %d total exp value (%d non-uniq)",
              nfound, total_exp, total_nonuniq_exp);
     }
     else
     {
-        mprf("%d monsters, %d total exp value (%d non-uniq, %d adjusted)",
+        mprf(Options.language == lang_t::KO ? "몬스터 %d마리, 총 경험치 %d (일반 %d, 보정 %d)" : "%d monsters, %d total exp value (%d non-uniq, %d adjusted)",
              nfound, total_exp, total_nonuniq_exp, total_adj_exp);
     }
 }
@@ -483,9 +483,9 @@ void wizard_dismiss_all_monsters(bool force_all)
     char buf[1024] = "";
     if (!force_all)
     {
-        mprf(MSGCH_PROMPT, "What monsters to dismiss (ENTER for all, "
-                           "\"harmful\", \"mobile\", \"los\" or a regex, "
-                           "\"keepitem\" to leave items)? ");
+        mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+             ? "제거할 몬스터 (Enter: 전체, harmful/mobile/los/정규식, keepitem: 아이템 유지): "
+             : "What monsters to dismiss (ENTER for all, \"harmful\", \"mobile\", \"los\" or a regex, \"keepitem\" to leave items)? ");
         bool validline = !cancellable_get_line_autohist(buf, sizeof buf);
 
         if (!validline)
@@ -831,7 +831,7 @@ void debug_pathfind(int idx)
     }
 
     monster& mon = env.mons[idx];
-    mprf("Attempting to calculate a path from (%d, %d) to (%d, %d)...",
+    mprf(Options.language == lang_t::KO ? "경로 계산: (%d, %d) → (%d, %d)..." : "Attempting to calculate a path from (%d, %d) to (%d, %d)...",
          mon.pos().x, mon.pos().y, dest.x, dest.y);
     monster_pathfind mp;
     bool success = mp.init_pathfind(&mon, dest, true, true);
@@ -848,7 +848,7 @@ void debug_pathfind(int idx)
         for (coord_def pos : path)
             path_str += make_stringf("(%d, %d)  ", pos.x, pos.y);
         mpr(path_str);
-        mprf("-> path length: %u", (unsigned int)path.size());
+        mprf(Options.language == lang_t::KO ? "경로 길이: %u" : "-> path length: %u", (unsigned int)path.size());
 
         mpr("");
         path = mp.calc_waypoints();
@@ -858,7 +858,7 @@ void debug_pathfind(int idx)
         for (coord_def pos : path)
             path_str += make_stringf("(%d, %d)  ", pos.x, pos.y);
         mpr(path_str);
-        mprf("-> #waypoints: %u", (unsigned int)path.size());
+        mprf(Options.language == lang_t::KO ? "경유지 개수: %u" : "-> #waypoints: %u", (unsigned int)path.size());
     }
 }
 
