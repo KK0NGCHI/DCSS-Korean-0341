@@ -787,7 +787,10 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_TOXIC_RADIANCE:
         if (!quiet && you.can_see(*this))
-            mprf(Options.language == lang_t::KO ? "독성 기운이 약해집니다: %s." : "%s toxic aura wanes.", name(DESC_ITS).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("독성 기운이 약해지는 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s toxic aura wanes.", name(DESC_ITS).c_str());
         break;
 
     case ENCH_FIRE_VULN:
@@ -856,7 +859,10 @@ void monster::remove_enchantment_effect(const mon_enchant &me, bool quiet)
 
     case ENCH_BOUND_SOUL:
         if (!quiet && you.can_see(*this))
-            mprf(Options.language == lang_t::KO ? "영혼을 속박하던 효과가 사라집니다: %s." : "%s soul is no longer bound.", name(DESC_ITS).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("영혼의 속박이 풀린 몬스터: %s.", name(DESC_THE).c_str());
+            else
+                mprf("%s soul is no longer bound.", name(DESC_ITS).c_str());
         break;
 
     case ENCH_INFESTATION:
@@ -1657,7 +1663,10 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             del_ench(en, true, false);
             if (you.can_see(*this))
-                mprf(Options.language == lang_t::KO ? "영창이 중단됩니다: %s." : "%s chant is interrupted.", name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("영창이 중단된 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s chant is interrupted.", name(DESC_ITS).c_str());
             break;
         }
 
@@ -1764,8 +1773,10 @@ void monster::apply_enchantment(const mon_enchant &me)
             del_ench(ENCH_MERFOLK_AVATAR_SONG, true, false);
             if (you.can_see(*this))
             {
-                mprf(Options.language == lang_t::KO ? "노래가 중단됩니다: %s." : "%s song is interrupted.",
-                     name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("노래가 중단된 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s song is interrupted.", name(DESC_ITS).c_str());
             }
             break;
         }
@@ -1800,7 +1811,10 @@ void monster::apply_enchantment(const mon_enchant &me)
         {
             del_ench(en, true, false);
             if (you.can_see(*this))
-                mprf(Options.language == lang_t::KO ? "작열 광선이 중단됩니다: %s." : "%s searing ray is interrupted.", name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("작열 광선이 중단된 몬스터: %s.", name(DESC_THE).c_str());
+                else
+                    mprf("%s searing ray is interrupted.", name(DESC_ITS).c_str());
         }
         break;
 
