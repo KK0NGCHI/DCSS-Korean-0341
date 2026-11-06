@@ -1765,9 +1765,14 @@ bool transforming_is_unsafe(transformation which_trans)
 {
     if (feat_dangerous_for_form(which_trans, env.grid(you.pos())))
     {
-        mprf(MSGCH_PROMPT, "%s right now would cause you to %s!",
-                which_trans == transformation::none ? "Untransforming" : "Transforming",
-                env.grid(you.pos()) == DNGN_LAVA ? "burn" : "drown");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_PROMPT, "%s하면 %s 죽을 위험이 있습니다!",
+                 which_trans == transformation::none ? "변신을 해제" : "변신",
+                 env.grid(you.pos()) == DNGN_LAVA ? "불에 타" : "물에 빠져");
+        else
+            mprf(MSGCH_PROMPT, "%s right now would cause you to %s!",
+                 which_trans == transformation::none ? "Untransforming" : "Transforming",
+                 env.grid(you.pos()) == DNGN_LAVA ? "burn" : "drown");
         return true;
     }
 
@@ -1791,9 +1796,14 @@ bool transforming_is_unsafe(transformation which_trans)
         if (item->cursed()
             || (is_artefact(*item) && artefact_property(*item, ARTP_FRAGILE)))
         {
-            mprf(MSGCH_PROMPT, "%s right now would shatter %s!",
-                 which_trans == transformation::none ? "Untransforming" : "Transforming",
-                 item->name(DESC_YOUR).c_str());
+            if (Options.language == lang_t::KO)
+                mprf(MSGCH_PROMPT, "지금 %s하면 장비가 산산이 부서집니다: %s!",
+                     which_trans == transformation::none ? "변신을 해제" : "변신",
+                     item->name(DESC_YOUR).c_str());
+            else
+                mprf(MSGCH_PROMPT, "%s right now would shatter %s!",
+                     which_trans == transformation::none ? "Untransforming" : "Transforming",
+                     item->name(DESC_YOUR).c_str());
             return true;
         }
     }
@@ -2276,8 +2286,12 @@ void untransform(bool skip_move, bool scale_hp, bool preserve_equipment,
     {
         for (item_def* item : forced_remove)
         {
-            mprf("%s falls away%s!", item->name(DESC_YOUR).c_str(),
-                    item->cursed() ? ", shattering the curse!" : "");
+            if (Options.language == lang_t::KO)
+                mprf(item->cursed() ? "장비가 떨어지면서 저주도 깨집니다: %s!" : "장비가 떨어집니다: %s!",
+                     item->name(DESC_YOUR).c_str());
+            else
+                mprf("%s falls away%s!", item->name(DESC_YOUR).c_str(),
+                     item->cursed() ? ", shattering the curse!" : "");
 
             unequip_item(*item, false);
         }
@@ -2624,10 +2638,13 @@ bool vampire_mesmerism_check(monster& mon)
     {
         if (mon.check_willpower(&you, get_form()->get_effect_chance()) <= 0)
         {
-            mprf("%s loses %s in your eye%s.",
-                    mon.name(DESC_THE).c_str(),
-                    mon.pronoun(PRONOUN_REFLEXIVE).c_str(),
-                    you.has_mutation(MUT_MISSING_EYE) ? "" : "s");
+            if (Options.language == lang_t::KO)
+                mprf("당신의 눈길에 정신을 빼앗긴 몬스터: %s.", mon.name(DESC_THE).c_str());
+            else
+                mprf("%s loses %s in your eye%s.",
+                     mon.name(DESC_THE).c_str(),
+                     mon.pronoun(PRONOUN_REFLEXIVE).c_str(),
+                     you.has_mutation(MUT_MISSING_EYE) ? "" : "s");
             mon.daze(random_range(3, 5));
         }
         else
