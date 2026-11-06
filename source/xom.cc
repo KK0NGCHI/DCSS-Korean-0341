@@ -1541,8 +1541,11 @@ static void _xom_lights_up_webs(int /*sever*/)
     if (webs_count > 0)
     {
         god_speaks(GOD_XOM, _get_xom_speech("lights up webs").c_str());
-        mprf("%s %s into flame!", number_in_words(webs_count).c_str(),
-              webs_count == 1 ? "web bursts" : "webs burst");
+        if (Options.language == lang_t::KO)
+            mprf("거미줄 %d개가 불타오릅니다!", webs_count);
+        else
+            mprf("%s %s into flame!", number_in_words(webs_count).c_str(),
+                 webs_count == 1 ? "web bursts" : "webs burst");
         string note = make_stringf("lit up %d webs", webs_count);
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, note), true);
     }
