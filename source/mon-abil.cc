@@ -1088,13 +1088,21 @@ static bool _slymdra_try_merge(monster* mons)
                                                       : make_stringf("sprouts %d new heads", gained_heads);
             if (did_merge > 1)
             {
-                mprf("%s absorbs %d nearby slime creatures and %s.",
-                        mons->name(DESC_THE).c_str(), did_merge, head_msg.c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("주변 점액 생물 %d마리를 흡수한 몬스터: %s (머리 %d개 증가).",
+                         did_merge, mons->name(DESC_THE).c_str(), gained_heads);
+                else
+                    mprf("%s absorbs %d nearby slime creatures and %s.",
+                         mons->name(DESC_THE).c_str(), did_merge, head_msg.c_str());
             }
             else
             {
-                mprf("%s absorbs a nearby slime creature and %s.",
-                        mons->name(DESC_THE).c_str(), head_msg.c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("주변 점액 생물을 흡수한 몬스터: %s (머리 %d개 증가).",
+                         mons->name(DESC_THE).c_str(), gained_heads);
+                else
+                    mprf("%s absorbs a nearby slime creature and %s.",
+                         mons->name(DESC_THE).c_str(), head_msg.c_str());
             }
         }
         mons->num_heads = new_heads;
@@ -1488,10 +1496,17 @@ bool pyrrhic_recollection(monster& nobody)
 
     if (can_see)
     {
-        mprf(MSGCH_MONSTER_SPELL, "%s ignites a memory of %s%s.",
-                nobody.name(DESC_THE).c_str(),
-                comma_separated_line(spell_names.begin(), spell_names.end()).c_str(),
-                was_injured ? " to re-knit themselves" : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_MONSTER_SPELL, was_injured
+                 ? "기억을 불태워 몸을 복구하는 몬스터: %s (기억: %s)."
+                 : "기억을 불태우는 몬스터: %s (기억: %s).",
+                 nobody.name(DESC_THE).c_str(),
+                 comma_separated_line(spell_names.begin(), spell_names.end()).c_str());
+        else
+            mprf(MSGCH_MONSTER_SPELL, "%s ignites a memory of %s%s.",
+                 nobody.name(DESC_THE).c_str(),
+                 comma_separated_line(spell_names.begin(), spell_names.end()).c_str(),
+                 was_injured ? " to re-knit themselves" : "");
         string speech = make_stringf("\"We remember... %s...\"",
                             getSpeakString("nobody_recollection " + recollection.key).c_str());
         mons_speaks_msg(&nobody, speech, MSGCH_TALK);
