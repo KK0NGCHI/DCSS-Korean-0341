@@ -470,7 +470,10 @@ void wizard_detect_creatures()
 #endif
         count++;
     }
-    mprf("Detected %i monster%s.", count, count == 1 ? "" : "s");
+    if (Options.language == lang_t::KO)
+        mprf("감지한 몬스터: %i마리.", count);
+    else
+        mprf("Detected %i monster%s.", count, count == 1 ? "" : "s");
 }
 
 // Dismisses all monsters on the level or all monsters that match a user
@@ -493,7 +496,10 @@ void wizard_dismiss_all_monsters(bool force_all)
     }
 
     int count = dismiss_monsters(buf);
-    mprf("Dismissed %i monster%s.", count, count == 1 ? "" : "s");
+    if (Options.language == lang_t::KO)
+        mprf("제거한 몬스터: %i마리.", count);
+    else
+        mprf("Dismissed %i monster%s.", count, count == 1 ? "" : "s");
     // If it was turned off turn autopickup back on if all monsters went away.
     if (!*buf)
         autotoggle_autopickup(false);
@@ -530,8 +536,7 @@ void debug_make_monster_shout(monster* mon)
 
         if (silenced(you.pos()) && !silenced(mon->pos()))
         {
-            mpr("You are silenced but the monster isn't; you will "
-                "probably hear/see nothing.");
+            mpr(Options.language == lang_t::KO ? "당신만 침묵 상태여서 아무것도 듣거나 보지 못할 수 있습니다." : "You are silenced but the monster isn't; you will probably hear/see nothing.");
         }
         else if (!silenced(you.pos()) && silenced(mon->pos()))
             mpr((Options.language == lang_t::KO ? "몬스터가 침묵 상태라 아무 말도 하지 않을 것입니다." : "The monster is silenced and likely won't say anything."));
@@ -545,7 +550,7 @@ void debug_make_monster_shout(monster* mon)
             mons_speaks(mon);
     }
 
-    mpr("== Done ==");
+    mpr(Options.language == lang_t::KO ? "== 완료 ==" : "== Done ==");
 }
 
 void wizard_apply_monster_blessing(monster* mon)
@@ -563,7 +568,7 @@ void wizard_apply_monster_blessing(monster* mon)
     god_type god = GOD_SHINING_ONE;
 
     if (!bless_follower(mon, god, true))
-        mprf("%s won't bless this monster for you!", god_name(god).c_str());
+        mprf(Options.language == lang_t::KO ? "몬스터를 축복해 주지 않는 신: %s!" : "%s won't bless this monster for you!", god_name(god).c_str());
 }
 
 void wizard_give_monster_item(monster* mon)
@@ -1014,7 +1019,7 @@ void debug_miscast(int target_index)
 #ifdef DEBUG_BONES
 void debug_ghosts()
 {
-    mprf(MSGCH_PROMPT, "(C)reate, create (T)emporary, or (L)oad bones file?");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "유령 파일: (C) 생성, (T) 임시 생성, (L) 불러오기?" : "(C)reate, create (T)emporary, or (L)oad bones file?");
     const char c = toalower(getchm());
 
     if (c == 'c')
