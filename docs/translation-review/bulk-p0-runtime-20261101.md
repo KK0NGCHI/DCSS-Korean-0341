@@ -339,3 +339,36 @@ All translated strings retain the original English fallback except where the sou
 **Risk review:** `source/player.cc` draconian `species::scale_type` and some item/monster names are generated in other functions and might remain English. Some localized generic movement failures intentionally omit English-only fragment morphology. For further translation work, prioritise `resist_margin_phrase`, dynamic beam hit verbs and god/monster templated output; do not translate English fallback branches as missing strings.
 
 **Verification:** Linux KO runtime and inventory checks need to pass for the *latest* PR HEAD after these edits. Draft PR #174 must remain unmerged until full checks and relevant Windows Tiles runtime QA. A definitive coverage percentage requires a stable deduplicated output-site inventory.
+
+
+## 2026-11-06 follow-up: 46 additional Korean gameplay output positions
+
+**Working branch:** `ko/bulk-p0-runtime-20261101` / Draft PR #174. Starting head: `c71a046cd4ed66edf09647d3fab24184ed7d3450`.
+
+Newly translated player-visible positions (each originally lacking a Korean rendering):
+
+| Source | Newly localized | Scope |
+|---|---:|---|
+| `source/evoke.cc` | 4 | beast box success/failure and sack-of-spiders results |
+| `source/delay.cc` | 4 | Passwall blocked destinations and monster interruption notices |
+| `source/stairs.cc` | 2 | stairs moving away and Hell protection |
+| `source/shopping.cc` | 1 | closed shop |
+| `source/religion.cc` | 6 | gods' mollification, Ignis disappearance, restored attribute support and ancestor memory/regeneration |
+| `source/god-passive.cc` | 1 | Makhleb blade whirlwind |
+| `source/mon-ench.cc` | 8 | visible monster appearance and expiry/interruption of toxic aura, soul bind, curse, chant, song, paradox and searing ray |
+| `source/spl-transloc.cc` | 6 | fixed targets, failed teleports, spatial pursuit, gravity pin, beckoning and attraction |
+| `source/item-use.cc` | 5 | equipment removal menu, melded/stuck items and Gozag's interference |
+| `source/mon-act.cc` | 9 | swoop, boulder impacts, watery aura, monster movement, rage and fallen trees |
+| **Total** | **46** | **newly localized output sites**, separate from existing-string QA |
+
+Separate QA corrections (not counted as newly translated):
+- `source/spl-damage.cc`: removed two redundant nested `if (Options.language == lang_t::KO)` blocks: chain lightning and freeze outputs, retained their original English fallbacks. The freeze output now uses a particle-neutral Korean sentence and preserves the attack punctuation argument.
+- `source/mon-abil.cc`: removed literal `%s을` in solar flare message.
+- `source/mon-act.cc`: removed English possessive apostrophe from the Korean watery-aura display and revised the impact string to avoid variable-dependent object particles.
+- `source/mon-ench.cc`: for five translated effects, use `name(DESC_THE)` instead of English possessive `name(DESC_ITS)` on the Korean path while preserving the English path.
+
+All 46 new positions explicitly select Korean only when `Options.language == lang_t::KO`, retaining English output. Dynamic item, feature and monster name localization remains a separate QA target. Some label-style sentences intentionally avoid inflection and require Windows Tiles readability review.
+
+**Verification:** source patches committed but latest branch head has **not** yet been compiled or run. The previously passing Linux KO runtime and inventory workflows at `c71a046c` do not validate these new commits. Check the exact latest head before removing Draft status or merging.
+
+**Next:** Linux full-overlay compilation + inventory on latest PR head, inspect any failures, dynamic particle/render QA, then resume a verified P0 inventory-based batch. Continue using the same PR, not a new small PR.
