@@ -5886,9 +5886,13 @@ static bool _mons_cast_freeze(monster* mons)
 
     if (you.can_see(*target))
     {
-        mprf("%s %s frozen%s", target->name(DESC_THE).c_str(),
-                              target->conj_verb("are").c_str(),
-                              attack_strength_punctuation(damage).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("얼어붙는 대상: %s%s", target->name(DESC_THE).c_str(),
+                 attack_strength_punctuation(damage).c_str());
+        else
+            mprf("%s %s frozen%s", target->name(DESC_THE).c_str(),
+                 target->conj_verb("are").c_str(),
+                 attack_strength_punctuation(damage).c_str());
     }
 
     // Resist messaging, needs to happen after so we get the correct message
@@ -7973,9 +7977,13 @@ void mons_cast(monster* mons, bolt pbolt, spell_type spell_cast,
 
         if (you.can_see(*mons))
         {
-            mprf("%s shimmers and seems to become %s!",
-                 mons->name(DESC_THE).c_str(),
-                 number_in_words(n_wanted + 1).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("반짝이며 %d개의 모습으로 늘어나는 몬스터: %s!",
+                     n_wanted + 1, mons->name(DESC_THE).c_str());
+            else
+                mprf("%s shimmers and seems to become %s!",
+                     mons->name(DESC_THE).c_str(),
+                     number_in_words(n_wanted + 1).c_str());
         }
     }
 
@@ -9385,10 +9393,15 @@ static void _throw_ally_to(const monster &thrower, monster &throwee,
                                                 foe->name(DESC_THE).c_str()) :
                                    "out of sight";
 
-        mprf("%s throws %s %s!",
-             (thrower_seen ? thrower.name(DESC_THE).c_str() : "Something"),
-             (throwee_seen ? throwee.name(DESC_THE, true).c_str() : "something"),
-             destination.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("던지는 대상: %s, 날아가는 대상: %s!",
+                 thrower_seen ? thrower.name(DESC_THE).c_str() : "무언가",
+                 throwee_seen ? throwee.name(DESC_THE, true).c_str() : "무언가");
+        else
+            mprf("%s throws %s %s!",
+                 thrower_seen ? thrower.name(DESC_THE).c_str() : "Something",
+                 throwee_seen ? throwee.name(DESC_THE, true).c_str() : "something",
+                 destination.c_str());
 
         bolt beam;
         beam.range   = INFINITE_DISTANCE;
@@ -9458,10 +9471,13 @@ static void _oblivion_howl(monster &mon)
                             make_stringf("but you%s",
                                          you.resist_margin_phrase(willpower).c_str()) :
                             "and it begins to echo in your mind!";
-    mprf("%s unleashes a %s howl, %s",
-         mon.name(DESC_THE).c_str(),
-         silenced(mon.pos()) ? "silent" : "terrible",
-         effect.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(silenced(mon.pos())
+             ? "소리 없는 울부짖음을 내뿜는 몬스터: %s!"
+             : "끔찍한 울부짖음을 내뿜는 몬스터: %s!", mon.name(DESC_THE).c_str());
+    else
+        mprf("%s unleashes a %s howl, %s", mon.name(DESC_THE).c_str(),
+             silenced(mon.pos()) ? "silent" : "terrible", effect.c_str());
     noisy(spell_effect_noise(SPELL_OBLIVION_HOWL), mon.pos(), mon.mid);
     if (willpower <= 0)
     {
