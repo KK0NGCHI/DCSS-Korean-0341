@@ -1118,7 +1118,7 @@ void behaviour_event(monster* mon, mon_event_type event, const actor *src,
 
             if (you.can_see(*mon))
             {
-                mprf("%s attack snaps %s out of %s fear.",
+                mprf(Options.language == lang_t::KO ? "공격을 받고 공포에서 벗어나는 몬스터: %s (대상: %s, 원인: %s)." : "%s attack snaps %s out of %s fear.",
                         src ? src->name(DESC_ITS).c_str() : "the",
                         mon->name(DESC_THE).c_str(),
                         mon->pronoun(PRONOUN_POSSESSIVE).c_str());
@@ -1181,7 +1181,7 @@ void behaviour_event(monster* mon, mon_event_type event, const actor *src,
             {
                 if (you.can_see(*mon))
                 {
-                    mprf("%s snaps out of %s daze.",
+                    mprf(Options.language == lang_t::KO ? "멍한 상태에서 벗어나는 몬스터: %s (상태: %s)." : "%s snaps out of %s daze.",
                             mon->name(DESC_THE).c_str(),
                             mon->pronoun(PRONOUN_POSSESSIVE).c_str());
                 }
