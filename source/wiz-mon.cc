@@ -286,13 +286,13 @@ void debug_stethoscope(int mon)
 
         if (cloud_struct* cloud = cloud_at(stethpos))
         {
-            mprf(MSGCH_DIAGNOSTICS, "cloud type: %d delay: %d",
+            mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "구름 종류: %d, 지연: %d" : "cloud type: %d delay: %d",
                  cloud->type, cloud->decay);
         }
 
         if (!monster_at(stethpos))
         {
-            mprf(MSGCH_DIAGNOSTICS, "item grid = %d", env.igrid(stethpos));
+            mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "아이템 칸 = %d" : "item grid = %d", env.igrid(stethpos));
             return;
         }
 
@@ -379,10 +379,10 @@ void debug_stethoscope(int mon)
          mons.res_sticky_flame() ? "yes" : "no",
          mons.res_miasma() ? "yes" : "no");
 
-    mprf(MSGCH_DIAGNOSTICS, "ench: %s",
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "마법 효과: %s" : "ench: %s",
          mons.describe_enchantments().c_str());
 
-    mprf(MSGCH_DIAGNOSTICS, "props: %s",
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "속성: %s" : "props: %s",
          mons.describe_props().c_str());
 
     ostringstream spl;
@@ -427,7 +427,7 @@ void debug_stethoscope(int mon)
         spl << " (#" << static_cast<int>(hspell_pass[k].spell) << ")";
     }
     if (found_spell)
-        mprf(MSGCH_DIAGNOSTICS, "spells: %s", spl.str().c_str());
+        mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "주문: %s" : "spells: %s", spl.str().c_str());
 
     ostringstream inv;
     bool found_item = false;
