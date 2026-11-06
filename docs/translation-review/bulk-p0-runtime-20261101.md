@@ -438,3 +438,43 @@ Added `traps.cc`, `xom.cc`, `melee-attack.cc`, `transform.cc`, `attack.cc`, and 
 - Review dynamic grammar for generated monster/item names and combat output.
 - Windows Tiles visual/interaction QA.
 - Keep draft PR #174 unmerged until acceptance checks are complete.
+
+
+## 2026-11-06 further mass translation: 102 newly localized output positions
+
+Starting from PR #174 HEAD `203b3aa4f686464d5597f234f589f37fbfe290cd`, whose exact Linux console build/Korean DB runtime smoke and translation source inventory GitHub Actions both succeeded.
+
+Newly translated positions in this batch:
+
+| File | Positions | Content |
+|---|---:|---|
+| `melee-attack.cc` | 32 | shield, elemental combat, monster effects, attack misses, hydra heads, spells and recovery |
+| `xom.cc` | 8 | confusion, magical effects, interest/doom and altered creature reactions |
+| `ouch.cc` | 2 | cloak monster summons and divine harm protection |
+| `timed-effects.cc` | 1 | deep rumble sound |
+| `mon-transit.cc` | 1 | abandonment of pursuit |
+| `transform.cc` | 4 | unsafe transformation, gear destruction, falling equipment, vampire gaze |
+| `movement.cc` | 5 | barbs, dangerous portal prompts and movement through vegetation |
+| `attack.cc` | 2 | vigor drain and helpless defender |
+| `traps.cc` | 8 | dispersal/teleport traps, shaft collapse, escape from net and blocked passages |
+| `mon-poly.cc` | 1 | royal jelly transformation |
+| `decks.cc` | 18 | card draw/deal, shortages, regeneration, Nemelex and various card effects |
+| `shout.cc` | 10 | ally order UI, commands, retreat, limitations |
+| `mon-project.cc` | 7 | magical orbs, blocks, deflections, explosions |
+| `orb.cc` | 2 | Pandemonium lords and divine intervention |
+| `mon-place.cc` | 1 | monster hostility |
+| **Total** | **102** | **new conditional Korean output locations** |
+
+The per-file counts are based on exact-match source replacements, including duplicate literals at distinct callsites. Count is a source-position metric, not a percentage of all strings. Prior daily logged translations: 210. **2026-11-06 logged cumulative additions: 312 (210 + 102).**
+
+### QA corrections (not included in the 102)
+- Corrected the `mon-poly.cc` conditional fragment for royal-jelly splitting so Korean and English are each complete valid string expressions.
+- Avoided showing an English fragment from the passage-blocked message's Korean path in `traps.cc`.
+- Fixed the Korean `melee-attack.cc` deflection placeholder arity by separating the English and Korean format calls.
+- Avoided English possessive pronoun fragments from `mon-transit.cc` and a melee orb output.
+- Source substitutions preserve English fallback behavior, while variable-dependent combat output still needs in-game QA.
+
+### CI overlay and validation
+Added new edited modules `mon-transit.cc`, `decks.cc`, `shout.cc`, `mon-project.cc`, `orb.cc` to **both** full-source Linux build overlay lists. `mon-place.cc`, `melee-attack.cc`, `ouch.cc`, `timed-effects.cc`, `mon-poly.cc`, `movement.cc`, `attack.cc`, `traps.cc`, `xom.cc`, `transform.cc` were already on the overlay.
+
+**Latest HEAD compile status must be checked independently**; previous passing result at `203b3aa` does not validate this batch. Windows Tiles validation and general generated-name QA remain outstanding; PR #174 stays Draft and unmerged.
