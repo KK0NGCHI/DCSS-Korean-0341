@@ -2846,9 +2846,15 @@ item_def* monster_die(monster& mons, killer_type killer,
         {
             if (you.can_see(mons))
             {
-                mprf(MSGCH_WARN, "%s broadcasts a psychic alarm as it %s.",
-                    mons.name(DESC_THE).c_str(),
-                    (was_banished || !real_death) ? "disappears" : "dies");
+                if (Options.language == lang_t::KO)
+                    mprf(MSGCH_WARN, was_banished || !real_death
+                         ? "사라지며 정신 경보를 퍼뜨리는 몬스터: %s."
+                         : "죽으면서 정신 경보를 퍼뜨리는 몬스터: %s.",
+                         mons.name(DESC_THE).c_str());
+                else
+                    mprf(MSGCH_WARN, "%s broadcasts a psychic alarm as it %s.",
+                         mons.name(DESC_THE).c_str(),
+                         (was_banished || !real_death) ? "disappears" : "dies");
             }
             else
                 mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "무언가가 정신적인 경보를 퍼뜨리는 것을 느낍니다." : "You feel something broadcast a psychic alarm."));
@@ -3408,8 +3414,13 @@ item_def* monster_die(monster& mons, killer_type killer,
             {
                 if (you.can_see(**mi))
                 {
-                    mprf(MSGCH_MONSTER_TIMEOUT, "%s is cast back into %s original reality.",
-                            mi->name(DESC_THE).c_str(), mi->pronoun(PRONOUN_POSSESSIVE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mprf(MSGCH_MONSTER_TIMEOUT, "원래 세계로 돌아간 몬스터: %s.",
+                             mi->name(DESC_THE).c_str());
+                    else
+                        mprf(MSGCH_MONSTER_TIMEOUT, "%s is cast back into %s original reality.",
+                             mi->name(DESC_THE).c_str(),
+                             mi->pronoun(PRONOUN_POSSESSIVE).c_str());
                 }
                 monster_die(**mi, KILL_RESET, NON_MONSTER);
             }
@@ -3838,9 +3849,12 @@ void mons_check_pool(monster* mons, const coord_def &oldpos,
     // something has fallen into the lava.
     if (you.see_cell(mons->pos()) && (oldpos == mons->pos() || env.grid(oldpos) != grid))
     {
-         mprf("%s falls into the %s!",
-             mons->name(DESC_THE).c_str(),
-             grid == DNGN_LAVA ? "lava" : "water");
+         if (Options.language == lang_t::KO)
+            mprf(grid == DNGN_LAVA ? "용암에 빠진 몬스터: %s!" : "물에 빠진 몬스터: %s!",
+                 mons->name(DESC_THE).c_str());
+        else
+            mprf("%s falls into the %s!", mons->name(DESC_THE).c_str(),
+                 grid == DNGN_LAVA ? "lava" : "water");
     }
 
     // Even fire resistant monsters perish in lava.
