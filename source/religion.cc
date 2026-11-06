@@ -682,17 +682,24 @@ void dec_penance(god_type god, int val)
 
         if (god == GOD_IGNIS)
         {
-            simple_god_message(", with one final cry of rage, "
-                               "burns out of existence.", false, god);
+            simple_god_message(Options.language == lang_t::KO
+                               ? " — 마지막 분노의 외침과 함께 존재가 소멸합니다."
+                               : ", with one final cry of rage, "
+                                 "burns out of existence.", false, god);
             add_daction(DACT_REMOVE_IGNIS_ALTARS);
         }
         else
         {
             const bool dead_jiyva = (god == GOD_JIYVA && jiyva_is_dead());
-            simple_god_message(
-                make_stringf(" seems mollified%s.",
-                             dead_jiyva ? ", and vanishes" : "").c_str(),
-                false, god);
+            if (Options.language == lang_t::KO)
+                simple_god_message(dead_jiyva
+                    ? " — 분노를 거두고 사라집니다."
+                    : " — 분노를 거둔 듯합니다.", false, god);
+            else
+                simple_god_message(
+                    make_stringf(" seems mollified%s.",
+                                 dead_jiyva ? ", and vanishes" : "").c_str(),
+                    false, god);
 
             if (dead_jiyva)
                 add_daction(DACT_JIYVA_DEAD);
@@ -725,7 +732,9 @@ void dec_penance(god_type god, int val)
             }
             if (have_passive(passive_t::stat_boost))
             {
-                simple_god_message(" restores the support of your attributes.");
+                simple_god_message(Options.language == lang_t::KO
+                    ? " — 능력치에 대한 가호를 다시 내립니다."
+                    : " restores the support of your attributes.");
                 redraw_screen();
                 update_screen();
                 notify_stat_change();
@@ -1796,10 +1805,14 @@ mgen_data hepliaklqana_ancestor_gen_data()
 /// Print a message for an ancestor's *something* being gained.
 static void _regain_memory(const monster &ancestor, string memory)
 {
-    mprf("%s regains the memory of %s %s.",
-         ancestor.name(DESC_YOUR, true).c_str(),
-         ancestor.pronoun(PRONOUN_POSSESSIVE, true).c_str(),
-         memory.c_str());
+    if (Options.language == lang_t::KO)
+        mprf("조상의 기억이 되살아납니다: %s, %s.",
+             ancestor.name(DESC_YOUR, true).c_str(), memory.c_str());
+    else
+        mprf("%s regains the memory of %s %s.",
+             ancestor.name(DESC_YOUR, true).c_str(),
+             ancestor.pronoun(PRONOUN_POSSESSIVE, true).c_str(),
+             memory.c_str());
 }
 
 static string _item_ego_name(object_class_type base_type, int brand)
@@ -1877,9 +1890,13 @@ void upgrade_hepliaklqana_ancestor(bool quiet_force)
 
     if (!quiet_force)
     {
-        mprf("%s remembers more of %s old skill.",
-             ancestor->name(DESC_YOUR, true).c_str(),
-             ancestor->pronoun(PRONOUN_POSSESSIVE, true).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("조상이 옛 기술을 더 많이 기억해 냅니다: %s.",
+                 ancestor->name(DESC_YOUR, true).c_str());
+        else
+            mprf("%s remembers more of %s old skill.",
+                 ancestor->name(DESC_YOUR, true).c_str(),
+                 ancestor->pronoun(PRONOUN_POSSESSIVE, true).c_str());
     }
 
     set_ancestor_spells(*ancestor, !quiet_force);
@@ -2416,8 +2433,10 @@ static void _handle_piety_gain(int old_piety)
                 mprf(MSGCH_GOD, (Options.language == lang_t::KO ? "어둠의 기운에 휩싸입니다!" : "You are shrouded in an aura of darkness!"));
             if (rank == rank_for_passive(passive_t::jelly_regen))
             {
-                simple_god_message(" begins accelerating your health and magic "
-                                "regeneration.");
+                simple_god_message(Options.language == lang_t::KO
+                    ? " — 체력과 마력의 재생을 촉진하기 시작합니다."
+                    : " begins accelerating your health and magic "
+                      "regeneration.");
             }
             if (rank == rank_for_passive(passive_t::sinv))
                 autotoggle_autopickup(false);
