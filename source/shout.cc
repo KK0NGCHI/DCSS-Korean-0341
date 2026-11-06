@@ -470,7 +470,7 @@ static void _set_allies_withdraw(const coord_def &target)
 /// Prompt the player to issue orders. Returns the key pressed.
 static int _issue_orders_prompt()
 {
-    mprf(MSGCH_PROMPT, "What are your orders?");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "어떤 명령을 내리시겠습니까?" : "What are your orders?");
     if (!you.cannot_speak())
     {
         string cap_shout = you.shout_verb(false);
@@ -480,11 +480,11 @@ static int _issue_orders_prompt()
 
     if (!you.berserk() && !you.confused())
     {
-        mpr("Orders for allies: a - Attack new target.");
-        mpr("                   r - Retreat!             s - Stop attacking.");
-        mpr("                   g - Guard the area.      f - Follow me.");
+        mpr(Options.language == lang_t::KO ? "아군 명령: a - 새 대상 공격." : "Orders for allies: a - Attack new target.");
+        mpr(Options.language == lang_t::KO ? "                   r - 후퇴!                s - 공격 중지." : "                   r - Retreat!             s - Stop attacking.");
+        mpr(Options.language == lang_t::KO ? "                   g - 위치 방어.           f - 따라오기." : "                   g - Guard the area.      f - Follow me.");
     }
-    mpr(" Anything else - Cancel.");
+    mpr(Options.language == lang_t::KO ? " 그 외 키 - 취소." : " Anything else - Cancel.");
 
     flush_prev_message(); // buffer doesn't get flushed otherwise
 
@@ -530,14 +530,14 @@ static bool _issue_order(int keyn, int &mons_targd)
             {
                 // Don't reset patrol points for 'Stop fighting!'
                 _set_allies_patrol_point(true);
-                mpr("Follow me!");
+                mpr(Options.language == lang_t::KO ? "따라오십시오!" : "Follow me!");
             }
             else
                 mpr("Stop fighting!");
             break;
 
         case 'g':
-            mpr("Guard this area!");
+            mpr(Options.language == lang_t::KO ? "이 지역을 지키십시오!" : "Guard this area!");
             mons_targd = MHITNOT;
             _set_allies_patrol_point();
             break;
@@ -601,7 +601,7 @@ static bool _issue_order(int keyn, int &mons_targd)
 
             if (targ.isValid)
             {
-                mpr("Fall back!");
+                mpr(Options.language == lang_t::KO ? "후퇴하십시오!" : "Fall back!");
                 mons_targd = MHITNOT;
             }
 
@@ -663,7 +663,7 @@ void issue_orders()
 
     if (you.cannot_speak() && you.berserk())
     {
-        mpr("You're too berserk to give orders, and you can't shout!");
+        mpr(Options.language == lang_t::KO ? "광폭화 상태라 명령도 고함도 할 수 없습니다!" : "You're too berserk to give orders, and you can't shout!");
         return;
     }
 
@@ -686,7 +686,7 @@ void issue_orders()
 
     if (mons_targd != MHITNOT && mons_targd != MHITYOU)
     {
-        mpr("Attack!");
+        mpr(Options.language == lang_t::KO ? "공격하십시오!" : "Attack!");
         _check_unseen_target(mons_targd);
     }
 }
