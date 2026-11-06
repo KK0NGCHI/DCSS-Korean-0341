@@ -2689,9 +2689,12 @@ bool melee_attack::player_aux_apply(unarmed_attack_type atk)
 
                 antimagic_affects_defender(damage_done * 32);
 
-                mprf("You drain %s %s.",
-                     defender->as_monster()->pronoun(PRONOUN_POSSESSIVE).c_str(),
-                     spell_user ? "magic" : "power");
+                if (Options.language == lang_t::KO)
+                    mpr(spell_user ? "대상의 마력을 흡수합니다." : "대상의 힘을 흡수합니다.");
+                else
+                    mprf("You drain %s %s.",
+                         defender->as_monster()->pronoun(PRONOUN_POSSESSIVE).c_str(),
+                         spell_user ? "magic" : "power");
 
                 if (you.magic_points != you.max_magic_points
                     && !defender->is_summoned()
