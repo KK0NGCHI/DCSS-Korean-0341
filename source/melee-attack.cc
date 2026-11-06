@@ -312,10 +312,15 @@ void melee_attack::handle_phase_blocked()
         {
             if (you.see_cell(defender->pos()))
             {
-                mprf(Options.language == lang_t::KO ? "%s(이)가 %s의 공격을 흘려보냅니다!" : "%s turn%s aside %s attack!",
-                        defender->name(DESC_THE).c_str(),
-                        defender->is_monster() ? "s" : "",
-                        attacker->name(DESC_ITS).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("공격을 흘려보내는 대상: %s, 공격자: %s!",
+                         defender->name(DESC_THE).c_str(),
+                         attacker->name(DESC_THE).c_str());
+                else
+                    mprf("%s turn%s aside %s attack!",
+                         defender->name(DESC_THE).c_str(),
+                         defender->is_monster() ? "s" : "",
+                         attacker->name(DESC_ITS).c_str());
                 needs_block_message = false;
             }
 
