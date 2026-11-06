@@ -609,14 +609,14 @@ void trap_def::trigger(actor& triggerer)
             if (mons_intel(*m) < I_HUMAN || !one_chance_in(3))
             {
                 // Not triggered, trap stays.
-                simple_monster_message(*m, " fails to trigger a net trap.");
+                simple_monster_message(*m, Options.language == lang_t::KO ? " — 그물 함정을 발동시키지 못합니다." : " fails to trigger a net trap.");
             }
             else
             {
                 // Triggered, net the player.
                 triggered = true;
 
-                if (!simple_monster_message(*m, " drops a net on you."))
+                if (!simple_monster_message(*m, Options.language == lang_t::KO ? " — 당신에게 그물을 던집니다." : " drops a net on you."))
                     mpr(Options.language == lang_t::KO ? "무언가가 당신에게 그물을 던집니다." : "Something launches a net on you.");
             }
         }
@@ -652,9 +652,9 @@ void trap_def::trigger(actor& triggerer)
             if (m)
             {
                 if (m->is_insubstantial())
-                    simple_monster_message(*m, " passes through a web.");
+                    simple_monster_message(*m, Options.language == lang_t::KO ? " — 거미줄을 통과합니다." : " passes through a web.");
                 else if (m->is_amorphous())
-                    simple_monster_message(*m, " oozes through a web.");
+                    simple_monster_message(*m, Options.language == lang_t::KO ? " — 거미줄 사이로 스며 나갑니다." : " oozes through a web.");
                 // too spammy for spiders, and expected
             }
             break;
@@ -675,7 +675,7 @@ void trap_def::trigger(actor& triggerer)
         else if (m)
         {
             if (one_chance_in(3))
-                simple_monster_message(*m, " evades a web.");
+                simple_monster_message(*m, Options.language == lang_t::KO ? " — 거미줄을 피합니다." : " evades a web.");
             else
             {
                 if (m->trap_in_web())
@@ -1002,7 +1002,7 @@ void do_trap_effects()
             _print_malev();
             if (have_passive(passive_t::avoid_traps))
             {
-                simple_god_message(" reveals a hidden shaft just before you would have fallen in.");
+                simple_god_message(Options.language == lang_t::KO ? " — 떨어지기 직전에 숨겨진 수직 통로를 알려 줍니다." : " reveals a hidden shaft just before you would have fallen in.");
                 return;
             }
             if (you.do_shaft())
@@ -1017,10 +1017,10 @@ void do_trap_effects()
             _print_malev();
             if (have_passive(passive_t::avoid_traps))
             {
-                simple_god_message(" reveals an alarm trap just before you would have tripped it.");
+                simple_god_message(Options.language == lang_t::KO ? " — 발동시키기 직전에 경보 함정을 알려 줍니다." : " reveals an alarm trap just before you would have tripped it.");
                 return;
             }
-            mpr("With a horrendous wail, an alarm goes off!");
+            mpr(Options.language == lang_t::KO ? "끔찍한 굉음과 함께 경보가 울립니다!" : "With a horrendous wail, an alarm goes off!");
             fake_noisy(40, you.pos());
             you.sentinel_mark(true);
             apply_noises(); // Otherwise the noise from them won't kick in until the end of the turn.
