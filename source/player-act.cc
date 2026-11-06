@@ -644,7 +644,7 @@ static bool _god_prevents_berserk_haste(bool intentional)
         return false;
 
     if (intentional)
-        simple_god_message(" forces you to slow down.");
+        simple_god_message(Options.language == lang_t::KO ? " — 당신을 느려지게 만듭니다." : " forces you to slow down.");
     else
         simple_god_message(" protects you from inadvertent hurry.");
 
