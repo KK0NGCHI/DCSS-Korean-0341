@@ -1006,11 +1006,17 @@ spret cast_airstrike(int pow, coord_def target, bool fail)
 #endif
     hurted = mons->apply_ac(mons->beam_resists(pbeam, hurted, false));
     dprf("preac: %d, postac: %d", preac, hurted);
-    mprf("%s and strikes %s%s%s",
-         airstrike_intensity_display(empty_space, tile).c_str(),
-         mons->name(DESC_THE).c_str(),
-         hurted ? "" : " but does no damage",
-         attack_strength_punctuation(hurted).c_str());
+    if (Options.language == lang_t::KO)
+        mprf(hurted ? "공기의 일격이 대상을 강타합니다: %s%s"
+                    : "공기의 일격이 피해를 입히지 못합니다: %s%s",
+             mons->name(DESC_THE).c_str(),
+             attack_strength_punctuation(hurted).c_str());
+    else
+        mprf("%s and strikes %s%s%s",
+             airstrike_intensity_display(empty_space, tile).c_str(),
+             mons->name(DESC_THE).c_str(),
+             hurted ? "" : " but does no damage",
+             attack_strength_punctuation(hurted).c_str());
 
     flash_tile(mons->pos(), WHITE, 60, tile);
     _player_hurt_monster(*mons, hurted, pbeam.flavour);
@@ -1569,8 +1575,8 @@ spret cast_fragmentation(int pow, const actor *caster,
         const int dam = beam.damage.roll();
         if (you.see_cell(target))
         {
-            mprf("%s shatters%s", mon->name(DESC_THE).c_str(),
-                 attack_strength_punctuation(dam).c_str());
+            mprf(Options.language == lang_t::KO ? "산산이 부서지는 대상: %s%s" : "%s shatters%s",
+                 mon->name(DESC_THE).c_str(), attack_strength_punctuation(dam).c_str());
         }
 
         if (caster->is_player())
@@ -1966,8 +1972,8 @@ spret cast_scorch(const actor& agent, int pow, bool fail)
             monster* mon = targ->as_monster();
             if (you.can_see(*mon) && !mon->has_ench(ENCH_FIRE_VULN))
             {
-                mprf("%s fire resistance burns away.",
-                    mon->name(DESC_ITS).c_str());
+                mprf(Options.language == lang_t::KO ? "화염 저항이 사라진 대상: %s." : "%s fire resistance burns away.",
+                     mon->name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
             }
             mon->add_ench(mon_enchant(ENCH_FIRE_VULN, &agent, dur * BASELINE_DELAY));
         }
@@ -2028,10 +2034,13 @@ static int _irradiate_cell(coord_def where, int pow, const actor &agent)
 
     if (you.see_cell(act->pos()))
     {
-        mprf("%s %s blasted with magical radiation%s",
-             act->name(DESC_THE).c_str(),
-             conjugate_verb("are", hitting_player).c_str(),
-             attack_strength_punctuation(dam).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("마력 방사에 휩싸인 대상: %s%s", act->name(DESC_THE).c_str(),
+                 attack_strength_punctuation(dam).c_str());
+        else
+            mprf("%s %s blasted with magical radiation%s",
+                 act->name(DESC_THE).c_str(), conjugate_verb("are", hitting_player).c_str(),
+                 attack_strength_punctuation(dam).c_str());
     }
 
     if (agent.is_player())
@@ -2266,9 +2275,8 @@ static int _ignite_poison_monsters(coord_def where, int pow, actor *agent)
     flash_tile(where, RED, 0, TILE_BOLT_IGNITE_POISON_TARGET);
     if (you.see_cell(mon->pos()))
     {
-        mprf("%s seems to burn from within%s",
-             mon->name(DESC_THE).c_str(),
-             attack_strength_punctuation(damage).c_str());
+        mprf(Options.language == lang_t::KO ? "몸속부터 타오르는 듯한 몬스터: %s%s" : "%s seems to burn from within%s",
+             mon->name(DESC_THE).c_str(), attack_strength_punctuation(damage).c_str());
     }
 
     dprf("Dice: %dd%d; Damage: %d", dam_dice.num, dam_dice.size, damage);
@@ -2487,9 +2495,12 @@ spret cast_ignite_poison(actor* agent, int pow, bool fail, bool tracer)
 
     targeter_radius hitfunc(agent, LOS_NO_TRANS);
 
-    mprf("%s %s the poison in %s surroundings!", agent->name(DESC_THE).c_str(),
-         agent->conj_verb("ignite").c_str(),
-         agent->pronoun(PRONOUN_POSSESSIVE).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("주변의 독을 불태우는 시전자: %s!", agent->name(DESC_THE).c_str());
+    else
+        mprf("%s %s the poison in %s surroundings!",
+             agent->name(DESC_THE).c_str(), agent->conj_verb("ignite").c_str(),
+             agent->pronoun(PRONOUN_POSSESSIVE).c_str());
 
     // this could conceivably cause crashes if the player dies midway through
     // maybe split it up...?
@@ -2698,9 +2709,8 @@ static int _discharge_monsters(const coord_def &where, int pow,
 
             dprf("%s: static discharge damage: %d",
                 mons->name(DESC_PLAIN, true).c_str(), damage);
-            mprf("%s is struck by an arc of lightning%s",
-                    mons->name(DESC_THE).c_str(),
-                    attack_strength_punctuation(damage).c_str());
+            mprf(Options.language == lang_t::KO ? "번개 줄기에 맞은 몬스터: %s%s" : "%s is struck by an arc of lightning%s",
+                 mons->name(DESC_THE).c_str(), attack_strength_punctuation(damage).c_str());
             damage = mons_adjust_flavoured(mons, beam, damage);
 
             if (agent.is_player())
@@ -3679,9 +3689,11 @@ spret cast_unravelling(coord_def target, int pow, bool fail)
                    || victim->is_monster() && you.can_see(*victim)
                       && !monster_can_be_unravelled(*victim->as_monster())))
     {
-        mprf("%s %s no magical effects to unravel.",
-             victim->name(DESC_THE).c_str(),
-             victim->conj_verb("have").c_str());
+        if (Options.language == lang_t::KO)
+            mprf("해제할 마법 효과가 없는 대상: %s.", victim->name(DESC_THE).c_str());
+        else
+            mprf("%s %s no magical effects to unravel.",
+                 victim->name(DESC_THE).c_str(), victim->conj_verb("have").c_str());
         return spret::abort;
     }
 
@@ -4039,9 +4051,11 @@ spret cast_glaciate(actor *caster, int pow, coord_def aim)
 
     if (you.can_see(*caster) || caster->is_player())
     {
-        mprf("%s %s a mighty blast of ice!",
-             caster->name(DESC_THE).c_str(),
-             caster->conj_verb("conjure").c_str());
+        if (Options.language == lang_t::KO)
+            mprf("강력한 얼음 폭발을 만들어 내는 시전자: %s!", caster->name(DESC_THE).c_str());
+        else
+            mprf("%s %s a mighty blast of ice!",
+                 caster->name(DESC_THE).c_str(), caster->conj_verb("conjure").c_str());
     }
 
     beam.glyph = 0;
@@ -4794,10 +4808,9 @@ void do_boulder_impact(monster& boulder, actor& victim, bool quiet)
     {
         if (!quiet)
         {
-            mprf("%s barrels into %s%s",
-                    boulder.name(DESC_THE).c_str(),
-                    victim.name(DESC_THE).c_str(),
-                    attack_strength_punctuation(dam).c_str());
+            mprf(Options.language == lang_t::KO ? "바위가 대상을 들이받습니다: %s → %s%s" : "%s barrels into %s%s",
+                 boulder.name(DESC_THE).c_str(), victim.name(DESC_THE).c_str(),
+                 attack_strength_punctuation(dam).c_str());
         }
     }
 
