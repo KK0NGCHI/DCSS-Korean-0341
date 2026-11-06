@@ -648,7 +648,7 @@ public:
         {
             if (is_potion && you.unrand_equipped(UNRAND_KRYIAS))
             {
-                mprf("%s enhances the restoration.",
+                mprf(Options.language == lang_t::KO ? "회복 효과를 강화하는 장비: %s." : "%s enhances the restoration.",
                      you.body_armour()->name(DESC_THE, false, false, false).c_str());
             }
             else if (is_potion && you.has_mutation(MUT_DOUBLE_POTION_HEAL))
