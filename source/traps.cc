@@ -405,7 +405,7 @@ void trap_def::trigger(actor& triggerer)
     {
         dprf("Triggered dispersal.");
         if (you_trigger)
-            mprf("You enter %s!", name(DESC_A).c_str());
+            mprf(Options.language == lang_t::KO ? "함정으로 들어갑니다: %s!" : "You enter %s!", name(DESC_A).c_str());
         else
             mprf("%s enters %s!", triggerer.name(DESC_THE).c_str(),
                     name(DESC_A).c_str());
@@ -424,7 +424,7 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_TELEPORT:
     case TRAP_TELEPORT_PERMANENT:
         if (you_trigger)
-            mprf("You enter %s!", name(DESC_A).c_str());
+            mprf(Options.language == lang_t::KO ? "함정으로 들어갑니다: %s!" : "You enter %s!", name(DESC_A).c_str());
         if (ammo_qty > 0 && !--ammo_qty)
         {
             // can't use trap_destroyed, as we might recurse into a shaft
@@ -581,8 +581,7 @@ void trap_def::trigger(actor& triggerer)
 
         if (silenced(pos))
         {
-            mprf("%s vibrates slightly, failing to make a sound.",
-                 name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "소리 없이 미세하게 진동하는 함정: %s." : "%s vibrates slightly, failing to make a sound.", name(DESC_THE).c_str());
         }
         else
         {
@@ -733,8 +732,10 @@ void trap_def::trigger(actor& triggerer)
         // after one use in down_stairs()
         if (!you_trigger)
         {
-            mprf("%s shaft crumbles and collapses.",
-                 triggerer_seen ? "The" : "A");
+            if (Options.language == lang_t::KO)
+                mpr("수직 통로가 무너져 내립니다.");
+            else
+                mprf("%s shaft crumbles and collapses.", triggerer_seen ? "The" : "A");
             know_trap_destroyed = true;
             trap_destroyed = true;
 
@@ -1332,7 +1333,10 @@ void player::struggle_against_net()
     const int damage = random_range(1, 4);
     if (damage >= you.attribute[ATTR_HELD])
     {
-        mprf("You %s the net and break free!", damage > 3 ? "shred" : "rip");
+        if (Options.language == lang_t::KO)
+            mpr(damage > 3 ? "그물을 갈기갈기 찢고 탈출합니다!" : "그물을 찢고 탈출합니다!");
+        else
+            mprf("You %s the net and break free!", damage > 3 ? "shred" : "rip");
         stop_being_caught();
         return;
     }
@@ -1340,7 +1344,7 @@ void player::struggle_against_net()
     if (damage > 3)
         mpr(Options.language == lang_t::KO ? "그물을 크게 찢어 놓습니다." : "You tear a large gash into the net.");
     else
-        mpr("You struggle against the net.");
+        mpr(Options.language == lang_t::KO ? "그물에 저항하며 몸부림칩니다." : "You struggle against the net.");
 
     you.attribute[ATTR_HELD] -= damage;
 }
