@@ -396,8 +396,12 @@ void trap_def::trigger(actor& triggerer)
         }
         else if (you_trigger)
         {
-            mprf(Options.language == lang_t::KO ? "통로에 문제가 있습니다: %s!" : "This passage %s!", search_result == passage_type::blocked ?
-                 "seems to be blocked by something" : "doesn't lead anywhere");
+            if (Options.language == lang_t::KO)
+                mpr(search_result == passage_type::blocked
+                    ? "통로가 무언가에 막힌 듯합니다!" : "이 통로는 아무 곳으로도 이어지지 않습니다!");
+            else
+                mprf("This passage %s!", search_result == passage_type::blocked ?
+                     "seems to be blocked by something" : "doesn't lead anywhere");
         }
         break;
     }
