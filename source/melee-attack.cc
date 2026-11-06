@@ -635,9 +635,13 @@ void melee_attack::do_vampire_lifesteal()
         }
         else if (can_enthrall)
         {
-            mprf("You sink your fangs into %s and drain %s dry!",
-                    mon->name(DESC_THE, true).c_str(),
-                    mon->pronoun(PRONOUN_OBJECTIVE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("송곳니를 박아 피를 모두 빨아들입니다: %s!",
+                     mon->name(DESC_THE, true).c_str());
+            else
+                mprf("You sink your fangs into %s and drain %s dry!",
+                     mon->name(DESC_THE, true).c_str(),
+                     mon->pronoun(PRONOUN_OBJECTIVE).c_str());
 
             // Mark to possibly raise this monster as an ally.
             if (stab_attempt)
@@ -3328,10 +3332,13 @@ void melee_attack::decapitate()
     {
         if (defender_visible)
         {
-            mprf("%s %s %s last head off!",
-                 atk_name(DESC_THE).c_str(),
-                 attacker->conj_verb(verb).c_str(),
-                 apostrophise(defender_name(true)).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("마지막 머리를 베어 냅니다: %s → %s!",
+                     atk_name(DESC_THE).c_str(), defender_name(true).c_str());
+            else
+                mprf("%s %s %s last head off!",
+                     atk_name(DESC_THE).c_str(), attacker->conj_verb(verb).c_str(),
+                     apostrophise(defender_name(true)).c_str());
         }
 
         if (!defender->is_summoned())
@@ -3348,10 +3355,13 @@ void melee_attack::decapitate()
 
     if (defender_visible)
     {
-        mprf("%s %s one of %s heads off!",
-             atk_name(DESC_THE).c_str(),
-             attacker->conj_verb(verb).c_str(),
-             apostrophise(defender_name(true)).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("머리 하나를 베어 냅니다: %s → %s!",
+                 atk_name(DESC_THE).c_str(), defender_name(true).c_str());
+        else
+            mprf("%s %s one of %s heads off!",
+                 atk_name(DESC_THE).c_str(), attacker->conj_verb(verb).c_str(),
+                 apostrophise(defender_name(true)).c_str());
     }
 
     defender->as_monster()->num_heads--;
@@ -4946,10 +4956,12 @@ bool melee_attack::do_knockback(bool slippery)
             }
             else if (!slippery)
             {
-                mprf("%s %s %s ground!",
-                     defender_name(false).c_str(),
-                     defender->conj_verb("hold").c_str(),
-                     defender->pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("굳게 버티는 대상: %s!", defender_name(false).c_str());
+                else
+                    mprf("%s %s %s ground!",
+                         defender_name(false).c_str(), defender->conj_verb("hold").c_str(),
+                         defender->pronoun(PRONOUN_POSSESSIVE).c_str());
             }
         }
 
