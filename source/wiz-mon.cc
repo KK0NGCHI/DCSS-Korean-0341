@@ -302,7 +302,7 @@ void debug_stethoscope(int mon)
     monster& mons(env.mons[i]);
 
     // Print type of monster.
-    mprf(MSGCH_DIAGNOSTICS, "%s (id #%d; type=%d loc=(%d,%d) align=%s)",
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "%s (ID #%d, 종류=%d, 좌표=(%d,%d), 진영=%s)" : "%s (id #%d; type=%d loc=(%d,%d) align=%s)",
          mons.name(DESC_THE, true).c_str(),
          i, mons.type, mons.pos().x, mons.pos().y,
          ((mons.attitude == ATT_HOSTILE)        ? "hostile" :
@@ -368,7 +368,7 @@ void debug_stethoscope(int mon)
                    : ""));
 
     // Print resistances.
-    mprf(MSGCH_DIAGNOSTICS, "resist: fire=%d cold=%d elec=%d pois=%d neg=%d "
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "저항: 화염=%d 냉기=%d 전기=%d 독=%d 음에너지=%d " : "resist: fire=%d cold=%d elec=%d pois=%d neg=%d "
                             "acid=%d sticky=%s miasma=%s",
          mons.res_fire(),
          mons.res_cold(),
@@ -451,7 +451,7 @@ void debug_stethoscope(int mon)
     {
         ASSERT(mons.ghost);
         const ghost_demon &ghost = *mons.ghost;
-        mprf(MSGCH_DIAGNOSTICS, "Ghost damage: %d; brand: %d; att_type: %d; "
+        mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "유령 피해: %d, 무기 속성: %d, 공격 방식: %d, " : "Ghost damage: %d; brand: %d; att_type: %d; "
                                 "att_flav: %d",
              ghost.damage, ghost.brand, ghost.att_type, ghost.att_flav);
     }
