@@ -642,7 +642,7 @@ static void _check_spatial_entanglement(const coord_def& oldpos)
     place_cloud(CLOUD_TLOC_ENERGY, mon->pos(), random_range(2, 3), &you);
     mon->move_to(spot, MV_TRANSLOCATION, true);
 
-    mprf("%s이(가) 당신과 함께 끌려간다!", mon->name(DESC_THE).c_str());
+    mprf("당신과 함께 끌려간 몬스터: %s!", mon->name(DESC_THE).c_str());
     mon->speed_increment -= you.time_taken;
     mon->finalise_movement();
     if (mon->alive())
@@ -7410,7 +7410,7 @@ bool player::resists_dislodge(string event) const
     if (!you.unrand_equipped(UNRAND_MOUNTAIN_BOOTS))
         return false;
     if (!event.empty())
-        mprf("장화 덕분에 %s을(를) 피했다.", event.c_str());
+        mprf("장화 덕분에 밀려나는 효과를 피했습니다: %s.", event.c_str());
     return true;
 }
 
@@ -9046,7 +9046,7 @@ void player_close_door(coord_def doorpos)
             const bool mons_unseen = !you.can_see(*mon);
             if (mons_unseen || (mon->holiness() & MH_NONLIVING))
             {
-                mprf("무언가가 %s을(를) 막고 있어!", waynoun);
+                mprf("무언가가 통로를 막고 있습니다: %s!", waynoun);
                 // No free detection!
                 if (mons_unseen)
                     you.turn_is_over = true;
@@ -9060,7 +9060,7 @@ void player_close_door(coord_def doorpos)
         {
             if (!has_push_spaces(dc, false, &door_vec))
             {
-                mprf("무언가가 %s을(를) 걸리게 하고 있어.", waynoun);
+                mprf("무언가가 통로를 걸리게 합니다: %s.", waynoun);
                 return;
             }
         }
