@@ -277,7 +277,7 @@ static void _tweak_randart(item_def &item)
 
     case ARTP_VAL_POS:
     {
-        mprf(MSGCH_PROMPT, "%s was %d.", artp_name(prop), props[prop]);
+        mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "%s의 이전 값: %d." : "%s was %d.", artp_name(prop), props[prop]);
         const int val = prompt_for_int("New value? ", true);
 
         if (val < 0)
@@ -292,7 +292,7 @@ static void _tweak_randart(item_def &item)
     }
     case ARTP_VAL_ANY:
     {
-        mprf(MSGCH_PROMPT, "%s was %d.", artp_name(prop), props[prop]);
+        mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "%s의 이전 값: %d." : "%s was %d.", artp_name(prop), props[prop]);
         const int val = prompt_for_int("New value? ", false);
         artefact_set_property(item, static_cast<artefact_prop_type>(prop),
                              val);
@@ -301,7 +301,7 @@ static void _tweak_randart(item_def &item)
 
     case ARTP_VAL_BRAND:
     {
-        mprf(MSGCH_PROMPT, "%s was %s.", artp_name(prop),
+        mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "%s의 이전 값: %s." : "%s was %s.", artp_name(prop),
              props[prop] ? ego_type_string(item, false).c_str() : "normal");
 
         char specs[80];
@@ -590,7 +590,7 @@ void wizard_make_object_randart()
 
     if (is_random_artefact(item))
     {
-        if (!yesno("Is already a randart; wipe and re-use?", true, 'n'))
+        if (!yesno(Options.language == lang_t::KO ? "이미 무작위 아티팩트입니다. 초기화 후 재사용하시겠습니까?" : "Is already a randart; wipe and re-use?", true, 'n'))
         {
             canned_msg(MSG_OK);
             return;
@@ -873,7 +873,7 @@ static void _debug_acquirement_stats()
         if (num_itrs >= 10 && (i + 1) % (num_itrs / 10) == 0)
         {
             clear_messages();
-            mprf("%d%% done.", 100 * (i + 1) / num_itrs);
+            mprf(Options.language == lang_t::KO ? "%d%% 완료." : "%d%% done.", 100 * (i + 1) / num_itrs);
             viewwindow();
             update_screen();
         }
@@ -1265,7 +1265,7 @@ static void _debug_randart_stats()
         if (num_itrs >= 10 && (i + 1) % (num_itrs / 10) == 0)
         {
             clear_messages();
-            mprf("%d%% done.", 100 * (i + 1) / num_itrs);
+            mprf(Options.language == lang_t::KO ? "%d%% 완료." : "%d%% done.", 100 * (i + 1) / num_itrs);
             viewwindow();
             update_screen();
         }
