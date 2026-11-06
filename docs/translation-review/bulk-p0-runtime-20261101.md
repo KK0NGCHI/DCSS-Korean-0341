@@ -478,3 +478,27 @@ The per-file counts are based on exact-match source replacements, including dupl
 Added new edited modules `mon-transit.cc`, `decks.cc`, `shout.cc`, `mon-project.cc`, `orb.cc` to **both** full-source Linux build overlay lists. `mon-place.cc`, `melee-attack.cc`, `ouch.cc`, `timed-effects.cc`, `mon-poly.cc`, `movement.cc`, `attack.cc`, `traps.cc`, `xom.cc`, `transform.cc` were already on the overlay.
 
 **Latest HEAD compile status must be checked independently**; previous passing result at `203b3aa` does not validate this batch. Windows Tiles validation and general generated-name QA remain outstanding; PR #174 stays Draft and unmerged.
+
+
+## 2026-11-06 continuation: 58 new player-visible output positions
+
+Baseline: PR #174 head `07c191ee06482e44eb419c2fce3644084a2f2414` confirmed **PASS** in both Linux Korean runtime executable/builddb smoke and translation inventory before editing.
+
+| Source | New positions | Notes |
+|---|---:|---|
+| `decks.cc` | 8 | confirmation prompts, thunder, card draw/output, pig transformation |
+| `shout.cc` | 8 | allies' visibility, shout action & silence handling |
+| `mon-project.cc` | 3 | orb hits, reflected projectiles |
+| `xom.cc` | 7 | chaos brand, weapon animation, enchantment, stairs, detection & fungi |
+| `melee-attack.cc` | 25 | shield, blood draining, collision, hydra heads, elemental attacks, spores, fear/knockback, riposte |
+| `actor.cc` | 6 | constriction escape, collision, terrain impact, knockback |
+| `traps.cc` | 1 | disentanglement |
+| **TOTAL** | **58** | **new source output positions** |
+
+Counting: first bundle `decks 7 + shout 3 + mon-project 3 + xom 4 = 17`; second bundle `melee 21 + actor 3 + shout 5 = 29`; third `melee 4 + actor 3 = 7`; last `decks 1 + xom 3 + traps 1 = 5`. Total `17 + 29 + 7 + 5 = 58`. Total new positions logged in today's previous batches 312, so **daily cumulative = 370** new source output positions. This is **not** an estimate of overall translation completeness.
+
+Translation conditions preserve the English text branch and retain player warnings and message channels. Conditional printf branches with changed argument counts have separate format calls where required. Six combat formats were proactively split to avoid extra `printf` arguments. For user-facing names, label-like grammar avoids unreliable particles. Additionally, removed a literal `%s(을)를` placeholder from `shout.cc` without counting it as a newly translated position.
+
+Added `source/actor.cc` to both fixed-list C++ overlay workflows so the new file is exercised in the Linux Korean executable smoke. Newest SHA requires **its own CI validation**; previously passing runs only cover the baseline `07c191e`. No Windows Tiles QA has been performed for these changes. PR #174 remains Draft, unmerged.
+
+Next: examine Linux build/inventory for latest head, fix any compile/runtime error; then continue difficult message formatting in `melee-attack.cc`, `ranged-attack.cc`, Xom and remaining language-independent data sources.
