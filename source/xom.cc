@@ -3501,7 +3501,10 @@ static void _xom_player_confusion_effect(int sever)
     if (you.can_drink())
     {
         god_speaks(GOD_XOM, _get_xom_speech("confusion").c_str());
-        mprf(MSGCH_WARN, "You are %sconfused.", conf ? "more " : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_WARN, "%s", conf ? "더욱 혼란스러워집니다." : "혼란스러워집니다.");
+        else
+            mprf(MSGCH_WARN, "You are %sconfused.", conf ? "more " : "");
     }
     else
     {
@@ -3510,8 +3513,13 @@ static void _xom_player_confusion_effect(int sever)
         const bool was_mighty = you.duration[DUR_MIGHT];
         you.increase_duration(DUR_MIGHT, dur);
         god_speaks(GOD_XOM, _get_xom_speech("drinkless confusion").c_str());
-        mprf(MSGCH_WARN, "You feel %s and %sconfused.",
-            was_mighty ? "mightier" : "very mighty", conf ? "more " : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_WARN, "%s", conf
+                ? (was_mighty ? "힘이 더 솟고 혼란도 심해집니다." : "힘이 크게 솟지만 더욱 혼란스러워집니다.")
+                : (was_mighty ? "힘이 더 솟고 혼란스러워집니다." : "강한 힘이 솟지만 혼란스러워집니다."));
+        else
+            mprf(MSGCH_WARN, "You feel %s and %sconfused.",
+                 was_mighty ? "mightier" : "very mighty", conf ? "more " : "");
     }
 
     // At higher severities, Xom is less likely to confuse surrounding
@@ -3811,7 +3819,7 @@ static void _xom_cloud_trail(int /*sever*/)
     god_speaks(GOD_XOM, speech.c_str());
 
     if (suppressed)
-        simple_god_message(" purifies the foul vapours!");
+        simple_god_message(Options.language == lang_t::KO ? " — 유독한 증기를 정화합니다!" : " purifies the foul vapours!");
 }
 
 static void _xom_draining(int /*sever*/)
@@ -3844,7 +3852,7 @@ static void _xom_doom(int /*sever*/)
     }
 
     if (!(you.attribute[ATTR_DOOM] + power >= 100))
-        mpr("Your doom draws closer.");
+        mpr(Options.language == lang_t::KO ? "파멸이 더욱 가까워집니다." : "Your doom draws closer.");
 
     you.doom(power);
 
@@ -5342,8 +5350,9 @@ void xom_new_level_noise_or_stealth()
         if (!player_under_penance(GOD_XOM) && coinflip())
         {
             god_speaks(GOD_XOM, _get_xom_speech("stealth player").c_str());
-            mpr(you.duration[DUR_STEALTH] ? "You feel more stealthy."
-                                          : "You feel stealthy.");
+            mpr(Options.language == lang_t::KO
+                ? (you.duration[DUR_STEALTH] ? "몸을 더욱 잘 숨길 수 있을 것 같습니다." : "몸을 잘 숨길 수 있을 것 같습니다.")
+                : (you.duration[DUR_STEALTH] ? "You feel more stealthy." : "You feel stealthy."));
             you.increase_duration(DUR_STEALTH, 10 + random2(80));
             take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1,
                            "stealth player"), true);
