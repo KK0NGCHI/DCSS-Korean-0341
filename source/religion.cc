@@ -1922,11 +1922,17 @@ void upgrade_hepliaklqana_ancestor(bool quiet_force)
         else if (brand != _hepliaklqana_weapon_brand(ancestor->type, old_hd)
                  && !quiet_force)
         {
-            mprf("%s remembers %s %s %s.",
-                 ancestor->name(DESC_YOUR, true).c_str(),
-                 ancestor->pronoun(PRONOUN_POSSESSIVE, true).c_str(),
-                 apostrophise(item_base_name(OBJ_WEAPONS, wpn)).c_str(),
-                 brand_type_name(brand, brand != SPWPN_DRAINING));
+            if (Options.language == lang_t::KO)
+                mprf("조상이 무기의 속성을 기억해 냅니다: %s (무기: %s, 속성: %s).",
+                     ancestor->name(DESC_YOUR, true).c_str(),
+                     item_base_name(OBJ_WEAPONS, wpn).c_str(),
+                     brand_type_name(brand, brand != SPWPN_DRAINING));
+            else
+                mprf("%s remembers %s %s %s.",
+                     ancestor->name(DESC_YOUR, true).c_str(),
+                     ancestor->pronoun(PRONOUN_POSSESSIVE, true).c_str(),
+                     apostrophise(item_base_name(OBJ_WEAPONS, wpn)).c_str(),
+                     brand_type_name(brand, brand != SPWPN_DRAINING));
         }
     }
     // but shields can't be lost, and *can* be gained (knight at hd 5)
@@ -3528,12 +3534,16 @@ static void _transfer_good_god_piety()
         };
 
         // Some feedback that piety moved over.
-        simple_god_message(make_stringf(" says: Farewell. Go and %s with %s.",
-                                        lookup(farewell_messages, you.religion,
-                                               "become a bug"),
-                                        god_name(you.religion).c_str()).c_str(),
-
-                           false, old_god);
+        if (Options.language == lang_t::KO)
+            simple_god_message(make_stringf(" — 말합니다: 잘 가라. 이제 %s의 가르침을 따르거라.",
+                                            god_name(you.religion).c_str()).c_str(),
+                               false, old_god);
+        else
+            simple_god_message(make_stringf(" says: Farewell. Go and %s with %s.",
+                                            lookup(farewell_messages, you.religion,
+                                                   "become a bug"),
+                                            god_name(you.religion).c_str()).c_str(),
+                               false, old_god);
     }
 
     // Give a piety bonus when switching between good gods, or back to the
