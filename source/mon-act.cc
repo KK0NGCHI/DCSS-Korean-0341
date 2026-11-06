@@ -825,9 +825,8 @@ static bool _handle_swoop_or_flank(monster& mons)
             }
             else
             {
-                mprf("%s slips past %s!",
-                mons.name(DESC_THE).c_str(),
-                defender->name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "%s — %s의 옆을 스쳐 지나갑니다!" : "%s slips past %s!",
+                     mons.name(DESC_THE).c_str(), defender->name(DESC_THE).c_str());
             }
         }
         mons.move_to(tracer.path_taken[j+1], MV_DELIBERATE, true);
@@ -4018,9 +4017,12 @@ static bool _monster_move(monster* mons, coord_def& delta)
             if (you.see_cell(target))
             {
                 const bool actor_visible = you.can_see(*mons);
-                mprf(Options.language == lang_t::KO ? "나무를 쓰러뜨린 몬스터: %s!" : "%s knocks down a tree!",
-                        actor_visible?
-                        mons->name(DESC_THE).c_str() : "Something");
+                if (Options.language == lang_t::KO)
+                    mprf(actor_visible ? "나무를 쓰러뜨린 몬스터: %s!" : "무언가가 나무를 쓰러뜨립니다!",
+                         actor_visible ? mons->name(DESC_THE).c_str() : "");
+                else
+                    mprf("%s knocks down a tree!",
+                         actor_visible ? mons->name(DESC_THE).c_str() : "Something");
                 noisy(25, target);
             }
             else
