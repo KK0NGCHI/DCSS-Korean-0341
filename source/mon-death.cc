@@ -405,10 +405,12 @@ static void _create_monster_hide(monster_type mtyp, monster_type montype,
     if (you.see_cell(pos) && !silent && !feat_eliminates_items(env.grid(pos)))
     {
         // XXX: tweak for uniques/named monsters, somehow?
-        mprf(Options.language == lang_t::KO ? "착용할 수 있을 만큼 온전하게 남은 장비: %s (%s)." : "%s %s intact enough to wear.",
-             item.name(DESC_THE).c_str(),
-             mons_genus(mtyp) == MONS_DRAGON ? "are"  // scales are
-                                             : "is"); // troll armour is
+        if (Options.language == lang_t::KO)
+            mprf("착용할 수 있을 만큼 온전하게 남은 장비: %s.",
+                 item.name(DESC_THE).c_str());
+        else
+            mprf("%s %s intact enough to wear.", item.name(DESC_THE).c_str(),
+                 mons_genus(mtyp) == MONS_DRAGON ? "are" : "is");
                                                       // XXX: refactor
     }
 
@@ -1658,8 +1660,11 @@ static void _druid_final_boon(const monster* mons)
         if (beasts[i]->heal(roll_dice(3, mons->get_hit_dice()))
             && you.can_see(*beasts[i]))
         {
-            mprf(Options.language == lang_t::KO ? "치유된 몬스터: %s (%s)." : "%s %s healed.", beasts[i]->name(DESC_THE).c_str(),
-                                  beasts[i]->conj_verb("are").c_str());
+            if (Options.language == lang_t::KO)
+                mprf("치유된 몬스터: %s.", beasts[i]->name(DESC_THE).c_str());
+            else
+                mprf("%s %s healed.", beasts[i]->name(DESC_THE).c_str(),
+                     beasts[i]->conj_verb("are").c_str());
         }
     }
 
@@ -2489,7 +2494,8 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
         }
 
         if (visible_effect)
-            mprf(Options.language == lang_t::KO ? "주변 아군이 치유됩니다: %s." : "%s allies are healed!", mons.name(DESC_ITS).c_str());
+            mprf(Options.language == lang_t::KO ? "주변 아군이 치유됩니다: %s." : "%s allies are healed!",
+                 mons.name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
     }
 
     if (gives_player_xp && you.attribute[ATTR_TEMP_MUTATIONS]
