@@ -5753,7 +5753,7 @@ bool shoot_through_actor(const actor* agent, const actor* target, bool announce)
             // TODO: this message does not work very well for all sorts of attacks
             // should this be a god message?
             if (announce && you.can_see(*target))
-                mprf("%s: 당신의 공격을 피한다.", target->name(DESC_THE).c_str());
+                mprf("당신의 공격을 피한 몬스터: %s.", target->name(DESC_THE).c_str());
             return true;
         }
 
