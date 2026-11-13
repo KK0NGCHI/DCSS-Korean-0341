@@ -1580,7 +1580,7 @@ bool swap_features(const coord_def &pos1, const coord_def &pos2,
 
     if (!in_bounds(temp))
     {
-        mprf(MSGCH_ERROR, "swap_features(): No boring squares on level?");
+        mprf(MSGCH_ERROR, "%s", Options.language == lang_t::KO ? "지형 교체 실패: 이 층에 적당한 빈칸이 없습니까?" : "swap_features(): No boring squares on level?");
         return false;
     }
 
