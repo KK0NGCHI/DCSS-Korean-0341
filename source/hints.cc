@@ -572,7 +572,7 @@ void hints_death_screen()
     mprf(MSGCH_TUTORIAL, "%s", untag_tiles_console(text).c_str());
     more();
 
-    mprf(MSGCH_TUTORIAL, "See you next game!");
+    mprf(MSGCH_TUTORIAL, "%s", Options.language == lang_t::KO ? "다음 게임에서 다시 만납시다!" : "See you next game!");
 
     Hints.hints_events.init(false);
 }
