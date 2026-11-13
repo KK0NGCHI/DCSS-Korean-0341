@@ -4196,7 +4196,10 @@ bool monster::corrode(const actor* source, const char* corrosion_msg, int amount
     if (you.see_cell(pos()))
     {
         if (!has_ench(ENCH_CORROSION))
-            mprf(Options.language == lang_t::KO ? "부식에 걸린 몬스터: %s (원인: %s)!" : "%s corrodes %s!", corrosion_msg, name(DESC_THE).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("부식에 걸린 몬스터: %s!", name(DESC_THE).c_str());
+            else
+                mprf("%s corrodes %s!", corrosion_msg, name(DESC_THE).c_str());
         else
             mprf("%s seems to be corroded for longer.", name(DESC_THE).c_str());
     }
@@ -6379,10 +6382,11 @@ void monster::steal_item_from_player()
             inv[MSLOT_GOLD] = idx;
             new_item.set_holding_monster(*this);
         }
-        mprf(Options.language == lang_t::KO ? "금화 %d개를 훔친 몬스터: %s%s!" : "%s steals %d gold piece%s!",
-             name(DESC_THE).c_str(),
-             stolen_amount,
-             stolen_amount != 1 ? "s" : "");
+        if (Options.language == lang_t::KO)
+            mprf("금화 %d개를 훔친 몬스터: %s!", stolen_amount, name(DESC_THE).c_str());
+        else
+            mprf("%s steals %d gold piece%s!", name(DESC_THE).c_str(),
+                 stolen_amount, stolen_amount != 1 ? "s" : "");
 
         const string what = make_stringf("%s stole %d gold",
                                         uppercase_first(name(DESC_A)).c_str(),
