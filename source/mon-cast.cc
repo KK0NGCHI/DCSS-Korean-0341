@@ -782,7 +782,7 @@ static const map<spell_type, mons_spell_logic> spell_to_logic = {
             const int pow = mons_spellpower(caster, SPELL_SHADOW_PRISM);
             spret ret = cast_fulminating_prism(&caster, pow, beam.target, false, true);
             if (ret == spret::abort)
-                mprf(MSGCH_WARN, "Failed to place prism at (%d, %d)", beam.target.x, beam.target.y);
+                mprf(MSGCH_WARN, Options.language == lang_t::KO ? "좌표 (%d, %d)에 프리즘을 배치하지 못했습니다." : "Failed to place prism at (%d, %d)", beam.target.x, beam.target.y);
         }
     } },
     { SPELL_SHADOW_TEMPEST, { _always_worthwhile,
