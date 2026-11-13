@@ -1836,7 +1836,7 @@ void unequip_artefact_effect(item_def &item,  bool *show_msgs, bool meld)
 
     if (artefact_property(item, ARTP_FRAGILE) && !meld)
     {
-        mprf("%s에서 먼지가 흩날리더니 산산이 부서진다!", item.name(DESC_THE).c_str());
+        mprf("먼지를 흩날리며 산산이 부서지는 장비: %s!", item.name(DESC_THE).c_str());
 
         // Hide unwield messages for weapons that have already been destroyed.
         if (item.base_type == OBJ_WEAPONS)
@@ -1874,7 +1874,7 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
         switch (special)
         {
         case SPWPN_FLAMING:
-            mprf("%s에서 불꽃이 솟구친다!", item_name.c_str());
+            mprf("불꽃이 솟구치는 장비: %s!", item_name.c_str());
             break;
 
         case SPWPN_FREEZING:
@@ -1922,11 +1922,11 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_VENOM:
-            mprf("%s에서 독이 뚝뚝 떨어지기 시작한다!", item_name.c_str());
+            mprf("독이 뚝뚝 떨어지기 시작하는 장비: %s!", item_name.c_str());
             break;
 
         case SPWPN_PROTECTION:
-            mprf("%s에서 잠재된 힘의 울림이 들린다!", item_name.c_str());
+            mprf("잠재된 힘이 울려 퍼지는 장비: %s!", item_name.c_str());
             break;
 
         case SPWPN_DRAINING:
@@ -2005,11 +2005,11 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_ACID:
-            mprf("%s에서 부식성 점액이 배어 나오기 시작한다!", item_name.c_str());
+            mprf("부식성 점액이 배어 나오기 시작하는 장비: %s!", item_name.c_str());
             break;
 
         case SPWPN_SPECTRAL:
-            mprf("%s에 묘한 유대감이 느껴집니다.", item_name.c_str());
+            mprf("묘한 유대감이 느껴지는 장비: %s.", item_name.c_str());
             break;
 
         case SPWPN_REBUKE:
@@ -2024,15 +2024,15 @@ static void _equip_weapon_effect(item_def& item, bool showMsgs, bool unmeld)
             break;
 
         case SPWPN_ENTANGLING:
-            mprf("%s에서 덩굴이 자라기 시작한다.", item_name.c_str());
+            mprf("덩굴이 자라기 시작하는 장비: %s.", item_name.c_str());
             break;
 
         case SPWPN_SUNDERING:
-            mprf("%s의 날이 사납게 번뜩인다.", item_name.c_str());
+            mprf("날이 사납게 번뜩이는 장비: %s.", item_name.c_str());
             break;
 
         case SPWPN_CONCUSSION:
-            mprf("%s에서 압도적인 힘이 뿜어져 나온다.", item_name.c_str());
+            mprf("압도적인 힘이 뿜어져 나오는 장비: %s.", item_name.c_str());
             break;
 
         case SPWPN_DEVIOUS:
@@ -2472,7 +2472,7 @@ static void _unequip_armour_effect(item_def& item, bool meld)
 
     case SPARM_INFUSION:
         if (you.max_magic_points || you.has_mutation(MUT_HP_CASTING))
-            mprf("%s에서 마력이 빠져나가는 것 같아.", you.hand_name(true).c_str());
+            mprf("마력이 빠져나가는 느낌이 드는 손: %s.", you.hand_name(true).c_str());
         break;
 
     case SPARM_LIGHT:
