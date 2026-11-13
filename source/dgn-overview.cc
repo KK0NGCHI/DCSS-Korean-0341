@@ -1182,7 +1182,7 @@ static int _prompt_annotate_branch(level_id lid)
         if (is_known_branch_id(it->id))
             brs.push_back(it->id);
 
-    mprf(MSGCH_PROMPT, "Annotate which branch? (. - %s, ? - help, ! - show branch list)",
+    mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "주석을 지정할 구역? (. - %s, ? - 도움말, ! - 구역 목록)" : "Annotate which branch? (. - %s, ? - help, ! - show branch list)",
         lid.describe(false, true).c_str());
 
     while (true)
