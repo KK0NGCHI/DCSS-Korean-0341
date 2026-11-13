@@ -963,8 +963,9 @@ spret cast_smiting(int pow, monster* mons, bool fail)
     // No direct divine intervention during apostle challenges
     if (mons->has_ench(ENCH_TOUCH_OF_BEOGH))
     {
-        simple_god_message(" booms: This is a trial of mortal prowess."
-                           " Fight with your own strength!");
+        simple_god_message(Options.language == lang_t::KO
+            ? " — 우렁차게 외칩니다. 이는 필멸자의 역량을 시험하는 시련이다. 자신의 힘으로 싸워라!"
+            : " booms: This is a trial of mortal prowess. Fight with your own strength!");
         return spret::abort;
     }
 
@@ -1072,9 +1073,11 @@ void holy_word(int pow, holy_word_source_type source, const coord_def& where,
 {
     if (!silent && attacker)
     {
-        mprf("%s %s a Word of immense power!",
-             attacker->name(DESC_THE).c_str(),
-             attacker->conj_verb("speak").c_str());
+        if (Options.language == lang_t::KO)
+            mprf("강대한 힘이 담긴 말씀을 선포하는 대상: %s!", attacker->name(DESC_THE).c_str());
+        else
+            mprf("%s %s a Word of immense power!",
+                 attacker->name(DESC_THE).c_str(), attacker->conj_verb("speak").c_str());
     }
 
     for (radius_iterator ri(where, LOS_SOLID, true); ri; ++ri)
