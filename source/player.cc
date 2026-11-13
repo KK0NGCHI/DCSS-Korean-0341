@@ -566,7 +566,9 @@ static void _enter_water(dungeon_feature_type old_feat,
         return;
 
     if (new_grid == DNGN_TOXIC_BOG)
-        mprf("독성 늪에 %s.", stepped ? "들어갔다" : "빠졌다");
+        mpr(Options.language == lang_t::KO
+             ? (stepped ? "독성 늪으로 들어갑니다." : "독성 늪에 빠집니다.")
+             : make_stringf("독성 늪에 %s.", stepped ? "들어갔다" : "빠졌다"));
     else
     {
         mprf("%s 물에 %s.",
@@ -2926,7 +2928,7 @@ static void _gain_innate_spells()
                 continue;
             }
         }
-        mprf("몸속에서 %s 주문을 시전할 힘이 솟아난다.", spell_title(spell));
+        mprf("몸속에서 주문을 시전할 힘이 솟아납니다: %s.", spell_title(spell));
         add_spell_to_memory(spell);
     }
 }
@@ -2978,7 +2980,7 @@ static void _revenant_spell_gift()
     }
 
     mprf("%s을(를) 기억해 냈다.", msg.c_str());
-    mprf("(이제 %s 주문을 시전할 수 있다.)", spell_title(spell));
+    mprf("(이제 주문을 시전할 수 있습니다: %s.)", spell_title(spell));
     library_add_spells({spell}, true);
     add_spell_to_memory(spell);
 }
@@ -8263,7 +8265,7 @@ bool player::can_do_shaft_ability(bool quiet) const
     if (attribute[ATTR_HELD])
     {
         if (!quiet)
-            mprf("%s 상태에서는 수직 통로에 몸을 던질 수 없어.", held_status());
+            mprf("현재 상태에서는 수직 통로로 뛰어내릴 수 없습니다: %s.", held_status());
         return false;
     }
 
@@ -8414,7 +8416,7 @@ bool player::attempt_escape()
 
     if (x_chance_in_y(_constriction_escape_chance(escape_attempts), 100))
     {
-        mprf("%s의 손아귀에서 벗어났다.", object.c_str());
+        mprf("속박에서 벗어납니다: %s.", object.c_str());
 
         // Stun the monster we struggled again and prevent the player from being
         // constricted for several turns (so that they are guaranteed to be able
@@ -9068,7 +9070,7 @@ void player_close_door(coord_def doorpos)
         // messaging with gateways will be inconsistent if this isn't last
         if (you.pos() == dc)
         {
-            mprf("%s에 꿈쩍도 하지 않는 생명체가 있어!", waynoun);
+            mprf("그곳에 꼼짝하지 않는 생명체가 있습니다: %s!", waynoun);
             return;
         }
     }
