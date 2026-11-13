@@ -3477,7 +3477,7 @@ bool make_soul_wisp(const actor& agent, actor& victim)
     {
         if (you.see_cell(victim.pos()))
         {
-            mprf("몸에서 떨어져 나온 영혼 조각의 주인: %s.", victim.name(DESC_ITS).c_str());
+            mprf("몸에서 떨어져 나온 영혼 조각의 주인: %s.", victim.name(DESC_THE).c_str());
 
         }
 
@@ -4360,7 +4360,7 @@ void alembic_brew_potion(monster& mons)
         }
     }
 
-    simple_monster_message(mons, "이(가) 덜커덕거리는 소리와 함께 무너진다.", false,
+    simple_monster_message(mons, " — 덜커덕거리는 소리와 함께 무너집니다.", false,
                            MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
     monster_die(mons, KILL_RESET, NON_MONSTER);
 }
@@ -4383,7 +4383,7 @@ spret cast_monarch_bomb(const actor& agent, int pow, bool fail)
     {
         if (you.can_see(*mon))
         {
-            mprf("%s이(가) 폭발의 선봉을 만들어 풀어놓는다.", agent.name(DESC_THE).c_str());
+            mprf("폭발의 선봉을 만들어 풀어놓는 몬스터: %s.", agent.name(DESC_THE).c_str());
         }
 
         mon->number = 5 + div_rand_round(pow, 50);
@@ -4408,7 +4408,7 @@ bool monarch_deploy_bomblet(monster& original, const coord_def& target,
     if (create_monster(mg))
     {
         if (!quiet && you.can_see(original))
-            mprf("%s이(가) 소형 폭탄을 배치한다.", original.name(DESC_THE).c_str());
+            mprf("소형 폭탄을 배치하는 몬스터: %s.", original.name(DESC_THE).c_str());
 
         return true;
     }
@@ -4453,7 +4453,7 @@ spret monarch_detonation(const actor& agent, int pow, bool fail)
 
     if (you.can_see(agent))
     {
-        mprf("%s이(가) 폭발물에 폭발 명령을 내린다!", agent.name(DESC_THE).c_str());
+        mprf("폭발물에 폭발 명령을 내리는 몬스터: %s!", agent.name(DESC_THE).c_str());
     }
 
     for (coord_def spot : spots)
