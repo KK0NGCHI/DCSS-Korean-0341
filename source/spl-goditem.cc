@@ -204,7 +204,7 @@ static spret _try_to_pacify(monster &mon, int healed, int pow,
     if (_pacification_sides(mon.type, pow) < mon_hp)
     {
         // monster avg hp too high to ever be pacified with your invo skill.
-        mprf("%s would be completely unfazed by your meagre offer of peace.",
+        mprf(Options.language == lang_t::KO ? "당신의 빈약한 평화 제안에 꿈쩍도 하지 않을 몬스터: %s." : "%s would be completely unfazed by your meagre offer of peace.",
              mon.name(DESC_THE).c_str());
         return spret::abort;
     }
@@ -618,7 +618,7 @@ void debuff_monster(monster &mon)
     // effect = true does for PETRIFYING is cause it to turn into
     // ENCH_PETRIFIED. So... let's not do that. (Hacky, sorry!)
 
-    simple_monster_message(mon, " magical effects unravel!", true);
+    simple_monster_message(mon, Options.language == lang_t::KO ? " — 걸려 있던 마법 효과가 풀립니다!" : " magical effects unravel!", true);
 }
 
 // pow -1 for passive
@@ -1049,9 +1049,9 @@ void holy_word_monsters(coord_def where, int pow, holy_word_source_type source,
     if (hploss)
     {
         if (source == HOLY_WORD_ZIN)
-            simple_monster_message(*mons, " is blasted by Zin's holy word!");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 진의 신성한 말씀에 타격을 받습니다!" : " is blasted by Zin's holy word!");
         else
-            simple_monster_message(*mons, " convulses!");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 경련합니다!" : " convulses!");
     }
     mons->hurt(attacker, hploss, BEAM_MISSILE);
 
@@ -1119,7 +1119,7 @@ int torment_player(const actor *attacker, torment_source_type taux)
             if (random2(480) < kiku_piety) // 20.83% to 33.33% chance
             {
                 hploss = 0;
-                simple_god_message(" shields you from torment!");
+                simple_god_message(Options.language == lang_t::KO ? " — 고통으로부터 당신을 보호합니다!" : " shields you from torment!");
             }
             // Always give at least partial protection for invoked torment.
             // 50% to 80% chance for other sources.
@@ -1219,7 +1219,7 @@ int torment_actor(actor* victim, actor *attacker, torment_source_type taux)
     if (hploss)
     {
         if (mons->observable())
-            simple_monster_message(*mons, " convulses!");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 경련합니다!" : " convulses!");
         else if (you.see_cell(mons->pos()))
             mpr((Options.language == lang_t::KO ? "무언가가 불경한 빛에 휩싸입니다!" : "Something is bathed in an unholy light!"));
 
