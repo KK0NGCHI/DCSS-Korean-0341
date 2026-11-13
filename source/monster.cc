@@ -761,14 +761,16 @@ void monster::equip_weapon_message(item_def &item)
     {
         bool plural = true;
         string hand = hand_name(true, &plural);
-        mprf("%s %s briefly %s through it before %s %s to get a "
-             "firm grip on it.",
-             pronoun(PRONOUN_POSSESSIVE).c_str(),
-             hand.c_str(),
-             // Not conj_verb: the monster isn't the subject.
-             conjugate_verb("pass", plural).c_str(),
-             pronoun(PRONOUN_SUBJECTIVE).c_str(),
-             conjugate_verb("manage", pronoun_plurality()).c_str());
+        if (Options.language == lang_t::KO)
+            mpr("손이 무기를 잠깐 관통하지만, 이내 단단히 움켜쥡니다.");
+        else
+            mprf("%s %s briefly %s through it before %s %s to get a "
+                 "firm grip on it.",
+                 pronoun(PRONOUN_POSSESSIVE).c_str(),
+                 hand.c_str(),
+                 conjugate_verb("pass", plural).c_str(),
+                 pronoun(PRONOUN_SUBJECTIVE).c_str(),
+                 conjugate_verb("manage", pronoun_plurality()).c_str());
     }
         break;
     case SPWPN_REAPING:
@@ -2616,11 +2618,19 @@ bool monster::fumbles_attack()
     {
         if (you.can_see(*this))
         {
-            mprf("%s %s", name(DESC_THE).c_str(), liquefied(pos())
-                 ? "becomes momentarily stuck in the liquid earth."
-                 : env.grid(pos()) == DNGN_TOXIC_BOG
-                 ? "becomes momentarily stuck in the toxic bog."
-                 : "splashes around in the water.");
+            if (Options.language == lang_t::KO)
+                mprf(liquefied(pos())
+                     ? "액체처럼 변한 땅에 잠깐 발이 묶인 몬스터: %s."
+                     : env.grid(pos()) == DNGN_TOXIC_BOG
+                     ? "독성 늪에 잠깐 발이 묶인 몬스터: %s."
+                     : "물속에서 허우적거리는 몬스터: %s.",
+                     name(DESC_THE).c_str());
+            else
+                mprf("%s %s", name(DESC_THE).c_str(), liquefied(pos())
+                     ? "becomes momentarily stuck in the liquid earth."
+                     : env.grid(pos()) == DNGN_TOXIC_BOG
+                     ? "becomes momentarily stuck in the toxic bog."
+                     : "splashes around in the water.");
         }
         else if (player_can_hear(pos(), LOS_RADIUS))
             mprf(MSGCH_SOUND, (Options.language == lang_t::KO ? "물이 튀는 소리가 들립니다." : "You hear a splashing noise."));
@@ -5845,9 +5855,14 @@ bool monster::floodify(const actor* attacker, int duration, const char* substanc
         // Assume any vertebrate bodyplan (and is alive and isn't aquatic) has
         // something that can be called lungs.
         const bool has_lungs = get_mon_shape(*this) < MON_SHAPE_INSECT;
-        mprf("%s floods into %s %s!",
-                substance, name(DESC_ITS).c_str(),
-                has_lungs ? "lungs" : "airways");
+        if (Options.language == lang_t::KO)
+            mprf(has_lungs ? "폐에 액체가 차오르는 몬스터: %s!"
+                 : "호흡 기관에 액체가 차오르는 몬스터: %s!",
+                 name(DESC_THE).c_str());
+        else
+            mprf("%s floods into %s %s!",
+                 substance, name(DESC_ITS).c_str(),
+                 has_lungs ? "lungs" : "airways");
     }
 
     return true;
