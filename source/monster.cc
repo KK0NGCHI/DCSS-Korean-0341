@@ -4201,7 +4201,7 @@ bool monster::corrode(const actor* source, const char* corrosion_msg, int amount
             else
                 mprf("%s corrodes %s!", corrosion_msg, name(DESC_THE).c_str());
         else
-            mprf("%s seems to be corroded for longer.", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "부식이 더욱 오래 지속되는 몬스터: %s." : "%s seems to be corroded for longer.", name(DESC_THE).c_str());
     }
 
     // XXX: Make rust cloud corrosion wear off more quickly
@@ -5501,7 +5501,7 @@ void monster::finalise_movement(const actor* to_blame)
         {
             if (you.can_see(*this))
             {
-                mprf("%s dives back into the %s!", name(DESC_THE).c_str(),
+                mprf(Options.language == lang_t::KO ? "다시 물속으로 뛰어드는 몬스터: %s (지형: %s)!" : "%s dives back into the %s!", name(DESC_THE).c_str(),
                                                    feat_type_name(env.grid(pos())));
             }
             del_ench(ENCH_AQUATIC_LAND);
@@ -5757,9 +5757,11 @@ void monster::diminish(const actor *attacker, int pow)
         return;
 
     if (!has_ench(ENCH_DIMINISHED_SPELLS))
-        mprf("%s spells grow weaker.", name(DESC_ITS).c_str());
+        mprf(Options.language == lang_t::KO ? "주문이 약해지는 몬스터: %s." : "%s spells grow weaker.",
+             name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
     else
-        mprf("%s spells grow weaker yet longer.", name(DESC_ITS).c_str());
+        mprf(Options.language == lang_t::KO ? "주문의 힘이 더욱 약해지고 효과가 오래 지속되는 몬스터: %s." : "%s spells grow weaker yet longer.",
+             name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
 
     add_ench(mon_enchant(ENCH_DIMINISHED_SPELLS, attacker,
                          (pow + random2(pow + 3)) * BASELINE_DELAY));
@@ -5772,7 +5774,8 @@ bool monster::strip_willpower(actor *attacker, int dur, bool quiet)
         return false;
 
     if (!quiet && !has_ench(ENCH_LOWERED_WL) && you.can_see(*this))
-        mprf("%s willpower is stripped away!", name(DESC_ITS).c_str());
+        mprf(Options.language == lang_t::KO ? "의지력을 빼앗긴 몬스터: %s!" : "%s willpower is stripped away!",
+             name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
 
     mon_enchant lowered_wl(ENCH_LOWERED_WL, attacker, dur * BASELINE_DELAY);
     return add_ench(lowered_wl);
@@ -5792,7 +5795,8 @@ bool monster::drain_magic(actor *attacker, int pow)
 
     add_ench(mon_enchant(ENCH_ANTIMAGIC, attacker, dur));
     if (you.can_see(*this))
-        mprf("%s magic leaks into the air.", name(DESC_ITS).c_str());
+        mprf(Options.language == lang_t::KO ? "마력이 공기 중으로 새어 나가는 몬스터: %s." : "%s magic leaks into the air.",
+             name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
 
     return true;
 }
@@ -6452,7 +6456,7 @@ item_def* monster::take_item(int steal_what, mon_inv_type mslot,
         }
         else
         {
-            mprf("%s steals %s!",
+            mprf(Options.language == lang_t::KO ? "아이템을 훔친 몬스터: %s, 아이템: %s!" : "%s steals %s!",
                  name(DESC_THE).c_str(),
                  new_item.name(DESC_YOUR).c_str());
         }
