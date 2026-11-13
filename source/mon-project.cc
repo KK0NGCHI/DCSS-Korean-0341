@@ -60,7 +60,7 @@ spret cast_iood(actor *caster, int pow, bolt *beam, float vx, float vy,
                 mtarg).set_summoned(caster, SPELL_IOOD, 0, false, false), true, true);
     if (!mon)
     {
-        mprf(MSGCH_ERROR, "Failed to spawn projectile.");
+        mprf(MSGCH_ERROR, "%s", Options.language == lang_t::KO ? "발사체 생성에 실패했습니다." : "Failed to spawn projectile.");
         return spret::abort;
     }
 
