@@ -990,7 +990,7 @@ void monster::lose_pickup_energy()
 
 void monster::pickup_message(const item_def &item)
 {
-    mprf("%s picks up %s.",
+    mprf(Options.language == lang_t::KO ? "아이템을 줍는 몬스터: %s, 아이템: %s." : "%s picks up %s.",
          name(DESC_THE).c_str(),
          item.base_type == OBJ_GOLD ? "some gold"
                                     : item.name(DESC_A).c_str());
@@ -1160,7 +1160,7 @@ bool monster::drop_item(mon_inv_type eslot, bool msg)
     {
         if (msg)
         {
-            mprf("%s drops %s.", name(DESC_THE).c_str(),
+            mprf(Options.language == lang_t::KO ? "아이템을 내려놓는 몬스터: %s, 아이템: %s." : "%s drops %s.", name(DESC_THE).c_str(),
                 pitem.name(DESC_A).c_str());
         }
 
@@ -4161,7 +4161,7 @@ bool monster::drain(const actor *agent, bool quiet, int /*pow*/)
         return false;
 
     if (!quiet && you.can_see(*this))
-        mprf("%s is drained!", name(DESC_THE).c_str());
+        mprf(Options.language == lang_t::KO ? "생명력을 빼앗긴 몬스터: %s!" : "%s is drained!", name(DESC_THE).c_str());
 
     // If quiet, don't clean up the monster in order to credit properly.
     hurt(agent, 2 + random2(3), BEAM_NEG, KILLED_BY_DRAINING, "", "", !quiet);
@@ -4196,7 +4196,7 @@ bool monster::corrode(const actor* source, const char* corrosion_msg, int amount
     if (you.see_cell(pos()))
     {
         if (!has_ench(ENCH_CORROSION))
-            mprf("%s corrodes %s!", corrosion_msg, name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "부식에 걸린 몬스터: %s (원인: %s)!" : "%s corrodes %s!", corrosion_msg, name(DESC_THE).c_str());
         else
             mprf("%s seems to be corroded for longer.", name(DESC_THE).c_str());
     }
@@ -4223,7 +4223,7 @@ void monster::splash_with_acid(actor* evildoer)
 
     if (this->observable())
     {
-        mprf("%s is splashed with acid%s", this->name(DESC_THE).c_str(),
+        mprf(Options.language == lang_t::KO ? "산성 물질을 뒤집어쓴 몬스터: %s%s" : "%s is splashed with acid%s", this->name(DESC_THE).c_str(),
              attack_strength_punctuation(post_res_dam).c_str());
     }
 
@@ -4425,11 +4425,11 @@ int monster::hurt(const actor *agent, int amount, beam_type flavour,
             if (you.can_see(*this))
             {
                 if (type == MONS_WITHERED_PLANT)
-                    mprf("%s begins to crumble.", this->name(DESC_THE).c_str());
+                    mprf(Options.language == lang_t::KO ? "부스러지기 시작하는 몬스터: %s." : "%s begins to crumble.", this->name(DESC_THE).c_str());
                 if (type == MONS_PILE_OF_DEBRIS)
-                    mprf("%s begins to collapse.", this->name(DESC_THE).c_str());
+                    mprf(Options.language == lang_t::KO ? "무너지기 시작하는 몬스터: %s." : "%s begins to collapse.", this->name(DESC_THE).c_str());
                 else
-                    mprf("%s begins to die.", this->name(DESC_THE).c_str());
+                    mprf(Options.language == lang_t::KO ? "죽어 가기 시작하는 몬스터: %s." : "%s begins to die.", this->name(DESC_THE).c_str());
             }
         }
     }
@@ -4891,7 +4891,7 @@ bool monster::sicken(int amount)
     if (!has_ench(ENCH_SICK) && you.can_see(*this))
     {
         // Yes, could be confused with poisoning.
-        mprf("%s looks sick.", name(DESC_THE).c_str());
+        mprf(Options.language == lang_t::KO ? "병든 듯한 몬스터: %s." : "%s looks sick.", name(DESC_THE).c_str());
     }
 
     add_ench(mon_enchant(ENCH_SICK, nullptr, amount * BASELINE_DELAY));
@@ -5817,9 +5817,9 @@ void monster::vitrify(const actor *attacker, int duration, bool quiet)
     if (!quiet && you.can_see(*this))
     {
         if (has_ench(ENCH_VITRIFIED))
-            mprf("%s looks even more glass-like.", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "유리처럼 더욱 투명해진 몬스터: %s." : "%s looks even more glass-like.", name(DESC_THE).c_str());
         else
-            mprf("%s becomes as fragile as glass!", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "유리처럼 깨지기 쉬워진 몬스터: %s!" : "%s becomes as fragile as glass!", name(DESC_THE).c_str());
     }
 
     add_ench(mon_enchant(ENCH_VITRIFIED, attacker, duration * BASELINE_DELAY));
@@ -6379,7 +6379,7 @@ void monster::steal_item_from_player()
             inv[MSLOT_GOLD] = idx;
             new_item.set_holding_monster(*this);
         }
-        mprf("%s steals %d gold piece%s!",
+        mprf(Options.language == lang_t::KO ? "금화 %d개를 훔친 몬스터: %s%s!" : "%s steals %d gold piece%s!",
              name(DESC_THE).c_str(),
              stolen_amount,
              stolen_amount != 1 ? "s" : "");
@@ -6441,7 +6441,7 @@ item_def* monster::take_item(int steal_what, mon_inv_type mslot,
         const int stolen_amount = 1 + random2(new_item.quantity);
         if (stolen_amount < new_item.quantity)
         {
-            mprf("%s steals %d of %s!",
+            mprf(Options.language == lang_t::KO ? "아이템을 훔친 몬스터: %s (수량: %d, 아이템: %s)!" : "%s steals %d of %s!",
                  name(DESC_THE).c_str(),
                  stolen_amount,
                  new_item.name(DESC_YOUR).c_str());
