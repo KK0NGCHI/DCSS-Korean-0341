@@ -542,3 +542,40 @@ Added `directn.cc` to both Linux C++ overlay file lists, covering all **19** C++
 
 ### Pending verification
 The latest head's Linux executable compile + Korean database loader and translation inventory workflow results must be confirmed **after** this commit. Windows Tiles rendering, generated-name grammar, and complete in-game scenario coverage remain pending. PR #174 stays Draft and unmerged.
+
+
+## 2026-11-13: 52 new runtime output translations and 22 existing-Korean corrections
+
+Starting checked PR #174 head: `aba3728de3c35fe18a3132963af6e489b9886c8a`, with both Linux Korean console executable/runtime smoke and source inventory Actions **PASS**. The branch had advanced since the earlier work log; no previous commits were reverted.
+
+This batch covers **74 unique player-visible output locations**, of which **52** were newly translated from English, and **22** were revisions of existing Korean text:
+
+| Source | New English-to-Korean positions | Existing Korean corrections |
+|---|---:|---:|
+| `monster.cc` | 23 | 0 |
+| `spl-goditem.cc` | 8 | 0 |
+| `hints.cc` | 3 | 0 |
+| `dgn-overview.cc` | 1 | 0 |
+| `zot.cc` | 11 | 0 |
+| `dgn-shoals.cc` | 3 | 0 |
+| `terrain.cc` | 1 | 0 |
+| `mon-project.cc` | 1 | 0 |
+| `mon-cast.cc` | 1 | 0 |
+| `spl-summoning.cc` | 0 | 5 |
+| `mon-util.cc` | 0 | 1 |
+| `player-equip.cc` | 0 | 10 |
+| `player.cc` | 0 | 6 |
+| **Total** | **52** | **22** |
+
+Translated categories: monster pickup/drop, stealing gold/items, acid/corrosion, spell power and willpower loss, flooded airways, swimming and fumbles; divine interventions/holy word; all key Zot-clock warnings and gem destruction; Shoals tide messages; dungeon annotation UI; technical error outputs; and hints exit. Existing-Korean fixes remove literal `%s이(가)` constructions and English possessives from summoned monster, equipment and player feedback. This is a **per-callsite count, not a percentage of game completion**.
+
+### Compiler-format safety fixes
+- After translating `monster.cc` gold theft, rewrote the Korean path as a separate `mprf("금화 %d개 ... %s", stolen_amount, name)` rather than incorrectly reusing the English `(%s, %d, %s)` argument order.
+- Korean `monster.cc` corrosion output is a separate `mprf` accepting only the monster name, so English corrosion fragments do not appear in the localized text.
+- `monster.cc` the 3- or 5-argument dynamic monster flood/floundering/weapon messages have distinct KO and EN calls when the grammar/argument counts differ.
+- Original English fallbacks remain available.
+
+### C++ build coverage and outstanding checks
+Updated **both** `.github/workflows/korean-runtime-smoke.yml` and `.github/workflows/cpp-build-verification.yml` overlay lists. Newly edited `hints.cc`, `zot.cc` and `dgn-shoals.cc` are now all included in the actual upstream overlay compilation. Previously edited source files were already included.
+
+This entry's own latest-head Linux executable compile, database load/runtime and inventory status must be checked after this documentation commit. Windows Tiles visual and in-game grammar review remain pending. Keep PR #174 Draft and unmerged until appropriate acceptance checks are complete.
