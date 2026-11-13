@@ -119,9 +119,12 @@ static void _mons_summon_monster_illusion(monster* caster,
         {
             if (!you.can_see(*caster))
             {
-                mprf("%s seems to step out of %s!",
-                     foe->name(DESC_THE).c_str(),
-                     foe->pronoun(PRONOUN_REFLEXIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("자기 자신에게서 걸어 나온 듯한 몬스터: %s!", foe->name(DESC_THE).c_str());
+                else
+                    mprf("%s seems to step out of %s!",
+                         foe->name(DESC_THE).c_str(),
+                         foe->pronoun(PRONOUN_REFLEXIVE).c_str());
             }
             else
                 mprf("%s seems to draw %s out of %s!",
@@ -214,7 +217,7 @@ int mons_summon_illusion_from(monster* mons, actor *foe,
                  .set_summoned(mons, spell_cast, summ_dur(dur))))
         {
             if (card_power >= 0)
-                mpr("Suddenly you stand beside yourself.");
+                mpr(Options.language == lang_t::KO ? "갑자기 자신의 분신이 바로 옆에 나타납니다." : "Suddenly you stand beside yourself.");
             else
                 mprf(MSGCH_WARN, "There is a horrible, sudden wrenching feeling in your soul!");
 
@@ -387,7 +390,7 @@ monster* clone_mons(const monster* orig, bool quiet, bool* obvious,
     if (you.can_see(*orig) && you.can_see(*mons))
     {
         if (!quiet)
-            simple_monster_message(*orig, " is duplicated!");
+            simple_monster_message(*orig, Options.language == lang_t::KO ? " — 복제됩니다!" : " is duplicated!");
         *obvious = true;
     }
 

@@ -685,7 +685,7 @@ static void _maybe_spawn_rats(int dam, kill_method_type death_type)
     mg.flags |= MG_FORCE_BEH; // don't mention how much it hates you before it appears
     if (monster *m = create_monster(mg))
     {
-        mprf("%s scurries out from under your cloak.", m->name(DESC_A).c_str());
+        mprf(Options.language == lang_t::KO ? "망토 아래에서 튀어나온 몬스터: %s." : "%s scurries out from under your cloak.", m->name(DESC_A).c_str());
         // We should return early in the case of no_love or no_allies,
         // so this is more a sanity check.
         check_lovelessness(*m);
@@ -1419,7 +1419,7 @@ void ouch(int dam, kill_method_type death_type, mid_t source, const char *aux,
 
         if (dam >= you.hp && you.hp_max > 0 && god_protects_from_harm())
         {
-            simple_god_message(" protects you from harm!");
+            simple_god_message(Options.language == lang_t::KO ? " — 당신을 위험으로부터 보호합니다!" : " protects you from harm!");
             // Ensure divine intervention wakes sleeping players. Necessary
             // because we otherwise don't wake players who take fatal damage.
             you.wake_up();
@@ -1562,7 +1562,7 @@ void ouch(int dam, kill_method_type death_type, mid_t source, const char *aux,
 
             dprf("Damage: %d; Hit points: %d", dam, you.hp);
 
-            if (crawl_state.test || !yesno("Die?", false, 'n'))
+            if (crawl_state.test || !yesno(Options.language == lang_t::KO ? "죽으시겠습니까?" : "Die?", false, 'n'))
             {
                 mpr((Options.language == lang_t::KO ? "역시 그럴 줄 알았습니다." : "Thought so."));
                 take_note(Note(NOTE_DEATH, you.hp, you.hp_max,

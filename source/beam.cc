@@ -916,7 +916,7 @@ void bolt::burn_wall_effect()
 
     if (have_passive(passive_t::shoot_through_plants))
     {
-        emit_message("Fedhas protects the tree from harm.");
+        emit_message(Options.language == lang_t::KO ? "페다스가 나무를 보호합니다." : "Fedhas protects the tree from harm.");
         finish_beam();
         return;
     }
@@ -924,14 +924,14 @@ void bolt::burn_wall_effect()
     if (you.see_cell(pos()))
     {
         if (feat == DNGN_TREE)
-            emit_message("The tree burns like a torch!");
+            emit_message(Options.language == lang_t::KO ? "나무가 횃불처럼 타오릅니다!" : "The tree burns like a torch!");
         else if (feat == DNGN_MANGROVE)
-            emit_message("The mangrove smoulders and burns.");
+            emit_message(Options.language == lang_t::KO ? "맹그로브가 연기를 내며 타오릅니다." : "The mangrove smoulders and burns.");
         else if (feat == DNGN_DEMONIC_TREE)
-            emit_message("The demonic tree burns, releasing chaotic energy.");
+            emit_message(Options.language == lang_t::KO ? "악마의 나무가 타면서 혼돈의 에너지를 방출합니다." : "The demonic tree burns, releasing chaotic energy.");
     }
     else if (you.can_smell())
-        emit_message("You smell burning wood.");
+        emit_message(Options.language == lang_t::KO ? "나무 타는 냄새가 납니다." : "You smell burning wood.");
 
     // If the tree we're destroying is temporary, immediately revert
     // terrain changes on this tile rather than permanently changing it.
@@ -997,7 +997,7 @@ void bolt::sporangium_wall_effect()
     mg.set_summoned(orig_plasmodium, SPELL_LAUNCH_SPORANGIUM, INFINITE_DURATION, false);
 
     if (monster* plasm = create_monster(mg))
-        simple_monster_message(*plasm, "이(가) 벽에서 자라기 시작한다!", false, MSGCH_PLAIN, 0, DESC_A);
+        simple_monster_message(*plasm, " — 벽에서 자라기 시작합니다!", false, MSGCH_PLAIN, 0, DESC_A);
 }
 
 int bolt::range_used(bool leg_only) const
@@ -1297,8 +1297,9 @@ void bolt::do_fire()
                         feature_description_at(pos(), false, DESC_A) :
                         monster_at(pos())->name(DESC_A);
 
-            tracer->blocked("Your line of fire to " + blockee
-                            + " is blocked by " + blocker + ".");
+            tracer->blocked(Options.language == lang_t::KO
+                ? "목표 " + blockee + " 방향의 사격 경로가 " + blocker + " 때문에 막혀 있습니다."
+                : "Your line of fire to " + blockee + " is blocked by " + blocker + ".");
             finish_beam();
             return;
         }
@@ -2186,7 +2187,9 @@ int silver_damages_victim(actor* victim, int damage, string &dmg_msg)
     else
         return 0;
 
-    dmg_msg = "The silver sears " + victim->name(DESC_THE) + "!";
+    dmg_msg = Options.language == lang_t::KO
+        ? "은빛이 " + victim->name(DESC_THE) + "에게 작열합니다!"
+        : "The silver sears " + victim->name(DESC_THE) + "!";
     return ret;
 }
 
@@ -2318,7 +2321,7 @@ static void _malign_offering_effect(actor* victim, const actor* agent, int damag
     coord_def c = victim->pos();
 
     if (you.see_cell(c) || you.see_cell(agent->pos()))
-        mprf("%s의 생명력이 제물로 바쳐진다.", victim->name(DESC_ITS).c_str());
+        mprf("생명력이 제물로 바쳐지는 대상: %s.", victim->name(DESC_ITS).c_str());
     damage = victim->hurt(agent, damage, BEAM_MALIGN_OFFERING, KILLED_BY_BEAM,
                           "", "by a malign offering");
 
@@ -3618,7 +3621,7 @@ bool bolt::misses_player()
     {
         if (hit_margin > -repel)
         {
-            mprf("%s이(가) 튕겨 나갔다.", name.c_str());
+            mprf("튕겨 나간 발사체: %s.", name.c_str());
             count_action(CACT_DODGE, DODGE_REPEL);
         }
         else
@@ -3673,7 +3676,7 @@ void bolt::affect_player_enchantment(bool resistible)
             if (mon && mon->alive())
             {
                 const int dam = 3 + random2(1 + div_rand_round(ench_power, 10));
-                mprf("당신의 의지가 %s을(를) 강타한다%s",
+                mprf("당신의 의지가 %s에게 반격합니다%s",
                      mon->name(DESC_THE).c_str(),
                      attack_strength_punctuation(dam).c_str());
                 mon->hurt(&you, dam);
@@ -4306,8 +4309,12 @@ void bolt::affect_player()
         {
             if (hit_verb.empty())
                 hit_verb = engulfs ? "engulfs" : "hits";
-            mprf("The %s %s %s!", name.c_str(), hit_verb.c_str(),
-                you.hp > 0 ? "you" : "your lifeless body");
+            if (Options.language == lang_t::KO)
+                mprf("%s 효과가 %s 명중합니다!", name.c_str(),
+                     you.hp > 0 ? "당신에게" : "당신의 시신에");
+            else
+                mprf("The %s %s %s!", name.c_str(), hit_verb.c_str(),
+                     you.hp > 0 ? "you" : "your lifeless body");
         }
 
         affect_player_enchantment();
@@ -4355,12 +4362,20 @@ void bolt::affect_player()
     if (!is_enchantment()
         && !(damage.num == 0 && is_big_cloud()))
     {
-        mprf("The %s %s %s%s%s%s", name.c_str(), hit_verb.c_str(),
-             you.hp > 0 ? "you" : "your lifeless body",
-             real_flavour != BEAM_CHAOS ? ""
-                    : make_stringf(" with %s", _beam_type_name(flavour).c_str()).c_str(),
-             final_dam || damage.num == 0 ? "" : " but does no damage",
-             attack_strength_punctuation(final_dam).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("%s 효과가 %s 명중합니다%s%s%s",
+                 name.c_str(), you.hp > 0 ? "당신에게" : "당신의 시신에",
+                 real_flavour != BEAM_CHAOS ? ""
+                     : make_stringf(" (%s 속성)", _beam_type_name(flavour).c_str()).c_str(),
+                 final_dam || damage.num == 0 ? "" : " (피해 없음)",
+                 attack_strength_punctuation(final_dam).c_str());
+        else
+            mprf("The %s %s %s%s%s%s", name.c_str(), hit_verb.c_str(),
+                 you.hp > 0 ? "you" : "your lifeless body",
+                 real_flavour != BEAM_CHAOS ? ""
+                        : make_stringf(" with %s", _beam_type_name(flavour).c_str()).c_str(),
+                 final_dam || damage.num == 0 ? "" : " but does no damage",
+                 attack_strength_punctuation(final_dam).c_str());
     }
 
     // Now print the messages associated with checking resistances, so that
@@ -5425,8 +5440,12 @@ void bolt::pull_actor(actor *act, int dam)
 
     if (you.can_see(*act))
     {
-        mprf("%s %s yanked forward by the %s.", act->name(DESC_THE).c_str(),
-             act->conj_verb("are").c_str(), name.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("발사체에 의해 앞으로 끌려온 대상: %s (발사체: %s).",
+                 act->name(DESC_THE).c_str(), name.c_str());
+        else
+            mprf("%s %s yanked forward by the %s.", act->name(DESC_THE).c_str(),
+                 act->conj_verb("are").c_str(), name.c_str());
     }
 
     if (act->pos() != newpos)
@@ -5460,21 +5479,25 @@ bool bolt::attempt_block(monster* mon)
         {
             if (shield && shield_reflects(*shield))
             {
-                mprf("%s blocks the %s with %s %s... and reflects it back!",
-                     mon->name(DESC_THE).c_str(),
-                     name.c_str(),
-                     mon->pronoun(PRONOUN_POSSESSIVE).c_str(),
-                     shield->name(DESC_PLAIN).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("발사체를 방패로 막고 반사한 몬스터: %s (발사체: %s, 방패: %s)!",
+                         mon->name(DESC_THE).c_str(), name.c_str(),
+                         shield->name(DESC_PLAIN).c_str());
+                else
+                    mprf("%s blocks the %s with %s %s... and reflects it back!",
+                         mon->name(DESC_THE).c_str(), name.c_str(),
+                         mon->pronoun(PRONOUN_POSSESSIVE).c_str(),
+                         shield->name(DESC_PLAIN).c_str());
             }
             else
             {
-                mprf("%s이(가) %s 주위의 보이지 않는 방패에 반사됐다!",
+                mprf("보이지 않는 방패에 반사된 발사체: %s, 방어자: %s!",
                      name.c_str(),
                      mon->name(DESC_THE).c_str());
             }
         }
         else if (you.see_cell(pos()))
-            mprf("%s이(가) 허공에 부딪혀 튕겨 나갔다!", name.c_str());
+            mprf("허공에 부딪혀 튕겨 나간 발사체: %s!", name.c_str());
 
         reflect();
     }
@@ -5561,7 +5584,7 @@ void bolt::affect_monster(monster* mon)
     if (flavour == BEAM_WATER && mon->type == MONS_WATER_ELEMENTAL && !is_tracer())
     {
         if (you.see_cell(mon->pos()))
-            mprf("%s이(가) %s을(를) 통과한다.", name.c_str(), mon->name(DESC_THE).c_str());
+            mprf("발사체가 대상을 통과합니다: %s → %s.", name.c_str(), mon->name(DESC_THE).c_str());
     }
 
     if (ignores_monster(mon) || should_skip)
@@ -5599,8 +5622,12 @@ void bolt::affect_monster(monster* mon)
                 hit_verb = engulfs ? "engulfs" : "hits";
             if (you.see_cell(mon->pos()))
             {
-                mprf("The %s %s %s.", name.c_str(), hit_verb.c_str(),
-                     mon->name(DESC_THE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("%s 효과가 %s에게 명중합니다.", name.c_str(),
+                         mon->name(DESC_THE).c_str());
+                else
+                    mprf("The %s %s %s.", name.c_str(), hit_verb.c_str(),
+                         mon->name(DESC_THE).c_str());
             }
             else if (heard && !hit_noise_msg.empty())
                 mprf(MSGCH_SOUND, "%s", hit_noise_msg.c_str());
@@ -5735,14 +5762,21 @@ void bolt::affect_monster(monster* mon)
         // no need to also say "does no damage" here.
         if (damage.num > 0 || !is_big_cloud())
         {
-            mprf("The %s %s %s%s%s%s",
-                name.c_str(),
-                hit_verb.c_str(),
-                mon->name(DESC_THE).c_str(),
-                real_flavour != BEAM_CHAOS ? ""
-                    : make_stringf(" with %s", _beam_type_name(flavour).c_str()).c_str(),
-                postac ? "" : " but does no damage",
-                attack_strength_punctuation(final).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("%s 효과가 %s에게 명중합니다%s%s%s",
+                     name.c_str(), mon->name(DESC_THE).c_str(),
+                     real_flavour != BEAM_CHAOS ? ""
+                         : make_stringf(" (%s 속성)", _beam_type_name(flavour).c_str()).c_str(),
+                     postac ? "" : " (피해 없음)",
+                     attack_strength_punctuation(final).c_str());
+            else
+                mprf("The %s %s %s%s%s%s",
+                     name.c_str(), hit_verb.c_str(),
+                     mon->name(DESC_THE).c_str(),
+                     real_flavour != BEAM_CHAOS ? ""
+                         : make_stringf(" with %s", _beam_type_name(flavour).c_str()).c_str(),
+                     postac ? "" : " but does no damage",
+                     attack_strength_punctuation(final).c_str());
         }
     }
     else if (heard && !hit_noise_msg.empty())
@@ -6401,7 +6435,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         {
             if (mon->hit_points == mon->max_hit_points)
             {
-                if (simple_monster_message(*mon, "의 상처가 저절로 아문다!", true))
+                if (simple_monster_message(*mon, " — 상처가 저절로 아뭅니다!", true))
                     obvious_effect = true;
             }
             else if (simple_monster_message(*mon, "의 상처가 조금 회복된다."))
@@ -6702,7 +6736,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
         if (!mon->has_ench(ENCH_CONCENTRATE_VENOM)
             && mon->add_ench(ENCH_CONCENTRATE_VENOM))
         {
-            if (simple_monster_message(*mon, "의 독성이 더욱 강해진다.", true))
+            if (simple_monster_message(*mon, " — 독성이 더욱 강해집니다.", true))
                 obvious_effect = true;
         }
         return MON_AFFECTED;
@@ -6734,7 +6768,7 @@ mon_resist_type bolt::apply_enchantment_to_monster(monster* mon)
 
     case BEAM_WARP_BODY:
         obvious_effect = true;
-        simple_monster_message(*mon, "의 몸이 고통스럽게 뒤틀린다!", true);
+        simple_monster_message(*mon, " — 몸이 고통스럽게 뒤틀립니다!", true);
         if (mon->has_ench(ENCH_WRETCHED))
             mon->vitrify(agent(), random_range(8, 12), true);
         else
@@ -6863,6 +6897,98 @@ const map<spell_type, explosion_sfx> spell_explosions = {
     } },
 };
 
+// Korean explosion descriptions; keep the original table as English fallback.
+const map<spell_type, explosion_sfx> spell_explosions_ko = {
+    { SPELL_HURL_DAMNATION, {
+        "파멸의 구체가 폭발합니다!",
+        "저주받은 자들의 통곡",
+    } },
+    { SPELL_CALL_DOWN_DAMNATION, {
+        "파멸의 구체가 폭발합니다!",
+        "저주받은 자들의 통곡",
+    } },
+    { SPELL_FIREBALL, {
+        "화염구가 폭발합니다!",
+        "폭발음",
+    } },
+    { SPELL_ORB_OF_ELECTRICITY, {
+        "전기 구체가 폭발합니다!",
+        "천둥소리",
+    } },
+    { SPELL_FIRE_STORM, {
+        "맹렬한 화염 폭풍이 나타납니다!",
+        "거센 폭풍 소리",
+    } },
+    { SPELL_MEPHITIC_CLOUD, {
+        "혼합물이 든 병이 깨져 끔찍한 구름이 퍼집니다!",
+        "유리가 크게 깨지는 소리",
+    } },
+    { SPELL_GHOSTLY_FIREBALL, {
+        "유령의 불꽃이 폭발합니다!",
+        "섬뜩한 불꽃의 비명",
+    } },
+    { SPELL_VIOLENT_UNRAVELLING, {
+        "마법 효과가 폭발합니다!",
+        "날카로운 파직거림", // radiation = geiger counter
+    } },
+    { SPELL_ICEBLAST, {
+        "얼음 덩어리가 폭발합니다!",
+        "폭발음",
+    } },
+    { SPELL_PERMAFROST_ERUPTION, {
+        "살을 에는 냉기가 사방으로 뿜어져 나갑니다!",
+        "폭발음", // maybe?
+    } },
+    { SPELL_GHOSTLY_SACRIFICE, {
+        "유령의 불꽃이 폭발합니다!",
+        "섬뜩한 불꽃의 비명",
+    } },
+    { SPELL_SERACFALL, {
+        "얼음 덩어리가 폭발합니다!",
+        "폭발음",
+    } },
+    { SPELL_FLAME_WAVE, {
+        "화염의 파도가 퍼져 나갑니다!",
+        "불길이 포효하는 소리",
+    } },
+    { SPELL_FASTROOT, {
+        "뿌리들이 격렬하게 자라나며 솟구칩니다!",
+        "삐걱거리고 부서지는 소리",
+    } },
+    { SPELL_BLASTMOTE, {
+        "폭발 입자의 구름이 터집니다!",
+        "강한 충격을 동반한 폭발음",
+    } },
+    { SPELL_HURL_TORCHLIGHT, {
+        "어둠의 불길이 터져 나옵니다!",
+        "어둠의 불꽃이 내는 비명",
+    } },
+    { SPELL_WARP_SPACE, {
+        "공간이 격렬하게 뒤틀립니다!",
+        "날카로운 메아리",
+    } },
+    { SPELL_COMBUSTION_BREATH, {
+        "불씨가 폭발합니다!",
+        "화염 폭발음",
+    } },
+    { SPELL_NULLIFYING_BREATH, {
+        "반마법의 파동이 사방으로 퍼집니다!",
+        "희미한 메아리",
+    } },
+    { SPELL_HOARFROST_BULLET, {
+        "파편이 산산조각 나며 흩어집니다!",
+        "폭발음",
+    } },
+    { SPELL_SHADOW_BALL, {
+        "일렁이는 그림자가 폭발합니다!",
+        "조용한 휘파람 소리",
+    } },
+    { SPELL_ACID_BALL, {
+        "산성 구체가 폭발합니다!",
+        "격렬하고 질척한 소리",
+    } },
+};
+
 // Takes a bolt and refines it for use in the explosion function.
 // Explosions which do not follow from beams bypass this function.
 void bolt::refine_for_explosion(const string& explode_msg)
@@ -6883,21 +7009,22 @@ void bolt::refine_for_explosion(const string& explode_msg)
     if (!explode_msg.empty())
     {
         seeMsg  = explode_msg;
-        hearMsg = "You hear an explosion!";
+        hearMsg = Options.language == lang_t::KO ? "폭발음이 들립니다!" : "You hear an explosion!";
     }
     else
     {
-        const explosion_sfx *explosion = map_find(spell_explosions,
+        const explosion_sfx *explosion = map_find(Options.language == lang_t::KO
+                                                      ? spell_explosions_ko : spell_explosions,
                                                   origin_spell);
         if (explosion)
         {
             seeMsg = explosion->seeMsg;
-            hearMsg = make_stringf("You hear %s!", explosion->sound);
+            hearMsg = make_stringf(Options.language == lang_t::KO ? "다음과 같은 소리가 들립니다: %s!" : "You hear %s!", explosion->sound);
         }
         else
         {
-            seeMsg  = "The beam explodes into a cloud of software bugs!";
-            hearMsg = "You hear the sound of one hand!";
+            seeMsg  = Options.language == lang_t::KO ? "광선이 소프트웨어 버그 구름으로 폭발합니다!" : "The beam explodes into a cloud of software bugs!";
+            hearMsg = Options.language == lang_t::KO ? "한 손으로 박수 치는 소리가 들립니다!" : "You hear the sound of one hand!";
         }
     }
 

@@ -42,7 +42,7 @@ static const vector<mon_aura_data> aura_map =
         ENCH_SLOW, 1, true, DUR_SLOW, TORPOR_SLOWED_KEY,
          [](const actor& targ, const monster&) { return !targ.stasis();},
          [](const monster& source)
-            {  mprf("Being near %s leaves you feeling lethargic.",
+            {  mprf(Options.language == lang_t::KO ? "근처의 %s 때문에 몸이 나른해집니다." : "Being near %s leaves you feeling lethargic.",
                         source.name(DESC_THE).c_str());
             }},
 
@@ -50,8 +50,10 @@ static const vector<mon_aura_data> aura_map =
         ENCH_NONE, 1, true, DUR_SENTINEL_MARK, OPHAN_MARK_KEY,
          nullptr,
          [](const monster& source)
-            {  mprf("%s gaze reveals you to all!",
-                        source.name(DESC_ITS).c_str());
+            {  if (Options.language == lang_t::KO)
+                mprf("모두에게 당신의 위치를 드러내는 시선: %s!", source.name(DESC_THE).c_str());
+            else
+                mprf("%s gaze reveals you to all!", source.name(DESC_ITS).c_str());
             }},
 
     {MONS_MARTYRED_SHADE,

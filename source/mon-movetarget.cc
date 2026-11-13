@@ -65,7 +65,7 @@ static void _mark_neighbours_target_unreachable(monster* mon)
 static void _set_no_path_found(monster* mon)
 {
 #ifdef DEBUG_PATHFIND
-    mpr("No path found!");
+    mpr(Options.language == lang_t::KO ? "경로를 찾지 못했습니다!" : "No path found!");
 #endif
 
     mon->travel_target = MTRAV_UNREACHABLE;
@@ -141,7 +141,7 @@ bool try_pathfind(monster* mon)
         return false;
 
 #ifdef DEBUG_PATHFIND
-    mprf("%s: Target out of reach! What now?",
+    mprf(Options.language == lang_t::KO ? "%s: 대상에 도달할 수 없습니다. 다음 행동은?" : "%s: Target out of reach! What now?",
          mon->name(DESC_PLAIN).c_str());
 #endif
     // If we're already on our way, do nothing.
@@ -175,7 +175,7 @@ bool try_pathfind(monster* mon)
 
     // Use pathfinding to find a (new) path to the target.
 #ifdef DEBUG_PATHFIND
-    mprf("Need to calculate a path... (dist = %d)", dist);
+    mprf(Options.language == lang_t::KO ? "경로 계산 필요... (거리 = %d)" : "Need to calculate a path... (dist = %d)", dist);
 #endif
     const int range = mon->friendly() ? 1000 : mons_tracking_range(mon);
 
@@ -183,14 +183,14 @@ bool try_pathfind(monster* mon)
     {
         mon->travel_target = MTRAV_UNREACHABLE;
 #ifdef DEBUG_PATHFIND
-        mprf("Distance too great, don't attempt pathfinding! (%s)",
+        mprf(Options.language == lang_t::KO ? "거리가 너무 멀어 경로 탐색을 포기합니다! (%s)" : "Distance too great, don't attempt pathfinding! (%s)",
              mon->name(DESC_PLAIN).c_str());
 #endif
         return false;
     }
 
 #ifdef DEBUG_PATHFIND
-    mprf("Need a path for %s from (%d, %d) to (%d, %d), max. dist = %d",
+    mprf(Options.language == lang_t::KO ? "%s의 경로 필요: (%d, %d) → (%d, %d), 최대 거리 %d" : "Need a path for %s from (%d, %d) to (%d, %d), max. dist = %d",
          mon->name(DESC_PLAIN).c_str(), mon->pos().x, mon->pos().y,
          targpos.x, targpos.y, range);
 #endif
@@ -316,7 +316,7 @@ bool find_merfolk_avatar_water_target(monster* mon)
     {
         coord_def targ_pos(mon->travel_path[mon->travel_path.size() - 1]);
 #ifdef DEBUG_PATHFIND
-        mprf("merfolk avatar target is (%d, %d), dist = %d",
+        mprf(Options.language == lang_t::KO ? "인어 분신 목표: (%d, %d), 거리 = %d" : "merfolk avatar target is (%d, %d), dist = %d",
              targ_pos.x, targ_pos.y, (int) (mon->pos() - targ_pos).rdist());
 #endif
         if ((mon->pos() - targ_pos).rdist() > 2)
@@ -400,7 +400,7 @@ bool find_merfolk_avatar_water_target(monster* mon)
             }
 #endif
 #ifdef DEBUG_PATHFIND
-            mprf("Found a path to (%d, %d) with %d surrounding water squares",
+            mprf(Options.language == lang_t::KO ? "(%d, %d)까지 경로 탐색 완료 (주변 물칸 %d)" : "Found a path to (%d, %d) with %d surrounding water squares",
                  best_target.x, best_target.y, best_water_count);
 #endif
             // Okay then, we found a path. Let's use it!
@@ -417,7 +417,7 @@ bool find_merfolk_avatar_water_target(monster* mon)
 static bool _handle_monster_travelling(monster* mon)
 {
 #ifdef DEBUG_PATHFIND
-    mprf("Monster %s reached target (%d, %d)",
+    mprf(Options.language == lang_t::KO ? "몬스터 %s 목표 도착: (%d, %d)" : "Monster %s reached target (%d, %d)",
          mon->name(DESC_PLAIN).c_str(), mon->target.x, mon->target.y);
 #endif
 
@@ -425,13 +425,13 @@ static bool _handle_monster_travelling(monster* mon)
     if (mon->pos() == mon->travel_path[0])
     {
 #ifdef DEBUG_PATHFIND
-        mpr("Arrived at first waypoint.");
+        mpr(Options.language == lang_t::KO ? "첫 경유지에 도착했습니다." : "Arrived at first waypoint.");
 #endif
         mon->travel_path.erase(mon->travel_path.begin());
         if (mon->travel_path.empty())
         {
 #ifdef DEBUG_PATHFIND
-            mpr("We reached the end of our path: stop travelling.");
+            mpr(Options.language == lang_t::KO ? "경로 끝에 도착하여 이동을 멈춥니다." : "We reached the end of our path: stop travelling.");
 #endif
             mon->travel_target = MTRAV_NONE;
             return true;
@@ -440,7 +440,7 @@ static bool _handle_monster_travelling(monster* mon)
         {
             mon->target = mon->travel_path[0];
 #ifdef DEBUG_PATHFIND
-            mprf("Next waypoint: (%d, %d)", mon->target.x, mon->target.y);
+            mprf(Options.language == lang_t::KO ? "다음 경유지: (%d, %d)" : "Next waypoint: (%d, %d)", mon->target.x, mon->target.y);
 #endif
             return false;
         }
@@ -450,7 +450,7 @@ static bool _handle_monster_travelling(monster* mon)
     if (!can_go_straight(mon, mon->pos(), mon->travel_path[0]))
     {
 #ifdef DEBUG_PATHFIND
-        mpr("Can't see waypoint grid.");
+        mpr(Options.language == lang_t::KO ? "경유지 칸이 보이지 않습니다." : "Can't see waypoint grid.");
 #endif
         // Apparently we got sidetracked a bit.
         // Check the waypoints vector backwards and pick the first waypoint
@@ -476,7 +476,7 @@ static bool _handle_monster_travelling(monster* mon)
         if (erase > 0)
         {
 #ifdef DEBUG_PATHFIND
-            mprf("Need to erase %d of %d waypoints.",
+            mprf(Options.language == lang_t::KO ? "경유지 %d개 삭제 필요 (전체 %d개)." : "Need to erase %d of %d waypoints.",
                  erase, size);
 #endif
             // Erase all waypoints that came earlier:
@@ -499,7 +499,7 @@ static bool _handle_monster_travelling(monster* mon)
                 {
                     mon->target = mon->travel_path[0];
 #ifdef DEBUG_PATHFIND
-                    mprf("Next waypoint: (%d, %d)",
+                    mprf(Options.language == lang_t::KO ? "다음 경유지: (%d, %d)" : "Next waypoint: (%d, %d)",
                          mon->target.x, mon->target.y);
 #endif
                 }
@@ -684,7 +684,7 @@ static bool _handle_monster_patrolling(monster* mon)
     else
     {
 #ifdef DEBUG_PATHFIND
-        mprf("Monster %s (pp: %d, %d) is now patrolling to (%d, %d)",
+        mprf(Options.language == lang_t::KO ? "몬스터 %s 순찰 이동: (%d, %d) → (%d, %d)" : "Monster %s (pp: %d, %d) is now patrolling to (%d, %d)",
              mon->name(DESC_PLAIN).c_str(),
              mon->patrol_point.x, mon->patrol_point.y,
              mon->target.x, mon->target.y);

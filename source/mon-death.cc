@@ -405,10 +405,12 @@ static void _create_monster_hide(monster_type mtyp, monster_type montype,
     if (you.see_cell(pos) && !silent && !feat_eliminates_items(env.grid(pos)))
     {
         // XXX: tweak for uniques/named monsters, somehow?
-        mprf("%s %s intact enough to wear.",
-             item.name(DESC_THE).c_str(),
-             mons_genus(mtyp) == MONS_DRAGON ? "are"  // scales are
-                                             : "is"); // troll armour is
+        if (Options.language == lang_t::KO)
+            mprf("착용할 수 있을 만큼 온전하게 남은 장비: %s.",
+                 item.name(DESC_THE).c_str());
+        else
+            mprf("%s %s intact enough to wear.", item.name(DESC_THE).c_str(),
+                 mons_genus(mtyp) == MONS_DRAGON ? "are" : "is");
                                                       // XXX: refactor
     }
 
@@ -433,7 +435,7 @@ static void _create_monster_wand(monster_type mtyp, coord_def pos, bool silent)
 
     if (you.see_cell(pos) && !silent && !feat_eliminates_items(env.grid(pos)))
     {
-        mprf("%s bone magically twists into %s.",
+        mprf(Options.language == lang_t::KO ? "뼈가 마법으로 변형됩니다: %s → %s." : "%s bone magically twists into %s.",
              mons_type_name(mtyp, DESC_A).c_str(),
              item.name(DESC_A).c_str());
     }
@@ -782,7 +784,7 @@ static bool _vampire_make_thrall(monster* mons, killer_type killer)
     const unsigned int exp = exp_value(*mons);
 
     // Okay, let's try to make them for real!
-    mprf("%s rises to serve you!", mons->name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "당신을 섬기기 위해 일어나는 몬스터: %s!" : "%s rises to serve you!", mons->name(DESC_THE).c_str());
     record_monster_defeat(mons, KILL_YOU);
 
     mons->hit_points = mons->max_hit_points;
@@ -935,7 +937,7 @@ static bool _blorkula_bat_split(monster& blorkula, killer_type ktype)
     {
         if (you.can_see(blorkula))
         {
-            mprf("%s attempts to avoid another deathblow, but is too exhausted to transform.",
+            mprf(Options.language == lang_t::KO ? "다시 죽음을 피하려 하지만 변신할 기력이 없는 몬스터: %s." : "%s attempts to avoid another deathblow, but is too exhausted to transform.",
                 blorkula.name(DESC_THE).c_str());
         }
         return false;
@@ -998,7 +1000,7 @@ static bool _blorkula_bat_split(monster& blorkula, killer_type ktype)
 
     if (!placed_bat)
     {
-        simple_monster_message(blorkula, " attempts to avoid the deathblow, but fails!");
+        simple_monster_message(blorkula, (Options.language == lang_t::KO ? " — 치명타를 피하려 하지만 실패합니다!" : " attempts to avoid the deathblow, but fails!"));
         return false;
     }
 
@@ -1093,11 +1095,13 @@ static void _blorkula_bat_merge_message(monster* blork, int bat_count)
 {
     if (you.can_see(*blork))
     {
-        string msg = bat_count == 1 ? "The bat shimmers"
-                                    : "The bats swarm back together";
+        string msg = Options.language == lang_t::KO
+                   ? (bat_count == 1 ? "박쥐가 아른거리더니" : "박쥐 떼가 다시 모이더니")
+                   : (bat_count == 1 ? "The bat shimmers" : "The bats swarm back together");
 
-        msg += " and " + blork->name(DESC_THE)
-            +  " reappears in a puff of iridescent mist.";
+        msg += Options.language == lang_t::KO
+            ? " 오색빛 안개 속에서 " + blork->name(DESC_THE) + " 다시 나타납니다."
+            : " and " + blork->name(DESC_THE) + " reappears in a puff of iridescent mist.";
 
         mprf(MSGCH_MONSTER_SPELL, "%s", msg.c_str());
     }
@@ -1149,7 +1153,7 @@ static bool _monster_avoided_death(monster* mons, killer_type killer,
         {
             if (killer == KILL_BANISHED)
             {
-                simple_god_message(" pulls their child back from the Abyss.",
+                simple_god_message((Options.language == lang_t::KO ? " — 자신의 자식을 심연에서 끌어냅니다." : " pulls their child back from the Abyss."),
                                    false, GOD_BEOGH);
             }
 
@@ -1352,7 +1356,7 @@ static void _pharaoh_ant_bind_souls(monster *mons)
         if (!mons_can_bind_soul(mons, *mi))
             continue;
         if (!bound)
-            simple_monster_message(*mons, " binds the souls of nearby monsters.");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 주변 몬스터의 영혼을 속박합니다." : " binds the souls of nearby monsters."));
         bound = true;
         mi->add_ench(
             mon_enchant(ENCH_BOUND_SOUL, mons, random_range(10, 30) * BASELINE_DELAY));
@@ -1486,32 +1490,32 @@ static string _derived_undead_message(const monster &mons, monster_type which_z,
     case MONS_ZOMBIE:
         break;
     default:
-        return "A buggy dead thing appears!";
+        return Options.language == lang_t::KO ? "알 수 없는 언데드가 나타납니다!" : "A buggy dead thing appears!";
     }
 
     const habitat_type habitat = mons_class_habitat(mons.type);
     const habitat_type swimming_habitats = (habitat_type)(HT_WATER | HT_LAVA);
     if ((habitat & swimming_habitats) == habitat)
-        return "The dead are swimming!";
+        return Options.language == lang_t::KO ? "언데드가 헤엄치고 있습니다!" : "The dead are swimming!";
 
     if (mons_class_flag(mons.type, M_FLIES))
-        return "The dead are flying!";
+        return Options.language == lang_t::KO ? "언데드가 날고 있습니다!" : "The dead are flying!";
 
     const auto shape = get_mon_shape(mons);
     if (shape == MON_SHAPE_SNAKE || shape == MON_SHAPE_SNAIL)
-        return "The dead are slithering!";
+        return Options.language == lang_t::KO ? "언데드가 미끄러지듯 기어갑니다!" : "The dead are slithering!";
     if (shape == MON_SHAPE_ARACHNID || shape == MON_SHAPE_CENTIPEDE)
-        return "The dead are crawling!"; // to say nothing of creeping
+        return Options.language == lang_t::KO ? "언데드가 기어갑니다!" : "The dead are crawling!"; // to say nothing of creeping
 
     const monster_type genus = mons_genus(mons.type);
     // XXX: Prince Ribbit is in his human shape after he dies.
     if ((genus == MONS_FROG && mons.type != MONS_PRINCE_RIBBIT)
          || genus == MONS_QUOKKA)
     {
-        return "The dead are hopping!";
+        return Options.language == lang_t::KO ? "언데드가 깡충깡충 뛰어다닙니다!" : "The dead are hopping!";
     }
 
-    return "The dead are walking!"; // a classic for sure
+    return Options.language == lang_t::KO ? "언데드가 걸어갑니다!" : "The dead are walking!"; // a classic for sure
 }
 
 /**
@@ -1586,10 +1590,18 @@ static void _make_derived_undead(monster* mons, bool quiet,
                                                    : "glowing";
 
     if (msg.empty())
-        msg = "A " + mist + " mist starts to gather...";
+        msg = Options.language == lang_t::KO
+            ? (which_z == MONS_SIMULACRUM ? "얼어붙는 안개가 모여듭니다..."
+               : god == GOD_YREDELEMNUL ? "검은 안개가 모여듭니다..."
+                                         : "빛나는 안개가 모여듭니다...")
+            : "A " + mist + " mist starts to gather...";
 
     if (fail_msg.empty())
-        fail_msg = "A " + mist + " mist gathers momentarily, then fades.";
+        fail_msg = Options.language == lang_t::KO
+            ? (which_z == MONS_SIMULACRUM ? "얼어붙는 안개가 잠시 모였다가 사라집니다."
+               : god == GOD_YREDELEMNUL ? "검은 안개가 잠시 모였다가 사라집니다."
+                                         : "빛나는 안개가 잠시 모였다가 사라집니다.")
+            : "A " + mist + " mist gathers momentarily, then fades.";
 
     if (mons->mons_species() == MONS_HYDRA || mons->type == MONS_SLYMDRA)
     {
@@ -1633,7 +1645,7 @@ static void _druid_final_boon(const monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO ? "%s이(가) 마지막 숨을 내쉬며 야생의 짐승들에게 힘을 나누어 줍니다!" : "With its final breath, %s offers up its power to the beasts of the wild!",
+        mprf(MSGCH_MONSTER_SPELL, Options.language == lang_t::KO ? "마지막 숨을 내쉬는 %s에게서 야생의 짐승들에게 힘이 흘러갑니다!" : "With its final breath, %s offers up its power to the beasts of the wild!",
                                   mons->name(DESC_THE).c_str());
     }
 
@@ -1648,14 +1660,17 @@ static void _druid_final_boon(const monster* mons)
         if (beasts[i]->heal(roll_dice(3, mons->get_hit_dice()))
             && you.can_see(*beasts[i]))
         {
-            mprf("%s %s healed.", beasts[i]->name(DESC_THE).c_str(),
-                                  beasts[i]->conj_verb("are").c_str());
+            if (Options.language == lang_t::KO)
+                mprf("치유된 몬스터: %s.", beasts[i]->name(DESC_THE).c_str());
+            else
+                mprf("%s %s healed.", beasts[i]->name(DESC_THE).c_str(),
+                     beasts[i]->conj_verb("are").c_str());
         }
     }
 
     for (int i = 0; i < num; ++i)
     {
-        simple_monster_message(*beasts[i], " seems to grow more fierce.");
+        simple_monster_message(*beasts[i], (Options.language == lang_t::KO ? " — 더욱 흉포해집니다." : " seems to grow more fierce."));
         beasts[i]->add_ench(mon_enchant(ENCH_MIGHT, mons, random_range(100, 160)));
     }
 }
@@ -1695,7 +1710,7 @@ static void _protean_explosion(monster* mons)
 
     if (you.can_see(*mons))
     {
-        mprf(MSGCH_MONSTER_WARNING, Options.language == lang_t::KO ? "%s이(가) 잠시 %s의 모습으로 변하기 시작하더니 폭발합니다!" : "For just a moment, %s begins to look like %s, then it explodes!",
+        mprf(MSGCH_MONSTER_WARNING, Options.language == lang_t::KO ? "%s의 형체가 잠시 %s처럼 변하더니 폭발합니다!" : "For just a moment, %s begins to look like %s, then it explodes!",
                                     mons->name(DESC_THE).c_str(),
                                     mons_type_name(target, DESC_A).c_str());
     }
@@ -2479,7 +2494,8 @@ static void _player_on_kill_effects(monster& mons, killer_type killer,
         }
 
         if (visible_effect)
-            mprf("%s allies are healed!", mons.name(DESC_ITS).c_str());
+            mprf(Options.language == lang_t::KO ? "주변 아군이 치유됩니다: %s." : "%s allies are healed!",
+                 mons.name(Options.language == lang_t::KO ? DESC_THE : DESC_ITS).c_str());
     }
 
     if (gives_player_xp && you.attribute[ATTR_TEMP_MUTATIONS]
@@ -2670,7 +2686,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         if (source && source->alive())
         {
             if (!silent)
-                simple_monster_message(mons, " returns to where it belongs.");
+                simple_monster_message(mons, (Options.language == lang_t::KO ? " — 원래 있던 곳으로 돌아갑니다." : " returns to where it belongs."));
 
             if (source->is_monster())
             {
@@ -2706,7 +2722,9 @@ item_def* monster_die(monster& mons, killer_type killer,
         // No "the Enchantress".
         string name = remove_prepended_the(mons_type_name(simu.base_type, DESC_PLAIN));
 
-        string msg = "Your " + name + " simulacrum begins to move.";
+        string msg = Options.language == lang_t::KO
+            ? "움직이기 시작하는 당신의 시뮬라크럼: " + name
+            : "Your " + name + " simulacrum begins to move.";
         schedule_make_derived_undead_fineff(simu.pos, simu,
                                             get_monster_data(simu.base_type)->HD,
                                             "the player",
@@ -2719,7 +2737,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         // Only blow up if non-dormant
         if (grid_distance(mons.pos(), you.pos()) <= 1)
         {
-            mprf(MSGCH_WARN, "%s falls apart, revealing its core!",
+            mprf(MSGCH_WARN, Options.language == lang_t::KO ? "몸체가 무너지면서 핵을 드러내는 몬스터: %s!" : "%s falls apart, revealing its core!",
                  mons.name(DESC_YOUR).c_str());
 
             int old_hd = mons.get_hit_dice();
@@ -2743,8 +2761,9 @@ item_def* monster_die(monster& mons, killer_type killer,
         }
         else
         {
-            simple_monster_message(mons, " falls apart and the last of its fire"
-                                         " goes out.");
+            simple_monster_message(mons, Options.language == lang_t::KO
+                ? " — 몸이 무너져 내리고 마지막 불꽃이 꺼집니다."
+                : " falls apart and the last of its fire goes out.");
             silent = true;
         }
     }
@@ -2833,9 +2852,15 @@ item_def* monster_die(monster& mons, killer_type killer,
         {
             if (you.can_see(mons))
             {
-                mprf(MSGCH_WARN, "%s broadcasts a psychic alarm as it %s.",
-                    mons.name(DESC_THE).c_str(),
-                    (was_banished || !real_death) ? "disappears" : "dies");
+                if (Options.language == lang_t::KO)
+                    mprf(MSGCH_WARN, was_banished || !real_death
+                         ? "사라지며 정신 경보를 퍼뜨리는 몬스터: %s."
+                         : "죽으면서 정신 경보를 퍼뜨리는 몬스터: %s.",
+                         mons.name(DESC_THE).c_str());
+                else
+                    mprf(MSGCH_WARN, "%s broadcasts a psychic alarm as it %s.",
+                         mons.name(DESC_THE).c_str(),
+                         (was_banished || !real_death) ? "disappears" : "dies");
             }
             else
                 mprf(MSGCH_WARN, (Options.language == lang_t::KO ? "무언가가 정신적인 경보를 퍼뜨리는 것을 느낍니다." : "You feel something broadcast a psychic alarm."));
@@ -2882,7 +2907,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     {
         if (!silent && !hard_reset && !was_banished)
         {
-            simple_monster_message(mons, " detonates feebly.",
+            simple_monster_message(mons, (Options.language == lang_t::KO ? " — 약하게 폭발합니다." : " detonates feebly."),
                                    false, MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
             silent = true;
         }
@@ -2891,7 +2916,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     {
         if (!silent && !mons_reset && !was_banished)
         {
-            simple_monster_message(mons, " vaporises!",
+            simple_monster_message(mons, (Options.language == lang_t::KO ? " — 증발해 사라집니다!" : " vaporises!"),
                                    false, MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
             silent = true;
             did_death_message = true;
@@ -2902,7 +2927,7 @@ item_def* monster_die(monster& mons, killer_type killer,
     {
         // Making the current sensible assumption that these are only ever
         // created by Cacophony.
-        simple_monster_message(mons, " is driven back to you.", false,
+        simple_monster_message(mons, (Options.language == lang_t::KO ? " — 당신에게 되돌아옵니다." : " is driven back to you."), false,
                                 MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
         did_death_message = true;
     }
@@ -2917,7 +2942,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         {
             if (monster* armoury = monster_by_mid(mons.summoner))
             {
-                simple_monster_message(mons, " returns to the armoury!",
+                simple_monster_message(mons, (Options.language == lang_t::KO ? " — 무기고로 돌아갑니다!" : " returns to the armoury!"),
                                         false, MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
                 silent = true;
                 did_death_message = true;
@@ -2962,7 +2987,7 @@ item_def* monster_die(monster& mons, killer_type killer,
             }
             else
             {
-                simple_monster_message(mons, " falls from the air.",
+                simple_monster_message(mons, (Options.language == lang_t::KO ? " — 공중에서 추락합니다." : " falls from the air."),
                                        false, MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
                 silent = true;
                 did_death_message = true;
@@ -3027,7 +3052,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                     && (anon || !invalid_monster_index(killer_index)))
                 {
                     if (Options.language == lang_t::KO)
-                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s이(가) %s!",
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "대상 %s: %s!",
                              mons.name(DESC_THE).c_str(),
                              exploded ? "폭발했습니다" :
                              destroyed ? "파괴됐습니다" : "죽었습니다");
@@ -3040,7 +3065,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                 else
                 {
                     if (Options.language == lang_t::KO)
-                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "%s을(를) %s!",
+                        mprf(MSGCH_MONSTER_DAMAGE, MDAM_DEAD, "대상 %s: %s!",
                              mons.name(DESC_THE).c_str(),
                              exploded ? "폭발시켰습니다" :
                              destroyed ? "파괴했습니다" : "죽였습니다");
@@ -3231,7 +3256,7 @@ item_def* monster_die(monster& mons, killer_type killer,
                      || mons.type == MONS_WALKING_ALEMBIC
                      || mons.type == MONS_DIAMOND_SAWBLADE)
             {
-                msg = " falls apart.";
+                msg = (Options.language == lang_t::KO ? " — 산산이 무너집니다." : (Options.language == lang_t::KO ? " — 산산이 부서집니다." : " falls apart."));
             }
             else if (mons.type == MONS_PLATINUM_PARAGON)
                 msg = " expends the last of its power.";
@@ -3247,10 +3272,10 @@ item_def* monster_die(monster& mons, killer_type killer,
             else
             {
                 if (mons.props.exists(KIKU_WRETCH_KEY))
-                    mprf(Options.language == lang_t::KO ? "근처의 %s이(가) 비참하게 죽습니다." : "A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
+                    mprf(Options.language == lang_t::KO ? "근처에 있던 %s에게 비참한 죽음이 찾아옵니다." : "A nearby %s perishes wretchedly.", mons.name(DESC_PLAIN, false).c_str());
                 else if (mons_class_is_fragile(mons.type))
                 {
-                    mprf(MSGCH_MONSTER_TIMEOUT, Options.language == lang_t::KO ? "근처의 %s이(가) 시들어 죽습니다." : "A nearby %s withers and dies.",
+                    mprf(MSGCH_MONSTER_TIMEOUT, Options.language == lang_t::KO ? "근처에 있던 %s의 생명이 시들어 사라집니다." : "A nearby %s withers and dies.",
                          mons.name(DESC_PLAIN, false).c_str());
                 }
                 // Default message so that at least *something* is printed.
@@ -3395,8 +3420,13 @@ item_def* monster_die(monster& mons, killer_type killer,
             {
                 if (you.can_see(**mi))
                 {
-                    mprf(MSGCH_MONSTER_TIMEOUT, "%s is cast back into %s original reality.",
-                            mi->name(DESC_THE).c_str(), mi->pronoun(PRONOUN_POSSESSIVE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mprf(MSGCH_MONSTER_TIMEOUT, "원래 세계로 돌아간 몬스터: %s.",
+                             mi->name(DESC_THE).c_str());
+                    else
+                        mprf(MSGCH_MONSTER_TIMEOUT, "%s is cast back into %s original reality.",
+                             mi->name(DESC_THE).c_str(),
+                             mi->pronoun(PRONOUN_POSSESSIVE).c_str());
                 }
                 monster_die(**mi, KILL_RESET, NON_MONSTER);
             }
@@ -3629,7 +3659,7 @@ item_def* monster_die(monster& mons, killer_type killer,
         {
             if (!you.can_see(mons))
             {
-                mprf("%s has departed this plane of existence.",
+                mprf(Options.language == lang_t::KO ? "이 세계를 떠난 조상: %s." : "%s has departed this plane of existence.",
                      hepliaklqana_ally_name().c_str());
             }
 
@@ -3725,7 +3755,7 @@ void monster_cleanup(monster* mons)
 
     if (mons->has_ench(ENCH_AWAKEN_FOREST))
     {
-        forest_message(mons->pos(), "The forest abruptly stops moving.");
+        forest_message(mons->pos(), Options.language == lang_t::KO ? "숲의 움직임이 갑자기 멈춥니다." : "The forest abruptly stops moving.");
         env.forest_awoken_until = 0;
     }
 
@@ -3825,25 +3855,28 @@ void mons_check_pool(monster* mons, const coord_def &oldpos,
     // something has fallen into the lava.
     if (you.see_cell(mons->pos()) && (oldpos == mons->pos() || env.grid(oldpos) != grid))
     {
-         mprf("%s falls into the %s!",
-             mons->name(DESC_THE).c_str(),
-             grid == DNGN_LAVA ? "lava" : "water");
+         if (Options.language == lang_t::KO)
+            mprf(grid == DNGN_LAVA ? "용암에 빠진 몬스터: %s!" : "물에 빠진 몬스터: %s!",
+                 mons->name(DESC_THE).c_str());
+        else
+            mprf("%s falls into the %s!", mons->name(DESC_THE).c_str(),
+                 grid == DNGN_LAVA ? "lava" : "water");
     }
 
     // Even fire resistant monsters perish in lava.
     if (grid == DNGN_LAVA && mons->res_fire() < 2)
     {
-        simple_monster_message(*mons, " is incinerated.", false,
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 불타서 재가 됩니다." : " is incinerated."), false,
                                MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
     }
     else if (mons->can_drown())
     {
-        simple_monster_message(*mons, " drowns.", false,
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 익사합니다." : " drowns."), false,
                                MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
     }
     else if (mons->type == MONS_BOULDER)
     {
-        simple_monster_message(*mons, " sinks to the bottom.", false,
+        simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 바닥으로 가라앉습니다." : " sinks to the bottom."), false,
                                MSGCH_MONSTER_DAMAGE, MDAM_DEAD);
     }
     else
@@ -4088,11 +4121,14 @@ void hogs_to_humans()
     string final_msg;
     if (any > 0 && you.num_turns > 0)
     {
-        final_msg = make_stringf("No longer under Kirke's spell, the %s %s %s!",
-                                 any > 1 ? "hogs return to their"
-                                         : "hog returns to its",
-                                 any == human ? "human" : "original",
-                                 any > 1 ? "forms" : "form");
+        if (Options.language == lang_t::KO)
+            final_msg = make_stringf("키르케의 마법이 풀리면서 돼지 %d마리가 %s 모습으로 돌아옵니다!",
+                                     any, any == human ? "인간" : "원래");
+        else
+            final_msg = make_stringf("No longer under Kirke's spell, the %s %s %s!",
+                                      any > 1 ? "hogs return to their" : "hog returns to its",
+                                      any == human ? "human" : "original",
+                                      any > 1 ? "forms" : "form");
     }
     schedule_kirke_death_fineff(final_msg);
 }
@@ -4274,7 +4310,7 @@ void elven_twin_energize(monster* mons)
     {
         ASSERT(mons_is_mons_class(mons, MONS_DOWAN));
         if (mons->observable())
-            simple_monster_message(*mons, " seems to find hidden reserves of power!");
+            simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 숨겨진 힘을 끌어냅니다!" : " seems to find hidden reserves of power!"));
 
         mons->add_ench(mon_enchant(ENCH_HASTE, mons, INFINITE_DURATION));
         mons->props[ELVEN_IS_ENERGIZED_KEY] = true;
@@ -4299,7 +4335,7 @@ void elven_twins_pacify(monster* twin)
     if (mons->neutral())
         return;
 
-    simple_monster_message(*mons, " likewise turns neutral.");
+    simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 마찬가지로 중립 상태가 됩니다." : " likewise turns neutral."));
 
     record_monster_defeat(mons, KILL_PACIFIED);
     mons_pacify(*mons, ATT_NEUTRAL);
@@ -4328,7 +4364,7 @@ void elven_twins_unpacify(monster* twin)
         return;
     }
 
-    simple_monster_message(*mons, " gets angry again!");
+    simple_monster_message(*mons, (Options.language == lang_t::KO ? " — 다시 분노합니다!" : " gets angry again!"));
 
     behaviour_event(mons, ME_WHACK, &you, you.pos(), false);
 }

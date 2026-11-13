@@ -1118,10 +1118,14 @@ void behaviour_event(monster* mon, mon_event_type event, const actor *src,
 
             if (you.can_see(*mon))
             {
-                mprf("%s attack snaps %s out of %s fear.",
-                        src ? src->name(DESC_ITS).c_str() : "the",
-                        mon->name(DESC_THE).c_str(),
-                        mon->pronoun(PRONOUN_POSSESSIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("공격을 받고 공포에서 벗어나는 몬스터: %s.",
+                         mon->name(DESC_THE).c_str());
+                else
+                    mprf("%s attack snaps %s out of %s fear.",
+                         src ? src->name(DESC_ITS).c_str() : "the",
+                         mon->name(DESC_THE).c_str(),
+                         mon->pronoun(PRONOUN_POSSESSIVE).c_str());
             }
             mon->del_ench(ENCH_FEAR, true);
         }
@@ -1181,9 +1185,13 @@ void behaviour_event(monster* mon, mon_event_type event, const actor *src,
             {
                 if (you.can_see(*mon))
                 {
-                    mprf("%s snaps out of %s daze.",
-                            mon->name(DESC_THE).c_str(),
-                            mon->pronoun(PRONOUN_POSSESSIVE).c_str());
+                    if (Options.language == lang_t::KO)
+                        mprf("멍한 상태에서 벗어나는 몬스터: %s.",
+                             mon->name(DESC_THE).c_str());
+                    else
+                        mprf("%s snaps out of %s daze.",
+                             mon->name(DESC_THE).c_str(),
+                             mon->pronoun(PRONOUN_POSSESSIVE).c_str());
                 }
                 mon->del_ench(ENCH_DAZED, true);
             }
@@ -1459,7 +1467,7 @@ static void _mons_indicate_level_exit(const monster* mon)
     const bool is_shaft = (get_trap_type(mon->pos()) == TRAP_SHAFT);
 
     if (feat_is_gate(feat))
-        simple_monster_message(*mon, " passes through the gate.");
+        simple_monster_message(*mon, (Options.language == lang_t::KO ? " — 관문을 통과합니다." : " passes through the gate."));
     else if (feat_is_travelable_stair(feat))
     {
         command_type dir = feat_stair_direction(feat);

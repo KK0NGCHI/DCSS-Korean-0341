@@ -159,9 +159,9 @@ void decr_zot_clock(bool extra_life)
         if (bezotted())
         {
             if (extra_life)
-                mpr("As you die, Zot loses track of you.");
+                mpr(Options.language == lang_t::KO ? "죽음과 함께 조트가 당신의 행방을 놓칩니다." : "As you die, Zot loses track of you.");
             else
-                mpr("As you enter the new level, Zot loses track of you.");
+                mpr(Options.language == lang_t::KO ? "새 층에 들어서자 조트가 당신의 행방을 놓칩니다." : "As you enter the new level, Zot loses track of you.");
         }
         zot = max(0, zot - ZOT_CLOCK_PER_FLOOR / div);
     }
@@ -190,7 +190,7 @@ void incr_zot_clock()
 
     if (_zot_clock() >= MAX_ZOT_CLOCK)
     {
-        mpr("Zot's power touches on you...");
+        mpr(Options.language == lang_t::KO ? "조트의 힘이 당신에게 닿습니다..." : "Zot's power touches on you...");
         // Use your 'base' MHP (excluding forms, berserk, artefacts...)
         // to calculate loss, so that Dragon Form doesn't penalize extra HP
         // and players in unskilled talisman forms don't lose less HP.
@@ -215,16 +215,13 @@ void incr_zot_clock()
     switch (lvl)
     {
         case 1:
-            mpr("You have lingered too long. Zot senses you. "
-                "Dive deeper or flee this branch before you suffer!");
+            mpr(Options.language == lang_t::KO ? "너무 오래 머물렀습니다. 조트가 당신을 감지합니다. 고통을 겪기 전에 더 깊이 내려가거나 이 구역을 벗어나십시오!" : "You have lingered too long. Zot senses you. Dive deeper or flee this branch before you suffer!");
             break;
         case 2:
-            mpr("Zot draws nearer. "
-                "Dive deeper or flee this branch before you suffer!");
+            mpr(Options.language == lang_t::KO ? "조트가 가까워집니다. 고통을 겪기 전에 더 깊이 내려가거나 이 구역을 벗어나십시오!" : "Zot draws nearer. Dive deeper or flee this branch before you suffer!");
             break;
         case 3:
-            mpr("Zot has nearly found you. Suffering is imminent. "
-                "Descend or flee this branch!");
+            mpr(Options.language == lang_t::KO ? "조트가 거의 당신을 찾아냈습니다. 고통이 임박했습니다. 내려가거나 이 구역을 벗어나십시오!" : "Zot has nearly found you. Suffering is imminent. Descend or flee this branch!");
             break;
     }
 
@@ -280,13 +277,11 @@ static void _shatter_floor_gem(gem_type gem, bool quiet = false)
 
             if (was_mimic)
             {
-                mprf("The power of Zot manifests... and reveals the %s gem was"
-                     " a mimic! It cackles and vanishes.", gem_adj(gem));
+                mprf(Options.language == lang_t::KO ? "조트의 힘이 나타나 보석의 정체를 드러냅니다: %s 보석은 흉내쟁이였습니다! 웃음을 터뜨리고 사라집니다." : "The power of Zot manifests... and reveals the %s gem was a mimic! It cackles and vanishes.", gem_adj(gem));
                 continue;
             }
 
-            mprf("With a frightful flash, the power of Zot shatters the %s"
-                 " gem into ten thousand fragments!", gem_adj(gem));
+            mprf(Options.language == lang_t::KO ? "무시무시한 섬광과 함께 조트의 힘이 %s 보석을 산산조각 냅니다!" : "With a frightful flash, the power of Zot shatters the %s gem into ten thousand fragments!", gem_adj(gem));
             // Using UA_PICKUP here is dubious.
             flash_view_delay(UA_PICKUP, MAGENTA, 100);
             flash_view_delay(UA_PICKUP, LIGHTMAGENTA, 100);
@@ -319,14 +314,12 @@ void print_gem_warnings(int gem_int, int old_time_taken)
 
     if (old_time_taken + 2700 < limit && time_taken + 2700 >= limit)
     {
-        mprf("If you linger in this branch much longer, the power of Zot will "
-             "shatter your %s gem.", gem_adj(gem));
+        mprf(Options.language == lang_t::KO ? "이 구역에 더 오래 머무르면 조트의 힘이 %s 보석을 부숴 버립니다." : "If you linger in this branch much longer, the power of Zot will shatter your %s gem.", gem_adj(gem));
     }
 
     if (old_time_taken + 1000 < limit && time_taken + 1000 >= limit)
     {
-        mprf("Zot senses the otherworldly energies of your %s gem, and will "
-             "surely shatter it if you linger in this branch any longer!",
+        mprf(Options.language == lang_t::KO ? "조트가 %s 보석의 이계 에너지를 감지했습니다. 이 구역에 더 머무르면 반드시 보석을 부숴 버릴 것입니다!" : "Zot senses the otherworldly energies of your %s gem, and will surely shatter it if you linger in this branch any longer!",
              gem_adj(gem));
     }
 }
@@ -364,8 +357,7 @@ void incr_gem_clock()
 
         if (Options.more_gem_info)
         {
-            mprf("With a frightful flash, the power of Zot shatters your %s gem "
-                 "into ten thousand fragments!", gem_adj(gem));
+            mprf(Options.language == lang_t::KO ? "무시무시한 섬광과 함께 조트의 힘이 당신의 %s 보석을 산산조각 냅니다!" : "With a frightful flash, the power of Zot shatters your %s gem into ten thousand fragments!", gem_adj(gem));
             // Using UA_PICKUP here is dubious.
             flash_view_delay(UA_PICKUP, MAGENTA, 100);
             flash_view_delay(UA_PICKUP, LIGHTMAGENTA, 100);

@@ -566,7 +566,9 @@ static void _enter_water(dungeon_feature_type old_feat,
         return;
 
     if (new_grid == DNGN_TOXIC_BOG)
-        mprf("독성 늪에 %s.", stepped ? "들어갔다" : "빠졌다");
+        mpr(Options.language == lang_t::KO
+             ? (stepped ? "독성 늪으로 들어갑니다." : "독성 늪에 빠집니다.")
+             : make_stringf("독성 늪에 %s.", stepped ? "들어갔다" : "빠졌다"));
     else
     {
         mprf("%s 물에 %s.",
@@ -642,7 +644,7 @@ static void _check_spatial_entanglement(const coord_def& oldpos)
     place_cloud(CLOUD_TLOC_ENERGY, mon->pos(), random_range(2, 3), &you);
     mon->move_to(spot, MV_TRANSLOCATION, true);
 
-    mprf("%s이(가) 당신과 함께 끌려간다!", mon->name(DESC_THE).c_str());
+    mprf("당신과 함께 끌려간 몬스터: %s!", mon->name(DESC_THE).c_str());
     mon->speed_increment -= you.time_taken;
     mon->finalise_movement();
     if (mon->alive())
@@ -2926,7 +2928,7 @@ static void _gain_innate_spells()
                 continue;
             }
         }
-        mprf("몸속에서 %s 주문을 시전할 힘이 솟아난다.", spell_title(spell));
+        mprf("몸속에서 주문을 시전할 힘이 솟아납니다: %s.", spell_title(spell));
         add_spell_to_memory(spell);
     }
 }
@@ -2978,7 +2980,7 @@ static void _revenant_spell_gift()
     }
 
     mprf("%s을(를) 기억해 냈다.", msg.c_str());
-    mprf("(이제 %s 주문을 시전할 수 있다.)", spell_title(spell));
+    mprf("(이제 주문을 시전할 수 있습니다: %s.)", spell_title(spell));
     library_add_spells({spell}, true);
     add_spell_to_memory(spell);
 }
@@ -3114,7 +3116,7 @@ void level_change(bool skip_attribute_increase)
                     init_player_doll();
 #endif
                     mprf(MSGCH_INTRINSIC_GAIN,
-                         "Your scales start taking on %s colour.",
+                         Options.language == lang_t::KO ? "비늘의 색깔이 변하기 시작합니다: %s." : "Your scales start taking on %s colour.",
                          article_a(species::scale_type(you.species)).c_str());
 
                     // Produce messages about skill increases/decreases. We
@@ -5269,7 +5271,7 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
 
     if (you.backlit(true, false))
     {
-        msg = "Your body glows too brightly to become invisible.";
+        msg = Options.language == lang_t::KO ? "몸에서 빛이 너무 강하게 나서 투명해질 수 없습니다." : "Your body glows too brightly to become invisible.";
         success = false;
     }
     else if (you.haloed() && you.halo_radius() != -1)
@@ -5295,7 +5297,9 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
             success = true;
         else
         {
-            msg = "Your " + comma_separated_line(sources.begin(), sources.end())
+            msg = Options.language == lang_t::KO
+                ? "착용한 장비나 신성한 후광에서 너무 강한 빛이 나서 투명해질 수 없습니다."
+                : "Your " + comma_separated_line(sources.begin(), sources.end())
                   + " glow" + (sources.size() == 1 ? "s" : "")
                   + " too brightly for you to become invisible.";
             success = false;
@@ -5303,10 +5307,10 @@ bool invis_allowed(bool quiet, string *fail_reason, bool temp)
     }
     else if (you.backlit(true, temp))
     {
-        msg = "You are backlit; invisibility will do you no good right now";
+        msg = Options.language == lang_t::KO ? "몸에 빛이 비치고 있어 지금은 투명화가 도움이 되지 않습니다" : "You are backlit; invisibility will do you no good right now";
         if (quiet)
             success = false;
-        else if (!quiet && !yesno((msg + "; 그래도 사용할까?").c_str(), false, 'n'))
+        else if (!quiet && !yesno((msg + (Options.language == lang_t::KO ? "; 그래도 사용하시겠습니까?" : "; 그래도 사용할까?")).c_str(), false, 'n'))
         {
             // XX this shouldn't be here. Currently used only for evoke invis.
             canned_msg(MSG_OK);
@@ -5333,8 +5337,9 @@ bool flight_allowed(bool quiet, string *fail_reason)
 
     if (get_form()->forbids_flight())
     {
-        msg = you.form == transformation::tree ? "Your roots keep you in place."
-            : "You can't fly in this form.";
+        msg = Options.language == lang_t::KO
+            ? (you.form == transformation::tree ? "뿌리 때문에 움직일 수 없습니다." : "이 모습으로는 날 수 없습니다.")
+            : (you.form == transformation::tree ? "Your roots keep you in place." : "You can't fly in this form.");
         success = false;
     }
 
@@ -7407,7 +7412,7 @@ bool player::resists_dislodge(string event) const
     if (!you.unrand_equipped(UNRAND_MOUNTAIN_BOOTS))
         return false;
     if (!event.empty())
-        mprf("장화 덕분에 %s을(를) 피했다.", event.c_str());
+        mprf("장화 덕분에 밀려나는 효과를 피했습니다: %s.", event.c_str());
     return true;
 }
 
@@ -8260,7 +8265,7 @@ bool player::can_do_shaft_ability(bool quiet) const
     if (attribute[ATTR_HELD])
     {
         if (!quiet)
-            mprf("%s 상태에서는 수직 통로에 몸을 던질 수 없어.", held_status());
+            mprf("현재 상태에서는 수직 통로로 뛰어내릴 수 없습니다: %s.", held_status());
         return false;
     }
 
@@ -8411,7 +8416,7 @@ bool player::attempt_escape()
 
     if (x_chance_in_y(_constriction_escape_chance(escape_attempts), 100))
     {
-        mprf("%s의 손아귀에서 벗어났다.", object.c_str());
+        mprf("속박에서 벗어납니다: %s.", object.c_str());
 
         // Stun the monster we struggled again and prevent the player from being
         // constricted for several turns (so that they are guaranteed to be able
@@ -9043,7 +9048,7 @@ void player_close_door(coord_def doorpos)
             const bool mons_unseen = !you.can_see(*mon);
             if (mons_unseen || (mon->holiness() & MH_NONLIVING))
             {
-                mprf("무언가가 %s을(를) 막고 있어!", waynoun);
+                mprf("무언가가 통로를 막고 있습니다: %s!", waynoun);
                 // No free detection!
                 if (mons_unseen)
                     you.turn_is_over = true;
@@ -9057,7 +9062,7 @@ void player_close_door(coord_def doorpos)
         {
             if (!has_push_spaces(dc, false, &door_vec))
             {
-                mprf("무언가가 %s을(를) 걸리게 하고 있어.", waynoun);
+                mprf("무언가가 통로를 걸리게 합니다: %s.", waynoun);
                 return;
             }
         }
@@ -9065,7 +9070,7 @@ void player_close_door(coord_def doorpos)
         // messaging with gateways will be inconsistent if this isn't last
         if (you.pos() == dc)
         {
-            mprf("%s에 꿈쩍도 하지 않는 생명체가 있어!", waynoun);
+            mprf("그곳에 꼼짝하지 않는 생명체가 있습니다: %s!", waynoun);
             return;
         }
     }

@@ -38,21 +38,21 @@ void transpose_with_monster(monster* mon_to_swap)
 
     if (you.stasis())
     {
-        mpr("Your stasis prevents you from teleporting.");
+        mpr(Options.language == lang_t::KO ? "정지 효과 때문에 순간이동할 수 없습니다." : "Your stasis prevents you from teleporting.");
         return;
     }
 
     // Be nice: no swapping into uninhabitable environments.
     if (!you.is_habitable(newpos) || !mon.is_habitable(you.pos()))
     {
-        mpr("You spin around.");
+        mpr(Options.language == lang_t::KO ? "제자리에서 빙글 돕니다." : "You spin around.");
         return;
     }
 
     const caught_type mon_caught = mon.caught_by();
     const caught_type you_caught = you.caught_by();
 
-    mprf("You swap places with %s.", mon.name(DESC_THE).c_str());
+    mprf(Options.language == lang_t::KO ? "자리를 바꾼 대상: %s." : "You swap places with %s.", mon.name(DESC_THE).c_str());
 
     // Must remove nets first (with no drop) so that we don't clone nets during
     // this swap.

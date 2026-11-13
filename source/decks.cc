@@ -613,7 +613,7 @@ static void _evoke_deck(deck_type deck, bool dealt = false)
 {
     ASSERT(deck_cards(deck) > 0);
 
-    mprf("You %s a card...", dealt ? "deal" : "draw");
+    mpr(Options.language == lang_t::KO ? (dealt ? "카드를 냅니다..." : "카드를 뽑습니다...") : make_stringf("You %s a card...", dealt ? "deal" : "draw"));
 
     if (deck == DECK_STACK)
     {
@@ -637,7 +637,7 @@ bool deck_draw(deck_type deck)
 {
     if (!deck_cards(deck))
     {
-        mpr("That deck is empty!");
+        mpr(Options.language == lang_t::KO ? "카드 덱이 비었습니다!" : "That deck is empty!");
         return false;
     }
 
@@ -658,8 +658,7 @@ spret deck_stack(bool fail)
     for (int i = FIRST_PLAYER_DECK; i <= LAST_PLAYER_DECK; ++i)
         total_cards += deck_cards((deck_type) i);
 
-    if (deck_cards(DECK_STACK) && !yesno("Replace your current stack?",
-                                          false, 0))
+    if (deck_cards(DECK_STACK) && !yesno(Options.language == lang_t::KO ? "현재 카드 묶음을 교체하시겠습니까?" : "Replace your current stack?", false, 0))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -667,12 +666,11 @@ spret deck_stack(bool fail)
 
     if (!total_cards)
     {
-        mpr("You are out of cards!");
+        mpr(Options.language == lang_t::KO ? "남은 카드가 없습니다!" : "You are out of cards!");
         return spret::abort;
     }
 
-    if (total_cards < 5 && !yesno("You have fewer than five cards, "
-                                  "stack them anyway?", false, 0))
+    if (total_cards < 5 && !yesno(Options.language == lang_t::KO ? "카드가 5장보다 적습니다. 그래도 쌓으시겠습니까?" : "You have fewer than five cards, stack them anyway?", false, 0))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -879,7 +877,7 @@ spret deck_deal(bool fail)
 
     if (!num_cards)
     {
-        mpr("That deck is empty!");
+        mpr(Options.language == lang_t::KO ? "카드 덱이 비었습니다!" : "That deck is empty!");
         return spret::abort;
     }
 
@@ -911,12 +909,11 @@ spret deck_triple_draw(bool fail)
 
     if (!num_cards)
     {
-        mpr("That deck is empty!");
+        mpr(Options.language == lang_t::KO ? "카드 덱이 비었습니다!" : "That deck is empty!");
         return spret::abort;
     }
 
-    if (num_cards < 3 && !yesno("There's fewer than three cards, "
-                                "still triple draw?", false, 0))
+    if (num_cards < 3 && !yesno(Options.language == lang_t::KO ? "카드가 3장보다 적습니다. 그래도 3장 뽑기를 사용하시겠습니까?" : "There's fewer than three cards, still triple draw?", false, 0))
     {
         canned_msg(MSG_OK);
         return spret::abort;
@@ -927,7 +924,7 @@ spret deck_triple_draw(bool fail)
     if (num_cards == 1)
     {
         // Only one card to draw, so just draw it.
-        mpr("There's only one card left!");
+        mpr(Options.language == lang_t::KO ? "카드가 1장밖에 남지 않았습니다!" : "There's only one card left!");
         _evoke_deck(choice);
         return spret::success;
     }
@@ -956,7 +953,7 @@ bool draw_three()
     {
         if (need_prompt_redraw)
         {
-            mpr("You draw... (choose one card, ? for their descriptions)");
+            mpr(Options.language == lang_t::KO ? "카드를 뽑습니다... (카드 1장 선택, ?: 설명)" : "You draw... (choose one card, ? for their descriptions)");
             for (int i = 0; i < draws.size(); ++i)
             {
                 msg::streams(MSGCH_PROMPT)
@@ -997,7 +994,7 @@ void draw_from_deck_of_punishment(bool deal)
 {
     card_type card = _random_card(DECK_OF_PUNISHMENT);
 
-    mprf("You %s a card...", deal ? "deal" : "draw");
+    mpr(Options.language == lang_t::KO ? (deal ? "카드를 냅니다..." : "카드를 뽑습니다...") : make_stringf("You %s a card...", deal ? "deal" : "draw"));
     card_effect(card, deal, true);
 }
 
@@ -1055,7 +1052,7 @@ static void _velocity_card(int power)
                   }
 
                   if (did_haste)
-                      simple_monster_message(mon, " seems to speed up.");
+                      simple_monster_message(mon, Options.language == lang_t::KO ? " — 빨라진 듯합니다." : " seems to speed up.");
               }
               return affected;
           })
@@ -1123,7 +1120,7 @@ static void _damaging_card(card_type card, int power,
         {
             done_prompt = true;
             mpr(prompt);
-            mpr("You radiate a wave of entropy!");
+            mpr(Options.language == lang_t::KO ? "엔트로피의 파동을 방출합니다!" : "You radiate a wave of entropy!");
             apply_visible_monsters([](monster& mons)
             {
                 return !mons.wont_attack()
@@ -1142,7 +1139,7 @@ static void _damaging_card(card_type card, int power,
     case CARD_PAIN:
         if (power_level == 2)
         {
-            mpr("You reveal a symbol of torment!");
+            mpr(Options.language == lang_t::KO ? "고통의 문양을 드러냅니다!" : "You reveal a symbol of torment!");
             torment(&you, TORMENT_CARD_PAIN, you.pos());
         }
 
@@ -1167,7 +1164,7 @@ static void _damaging_card(card_type card, int power,
             && player_tracer(ZAP_SEARING_RAY, power/6, beam)))
     {
         if (crawl_state.seen_hups
-            || yesno("Really abort (and waste the card)?", false, 0))
+            || yesno(Options.language == lang_t::KO ? "취소하면 카드가 소모됩니다. 정말 취소하시겠습니까?" : "Really abort (and waste the card)?", false, 0))
         {
             canned_msg(MSG_OK);
             return;
@@ -1194,7 +1191,7 @@ static void _elixir_card(int power)
     int power_level = _get_power_level(power);
 
     you.set_duration(DUR_ELIXIR, 1 + 3 * power_level + random2(3));
-    mpr("You begin rapidly regenerating health and magic.");
+    mpr(Options.language == lang_t::KO ? "체력과 마력이 빠르게 재생되기 시작합니다." : "You begin rapidly regenerating health and magic.");
 }
 
 // Special case for *your* god, maybe?
@@ -1209,7 +1206,7 @@ static void _godly_wrath()
             return; // Stop once we find a god willing to punish the player.
     }
 
-    mpr("You somehow manage to escape divine attention...");
+    mpr(Options.language == lang_t::KO ? "어찌 된 일인지 신의 주의를 피했습니다..." : "You somehow manage to escape divine attention...");
 }
 
 static void _summon_demon_card(int power)
@@ -1246,13 +1243,13 @@ static void _summon_demon_card(int power)
                                   you.pos(), MHITYOU, MG_AUTOFOE)
                         .set_summoned(&you, 0, summ_dur(5 - power_level))))
     {
-        mpr("You see a puff of smoke.");
+        mpr(Options.language == lang_t::KO ? "작은 연기 구름이 피어오릅니다." : "You see a puff of smoke.");
     }
     else if (hostile
              && mons_class_flag(dct, M_INVIS)
              && !you.can_see_invisible())
     {
-        mpr("You sense the presence of something unfriendly.");
+        mpr(Options.language == lang_t::KO ? "적대적인 무언가의 존재가 느껴집니다." : "You sense the presence of something unfriendly.");
     }
 
     _friendly(dct2, 5 - power_level);
@@ -1292,7 +1289,7 @@ static void _summon_dancing_weapon(int power)
 
     if (!mon)
     {
-        mpr("You see a puff of smoke.");
+        mpr(Options.language == lang_t::KO ? "작은 연기 구름이 피어오릅니다." : "You see a puff of smoke.");
         return;
     }
 
@@ -1444,7 +1441,7 @@ static void _cloud_card(int power)
 
     if (something_happened)
     {
-        mpr("Clouds appear around your foes!");
+        mpr(Options.language == lang_t::KO ? "적들 주위에 구름이 나타납니다!" : "Clouds appear around your foes!");
 
         // Make the player not be immediately affected by clouds that may have
         // been created beneath them until they act again.
@@ -1517,11 +1514,14 @@ static void _storm_card(int power)
         vector<string> thunder_adjectives = { "mighty",
                                               "violent",
                                               "cataclysmic" };
-        mprf("You %s %s%s peal%s of thunder!",
-              heard ? "hear" : "feel",
-              targets.size() > 1 ? "" : "a ",
-              thunder_adjectives[power_level].c_str(),
-              targets.size() > 1 ? "s" : "");
+        if (Options.language == lang_t::KO)
+            mprf("%s 천둥소리가 %s!", targets.size() > 1 ? "연이어 울리는" : "울려 퍼지는",
+                 heard ? "들립니다" : "느껴집니다");
+        else
+            mprf("You %s %s%s peal%s of thunder!",
+                 heard ? "hear" : "feel", targets.size() > 1 ? "" : "a ",
+                 thunder_adjectives[power_level].c_str(),
+                 targets.size() > 1 ? "s" : "");
     }
 }
 
@@ -1618,7 +1618,7 @@ static void _wild_magic_card(int power)
         for (int i = 0; i < num_affected; ++i)
             mp += random2(5);
 
-        mpr("You feel a surge of magic.");
+        mpr(Options.language == lang_t::KO ? "마력이 솟구치는 느낌이 듭니다." : "You feel a surge of magic.");
         if (mp && you.magic_points < you.max_magic_points)
         {
             inc_mp(mp);
@@ -1672,7 +1672,10 @@ void card_effect(card_type which_card,
             && which_card != CARD_PAIN
             && which_card != CARD_ORB)
         {
-            mprf("You have %s %s.", participle, card_name(which_card));
+            if (Options.language == lang_t::KO)
+                mprf("카드를 사용했습니다: %s.", card_name(which_card));
+            else
+                mprf("You have %s %s.", participle, card_name(which_card));
         }
     }
 
@@ -1709,7 +1712,7 @@ void card_effect(card_type which_card,
         if (transform(roll_dice(10, 10), transformation::pig, true))
             you.transform_uncancellable = true;
         else
-            mpr("You feel a momentary urge to oink.");
+            mpr(Options.language == lang_t::KO ? "잠깐 꿀꿀거리고 싶은 충동이 듭니다." : "You feel a momentary urge to oink.");
         break;
 
 #if TAG_MAJOR_VERSION == 34
@@ -1719,7 +1722,7 @@ void card_effect(card_type which_card,
 #endif
     case NUM_CARDS:
         // The compiler will complain if any card remains unhandled.
-        mprf("You have %s a buggy card!", participle);
+        mprf("%s", Options.language == lang_t::KO ? "처리할 수 없는 카드가 나왔습니다!" : make_stringf("You have %s a buggy card!", participle).c_str());
         break;
     }
 }

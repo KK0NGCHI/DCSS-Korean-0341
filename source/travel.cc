@@ -185,8 +185,9 @@ bool deviant_route_warning::warn_continue_travel(
         return true;
 
     target = dest;
-    const string prompt = make_stringf("Have to go through %s. Continue?",
-                                       deviant.describe().c_str());
+    const string prompt = Options.language == lang_t::KO
+        ? make_stringf("%s 경로를 지나야 합니다. 계속하시겠습니까?", deviant.describe().c_str())
+        : make_stringf("Have to go through %s. Continue?", deviant.describe().c_str());
     // If the user says "Yes, shut up and take me there", we won't ask
     // again for that destination. If the user says "No", we will
     // prompt again.
@@ -851,9 +852,12 @@ void explore_pickup_event(int did_pickup, int tried_pickup)
             // XX [A] doesn't make sense for items being picked up only because
             // of an =g inscription
             const string prompt =
-                make_stringf("Could not pick up %s here; Ignore %s?",
-                             wishlist.c_str(),
-                             tried_pickup == 1 ? "it" : "them");
+                Options.language == lang_t::KO
+                 ? make_stringf("여기에서 다음 아이템을 주울 수 없습니다: %s. 무시하시겠습니까?",
+                                wishlist.c_str())
+                 : make_stringf("Could not pick up %s here; Ignore %s?",
+                                wishlist.c_str(),
+                                tried_pickup == 1 ? "it" : "them");
 
             // Make Escape => 'n' and stop run.
             explicit_keymap map;
@@ -947,8 +951,11 @@ static void _find_travel_pos(const coord_def& youpos, int *move_x, int *move_y)
         *move_y = 0;
         if (!barrier.second.empty())
         {
-            mpr("Could not " + you.running.runmode_name() + ", "
-                + barrier.second + ".");
+            if (Options.language == lang_t::KO)
+                mpr("자동 이동을 계속할 수 없습니다: " + barrier.second + ".");
+            else
+                mpr("Could not " + you.running.runmode_name() + ", "
+                    + barrier.second + ".");
         }
         return;
     }
@@ -2329,7 +2336,7 @@ public:
                                               ", ", ", ");
             shortcuts += ") ";
         }
-        set_title(make_stringf("Where to? %s", shortcuts.c_str()));
+        set_title(make_stringf(Options.language == lang_t::KO ? "어디로 이동하시겠습니까? %s" : "Where to? %s", shortcuts.c_str()));
     }
 
     bool seen_altars() const
@@ -3460,7 +3467,7 @@ void start_explore(bool grab_items, bool skip_autorest)
     if (!i_feel_safe(true, true))
         return;
 
-    if (should_fear_zot() && !yesno("Really explore while Zot is near?", false, 'n'))
+    if (should_fear_zot() && !yesno(Options.language == lang_t::KO ? "조트가 가까이 있습니다. 그래도 자동 탐색을 계속하시겠습니까?" : "Really explore while Zot is near?", false, 'n'))
     {
         canned_msg(MSG_OK);
         return;
@@ -3552,8 +3559,9 @@ string level_id::describe(bool long_name, bool with_number) const
             // decapitalise 'the'
             if (starts_with(result, "The"))
                 result[0] = 't';
-            result = make_stringf("Level %d of %s",
-                      depth, result.c_str());
+            result = Options.language == lang_t::KO
+                ? make_stringf("%s %d층", result.c_str(), depth)
+                : make_stringf("Level %d of %s", depth, result.c_str());
         }
         else if (depth)
             result = make_stringf("%s:%d", result.c_str(), depth);

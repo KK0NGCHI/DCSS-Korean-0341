@@ -1071,8 +1071,12 @@ void shoals_release_tide(monster* mons)
     {
         if (player_can_hear(mons->pos()))
         {
-            mprf(MSGCH_SOUND, "The tide is released from %s call.",
-                 apostrophise(mons->name(DESC_YOUR, true)).c_str());
+            if (Options.language == lang_t::KO)
+                mprf(MSGCH_SOUND, "몬스터의 부름에 밀려났던 조수가 풀려납니다: %s.",
+                     mons->name(DESC_THE).c_str());
+            else
+                mprf(MSGCH_SOUND, "The tide is released from %s call.",
+                     apostrophise(mons->name(DESC_YOUR, true)).c_str());
             if (you.see_cell(mons->pos()))
                 flash_view_delay(UA_MONSTER, ETC_WATER, 150);
         }
@@ -1107,7 +1111,7 @@ void wizard_mod_tide()
 {
     if (!player_in_branch(BRANCH_SHOALS) || !env.heightmap)
     {
-        mprf(MSGCH_WARN, "Not in Shoals or no heightmap; tide not available.");
+        mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "해안 지형이 아니거나 높이 지도가 없어 조수를 조정할 수 없습니다." : "Not in Shoals or no heightmap; tide not available.");
         return;
     }
 
@@ -1115,8 +1119,9 @@ void wizard_mod_tide()
     while (true)
     {
         mprf(MSGCH_PROMPT,
-             "Tide inertia: %d. New value "
-             "(smaller = faster tide) or use +/- to change tide: ",
+             (Options.language == lang_t::KO
+              ? "조수 관성: %d. 새 값(작을수록 조수가 빨라짐) 또는 +/-로 조수 변경: "
+              : "Tide inertia: %d. New value (smaller = faster tide) or use +/- to change tide: "),
              TIDE_MULTIPLIER);
         mpr("");
         const int res =

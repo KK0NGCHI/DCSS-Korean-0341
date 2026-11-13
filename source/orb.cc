@@ -90,9 +90,9 @@ void start_orb_run(game_chapter chapter, const char* message)
 {
     if (you.chapter != CHAPTER_ANGERED_PANDEMONIUM)
     {
-        mprf(MSGCH_WARN, "The lords of Pandemonium are not amused. Beware!");
+        mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "판데모니엄의 군주들이 분노합니다. 조심하십시오!" : "The lords of Pandemonium are not amused. Beware!");
         if (have_passive(passive_t::slow_orb_run))
-            simple_god_message(" tells them not to hurry.");
+            simple_god_message(Options.language == lang_t::KO ? " — 그들에게 서두르지 말라고 전합니다." : " tells them not to hurry.");
     }
 
     mprf(MSGCH_ORB, "%s", message);

@@ -1541,7 +1541,7 @@ void shop()
     // Quick out, if no inventory
     if (shop.stock.empty())
     {
-        mprf("%s appears to be closed.", shopname.c_str());
+        mprf(Options.language == lang_t::KO ? "문을 닫은 상점: %s." : "%s appears to be closed.", shopname.c_str());
         destroy_shop_at(you.pos());
         return;
     }
@@ -2022,9 +2022,10 @@ bool ShoppingList::cull_identical_items(const item_def& item, int cost)
             thing[REPLACE_PROMPTED_KEY] = (bool) true;
 
             string prompt =
-                make_stringf("Shopping list: replace %dgp %s with cheaper "
-                             "one? (Y/n)", list_cost,
-                             describe_thing(thing).c_str());
+                make_stringf(Options.language == lang_t::KO
+                    ? "쇼핑 목록: %d골드로 등록된 %s 항목을 더 저렴한 것으로 바꾸시겠습니까? (Y/n)"
+                    : "Shopping list: replace %dgp %s with cheaper one? (Y/n)",
+                    list_cost, describe_thing(thing).c_str());
 
             if (yesno(prompt.c_str(), true, 'y', false))
             {
@@ -2042,8 +2043,10 @@ bool ShoppingList::cull_identical_items(const item_def& item, int cost)
                 continue;
             thing[REMOVE_PROMPTED_KEY] = (bool) true;
 
-            string prompt = make_stringf("Shopping list: remove %s? (Y/n)",
-                                         describe_thing(thing, DESC_A).c_str());
+            string prompt = make_stringf(Options.language == lang_t::KO
+                    ? "쇼핑 목록에서 %s 항목을 삭제하시겠습니까? (Y/n)"
+                    : "Shopping list: remove %s? (Y/n)",
+                    describe_thing(thing, DESC_A).c_str());
 
             if (yesno(prompt.c_str(), true, 'y', false))
             {
@@ -2393,10 +2396,13 @@ formatted_string ShoppingListMenu::calc_title()
     const int total_cost = you.props[SHOPPING_LIST_COST_KEY];
 
     fs.textcolour(title->colour);
-    fs.cprintf("Shopping list: %d %s%s, total cost %d gold pieces",
-                title->quantity, title->text.c_str(),
-                title->quantity > 1 ? "s" : "",
-                total_cost);
+    if (Options.language == lang_t::KO)
+        fs.cprintf("쇼핑 목록: %s %d개, 총 %d골드",
+                   title->text.c_str(), title->quantity, total_cost);
+    else
+        fs.cprintf("Shopping list: %d %s%s, total cost %d gold pieces",
+                   title->quantity, title->text.c_str(),
+                   title->quantity > 1 ? "s" : "", total_cost);
 
     return fs;
 }
@@ -2518,9 +2524,10 @@ void ShoppingList::display(bool view_only)
             if (cost > you.gold)
             {
                 string prompt =
-                   make_stringf("Travel to: %s\nYou cannot afford this item; travel there "
-                                "anyway? (y/N)",
-                                describe_thing(*thing, DESC_A).c_str());
+                   make_stringf(Options.language == lang_t::KO
+                    ? "목적지: %s\n이 아이템을 살 골드가 부족합니다. 그래도 이동하시겠습니까? (y/N)"
+                    : "Travel to: %s\nYou cannot afford this item; travel there anyway? (y/N)",
+                    describe_thing(*thing, DESC_A).c_str());
                 clrscr();
                 if (!yesno(prompt.c_str(), true, 'n'))
                     return true;

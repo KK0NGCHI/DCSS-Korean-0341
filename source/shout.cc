@@ -470,21 +470,21 @@ static void _set_allies_withdraw(const coord_def &target)
 /// Prompt the player to issue orders. Returns the key pressed.
 static int _issue_orders_prompt()
 {
-    mprf(MSGCH_PROMPT, "What are your orders?");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "어떤 명령을 내리시겠습니까?" : "What are your orders?");
     if (!you.cannot_speak())
     {
         string cap_shout = you.shout_verb(false);
         cap_shout[0] = toupper_safe(cap_shout[0]);
-        mprf(" t - %s!", cap_shout.c_str());
+        mprf(Options.language == lang_t::KO ? " t - 외치기 (%s)!" : " t - %s!", cap_shout.c_str());
     }
 
     if (!you.berserk() && !you.confused())
     {
-        mpr("Orders for allies: a - Attack new target.");
-        mpr("                   r - Retreat!             s - Stop attacking.");
-        mpr("                   g - Guard the area.      f - Follow me.");
+        mpr(Options.language == lang_t::KO ? "아군 명령: a - 새 대상 공격." : "Orders for allies: a - Attack new target.");
+        mpr(Options.language == lang_t::KO ? "                   r - 후퇴!                s - 공격 중지." : "                   r - Retreat!             s - Stop attacking.");
+        mpr(Options.language == lang_t::KO ? "                   g - 위치 방어.           f - 따라오기." : "                   g - Guard the area.      f - Follow me.");
     }
-    mpr(" Anything else - Cancel.");
+    mpr(Options.language == lang_t::KO ? " 그 외 키 - 취소." : " Anything else - Cancel.");
 
     flush_prev_message(); // buffer doesn't get flushed otherwise
 
@@ -530,14 +530,14 @@ static bool _issue_order(int keyn, int &mons_targd)
             {
                 // Don't reset patrol points for 'Stop fighting!'
                 _set_allies_patrol_point(true);
-                mpr("Follow me!");
+                mpr(Options.language == lang_t::KO ? "따라오십시오!" : "Follow me!");
             }
             else
                 mpr("Stop fighting!");
             break;
 
         case 'g':
-            mpr("Guard this area!");
+            mpr(Options.language == lang_t::KO ? "이 지역을 지키십시오!" : "Guard this area!");
             mons_targd = MHITNOT;
             _set_allies_patrol_point();
             break;
@@ -573,9 +573,12 @@ static bool _issue_order(int keyn, int &mons_targd)
 
             if (!_allies_can_see(*m))
             {
-                mprf("%s is invisible, and you have no allies that can see %s.",
-                     m->name(DESC_THE).c_str(),
-                     m->pronoun(PRONOUN_OBJECTIVE).c_str());
+                if (Options.language == lang_t::KO)
+                    mprf("투명한 대상을 볼 수 있는 아군이 없습니다: %s.", m->name(DESC_THE).c_str());
+                else
+                    mprf("%s is invisible, and you have no allies that can see %s.",
+                         m->name(DESC_THE).c_str(),
+                         m->pronoun(PRONOUN_OBJECTIVE).c_str());
                 return false;
             }
 
@@ -601,7 +604,7 @@ static bool _issue_order(int keyn, int &mons_targd)
 
             if (targ.isValid)
             {
-                mpr("Fall back!");
+                mpr(Options.language == lang_t::KO ? "후퇴하십시오!" : "Fall back!");
                 mons_targd = MHITNOT;
             }
 
@@ -645,10 +648,13 @@ static void _check_unseen_target(int mindex)
     const string allies = _allies_who_cant_see_invis();
     if (allies.empty())
         return;
-    mprf("%s is invisible, and %s can't see %s.",
-         target.name(DESC_THE).c_str(),
-         allies.c_str(),
-         target.pronoun(PRONOUN_OBJECTIVE).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("투명한 대상: %s. 이를 볼 수 없는 아군: %s.",
+             target.name(DESC_THE).c_str(), allies.c_str());
+    else
+        mprf("%s is invisible, and %s can't see %s.",
+             target.name(DESC_THE).c_str(), allies.c_str(),
+             target.pronoun(PRONOUN_OBJECTIVE).c_str());
 }
 
 /**
@@ -663,7 +669,7 @@ void issue_orders()
 
     if (you.cannot_speak() && you.berserk())
     {
-        mpr("You're too berserk to give orders, and you can't shout!");
+        mpr(Options.language == lang_t::KO ? "광폭화 상태라 명령도 고함도 할 수 없습니다!" : "You're too berserk to give orders, and you can't shout!");
         return;
     }
 
@@ -686,7 +692,7 @@ void issue_orders()
 
     if (mons_targd != MHITNOT && mons_targd != MHITYOU)
     {
-        mpr("Attack!");
+        mpr(Options.language == lang_t::KO ? "공격하십시오!" : "Attack!");
         _check_unseen_target(mons_targd);
     }
 }
@@ -709,39 +715,48 @@ void yell(const actor* target)
         {
             if (silenced(you.pos()))
             {
-                mprf("You feel %s rip itself from your throat, "
-                     "but you make no sound!",
-                     article_a(shout_verb).c_str());
+                if (Options.language == lang_t::KO)
+                    mpr("목구멍에서 외침이 터져 나오려 하지만 아무 소리도 나지 않습니다!");
+                else
+                    mprf("You feel %s rip itself from your throat, but you make no sound!",
+                         article_a(shout_verb).c_str());
             }
             else
             {
-                mprf("You feel a strong urge to %s, but "
-                     "you are unable to make a sound!",
-                     shout_verb.c_str());
+                if (Options.language == lang_t::KO)
+                    mpr("고함을 지르고 싶지만 소리를 낼 수 없습니다!");
+                else
+                    mprf("You feel a strong urge to %s, but you are unable to make a sound!",
+                         shout_verb.c_str());
             }
         }
         else
-            mpr("You are unable to make a sound!");
+            mpr(Options.language == lang_t::KO ? "아무 소리도 낼 수 없습니다!" : "You are unable to make a sound!");
 
         return;
     }
 
     if (target)
     {
-        mprf("You %s%s at %s!",
-             shout_verb.c_str(),
-             you.duration[DUR_RECITE] ? " your recitation" : "",
-             target && target->is_player() ? "yourself"
-                                           : target->name(DESC_THE).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("대상을 향해 소리칩니다: %s!",
+                 target->is_player() ? "자기 자신" : target->name(DESC_THE).c_str());
+        else
+            mprf("You %s%s at %s!",
+                 shout_verb.c_str(), you.duration[DUR_RECITE] ? " your recitation" : "",
+                 target && target->is_player() ? "yourself" : target->name(DESC_THE).c_str());
     }
     else
     {
         const char *fugue_suff = you.duration[DUR_FUGUE] ?
             ", and the damned howl along" : "";
-        mprf(MSGCH_SOUND, "You %s%s%s!",
-             shout_verb.c_str(),
-             you.berserk() ? " wildly" : " for attention",
-             fugue_suff);
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_SOUND, "%s", you.berserk() ? "격렬하게 고함을 지릅니다!"
+                 : you.duration[DUR_FUGUE] ? "고함을 지르자 저주받은 자들도 함께 울부짖습니다!"
+                                           : "주의를 끌려고 고함을 지릅니다!");
+        else
+            mprf(MSGCH_SOUND, "You %s%s%s!", shout_verb.c_str(),
+                 you.berserk() ? " wildly" : " for attention", fugue_suff);
     }
 
     noisy(noise_level, you.pos());

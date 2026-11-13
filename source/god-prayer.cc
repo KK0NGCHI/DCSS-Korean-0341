@@ -61,9 +61,14 @@ static bool _prompt_ecu_worship(const vector<god_type> &gods)
                                                   god_name_list.end(), " or ");
     // This should be a proper menu, but I absolutely cannot be bothered with
     // webtiles menu code.
-    mprf(MSGCH_PROMPT, "This altar belongs to %s, but you can't tell which.\n"
-         "Press the corresponding letter to learn more about a god, "
-         "or press enter to convert or escape to cancel.", god_names.c_str());
+    if (Options.language == lang_t::KO)
+        mprf(MSGCH_PROMPT, "이 제단은 %s 중 한 신을 모시지만, 어느 신인지는 알 수 없습니다.\n"
+             "해당 글자를 누르면 신에 관한 정보를 볼 수 있습니다. "
+             "Enter를 누르면 개종하고, Esc를 누르면 취소합니다.", god_names.c_str());
+    else
+        mprf(MSGCH_PROMPT, "This altar belongs to %s, but you can't tell which.\n"
+             "Press the corresponding letter to learn more about a god, "
+             "or press enter to convert or escape to cancel.", god_names.c_str());
     while (true) {
         flush_prev_message();
         int ch = getch_ck();
@@ -96,7 +101,9 @@ static bool _pray_ecumenical_altar()
         return false;
     }
     if (!you_worship(GOD_NO_GOD)
-        && !yesno(make_stringf("Really abandon %s for an unknown god?",
+        && !yesno(make_stringf(Options.language == lang_t::KO
+                                  ? "%s 신앙을 버리고 정체를 알 수 없는 신을 섬기시겠습니까?"
+                                  : "Really abandon %s for an unknown god?",
                                god_name(you.religion).c_str()).c_str(),
                                false, 'n'))
     {
@@ -118,7 +125,7 @@ static bool _pray_ecumenical_altar()
             return true;
         }
 
-        mprf(MSGCH_GOD, "%s accepts your prayer!",
+        mprf(MSGCH_GOD, Options.language == lang_t::KO ? "기도를 받아들이는 신: %s!" : "%s accepts your prayer!",
                         god_name(altar_god).c_str());
         if (you_worship(altar_god))
             return true;
@@ -149,7 +156,7 @@ void try_god_conversion(god_type god)
 
     if (you.has_mutation(MUT_FORLORN))
     {
-        mpr("A being of your status worships no god.");
+        mpr(Options.language == lang_t::KO ? "당신과 같은 존재는 어떤 신도 섬길 수 없습니다." : "A being of your status worships no god.");
         return;
     }
 
@@ -170,7 +177,11 @@ void try_god_conversion(god_type god)
     else
     {
         // Already worshipping this god - just print a message.
-        mprf(MSGCH_GOD, "You offer a %sprayer to %s.",
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_GOD, "%s에게 %s기도를 올립니다.", god_name(god).c_str(),
+                 you.cannot_speak() ? "말없이 " : "");
+            else
+            mprf(MSGCH_GOD, "You offer a %sprayer to %s.",
              you.cannot_speak() ? "silent " : "",
              god_name(god).c_str());
     }
@@ -200,12 +211,12 @@ int zin_tithe(const item_def& item, int quant, bool converting)
         }
         taken = tithe;
         you.attribute[ATTR_DONATIONS] += tithe;
-        mprf("You pay a tithe of %d gold.", tithe);
+        mprf(Options.language == lang_t::KO ? "십일조로 금화 %d개를 바칩니다." : "You pay a tithe of %d gold.", tithe);
 
         if (item.tithe_state == TS_NO_PIETY) // seen before worshipping Zin
         {
             tithe = 0;
-            simple_god_message(" ignores your late donation.");
+            simple_god_message(Options.language == lang_t::KO ? " — 뒤늦은 기부를 무시합니다." : " ignores your late donation.");
         }
         // A single scroll can give you more than D:1-18, Lair and Orc
         // together, limit the gains. You're still required to pay from

@@ -405,22 +405,19 @@ static spell_list _get_spell_list(bool just_check = false,
     if (num_memable || num_low_levels > 0 || num_low_xl > 0)
         unavail_reason = "";
     else if (num_known == total)
-        unavail_reason = "You already know all available spells.";
+        unavail_reason = Options.language == lang_t::KO ? "배울 수 있는 주문을 이미 모두 알고 있습니다." : "You already know all available spells.";
     else if (num_restricted == total || num_restricted + num_known == total)
     {
-        unavail_reason = "You cannot currently memorise any of the available "
-                         "spells because you cannot use those schools of "
-                         "magic.";
+        unavail_reason = Options.language == lang_t::KO ? "사용할 수 없는 마법 계열에 속하므로 현재 암기할 수 있는 주문이 없습니다." : "You cannot currently memorise any of the available spells because you cannot use those schools of magic.";
     }
     else if (num_misc == total || (num_known + num_misc) == total
              || num_misc + num_known + num_restricted == total)
     {
-        unavail_reason = "You cannot memorise any of the available spells.";
+        unavail_reason = Options.language == lang_t::KO ? "현재 암기할 수 있는 주문이 없습니다." : "You cannot memorise any of the available spells.";
     }
     else
     {
-        unavail_reason = "You can't memorise any new spells for an unknown "
-                         "reason; please file a bug report.";
+        unavail_reason = Options.language == lang_t::KO ? "알 수 없는 이유로 주문을 암기할 수 없습니다. 버그를 제보해 주십시오." : "You can't memorise any new spells for an unknown reason; please file a bug report.";
     }
 
     if (!just_check && *unavail_reason)
@@ -446,10 +443,13 @@ bool library_add_spells(vector<spell_type> spells, bool quiet)
     {
         vector<string> spellnames(new_spells.size());
         transform(new_spells.begin(), new_spells.end(), spellnames.begin(), spell_title);
-        mprf("You add the spell%s %s to your library.",
-             spellnames.size() > 1 ? "s" : "",
-             comma_separated_line(spellnames.begin(),
-                                  spellnames.end()).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("주문 목록에 다음 주문을 추가합니다: %s.",
+                 comma_separated_line(spellnames.begin(), spellnames.end()).c_str());
+        else
+            mprf("You add the spell%s %s to your library.",
+                 spellnames.size() > 1 ? "s" : "",
+                 comma_separated_line(spellnames.begin(), spellnames.end()).c_str());
     }
     return !new_spells.empty();
 }
@@ -564,7 +564,9 @@ private:
         if (you.divine_exegesis)
         {
             desc << make_stringf(
-                "<lightgreen>Casting with Divine Exegesis: %d MP available</lightgreen>",
+                Options.language == lang_t::KO
+                    ? "<lightgreen>신성한 해석으로 시전: 사용 가능한 MP %d</lightgreen>"
+                    : "<lightgreen>Casting with Divine Exegesis: %d MP available</lightgreen>",
                 you.magic_points);
         }
         else
@@ -575,7 +577,7 @@ private:
         {
             desc << std::right << std::setw(5)
                  << hidden_count
-                 << (hidden_count > 1 ? " spells hidden" : " spell hidden ")
+                 << (Options.language == lang_t::KO ? "개 주문 숨김" : (hidden_count > 1 ? " spells hidden" : " spell hidden "))
                  << "   ";
         }
         else
@@ -588,7 +590,9 @@ private:
                 max_size -= 19;
             const bool search_overflow =
                             static_cast<int>(search_text.size()) > max_size;
-            desc << make_stringf("Matches: <w>%.*s%s</w>",
+            desc << make_stringf(Options.language == lang_t::KO
+                                  ? "검색 일치: <w>%.*s%s</w>"
+                                  : "Matches: <w>%.*s%s</w>",
                             search_overflow ? max_size - 2 : max_size,
                             replace_all(search_text, "<", "<<").c_str(),
                             search_overflow ? ".." : "");
@@ -596,26 +600,48 @@ private:
 
         desc << "\n";
 
-        const string act = default_action == action::memorise ? "Memorise"
-                           : default_action == action::imbue ? "Imbue" : "Cast";
+        const string act = Options.language == lang_t::KO
+                           ? (default_action == action::memorise ? "암기"
+                              : default_action == action::imbue ? "주입" : "시전")
+                           : (default_action == action::memorise ? "Memorise"
+                              : default_action == action::imbue ? "Imbue" : "Cast");
         // line 2
         desc << menu_keyhelp_cmd(CMD_MENU_RIGHT) << " ";
-        desc << ( current_action == action::cast
-                            ? "<w>Cast</w>|Describe|Hide|Show"
-                 : current_action == action::memorise
-                            ? "<w>Memorise</w>|Describe|Hide|Show"
-                 : current_action == action::imbue
-                            ? "<w>Imbue</w>|Describe|Hide|Show"
-                 : current_action == action::describe
-                            ? act + "|<w>Describe</w>|Hide|Show"
-                 : current_action == action::hide
-                            ? act + "|Describe|<w>Hide</w>|Show"
-                 : act + "|Describe|Hide|<w>Show</w>");
-        desc << "   " << menu_keyhelp_cmd(CMD_MENU_SEARCH) << " search"
-                "   [<w>?</w>] help"; // XX hardcoded for this menu
+        if (Options.language == lang_t::KO)
+        {
+            desc << ( current_action == action::cast
+                                ? "<w>시전</w>|설명|숨기기|표시"
+                     : current_action == action::memorise
+                                ? "<w>암기</w>|설명|숨기기|표시"
+                     : current_action == action::imbue
+                                ? "<w>주입</w>|설명|숨기기|표시"
+                     : current_action == action::describe
+                                ? act + "|<w>설명</w>|숨기기|표시"
+                     : current_action == action::hide
+                                ? act + "|설명|<w>숨기기</w>|표시"
+                     : act + "|설명|숨기기|<w>표시</w>");
+        }
+        else
+        {
+            desc << ( current_action == action::cast
+                                ? "<w>Cast</w>|Describe|Hide|Show"
+                     : current_action == action::memorise
+                                ? "<w>Memorise</w>|Describe|Hide|Show"
+                     : current_action == action::imbue
+                                ? "<w>Imbue</w>|Describe|Hide|Show"
+                     : current_action == action::describe
+                                ? act + "|<w>Describe</w>|Hide|Show"
+                     : current_action == action::hide
+                                ? act + "|Describe|<w>Hide</w>|Show"
+                     : act + "|Describe|Hide|<w>Show</w>");
+        }
+        desc << "   " << menu_keyhelp_cmd(CMD_MENU_SEARCH)
+             << (Options.language == lang_t::KO ? " 검색   [<w>?</w>] 도움말"
+                                                 : " search   [<w>?</w>] help"); // XX hardcoded for this menu
 
         if (search_text.size())
-            return pad_more_with(desc.str(), "[<w>Esc</w>] clear"); // esc is hardcoded for this case
+            return pad_more_with(desc.str(), Options.language == lang_t::KO
+                                     ? "[<w>Esc</w>] 검색 해제" : "[<w>Esc</w>] clear"); // esc is hardcoded for this case
         else
             return pad_more_with_esc(desc.str());
     }

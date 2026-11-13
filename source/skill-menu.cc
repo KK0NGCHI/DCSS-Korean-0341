@@ -1819,7 +1819,7 @@ void skill_menu(int flag, int exp)
     // case where we abort is if all in-principle trainable skills are maxed.
     if (flag & SKMF_EXPERIENCE && !trainable_skills(true))
     {
-        mpr("You feel omnipotent.");
+        mpr(Options.language == lang_t::KO ? "전능해진 듯한 기분이 듭니다." : "You feel omnipotent.");
         return;
     }
 

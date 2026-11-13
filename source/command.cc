@@ -709,27 +709,27 @@ static void _display_diag()
         webtiles_client;
 #endif
 
-    s += make_stringf("Display type: <w>%s</w>\n", info.type.c_str());
+    s += make_stringf(Options.language == lang_t::KO ? "표시 방식: <w>%s</w>\n" : "Display type: <w>%s</w>\n", info.type.c_str());
     if (!suppress_unix_stuff)
     {
-        s += make_stringf("Terminal type (`TERM`): <w>%s</w>\n",
+        s += make_stringf(Options.language == lang_t::KO ? "터미널 종류 (`TERM`): <w>%s</w>\n" : "Terminal type (`TERM`): <w>%s</w>\n",
                                                         info.term.c_str());
     }
-    s += make_stringf("Terminal colours: %d foreground, %d background\n\n",
+    s += make_stringf(Options.language == lang_t::KO ? "터미널 색상: 전경 %d개, 배경 %d개\n\n" : "Terminal colours: %d foreground, %d background\n\n",
         info.fg_colors, info.bg_colors);
 
     if (webtiles_client)
-        s+= "The webtiles client will display 16 colors.\n\n";
+        s+= Options.language == lang_t::KO ? "웹 타일 클라이언트는 16색으로 표시합니다.\n\n" : "The webtiles client will display 16 colors.\n\n";
 
     // TODO: should any of this be shown ever in webtiles?
     if (!suppress_unix_stuff && (info.fg_colors < 16
             || info.bg_colors < 16
             || info.term == "xterm")) // hack for putty. Maybe should set a compat flag in the lib?
     {
-        s += "Your terminal is in <red>compatibility mode</red> and may not display full colours.\n";
+        s += Options.language == lang_t::KO ? "터미널이 <red>호환 모드</red>이므로 모든 색상이 표시되지 않을 수 있습니다.\n" : "Your terminal is in <red>compatibility mode</red> and may not display full colours.\n";
         // hint for the putty users:
         if (info.term == "xterm")
-            s += "For full 16-colour-mode, try setting a better TERM value than `xterm`, e.g. `xterm-256color` (most terminals) or `putty-256color` (for PuTTY).\n";
+            s += Options.language == lang_t::KO ? "16색을 온전히 표시하려면 `TERM`을 `xterm` 대신 `xterm-256color` 또는 PuTTY에서는 `putty-256color`로 설정하십시오.\n" : "For full 16-colour-mode, try setting a better TERM value than `xterm`, e.g. `xterm-256color` (most terminals) or `putty-256color` (for PuTTY).\n";
 
         // XX is there really value in showing all of these? In 2021 in 99% of
         // scenarios, I think people shouldn't mess with anything except the
@@ -763,11 +763,11 @@ static void _display_diag()
         }
     }
     else if (!suppress_unix_stuff && bool(Options.bold_brightens_foreground))
-        s += "Option `bold_brightens_foreground`: force\n\n";
+        s += Options.language == lang_t::KO ? "옵션 `bold_brightens_foreground`: 강제 적용\n\n" : "Option `bold_brightens_foreground`: force\n\n";
 
 #ifndef USE_TILE_LOCAL
     // no need to show this twice on local tiles
-    s += "Foreground palette:\n";
+    s += Options.language == lang_t::KO ? "전경 색상 팔레트:\n" : "Foreground palette:\n";
 
     // XX should black on black -> blue be explained?
     s += _palette_with_bg(BLACK);
@@ -896,8 +896,8 @@ static void _add_formatted_keyhelp(column_composer &cols)
             0,
             "<h>Rest:\n");
 
-    _add_command(cols, 0, CMD_WAIT, "wait a turn (also <w>s</w>, <w>Del</w>)", 2);
-    _add_command(cols, 0, CMD_REST, "rest and long wait; stops when", 2);
+    _add_command(cols, 0, CMD_WAIT, (Options.language == lang_t::KO ? "한 턴 대기 (<w>s</w>, <w>Del</w>도 가능)" : "wait a turn (also <w>s</w>, <w>Del</w>)"), 2);
+    _add_command(cols, 0, CMD_REST, (Options.language == lang_t::KO ? "휴식·장기 대기, 다음 조건에서 중단" : "rest and long wait; stops when"), 2);
     cols.add_formatted(
             0,
             "    Health or Magic become full or\n"
@@ -910,10 +910,10 @@ static void _add_formatted_keyhelp(column_composer &cols)
             0,
             "<h>Extended Movement:\n");
 
-    _add_command(cols, 0, CMD_EXPLORE, "auto-explore");
-    _add_command(cols, 0, CMD_INTERLEVEL_TRAVEL, "interlevel travel");
-    _add_command(cols, 0, CMD_SEARCH_STASHES, "Find items");
-    _add_command(cols, 0, CMD_FIX_WAYPOINT, "set Waypoint");
+    _add_command(cols, 0, CMD_EXPLORE, (Options.language == lang_t::KO ? "자동 탐색" : "auto-explore"));
+    _add_command(cols, 0, CMD_INTERLEVEL_TRAVEL, (Options.language == lang_t::KO ? "층간 자동 이동" : "interlevel travel"));
+    _add_command(cols, 0, CMD_SEARCH_STASHES, (Options.language == lang_t::KO ? "아이템 찾기" : "Find items"));
+    _add_command(cols, 0, CMD_FIX_WAYPOINT, (Options.language == lang_t::KO ? "경유 지점 지정" : "set Waypoint"));
 
     cols.add_formatted(
             0,
@@ -981,37 +981,37 @@ static void _add_formatted_keyhelp(column_composer &cols)
             "<h>Other Gameplay Actions:\n");
 
     _add_insert_commands(cols, 0, 2, CMD_USE_ABILITY,
-                         "use special Ability (<w>%!</w> for help)",
+                         (Options.language == lang_t::KO ? "특수 능력 사용 (도움말 <w>%!</w>)" : "use special Ability (<w>%!</w> for help)"),
                          { CMD_USE_ABILITY });
-    _add_command(cols, 0, CMD_CAST_SPELL, "cast spell, abort without targets", 2);
-    _add_command(cols, 0, CMD_FORCE_CAST_SPELL, "cast spell, no matter what", 2);
-    _add_command(cols, 0, CMD_DISPLAY_SPELLS, "list all memorised spells", 2);
-    _add_command(cols, 0, CMD_MEMORISE_SPELL, "Memorise a spell from your library", 2);
+    _add_command(cols, 0, CMD_CAST_SPELL, (Options.language == lang_t::KO ? "주문 시전, 대상이 없으면 취소" : "cast spell, abort without targets"), 2);
+    _add_command(cols, 0, CMD_FORCE_CAST_SPELL, (Options.language == lang_t::KO ? "조건에 관계없이 주문 시전" : "cast spell, no matter what"), 2);
+    _add_command(cols, 0, CMD_DISPLAY_SPELLS, (Options.language == lang_t::KO ? "암기한 주문 목록 표시" : "list all memorised spells"), 2);
+    _add_command(cols, 0, CMD_MEMORISE_SPELL, (Options.language == lang_t::KO ? "주문 목록에서 주문 암기" : "Memorise a spell from your library"), 2);
 
     _add_insert_commands(cols, 0, 2, CMD_SHOUT,
-                         "tell allies (<w>%t</w> to shout)",
+                         (Options.language == lang_t::KO ? "아군에게 지시 (<w>%t</w>로 외치기)" : "tell allies (<w>%t</w> to shout)"),
                          { CMD_SHOUT });
-    _add_command(cols, 0, CMD_PREV_CMD_AGAIN, "re-do previous command", 2);
-    _add_command(cols, 0, CMD_REPEAT_CMD, "repeat next command # of times", 2);
+    _add_command(cols, 0, CMD_PREV_CMD_AGAIN, (Options.language == lang_t::KO ? "이전 명령 다시 실행" : "re-do previous command"), 2);
+    _add_command(cols, 0, CMD_REPEAT_CMD, (Options.language == lang_t::KO ? "다음 명령을 지정 횟수 반복" : "repeat next command # of times"), 2);
 
     cols.add_formatted(
             0,
             "<h>Non-Gameplay Commands / Info\n");
 
-    _add_command(cols, 0, CMD_GAME_MENU, "game menu", 2);
-    _add_command(cols, 0, CMD_REPLAY_MESSAGES, "show Previous messages");
-    _add_command(cols, 0, CMD_REDRAW_SCREEN, "Redraw screen");
-    _add_command(cols, 0, CMD_CLEAR_MAP, "Clear main and level maps");
-    _add_command(cols, 0, CMD_MACRO_ADD, "quick add macro");
-    _add_command(cols, 0, CMD_MACRO_MENU, "edit macros");
-    _add_command(cols, 0, CMD_ANNOTATE_LEVEL, "annotate the dungeon level", 2);
-    _add_command(cols, 0, CMD_CHARACTER_DUMP, "dump character to file", 2);
+    _add_command(cols, 0, CMD_GAME_MENU, (Options.language == lang_t::KO ? "게임 메뉴" : "game menu"), 2);
+    _add_command(cols, 0, CMD_REPLAY_MESSAGES, (Options.language == lang_t::KO ? "이전 메시지 보기" : "show Previous messages"));
+    _add_command(cols, 0, CMD_REDRAW_SCREEN, (Options.language == lang_t::KO ? "화면 다시 그리기" : "Redraw screen"));
+    _add_command(cols, 0, CMD_CLEAR_MAP, (Options.language == lang_t::KO ? "주 화면과 층 지도 지우기" : "Clear main and level maps"));
+    _add_command(cols, 0, CMD_MACRO_ADD, (Options.language == lang_t::KO ? "매크로 빠르게 추가" : "quick add macro"));
+    _add_command(cols, 0, CMD_MACRO_MENU, (Options.language == lang_t::KO ? "매크로 편집" : "edit macros"));
+    _add_command(cols, 0, CMD_ANNOTATE_LEVEL, (Options.language == lang_t::KO ? "현재 던전 층에 주석 달기" : "annotate the dungeon level"), 2);
+    _add_command(cols, 0, CMD_CHARACTER_DUMP, (Options.language == lang_t::KO ? "캐릭터 정보를 파일로 저장" : "dump character to file"), 2);
     _add_insert_commands(cols, 0, 2, CMD_MAKE_NOTE,
-                         "add note (use <w>%:</w> to read notes)",
+                         (Options.language == lang_t::KO ? "메모 추가 (<w>%:</w>로 메모 읽기)" : "add note (use <w>%:</w> to read notes)"),
                          { CMD_DISPLAY_COMMANDS });
-    _add_command(cols, 0, CMD_ADJUST_INVENTORY, "reassign inventory/spell letters", 2);
+    _add_command(cols, 0, CMD_ADJUST_INVENTORY, (Options.language == lang_t::KO ? "소지품·주문 단축키 글자 변경" : "reassign inventory/spell letters"), 2);
 #ifdef USE_TILE_LOCAL
-    _add_command(cols, 0, CMD_EDIT_PLAYER_TILE, "edit player doll", 2);
+    _add_command(cols, 0, CMD_EDIT_PLAYER_TILE, (Options.language == lang_t::KO ? "플레이어 타일 모양 편집" : "edit player doll"), 2);
 #else
 #ifdef USE_TILE_WEB
     if (tiles.is_controlled_from_web())
@@ -1021,16 +1021,16 @@ static void _add_formatted_keyhelp(column_composer &cols)
     }
     else
 #endif
-    _add_command(cols, 0, CMD_READ_MESSAGES, "read messages (online play only)", 2);
+    _add_command(cols, 0, CMD_READ_MESSAGES, (Options.language == lang_t::KO ? "메시지 읽기 (온라인 전용)" : "read messages (online play only)"), 2);
 #endif
 
     cols.add_formatted(
             1,
             "<h>Game Saving and Quitting:\n");
 
-    _add_command(cols, 1, CMD_SAVE_GAME, "Save game and exit");
-    _add_command(cols, 1, CMD_SAVE_GAME_NOW, "Save and exit without query");
-    _add_command(cols, 1, CMD_QUIT, "Abandon the current character");
+    _add_command(cols, 1, CMD_SAVE_GAME, (Options.language == lang_t::KO ? "게임 저장 후 종료" : "Save game and exit"));
+    _add_command(cols, 1, CMD_SAVE_GAME_NOW, (Options.language == lang_t::KO ? "확인 없이 저장 후 종료" : "Save and exit without query"));
+    _add_command(cols, 1, CMD_QUIT, (Options.language == lang_t::KO ? "현재 캐릭터 포기" : "Abandon the current character"));
     cols.add_formatted(1, "         and quit the game\n",
                        false);
 
@@ -1038,18 +1038,18 @@ static void _add_formatted_keyhelp(column_composer &cols)
             1,
             "<h>Player Character Information:\n");
 
-    _add_command(cols, 1, CMD_DISPLAY_CHARACTER_STATUS, "display character status", 2);
-    _add_command(cols, 1, CMD_DISPLAY_SKILLS, "show skill screen", 2);
-    _add_command(cols, 1, CMD_RESISTS_SCREEN, "character overview", 2);
-    _add_command(cols, 1, CMD_DISPLAY_RELIGION, "show religion screen", 2);
-    _add_command(cols, 1, CMD_DISPLAY_MUTATIONS, "show Abilities/mutations", 2);
-    _add_command(cols, 1, CMD_DISPLAY_KNOWN_OBJECTS, "show item knowledge", 2);
-    _add_command(cols, 1, CMD_MEMORISE_SPELL, "show your spell library", 2);
-    _add_command(cols, 1, CMD_DISPLAY_RUNES, "show runes collected", 2);
-    _add_command(cols, 1, CMD_LIST_ARMOUR, "display worn armour", 2);
-    _add_command(cols, 1, CMD_LIST_JEWELLERY, "display worn jewellery", 2);
-    _add_command(cols, 1, CMD_LIST_GOLD, "display gold in possession", 2);
-    _add_command(cols, 1, CMD_EXPERIENCE_CHECK, "display experience info", 2);
+    _add_command(cols, 1, CMD_DISPLAY_CHARACTER_STATUS, (Options.language == lang_t::KO ? "캐릭터 상태 표시" : "display character status"), 2);
+    _add_command(cols, 1, CMD_DISPLAY_SKILLS, (Options.language == lang_t::KO ? "기술 화면 표시" : "show skill screen"), 2);
+    _add_command(cols, 1, CMD_RESISTS_SCREEN, (Options.language == lang_t::KO ? "캐릭터 개요" : "character overview"), 2);
+    _add_command(cols, 1, CMD_DISPLAY_RELIGION, (Options.language == lang_t::KO ? "신앙 화면 표시" : "show religion screen"), 2);
+    _add_command(cols, 1, CMD_DISPLAY_MUTATIONS, (Options.language == lang_t::KO ? "능력·돌연변이 표시" : "show Abilities/mutations"), 2);
+    _add_command(cols, 1, CMD_DISPLAY_KNOWN_OBJECTS, (Options.language == lang_t::KO ? "아이템 식별 정보 표시" : "show item knowledge"), 2);
+    _add_command(cols, 1, CMD_MEMORISE_SPELL, (Options.language == lang_t::KO ? "주문 목록 표시" : "show your spell library"), 2);
+    _add_command(cols, 1, CMD_DISPLAY_RUNES, (Options.language == lang_t::KO ? "획득한 룬 표시" : "show runes collected"), 2);
+    _add_command(cols, 1, CMD_LIST_ARMOUR, (Options.language == lang_t::KO ? "착용 중인 방어구 표시" : "display worn armour"), 2);
+    _add_command(cols, 1, CMD_LIST_JEWELLERY, (Options.language == lang_t::KO ? "착용 중인 장신구 표시" : "display worn jewellery"), 2);
+    _add_command(cols, 1, CMD_LIST_GOLD, (Options.language == lang_t::KO ? "보유 골드 표시" : "display gold in possession"), 2);
+    _add_command(cols, 1, CMD_EXPERIENCE_CHECK, (Options.language == lang_t::KO ? "경험치 정보 표시" : "display experience info"), 2);
 
     cols.add_formatted(
             1,
@@ -1060,22 +1060,22 @@ static void _add_formatted_keyhelp(column_composer &cols)
     _add_insert_commands(cols, 1, "<w>%</w>/<w>%</w>    : use staircase",
                          { CMD_GO_UPSTAIRS, CMD_GO_DOWNSTAIRS });
 
-    _add_command(cols, 1, CMD_INSPECT_FLOOR, "examine occupied tile and");
+    _add_command(cols, 1, CMD_INSPECT_FLOOR, (Options.language == lang_t::KO ? "현재 위치의 바닥 살펴보기 및" : "examine occupied tile and"));
     cols.add_formatted(1, "         pickup part of a single stack\n",
                        false);
 
-    _add_command(cols, 1, CMD_LOOK_AROUND, "eXamine surroundings/targets");
+    _add_command(cols, 1, CMD_LOOK_AROUND, (Options.language == lang_t::KO ? "주변·대상 살펴보기" : "eXamine surroundings/targets"));
     _add_insert_commands(cols, 1, 7, CMD_DISPLAY_MAP,
-                         "eXamine level map (<w>%?</w> for help)",
+                         (Options.language == lang_t::KO ? "현재 층 지도 살펴보기 (도움말 <w>%?</w>)" : "eXamine level map (<w>%?</w> for help)"),
                          { CMD_DISPLAY_MAP });
-    _add_command(cols, 1, CMD_FULL_VIEW, "list monsters, items, features");
+    _add_command(cols, 1, CMD_FULL_VIEW, (Options.language == lang_t::KO ? "몬스터·아이템·지형 목록 표시" : "list monsters, items, features"));
     cols.add_formatted(1, "         in view\n",
                        false);
-    _add_command(cols, 1, CMD_SHOW_TERRAIN, "toggle view layers");
-    _add_command(cols, 1, CMD_DISPLAY_OVERMAP, "show dungeon Overview");
-    _add_command(cols, 1, CMD_TOGGLE_AUTOPICKUP, "toggle auto-pickup");
+    _add_command(cols, 1, CMD_SHOW_TERRAIN, (Options.language == lang_t::KO ? "표시 계층 전환" : "toggle view layers"));
+    _add_command(cols, 1, CMD_DISPLAY_OVERMAP, (Options.language == lang_t::KO ? "던전 개요 표시" : "show dungeon Overview"));
+    _add_command(cols, 1, CMD_TOGGLE_AUTOPICKUP, (Options.language == lang_t::KO ? "자동 줍기 켜기·끄기" : "toggle auto-pickup"));
 #ifdef USE_SOUND
-    _add_command(cols, 1, CMD_TOGGLE_SOUND, "mute/unmute sound effects");
+    _add_command(cols, 1, CMD_TOGGLE_SOUND, (Options.language == lang_t::KO ? "효과음 음소거 켜기·끄기" : "mute/unmute sound effects"));
 #endif
 #ifdef USE_TILE_LOCAL
     _add_insert_commands(cols, 1, "<w>%</w>/<w>%</w> : zoom out/in",
@@ -1086,17 +1086,17 @@ static void _add_formatted_keyhelp(column_composer &cols)
             1,
             "<h>Inventory management:\n");
 
-    _add_command(cols, 1, CMD_DISPLAY_INVENTORY, "show Inventory list", 2);
-    _add_command(cols, 1, CMD_PICKUP, "pick up items (also <w>g</w>)", 2);
+    _add_command(cols, 1, CMD_DISPLAY_INVENTORY, (Options.language == lang_t::KO ? "소지품 목록 표시" : "show Inventory list"), 2);
+    _add_command(cols, 1, CMD_PICKUP, (Options.language == lang_t::KO ? "아이템 줍기 (<w>g</w>도 가능)" : "pick up items (also <w>g</w>)"), 2);
     cols.add_formatted(
             1,
             "    (press twice for pick up menu)\n",
             false);
 
-    _add_command(cols, 1, CMD_DROP, "Drop an item", 2);
+    _add_command(cols, 1, CMD_DROP, (Options.language == lang_t::KO ? "아이템 버리기" : "Drop an item"), 2);
     _add_insert_commands(cols, 1, "<w>%#</w>: Drop exact number of items",
                          { CMD_DROP });
-    _add_command(cols, 1, CMD_DROP_LAST, "Drop the last item(s) you picked up", 2);
+    _add_command(cols, 1, CMD_DROP_LAST, (Options.language == lang_t::KO ? "마지막으로 주운 아이템 버리기" : "Drop the last item(s) you picked up"), 2);
 
     cols.add_formatted(
             1,
@@ -1181,8 +1181,8 @@ static void _add_formatted_hints_help(column_composer &cols)
             0,
             "<h>Rest:\n");
 
-    _add_command(cols, 0, CMD_WAIT, "wait a turn (also <w>s</w>, <w>Del</w>)", 2);
-    _add_command(cols, 0, CMD_REST, "rest and long wait; stops when", 2);
+    _add_command(cols, 0, CMD_WAIT, (Options.language == lang_t::KO ? "한 턴 대기 (<w>s</w>, <w>Del</w>도 가능)" : "wait a turn (also <w>s</w>, <w>Del</w>)"), 2);
+    _add_command(cols, 0, CMD_REST, (Options.language == lang_t::KO ? "휴식·장기 대기, 다음 조건에서 중단" : "rest and long wait; stops when"), 2);
     cols.add_formatted(
             0,
             "    Health or Magic become full or\n"

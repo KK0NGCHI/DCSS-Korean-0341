@@ -481,7 +481,7 @@ static string _get_hint(string key, const string& arg1 = "", const string& arg2 
 {
     string text = getHintString(key);
     if (text.empty())
-        mprf(MSGCH_ERROR, "Error, no hint for '%s'.", key.c_str());
+        mprf(MSGCH_ERROR, Options.language == lang_t::KO ? "오류: '%s'에 대한 도움말이 없습니다." : "Error, no hint for '%s'.", key.c_str());
 
     _replace_static_tags(text);
     text = untag_tiles_console(text);
@@ -572,7 +572,7 @@ void hints_death_screen()
     mprf(MSGCH_TUTORIAL, "%s", untag_tiles_console(text).c_str());
     more();
 
-    mprf(MSGCH_TUTORIAL, "See you next game!");
+    mprf(MSGCH_TUTORIAL, "%s", Options.language == lang_t::KO ? "다음 게임에서 다시 만납시다!" : "See you next game!");
 
     Hints.hints_events.init(false);
 }
@@ -2848,7 +2848,7 @@ void tutorial_msg(const char *key, bool end)
 {
     string text = getHintString(key);
     if (text.empty())
-        return mprf(MSGCH_ERROR, "Error, no message for '%s'.", key);
+        return mprf(MSGCH_ERROR, Options.language == lang_t::KO ? "오류: '%s'에 대한 메시지가 없습니다." : "Error, no message for '%s'.", key);
 
     _replace_static_tags(text);
     text = untag_tiles_console(text);

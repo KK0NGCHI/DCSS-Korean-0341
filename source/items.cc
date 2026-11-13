@@ -1388,7 +1388,7 @@ bool pickup_single_item(int link, int qty)
         return false;
     }
     if (item->base_type == OBJ_GOLD && !qty && !i_feel_safe()
-        && !yesno("Are you sure you want to pick up this pile of gold now?",
+        && !yesno(Options.language == lang_t::KO ? "지금 이 금화 더미를 줍겠습니까?" : "Are you sure you want to pick up this pile of gold now?",
                   true, 'n'))
     {
         canned_msg(MSG_OK);
@@ -1853,7 +1853,7 @@ static void _get_book(item_def& it)
     {
         if (you.has_mutation(MUT_INNATE_CASTER))
         {
-            mprf("%s burns to shimmering ash in your grasp.",
+            mprf(Options.language == lang_t::KO ? "손안에서 반짝이는 재로 타 버린 아이템: %s." : "%s burns to shimmering ash in your grasp.",
                  it.name(DESC_THE).c_str());
             return;
         }
@@ -1947,7 +1947,7 @@ static void _get_rune(const item_def& it, bool quiet)
         else if (nrunes == ZOT_ENTRY_RUNES)
         {
             // might be inappropriate in new Sprints, please change it then
-            mprf("%d runes! That's enough to enter the realm of Zot.",
+            mprf(Options.language == lang_t::KO ? "룬 %d개! 이제 조트의 영역에 들어갈 수 있습니다." : "%d runes! That's enough to enter the realm of Zot.",
                  nrunes);
         }
         else if (nrunes > 1)
@@ -2118,7 +2118,7 @@ static bool _merge_evokers(const item_def &it, int &inv_slot, bool quiet)
         {
             if (!quiet)
             {
-                mprf("%s cannot be improved any further.",
+                mprf(Options.language == lang_t::KO ? "더 이상 강화할 수 없는 아이템: %s." : "%s cannot be improved any further.",
                      you.inv[inv_slot].name(DESC_YOUR).c_str());
             }
             return true;

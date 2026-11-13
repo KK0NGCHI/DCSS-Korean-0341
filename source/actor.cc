@@ -466,9 +466,13 @@ void actor::end_constriction(mid_t whom, bool intentional, bool quiet,
         // blinking or similar
         if (!escape_verb.empty())
         {
-            mprf("%s %s free of %s!",
-                 constrictee->name(DESC_THE).c_str(), escape_verb.c_str(),
-                 lowercase(attacker_desc).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("속박에서 탈출한 대상: %s (속박자: %s)!",
+                     constrictee->name(DESC_THE).c_str(), attacker_desc.c_str());
+            else
+                mprf("%s %s free of %s!",
+                     constrictee->name(DESC_THE).c_str(), escape_verb.c_str(),
+                     lowercase(attacker_desc).c_str());
         }
         else
         {
@@ -952,11 +956,14 @@ void actor::collide(coord_def newpos, const actor *agent, int damage)
         const int damother = other->apply_ac(damage);
         if (you.can_see(*this) || you.can_see(*other))
         {
-            mprf("%s %s with %s%s",
-                 name(DESC_THE).c_str(),
-                 conj_verb("collide").c_str(),
-                 other->name(DESC_THE).c_str(),
-                 attack_strength_punctuation((dam + damother) / 2).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("서로 충돌한 대상: %s, %s%s",
+                     name(DESC_THE).c_str(), other->name(DESC_THE).c_str(),
+                     attack_strength_punctuation((dam + damother) / 2).c_str());
+            else
+                mprf("%s %s with %s%s", name(DESC_THE).c_str(),
+                     conj_verb("collide").c_str(), other->name(DESC_THE).c_str(),
+                     attack_strength_punctuation((dam + damother) / 2).c_str());
             // OK, now do the messaging for protected monsters.
             if (immune)
                 could_harm(agent, this, true, true);
@@ -990,13 +997,15 @@ void actor::collide(coord_def newpos, const actor *agent, int damage)
     {
         if (!can_pass_through_feat(env.grid(newpos)))
         {
-            mprf("%s %s into %s%s",
-                 name(DESC_THE).c_str(), conj_verb("slam").c_str(),
-                 env.map_knowledge(newpos).known()
-                 ? feature_description_at(newpos, false, DESC_THE)
-                       .c_str()
-                 : "something",
-                 attack_strength_punctuation(dam).c_str());
+            if (Options.language == lang_t::KO)
+                mprf("지형에 충돌한 대상: %s%s", name(DESC_THE).c_str(),
+                     attack_strength_punctuation(dam).c_str());
+            else
+                mprf("%s %s into %s%s", name(DESC_THE).c_str(),
+                     conj_verb("slam").c_str(),
+                     env.map_knowledge(newpos).known()
+                     ? feature_description_at(newpos, false, DESC_THE).c_str() : "something",
+                     attack_strength_punctuation(dam).c_str());
         }
         else
         {
@@ -1070,11 +1079,12 @@ bool actor::knockback(const actor &cause, int dist, int dmg, string source_name,
 
     if (you.can_see(*this))
     {
-        mprf("%s %s knocked back%s%s.",
-             name(DESC_THE).c_str(),
-             conj_verb("are").c_str(),
-             !source_name.empty() ? " by the " : "",
-             source_name.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("뒤로 밀려난 대상: %s.", name(DESC_THE).c_str());
+        else
+            mprf("%s %s knocked back%s%s.", name(DESC_THE).c_str(),
+                 conj_verb("are").c_str(),
+                 !source_name.empty() ? " by the " : "", source_name.c_str());
     }
 
     if (dmg > 0 && pos() != newpos)
@@ -1129,9 +1139,9 @@ bool actor::stumble_away_from(coord_def targ, string src)
     }
 
     if (is_player() && !src.empty())
-        mprf("%s sends you backwards.", uppercase_first(src).c_str());
+        mprf(Options.language == lang_t::KO ? "뒤로 밀려납니다: %s." : "%s sends you backwards.", uppercase_first(src).c_str());
     else if (you.can_see(*this) && !src.empty())
-        mprf("%s is knocked back by %s.", name(DESC_THE).c_str(), src.c_str());
+        mprf(Options.language == lang_t::KO ? "뒤로 밀려난 대상: %s (원인: %s)." : "%s is knocked back by %s.", name(DESC_THE).c_str(), src.c_str());
 
     move_to(newpos);
 

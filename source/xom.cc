@@ -378,7 +378,7 @@ void xom_tick()
         }
 
         if (you.gift_timeout == 1)
-            simple_god_message(" is getting BORED.");
+            simple_god_message(Options.language == lang_t::KO ? " — 점점 지루해합니다." : " is getting BORED.");
     }
 
     if (x_chance_in_y(2 + you.faith(), 6))
@@ -404,7 +404,7 @@ void xom_tick()
             if (interest > 0)
             {
                 if (interest < 25)
-                    simple_god_message(" is interested.");
+                    simple_god_message(Options.language == lang_t::KO ? " — 관심을 보입니다." : " is interested.");
                 else
                     simple_god_message(" is intrigued.");
 
@@ -554,14 +554,14 @@ static void _xom_divination(int sever)
         // still on the map when the original one has been killed. Then
         // another one is spawned, so the number is the same as before.
         // There's no way we can check this, however.
-        mpr("You detect items, but no nearby creatures.");
+        mpr(Options.language == lang_t::KO ? "아이템은 감지되지만 주변에 생물은 없습니다." : "You detect items, but no nearby creatures.");
     }
     else
     {
         if (num_items > 0)
-            mpr("You detect items and creatures!");
+            mpr(Options.language == lang_t::KO ? "아이템과 생물을 감지합니다!" : "You detect items and creatures!");
         else
-            mpr("You detect creatures, but no further items.");
+            mpr(Options.language == lang_t::KO ? "생물은 감지되지만 추가로 감지되는 아이템은 없습니다." : "You detect creatures, but no further items.");
     }
 
     take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, "divination: all"), true);
@@ -588,7 +588,7 @@ static void _try_brand_switch(const int item_index)
         return;
 
     // TODO: shared code with _do_chaos_upgrade
-    mprf("%s erupts in a glittering mayhem of colour.",
+    mprf(Options.language == lang_t::KO ? "현란한 빛깔을 뿜어내는 아이템: %s." : "%s erupts in a glittering mayhem of colour.",
                             item.name(DESC_THE, false, false, false).c_str());
     if (is_random_artefact(item))
         artefact_set_property(item, ARTP_BRAND, SPWPN_CHAOS);
@@ -621,7 +621,7 @@ static void _xom_make_item(object_class_type base, int subtype, int power)
     move_item_to_grid(&thing_created, you.pos());
 
     if (thing_created == NON_ITEM) // if it fell into lava
-        simple_god_message(" snickers.", false, GOD_XOM);
+        simple_god_message(Options.language == lang_t::KO ? " — 킥킥 웃습니다." : " snickers.", false, GOD_XOM);
 
     stop_running();
 }
@@ -797,9 +797,14 @@ static void _do_chaos_upgrade(item_def &item, const monster* mon)
     {
         const description_level_type desc = mon->friendly() ? DESC_YOUR
                                                             : DESC_THE;
-        mprf("%s %s erupts in a glittering mayhem of colour.",
-            apostrophise(mon->name(desc)).c_str(),
-            item.name(DESC_PLAIN, false, false, false).c_str());
+        if (Options.language == lang_t::KO)
+            mprf("현란한 빛깔을 뿜어내는 무기: %s (소유자: %s).",
+                 item.name(DESC_PLAIN, false, false, false).c_str(),
+                 mon->name(desc).c_str());
+        else
+            mprf("%s %s erupts in a glittering mayhem of colour.",
+                 apostrophise(mon->name(desc)).c_str(),
+                 item.name(DESC_PLAIN, false, false, false).c_str());
     }
 
     const int brand = (item.base_type == OBJ_WEAPONS) ? (int) SPWPN_CHAOS
@@ -1117,7 +1122,7 @@ static void _confuse_monster(monster* mons, int sever)
           &env.mons[ANON_FRIENDLY_MONSTER], random2(sever) * 10)))
     {
         if (was_confused)
-            simple_monster_message(*mons, " looks rather more confused.");
+            simple_monster_message(*mons, Options.language == lang_t::KO ? " — 더욱 혼란스러워 보입니다." : " looks rather more confused.");
         else
             simple_monster_message(*mons, " looks rather confused.");
     }
@@ -1400,7 +1405,7 @@ static void _xom_rearrange_pieces(int sever)
             {
                 if (!did_message)
                 {
-                    mpr("Some monsters swap places.");
+                    mpr(Options.language == lang_t::KO ? "일부 몬스터들이 서로 자리를 바꿉니다." : "Some monsters swap places.");
                     did_message = true;
                 }
                 if (one_chance_in(4))
@@ -1485,7 +1490,7 @@ static void _xom_snakes_to_sticks(int /*sever*/)
         item.quantity = 1;
 
         // Output some text since otherwise snakes will disappear silently.
-        mprf("%s reforms as %s.", mi->name(DESC_THE).c_str(),
+        mprf(Options.language == lang_t::KO ? "변형되는 몬스터: %s → %s." : "%s reforms as %s.", mi->name(DESC_THE).c_str(),
              item.name(DESC_A).c_str());
 
         // Dismiss monster silently.
@@ -1541,8 +1546,11 @@ static void _xom_lights_up_webs(int /*sever*/)
     if (webs_count > 0)
     {
         god_speaks(GOD_XOM, _get_xom_speech("lights up webs").c_str());
-        mprf("%s %s into flame!", number_in_words(webs_count).c_str(),
-              webs_count == 1 ? "web bursts" : "webs burst");
+        if (Options.language == lang_t::KO)
+            mprf("거미줄 %d개가 불타오릅니다!", webs_count);
+        else
+            mprf("%s %s into flame!", number_in_words(webs_count).c_str(),
+                 webs_count == 1 ? "web bursts" : "webs burst");
         string note = make_stringf("lit up %d webs", webs_count);
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, note), true);
     }
@@ -1611,9 +1619,14 @@ static void _xom_animate_monster_weapon(int sever)
     // Make the monster unwield its weapon.
     mon->unequip(MSLOT_WEAPON, false, true);
 
-    mprf("%s %s dances into the air!",
-         apostrophise(mon->name(DESC_THE)).c_str(),
-         env.item[wpn].name(DESC_PLAIN).c_str());
+    if (Options.language == lang_t::KO)
+        mprf("공중으로 뛰어오르는 무기: %s (소유자: %s)!",
+             env.item[wpn].name(DESC_PLAIN).c_str(),
+             mon->name(DESC_THE).c_str());
+    else
+        mprf("%s %s dances into the air!",
+             apostrophise(mon->name(DESC_THE)).c_str(),
+             env.item[wpn].name(DESC_PLAIN).c_str());
 
     destroy_item(dancing->inv[MSLOT_WEAPON]);
 
@@ -1660,9 +1673,9 @@ static void _xom_harmless_flora(int /*sever*/)
     {
         god_speaks(GOD_XOM, _get_xom_speech("flora ring").c_str());
         if (mon_type == MONS_DEMONIC_PLANT)
-            mpr("Demonic plants sprout up around you!");
+            mpr(Options.language == lang_t::KO ? "주위에 악마의 식물이 돋아납니다!" : "Demonic plants sprout up around you!");
         else
-            mpr("Toadstools sprout up around you!");
+            mpr(Options.language == lang_t::KO ? "주위에 버섯들이 돋아납니다!" : "Toadstools sprout up around you!");
 
         const string note = make_stringf("made a garden");
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, note), true);
@@ -1723,7 +1736,7 @@ static int _xom_count_and_move_group(int min_range, int max_range,
 
             if (moving_mons->blink_to(empty, true))
             {
-                simple_monster_message(*moving_mons, " is shoved forward by the hand of Xom!");
+                simple_monster_message(*moving_mons, Options.language == lang_t::KO ? " — 좀의 손에 떠밀려 앞으로 나아갑니다!" : " is shoved forward by the hand of Xom!");
                 moving_mons->drain_action_energy();
                 behaviour_event(moving_mons, ME_DISTURB, nullptr, you.pos());
                 ++moved;
@@ -1943,9 +1956,9 @@ static int _xom_shatter_walls(coord_def where, bool more_than_dig)
     if (you.see_cell(where))
     {
         if (feat_is_door(feat))
-            mpr("A door shatters!");
+            mpr(Options.language == lang_t::KO ? "문이 산산이 부서집니다!" : "A door shatters!");
         else if (feat == DNGN_GRATE)
-            mpr("An iron grate is ripped into pieces!");
+            mpr(Options.language == lang_t::KO ? "철창이 산산이 찢겨 나갑니다!" : "An iron grate is ripped into pieces!");
     }
 
     noisy(spell_effect_noise(SPELL_SHATTER), where);
@@ -1973,11 +1986,11 @@ static void _xom_fake_shatter(int /*sever*/)
     god_speaks(GOD_XOM, _get_xom_speech("fake shatter").c_str());
 
     if (silenced(you.pos()))
-        mpr("The dungeon shakes... harmlessly?");
+        mpr(Options.language == lang_t::KO ? "던전이 흔들립니다... 아무 일도 없었던 걸까요?" : "The dungeon shakes... harmlessly?");
     else
     {
         noisy(spell_effect_noise(SPELL_SHATTER), you.pos());
-        mprf(MSGCH_SOUND, "The dungeon rumbles... harmlessly?");
+        mprf(MSGCH_SOUND, "%s", Options.language == lang_t::KO ? "던전이 우르릉거립니다... 별일 없는 걸까요?" : "The dungeon rumbles... harmlessly?");
     }
 
     run_animation(ANIMATION_SHAKE_VIEWPORT, UA_PLAYER);
@@ -2006,7 +2019,7 @@ static void _xom_fake_shatter(int /*sever*/)
     }
 
     if (rocks)
-        mpr("Some rocks are dislodged from the ceiling.");
+        mpr(Options.language == lang_t::KO ? "천장에서 바위 몇 개가 떨어집니다." : "Some rocks are dislodged from the ceiling.");
 
     if (dest)
         take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, "fake shatter"), true);
@@ -2032,7 +2045,7 @@ static void _xom_give_mutations(bool good)
              num_tries > 1 ? "s" : "");
 
     take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1, note), true);
-    mpr("Your body is suffused with distortional energy.");
+    mpr(Options.language == lang_t::KO ? "몸속에 공간 왜곡의 에너지가 가득 찹니다." : "Your body is suffused with distortional energy.");
 
     bool failMsg = true;
 
@@ -2677,10 +2690,14 @@ static void _xom_enchant_monster(int sever, bool helpful)
         if (affected == cap)
             break;
 
-        mprf("%s suddenly %s %s!",
-              application->name(DESC_THE).c_str(),
-              (ench == ENCH_PETRIFYING || ench == ENCH_REGENERATION) ? "starts" : "looks",
-              ench_name.c_str());
+        if (Options.language == lang_t::KO)
+            mprf("갑자기 상태가 변한 몬스터: %s (%s)!",
+                 application->name(DESC_THE).c_str(), ench_name.c_str());
+        else
+            mprf("%s suddenly %s %s!",
+                 application->name(DESC_THE).c_str(),
+                 (ench == ENCH_PETRIFYING || ench == ENCH_REGENERATION) ? "starts" : "looks",
+                 ench_name.c_str());
 
         application->add_ench(mon_enchant(ench, &you, time));
         affected++;
@@ -2887,7 +2904,7 @@ static void _xom_mass_charm(int sever)
         if (iters == 0 || (iters > 1 && affected <= target_count / 2
             && application->get_hit_dice() + random_range(-1, 1) <= hd_target))
         {
-            simple_monster_message(*application, " is charmed.");
+            simple_monster_message(*application, Options.language == lang_t::KO ? " — 매혹됩니다." : " is charmed.");
             application->add_ench(mon_enchant(ENCH_CHARM, &you, time));
             affected++;
         }
@@ -2928,10 +2945,10 @@ static void _xom_wave_of_despair(int sever)
     }
 
     if (skeleton_count)
-        mpr("Skeletons, inanimate yet cursed, drop down from the ceiling.");
+        mpr(Options.language == lang_t::KO ? "저주받은 해골들이 천장에서 떨어집니다." : "Skeletons, inanimate yet cursed, drop down from the ceiling.");
 
     draw_ring_animation(you.pos(), you.current_vision, DARKGRAY, MAGENTA, true, 35);
-    mprf(MSGCH_DANGER, "A draining tide of despair and horror washes over you and your surroundings!");
+    mprf(MSGCH_DANGER, "%s", Options.language == lang_t::KO ? "절망과 공포의 파도가 주변을 휩쓸며 생명력을 앗아갑니다!" : "A draining tide of despair and horror washes over you and your surroundings!");
 
     const int pow = 50 + random_range(sever / 2, sever);
 
@@ -3498,7 +3515,10 @@ static void _xom_player_confusion_effect(int sever)
     if (you.can_drink())
     {
         god_speaks(GOD_XOM, _get_xom_speech("confusion").c_str());
-        mprf(MSGCH_WARN, "You are %sconfused.", conf ? "more " : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_WARN, "%s", conf ? "더욱 혼란스러워집니다." : "혼란스러워집니다.");
+        else
+            mprf(MSGCH_WARN, "You are %sconfused.", conf ? "more " : "");
     }
     else
     {
@@ -3507,8 +3527,13 @@ static void _xom_player_confusion_effect(int sever)
         const bool was_mighty = you.duration[DUR_MIGHT];
         you.increase_duration(DUR_MIGHT, dur);
         god_speaks(GOD_XOM, _get_xom_speech("drinkless confusion").c_str());
-        mprf(MSGCH_WARN, "You feel %s and %sconfused.",
-            was_mighty ? "mightier" : "very mighty", conf ? "more " : "");
+        if (Options.language == lang_t::KO)
+            mprf(MSGCH_WARN, "%s", conf
+                ? (was_mighty ? "힘이 더 솟고 혼란도 심해집니다." : "힘이 크게 솟지만 더욱 혼란스러워집니다.")
+                : (was_mighty ? "힘이 더 솟고 혼란스러워집니다." : "강한 힘이 솟지만 혼란스러워집니다."));
+        else
+            mprf(MSGCH_WARN, "You feel %s and %sconfused.",
+                 was_mighty ? "mightier" : "very mighty", conf ? "more " : "");
     }
 
     // At higher severities, Xom is less likely to confuse surrounding
@@ -3667,8 +3692,12 @@ bool move_stair(coord_def stair_pos, bool away, bool allow_under)
 
     string stair_str = feature_description_at(stair_pos, false, DESC_THE);
 
-    mprf("%s slides %s you!", stair_str.c_str(),
-         away ? "away from" : "towards");
+    if (Options.language == lang_t::KO)
+        mprf(away ? "당신에게서 멀어지는 계단: %s!" : "당신 쪽으로 미끄러져 오는 계단: %s!",
+             stair_str.c_str());
+    else
+        mprf("%s slides %s you!", stair_str.c_str(),
+             away ? "away from" : "towards");
 
     // Animate stair moving.
     const feature_def &feat_def = get_feature_def(feat);
@@ -3763,7 +3792,7 @@ static void _xom_repel_stairs(bool unclimbable)
     if (!count_moved)
     {
         if (one_chance_in(8))
-            mpr("Nothing appears to happen... Ominous!");
+            mpr(Options.language == lang_t::KO ? "아무 일도 일어나지 않습니다... 불길합니다!" : "Nothing appears to happen... Ominous!");
         else
             canned_msg(MSG_NOTHING_HAPPENS);
     }
@@ -3808,7 +3837,7 @@ static void _xom_cloud_trail(int /*sever*/)
     god_speaks(GOD_XOM, speech.c_str());
 
     if (suppressed)
-        simple_god_message(" purifies the foul vapours!");
+        simple_god_message(Options.language == lang_t::KO ? " — 유독한 증기를 정화합니다!" : " purifies the foul vapours!");
 }
 
 static void _xom_draining(int /*sever*/)
@@ -3841,7 +3870,7 @@ static void _xom_doom(int /*sever*/)
     }
 
     if (!(you.attribute[ATTR_DOOM] + power >= 100))
-        mpr("Your doom draws closer.");
+        mpr(Options.language == lang_t::KO ? "파멸이 더욱 가까워집니다." : "Your doom draws closer.");
 
     you.doom(power);
 
@@ -4207,7 +4236,7 @@ static void _xom_grants_word_of_recall(int /*sever*/)
         xom_speech = "grant voiceless word of recall";
 
     god_speaks(GOD_XOM, _get_xom_speech(xom_speech).c_str());
-    mprf(MSGCH_WARN, "%s is forced to slowly start %s a word of recall!",
+    mprf(MSGCH_WARN, Options.language == lang_t::KO ? "강제로 귀환의 주문을 천천히 시작하는 몬스터: %s (%s)!" : "%s is forced to slowly start %s a word of recall!",
                      targetable[0]->name(DESC_A, true, false).c_str(),
                      phrasing.c_str());
     mon_enchant chant_timer = mon_enchant(ENCH_WORD_OF_RECALL, targetable[0], duration);
@@ -5339,8 +5368,9 @@ void xom_new_level_noise_or_stealth()
         if (!player_under_penance(GOD_XOM) && coinflip())
         {
             god_speaks(GOD_XOM, _get_xom_speech("stealth player").c_str());
-            mpr(you.duration[DUR_STEALTH] ? "You feel more stealthy."
-                                          : "You feel stealthy.");
+            mpr(Options.language == lang_t::KO
+                ? (you.duration[DUR_STEALTH] ? "몸을 더욱 잘 숨길 수 있을 것 같습니다." : "몸을 잘 숨길 수 있을 것 같습니다.")
+                : (you.duration[DUR_STEALTH] ? "You feel more stealthy." : "You feel stealthy."));
             you.increase_duration(DUR_STEALTH, 10 + random2(80));
             take_note(Note(NOTE_XOM_EFFECT, you.raw_piety, -1,
                            "stealth player"), true);

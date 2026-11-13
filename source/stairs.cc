@@ -69,15 +69,17 @@ static string _annotation_exclusion_warning(level_id next_level_id)
         && is_connected_branch(next_level_id))
     {
         crawl_state.level_annotation_shown = true;
-        return make_stringf("Warning, next level annotated: <yellow>%s</yellow>",
-                            get_level_annotation(next_level_id).c_str());
+        return make_stringf(Options.language == lang_t::KO
+                    ? "경고: 다음 층에 지정된 메모: <yellow>%s</yellow>"
+                    : "Warning, next level annotated: <yellow>%s</yellow>",
+                    get_level_annotation(next_level_id).c_str());
     }
 
     if (is_exclude_root(you.pos())
              && feat_is_travelable_stair(env.grid(you.pos()))
              && !strstr(get_exclusion_desc(you.pos()).c_str(), "cloud"))
     {
-        return "This staircase is marked as excluded!";
+        return Options.language == lang_t::KO ? "이 계단은 제외 구역으로 지정되어 있습니다!" : "This staircase is marked as excluded!";
     }
 
     return "";
@@ -97,7 +99,7 @@ static string _target_exclusion_warning()
         return "";
 
     if (stairs_destination_is_excluded(*si))
-        return "This staircase leads to a travel-excluded area!";
+        return Options.language == lang_t::KO ? "이 계단은 자동 이동 제외 구역으로 이어집니다!" : "This staircase leads to a travel-excluded area!";
 
     return "";
 }
@@ -108,8 +110,11 @@ static string _bezotting_warning(branch_type branch)
         return "";
 
     const int turns = turns_until_zot_in(branch);
-    return make_stringf("You have just %d turns in %s to find a new floor before Zot consumes you.",
-                        turns, branches[branch].longname);
+    return Options.language == lang_t::KO
+        ? make_stringf("%s에서 새 층을 찾을 수 있는 시간이 %d턴밖에 남지 않았습니다. 그 후에는 조트에게 삼켜집니다.",
+                       branches[branch].longname, turns)
+        : make_stringf("You have just %d turns in %s to find a new floor before Zot consumes you.",
+                       turns, branches[branch].longname);
 }
 
 bool check_next_floor_warning()
@@ -134,7 +139,7 @@ bool check_next_floor_warning()
                                  || bezotting_warning != "";
 
     if (might_be_dangerous
-        && !yesno("Enter next level anyway?", true, 'n', true, false))
+        && !yesno(Options.language == lang_t::KO ? "그래도 다음 층으로 이동하시겠습니까?" : "Enter next level anyway?", true, 'n', true, false))
     {
         canned_msg(MSG_OK);
         interrupt_activity(activity_interrupt::force);
@@ -202,8 +207,11 @@ static bool _stair_moves_pre(dungeon_feature_type stair)
 
     string verb = stair_climb_verb(stair);
 
-    mprf("%s moves away as you attempt to %s it!", stair_str.c_str(),
-         verb.c_str());
+    if (Options.language == lang_t::KO)
+        mprf("멀어지는 계단: %s!", stair_str.c_str());
+    else
+        mprf("%s moves away as you attempt to %s it!", stair_str.c_str(),
+             verb.c_str());
 
     you.turn_is_over = true;
 
@@ -531,7 +539,9 @@ static void _hell_effects()
     if (have_passive(passive_t::resist_hell_effects)
         && x_chance_in_y(you.piety(), MAX_PIETY * 2))
     {
-        simple_god_message(" power protects you from the chaos of Hell!", true);
+        simple_god_message(Options.language == lang_t::KO
+            ? "의 힘이 지옥의 혼돈으로부터 당신을 보호합니다!"
+            : " power protects you from the chaos of Hell!", true);
         return;
     }
 
@@ -539,7 +549,7 @@ static void _hell_effects()
     string msg = getMiscString(loud ? "hell_effect_noisy"
                                     : "hell_effect_quiet");
     if (msg.empty())
-        msg = "Something hellishly buggy happens.";
+        msg = Options.language == lang_t::KO ? "지옥에서 설명할 수 없는 일이 벌어집니다." : "Something hellishly buggy happens.";
 
     mprf(MSGCH_HELL_EFFECT, "%s", msg.c_str());
     if (loud)

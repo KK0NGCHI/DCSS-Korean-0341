@@ -289,12 +289,16 @@ static bool _box_of_beasts()
     if (!mons)
     {
         // Failed to create monster for some reason
-        mpr("...but nothing happens.");
+        mpr(Options.language == lang_t::KO ? "...하지만 아무 일도 일어나지 않습니다." : "...but nothing happens.");
         return true;
     }
 
-    mprf("...and %s %s out!",
-         mons->name(DESC_A).c_str(), mons->airborne() ? "flies" : "leaps");
+    if (Options.language == lang_t::KO)
+        mprf(mons->airborne() ? "...그리고 날아 나오는 몬스터: %s!" : "...그리고 뛰쳐나오는 몬스터: %s!",
+             mons->name(DESC_A).c_str());
+    else
+        mprf("...and %s %s out!",
+             mons->name(DESC_A).c_str(), mons->airborne() ? "flies" : "leaps");
     did_god_conduct(DID_CHAOS, random_range(5,10));
 
     return true;
@@ -397,17 +401,17 @@ static bool _sack_of_spiders()
 
     const bool made_mons = _spill_out_spiders();
     if (made_mons)
-        mpr("...and things crawl out!");
+        mpr(Options.language == lang_t::KO ? "...그리고 무언가가 기어 나옵니다!" : "...and things crawl out!");
 
     const bool webbed = _place_webs();
     if (!made_mons && !webbed)
     {
-        mpr("...but nothing happens.");
+        mpr(Options.language == lang_t::KO ? "...하지만 아무 일도 일어나지 않습니다." : "...but nothing happens.");
         return true;
     }
 
     if (!made_mons)
-        mpr("...but only cobwebs fall out.");
+        mpr((Options.language == lang_t::KO ? "...하지만 거미줄만 떨어집니다." : "...but only cobwebs fall out."));
     return true;
 }
 
@@ -844,7 +848,7 @@ static spret _tremorstone()
         return act && _valid_tremorstone_target(*act->as_monster());
     };
     if ((!see_target
-        && !yesno("You can't see anything, release a tremorstone anyway?",
+        && !yesno(Options.language == lang_t::KO ? "보이는 대상이 없습니다. 그래도 진동석을 사용하시겠습니까?" : "You can't see anything, release a tremorstone anyway?",
                  true, 'n'))
         || stop_attack_prompt(hitfunc, "release a tremorstone", vulnerable))
     {
@@ -915,7 +919,7 @@ static spret _condenser()
     }
 
     if (!see_targets
-        && !yesno("You can't see anything. Try to condense clouds anyway?",
+        && !yesno(Options.language == lang_t::KO ? "보이는 대상이 없습니다. 그래도 구름을 응축하시겠습니까?" : "You can't see anything. Try to condense clouds anyway?",
                   true, 'n'))
     {
         canned_msg(MSG_OK);
@@ -1058,14 +1062,15 @@ string cannot_evoke_item_reason(const item_def *item, bool temp, bool ident)
         && item->sub_type == MISC_HORN_OF_GERYON
         && you.is_silenced())
     {
-        return "You can't produce a sound!";
+        return Options.language == lang_t::KO ? "소리를 낼 수 없습니다!" : "You can't produce a sound!";
     }
 
     if (temp && is_xp_evoker(*item) && evoker_charges(item->sub_type) <= 0)
     {
         // DESC_THE prints "The tin of tremorstones (inert) is presently inert."
-        return make_stringf("The %s is presently inert.",
-                                            item->name(DESC_DBNAME).c_str());
+        return Options.language == lang_t::KO
+            ? make_stringf("%s: 현재 사용할 수 없습니다.", item->name(DESC_DBNAME).c_str())
+            : make_stringf("The %s is presently inert.", item->name(DESC_DBNAME).c_str());
     }
 
     return "";

@@ -77,10 +77,11 @@ bool attribute_increase()
 
     const int statgain = you.has_mutation(MUT_DIVINE_ATTRS) ? 4 : 2;
 
-    const string stat_gain_message = make_stringf("Your experience leads to a%s "
-                                                  "increase in your attributes!",
-                                                  (statgain > 2) ?
-                                                  " dramatic" : "n");
+    const string stat_gain_message = Options.language == lang_t::KO
+        ? (statgain > 2 ? "경험을 통해 능력치가 크게 향상됩니다!"
+                        : "경험을 통해 능력치가 향상됩니다!")
+        : make_stringf("Your experience leads to a%s increase in your attributes!",
+                       (statgain > 2) ? " dramatic" : "n");
     crawl_state.stat_gain_prompt = true;
     mprf(MSGCH_INTRINSIC_GAIN, "%s", stat_gain_message.c_str());
     learned_something_new(HINT_CHOOSE_STAT);
@@ -407,8 +408,10 @@ static void _handle_stat_change(stat_type stat)
     if (val <= 0 && !was_zero)
     {
         // Notify the player and make the penalty explicit.
-        mprf(MSGCH_WARN, "You have lost all your %s. It will be difficult to act "
-                         "quickly in this state!", stat_desc(stat, SD_NAME));
+        mprf(MSGCH_WARN, Options.language == lang_t::KO
+             ? "%s 능력치가 0이 되었습니다. 이 상태에서는 빠르게 행동하기 어렵습니다!"
+             : "You have lost all your %s. It will be difficult to act quickly in this state!",
+             stat_desc(stat, SD_NAME));
 
         you.attribute[ATTR_STAT_ZERO] |= 1 << (int)stat;
     }

@@ -323,7 +323,7 @@ static const vector<pair<function<void ()>, int>> zot_effects = {
               mg.set_non_actor_summoner("a Zot trap");
               mg.extra_flags |= (MF_NO_REWARD | MF_HARD_RESET);
               if (create_monster(mg))
-                  mpr("You sense a hostile presence.");
+                  mpr(Options.language == lang_t::KO ? "적대적인 기척이 느껴집니다." : "You sense a hostile presence.");
          }, 3 },
     { [] {
              coord_def pt = find_gateway_location(&you);
@@ -337,14 +337,14 @@ static const vector<pair<function<void ()>, int>> zot_effects = {
               mg.set_non_actor_summoner("a Zot trap");
               mg.extra_flags |= (MF_NO_REWARD | MF_HARD_RESET);
               if (create_monster(mg))
-                  mpr("A huge vortex of air appears!");
+                  mpr(Options.language == lang_t::KO ? "거대한 공기의 소용돌이가 나타납니다!" : "A huge vortex of air appears!");
          }, 1 },
 };
 
 // Zot traps only target the player. This rolls their effect.
 static void _zot_trap()
 {
-    mpr("The power of Zot is invoked against you!");
+    mpr(Options.language == lang_t::KO ? "조트의 힘이 당신을 덮칩니다!" : "The power of Zot is invoked against you!");
     (*random_choose_weighted(zot_effects))();
 }
 
@@ -382,7 +382,7 @@ void trap_def::trigger(actor& triggerer)
         if (search_result == passage_type::free)
         {
             if (you_trigger)
-                mpr("You enter the passage of Golubria.");
+                mpr(Options.language == lang_t::KO ? "골루브리아의 통로로 들어갑니다." : "You enter the passage of Golubria.");
             else
                 simple_monster_message(*m, " enters the passage of Golubria.");
 
@@ -396,8 +396,12 @@ void trap_def::trigger(actor& triggerer)
         }
         else if (you_trigger)
         {
-            mprf("This passage %s!", search_result == passage_type::blocked ?
-                 "seems to be blocked by something" : "doesn't lead anywhere");
+            if (Options.language == lang_t::KO)
+                mpr(search_result == passage_type::blocked
+                    ? "통로가 무언가에 막힌 듯합니다!" : "이 통로는 아무 곳으로도 이어지지 않습니다!");
+            else
+                mprf("This passage %s!", search_result == passage_type::blocked ?
+                     "seems to be blocked by something" : "doesn't lead anywhere");
         }
         break;
     }
@@ -405,9 +409,9 @@ void trap_def::trigger(actor& triggerer)
     {
         dprf("Triggered dispersal.");
         if (you_trigger)
-            mprf("You enter %s!", name(DESC_A).c_str());
+            mprf(Options.language == lang_t::KO ? "함정으로 들어갑니다: %s!" : "You enter %s!", name(DESC_A).c_str());
         else
-            mprf("%s enters %s!", triggerer.name(DESC_THE).c_str(),
+            mprf(Options.language == lang_t::KO ? "함정에 들어가는 대상: %s, 함정: %s!" : "%s enters %s!", triggerer.name(DESC_THE).c_str(),
                     name(DESC_A).c_str());
 
         for (monster_near_iterator mi(pos, LOS_NO_TRANS); mi; ++mi)
@@ -424,13 +428,13 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_TELEPORT:
     case TRAP_TELEPORT_PERMANENT:
         if (you_trigger)
-            mprf("You enter %s!", name(DESC_A).c_str());
+            mprf(Options.language == lang_t::KO ? "함정으로 들어갑니다: %s!" : "You enter %s!", name(DESC_A).c_str());
         if (ammo_qty > 0 && !--ammo_qty)
         {
             // can't use trap_destroyed, as we might recurse into a shaft
             // or be banished by a Zot trap
             env.map_knowledge(pos).set_feature(DNGN_FLOOR);
-            mprf("%s disappears.", name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "사라지는 함정: %s." : "%s disappears.", name(DESC_THE).c_str());
             destroy();
         }
         if (!triggerer.no_tele())
@@ -440,7 +444,7 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_TYRANT:
     {
         if (you_trigger)
-            mpr("You enter a tyrant's trap.");
+            mpr(Options.language == lang_t::KO ? "폭군의 함정에 들어섭니다." : "You enter a tyrant's trap.");
         else
         {
             mprf("%s %s!", triggerer.name(DESC_THE).c_str(),
@@ -461,7 +465,7 @@ void trap_def::trigger(actor& triggerer)
                  visible_mons++;
 
         if (buffed_mons.size() == 0)
-           mpr("Your strength is siphoned away, and you feel your attacks grow feeble!");
+           mpr(Options.language == lang_t::KO ? "힘을 빼앗겨 공격이 약해집니다!" : "Your strength is siphoned away, and you feel your attacks grow feeble!");
         else
         {
             mprf("Your strength is siphoned away as %s grow%s stronger!",
@@ -475,7 +479,7 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_ARCHMAGE:
     {
         if (you_trigger)
-            mpr("You enter an archmage's trap.");
+            mpr(Options.language == lang_t::KO ? "대마법사의 함정에 들어섭니다." : "You enter an archmage's trap.");
         else
         {
             mprf("%s %s!", triggerer.name(DESC_THE).c_str(),
@@ -492,13 +496,13 @@ void trap_def::trigger(actor& triggerer)
                                                                    pos, buff_time);
 
         if (buffed_mons.size() == 0)
-           mprf(MSGCH_WARN, "Your power is siphoned away!");
+           mprf(MSGCH_WARN, "%s", Options.language == lang_t::KO ? "힘을 빼앗깁니다!" : "Your power is siphoned away!");
         else
         {
             string m_list = describe_monsters_condensed(buffed_mons);
 
             if (drain == 0)
-                mprf("The spells of %s are empowered!", m_list.c_str());
+                mprf(Options.language == lang_t::KO ? "주문이 강화된 몬스터: %s!" : "The spells of %s are empowered!", m_list.c_str());
             else
             {
                 mprf(MSGCH_WARN, "Your power is siphoned away as the spells of %s are empowered!",
@@ -511,7 +515,7 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_HARLEQUIN:
     {
         if (you_trigger)
-            mpr("You enter a harlequin's trap.");
+            mpr(Options.language == lang_t::KO ? "어릿광대의 함정에 들어섭니다." : "You enter a harlequin's trap.");
 
         int buff_time = 200 + random2(80);
 
@@ -536,7 +540,7 @@ void trap_def::trigger(actor& triggerer)
             // Almost certainly not worth setting up any penance;
             // player-triggered Zot traps summoning demons don't either.
             if (you_trigger && is_good_god(you.religion))
-                mprf(MSGCH_GOD, "You feel a twinge of divine disapproval.");
+                mprf(MSGCH_GOD, "%s", Options.language == lang_t::KO ? "신의 못마땅한 기색이 느껴집니다." : "You feel a twinge of divine disapproval.");
         }
         else if (!you_trigger)
             mprf("%s enters a harlequin's trap.", triggerer.name(DESC_THE).c_str());
@@ -547,7 +551,7 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_DEVOURER:
     {
         if (you_trigger)
-            mpr("You enter a devourer's trap.");
+            mpr(Options.language == lang_t::KO ? "포식자의 함정에 들어섭니다." : "You enter a devourer's trap.");
 
         if (x_chance_in_y(3, 4))
         {
@@ -574,15 +578,14 @@ void trap_def::trigger(actor& triggerer)
             break;
         trap_destroyed = true;
         if (you_trigger)
-            mpr("You set off the alarm!");
+            mpr(Options.language == lang_t::KO ? "경보를 울렸습니다!" : "You set off the alarm!");
         else
             mprf("%s %s the alarm!", triggerer.name(DESC_THE).c_str(),
                  mons_intel(*m) >= I_HUMAN ? "pulls" : "sets off");
 
         if (silenced(pos))
         {
-            mprf("%s vibrates slightly, failing to make a sound.",
-                 name(DESC_THE).c_str());
+            mprf(Options.language == lang_t::KO ? "소리 없이 미세하게 진동하는 함정: %s." : "%s vibrates slightly, failing to make a sound.", name(DESC_THE).c_str());
         }
         else
         {
@@ -609,15 +612,15 @@ void trap_def::trigger(actor& triggerer)
             if (mons_intel(*m) < I_HUMAN || !one_chance_in(3))
             {
                 // Not triggered, trap stays.
-                simple_monster_message(*m, " fails to trigger a net trap.");
+                simple_monster_message(*m, Options.language == lang_t::KO ? " — 그물 함정을 발동시키지 못합니다." : " fails to trigger a net trap.");
             }
             else
             {
                 // Triggered, net the player.
                 triggered = true;
 
-                if (!simple_monster_message(*m, " drops a net on you."))
-                    mpr("Something launches a net on you.");
+                if (!simple_monster_message(*m, Options.language == lang_t::KO ? " — 당신에게 그물을 던집니다." : " drops a net on you."))
+                    mpr(Options.language == lang_t::KO ? "무언가가 당신에게 그물을 던집니다." : "Something launches a net on you.");
             }
         }
 
@@ -625,11 +628,11 @@ void trap_def::trigger(actor& triggerer)
             break;
 
         if (you_trigger)
-            mpr("You trigger a net trap.");
+            mpr(Options.language == lang_t::KO ? "그물 함정을 발동시킵니다." : "You trigger a net trap.");
 
         if (random2avg(2 * you.evasion(), 2) > 18 + env.absdepth0 / 2)
         {
-            mpr("You avoid being caught in a net.");
+            mpr(Options.language == lang_t::KO ? "그물에 걸리지 않고 피합니다." : "You avoid being caught in a net.");
             break;
         }
 
@@ -652,9 +655,9 @@ void trap_def::trigger(actor& triggerer)
             if (m)
             {
                 if (m->is_insubstantial())
-                    simple_monster_message(*m, " passes through a web.");
+                    simple_monster_message(*m, Options.language == lang_t::KO ? " — 거미줄을 통과합니다." : " passes through a web.");
                 else if (m->is_amorphous())
-                    simple_monster_message(*m, " oozes through a web.");
+                    simple_monster_message(*m, Options.language == lang_t::KO ? " — 거미줄 사이로 스며 나갑니다." : " oozes through a web.");
                 // too spammy for spiders, and expected
             }
             break;
@@ -663,7 +666,7 @@ void trap_def::trigger(actor& triggerer)
         if (you_trigger)
         {
             if (one_chance_in(3))
-                mpr("You pick your way through the web.");
+                mpr(Options.language == lang_t::KO ? "거미줄 사이로 조심스럽게 빠져나갑니다." : "You pick your way through the web.");
             else if (you.trap_in_web())
             {
                 if (ammo_qty == 1)
@@ -675,13 +678,13 @@ void trap_def::trigger(actor& triggerer)
         else if (m)
         {
             if (one_chance_in(3))
-                simple_monster_message(*m, " evades a web.");
+                simple_monster_message(*m, Options.language == lang_t::KO ? " — 거미줄을 피합니다." : " evades a web.");
             else
             {
                 if (m->trap_in_web())
                 {
                     if (!m->visible_to(&you))
-                        mpr("A web moves frantically as something is caught in it!");
+                        mpr(Options.language == lang_t::KO ? "무언가가 걸려 거미줄이 격렬하게 흔들립니다!" : "A web moves frantically as something is caught in it!");
                     // Don't try to escape the web in the same turn
                     m->props[NEWLY_TRAPPED_KEY] = true;
                     if (ammo_qty == 1)
@@ -694,7 +697,7 @@ void trap_def::trigger(actor& triggerer)
     case TRAP_ZOT:
         if (you_trigger)
         {
-            mpr("You enter the Zot trap.");
+            mpr(Options.language == lang_t::KO ? "조트의 함정에 들어섭니다." : "You enter the Zot trap.");
             _zot_trap();
         }
         else if (m)
@@ -705,7 +708,7 @@ void trap_def::trigger(actor& triggerer)
 
             // Give the player a chance to figure out what happened
             if (player_can_hear(pos))
-                mprf(MSGCH_SOUND, "You hear a loud \"Zot\"!");
+                mprf(MSGCH_SOUND, "%s", Options.language == lang_t::KO ? "큰 소리로 \"조트!\" 하고 외치는 소리가 들립니다." : "You hear a loud \"Zot\"!");
 
             if (you.see_cell_no_trans(pos) && one_chance_in(5))
                 _zot_trap();
@@ -733,8 +736,10 @@ void trap_def::trigger(actor& triggerer)
         // after one use in down_stairs()
         if (!you_trigger)
         {
-            mprf("%s shaft crumbles and collapses.",
-                 triggerer_seen ? "The" : "A");
+            if (Options.language == lang_t::KO)
+                mpr("수직 통로가 무너져 내립니다.");
+            else
+                mprf("%s shaft crumbles and collapses.", triggerer_seen ? "The" : "A");
             know_trap_destroyed = true;
             trap_destroyed = true;
 
@@ -758,7 +763,7 @@ void trap_def::trigger(actor& triggerer)
 #if TAG_MAJOR_VERSION == 34
         if (is_removed_trap(type))
         {
-            mpr("The trap seems to be inoperative.");
+            mpr(Options.language == lang_t::KO ? "함정이 작동하지 않는 듯합니다." : "The trap seems to be inoperative.");
             trap_destroyed = true;
         }
 #endif
@@ -1002,7 +1007,7 @@ void do_trap_effects()
             _print_malev();
             if (have_passive(passive_t::avoid_traps))
             {
-                simple_god_message(" reveals a hidden shaft just before you would have fallen in.");
+                simple_god_message(Options.language == lang_t::KO ? " — 떨어지기 직전에 숨겨진 수직 통로를 알려 줍니다." : " reveals a hidden shaft just before you would have fallen in.");
                 return;
             }
             if (you.do_shaft())
@@ -1017,10 +1022,10 @@ void do_trap_effects()
             _print_malev();
             if (have_passive(passive_t::avoid_traps))
             {
-                simple_god_message(" reveals an alarm trap just before you would have tripped it.");
+                simple_god_message(Options.language == lang_t::KO ? " — 발동시키기 직전에 경보 함정을 알려 줍니다." : " reveals an alarm trap just before you would have tripped it.");
                 return;
             }
-            mpr("With a horrendous wail, an alarm goes off!");
+            mpr(Options.language == lang_t::KO ? "끔찍한 굉음과 함께 경보가 울립니다!" : "With a horrendous wail, an alarm goes off!");
             fake_noisy(40, you.pos());
             you.sentinel_mark(true);
             apply_noises(); // Otherwise the noise from them won't kick in until the end of the turn.
@@ -1038,7 +1043,7 @@ void do_trap_effects()
             if (have_passive(passive_t::avoid_traps))
             {
                 mpr(msg);
-                simple_god_message(" warns you in time for you to avoid it.");
+                simple_god_message(Options.language == lang_t::KO ? " — 위험을 피할 수 있도록 제때 경고합니다." : " warns you in time for you to avoid it.");
                 return;
             }
             mpr(msg);
@@ -1231,7 +1236,7 @@ bool player::trap_in_web()
     you.redraw_evasion      = true;
     quiver::set_needs_redraw();
 
-    mpr("You are caught in a web!");
+    mpr(Options.language == lang_t::KO ? "거미줄에 걸렸습니다!" : "You are caught in a web!");
 
     return true;
 }
@@ -1241,7 +1246,7 @@ bool monster::trap_in_web()
     if (is_web_immune() || caught())
         return false;
 
-    simple_monster_message(*this, " is caught in a web!");
+    simple_monster_message(*this, Options.language == lang_t::KO ? " — 거미줄에 걸립니다!" : " is caught in a web!");
     add_ench(ENCH_HELD);
 
     return true;
@@ -1259,7 +1264,7 @@ bool player::trap_in_net(bool real, bool quiet)
     quiver::set_needs_redraw();
 
     if (!quiet)
-        mpr("You become entangled in the net!");
+        mpr(Options.language == lang_t::KO ? "그물에 얽혀 버렸습니다!" : "You become entangled in the net!");
 
     stop_running();
     stop_delay(true); // even stair delays
@@ -1284,7 +1289,7 @@ bool monster::trap_in_net(bool real, bool quiet)
         if (!quiet && you.can_see(*this))
         {
             if (is_insubstantial())
-                mprf("The net passes right through %s!", name(DESC_THE).c_str());
+                mprf(Options.language == lang_t::KO ? "그물이 그대로 통과한 몬스터: %s!" : "The net passes right through %s!", name(DESC_THE).c_str());
             else
                 mprf("%s effortlessly oozes through the net!", name(DESC_THE).c_str());
         }
@@ -1301,7 +1306,7 @@ bool monster::trap_in_net(bool real, bool quiet)
     if (!quiet && you.see_cell(pos()))
     {
         if (!visible_to(&you))
-            mpr("Something gets caught in the net!");
+            mpr(Options.language == lang_t::KO ? "무언가가 그물에 걸립니다!" : "Something gets caught in the net!");
         else
             simple_monster_message(*this, " is caught in the net!");
     }
@@ -1317,12 +1322,12 @@ void player::struggle_against_net()
         // Roll a chance to escape the web.
         if (x_chance_in_y(3, 10))
         {
-            mpr("You struggle to detach yourself from the web.");
+            mpr(Options.language == lang_t::KO ? "거미줄에서 벗어나려고 몸부림칩니다." : "You struggle to detach yourself from the web.");
             return;
         }
         else
         {
-            mpr("You disentangle yourself.");
+            mpr(Options.language == lang_t::KO ? "속박에서 벗어납니다." : "You disentangle yourself.");
             stop_being_caught();
             return;
         }
@@ -1332,15 +1337,18 @@ void player::struggle_against_net()
     const int damage = random_range(1, 4);
     if (damage >= you.attribute[ATTR_HELD])
     {
-        mprf("You %s the net and break free!", damage > 3 ? "shred" : "rip");
+        if (Options.language == lang_t::KO)
+            mpr(damage > 3 ? "그물을 갈기갈기 찢고 탈출합니다!" : "그물을 찢고 탈출합니다!");
+        else
+            mprf("You %s the net and break free!", damage > 3 ? "shred" : "rip");
         stop_being_caught();
         return;
     }
 
     if (damage > 3)
-        mpr("You tear a large gash into the net.");
+        mpr(Options.language == lang_t::KO ? "그물을 크게 찢어 놓습니다." : "You tear a large gash into the net.");
     else
-        mpr("You struggle against the net.");
+        mpr(Options.language == lang_t::KO ? "그물에 저항하며 몸부림칩니다." : "You struggle against the net.");
 
     you.attribute[ATTR_HELD] -= damage;
 }

@@ -910,7 +910,7 @@ static bool _can_generically_use_armour(bool wear=true)
             mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "아무것도 착용할 수 없습니다." : "You can't wear anything."));
         else
         {
-            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "%s을(를) 벗을 수 없습니다." : "You can't remove your %s, sorry."),
+            mprf(MSGCH_PROMPT, (Options.language == lang_t::KO ? "벗을 수 없는 신체 부위입니다: %s." : "You can't remove your %s, sorry."),
                 species::skin_name(you.species).c_str());
         }
         return false;
@@ -1188,9 +1188,12 @@ static item_def* _item_swap_prompt(const vector<item_def*>& candidates)
 
     clear_messages();
 
-    mprf(MSGCH_PROMPT,
-         "To do this, you must remove one of the following items:");
-    mprf(MSGCH_PROMPT, "(<w>?</w> for menu, <w>Esc</w> to cancel)");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+         ? "이 행동을 하려면 다음 장비 중 하나를 벗어야 합니다:"
+         : "To do this, you must remove one of the following items:");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+         ? "(<w>?</w>: 메뉴, <w>Esc</w>: 취소)"
+         : "(<w>?</w> for menu, <w>Esc</w> to cancel)");
 
     for (size_t i = 0; i < candidates.size(); i++)
     {
@@ -1320,7 +1323,7 @@ bool warn_about_changing_gear(const vector<item_def*>& to_remove, item_def* to_e
                 if (++removed_flight >= equipped_flight)
                 {
                     mprf(MSGCH_PROMPT, Options.language == lang_t::KO
-                             ? "지금 %s을(를) 벗으면 %s!"
+                             ? "지금 %s 장비를 벗으면 %s!"
                              : "Removing %s right now would cause you to %s!",
                              item->name(DESC_YOUR).c_str(),
                              Options.language == lang_t::KO
@@ -1503,7 +1506,7 @@ bool handle_chain_removal(vector<item_def*>& to_remove, bool interactive)
             if ((int)chain_remove.size() < chain_remove_num)
             {
                 mprf(MSGCH_PROMPT, Options.language == lang_t::KO
-                         ? "저주받은 아이템 때문에 %s을(를) 벗을 수 없습니다."
+                         ? "저주받은 아이템 때문에 다음 장비를 벗을 수 없습니다: %s."
                          : "A cursed item is preventing you from removing %s.",
                          item.name(DESC_INVENTORY).c_str());
                 return false;
@@ -1598,7 +1601,7 @@ void do_equipment_change(item_def* to_equip, equipment_slot equip_slot,
             else
             {
                 if (Options.language == lang_t::KO)
-                    mprf("%s을(를) 장착 해제합니다.",
+                    mprf("장비를 해제합니다: %s.",
                          item->name(DESC_YOUR).c_str());
                 else
                     mprf("You %s %s.", item_unequip_verb(*item).c_str(),
@@ -1635,7 +1638,7 @@ bool can_unequip_item(item_def& item, bool silent)
     {
         if (!silent)
         {
-            mprf(MSGCH_PROMPT, "%s is melded into your body!",
+            mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "몸에 융합되어 벗을 수 없는 장비: %s!" : "%s is melded into your body!",
                                item.name(DESC_YOUR).c_str());
         }
         return false;
@@ -1645,7 +1648,7 @@ bool can_unequip_item(item_def& item, bool silent)
     {
         if (!silent)
         {
-            mprf(MSGCH_PROMPT, "%s is stuck to your body!",
+            mprf(MSGCH_PROMPT, Options.language == lang_t::KO ? "몸에 달라붙어 벗을 수 없는 장비: %s!" : "%s is stuck to your body!",
                                 item.name(DESC_YOUR).c_str());
         }
         return false;
@@ -1902,7 +1905,7 @@ bool oni_drunken_swing()
         bool success = false;
         if (you.weapon())
         {
-            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 %s을(를) 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
+            mprf((Options.language == lang_t::KO ? "물약을 한 모금 마시고 손에 든 무기(%s)를 빙글 돌립니다." : "You take a swig of the potion and twirl %s."),
                  you.weapon()->name(DESC_YOUR).c_str());
         }
         else
@@ -1946,10 +1949,9 @@ bool drink(item_def* potion)
     }
 
     bool penance = god_hates_item(*potion);
-    string prompt = make_stringf("Really quaff the %s?%s",
+    string prompt = make_stringf(Options.language == lang_t::KO ? "%s 물약을 정말 마시시겠습니까?%s" : "Really quaff the %s?%s",
                                  potion->name(DESC_DBNAME).c_str(),
-                                 penance ? " This action would place"
-                                           " you under penance!" : "");
+                                 penance ? (Options.language == lang_t::KO ? " 이 행동은 신의 징벌을 부릅니다!" : " This action would place you under penance!") : "");
     if (alreadyknown && (is_dangerous_item(*potion, true) || penance)
         && Options.bad_item_prompt
         && !yesno(prompt.c_str(), false, 'n'))
@@ -1963,8 +1965,7 @@ bool drink(item_def* potion)
         && !you.props.exists(VICTORY_CONDUCT_KEY))
     {
         item_def *item = you.equipment.get_first_slot_item(SLOT_BODY_ARMOUR, true);
-        string unrand_prompt = make_stringf("Really quaff with monsters nearby "
-                                            "while wearing %s?",
+        string unrand_prompt = make_stringf(Options.language == lang_t::KO ? "근처에 몬스터가 있습니다. %s 장비를 착용한 채 물약을 마시시겠습니까?" : "Really quaff with monsters nearby while wearing %s?",
                                             item->name(DESC_THE, false, true,
                                                        false).c_str());
 
@@ -1985,7 +1986,9 @@ bool drink(item_def* potion)
 
     if (player_under_penance(GOD_GOZAG) && one_chance_in(3))
     {
-        simple_god_message(" petitions for your drink to fail.", false,
+        simple_god_message(Options.language == lang_t::KO
+                               ? " — 물약의 효과를 방해합니다."
+                               : " petitions for your drink to fail.", false,
                            GOD_GOZAG);
         you.turn_is_over = true;
         return false;
@@ -2147,87 +2150,87 @@ static void _brand_weapon(item_def &wpn)
     {
     case SPWPN_HEAVY:
         flash_colour = BROWN;
-        mprf("%s becomes incredibly heavy!",itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 무게가 엄청나게 무거워집니다!" : "%s becomes incredibly heavy!"),itname.c_str());
         break;
 
     case SPWPN_PROTECTION:
         flash_colour = YELLOW;
-        mprf("%s projects an invisible shield of force!",itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 보이지 않는 힘의 방패를 펼칩니다!" : "%s projects an invisible shield of force!"),itname.c_str());
         break;
 
     case SPWPN_FLAMING:
         flash_colour = RED;
-        mprf("%s is engulfed in flames!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 불길에 휩싸입니다!" : "%s is engulfed in flames!"), itname.c_str());
         break;
 
     case SPWPN_FREEZING:
         flash_colour = LIGHTCYAN;
-        mprf("%s is covered with a thin layer of ice!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 얇은 얼음막으로 뒤덮입니다!" : "%s is covered with a thin layer of ice!"), itname.c_str());
         break;
 
     case SPWPN_DRAINING:
         flash_colour = DARKGREY;
-        mprf("%s craves living souls!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 살아 있는 영혼을 갈망합니다!" : "%s craves living souls!"), itname.c_str());
         break;
 
     case SPWPN_VAMPIRISM:
         flash_colour = DARKGREY;
-        mprf("%s thirsts for the lives of mortals!", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 필멸자의 생명을 갈망합니다!" : "%s thirsts for the lives of mortals!"), itname.c_str());
         break;
 
     case SPWPN_VENOM:
         flash_colour = GREEN;
-        mprf("%s drips with poison.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 독이 뚝뚝 떨어집니다." : "%s drips with poison."), itname.c_str());
         break;
 
     case SPWPN_ELECTROCUTION:
         flash_colour = LIGHTCYAN;
-        mprf("%s crackles with electricity.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 전기가 지직거립니다." : "%s crackles with electricity."), itname.c_str());
         break;
 
     case SPWPN_CHAOS:
         flash_colour = random_colour();
-        mprf("%s erupts in a glittering mayhem of colour.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 현란한 빛깔이 폭발하듯 퍼져 나옵니다." : "%s erupts in a glittering mayhem of colour."), itname.c_str());
         break;
 
     case SPWPN_ACID:
         flash_colour = ETC_SLIME;
-        mprf("%s oozes corrosive slime.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 부식성 점액을 흘립니다." : "%s oozes corrosive slime."), itname.c_str());
         break;
 
     case SPWPN_SPECTRAL:
         flash_colour = BLUE;
-        mprf("%s acquires a faint afterimage.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 희미한 잔상이 생깁니다." : "%s acquires a faint afterimage."), itname.c_str());
         break;
 
     case SPWPN_REBUKE:
         flash_colour = WHITE;
-        mprf("%s quivers with indignation.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 분노로 부르르 떨립니다." : "%s quivers with indignation."), itname.c_str());
         break;
 
     case SPWPN_VALOUR:
         flash_colour = WHITE;
-        mprf("%s thrums with vital power.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 생명력이 맥동합니다." : "%s thrums with vital power."), itname.c_str());
         break;
 
     case SPWPN_ENTANGLING:
         flash_colour = LIGHTGREEN;
-        mprf("%s erupts in a tangle of vines.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 뒤엉킨 덩굴이 솟아납니다." : "%s erupts in a tangle of vines."), itname.c_str());
         break;
 
     case SPWPN_SUNDERING:
         flash_colour = LIGHTRED;
-        mprf("%s becomes viciously sharp.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 무시무시하게 날카로워집니다." : "%s becomes viciously sharp."), itname.c_str());
         break;
 
     case SPWPN_CONCUSSION:
         flash_colour = YELLOW;
-        mprf("%s begins to exert an overwhelming pressure.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 압도적인 압력을 내뿜기 시작합니다." : "%s begins to exert an overwhelming pressure."), itname.c_str());
         break;
 
     case SPWPN_DEVIOUS:
         flash_colour = BLUE;
-        mprf("%s glints wickedly in the shadows.", itname.c_str());
+        mprf((Options.language == lang_t::KO ? "%s — 그림자 속에서 사악하게 번뜩입니다." : "%s glints wickedly in the shadows."), itname.c_str());
         break;
 
     default:
@@ -2259,7 +2262,7 @@ static item_def* _choose_target_item_for_scroll(bool scroll_known, object_select
                        {
                            if (scroll_known
                                || crawl_state.seen_hups
-                               || yesno("Really abort (and waste the scroll)?", false, 0))
+                               || yesno(Options.language == lang_t::KO ? "정말 취소하고 두루마리를 낭비하시겠습니까?" : "Really abort (and waste the scroll)?", false, 0))
                            {
                                return true;
                            }
@@ -2341,7 +2344,10 @@ bool enchant_weapon(item_def &wpn, bool quiet)
         if (!quiet)
         {
             const char* dur = wpn.plus < MAX_WPN_ENCHANT ? "moment" : "while";
-            mprf("%s glows red for a %s.", iname.c_str(), dur);
+            if (Options.language == lang_t::KO)
+                mprf(wpn.plus < MAX_WPN_ENCHANT ? "무기에 붉은빛이 잠깐 감돕니다: %s." : "무기에 붉은빛이 계속 감돕니다: %s.", iname.c_str());
+            else
+                mprf("%s glows red for a %s.", iname.c_str(), dur);
         }
     }
 
@@ -2498,7 +2504,10 @@ bool enchant_armour(item_def &arm, bool quiet)
                             && arm.sub_type != ARM_TROLL_LEATHER_ARMOUR;
         string glow = conjugate_verb("glow", plural);
         const char* dur = is_enchantable_armour(arm) ? "moment" : "while";
-        mprf("%s %s green for a %s.", name.c_str(), glow.c_str(), dur);
+        if (Options.language == lang_t::KO)
+            mprf(is_enchantable_armour(arm) ? "방어구에 초록빛이 잠깐 감돕니다: %s." : "방어구에 초록빛이 계속 감돕니다: %s.", name.c_str());
+        else
+            mprf("%s %s green for a %s.", name.c_str(), glow.c_str(), dur);
     }
 
     return true;
@@ -2587,7 +2596,7 @@ static bool _handle_amnesia(bool alreadyknown)
         {
             if (crawl_state.seen_hups)
                 return false;
-            if (!yesno("Really abort (and waste the scroll)?", false, 0))
+            if (!yesno(Options.language == lang_t::KO ? "정말 취소하고 두루마리를 낭비하시겠습니까?" : "Really abort (and waste the scroll)?", false, 0))
                 continue;
         }
 
@@ -2882,11 +2891,9 @@ bool read(item_def* scroll, dist *target)
         bool penance = god_hates_item(*scroll);
         string verb_object = "read the " + scroll->name(DESC_DBNAME);
 
-        string penance_prompt = make_stringf("Really %s? This action would"
-                                             " place you under penance%s!",
+        string penance_prompt = make_stringf(Options.language == lang_t::KO ? "다음 행동을 계속하시겠습니까: %s? 신의 징벌을 받게 됩니다!%s" : "Really %s? This action would place you under penance%s!",
                                              verb_object.c_str(),
-                                             hostile_check ? ""
-                    : " and you can't even see any enemies this would affect");
+                                             hostile_check ? "" : (Options.language == lang_t::KO ? " 영향을 받는 적도 보이지 않습니다." : " and you can't even see any enemies this would affect"));
 
         targeter_radius hitfunc(&you, LOS_NO_TRANS);
 
@@ -2911,10 +2918,10 @@ bool read(item_def* scroll, dist *target)
             return false;
         }
         else if (bad_item
-                 && !yesno(make_stringf("Really %s?%s",
+                 && !yesno(make_stringf(Options.language == lang_t::KO ? "다음 행동을 계속하시겠습니까: %s?%s" : "Really %s?%s",
                                         verb_object.c_str(),
                                         hostile_check ? ""
-                        : " You can't even see any enemies this would affect."
+                         : (Options.language == lang_t::KO ? " 영향을 받는 적도 보이지 않습니다." : " You can't even see any enemies this would affect.")
                                         ).c_str(),
                            false, 'n'))
         {
@@ -2922,7 +2929,7 @@ bool read(item_def* scroll, dist *target)
             return false;
         }
         else if (!bad_item && !hostile_check && !yesno(make_stringf(
-            "You can't see any enemies this would affect, really %s?",
+            Options.language == lang_t::KO ? "이 행동의 영향을 받을 적이 보이지 않습니다. 그래도 %s 행동을 진행하시겠습니까?" : "You can't see any enemies this would affect, really %s?",
                                         verb_object.c_str()).c_str(),
                                                 false, 'n'))
         {
@@ -2937,8 +2944,7 @@ bool read(item_def* scroll, dist *target)
         && !you.props.exists(VICTORY_CONDUCT_KEY))
     {
         item_def *item = you.equipment.get_first_slot_item(SLOT_BODY_ARMOUR, true);
-        string unrand_prompt = make_stringf("Really read with monsters nearby "
-                                            "while wearing %s?",
+        string unrand_prompt = make_stringf(Options.language == lang_t::KO ? "근처에 몬스터가 있습니다. %s 장비를 착용한 채 두루마리를 읽으시겠습니까?" : "Really read with monsters nearby while wearing %s?",
                                             item->name(DESC_THE, false, true,
                                                        false).c_str());
 
@@ -2982,10 +2988,15 @@ bool read(item_def* scroll, dist *target)
     // For cancellable scrolls leave printing this message to their
     // respective functions.
     const string pre_succ_msg =
-            make_stringf("As you %s the %s, it %s.",
-                          is_loud ? "thunderously recite" : "read",
-                          scroll->name(DESC_QUALNAME).c_str(),
-                         which_scroll == SCR_FOG ? "dissolves into smoke" : "crumbles to dust");
+            (Options.language == lang_t::KO
+                ? make_stringf("%s 두루마리를 %s, 두루마리가 %s.",
+                               scroll->name(DESC_QUALNAME).c_str(),
+                               is_loud ? "우렁차게 읽자" : "읽자",
+                               which_scroll == SCR_FOG ? "연기로 흩어집니다" : "먼지로 부서집니다")
+                : make_stringf("As you %s the %s, it %s.",
+                               is_loud ? "thunderously recite" : "read",
+                               scroll->name(DESC_QUALNAME).c_str(),
+                               which_scroll == SCR_FOG ? "dissolves into smoke" : "crumbles to dust"));
     if (!_is_cancellable_scroll(which_scroll))
     {
         mpr(pre_succ_msg);
@@ -3364,7 +3375,7 @@ bool invisibility_target_check(const char* prompt)
     if (!found_any)
         return true;
     if (!found_susceptible)
-        return yesno("You can't see any enemy this would conceal you from. Use anyway?", true, 'n');
+        return yesno(Options.language == lang_t::KO ? "이 효과로 몸을 숨길 만한 적이 보이지 않습니다. 그래도 사용하시겠습니까?" : "You can't see any enemy this would conceal you from. Use anyway?", true, 'n');
 
     direction_chooser_args args;
     unique_ptr<targeter> hitfunc = make_unique<targeter_invisibility>();
@@ -3441,7 +3452,9 @@ bool use_talisman(item_def& talisman)
                                                      TALISMAN_MEDUSA,
                                                      TALISMAN_SPORE);
 
-        mprf("%s responds to your shapeshifting skill and transforms into a %s!",
+        mprf(Options.language == lang_t::KO
+             ? "변신술에 반응하여 변형된 변이 장신품: %s → %s!"
+             : "%s responds to your shapeshifting skill and transforms into a %s!",
              real_item.name(DESC_YOUR).c_str(), talisman_type_name(new_type).c_str());
 
         real_item.sub_type = new_type;
@@ -3456,7 +3469,7 @@ bool use_talisman(item_def& talisman)
         return false;
     if (transforming_is_unsafe(trans))
         return false;
-    if (!i_feel_safe(true) && !yesno("Still begin transforming?", true, 'n'))
+    if (!i_feel_safe(true) && !yesno(Options.language == lang_t::KO ? "지금 상황에서도 변신을 시작하시겠습니까?" : "Still begin transforming?", true, 'n'))
     {
         canned_msg(MSG_OK);
         return false;

@@ -223,16 +223,16 @@ void debug_list_monsters()
         snprintf(buf, sizeof(buf), "%s", prev_name.c_str());
     mons.emplace_back(buf);
 
-    mpr_comma_separated_list("Monsters: ", mons);
+    mpr_comma_separated_list(Options.language == lang_t::KO ? "몬스터: " : "Monsters: ", mons);
 
     if (total_adj_exp == total_exp)
     {
-        mprf("%d monsters, %d total exp value (%d non-uniq)",
+        mprf(Options.language == lang_t::KO ? "몬스터 %d마리, 총 경험치 %d (일반 몬스터 %d)" : "%d monsters, %d total exp value (%d non-uniq)",
              nfound, total_exp, total_nonuniq_exp);
     }
     else
     {
-        mprf("%d monsters, %d total exp value (%d non-uniq, %d adjusted)",
+        mprf(Options.language == lang_t::KO ? "몬스터 %d마리, 총 경험치 %d (일반 %d, 보정 %d)" : "%d monsters, %d total exp value (%d non-uniq, %d adjusted)",
              nfound, total_exp, total_nonuniq_exp, total_adj_exp);
     }
 }
@@ -286,13 +286,13 @@ void debug_stethoscope(int mon)
 
         if (cloud_struct* cloud = cloud_at(stethpos))
         {
-            mprf(MSGCH_DIAGNOSTICS, "cloud type: %d delay: %d",
+            mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "구름 종류: %d, 지연: %d" : "cloud type: %d delay: %d",
                  cloud->type, cloud->decay);
         }
 
         if (!monster_at(stethpos))
         {
-            mprf(MSGCH_DIAGNOSTICS, "item grid = %d", env.igrid(stethpos));
+            mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "아이템 칸 = %d" : "item grid = %d", env.igrid(stethpos));
             return;
         }
 
@@ -302,7 +302,7 @@ void debug_stethoscope(int mon)
     monster& mons(env.mons[i]);
 
     // Print type of monster.
-    mprf(MSGCH_DIAGNOSTICS, "%s (id #%d; type=%d loc=(%d,%d) align=%s)",
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "%s (ID #%d, 종류=%d, 좌표=(%d,%d), 진영=%s)" : "%s (id #%d; type=%d loc=(%d,%d) align=%s)",
          mons.name(DESC_THE, true).c_str(),
          i, mons.type, mons.pos().x, mons.pos().y,
          ((mons.attitude == ATT_HOSTILE)        ? "hostile" :
@@ -368,7 +368,7 @@ void debug_stethoscope(int mon)
                    : ""));
 
     // Print resistances.
-    mprf(MSGCH_DIAGNOSTICS, "resist: fire=%d cold=%d elec=%d pois=%d neg=%d "
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "저항: 화염=%d 냉기=%d 전기=%d 독=%d 음에너지=%d " : "resist: fire=%d cold=%d elec=%d pois=%d neg=%d "
                             "acid=%d sticky=%s miasma=%s",
          mons.res_fire(),
          mons.res_cold(),
@@ -379,10 +379,10 @@ void debug_stethoscope(int mon)
          mons.res_sticky_flame() ? "yes" : "no",
          mons.res_miasma() ? "yes" : "no");
 
-    mprf(MSGCH_DIAGNOSTICS, "ench: %s",
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "마법 효과: %s" : "ench: %s",
          mons.describe_enchantments().c_str());
 
-    mprf(MSGCH_DIAGNOSTICS, "props: %s",
+    mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "속성: %s" : "props: %s",
          mons.describe_props().c_str());
 
     ostringstream spl;
@@ -427,7 +427,7 @@ void debug_stethoscope(int mon)
         spl << " (#" << static_cast<int>(hspell_pass[k].spell) << ")";
     }
     if (found_spell)
-        mprf(MSGCH_DIAGNOSTICS, "spells: %s", spl.str().c_str());
+        mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "주문: %s" : "spells: %s", spl.str().c_str());
 
     ostringstream inv;
     bool found_item = false;
@@ -451,7 +451,7 @@ void debug_stethoscope(int mon)
     {
         ASSERT(mons.ghost);
         const ghost_demon &ghost = *mons.ghost;
-        mprf(MSGCH_DIAGNOSTICS, "Ghost damage: %d; brand: %d; att_type: %d; "
+        mprf(MSGCH_DIAGNOSTICS, Options.language == lang_t::KO ? "유령 피해: %d, 무기 속성: %d, 공격 방식: %d, " : "Ghost damage: %d; brand: %d; att_type: %d; "
                                 "att_flav: %d",
              ghost.damage, ghost.brand, ghost.att_type, ghost.att_flav);
     }
@@ -470,7 +470,10 @@ void wizard_detect_creatures()
 #endif
         count++;
     }
-    mprf("Detected %i monster%s.", count, count == 1 ? "" : "s");
+    if (Options.language == lang_t::KO)
+        mprf("감지한 몬스터: %i마리.", count);
+    else
+        mprf("Detected %i monster%s.", count, count == 1 ? "" : "s");
 }
 
 // Dismisses all monsters on the level or all monsters that match a user
@@ -480,9 +483,9 @@ void wizard_dismiss_all_monsters(bool force_all)
     char buf[1024] = "";
     if (!force_all)
     {
-        mprf(MSGCH_PROMPT, "What monsters to dismiss (ENTER for all, "
-                           "\"harmful\", \"mobile\", \"los\" or a regex, "
-                           "\"keepitem\" to leave items)? ");
+        mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO
+             ? "제거할 몬스터 (Enter: 전체, harmful/mobile/los/정규식, keepitem: 아이템 유지): "
+             : "What monsters to dismiss (ENTER for all, \"harmful\", \"mobile\", \"los\" or a regex, \"keepitem\" to leave items)? ");
         bool validline = !cancellable_get_line_autohist(buf, sizeof buf);
 
         if (!validline)
@@ -493,7 +496,10 @@ void wizard_dismiss_all_monsters(bool force_all)
     }
 
     int count = dismiss_monsters(buf);
-    mprf("Dismissed %i monster%s.", count, count == 1 ? "" : "s");
+    if (Options.language == lang_t::KO)
+        mprf("제거한 몬스터: %i마리.", count);
+    else
+        mprf("Dismissed %i monster%s.", count, count == 1 ? "" : "s");
     // If it was turned off turn autopickup back on if all monsters went away.
     if (!*buf)
         autotoggle_autopickup(false);
@@ -530,8 +536,7 @@ void debug_make_monster_shout(monster* mon)
 
         if (silenced(you.pos()) && !silenced(mon->pos()))
         {
-            mpr("You are silenced but the monster isn't; you will "
-                "probably hear/see nothing.");
+            mpr(Options.language == lang_t::KO ? "당신만 침묵 상태여서 아무것도 듣거나 보지 못할 수 있습니다." : "You are silenced but the monster isn't; you will probably hear/see nothing.");
         }
         else if (!silenced(you.pos()) && silenced(mon->pos()))
             mpr((Options.language == lang_t::KO ? "몬스터가 침묵 상태라 아무 말도 하지 않을 것입니다." : "The monster is silenced and likely won't say anything."));
@@ -545,7 +550,7 @@ void debug_make_monster_shout(monster* mon)
             mons_speaks(mon);
     }
 
-    mpr("== Done ==");
+    mpr(Options.language == lang_t::KO ? "== 완료 ==" : "== Done ==");
 }
 
 void wizard_apply_monster_blessing(monster* mon)
@@ -563,7 +568,7 @@ void wizard_apply_monster_blessing(monster* mon)
     god_type god = GOD_SHINING_ONE;
 
     if (!bless_follower(mon, god, true))
-        mprf("%s won't bless this monster for you!", god_name(god).c_str());
+        mprf(Options.language == lang_t::KO ? "몬스터를 축복해 주지 않는 신: %s!" : "%s won't bless this monster for you!", god_name(god).c_str());
 }
 
 void wizard_give_monster_item(monster* mon)
@@ -725,7 +730,7 @@ void wizard_make_monster_summoned(monster* mon)
     {
         char specs[80];
 
-        msgwin_get_line("Cast which spell by name? ",
+        msgwin_get_line(Options.language == lang_t::KO ? "시전할 주문 이름: " : "Cast which spell by name? ",
                         specs, sizeof(specs));
 
         if (specs[0] == '\0')
@@ -826,7 +831,7 @@ void debug_pathfind(int idx)
     }
 
     monster& mon = env.mons[idx];
-    mprf("Attempting to calculate a path from (%d, %d) to (%d, %d)...",
+    mprf(Options.language == lang_t::KO ? "경로 계산: (%d, %d) → (%d, %d)..." : "Attempting to calculate a path from (%d, %d) to (%d, %d)...",
          mon.pos().x, mon.pos().y, dest.x, dest.y);
     monster_pathfind mp;
     bool success = mp.init_pathfind(&mon, dest, true, true);
@@ -843,7 +848,7 @@ void debug_pathfind(int idx)
         for (coord_def pos : path)
             path_str += make_stringf("(%d, %d)  ", pos.x, pos.y);
         mpr(path_str);
-        mprf("-> path length: %u", (unsigned int)path.size());
+        mprf(Options.language == lang_t::KO ? "경로 길이: %u" : "-> path length: %u", (unsigned int)path.size());
 
         mpr("");
         path = mp.calc_waypoints();
@@ -853,7 +858,7 @@ void debug_pathfind(int idx)
         for (coord_def pos : path)
             path_str += make_stringf("(%d, %d)  ", pos.x, pos.y);
         mpr(path_str);
-        mprf("-> #waypoints: %u", (unsigned int)path.size());
+        mprf(Options.language == lang_t::KO ? "경유지 개수: %u" : "-> #waypoints: %u", (unsigned int)path.size());
     }
 }
 
@@ -1014,7 +1019,7 @@ void debug_miscast(int target_index)
 #ifdef DEBUG_BONES
 void debug_ghosts()
 {
-    mprf(MSGCH_PROMPT, "(C)reate, create (T)emporary, or (L)oad bones file?");
+    mprf(MSGCH_PROMPT, "%s", Options.language == lang_t::KO ? "유령 파일: (C) 생성, (T) 임시 생성, (L) 불러오기?" : "(C)reate, create (T)emporary, or (L)oad bones file?");
     const char c = toalower(getchm());
 
     if (c == 'c')
